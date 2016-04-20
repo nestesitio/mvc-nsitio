@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <htmmediaid field="htm_media.id" show="false" filter="false">
+        <label lang="en">Id</label>
+        <label lang="es">Id</label>
+        <label lang="fr">Id</label>
+        <label lang="pt">Id</label>
+      </htmmediaid>
+      <htmmediahtmid field="htm_media.htm_id" range="multiple" show="false" filter="true">
+        <label lang="en">Htm Id</label>
+        <label lang="es">Htm Id</label>
+        <label lang="fr">Htm Id</label>
+        <label lang="pt">Htm Id</label>
+      </htmmediahtmid>
+      <htmmediagenre field="htm_media.genre" show="true" filter="true">
+        <label lang="en">Genre</label>
+        <label lang="es">Genre</label>
+        <label lang="fr">Genre</label>
+        <label lang="pt">Genre</label>
+      </htmmediagenre>
+      <htmmediaurl field="htm_media.url" show="true" filter="true">
+        <label lang="en">Url</label>
+        <label lang="es">Url</label>
+        <label lang="fr">Url</label>
+        <label lang="pt">Url</label>
+      </htmmediaurl>
+      <htmmediaposition field="htm_media.position" show="true" filter="true">
+        <label lang="en">Position</label>
+        <label lang="es">Position</label>
+        <label lang="fr">Position</label>
+        <label lang="pt">Position</label>
+      </htmmediaposition>
+      <htmmediatitle field="htm_media.title" show="true" filter="true">
+        <label lang="en">Title</label>
+        <label lang="es">Title</label>
+        <label lang="fr">Title</label>
+        <label lang="pt">Title</label>
+      </htmmediatitle>
+      <htmmediaauthor field="htm_media.author" show="true" filter="true">
+        <label lang="en">Author</label>
+        <label lang="es">Author</label>
+        <label lang="fr">Author</label>
+        <label lang="pt">Author</label>
+      </htmmediaauthor>
+      <htmmediadate field="htm_media.date" range="range" show="true" filter="true" type="DateInput">
+        <label lang="en">Date</label>
+        <label lang="es">Date</label>
+        <label lang="fr">Date</label>
+        <label lang="pt">Date</label>
+      </htmmediadate>
+      <htmmediacreated field="htm_media.created" range="range" show="true" filter="true" type="DateInput">
+        <label lang="en">Created</label>
+        <label lang="es">Created</label>
+        <label lang="fr">Created</label>
+        <label lang="pt">Criado em</label>
+      </htmmediacreated>
+      <htmmediadescription field="htm_media.description" show="true" filter="true">
+        <label lang="en">Description</label>
+        <label lang="es">Description</label>
+        <label lang="fr">Description</label>
+        <label lang="pt">Description</label>
+      </htmmediadescription>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="salesforce/edit_files" auth="1">
+        <label lang="en">Save</label>
+        <label lang="es">Save</label>
+        <label lang="fr">Save</label>
+        <label lang="pt">Guardar</label>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="salesforce/edit_files" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="es">Edit</label>
+        <label lang="fr">Edit</label>
+        <label lang="pt">Editar</label>
+      </editform>
+      <resetform class="glyphicon glyphicon-refresh" auth="1">
+        <label lang="en">Reset</label>
+        <label lang="es">Reset</label>
+        <label lang="fr">Reset</label>
+        <label lang="pt">Reset</label>
+      </resetform>
+      <delform class="glyphicon glyphicon-trash" action="del_files" auth="1">
+        <label lang="en">Delete</label>
+        <label lang="es">Delete</label>
+        <label lang="fr">Delete</label>
+        <label lang="pt">Eliminar</label>
+      </delform>
+      <closeform class="glyphicon glyphicon-remove" auth="4">
+        <label lang="en">Close</label>
+        <label lang="es">Close</label>
+        <label lang="fr">Close</label>
+        <label lang="pt">Fechar</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="files" paging="25" fieldid="htm_media.id">
+    <columns comment="Columns for grid">
+      <htmmediaid field="htm_media.id" class="id" sort="true">
+        <label lang="en">Id</label>
+        <label lang="es">Id</label>
+        <label lang="fr">Id</label>
+        <label lang="pt">Id</label>
+      </htmmediaid>
+      <htmmediagenre field="htm_media.genre" class="genre" sort="true">
+        <label lang="en">Genre</label>
+        <label lang="es">Genre</label>
+        <label lang="fr">Genre</label>
+        <label lang="pt">Genre</label>
+      </htmmediagenre>
+      <htmmediaurl field="htm_media.url" class="url" sort="true">
+        <label lang="en">Url</label>
+        <label lang="es">Url</label>
+        <label lang="fr">Url</label>
+        <label lang="pt">Url</label>
+      </htmmediaurl>
+      <htmmediaposition field="htm_media.position" class="position" sort="true">
+        <label lang="en">Position</label>
+        <label lang="es">Position</label>
+        <label lang="fr">Position</label>
+        <label lang="pt">Position</label>
+      </htmmediaposition>
+      <htmmediatitle field="htm_media.title" class="title" sort="true">
+        <label lang="en">Title</label>
+        <label lang="es">Title</label>
+        <label lang="fr">Title</label>
+        <label lang="pt">Title</label>
+      </htmmediatitle>
+      <htmmediaauthor field="htm_media.author" class="author" sort="true">
+        <label lang="en">Author</label>
+        <label lang="es">Author</label>
+        <label lang="fr">Author</label>
+        <label lang="pt">Author</label>
+      </htmmediaauthor>
+      <htmmediadate field="htm_media.date" class="date" sort="true">
+        <label lang="en">Date</label>
+        <label lang="es">Date</label>
+        <label lang="fr">Date</label>
+        <label lang="pt">Date</label>
+      </htmmediadate>
+      <htmmediacreated field="htm_media.created" class="created" sort="true">
+        <label lang="en">Created</label>
+        <label lang="es">Created</label>
+        <label lang="fr">Created</label>
+        <label lang="pt">Criado em</label>
+      </htmmediacreated>
+      <htmmediadescription field="htm_media.description" class="description" sort="true">
+        <label lang="en">Description</label>
+        <label lang="es">Description</label>
+        <label lang="fr">Description</label>
+        <label lang="pt">Description</label>
+      </htmmediadescription>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="core/edit_files" class="fa-pencil" id="htm_media.id" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="es">Edit</label>
+        <label lang="fr">Edit</label>
+        <label lang="pt">Editar</label>
+      </edit>
+      <show action="core/show_files" class="fa-eye" id="htm_media.id" auth="1">
+        <label lang="en">Show</label>
+        <label lang="es">Show</label>
+        <label lang="fr">Show</label>
+        <label lang="pt">Ver</label>
+      </show>
+      <del action="core/del_files" class="fa-trash-o" id="htm_media.id" auth="1">
+        <label lang="en">Del</label>
+        <label lang="es">Del</label>
+        <label lang="fr">Del</label>
+        <label lang="pt">Eliminar</label>
+      </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <new action="core/new_files" class="glyphicon glyphicon-file" auth="4">
+        <label lang="en">New</label>
+        <label lang="es">New</label>
+        <label lang="fr">New</label>
+        <label lang="pt">Inserir</label>
+        <vars var="position" get="position" />
+        <vars var="folder" get="folder" />
+        <vars var="genre" str="img" />
+      </new>
+    </buttons>
+  </grid>
+</root>

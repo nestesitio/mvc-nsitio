@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="M">
+    <label lang="en">M</label>
+    <label lang="pt">M</label>
+  </value>
+  <value index="F">
+    <label lang="en">F</label>
+    <label lang="pt">F</label>
+  </value>
+</root>

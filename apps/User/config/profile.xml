@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <usergroupname field="user_group.name" show="true">
+        <label lang="en">User Group Name</label>
+        <label lang="pt">User Group Name</label>
+      </usergroupname>
+      <userid field="user_base.id" show="false" filter="false">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </userid>
+      <userusergroupid field="user_base.user_group_id" range="multiple" show="false" filter="true">
+        <label lang="en">User Group Id</label>
+        <label lang="pt">User Group Id</label>
+      </userusergroupid>
+      <username field="user_base.name" show="true" filter="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </username>
+      <usermail field="user_base.mail" show="true" filter="true">
+        <label lang="en">Mail</label>
+        <label lang="pt">Mail</label>
+      </usermail>
+      <userusername field="user_base.username" show="true" filter="true">
+        <label lang="en">Username</label>
+        <label lang="pt">Username</label>
+      </userusername>
+      <userpassword field="user_base.password" show="true" filter="true">
+        <label lang="en">Password</label>
+        <label lang="pt">Password</label>
+      </userpassword>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="user/edit_profile" auth="1">
+        <label lang="en">Save</label>
+        <label lang="pt">Guardar</label>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="user/edit_profile" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </editform>
+      <resetform class="glyphicon glyphicon-refresh" auth="1">
+        <label lang="en">Reset</label>
+        <label lang="pt">Reset</label>
+      </resetform>
+      <delform class="glyphicon glyphicon-trash" action="del_profile" auth="1">
+        <label lang="en">Delete</label>
+        <label lang="pt">Eliminar</label>
+      </delform>
+      <closeform class="glyphicon glyphicon-remove" auth="4">
+        <label lang="en">Close</label>
+        <label lang="pt">Fechar</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="profile" paging="25" fieldid="user_base.id">
+    <columns comment="Columns for grid">
+      <userid field="user_base.id" class="id" sort="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </userid>
+      <username field="user_base.name" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </username>
+      <usermail field="user_base.mail" class="mail" sort="true">
+        <label lang="en">Mail</label>
+        <label lang="pt">Mail</label>
+      </usermail>
+      <userusername field="user_base.username" class="username" sort="true">
+        <label lang="en">Username</label>
+        <label lang="pt">Username</label>
+      </userusername>
+      <userpassword field="user_base.password" class="password" sort="true">
+        <label lang="en">Password</label>
+        <label lang="pt">Password</label>
+      </userpassword>
+      <usergroupname field="user_group.name" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </usergroupname>
+      <usergroupdescription field="user_group.description" class="description" sort="true">
+        <label lang="en">Description</label>
+        <label lang="pt">Description</label>
+      </usergroupdescription>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="user/edit_profile" class="fa-pencil" id="user_base.id" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </edit>
+      <show action="user/show_profile" class="fa-eye" id="user_base.id" auth="1">
+        <label lang="en">Show</label>
+        <label lang="pt">Ver</label>
+      </show>
+    </tools>
+  </grid>
+</root>

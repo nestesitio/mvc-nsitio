@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <id field="currency.curr" filter="true" show="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </id>
+      <name field="currency.curr" filter="true" show="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </name>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="configs/edit_currencies" auth="1">
+        <label lang="en">Save</label>
+        <label lang="pt">Guardar</label>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="configs/edit_currencies" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </editform>
+      <resetform class="glyphicon glyphicon-refresh" auth="1">
+        <label lang="en">Reset</label>
+        <label lang="pt">Reset</label>
+      </resetform>
+      <delform class="glyphicon glyphicon-trash" action="configs/del_currencies" auth="1">
+        <label lang="en">Delete</label>
+        <label lang="pt">Apagar</label>
+      </delform>
+      <closeform class="glyphicon glyphicon-remove" auth="1">
+        <label lang="en">Close</label>
+        <label lang="pt">Fechar</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="currencies" paging="25" fieldid="currency.curr">
+    <columns comment="Columns for grid">
+      <id field="currency.curr" class="id" sort="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </id>
+      <name field="currency.curr" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </name>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="configs/edit_currencies" class="fa-pencil" id="currency.curr" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </edit>
+      <show action="configs/show_currencies" class="fa-eye" id="currency.curr" auth="1">
+        <label lang="en">Show</label>
+        <label lang="pt">Show</label>
+      </show>
+      <del action="configs/del_currencies" class="fa-trash-o" id="currency.curr" auth="1">
+        <label lang="en">Del</label>
+        <label lang="pt">Del</label>
+      </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <new action="configs/new_currencies" class="glyphicon glyphicon-plus" auth="1">
+        <label lang="en">New</label>
+        <label lang="pt">Inserir</label>
+      </new>
+      <csv target="blank" action="configs/csv_currencies" class="glyphicon glyphicon-export" auth="1">
+        <label lang="en">Csv</label>
+        <label lang="pt">Csv</label>
+      </csv>
+    </buttons>
+  </grid>
+</root>

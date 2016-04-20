@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="open">
+    <label lang="en">Open</label>
+    <label lang="pt">Open</label>
+  </value>
+  <value index="assigned">
+    <label lang="en">Assigned</label>
+    <label lang="pt">Assigned</label>
+  </value>
+  <value index="closed">
+    <label lang="en">Closed</label>
+    <label lang="pt">Closed</label>
+  </value>
+</root>

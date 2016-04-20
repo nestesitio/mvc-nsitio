@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="phone">
+    <label lang="en">Phone</label>
+    <label lang="pt">Phone</label>
+  </value>
+  <value index="mail">
+    <label lang="en">Mail</label>
+    <label lang="pt">Mail</label>
+  </value>
+  <value index="web">
+    <label lang="en">Web</label>
+    <label lang="pt">Web</label>
+  </value>
+</root>

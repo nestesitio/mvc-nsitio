@@ -1,0 +1,18 @@
+{{ nav_backend }}
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        {{ toogle }}
+    </a>
+    <ul class="dropdown-menu">
+        {% while (item in list) %}
+        <li>
+            <a href="{{ item.url }}"><i class="fa {{ item.class }} fa-fw"></i>{{ item.name }}</a>
+        </li>
+        {% endwhile %}
+        <li class="divider"></li>
+        <li>
+            <a href="{{ url }}"><i class="{{ class }}"></i> {{ label }}</a>
+        </li>
+    </ul>
+</li>
+{{ tool_debug }}

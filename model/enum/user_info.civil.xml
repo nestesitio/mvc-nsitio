@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="S">
+    <label lang="en">S</label>
+    <label lang="pt">S</label>
+  </value>
+  <value index="N">
+    <label lang="en">N</label>
+    <label lang="pt">N</label>
+  </value>
+  <value index="NA">
+    <label lang="en">NA</label>
+    <label lang="pt">NA</label>
+  </value>
+</root>

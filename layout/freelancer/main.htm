@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Stage CMS MVC</title>
+        <link rel="icon" type="image/x-icon" href="/images/gc.ico" />
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/css/base/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Theme CSS -->
+        <link href="/themes/freelancer/freelancer.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/css/core/core.css" rel="stylesheet">
+        <link href="/css/personal/freelancer.css" rel="stylesheet">
+        <link href="/css/personal/brand.css" rel="stylesheet">
+        <link href="/css/personal/frontend.css" rel="stylesheet">
+        <link href="{{ dynamiccss }}"  rel="stylesheet">
+        <style>
+            header{padding: 100px 0 0}
+            @media (max-width: 1198px) {
+                header{padding: 150px 0 0}
+            }
+            @media (max-width: 768px) {
+                header{padding: 50px 0 0}
+            }
+            section{padding: 50px}
+        </style>
+
+        <!-- Custom Fonts -->
+        <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    </head>
+    <body id="page-top" class="index">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="jsmonitor" style="position:fixed;top:120px;right:100px;z-index:360;background:#fff;color:red"></div>
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Stage CMS MVC</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <!--<ul class="nav navbar-nav navbar-right">-->
+                    {% embed ('Home\Home::homenav' @'apps/Home/view/nav.htm') %}
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        
+        <!-- Header -->
+        <header>
+            <h1>{{ h1 }}</h1>
+        </header>
+        <!--messages -->
+        <div id="messages">{{ messages }}</div>
+        <!--main controller action content -->
+        <section id="conten_action">
+            {{ include('main') }}
+        </section>
+        
+        
+        
+        <!-- Footer -->
+        <footer>
+            {% include ('layout/freelancer/footer.htm') %}
+        </footer>
+        
+        <!-- /.container -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="/js/base/bootstrap.min.js"></script>
+        
+        <!-- Custom Core JavaScript -->
+        <script src="/themes/freelancer/freelancer.js"></script>
+        <!-- Plugin JavaScript -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="/themes/freelancer/js/classie.js"></script>
+        <script src="/themes/freelancer/js/cbpAnimatedHeader.js"></script>
+        
+        
+        <script src="/js/core/core.js"></script>
+        <script src="/js/personal/personal.js"></script>
+        <!-- Dynamic Javascrip files and scripts -->
+        <script src="{{ dynamicjs }}"></script>
+        <script>{{}}</script>
+        <script>
+            $( ".support-btn" ).click(function() {addSupport(this);});
+            $(document).on('click', '.btn-modal', function(){modalLoad(this);});
+            $( "#dev_display" ).click(function() {$(".dm").toggle();});
+            $(window).resize(function () {monitor();});
+        </script>
+    </body>
+</html>

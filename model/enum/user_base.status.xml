@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="active">
+    <label lang="en">Active</label>
+    <label lang="pt">Active</label>
+  </value>
+  <value index="blocked">
+    <label lang="en">Blocked</label>
+    <label lang="pt">Blocked</label>
+  </value>
+  <value index="disabled">
+    <label lang="en">Disabled</label>
+    <label lang="pt">Disabled</label>
+  </value>
+  <value index="virtual">
+    <label lang="en">Virtual</label>
+    <label lang="pt">Virtual</label>
+  </value>
+</root>

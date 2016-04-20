@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <dbconn>
+        <dev host="localhost" db="stage" user="stage" password="dbpassword" />
+        <prod host="localhost" db="stage" user="production" password="CL1(hvH3c*Xw" />
+    </dbconn>
+    <apis>
+        <google appname="NSitio" 
+                appid="isnotme.apps.googleusercontent.com" 
+                key="isnotmykey" 
+                redir="http://project.com" 
+                devkey="myproject@gmail.com" />
+        <analytics id="UA-123456789-1" domain="myproject.com" />
+    </apis>
+    <redir>
+        <noaccess developer="true" url="/" />
+    </redir>
+</root>

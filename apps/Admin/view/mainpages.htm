@@ -1,0 +1,71 @@
+{% extends 'layout/sb-admin/main.htm' %}
+
+{% cssextension '/themes/sb-admin-2/plugins_css/dataTables.bootstrap.css' %}
+{% cssextension '/plugins/bootstrap-datetimepicker/datetimepicker.css' %}
+{% cssextension '/plugins/chosen/chosen.css' %}
+{% cssextension '/plugins/wysiwyg-textarea/bootstrap3-wysihtml5.css' %}
+{% cssextension '/plugins/flag-icon/flag-icon.css' %}
+{% cssextension '/plugins/bootstrap-fileinput/fileinput.css' %}
+{% cssextension '/css/core/backend.css' %}
+
+{% jsextension '/js/core/datagrid.js' %}
+{% jsextension '/js/core/dataform.js' %}
+{% jsextension '/js/core/bsInputs.js' %}
+{% jsextension '/js/core/scrollbuttons.js' %}
+{% jsextension '/plugins/bootstrap-datetimepicker/moment.min.js' %}
+{% jsextension '/plugins/bootstrap-datetimepicker/datetimepicker.js' %}
+{% jsextension '/plugins/bootstrap-datetimepicker/pt.js' %}
+{% jsextension '/plugins/bootstrap-datetimepicker/moment.parseFormat.js' %}
+{% jsextension '/plugins/chosen/chosen.jquery.min.js' %}
+{% jsextension '/plugins/jeditable/jquery.jeditable.js' %}
+{% jsextension '/plugins/wysiwyg-textarea/bootstrap3-wysihtml5.all.min.js' %}
+{% jsextension '/plugins/bootstrap-fileinput/fileinput.js' %}
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{ h1 }} (<span id="list-results">{{ numrows }}</span> de <span id="list-total">{{ total }}</span> resultados)
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive mothergrid">
+                    <div class="grid-buttons">
+                        <!--{{ buttons }}-->
+                        <a class="btn-showfilter btn btn-xs btn-primary" data-action="list_{{ canonical }}">
+                            <span class="glyphicon glyphicon-filter"></span> Filtrar</a>
+                    </div>
+                    <!-- grid head -->
+                    <div class="headgrid">
+                        <div class="grid-filters" style="display:none">
+                            {% include ('layout/core/filters.htm') %}
+                        </div>
+                        <table class="grid">
+                            <tr>
+                                <!--<td class="{{ class }}">{{ column_label }}</td>-->
+                            </tr>                
+                        </table>
+                    </div>
+                    <!-- grid template for add datarow -->
+                    <ul class="grid template-row">
+                        <!--<li>{{ template_column }}</li>-->
+                        <!--<li class="row_tool">{{ template_tools }}</li>-->
+                    </ul>
+                    <div class="datagrid">
+                        {% include ('layout/core/datalist.htm') %}
+                    </div>
+                    
+                    
+                </div>
+                <!-- /.table-responsive -->
+                
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+{% include ('layout/core/scripts_backend.htm') %}

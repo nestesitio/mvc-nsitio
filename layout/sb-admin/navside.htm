@@ -1,0 +1,132 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse-sitio">
+        <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </li>
+            <li>
+                <a class="active" href="/backend"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+            </li>
+            <li>
+                {% if (nav[configs]) %}
+                <a href="#"><i class="fa fa-gear fa-fw"></i> Configs<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[configs]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                {% if (nav[supportman]) %}
+                <a href="#"><i class="fa fa-support fa-fw"></i> Admin Suporte<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[supportman]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                {% if (nav[admin]) %}
+                <a href="#"><i class="fa fa-gear fa-fw"></i> Admin<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[admin]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                {% if (nav[reports]) %}
+                <a href="#"><i class="fa fa-bar-chart  fa-fw"></i> Relatórios<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[reports]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                {% if (nav[salesforce]) %}
+                <a href="#"><i class="fa fa-user fa-fw"></i> Equipas &amp; Vendedores<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[salesforce]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                {% if (nav[clients]) %}
+                <a href="#"><i class="fa fa-map-marker fa-fw"></i> Pontos de Venda<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[clients]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                {% if (nav[products]) %}
+                <a href="#"><i class="fa fa-glass fa-fw"></i> Marcas & Produtos<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[products]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                {% if (nav[programs]) %}
+                <a href="#"><i class="fa fa-calculator fa-fw"></i> Campanhas<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[programs]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                {% if (nav[storedesk]) %}
+                <a href="#"><i class="fa fa-money fa-fw"></i> Rebates<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[storedesk]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                {% if (nav[task]) %}
+                <a href="#"><i class="fa fa-support fa-fw"></i> Tarefas<span class="fa arrow"></span></a>
+                {% endif %}
+                <ul class="nav nav-second-level">
+                    {% while (item in navs[task]) %}
+                        {{ item.link }}
+                    {% endwhile %}
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->

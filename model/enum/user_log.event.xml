@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="created">
+    <label lang="en">Created</label>
+    <label lang="pt">Created</label>
+  </value>
+  <value index="login">
+    <label lang="en">Login</label>
+    <label lang="pt">Login</label>
+  </value>
+  <value index="confirmation">
+    <label lang="en">Confirmation</label>
+    <label lang="pt">Confirmation</label>
+  </value>
+  <value index="updated">
+    <label lang="en">Updated</label>
+    <label lang="pt">Updated</label>
+  </value>
+  <value index="shopping">
+    <label lang="en">Shopping</label>
+    <label lang="pt">Shopping</label>
+  </value>
+  <value index="banned">
+    <label lang="en">Banned</label>
+    <label lang="pt">Banned</label>
+  </value>
+  <value index="approval">
+    <label lang="en">Approval</label>
+    <label lang="pt">Approval</label>
+  </value>
+</root>

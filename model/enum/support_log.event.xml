@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="creation">
+    <label lang="en">Creation</label>
+    <label lang="pt">Creation</label>
+  </value>
+  <value index="assign">
+    <label lang="en">Assign</label>
+    <label lang="pt">Assign</label>
+  </value>
+  <value index="reply">
+    <label lang="en">Reply</label>
+    <label lang="pt">Reply</label>
+  </value>
+  <value index="task">
+    <label lang="en">Task</label>
+    <label lang="pt">Task</label>
+  </value>
+  <value index="closed">
+    <label lang="en">Closed</label>
+    <label lang="pt">Closed</label>
+  </value>
+</root>

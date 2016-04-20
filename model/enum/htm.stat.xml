@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="private">
+    <label lang="en">Private</label>
+    <label lang="pt">Private</label>
+  </value>
+  <value index="backend">
+    <label lang="en">Backend</label>
+    <label lang="pt">Backend</label>
+  </value>
+  <value index="public">
+    <label lang="en">Public</label>
+    <label lang="pt">Public</label>
+  </value>
+</root>

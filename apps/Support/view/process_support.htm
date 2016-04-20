@@ -1,0 +1,16 @@
+<h3>Obrigado pela tua ajuda</h3>
+<div class="alert alert-info">
+    {% while (item in usermsg) %}
+    <div>{{ item.msg }}</div>
+    {% endwhile %}
+</div>
+<div class="btns-support">
+    <!--{{ buttons }}-->
+</div>
+{% while (item in inputs) %}
+<div class="form-group">
+    <label>{{ item.label }}</label><span class="input-error"></span>
+    <div class="show-data" data-field="{{ item.field }}">{{ item.value }}</div>
+</div>
+{% endwhile %}
+<div style="width: 400px; margin-bottom: 15px">Brevemente daremos feed-back do teu contributo.</div>

@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 12, 2015, 9:27:21 AM
+    Author     : dellpinto
+*/
+a{color: #333;}
+a:hover{color: #666;}
+
+
+.navbar-static-top, .navbar-inverse {
+    background-color: #02003d;
+    border-color: #303030;
+}
+
+.navbar-top-links a{color: #fff;}
+.sidebar{}
+
+
+#map-preload{
+    position: absolute; left: 0; top: 0;
+    width: 100%; height: 100%; z-index: 9999;
+    background: url(/images/map-preload.gif) center no-repeat;
+    height: 50em; width: 40em;
+}
+
+.layer-login{
+    background:url(/images/2016/fundo_04.png) no-repeat; 
+    background-size: cover;
+    position:fixed; width: 100%; height: 100%;
+    padding: 0; margin: 0; background-color: #02003d;
+    
+}
+.login-panel{background-color: #807F84; border-radius: 15px; border: none; margin: 0}
+.login-heading{border-radius: 15px 15px 0 0;}
+a.navbar-brand-sitio{ padding: 1px; color: #fff; font-size: 140%}
+a.navbar-brand-sitio img{height: 50px; width: auto;}
+
+.login-panel .form-group {margin-bottom: 5px;}
+.login-panel form {margin-top: 0;}
+.login-panel label{color: #fff; text-transform: uppercase; font-size: 14px; float: left; clear: right}
+.login-panel input{
+    background-color: #CECDD0; color: #000; border-radius: 0; margin: 0;
+    height: 25px; padding: 2px 12px;
+}
+.login-panel input[type="submit"]{background: none;
+     border: none; color: #fff;text-transform: uppercase; font-weight: 600; font-size: 14px;
+     cursor: pointer; }
+
+.login-oauth{
+    overflow: hidden; margin: 0; padding: 10px; background-color:#EFFF00; 
+    border-radius: 10px;text-align: center;
+}
+
+
+.footer-col a{color: #fff; font-size: 16px;}

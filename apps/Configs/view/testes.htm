@@ -1,0 +1,14 @@
+{% extends 'layout/sb-admin/main.htm' %}
+
+<!-- /.row -->
+<div class="row">
+    {% while (item in projects) %}
+    <h3>{{ item.project.name }}</h3>   
+        {{ item.budgets }}
+    {% endwhile %}
+</div>
+<script>
+    
+    
+    
+</script>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <companycurrencycurr field="company.currency_curr" show="true">
+        <label lang="en">Company Currency Curr</label>
+        <label lang="pt">Company Currency Curr</label>
+      </companycurrencycurr>
+      <countrycurrencycurr field="country.currency_curr" show="true">
+        <label lang="en">Country Currency Curr</label>
+        <label lang="pt">Country Currency Curr</label>
+      </countrycurrencycurr>
+      <usercurrencycurr field="user.currency_curr" show="true">
+        <label lang="en">User Currency Curr</label>
+        <label lang="pt">User Currency Curr</label>
+      </usercurrencycurr>
+      <projectid field="project.id" show="false" filter="false">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </projectid>
+      <projectcompanyid field="project.company_id" range="multiple" show="false" filter="true">
+        <label lang="en">Company Id</label>
+        <label lang="pt">Empresa</label>
+      </projectcompanyid>
+      <projectcountryid field="project.country_id" range="multiple" show="false" filter="true">
+        <label lang="en">Country Id</label>
+        <label lang="pt">País</label>
+      </projectcountryid>
+      <projectcurrencycurr field="project.currency_curr" range="multiple" show="false" filter="true">
+        <label lang="en">Currency Curr</label>
+        <label lang="pt">Currency Curr</label>
+      </projectcurrencycurr>
+      <projectuserid field="project.user_id" range="multiple" show="false" filter="true">
+        <label lang="en">User Id</label>
+        <label lang="pt">User Id</label>
+      </projectuserid>
+      <projecttype field="project.type" show="true" filter="true">
+        <label lang="en">Type</label>
+        <label lang="pt">Type</label>
+      </projecttype>
+      <projectname field="project.name" show="true" filter="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </projectname>
+      <projectstat field="project.stat" show="true" filter="true">
+        <label lang="en">Stat</label>
+        <label lang="pt">Stat</label>
+      </projectstat>
+      <projectfeemonths field="project.fee_months" show="true" filter="true">
+        <label lang="en">Fee Months</label>
+        <label lang="pt">Fee Months</label>
+      </projectfeemonths>
+      <projectnotes field="project.notes" show="true" filter="true">
+        <label lang="en">Notes</label>
+        <label lang="pt">Notes</label>
+      </projectnotes>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="edit_testes" auth="1">
+        <label lang="en">Save</label>
+        <label lang="pt">Guardar</label>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="edit_testes" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </editform>
+      <resetform class="glyphicon glyphicon-refresh" auth="1">
+        <label lang="en">Reset</label>
+        <label lang="pt">Reset</label>
+      </resetform>
+      <delform class="glyphicon glyphicon-trash" action="del_testes" auth="1">
+        <label lang="en">Delete</label>
+        <label lang="pt">Eliminar</label>
+      </delform>
+      <closeform class="glyphicon glyphicon-remove" auth="1">
+        <label lang="en">Close</label>
+        <label lang="pt">Fechar</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="testes" paging="25" fieldid="project.id">
+    <columns comment="Columns for grid">
+      <projectid field="project.id" class="id" sort="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </projectid>
+      <projecttype field="project.type" class="type" sort="true">
+        <label lang="en">Type</label>
+        <label lang="pt">Type</label>
+      </projecttype>
+      <projectname field="project.name" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </projectname>
+      <projectstat field="project.stat" class="stat" sort="true">
+        <label lang="en">Stat</label>
+        <label lang="pt">Stat</label>
+      </projectstat>
+      <projectfeemonths field="project.fee_months" class="months" sort="true">
+        <label lang="en">Fee Months</label>
+        <label lang="pt">Fee Months</label>
+      </projectfeemonths>
+      <projectnotes field="project.notes" class="notes" sort="true">
+        <label lang="en">Notes</label>
+        <label lang="pt">Notes</label>
+      </projectnotes>
+      <companyname field="company.name" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </companyname>
+      <companynif field="company.nif" class="nif" sort="true">
+        <label lang="en">Nif</label>
+        <label lang="pt">Nif</label>
+      </companynif>
+      <companyapproval field="company.approval" class="approval" sort="true">
+        <label lang="en">Approval</label>
+        <label lang="pt">Approval</label>
+      </companyapproval>
+      <countrytld field="country.tld" class="tld" sort="true">
+        <label lang="en">Tld</label>
+        <label lang="pt">Tld</label>
+      </countrytld>
+      <countryname field="country.name" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </countryname>
+      <countrylangstld field="country.langs_tld" class="tld" sort="true">
+        <label lang="en">Langs Tld</label>
+        <label lang="pt">Langs Tld</label>
+      </countrylangstld>
+      <userusergroupid field="user.user_group_id" class="group_id" sort="true">
+        <label lang="en">User Group Id</label>
+        <label lang="pt">User Group Id</label>
+      </userusergroupid>
+      <username field="user.name" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </username>
+      <usermail field="user.mail" class="mail" sort="true">
+        <label lang="en">Mail</label>
+        <label lang="pt">Mail</label>
+      </usermail>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="configs/edit_testes" class="fa-pencil" id="project.id" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </edit>
+      <show action="configs/show_testes" class="fa-eye" id="project.id" auth="1">
+        <label lang="en">Show</label>
+        <label lang="pt">Show</label>
+      </show>
+      <del action="configs/del_testes" class="fa-trash-o" id="project.id" auth="1">
+        <label lang="en">Del</label>
+        <label lang="pt">Del</label>
+      </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <new action="configs/new_testes" class="glyphicon glyphicon-plus" auth="1">
+        <label lang="en">New</label>
+        <label lang="pt">Inserir</label>
+      </new>
+      <csv action="configs/csv_testes" class="glyphicon glyphicon-export" auth="1">
+        <label lang="en">Csv</label>
+        <label lang="pt">Csv</label>
+      </csv>
+    </buttons>
+  </grid>
+</root>

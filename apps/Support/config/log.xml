@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <id field="support_log.id" filter="true" show="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </id>
+      <supportid field="support_log.support_id" filter="true" show="true" range="multiple">
+        <label lang="en">Support Id</label>
+        <label lang="pt">Support Id</label>
+      </supportid>
+      <userid field="support_log.user_id" filter="true" show="true" range="multiple">
+        <label lang="en">User Id</label>
+        <label lang="pt">User Id</label>
+      </userid>
+      <event field="support_log.event" filter="true" show="true">
+        <label lang="en">Event</label>
+        <label lang="pt">Event</label>
+      </event>
+      <notes field="support_log.notes" filter="true" show="true">
+        <label lang="en">Notes</label>
+        <label lang="pt">Notes</label>
+      </notes>
+      <updatedat field="support_log.updated_at" filter="true" show="true" range="range">
+        <label lang="en">Updated At</label>
+        <label lang="pt">Updated At</label>
+      </updatedat>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="support/edit_log" auth="1">
+        <label lang="en">Save</label>
+        <label lang="pt">Guardar</label>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="support/edit_log" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </editform>
+      <resetform class="glyphicon glyphicon-refresh" auth="1">
+        <label lang="en">Reset</label>
+        <label lang="pt">Reset</label>
+      </resetform>
+      <delform class="glyphicon glyphicon-trash" action="support/del_log" auth="1">
+        <label lang="en">Delete</label>
+        <label lang="pt">Apagar</label>
+      </delform>
+      <closeform class="glyphicon glyphicon-remove" auth="1">
+        <label lang="en">Close</label>
+        <label lang="pt">Fechar</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="log" paging="25" fieldid="support_log.id">
+    <columns comment="Columns for grid">
+      <id field="support_log.id" class="id" sort="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </id>
+      <supportid field="support_log.support_id" class="id" sort="true">
+        <label lang="en">Support Id</label>
+        <label lang="pt">Support Id</label>
+      </supportid>
+      <userid field="support_log.user_id" class="id" sort="true">
+        <label lang="en">User Id</label>
+        <label lang="pt">User Id</label>
+      </userid>
+      <event field="support_log.event" class="event" sort="true">
+        <label lang="en">Event</label>
+        <label lang="pt">Event</label>
+      </event>
+      <notes field="support_log.notes" class="notes" sort="true">
+        <label lang="en">Notes</label>
+        <label lang="pt">Notes</label>
+      </notes>
+      <updatedat field="support_log.updated_at" class="at" sort="true">
+        <label lang="en">Updated At</label>
+        <label lang="pt">Updated At</label>
+      </updatedat>
+      <userid field="support.user_id" class="id" sort="true">
+        <label lang="en">User Id</label>
+        <label lang="pt">User Id</label>
+      </userid>
+      <source field="support.source" class="source" sort="true">
+        <label lang="en">Source</label>
+        <label lang="pt">Source</label>
+      </source>
+      <status field="support.status" class="status" sort="true">
+        <label lang="en">Status</label>
+        <label lang="pt">Status</label>
+      </status>
+      <type field="support.type" class="type" sort="true">
+        <label lang="en">Type</label>
+        <label lang="pt">Type</label>
+      </type>
+      <usergroupid field="user.user_group_id" class="group_id" sort="true">
+        <label lang="en">User Group Id</label>
+        <label lang="pt">User Group Id</label>
+      </usergroupid>
+      <name field="user.name" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </name>
+      <mail field="user.mail" class="mail" sort="true">
+        <label lang="en">Mail</label>
+        <label lang="pt">Mail</label>
+      </mail>
+      <username field="user.username" class="username" sort="true">
+        <label lang="en">Username</label>
+        <label lang="pt">Username</label>
+      </username>
+      <password field="user.password" class="password" sort="true">
+        <label lang="en">Password</label>
+        <label lang="pt">Password</label>
+      </password>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="support/edit_log" class="fa-pencil" id="support_log.id" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </edit>
+      <show action="support/show_log" class="fa-eye" id="support_log.id" auth="1">
+        <label lang="en">Show</label>
+        <label lang="pt">Show</label>
+      </show>
+      <del action="support/del_log" class="fa-trash-o" id="support_log.id" auth="1">
+        <label lang="en">Del</label>
+        <label lang="pt">Del</label>
+      </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <new action="support/new_log" class="glyphicon glyphicon-plus" auth="1">
+        <label lang="en">New</label>
+        <label lang="pt">Inserir</label>
+      </new>
+      <csv target="blank" action="support/csv_log" class="glyphicon glyphicon-export" auth="1">
+        <label lang="en">Csv</label>
+        <label lang="pt">Csv</label>
+      </csv>
+    </buttons>
+  </grid>
+</root>

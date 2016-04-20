@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <usergroupid field="user_group_has_htm_app.user_group_id" filter="true" show="true">
+        <label lang="en">User Group Id</label>
+        <label lang="pt">User Group Id</label>
+      </usergroupid>
+      <htmappid field="user_group_has_htm_app.htm_app_id" filter="true" show="true">
+        <label lang="en">Htm App Id</label>
+        <label lang="pt">Htm App Id</label>
+      </htmappid>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="configs/edit_appgroup" auth="1">
+        <label lang="en">Save</label>
+        <label lang="pt">Guardar</label>
+      </saveform>
+      <closeform class="glyphicon glyphicon-remove" auth="1">
+        <label lang="en">Close</label>
+        <label lang="pt">Fechar</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="appgroup" paging="25" fieldid="user_group_has_htm_app.user_group_id">
+    <columns comment="Columns for grid">
+      <description field="user_group.description" class="name" sort="true">
+        <label lang="en">Group</label>
+        <label lang="pt">Grupo</label>
+      </description>
+      <slug field="user_group.name" class="slug" sort="true">
+        <label lang="en">Slug</label>
+        <label lang="pt">Slug</label>
+      </slug>
+    </columns>
+    <tools comment="buttons in row">
+        <del action="configs/del_appgroup" class="fa-trash-o" id="user_group_has_htm_app.htm_app_id" auth="1">
+            <vars var="app" value="user_group_has_htm_app.htm_app_id" />
+            <vars var="group" value="user_group_has_htm_app.user_group_id" />
+            <label lang="en">Del</label>
+            <label lang="pt">Apagar</label>
+        </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <new action="configs/new_appgroup" class="glyphicon glyphicon-plus" auth="1">
+        <label lang="en">New</label>
+        <label lang="pt">Inserir</label>
+      </new>
+    </buttons>
+  </grid>
+</root>

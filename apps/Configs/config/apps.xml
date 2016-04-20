@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <grid paging="20" identification="apps" fieldid="htm_app.id">
+        <columns>
+            <id field="htm_app.id" class="id" sort="true">
+                <label lang="en">Id</label>
+                <label lang="pt">Id</label>
+            </id>
+            <slug field="htm_app.slug" class="slug" sort="true">
+                <label lang="en">Cannonical</label>
+                <label lang="pt">Canonico</label>
+            </slug>
+            <name field="htm_app.name" class="name" sort="true">
+                <label lang="en">Name</label>
+                <label lang="pt">Nome</label>
+            </name>
+        </columns>
+        <tools comment="buttons in row">
+            <list action="configs/appgroup" class="fa-group" id="htm_app.id" auth="1">
+                <label lang="en">Groups</label>
+                <label lang="pt">Grupos</label>
+            </list>
+            <edit action="configs/edit_apps" class="fa-pencil" id="htm_app.id" auth="1">
+                <label lang="en">Edit</label>
+                <label lang="pt">Editar</label>
+            </edit>
+            <show action="configs/show_apps" class="fa-eye" id="htm_app.id" auth="1">
+                <label lang="en">Show</label>
+                <label lang="pt">Ver</label>
+            </show>
+            <del action="configs/del_apps" class="fa-trash-o" id="htm_app.id" auth="1">
+                <label lang="en">Del</label>
+                <label lang="pt">Apagar</label>
+            </del>
+        </tools>
+        <buttons comment="buttons in row">
+            <new action="configs/new_apps" label="Inserir" class="glyphicon glyphicon-plus" auth="1">
+                <label lang="en">Insert</label>
+                <label lang="pt">Inserir</label>
+            </new>
+            <csv target="blank" action="configs/csv_apps" label="Exportar" class="glyphicon glyphicon-export" auth="1" >
+                <label lang="en">Export</label>
+                <label lang="pt">Exportar</label>
+            </csv>
+        </buttons>
+    </grid>
+    <show>
+        <fields>
+            <htmappslug field="htm_app.slug">
+                <label lang="pt">canonical</label>
+                <label lang="en">canonical</label>
+            </htmappslug>
+            <htmappname field="htm_app.name">
+                <label lang="pt">Nome</label>
+                <label lang="en">Name</label>
+            </htmappname>
+        </fields>
+        <buttons comment="Commands for form and show">
+            <saveform class="glyphicon glyphicon-save" action="configs/edit_apps" auth="1">
+                <label lang="en">Save</label>
+                <label lang="pt">Gravar</label>
+            </saveform>
+            <editform class="glyphicon glyphicon-pencil" action="configs/edit_apps" auth="1">
+                <label lang="en">Edit</label>
+                <label lang="pt">Editar</label>
+            </editform>
+            <resetform class="glyphicon glyphicon-refresh" auth="1">
+                <label lang="en">Reset</label>
+                <label lang="pt">Limpar</label>
+            </resetform>
+            <delform class="glyphicon glyphicon-trash" action="configs/del_apps" auth="1">
+                <label lang="en">Delete</label>
+                <label lang="pt">Apagar</label>
+            </delform>
+            <closeform class="glyphicon glyphicon-remove" auth="1">
+                <label lang="en">Close</label>
+                <label lang="pt">Fechar</label>
+            </closeform>
+        </buttons>
+    </show>
+</root>

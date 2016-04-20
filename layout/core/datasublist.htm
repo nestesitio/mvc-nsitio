@@ -1,0 +1,36 @@
+<div class="sublist-nums" style="display: none">{{ numrows }}/{{ total }}</div>
+<div class="headgrid" style="max-width: 600px">
+    <div class="grid-buttons">
+        <!--{{ buttons }}-->
+        <a class="closeform btn btn-xs btn-primary">
+            <span class="glyphicon glyphicon-remove"></span> Fechar</a>
+    </div>
+</div>
+<!-- grid template for add datarow -->
+<ul class="grid template-row">
+    <!--<li>{{ template_column }}</li>-->
+    <!--<li class="row_tool">{{ template_tools }}</li>-->
+</ul>
+<div class="datagrid">
+    <!-- grid body -->
+    <div id="bodygrid" class="bodygrid">
+        {% while (item in list) %}
+        <div class="datarow" id="{{item.identification}}">
+            <ul class="grid">
+                <!--<li>{{ column_data }}</li>-->
+                <!--<li class="row_tool">{{ column_tools }}</li>-->
+            </ul>           
+        </div>
+        {% endwhile %}
+    </div>
+    <!-- grid footer -->
+    <div class="footgrid">
+        <ul class="pagination">
+            <!--{% while (item in pagination) %}-->
+            <li class="{{ item.class }}">
+                <a class="btn-pagin" data-id="{{ item.id }}" data-action="{{ item.action }}">{{ item.label }}</a>
+            </li>
+            <!--{% endwhile %}-->
+        </ul>
+    </div>
+</div>

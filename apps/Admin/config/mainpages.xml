@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <htmpageid field="htm_page.id" show="false" filter="false">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </htmpageid>
+      <htmpagehtmid field="htm_page.htm_id" range="multiple" show="false" filter="false">
+        <label lang="en">Htm Id</label>
+        <label lang="pt">Htm Id</label>
+      </htmpagehtmid>
+      <htmpagelangstld field="htm_page.langs_tld" range="multiple" show="false" filter="true">
+        <label lang="en">Langs Tld</label>
+        <label lang="pt">Langs Tld</label>
+      </htmpagelangstld>
+      <htmpagehtmlayoutid field="htm_page.htm_layout_id" range="multiple" show="false" filter="false">
+        <label lang="en">Htm Layout Id</label>
+        <label lang="pt">Htm Layout Id</label>
+      </htmpagehtmlayoutid>
+      <htmpagetitle field="htm_page.title" show="true" filter="false">
+        <label lang="en">Title</label>
+        <label lang="pt">Title</label>
+      </htmpagetitle>
+      <htmpageslug field="htm_page.slug" show="true" filter="false">
+        <label lang="en">Slug</label>
+        <label lang="pt">Slug</label>
+      </htmpageslug>
+      <htmpagemenu field="htm_page.menu" show="true" filter="false">
+        <label lang="en">Menu</label>
+        <label lang="pt">Menu</label>
+      </htmpagemenu>
+      <htmpageheading field="htm_page.heading" show="true" filter="false">
+        <label lang="en">Heading</label>
+        <label lang="pt">Heading</label>
+      </htmpageheading>
+      <htmpageupdatedat field="htm_page.updated_at" range="range" show="true" filter="true" type="DateInput">
+        <label lang="en">Updated At</label>
+        <label lang="pt">Updated At</label>
+      </htmpageupdatedat>
+      <htmappname field="htm_app.name" filter="false">
+          <label lang="pt">Módulo</label>
+          <label lang="en">App</label>
+      </htmappname>
+      <htmstat field="htm.stat" filter="false">
+          <label lang="pt">Estado</label>
+          <label lang="en">Status</label>
+      </htmstat>
+      <ord field="htm.ord" filter="false">
+          <label lang="en">Order</label>
+          <label lang="pt">Ordenação no menu</label>
+      </ord>
+      <htmhtmappid field="htm.htm_app_id" show="false" filter="false">
+          <label lang="pt">Módulo</label>
+          <label lang="en">App</label>
+      </htmhtmappid>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="edit_mainpages" auth="1">
+        <label lang="en">Save</label>
+        <label lang="pt">Save</label>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="edit_mainpages" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Edit</label>
+      </editform>
+      <resetform class="glyphicon glyphicon-refresh" auth="1">
+        <label lang="en">Reset</label>
+        <label lang="pt">Reset</label>
+      </resetform>
+      <delform class="glyphicon glyphicon-trash" action="del_mainpages" auth="1">
+        <label lang="en">Delete</label>
+        <label lang="pt">Delete</label>
+      </delform>
+      <closeform class="glyphicon glyphicon-remove" auth="1">
+        <label lang="en">Close</label>
+        <label lang="pt">Close</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="mainpages" paging="25" fieldid="htm_page.id">
+    <columns comment="Columns for grid">
+      <htmpageid field="htm_page.id" class="id" sort="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </htmpageid>
+      <htmpagetitle field="htm_page.title" class="title" sort="true">
+        <label lang="en">Title</label>
+        <label lang="pt">Title</label>
+      </htmpagetitle>
+      <htmstat field="htm_page.stat" class="stat" sort="true">
+          <label lang="en">Status</label>
+          <label lang="pt">Estado</label>
+      </htmstat>
+      <htmord field="htm.ord" class="ord" sort="true">
+          <label lang="en">Ord</label>
+          <label lang="pt">Ord</label>
+      </htmord>
+      <htmpageupdatedat field="htm_page.updated_at" class="date" sort="true">
+        <label lang="en">Update</label>
+        <label lang="pt">Update</label>
+      </htmpageupdatedat>
+    </columns>
+    <tools comment="buttons in row">
+      <langs id="htm_page.id" auth="4">
+          <label lang="en">Langs</label>
+          <label lang="pt">Idiomas</label>
+      </langs>
+      <photo file="img" class="fa-file-image-o" id="htm_page.id" auth="4">
+          <vars var="position" str="photo" />
+          <vars var="folder" str="images" />
+          <label lang="en">Images</label>
+          <label lang="pt">Imagens</label>
+      </photo>
+      <edit action="admin/status_mainpages" class="fa-pencil" id="htm_page.id" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Edit</label>
+      </edit>
+      <show action="admin/show_mainpages" class="fa-eye" id="htm_page.id" auth="1">
+        <label lang="en">Show</label>
+        <label lang="pt">Show</label>
+      </show>
+      <del action="admin/del_mainpages" class="fa-trash-o" id="htm_page.id" auth="1">
+        <label lang="en">Del</label>
+        <label lang="pt">Del</label>
+      </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <new action="admin/new_mainpages" class="glyphicon glyphicon-plus" auth="1">
+        <label lang="en">New</label>
+        <label lang="pt">New</label>
+      </new>
+      <csv action="admin/csv_mainpages" class="glyphicon glyphicon-export" auth="1">
+        <label lang="en">Csv</label>
+        <label lang="pt">Csv</label>
+      </csv>
+    </buttons>
+  </grid>
+  <configs>
+      <photo>
+          <vars var="folder" str="images" />
+          <vars var="genre" str="img" />
+          <vars var="width" str="500" />
+          <vars var="height" str="500" />
+          <vars var="action-remove" str="core/removeimg_files" />
+          <vars var="action-insert" str="core/new_files" />
+      </photo>
+  </configs>
+</root>

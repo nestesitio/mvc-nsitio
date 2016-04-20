@@ -1,0 +1,22 @@
+<div class="list-nums" style="display: none">{{ numrows }}/{{ total }}</div>
+<!-- grid body -->
+<div id="bodygrid" class="bodygrid">
+    {% while (item in list) %}
+    <div class="datarow" id="{{item.identification}}">
+        <ul class="grid">
+            <!--<li>{{ column_data }}</li>-->
+            <!--<li class="row_tool">{{ column_tools }}</li>-->
+        </ul>           
+    </div>
+    {% endwhile %}
+</div>
+<!-- grid footer -->
+<div class="footgrid">
+    <ul class="pagination">
+        <!--{% while (item in pagination) %}-->
+        <li class="{{ item.class }}">
+            <a class="btn-pagin" data-id="{{ item.id }}" data-action="{{ item.action }}">{{ item.label }}</a>
+        </li>
+        <!--{% endwhile %}-->
+    </ul>
+</div>

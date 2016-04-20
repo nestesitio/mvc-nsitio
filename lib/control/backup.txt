@@ -1,0 +1,534 @@
+<?php
+
+namespace lib\control;
+
+use \lib\register\Registry;
+use \lib\register\Monitor;
+use \lib\register\VarsRegister;
+use \lib\url\UrlHref;
+use \lib\filter\QueryFilter;
+use \lib\bkegenerator\DataGrid;
+use \lib\bkegenerator\DataEdit;
+use \lib\form\Form;
+use \lib\model\QuerySelect;
+use \lib\model\Model;
+use lib\parser\CSVParser;
+
+/**
+ * Description of ControllerAdmin
+ *
+ * @author Luís Pinto / luis.nestesitio@gmail.com
+ * Created @Mar 30, 2015
+ */
+class ControllerAdmin extends \lib\control\Controller {
+
+    /**
+     * Build the configuration from xml file.
+     *
+     * @param String $xmlfile
+     * @param String $condition
+     * @param String $querystring
+     * 
+     * @return \lib\bkegenerator\DataGrid $grid
+     */
+    protected function gridIt($xmlfile, $condition = null, $querystring = null){
+        $grid = new DataGrid($this, $xmlfile);
+        if($condition != null){
+            $grid->setCondition($condition);
+        }
+        if(null != $querystring){
+            $grid->setQueryString($querystring);
+        }
+        return $grid;
+    }
+    
+    /**
+     * make configurations for the list from a xml file.
+     *
+     * @params \lib\bkegenerator\DataGrid $grid
+     * @params String $var
+     * @params String $view
+     * 
+     * @return lib\bkegenerator\Config $configs
+     */
+    protected function configureGrid(DataGrid $grid, $var, $view = null){
+        $tpl = (null == $view)? '/layout/core/grid.htm' : $view;
+        $grid->buildIncluded($this->view->getOutput(), $tpl, $var);
+        $grid->execute();
+        $this->view->setOutput($grid->getHtml());
+        return $grid->getFilters();
+    }
+    
+
+    /**
+     * Process query with the filters
+     *
+     * @param \lib\model\QuerySelect $query
+     * @param String $xmlfile
+     * @param Bool $tpl Process on the template
+     * @return DataGrid $query
+     */
+    protected function processQuery($query, $xmlfile, $tpl = false){
+        $grid = $this->gridIt($xmlfile);
+        if ($tpl == true) {
+            $this->configureGrid($grid, 'list');
+        }
+        $configs = $grid->getFilters();
+        $query = QueryFilter::filter($query, $configs );
+        
+        return $query;
+    }
+    
+    /**
+     * Build the list included in template.
+     *
+     * @param \lib\model\QuerySelect $query
+     * @param DataGrid $configs
+     * @param String $var Define the variable for while
+     * @return DataGrid $results
+     */
+    protected function buildIncludedList(QuerySelect $query, $configs, $var = null) {
+        
+        $query = QueryFilter::filter($query, $configs);
+        $results = $this->getQueryToList($query);
+        $this->set('page' . $var, $this->get('pagination'));
+        return $results;
+    }
+    
+    
+    protected function buildDataGrid($xmlfile, QuerySelect $query, $view = null){
+        /* Generation or processing of template datagrid */
+        $tpl = (null == $view)? '/layout/core/datagrid.htm' : $view;
+        $this->setView($tpl);     
+        Registry::setMonitor(Monitor::BOOKMARK, 'buildDataGrid');
+        $grid = $this->gridIt($xmlfile);
+        $configs = $this->configureGrid($grid, 'list');
+        $query = QueryFilter::filter($query, $configs );
+        
+        
+        return $this->getQueryToList($query);
+
+    }
+    
+    
+    protected function buildDataSubList($xmlfile,QuerySelect $query, $view = null){
+        /* Generation or processing of template datagrid */
+        $tpl = (null == $view)? '/layout/core/datasublist.htm' : $view;
+        $this->setView($tpl);
+        Registry::setMonitor(Monitor::BOOKMARK, 'buildDataGrid');
+        $results = $this->getQueryToList($query, $xmlfile);
+        $this->renderList($results);
+
+        
+    }
+    
+    protected function buildDataList($xmlfile,QuerySelect $query){
+        /* Generation or processing of template datalist */
+        $this->setView('/layout/core/datalist.htm');
+        Registry::setMonitor(Monitor::BOOKMARK, 'buildDataList');
+        return $this->getQueryToList($query, $xmlfile);
+        
+    }
+    
+    /**
+     * Get the array results from query.
+     *
+     * @param \lib\model\QuerySelect $query
+     * @param String $xmlfile
+     * @return array $results
+     */
+    protected function getQueryToList(QuerySelect $query, $xmlfile = null){
+        if (null != $xmlfile) {
+            $query = $this->processQuery($query, $xmlfile, true);
+        }
+        $query->setCalcFoundRows();
+        $results = $query->find();
+        $total = $query->calcFoundRows()->getFoundRows();
+        $this->set('numrows', $query->getCount());
+        $this->set('total', $total);
+        $this->set('pagination', \lib\filter\Pagination::renderPagination($total));
+        return $results;
+    }
+    
+    
+    
+    protected function renderList($results, $var = null) {
+        $var = ($var == null)? 'list': $var;
+        $this->renderCollection($results, $var);
+        $this->set('canonical', VarsRegister::getCanonical());
+        $this->set('app', VarsRegister::getApp());
+    }
+    
+    
+    protected function renderFilters(\lib\form\Form $form, $xmlfile) {
+        $this->renderUrl('action', 'list_' . VarsRegister::getCanonical());
+        $config = new DataEdit($this, $xmlfile);
+        $configs = $config->getConfigs('filter');
+        $form = QueryFilter::renderFilters($form, VarsRegister::getCanonical(), $configs);
+        $this->set('filters', $form->renderInputs(VarsRegister::getCanonical(), $configs));
+    }
+    
+    
+    protected function renderForm(Form $form, $xmlfile, $view = null, $action = null, $querystring = []) {
+        if($action == null){
+            $action = str_replace(['edit','new'], 'bind', VarsRegister::getAction());
+        }
+        
+        $tpl = (null == $view)? '/layout/core/edit.htm' : $view;
+        $this->setView($tpl);
+        $this->renderUrl('action', $action, $querystring);
+        $this->set('delaction', str_replace('bind','del',$action));
+        
+        $this->set('hiddenfields', $form->renderHiddenFields(VarsRegister::getCanonical()));
+        $config = new DataEdit($this, $xmlfile);
+        $configs = $config->getConfigs('edit');
+        $form = QueryFilter::getDefaults($form, $xmlfile, $configs);
+        
+        $this->set('inputs', $form->renderInputs(VarsRegister::getCanonical(), $configs));
+        $config->setHtml($this->view->getOutput())->renderButtons('edit');
+        $this->view->setOutput($config->getHtml());
+        
+        $this->set('dataid', VarsRegister::getId());
+        $this->setUserMessage();
+        
+    }
+    
+    protected function buildProcess(Form $form, $xmlfile, $view = null) {
+        $result = $form->isvalid();
+        if($result == false){
+            Registry::setMonitor(Monitor::FORMERROR, 'Repeat Form');
+            $this->renderForm($form, $xmlfile, $view);
+            return false;
+        }else{
+            $form->save();
+            $model = $form->getModel();
+            Registry::setMonitor(Monitor::FORM, 'Model ' . $model . ' saved');
+            return $model;
+        }
+    }
+    
+    protected function buildMultipleProcess($action, Form $form, $xmlfile, $view = null) {
+        $tpl = (null == $view)? '/layout/core/insert.htm' : $view;
+        $this->setView($tpl);
+        $result = $form->isvalid();
+        if ($result == false) {
+            Registry::setMonitor(Monitor::FORMERROR, 'Repeat Form');
+            $this->renderForm($form, $xmlfile, $view);
+            return false;
+        } else {
+            $parts = $form->getModels();
+            foreach ($parts as $models) {
+                foreach ($models as $model) {
+                    $model->save();
+                }
+            }
+            $action = str_replace('bind', 'list', VarsRegister::getAction());
+            $this->renderUrl('url', $action);
+        }
+        return true;
+    }
+
+    protected function renderValues($model, $xmlfile, $view = null) {
+        $tpl = (null == $view) ? '/layout/core/show.htm' : $view;
+        $this->setView($tpl);
+        
+        $config = new DataEdit($this, $xmlfile);
+        $config->setHtml($this->view->getOutput())->renderButtons('show');
+        $this->view->setOutput($config->getHtml());
+        $configs = $config->getConfigs('show');
+        
+        $fields = $configs->getIndexes();
+        $values = [];
+        foreach ($fields as $column){
+            $configs->setIndex($column);
+            $values[$column]['label'] = $configs->getConfigValue('label');
+            $values[$column]['value'] = $model->getColumnValue($column);
+            $values[$column]['field'] = $column;
+        }
+        $this->set('inputs', $values);
+
+        $action = str_replace(['bind', 'show'], 'edit', VarsRegister::getAction());
+        $this->set('editaction', $action);
+        $this->set('delaction', str_replace('edit', 'del', $action));
+        $this->set('dataid', VarsRegister::getId());
+        $this->setUserMessage();
+    }
+
+    protected function deleteObject(Model $model, $view = null){
+        $tpl = (null == $view) ? '/layout/core/del.htm' : $view;
+        $this->setView($tpl);
+        $result = $model->delete();
+        $this->setUserMessage();
+        $this->set('dataid', (string) $result);
+    }
+    
+    protected function renderUrl($tag, $action, $querystring = []) {
+        $id = ($this->id == true)? VarsRegister::getId() : $this->id;
+        $url = UrlHref::renderUrl(['app'=> $this->app, 'action'=>$action, 'id'=>$id, 'get'=>$querystring]);
+        $this->set($tag, $url);
+        Registry::setMonitor(Monitor::FORM, 'Form Action:' . $url);
+        $this->set('app', $this->app);
+    }
+    
+    protected function buildCsvExport($query, $filename, $xmlfile = null) {
+        $this->layout = false;
+        if (null != $xmlfile) {
+            $config = $this->gridIt($xmlfile);
+            CSVParser::outputConfigurate($filename, $config->getFields(), $query->find());
+        } else {
+            $csv = new CSVParser($filename);
+            $results = $query->find();
+            foreach ($results as $result) {
+                $csv->put($result->getToArray());
+            }
+
+            $csv->close();
+        }
+
+
+        //return $this->dispatch();
+    }
+
+}
+
+//////////////////////////////////
+
+<?php
+
+namespace lib\control;
+
+use \lib\register\Registry;
+use \lib\register\Monitor;
+use \lib\register\VarsRegister;
+use \lib\url\UrlHref;
+use \lib\filter\QueryFilter;
+use \lib\bkegenerator\DataGrid;
+use \lib\bkegenerator\DataEdit;
+use \lib\form\Form;
+use \lib\model\QuerySelect;
+use \lib\model\Model;
+use lib\parser\CSVParser;
+
+/**
+ * Description of ControllerAdmin
+ *
+ * @author Luís Pinto / luis.nestesitio@gmail.com
+ * Created @Mar 30, 2015
+ */
+class ControllerAdmin extends \lib\control\Controller {
+
+    protected function processQuery($query, $xmlfile, $tpl = false){
+        $config = new DataGrid($this, $xmlfile);
+        if ($tpl == true) {
+            $config->setHtml($this->view->getOutput());
+            $config->execute();
+            $this->view->setOutput($config->getHtml());
+        }
+        $configs = $config->getFilters();
+        $query = QueryFilter::filter($query, $configs );
+        
+        return $query;
+    }
+    
+    protected function buildIncludedList($xmlfile, QuerySelect $query, $var, $view = null, $querystring = null) {
+        $tpl = (null == $view)? '/layout/core/grid.htm' : $view;
+        $config = new DataGrid($this, $xmlfile);
+        $config->buildIncluded($this->view->getOutput(), $tpl, $var);
+        if(null != $querystring){
+            $config->setQueryString($querystring);
+        }
+        $config->execute();
+        $this->view->setOutput($config->getHtml());
+        $configs = $config->getFilters();
+        $query = QueryFilter::filter($query, $configs);
+        
+        $results = $this->getQueryToList($query);
+        $this->set('page' . $var, $this->get('pagination'));
+        return $results;
+    }
+    
+    protected function buildDataGrid($xmlfile,QuerySelect $query, $view = null){
+        /* Generation or processing of template datagrid */
+        $tpl = (null == $view)? '/layout/core/datagrid.htm' : $view;
+        $this->setView($tpl);     
+        Registry::setMonitor(Monitor::BOOKMARK, 'buildDataGrid');
+        $results = $this->getQueryToList($query, $xmlfile);
+        $this->renderList($results);
+
+        
+    }
+    
+    
+    protected function buildDataSubList($xmlfile,QuerySelect $query, $view = null){
+        /* Generation or processing of template datagrid */
+        $tpl = (null == $view)? '/layout/core/datasublist.htm' : $view;
+        $this->setView($tpl);
+        Registry::setMonitor(Monitor::BOOKMARK, 'buildDataGrid');
+        $results = $this->getQueryToList($query, $xmlfile);
+        $this->renderList($results);
+
+        
+    }
+    
+    protected function buildDataList($xmlfile,QuerySelect $query){
+        /* Generation or processing of template datalist */
+        $this->setView('/layout/core/datalist.htm');
+        Registry::setMonitor(Monitor::BOOKMARK, 'buildDataList');
+        $results = $this->getQueryToList($query, $xmlfile);
+        $this->renderList($results);
+        
+    }
+    
+    protected function getQueryToList(QuerySelect $query, $xmlfile = null){
+        if (null != $xmlfile) {
+            $query = $this->processQuery($query, $xmlfile, true);
+        }
+        $query->setCalcFoundRows();
+        $results = $query->find();
+        $total = $query->calcFoundRows()->getFoundRows();
+        $this->set('numrows', $query->getCount());
+        $this->set('total', $total);
+        $this->set('pagination', \lib\filter\Pagination::renderPagination($total));
+        return $results;
+    }
+    
+    
+    
+    protected function renderList($results, $var = null) {
+        $var = ($var == null)? 'list': $var;
+        $this->renderCollection($results, $var);
+        $this->set('canonical', VarsRegister::getCanonical());
+        $this->set('app', VarsRegister::getApp());
+    }
+    
+    
+    protected function renderFilters(\lib\form\Form $form, $xmlfile) {
+        $this->renderUrl('action', 'list_' . VarsRegister::getCanonical());
+        $config = new DataEdit($this, $xmlfile);
+        $configs = $config->getConfigs('filter');
+        $form = QueryFilter::renderFilters($form, VarsRegister::getCanonical(), $configs);
+        $this->set('filters', $form->renderInputs(VarsRegister::getCanonical(), $configs));
+    }
+    
+    
+    protected function renderForm(Form $form, $xmlfile, $view = null, $action = null, $querystring = []) {
+        if($action == null){
+            $action = str_replace(['edit','new'], 'bind', VarsRegister::getAction());
+        }
+        
+        $tpl = (null == $view)? '/layout/core/edit.htm' : $view;
+        $this->setView($tpl);
+        $this->renderUrl('action', $action, $querystring);
+        $this->set('delaction', str_replace('bind','del',$action));
+        
+        $this->set('hiddenfields', $form->renderHiddenFields(VarsRegister::getCanonical()));
+        $config = new DataEdit($this, $xmlfile);
+        $configs = $config->getConfigs('edit');
+        $form = QueryFilter::getDefaults($form, $xmlfile, $configs);
+        
+        $this->set('inputs', $form->renderInputs(VarsRegister::getCanonical(), $configs));
+        $config->setHtml($this->view->getOutput())->renderButtons('edit');
+        $this->view->setOutput($config->getHtml());
+        
+        $this->set('dataid', VarsRegister::getId());
+        $this->setUserMessage();
+        
+    }
+    
+    protected function buildProcess(Form $form, $xmlfile, $view = null) {
+        $result = $form->isvalid();
+        if($result == false){
+            Registry::setMonitor(Monitor::FORMERROR, 'Repeat Form');
+            $this->renderForm($form, $xmlfile, $view);
+            return false;
+        }else{
+            $form->save();
+            $model = $form->getModel();
+            Registry::setMonitor(Monitor::FORM, 'Model ' . $model . ' saved');
+            return $model;
+        }
+    }
+    
+    protected function buildMultipleProcess($action, Form $form, $xmlfile, $view = null) {
+        $tpl = (null == $view)? '/layout/core/insert.htm' : $view;
+        $this->setView($tpl);
+        $result = $form->isvalid();
+        if ($result == false) {
+            Registry::setMonitor(Monitor::FORMERROR, 'Repeat Form');
+            $this->renderForm($form, $xmlfile, $view);
+            return false;
+        } else {
+            $parts = $form->getModels();
+            foreach ($parts as $models) {
+                foreach ($models as $model) {
+                    $model->save();
+                }
+            }
+            $action = str_replace('bind', 'list', VarsRegister::getAction());
+            $this->renderUrl('url', $action);
+        }
+        return true;
+    }
+
+    protected function renderValues($model, $xmlfile, $view = null) {
+        $tpl = (null == $view) ? '/layout/core/show.htm' : $view;
+        $this->setView($tpl);
+        
+        $config = new DataEdit($this, $xmlfile);
+        $config->setHtml($this->view->getOutput())->renderButtons('show');
+        $this->view->setOutput($config->getHtml());
+        $configs = $config->getConfigs('show');
+        
+        $fields = $configs->getIndexes();
+        $values = [];
+        foreach ($fields as $column){
+            $configs->setIndex($column);
+            $values[$column]['label'] = $configs->getConfigValue('label');
+            $values[$column]['value'] = $model->getColumnValue($column);
+            $values[$column]['field'] = $column;
+        }
+        $this->set('inputs', $values);
+
+        $action = str_replace(['bind', 'show'], 'edit', VarsRegister::getAction());
+        $this->set('editaction', $action);
+        $this->set('delaction', str_replace('edit', 'del', $action));
+        $this->set('dataid', VarsRegister::getId());
+        $this->setUserMessage();
+    }
+
+    protected function deleteObject(Model $model, $view = null){
+        $tpl = (null == $view) ? '/layout/core/del.htm' : $view;
+        $this->setView($tpl);
+        $result = $model->delete();
+        $this->setUserMessage();
+        $this->set('dataid', (string) $result);
+    }
+    
+    protected function renderUrl($tag, $action, $querystring = []) {
+        $id = ($this->id == true)? VarsRegister::getId() : $this->id;
+        $url = UrlHref::renderUrl(['app'=> $this->app, 'action'=>$action, 'id'=>$id, 'get'=>$querystring]);
+        $this->set($tag, $url);
+        Registry::setMonitor(Monitor::FORM, 'Form Action:' . $url);
+        $this->set('app', $this->app);
+    }
+    
+    protected function buildCsvExport($query, $filename, $xmlfile = null) {
+        $this->layout = false;
+        if (null != $xmlfile) {
+            $config = new DataGrid($this, $xmlfile);
+            CSVParser::outputConfigurate($filename, $config->getFields(), $query->find());
+        } else {
+            $csv = new CSVParser($filename);
+            $results = $query->find();
+            foreach ($results as $result) {
+                $csv->put($result->getToArray());
+            }
+
+            $csv->close();
+        }
+
+
+        //return $this->dispatch();
+    }
+
+}

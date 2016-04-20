@@ -1,0 +1,22 @@
+<div class="btns-form">
+    <a class="start-upload btn btn-xs btn-primary"
+       data-action="{{ data-url }}"
+       data-position="{{ data-position }}"
+       data-mime="{{ data-mime }}"
+       >
+        <span class="glyphicon glyphicon-save"></span> Save
+    </a>
+    <a class="closeform btn btn-xs btn-primary">
+        <span class="glyphicon glyphicon-remove"></span> Close
+    </a>
+</div>
+{% while (item in usermsg) %}
+<div class="usermsg">{{ item.msg }}</div>
+{% endwhile %}
+<div class="form-group">
+    <label for="fileuploader">File</label>
+
+    <div class="fileUpld" id="fileuploader">Choose file</div>
+    <br>
+    <div id="eventsmessage"></div>
+</div>

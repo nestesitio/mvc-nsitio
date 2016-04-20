@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="desc">
+    <label lang="en">Desc</label>
+    <label lang="pt">Desc</label>
+  </value>
+  <value index="lead">
+    <label lang="en">Lead</label>
+    <label lang="pt">Lead</label>
+  </value>
+  <value index="txt">
+    <label lang="en">Txt</label>
+    <label lang="pt">Txt</label>
+  </value>
+  <value index="other">
+    <label lang="en">Other</label>
+    <label lang="pt">Other</label>
+  </value>
+</root>

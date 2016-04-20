@@ -1,0 +1,39 @@
+{% extends 'layout/sb-admin/main.htm' %}
+
+{% cssextension '/plugins/chosen/chosen.css' %}
+{% cssextension '/css/core/backend.css' %}
+
+{% jsextension '/js/core/dataform.js' %}
+{% jsextension '/js/core/bsInputs.js' %}
+{% jsextension '/js/core/scrollbuttons.js' %}
+{% jsextension '/plugins/bootstrap-datetimepicker/moment.min.js' %}
+{% jsextension '/plugins/bootstrap-datetimepicker/datetimepicker.js' %}
+{% jsextension '/plugins/bootstrap-datetimepicker/pt.js' %}
+{% jsextension '/plugins/bootstrap-datetimepicker/moment.parseFormat.js' %}
+{% jsextension '/plugins/chosen/chosen.jquery.min.js' %}
+{% jsextension '/plugins/jeditable/jquery.jeditable.js' %}
+{% jsextension '/js/core/ajaxstreaming.js' %}
+
+<!-- List Transfers -->
+<div class="row">
+    
+    <div class="col-lg-12"> 
+        
+        <div class="panel panel-default">
+            {% while (item in transfers) %}
+            <div style="margin:5px 5px 0" class="well well-sm">
+                <a class="btn-task" data-action="{{ item.url }}">{{ item.title }}</a>
+            </div>
+            <div class="panel-body">...</div>
+            {% endwhile %} 
+        </div>
+        
+    </div>
+     
+</div>
+<!-- /.row -->
+<script>
+$(document).on('click', '.btn-task', function(){
+    loadXmlHttp(this);
+});
+</script>

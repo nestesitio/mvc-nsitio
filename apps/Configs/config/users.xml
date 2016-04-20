@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <id field="user.id" filter="false" show="false">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </id>
+      <usergroupdescription field="user_group.description" filter="false" show="true">
+        <label lang="en">User Group</label>
+        <label lang="pt">Grupo</label>
+      </usergroupdescription>
+      <usergroupid field="user.user_group_id" filter="true" show="false" range="multiple">
+        <label lang="en">User Group Id</label>
+        <label lang="pt">Grupo</label>
+      </usergroupid>
+      <name field="user.name" filter="true" show="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </name>
+      <username field="user.username" filter="false" show="true">
+        <label lang="en">Username</label>
+        <label lang="pt">Username</label>
+      </username>
+      <password field="user.password" filter="false" show="true">
+        <label lang="en">Password</label>
+        <label lang="pt">Password</label>
+      </password>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="configs/edit_users" auth="1">
+        <label lang="en">Save</label>
+        <label lang="pt">Guardar</label>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="configs/edit_users" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </editform>
+      <resetform class="glyphicon glyphicon-refresh" auth="1">
+        <label lang="en">Reset</label>
+        <label lang="pt">Reset</label>
+      </resetform>
+      <delform class="glyphicon glyphicon-trash" action="configs/del_users" auth="1">
+        <label lang="en">Delete</label>
+        <label lang="pt">Apagar</label>
+      </delform>
+      <closeform class="glyphicon glyphicon-remove" auth="1">
+        <label lang="en">Close</label>
+        <label lang="pt">Fechar</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="users" paging="25" fieldid="user.id">
+    <columns comment="Columns for grid">
+      <id field="user.id" class="id" sort="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </id>
+      <description field="user_group.description" class="name" sort="true">
+        <label lang="en">Group</label>
+        <label lang="pt">Grupo</label>
+      </description>
+      <name field="user.name" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </name>
+      <username field="user.username" class="mail" sort="true">
+        <label lang="en">Username</label>
+        <label lang="pt">Username</label>
+      </username>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="configs/edit_users" class="fa-pencil" id="user.id" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </edit>
+      <show action="configs/show_users" class="fa-eye" id="user.id" auth="1">
+        <label lang="en">Show</label>
+        <label lang="pt">Show</label>
+      </show>
+      <del action="configs/del_users" class="fa-trash-o" id="user.id" auth="1">
+        <label lang="en">Del</label>
+        <label lang="pt">Del</label>
+      </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <new action="configs/new_users" class="glyphicon glyphicon-plus" auth="1">
+        <label lang="en">New</label>
+        <label lang="pt">Inserir</label>
+      </new>
+      <csv target="blank" action="configs/csv_users" class="glyphicon glyphicon-export" auth="1">
+        <label lang="en">Csv</label>
+        <label lang="pt">Csv</label>
+      </csv>
+    </buttons>
+  </grid>
+</root>

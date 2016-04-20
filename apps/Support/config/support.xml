@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <id field="support.id" filter="true" show="false">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </id>
+      <userid field="support.user_id" filter="true" show="false" range="multiple">
+        <label lang="en">User Id</label>
+        <label lang="pt">User Id</label>
+      </userid>
+      <source field="support.source" filter="true" show="false">
+        <label lang="en">Source</label>
+        <label lang="pt">Source</label>
+      </source>
+      <status field="support.status" filter="true" show="true">
+        <label lang="en">Status</label>
+        <label lang="pt">Status</label>
+      </status>
+      <type field="support.type" filter="true" show="true">
+        <label lang="en">Type</label>
+        <label lang="pt">Type</label>
+      </type>
+      <loguserid field="support_log.user_id" filter="true" show="false" range="multiple">
+        <label lang="en">User Id</label>
+        <label lang="pt">User Id</label>
+      </loguserid>
+      <event field="support_log.event" filter="true" show="false">
+        <label lang="en">Event</label>
+        <label lang="pt">Event</label>
+      </event>
+      <notes field="support_log.notes" filter="true" show="true">
+        <label lang="en">Text</label>
+        <label lang="pt">Texto</label>
+      </notes>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="support/edit_support" auth="1">
+        <label lang="en">Save</label>
+        <label lang="pt">Enviar</label>
+      </saveform>
+      <closeform class="glyphicon glyphicon-remove" auth="1">
+        <label lang="en">Close</label>
+        <label lang="pt">Fechar</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="support" paging="25" fieldid="support.id">
+    <columns comment="Columns for grid">
+      <id field="support.id" class="id" sort="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </id>
+      <userid field="support.user_id" class="id" sort="true">
+        <label lang="en">User Id</label>
+        <label lang="pt">User Id</label>
+      </userid>
+      <source field="support.source" class="source" sort="true">
+        <label lang="en">Source</label>
+        <label lang="pt">Source</label>
+      </source>
+      <status field="support.status" class="status" sort="true">
+        <label lang="en">Status</label>
+        <label lang="pt">Status</label>
+      </status>
+      <type field="support.type" class="type" sort="true">
+        <label lang="en">Type</label>
+        <label lang="pt">Type</label>
+      </type>
+      <usergroupid field="user.user_group_id" class="group_id" sort="true">
+        <label lang="en">User Group Id</label>
+        <label lang="pt">User Group Id</label>
+      </usergroupid>
+      <name field="user.name" class="name" sort="true">
+        <label lang="en">Name</label>
+        <label lang="pt">Nome</label>
+      </name>
+      <mail field="user.mail" class="mail" sort="true">
+        <label lang="en">Mail</label>
+        <label lang="pt">Mail</label>
+      </mail>
+      <username field="user.username" class="username" sort="true">
+        <label lang="en">Username</label>
+        <label lang="pt">Username</label>
+      </username>
+      <password field="user.password" class="password" sort="true">
+        <label lang="en">Password</label>
+        <label lang="pt">Password</label>
+      </password>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="support/edit_support" class="fa-pencil" id="support.id" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Editar</label>
+      </edit>
+      <show action="support/show_support" class="fa-eye" id="support.id" auth="1">
+        <label lang="en">Show</label>
+        <label lang="pt">Show</label>
+      </show>
+      <del action="support/del_support" class="fa-trash-o" id="support.id" auth="1">
+        <label lang="en">Del</label>
+        <label lang="pt">Del</label>
+      </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <new action="support/new_support" class="glyphicon glyphicon-plus" auth="1">
+        <label lang="en">New</label>
+        <label lang="pt">Inserir</label>
+      </new>
+      <csv target="blank" action="support/csv_support" class="glyphicon glyphicon-export" auth="1">
+        <label lang="en">Csv</label>
+        <label lang="pt">Csv</label>
+      </csv>
+    </buttons>
+  </grid>
+</root>

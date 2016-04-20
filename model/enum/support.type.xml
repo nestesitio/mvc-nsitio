@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="query">
+    <label lang="en">Query</label>
+    <label lang="pt">Query</label>
+  </value>
+  <value index="issue">
+    <label lang="en">Issue</label>
+    <label lang="pt">Issue</label>
+  </value>
+  <value index="suggestion">
+    <label lang="en">Suggestion</label>
+    <label lang="pt">Suggestion</label>
+  </value>
+</root>

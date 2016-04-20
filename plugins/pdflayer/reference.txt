@@ -1,0 +1,333 @@
+Class: html2pdf
+Version: 1.0 2/8/2016
+
+Copyright 2016 Wagon Trader, All Rights Reserved
+
+
+Required parameters:
+
+You must provide either the full url or markup to convert.
+
+
+document_url - The full url to the webpage to convert
+
+document_html - The html markup to convert
+
+
+Optional parameters:
+
+
+accept_lang
+
+Set value to the accepted language code. Common language codes can be found at http://www.metamodpro.com/browser-language-codes. Use this parameter when the website being converted needs to be localized. Default: null
+
+
+auth_password
+
+Set value to the authorized user password when converting password protected webpages. Default: null
+
+
+auth_user
+
+Set value to the authorized username when converting password protected webpages. Default: null
+
+
+author
+
+Set value to the pdf document author meta data. Default: null
+
+
+css_url
+
+Set value to the full url of the css file to inject into the pdf file. Default: null
+
+
+creator
+
+Set value to the pdf document creator meta data. Default: pdflayer.com
+
+
+delay
+
+Set the value to the milliseconds to delay conversion. This allows javascript and animations to complete. Default: 0
+
+
+document_name
+
+Set value to the file name for this converstion. Default: pdfLayer
+
+
+document_unit
+
+Set value to the unit of measure to be used. Valid options are mm (millimeter), in (inch), px (pixel) and pt (point). Default: px
+
+
+dpi
+
+Set value to the dots per inch for the generated pdf file. Default: 96
+
+
+encyrption
+
+Set value to 40 or 128 to set the level of encryption in the generated pdf file. Default: null
+
+
+footer_align
+
+Set value to left, center or right for footer alignment. Default: center
+
+
+footer_html
+
+Set value to the html markup to be used as the footer. Default: null
+
+
+footer_spacing
+
+Set value to the spacing reserved for the footer. Default: null
+
+
+footer_text
+
+Set value to text to be used on page footers. See also the Replacement Tags section below. Default: null
+
+
+footer_url
+
+Set value to the full url of the markup to be used as the footer. Default: null
+
+
+force
+
+Set value to 1 to force a new conversion replacing the any stored in the cache. Default: null
+
+
+forms
+
+Set value to 1 to generate pdf with forms from webpage. Default: null
+
+
+grayscale
+
+Set value to 1 to produce pdf in grayscale. Default: null
+
+
+header_align
+
+Set value to left, center or right for header alignment. Default: center
+
+
+header_html
+
+Set value to the html markup to be used as the header. Default: null
+
+
+header_spacing
+
+Set value to the spacing reserved for the header. Default: null
+
+
+header_text
+
+Set value to text to be used on page headers. See also the Replacement Tags section below. Default: null
+
+
+header_url
+
+Set value to the full url of the markup to be used as the header. Default: null
+
+
+inline
+
+Set value to 1 to display the document in the browser instead of downloading. This parameter is only valid when redirecting the conversion directly to the api. Default: null
+
+
+low_quality
+
+Set value to 1 to produce lower quality and smaller size pdf. Default: null
+
+
+marin_bottom
+
+Set value for the bottom margin. See also document_unit to set the unit of measure. Default: 10
+
+
+marin_left
+
+Set value for the left margin. See also document_unit to set the unit of measure. Default: 10
+
+
+marin_right
+
+Set value for the right margin. See also document_unit to set the unit of measure. Default: 10
+
+
+marin_top
+
+Set value for the top margin. See also document_unit to set the unit of measure. Default: 10
+
+
+no_backgrounds
+
+Set value to 1 to exclude backgrounds in markup from pdf file. Default: null
+
+
+no_copy
+
+Set value to 1 to disable copy permission in pdf. Default: null
+
+
+no_hyperlinks
+
+Set value to 1 to exclude hyperlinks in pdf file. Default: null
+
+
+no_images
+
+Set value to 1 to exclude images in pdf file. Default: null
+
+
+no_javascript
+
+Set value to 1 to not run javascript from webpage. Default: null
+
+
+no_modify
+
+Set value to 1 to disable modify permission in pdf. Default: null
+
+
+no_print
+
+Set value to 1 to disable printing permission is pdf. Default: null
+
+
+orientation
+
+Set value to portrait or landscape page orientation. Default: portrait
+
+
+owner_password
+
+Set value to the owner password used in the generated pdf file. Owner passwords are used to restrict access to the pdf permissions. Default: null
+
+
+page_height
+
+Set value to a custom page height. See also document_unit for setting unit of measure. Default: null
+
+
+page_numbering_offset
+
+Set value to the number of pages to skip before displaying the header. Default: 0
+
+
+page_size
+
+Set value to a standard page size. Supported sizes are A0 through A9, B0 through B9, C5E, Comm10E, DLE, Executive, Folio, Ledger, Legal, Letter and Tabloid. Default: A4
+
+
+page_width
+
+Set value to custom page width. See also document_unit for setting the unit of measure. Default: null
+
+
+subject
+
+Set value to the pdf document subject meta data. Default: null
+
+
+test
+
+Set value to 1 to use sanbox to test conversion. Your api account will not be charged, however the returned pdf will be stamped as a sample. Default: 0
+
+
+text_encoding
+
+Set value for the character encoding. Common encodings can be found here https://en.wikipedia.org/wiki/Character_encoding#Common_character_encodings. Use this if the website being converted needs special character encoding. Default: utf-8
+
+
+title
+
+Set value to the pdf document title. Default: webpage title tag
+
+
+ttl
+
+Set value to time in seconds the conversion will be saved in the cache. Maximum value (30 days): 2592000 Default (30 days): 2592000
+
+
+use_print_media
+
+Set value to 1 to use css print media from webpage. Default: null
+
+
+user_agent
+
+Set value to custom user agent sent in header. Common user agents can be found at http://www.useragentstring.com/pages/useragentstring.php. A custom user agent is used so that the webiste being converted returns the correct markup for the specified browser or device. Default: null
+
+
+user_password
+
+Set value to the user password used in the generated pdf file. User passwords are used to restrict viewing of the pdf file. Default: null
+
+
+viewport
+
+Set value to the [width]x[height] for a custom viewport. Viewports are used with the user_agent parameter to convert the webpage for a specific device. Default: 1440x900
+
+
+watermark_in_background
+
+Set value to 1 to place the watermark in the pdf background layer. If the webpage background is not transparent, the watermark will no be visible. Default: null
+
+
+watermark_offset_x
+
+Set value to the units to offset the watermark on the x axis. Default: 0
+
+
+watermark_offset_y
+
+Set value to the units to offset the watermark on the y axis. Default: 0
+
+
+watermark_opacity
+
+Set value to the opacity percentage of the watermark image. Default: 20
+
+
+watermark_url
+
+Set value to the full url to the image to be used as a watermark. Default: null
+
+
+zoom
+
+Set the value between 0 and 50 zoom factor. Default: 0
+
+
+Replacement Tags
+
+The following tags can be used with the header_text and footer_text
+
+[page] number of the page currently being printed
+[frompage] number of the first page to be printed
+[topage] number of the last page to be printed
+[webpage] URL of the page being printed
+[date] current date in system local format
+[isodate] current date in ISO 8601 extended format
+[time] current time in system local format
+[title] title of the of the current page object
+[doctitle] title of the output document
+[sitepage] number of the page in the current site being converted
+[sitepages] number of pages in the current site being converted
+
+An example would be
+
+This is page [page] of [topage]
+
+Which would display something like
+
+This is page 1 of 10
+
