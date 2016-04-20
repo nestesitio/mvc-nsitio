@@ -24,7 +24,7 @@ example: php task.php -t admin -a Myapp -n mytask -m task_table
 The folder /apps/Myapp will be created if not exists, other files with different names will be preserved  
 The file /apps/Myapp/control/MytaskActions.php will be created with all basic methods  
 The file /apps/Myapp/cconfig/mytask.xml will be created with default configuration you can change
--------------
+
 Range Options
 -------------
 In app config.xml we can define on show/fields node:  
