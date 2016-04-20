@@ -32,4 +32,3 @@ if(isset($_FILES["myfile"]))
 	}
     echo json_encode($ret);
  }
- ?>

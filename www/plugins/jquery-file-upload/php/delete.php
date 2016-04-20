@@ -11,5 +11,3 @@ if(isset($_POST["op"]) && $_POST["op"] == "delete" && isset($_POST['name']))
     }
 	echo "Deleted File ".$fileName."<br>";
 }
-
-?>
