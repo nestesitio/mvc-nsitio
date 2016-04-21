@@ -17,14 +17,21 @@ use \model\querys\LangsQuery;
  * Updated @%$dateUpdated% *
  */
 class PagesActions extends \lib\control\ControllerAdmin {
-    
+
+    /**
+     * @param $app_slug
+     * @return \model\querys\HtmPageQuery
+     */
     private function query($app_slug){
          $query = PagesQuery::get($app_slug)
                 ->setSelect('GROUP_CONCAT(DISTINCT htm_page.langs_tld ORDER BY htm_page.langs_tld DESC SEPARATOR ", ")', 'langs')
                  ->groupByHtmId();
          return $query;
     }
-    
+
+    /**
+     * @return array
+     */
     private function queryLangs(){
         $results = LangsQuery::start()->find();
         $arr = [];
@@ -33,7 +40,10 @@ class PagesActions extends \lib\control\ControllerAdmin {
         }
         return $arr;
     }
-    
+
+    /**
+     * @param $langs
+     */
     private function renderLangsTemplate($langs){
         $str = '';
         foreach($langs as $lang){
@@ -45,7 +55,12 @@ class PagesActions extends \lib\control\ControllerAdmin {
         }
         $this->set('langs', $str);
     }
-    
+
+    /**
+     * @param $results
+     * @param $langs
+     * @return mixed
+     */
     private function renderLangTools($results, $langs){
         foreach($results as $row){
             $result = $row->getColumnValue('langs');
@@ -64,6 +79,10 @@ class PagesActions extends \lib\control\ControllerAdmin {
         return $results;
     }
 
+    /**
+     * @param $app_slug
+     * @param $xml_file
+     */
     protected function mainAction($app_slug, $xml_file){
         $this->setView('/apps/Core/view/datagrid-cms.htm');
         $langs = $this->queryLangs();
@@ -77,32 +96,43 @@ class PagesActions extends \lib\control\ControllerAdmin {
         $form = HtmPageForm::initialize()->prepareFilters();
         $this->renderFilters($form, $xml_file);
     }
-    
-    
-    
+
+
+    /**
+     * @param $app_slug
+     * @param $xml_file
+     */
     protected function listAction($app_slug, $xml_file){
         $query = $this->query($app_slug);
         $results = $this->buildDataList($xml_file, $query);
         #here you can process the results
         $this->renderList($results);
     }
-    
-    
-    
+
+
+    /**
+     *
+     */
     public function editPagesAction() {
         $query = PagesQuery::get()->filterById(VarsRegister::getId())->findOne();
         $form = PagesForm::init('home')->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'pages');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function newPagesAction() {
         $form = HtmPageForm::initialize();
         #more code about $form and $query
         $this->renderForm($form, 'pages');
     }
-    
+
+    /**
+     *
+     */
     public function bindPagesAction() {
         $form = HtmPageForm::initialize()->validate();
         #more code for processing - example
@@ -122,18 +152,27 @@ class PagesActions extends \lib\control\ControllerAdmin {
             $this->showPagesAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showPagesAction(){
         $model = PagesQuery::get()->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'pages');
     }
-    
+
+    /**
+     *
+     */
     public function delPagesAction() {
         $model = \model\querys\HtmPageQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function exportPagesAction(){
         $query = PagesQuery::get();
         $this->buildCsvExport($query);

@@ -10,17 +10,28 @@ use \lib\coreutils\ModelTools as Tools;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Dec 9, 2014
  */
-class Generate {
-    
+class Generate
+{
+    /**
+     * @var \PDO
+     */
     private $pdo;
-    
-    
-    function __construct() {
+
+
+    /**
+     * Generate constructor.
+     */
+    public function __construct()
+    {
         $this->pdo = PdoMysql::getConn();
         echo "Building \n";
     }
-    
-    public function buildModel(){
+
+    /**
+     *
+     */
+    public function buildModel()
+    {
         echo "Generate models ... \n";
         array_map('unlink', glob(ROOT . DS . 'model' . DS . 'models' . DS . '*'));
         array_map('unlink', glob(ROOT . DS . 'model' . DS . 'querys' . DS . '*'));
@@ -30,15 +41,15 @@ class Generate {
         $query_tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'templates' . DS . 'query.tpl';
         $form_tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'templates' . DS . 'form.tpl';
         $constrains = $this->getConstrains();
-        
+
         $modelmap = ROOT . DS . 'model' . DS . 'models' . DS . 'ModelMap.php';
         CrudTools::copyFile($table_tpl, $modelmap, 'ModelMap');
-        
+
         $query = "SHOW TABLES";
         $sth = $this->pdo->prepare($query);
         $sth->execute();
         $results = $sth->fetchAll();
-        foreach($results as $row){      
+        foreach($results as $row){
             $table = $row[0];
             if(strpos($table, 'sf_') === 0){
                 continue;
@@ -46,35 +57,47 @@ class Generate {
             echo "\n ** ". $table . " ->";
             $this->modelMap($modelmap, $table);
             $class = Tools::buildModelName($table);
-            
+
             $file = ROOT . DS . 'model' . DS . 'models' . DS . $class . '.php';
             CrudTools::copyFile($model_tpl, $file, $class);
-                
+
             $file = ROOT . DS . 'model' . DS . 'querys' . DS . $class . 'Query.php';
             CrudTools::copyFile($query_tpl, $file, $class);
-            
+
             $file = ROOT . DS . 'model' . DS . 'forms' . DS . $class . 'Form.php';
             CrudTools::copyFile($form_tpl, $file, $class);
 
             $crud = new \lib\crud\CrudModel($table, $class);
             $crud->setConstrains($constrains);
             $crud->crud();
-        }   
+        }
 
     }
-    
-    public function buildApp($app, $name, $model, $area, $file = null) {
+
+    /**
+     * @param $app
+     * @param $name
+     * @param $model
+     * @param $area
+     * @param null $file
+     */
+    public function buildApp($app, $name, $model, $area, $file = null)
+    {
         $crud = new \lib\crud\CrudApp($app, $name, $model);
         $crud->setConstrains($this->getConstrains());
         $crud->createFolders()->execute($area, $file);
-        
+
     }
-    
-    private function getConstrains() {
+
+    /**
+     * @return array
+     */
+    private function getConstrains()
+    {
         $constrains = [];
         $conf = \lib\loader\Configurator::getDbConf();
         $db = $conf['db'];
-        $query = "SELECT 
+        $query = "SELECT
             i.TABLE_NAME, i.CONSTRAINT_TYPE, k.REFERENCED_TABLE_NAME, k.REFERENCED_COLUMN_NAME, k.COLUMN_NAME
             FROM information_schema.TABLE_CONSTRAINTS i
             LEFT JOIN information_schema.KEY_COLUMN_USAGE k ON i.CONSTRAINT_NAME = k.CONSTRAINT_NAME
@@ -92,12 +115,17 @@ class Generate {
             $constrains[$i]['COLUMN_NAME'] = $row[4];
             $i++;
         }
-        
+
         return $constrains;
-        
+
     }
-    
-    private function modelMap($file, $table) {
+
+    /**
+     * @param $file
+     * @param $table
+     */
+    private function modelMap($file, $table)
+    {
         $str = file_get_contents($file);
         $tpl = '#%$tableconstant%';
         $const = "const " . strtoupper($table) . " = '$table';";

@@ -11,29 +11,43 @@ use \lib\register\Monitor;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @ Nov 17, 2014
  */
-class ParseString {
-
+class ParseString
+{
+    /**
+     * @var String
+     */
     private $string;
+    /**
+     * @var array
+     */
     private $tags = [];
+    /**
+     * @var array
+     */
     private $portions = [];
+    /**
+     * @var array
+     */
     private $args = [];
 
     /**
      * Declare the string to be processed
      * @param String $string The string to be processed
-     * 
+     *
      * @return void
      */
-    function __construct($string) {
+    public function __construct($string)
+    {
         $this->string = $string;
     }
-    
+
     /**
      * Find the tags to be processed
-     * 
+     *
      * @return void
      */
-    public function find($tag){
+    public function find($tag)
+    {
         //Registry::setMonitor(Monitor::TPL, $tag);
         $matches = [];
         $matches_b = [];
@@ -69,8 +83,15 @@ class ParseString {
             $i++;
         }
     }
-    
-    private function findBlock($start_tag, $end_tag, $pos){
+
+    /**
+     * @param $start_tag
+     * @param $end_tag
+     * @param $pos
+     * @return string
+     */
+    private function findBlock($start_tag, $end_tag, $pos)
+    {
         $string = substr($this->string, $pos);
         $portion = str_replace($start_tag, '', $string);
         $p1 = strpos($portion, $end_tag);
@@ -82,8 +103,15 @@ class ParseString {
             return $start_tag . substr($portion, 0, $p1) . $end_tag;
         }
     }
-    
-    private function findTagIf($start_tag, $end_tag, $pos){
+
+    /**
+     * @param $start_tag
+     * @param $end_tag
+     * @param $pos
+     * @return string
+     */
+    private function findTagIf($start_tag, $end_tag, $pos)
+    {
         $string = substr($this->string, $pos);
         $portion = str_replace($start_tag, '', $string);
         $p1 = strpos($portion, $end_tag);
@@ -95,8 +123,15 @@ class ParseString {
             return $start_tag . substr($portion, 0, $p1) . $end_tag;
         }
     }
-    
-    private function findTagWhile($start_tag, $end_tag, $pos){
+
+    /**
+     * @param $start_tag
+     * @param $end_tag
+     * @param $pos
+     * @return string
+     */
+    private function findTagWhile($start_tag, $end_tag, $pos)
+    {
          $string = substr($this->string, $pos);
         $portion = str_replace($start_tag, '', $string);
         $p1 = strpos($portion, $end_tag);
@@ -108,28 +143,43 @@ class ParseString {
             return $start_tag . substr($portion, 0, $p1) . $end_tag;
         }
     }
-    
-    public function getString(){
+
+    /**
+     * @return String
+     */
+    public function getString()
+    {
         return $this->string;
     }
-    
+
     /**
      * Return the portion of string
      * @param String $k The key of the array
      *
      * @return String $this->portions[$k]
      */
-    public function getPortion($k = null){
+    public function getPortion($k = null)
+    {
         return (null == $k)? $this->portions : $this->portions[$k];
     }
-    
-    public function getArgs($k = null){
+
+    /**
+     * @param null $k
+     * @return array|mixed
+     */
+    public function getArgs($k = null)
+    {
         return (null == $k)? $this->args : $this->args[$k];
     }
-    
-    public function getTag($k = null){
+
+    /**
+     * @param null $k
+     * @return array|mixed
+     */
+    public function getTag($k = null)
+    {
         return (null == $k)? $this->tags : $this->tags[$k];
     }
-   
+
 
 }

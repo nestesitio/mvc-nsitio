@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Description of Controller 
+ * Description of Controller
  * created in 7/Nov/2014
  * @author $luispinto@nestesitio.net
  * Sequence in Router:
  * //prepare controller and action
  * $controller = new $class();
- * $controller->$action();   
+ * $controller->$action();
  * //prepare View
  * //if Action defined view ->
  *  - $this->setView();
@@ -26,48 +26,98 @@ namespace lib\control;
 use \lib\control\ControlTools;
 use \lib\register\Registry;
 use \lib\register\Monitor;
+use lib\view\StringTemplate;
 use \lib\view\View;
 use \lib\register\VarsRegister;
 
-class Controller {
-
+class Controller
+{
+    /**
+     * @var null
+     */
     private $template = null;
+    /**
+     * @var null
+     */
     private $extended = null;
+    /**
+     * @var null
+     */
     protected $view = null;
+    /**
+     * @var string
+     */
     protected $app;
+    /**
+     * @var string
+     */
     protected $content_type = '';
+    /**
+     * @var array
+     */
     private $tags = [];
+    /**
+     * @var
+     */
     protected $model;
+    /**
+     * @var bool
+     */
     protected $id = true;
+    /**
+     * @var bool
+     */
     public $messages = true;
+    /**
+     * @var bool
+     */
     public $layout = true;
-    
-    
-    protected function getJEditableValue(){
+
+
+    /**
+     * @return array|bool|mixed
+     */
+    protected function getJEditableValue()
+    {
         $this->layout = false;
         $this->setView('layout/core/empty.htm');
         $value = VarsRegister::getPosts('value');
         return $value;
     }
-    
-    protected function setUserMessage() {
+
+    /**
+     *
+     */
+    protected function setUserMessage()
+    {
         $this->set('usermsg', Registry::getUserMessages());
     }
-    
-    protected function setCustomMessage() {
+
+    /**
+     *
+     */
+    protected function setCustomMessage()
+    {
         $this->set('custommsg', Registry::getCustomMessages());
     }
-    
-    protected function writeMessage($message) {
-        
+
+    /**
+     * @param $message
+     */
+    protected function writeMessage($message)
+    {
         Registry::setMessage($message);
         $this->set('usermsg', Registry::getUserMessages());
     }
 
 
-    public function dispatch() {
-        /* parse the tags in view 
-         * after eventual generate of template 
+    /**
+     *
+     */
+    public function dispatch()
+    {
+        /* parse the tags in view
+         * after eventual generate of template
          * by class that extends DataConfig*/
         if (true == $this->layout) {
             $this->view->parse();
@@ -79,38 +129,70 @@ class Controller {
             return;
         }
     }
-    
-    protected function getCollection($results){
+
+    /**
+     * @param $results
+     * @return array
+     */
+    protected function getCollection($results)
+    {
         $itens = [];
         foreach ($results as $i=>$obj){
             $itens[$i] = $obj->getToArray();
         }
         return $itens;
     }
-    
-    protected function renderCollection($results, $tag) {
+
+    /**
+     * @param $results
+     * @param $tag
+     */
+    protected function renderCollection($results, $tag)
+    {
         Registry::setMonitor(Monitor::BOOKMARK, get_class($this) . ' - renderCollection with ' . count($results) . ' row for tag ' . $tag);
         $itens = $this->getCollection($results);
         $this->set($tag, $itens);
     }
-    
-    protected function set($tag, $data){
+
+    /**
+     * @param $tag
+     * @param $data
+     */
+    protected function set($tag, $data)
+    {
         Registry::setDataDevMessage($tag, $data);
         $this->tags[$tag] = $data;
     }
-    
-    protected function get($tag){
+
+    /**
+     * @param $tag
+     * @return mixed
+     */
+    protected function get($tag)
+    {
         return $this->tags[$tag];
     }
-    
-    private function renderData() {
+
+    /**
+     *
+     */
+    private function renderData()
+    {
         Registry::setMonitor(Monitor::BOOKMARK, get_class($this) . ' - renderData');
         foreach($this->tags as $tag=>$data){
             $this->view->set($tag, $data);
         }
     }
-    
-    protected function preRender($html, $results, $var){
+
+    /**
+     * @param $html
+     * @param $results
+     * @param $var
+     *
+     * @return String
+     */
+    protected function preRender($html, $results, $var)
+    {
         Registry::setMonitor(Monitor::BOOKMARK, 'preRender');
         $view = new View($html, FALSE);
         $itens = $this->getCollection($results);
@@ -119,7 +201,11 @@ class Controller {
         return $view->display();
     }
 
-    public function setView($filename) {
+    /**
+     * @param String $filename
+     */
+    public function setView($filename)
+    {
         if ($this->template == null) {
             $file = ControlTools::validateFile($this, $filename, 'view', 'htm');
             if($file == null){
@@ -130,55 +216,95 @@ class Controller {
             $this->extended = $this->view->getExtend();
         }
     }
-    
-    public function resetView($filename){
+
+    /**
+     * @param String $filename
+     */
+    public function resetView($filename)
+    {
         $this->template = null;
         $this->setView($filename);
     }
-    
-    protected function setEmptyView(){
+
+    /***
+     *
+     */
+    protected function setEmptyView()
+    {
         $this->messages = false;
         $this->setView('/layout/core/empty.htm');
     }
-    
-    public function getTemplate(){
+
+    /***
+     * @return String
+     */
+    public function getTemplate()
+    {
         return $this->template;
     }
-    
-    public function getExtended(){
+
+    /**
+     * @return mixed
+     */
+    public function getExtended()
+    {
         return $this->extended;
     }
-    
-    public function setHeaderContentType($mime){
+
+    /**
+     * @param $mime
+     */
+    public function setHeaderContentType($mime)
+    {
         if(empty($this->content_type)){
             $this->content_type = $mime;
         }
     }
-    
-    public function setHeader($mime){
+
+    /**
+     * @param $mime
+     * @return \lib\control\Controller.php
+     */
+    public function setHeader($mime)
+    {
         if(empty($this->content_type)){
             $this->content_type = $mime;
         }
         return $this;
     }
-    
-    public function writeHeader(){
+
+    /**
+     *
+     */
+    public function writeHeader()
+    {
         header($this->content_type);
     }
-    
-    protected function addMemory($memory = 2512){
+
+    /**
+     * @param int $memory
+     */
+    protected function addMemory($memory = 2512)
+    {
         ini_set('memory_limit', $memory . 'M');
         set_time_limit(99640);
     }
-    
-    
-    
-    function __construct() {
+
+
+    /**
+     * Controller constructor.
+     */
+    public function __construct()
+    {
         Registry::setMonitor(Monitor::CONTROL, get_class($this));
         $this->app = \lib\register\VarsRegister::getApp();
     }
-    
-    protected function ob() {
+
+    /**
+     *
+     */
+    protected function ob()
+    {
         $this->layout = false;
         $this->setEmptyView();
         $this->start_time = \lib\tools\ObTool::obStart();

@@ -10,51 +10,98 @@ use \lib\mysql\Mysql as Mysql;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Feb 22, 2015
  */
-class QueryStatement extends \lib\model\Query {
-    
+class QueryStatement extends \lib\model\Query
+{
+    /**
+     * @var array
+     */
     protected $fetch_assoc = [];
 
-    public function groupBy($column){
+    /**
+     * @param $column
+     * @return $this
+     */
+    public function groupBy($column)
+    {
         $this->query_statement->setGroupBy($column);
         return $this;
     }
-    
-    public function setHaving($expression){
+
+    /**
+     * @param $expression
+     * @return $this
+     */
+    public function setHaving($expression)
+    {
         $this->query_statement->setHaving($expression);
         return $this;
     }
-    
-    public function setFirstSort($column, $order = Mysql::ASC){
+
+    /**
+     * @param $column
+     * @param string $order
+     * @return $this
+     */
+    public function setFirstSort($column, $order = Mysql::ASC)
+    {
         $this->query_statement->setFirstSort($column, $order);
         return $this;
     }
 
-    public function orderBy($column, $order = Mysql::ASC){
+    /**
+     * @param $column
+     * @param string $order
+     * @return $this
+     */
+    public function orderBy($column, $order = Mysql::ASC)
+    {
         $this->query_statement->setOrderBy($column, $order);
         return $this;
     }
-    
-    public function cleanSelect(){
+
+    /**
+     * @return $this
+     */
+    public function cleanSelect()
+    {
         $this->query_statement->cleanSelect();
         for($i = count($this->fetch_assoc); $i > 0; $i--){
             array_pop($this->fetch_assoc);
         }
         return $this;
     }
-    
-    public function setDistinct($column, $alias = null) {
+
+    /**
+     * @param $column
+     * @param null $alias
+     * @return $this
+     */
+    public function setDistinct($column, $alias = null)
+    {
         $this->query_statement->setDistinct($column, $alias);
         $this->addSelectClause($column, $alias);
         return $this;
     }
-    
-    public function countDistinct($column, $alias = null) {
+
+    /**
+     * @param $column
+     * @param null $alias
+     * @return $this
+     */
+    public function countDistinct($column, $alias = null)
+    {
         $this->query_statement->countDistinct($column, $alias);
         $this->addSelectClause($column, $alias);
         return $this;
     }
-    
-    public function setSelect($column, $alias = null) {
+
+    /**
+     * @param $column
+     * @param null $alias
+     * @return $this
+     */
+    public function setSelect($column, $alias = null)
+    {
         //echo var_dump($this->columns) .' -> ';
         $this->columns[] = $column;
         $this->query_statement->setSelect($column, $alias);
@@ -62,16 +109,30 @@ class QueryStatement extends \lib\model\Query {
         $this->addSelectClause($column, $alias);
         return $this;
     }
-    
-    public function setCustomSelect($expression, $alias) {
+
+    /**
+     * @param $expression
+     * @param $alias
+     * @return $this
+     */
+    public function setCustomSelect($expression, $alias)
+    {
         $this->columns[] = $alias;
         $this->query_statement->setCustomSelect($expression, $alias);
         $this->model->addColumn($alias);
         $this->fetch_assoc = array_merge($this->fetch_assoc, [$alias]);
         return $this;
     }
-    
-    public function match($fields, $search, $modifier = Mysql::SEARCH_BOOLEAN, $value = null){
+
+    /**
+     * @param $fields
+     * @param $search
+     * @param string $modifier
+     * @param null $value
+     * @return $this
+     */
+    public function match($fields, $search, $modifier = Mysql::SEARCH_BOOLEAN, $value = null)
+    {
         $expression = "MATCH (".  implode(',', $fields).") AGAINST ('$search' $modifier)";
         $this->query_statement->setCustomSelect($expression, 'score');
         $expression = "MATCH(".  implode(',', $fields).") AGAINST ('$search' $modifier)";
@@ -85,52 +146,118 @@ class QueryStatement extends \lib\model\Query {
     }
 
 
-    public function setSum($field, $alias){
+    /**
+     * @param $field
+     * @param $alias
+     * @return $this
+     */
+    public function setSum($field, $alias)
+    {
         $this->setCustomSelect('SUM(' . $field . ')', $alias);
         return $this;
     }
-    
-    public function setCount($alias){
+
+    /**
+     * @param $alias
+     * @return $this
+     */
+    public function setCount($alias)
+    {
         $this->setCustomSelect('COUNT(*)', $alias);
         return $this;
     }
-    
-    public function limit($row_count = 1, $offset = 0) {
+
+    /**
+     * @param int $row_count
+     * @param int $offset
+     * @return $this
+     */
+    public function limit($row_count = 1, $offset = 0)
+    {
         $this->query_statement->setLimit($row_count, $offset);
         return $this;
     }
-    
-    public function join($table, $join, $relation, $alias = null){
+
+    /**
+     * @param $table
+     * @param $join
+     * @param $relation
+     * @param null $alias
+     * @return $this
+     */
+    public function join($table, $join, $relation, $alias = null)
+    {
         $this->query_statement->joinTable($table, $join, ['left'=>$relation[0],'right'=>$relation[1]], $alias);
         return $this;
     }
-    
-    public function leftJoin($table, $relation, $alias = null) {
+
+    /**
+     * @param $table
+     * @param $relation
+     * @param null $alias
+     * @return $this
+     */
+    public function leftJoin($table, $relation, $alias = null)
+    {
         $this->join($table, Mysql::LEFT_JOIN, $relation, $alias);
         return $this;
     }
-    
-    public function innerJoin($table, $relation, $alias = null) {
+
+    /**
+     * @param $table
+     * @param $relation
+     * @param null $alias
+     * @return $this
+     */
+    public function innerJoin($table, $relation, $alias = null)
+    {
         $this->join($table, Mysql::INNER_JOIN, $relation, $alias);
         return $this;
     }
-    
-    public function rightJoin($table, $relation, $alias = null) {
+
+    /**
+     * @param $table
+     * @param $relation
+     * @param null $alias
+     * @return $this
+     */
+    public function rightJoin($table, $relation, $alias = null)
+    {
         $this->join($table, Mysql::RIGHT_JOIN, $relation, $alias);
         return $this;
     }
-    
-    public function addJoinCondition($table, $column, $value, $operator = Mysql::EQUAL) {
+
+    /**
+     * @param $table
+     * @param $column
+     * @param $value
+     * @param string $operator
+     * @return $this
+     */
+    public function addJoinCondition($table, $column, $value, $operator = Mysql::EQUAL)
+    {
         $this->query_statement->addJoinCondition($table, $column, $value, $operator);
         return $this;
     }
-    
-    public function setJoinCondition($leftcol, $rightcol, $operator = Mysql::EQUAL) {
+
+    /**
+     * @param $leftcol
+     * @param $rightcol
+     * @param string $operator
+     * @return $this
+     */
+    public function setJoinCondition($leftcol, $rightcol, $operator = Mysql::EQUAL)
+    {
         $this->query_statement->setJoinCondition($leftcol, $rightcol, $operator);
         return $this;
     }
-    
-    protected function addSelectClause($column, $alias = null){
+
+    /**
+     * @param $column
+     * @param null $alias
+     */
+    protected function addSelectClause($column, $alias = null)
+    {
         $col = (null != $alias)? $alias : $column;
         $this->fetch_assoc = array_merge($this->fetch_assoc, [$col]);
     }

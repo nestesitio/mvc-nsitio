@@ -10,10 +10,14 @@ namespace lib\view;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @May 18, 2015
  */
-class StringTemplate extends \lib\view\ParseTemplate{
-
-
-    function __construct($html = null) {
+class StringTemplate extends \lib\view\ParseTemplate
+{
+    /**
+     * StringTemplate constructor.
+     * @param null $html
+     */
+    public function __construct($html = null)
+    {
         parent::__construct();
         parent::setOutput($html);
     }

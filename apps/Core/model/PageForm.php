@@ -18,14 +18,20 @@ use \lib\register\VarsRegister;
  * Created @Jan 16, 2015
  */
 class PageForm extends \lib\form\FormMerged {
-    
-    
+
+
+    /**
+     * @return PageForm
+     */
     public static function initialize(){
         $form = new PageForm();
         $form->setQueue();
         return $form;
     }
-    
+
+    /**
+     * @return $this
+     */
     public function setQueue() {
         $this->queue = [Htm::TABLE, HtmPage::TABLE];
         
@@ -41,7 +47,10 @@ class PageForm extends \lib\form\FormMerged {
         
         return $this;
     }
-    
+
+    /**
+     * @return HtmForm
+     */
     private function getHtmForm(){
         $form = HtmForm::initialize();
         $input = $form->getHtmAppIdInput();
@@ -50,7 +59,10 @@ class PageForm extends \lib\form\FormMerged {
         
         return $form;
     }
-    
+
+    /**
+     *
+     */
     protected function customValidate() {
         $id = VarsRegister::getId();
         if(!empty($id)){

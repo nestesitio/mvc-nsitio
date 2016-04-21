@@ -14,15 +14,24 @@ namespace lib\form\input;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Mar 1, 2015
  */
-class TextAreaInput extends \lib\form\Input {
-
-    public static function create($field = null){
+class TextAreaInput extends \lib\form\Input
+{
+    /**
+     * @param null $field
+     * @return TextAreaInput
+     */
+    public static function create($field = null)
+    {
         $obj = new TextAreaInput($field, $field);
         return $obj;
     }
-    
 
-    public function parseInput() {
+
+    /**
+     * @return string
+     */
+    public function parseInput()
+    {
         $this->attributes();
         /*' <textarea rows="4" cols="50">
 At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.

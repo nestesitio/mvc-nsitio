@@ -10,26 +10,44 @@ use \DateTime;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Sep 25, 2015
  */
-class DateTools {
-    
+class DateTools
+{
+    /**
+     * @var array
+     */
     public static $formats = ['YEAR', 'QUARTER', 'MONTH', 'WEEK'];
 
-    public static function convertToSqlDate($date){
+    /**
+     * @param $date
+     * @return string
+     */
+    public static function convertToSqlDate($date)
+    {
         $format = '0000-00-00 00:00:00';
         $string = '';
         for($i = 0; $i < strlen($format); $i++){
             $string .= (substr($date, $i, 1) == '')? substr($format, $i, 1) : substr($date, $i, 1);
         }
         $newdate = DateTime::createFromFormat('Y-m-d H:i:s', $string);
-        
+
         return $newdate->format('Y-m-d H:i:s');
     }
-    
-    public static function formatsForSql(){
+
+    /**
+     * @return array
+     */
+    public static function formatsForSql()
+    {
         return ['YEAR' => '%Y', 'QUARTER' => '%b-%y', 'MONTH' => '%b-%y', 'WEEK' => '%u-%b-%y'];
     }
-    
-    public static function sqlFormat($field, $group){
+
+    /**
+     * @param $field
+     * @param $group
+     * @return string
+     */
+    public static function sqlFormat($field, $group)
+    {
         if($group == 'YEAR'){
             return 'DATE_FORMAT('.$field .', "%Y")';
         }
@@ -45,10 +63,16 @@ class DateTools {
         if($group == 'WEEK'){
             return 'DATE_FORMAT('.$field .', "%u-%b-%y")';
         }
-        
+
     }
-    
-    public static function sqlOrder($field, $group){
+
+    /**
+     * @param $field
+     * @param $group
+     * @return string
+     */
+    public static function sqlOrder($field, $group)
+    {
         if($group == 'YEAR'){
             return 'YEAR('.$field.')';
         }
@@ -61,8 +85,8 @@ class DateTools {
         if($group == 'WEEK'){
             return 'CONCAT(YEAR('.$field.'), WEEK('.$field .'))';
         }
-        
+
     }
-    
+
 
 }

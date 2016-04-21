@@ -15,6 +15,9 @@ use \lib\loader\Configurator;
  */
 class UserMenu {
 
+    /**
+     * @return string
+     */
     public static function backendMenu(){
         $item = new MenuRender();
         $item->setToogle('<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>');
@@ -37,7 +40,10 @@ class UserMenu {
         return $item->renderString();
         
     }
-    
+
+    /**
+     * @return string
+     */
     public static function frontendMenu(){
         if(SessionUser::haveUser() == false){
             $params = [MenuRender::ICON_RIGHT => 'fa-sign-in'];
@@ -59,7 +65,10 @@ class UserMenu {
             return $item->renderString();
         }
     }
-    
+
+    /**
+     * @return string
+     */
     public static function toolDebug(){
         if(SessionUser::getUserGroup() == UserGroupModel::GROUP_DEVELOPER ||
                 Configurator::getDeveloperMode() == true){

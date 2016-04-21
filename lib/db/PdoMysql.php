@@ -10,24 +10,33 @@ use \lib\register\Registry;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 21, 2014
  */
-class PdoMysql {
-
+class PdoMysql
+{
+    /**
+     * @var
+     */
     private static $conn;
-    
+
     /* Class Constructor - Create a new database connection if one doesn't exist
      * Set to private so no-one can create a new instance via ' = new DB();' */
+    /**
+     * PdoMysql constructor.
+     */
     private function __construct() {}
-   
-    /* Like the constructor, we make __clone private so nobody can clone the instance  */
-    private function __clone() {}
-   
-    /*
-     * Returns DB instance or create initial connection
-     * @param
-     * @return $conn;
-     */ 
-     public static function getConn() {
 
+    /* Like the constructor, we make __clone private so nobody can clone the instance  */
+    /**
+     *
+     */
+    private function __clone() {}
+
+
+    /**
+     * Returns DB instance or create initial connection
+     * @return PDO
+     */
+    public static function getConn()
+     {
         if (!self::$conn) {
             $args = \lib\loader\Configurator::getDbConf();
             try {

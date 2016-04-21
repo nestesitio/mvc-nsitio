@@ -15,12 +15,22 @@ use \lib\form\input\WysihtmlInput;
  */
 class TxtForm extends \lib\form\FormMerged {
 
+    /**
+     * @param $htm_id
+     * @param $lang_tld
+     * @return TxtForm
+     */
     public static function init($htm_id, $lang_tld){
         $form = new TxtForm();
         $form->declaration($htm_id, $lang_tld);
         return $form;
     }
-    
+
+    /**
+     * @param $htm_id
+     * @param $lang_tld
+     * @return $this
+     */
     public function declaration($htm_id, $lang_tld) {
         
         $this->queue = [HtmPage::TABLE, HtmTxt::TABLE];
@@ -35,7 +45,12 @@ class TxtForm extends \lib\form\FormMerged {
         
         return $this;
     }
-    
+
+    /**
+     * @param $htm_id
+     * @param $lang_tld
+     * @return \model\forms\HtmPageForm
+     */
     private function declareHtmPageForm($htm_id, $lang_tld){
         $form = \model\forms\HtmPageForm::initialize();
         $input = HiddenInput::create(HtmPage::FIELD_HTM_ID)->setValue($htm_id);
@@ -46,7 +61,10 @@ class TxtForm extends \lib\form\FormMerged {
         $form->setLangsTldInput($input);
         return $form;
     }
-    
+
+    /**
+     * @return \model\forms\HtmTxtForm
+     */
     private function declareHtmTxtForm(){
         $form = \model\forms\HtmTxtForm::initialize();
         $input = WysihtmlInput::create(HtmTxt::FIELD_TXT);
@@ -58,6 +76,9 @@ class TxtForm extends \lib\form\FormMerged {
     }
 
 
+    /**
+     *
+     */
     protected function customValidate() {
         $title = $this->getValidatedValue(HtmPage::TABLE, HtmPage::FIELD_TITLE);
         $slug = \lib\tools\StringTools::slugify($title);

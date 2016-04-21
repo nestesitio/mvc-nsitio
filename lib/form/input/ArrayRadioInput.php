@@ -14,21 +14,38 @@ namespace lib\form\input;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Mar 1, 2016
  */
-class ArrayRadioInput extends \lib\form\Input {
-
+class ArrayRadioInput extends \lib\form\Input
+{
+    /**
+     * @var array
+     */
     private $list = [];
-    
-    public static function create($field = null){
+
+    /**
+     * @param null $field
+     * @return ArrayRadioInput
+     */
+    public static function create($field = null)
+    {
         $obj = new ArrayRadioInput($field, $field);
         return $obj;
     }
 
-    public function setValuesList($values = []){
+    /**
+     * @param array $values
+     * @return $this
+     */
+    public function setValuesList($values = [])
+    {
         $this->list = $values;
         return $this;
     }
-    
-    public function parseInput() {
+
+    /**
+     * @return string
+     */
+    public function parseInput()
+    {
         $this->attributes();
         /* ' <div class="radio-inline">
           <label><input type="radio" name="optradio">Option 1</label>
@@ -48,7 +65,7 @@ class ArrayRadioInput extends \lib\form\Input {
             }
             $this->input .= ' /> ' . $label . '&nbsp;';
         }
-        
+
         $this->input .= '<a class="clear-input" data-id="'.$this->elemid.'"><span class="glyphicon glyphicon-refresh"></span></a>';
         return $this->input;
     }

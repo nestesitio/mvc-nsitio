@@ -17,6 +17,9 @@ use \model\forms\HtmLayoutForm;
  */
 class LayoutsActions extends \lib\control\ControllerAdmin {
 
+    /**
+     *
+     */
     public function layoutsAction(){
         $this->set('h1', VarsRegister::getHeading());
         $query = LayoutsQuery::get();
@@ -27,30 +30,42 @@ class LayoutsActions extends \lib\control\ControllerAdmin {
         $form = HtmLayoutForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'layouts');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function listLayoutsAction(){
         $query = LayoutsQuery::get();
         $results = $this->buildDataList('layouts', $query);
         #here you can process the results
         $this->renderList($results);
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function editLayoutsAction() {
         $query = LayoutsQuery::get()->filterById(VarsRegister::getId())->findOne();
         $form = HtmLayoutForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'layouts');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function newLayoutsAction() {
         $form = HtmLayoutForm::initialize();
         #more code about $form and $query
         $this->renderForm($form, 'layouts');
     }
-    
+
+    /**
+     *
+     */
     public function bindLayoutsAction() {
         $form = HtmLayoutForm::initialize()->validate();
         #more code for processing - example
@@ -70,18 +85,27 @@ class LayoutsActions extends \lib\control\ControllerAdmin {
             $this->showLayoutsAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showLayoutsAction(){
         $model = LayoutsQuery::get()->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'layouts');
     }
-    
+
+    /**
+     *
+     */
     public function delLayoutsAction() {
         $model = \model\querys\HtmLayoutQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function exportLayoutsAction(){
         $query = LayoutsQuery::get();
         $this->buildDataExport($query);

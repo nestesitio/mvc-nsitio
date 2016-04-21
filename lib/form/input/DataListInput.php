@@ -8,14 +8,23 @@ namespace lib\form\input;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Mar 19, 2015
  */
-class DataListInput extends \lib\form\input\SelectInput {
-    
-    public static function create($field = null){
+class DataListInput extends \lib\form\input\SelectInput
+{
+    /**
+     * @param null $field
+     * @return DataListInput
+     */
+    public static function create($field = null)
+    {
         $obj = new DataListInput($field, $field);
         return $obj;
     }
 
-    public function parseDataListInput() {
+    /**
+     * @return string
+     */
+    public function parseDataListInput()
+    {
         if($this->model !=  null){
             $this->parseModel();
         }
@@ -39,11 +48,15 @@ class DataListInput extends \lib\form\input\SelectInput {
         $this->input .= '<a class="clear-input" data-id="'.$this->elemid.'"><span class="glyphicon glyphicon-refresh"></span></a>';
         return $this->input;
     }
-    
-    public function parseInput() {
+
+    /**
+     * @return string
+     */
+    public function parseInput()
+    {
         return $this->parseDataListInput();
     }
 
-    
+
 
 }

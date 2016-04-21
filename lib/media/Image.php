@@ -8,17 +8,34 @@ namespace lib\media;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Aug 21, 2015
  */
-class Image {
-
+class Image
+{
+    /**
+     * @var string
+     */
     private $file;
+    /**
+     * @var int
+     */
     private $width = 0;
+    /**
+     * @var int
+     */
     private $heigth = 0;
+    /**
+     * @var
+     */
     private $type;
 
-    function __construct($src) {
+    /**
+     * Image constructor.
+     * @param $src
+     */
+    public function __construct($src)
+    {
         if (strpos($src, 'http://') !== false || is_file($src)) {
             $this->file = $src;
-            
+
         } else {
             $this->file = ROOT . DS . str_replace(ROOT . DS, '', $src);
         }
@@ -26,7 +43,14 @@ class Image {
     }
 
 
-    public function resampleImageFile($destiny, $max_width, $max_height) {
+    /**
+     * @param $destiny
+     * @param $max_width
+     * @param $max_height
+     * @return mixed
+     */
+    public function resampleImageFile($destiny, $max_width, $max_height)
+    {
         //redimensiona a imagem
         $ext = self::getExtension($this->type);
         if ($this->width > $max_width || $this->heigth > $max_height) {
@@ -35,7 +59,7 @@ class Image {
                 $dimensions = self::resize($max_width, $max_height, $this->width, $this->heigth);
                 $dst_w = $dimensions['w'];
                 $dst_h = $dimensions['h'];
-                
+
                 $dst_img = self::imageCreate($ext, $dst_w, $dst_h);
                 if ($ext == 'gif') {
                     self::imageCopy($src_img, $dst_img, $dst_w, $dst_h, $max_width, $max_height);
@@ -53,16 +77,32 @@ class Image {
         }
         return $destiny;
     }
-    
-    private function imageCreate($ext, $dst_w, $dst_h) {
+
+    /**
+     * @param $ext
+     * @param $dst_w
+     * @param $dst_h
+     * @return mixed
+     */
+    private function imageCreate($ext, $dst_w, $dst_h)
+    {
         if ($ext == 'gif') {
             return imagecreate($dst_w, $dst_h);
         } else {
             return ImageCreateTrueColor($dst_w, $dst_h);
         }
     }
-    
-    private function imageCopy($src_img, $dst_img, $dst_w, $dst_h, $max_width, $max_height) {
+
+    /**
+     * @param $src_img
+     * @param $dst_img
+     * @param $dst_w
+     * @param $dst_h
+     * @param $max_width
+     * @param $max_height
+     */
+    private function imageCopy($src_img, $dst_img, $dst_w, $dst_h, $max_width, $max_height)
+    {
         if ($this->width > $max_width || $this->heigth > $max_height) {
             ImageCopyResampled($dst_img, $src_img, 0, 0, 0, 0, $dst_w, $dst_h, $this->width, $this->heigth);
         } else {
@@ -70,7 +110,13 @@ class Image {
         }
     }
 
-    private static function getImageCreate($src, $ext) {
+    /**
+     * @param $src
+     * @param $ext
+     * @return mixed
+     */
+    private static function getImageCreate($src, $ext)
+    {
         if ($ext == 'jpg') {
             return imagecreatefromjpeg($src);
         } elseif ($ext == 'png') {
@@ -80,14 +126,25 @@ class Image {
         }
     }
 
-    private static function getExtension($type) {
+    /**
+     * @param $type
+     * @return mixed
+     */
+    private static function getExtension($type)
+    {
         $ext = image_type_to_extension($type);
         $ext = str_replace('.', '', $ext);
         $ext = str_replace('jpeg', 'jpg', $ext);
         return $ext;
     }
-    
-    private static function getOrientation($img_w, $img_h){
+
+    /**
+     * @param $img_w
+     * @param $img_h
+     * @return string
+     */
+    private static function getOrientation($img_w, $img_h)
+    {
         if ($img_w == $img_h) {
             return 'S';
         } elseif ($img_w > $img_h) {
@@ -98,8 +155,17 @@ class Image {
             return 'U';
         }
     }
-    
-    public static function resize($max_w, $max_h, $img_w, $img_h, $exact = 0) {
+
+    /**
+     * @param $max_w
+     * @param $max_h
+     * @param $img_w
+     * @param $img_h
+     * @param int $exact
+     * @return array
+     */
+    public static function resize($max_w, $max_h, $img_w, $img_h, $exact = 0)
+    {
         $orientation = self::getOrientation($img_w, $img_h);
         $dst_w = $img_w;
         $dst_h = $img_h;

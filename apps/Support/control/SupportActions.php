@@ -20,26 +20,38 @@ use \apps\Support\model\SupportUserForm;
  */
 class SupportActions extends \lib\control\ControllerAdmin {
 
+    /**
+     *
+     */
     public function menuAction(){
         if(SessionUser::haveUser() == true){
             $this->set('support', 1);
         }
         return $this->dispatch();
     }
-    
+
+    /**
+     *
+     */
     public function supportAction(){
         
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function editSupportAction() {
         $query = SupportQuery::start()->filterById(VarsRegister::getId())->findOne();
         $form = SupportForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'support');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function newSupportAction() {
         $form = SupportUserForm::init();
         #more code about $form and $query
@@ -56,7 +68,10 @@ class SupportActions extends \lib\control\ControllerAdmin {
         
         $this->set('title', $title);
     }
-    
+
+    /**
+     *
+     */
     public function bindSupportAction() {
         $form = SupportUserForm::init()->validate();
         #more code for processing - example
@@ -70,18 +85,27 @@ class SupportActions extends \lib\control\ControllerAdmin {
             }
         }
     }
-    
+
+    /**
+     *
+     */
     public function feedbackSupportAction(){
         $model = SupportLogQuery::start()->filterBySupportId(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'support', 'process_support');
     }
-    
+
+    /**
+     *
+     */
     public function delSupportAction() {
         $model = SupportQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function csvSupportAction(){
         $query = SupportQuery::start();
         $this->buildCsvExport($query);

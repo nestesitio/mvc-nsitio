@@ -8,9 +8,15 @@ namespace lib\xml;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Sep 25, 2015
  */
-class XmlTools {
-
-    public static function xml2Array($xml, $root = true) {
+class XmlTools
+{
+    /**
+     * @param $xml
+     * @param bool $root
+     * @return array
+     */
+    public static function xml2Array($xml, $root = true)
+    {
         if (!$xml->children()) {
             return trim((string) $xml);
         }
@@ -30,7 +36,7 @@ class XmlTools {
                 if (!count($node->children())) {
                     $data['value'] = (string) trim($node);
                 } else {
-                    $data = array_merge($data, $this->xml2Array($node, false));
+                    $data = array_merge($data, self::xml2Array($node, false));
                 }
                 foreach ($attributes as $attr => $value) {
                     $data['attributes'][$attr] = (string) trim($value);
@@ -44,9 +50,9 @@ class XmlTools {
                 // Just a value
             } else {
                 if ($totalElement > 1) {
-                    $array[$element][] = $this->xml2Array($node, false);
+                    $array[$element][] = self::xml2Array($node, false);
                 } else {
-                    $array[$element] = $this->xml2Array($node, false);
+                    $array[$element] = self::xml2Array($node, false);
                 }
             }
         }

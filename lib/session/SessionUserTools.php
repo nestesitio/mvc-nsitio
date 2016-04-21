@@ -14,16 +14,25 @@ use \lib\mysql\Mysql;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 17, 2015
  */
-class SessionUserTools {
-
-    public static function logUser($event) {
+class SessionUserTools
+{
+    /**
+     * @param $event
+     */
+    public static function logUser($event)
+    {
         $log = new UserLog();
         $log->setEvent($event);
         $log->setUserId(SessionUser::getUserId());
         $log->save();
     }
-    
-    public static function haveAccess($app) {
+
+    /**
+     * @param $app
+     * @return bool
+     */
+    public static function haveAccess($app)
+    {
         if(SessionUser::haveUser() == true){
             $user = UserBaseQuery::start(ONLY)
                     ->joinUserGroup()
@@ -36,11 +45,16 @@ class SessionUserTools {
         }
         return false;
     }
-    
-    public static function getUserSession($groupid = null){
+
+    /**
+     * @param null $groupid
+     * @return UserBaseQuery|\model\querys\UserGroupQuery
+     */
+    public static function getUserSession($groupid = null)
+    {
         $query = UserBaseQuery::start(ONLY)->selectName()->selectUserGroupId();
         $query = $query->joinUserGroup()->selectName();
-        
+
         if($groupid != null){
             $query = $query->filterById($groupid);
             $query = $query->filterByName(UserGroupModel::GROUP_VISITOR, Mysql::ALT_NOT_EQUAL);
@@ -48,9 +62,9 @@ class SessionUserTools {
             $query = $query->filterByName(UserGroupModel::GROUP_VISITOR);
         }
         $query = $query->endUse();
-        
+
         return $query;
     }
-    
+
 
 }

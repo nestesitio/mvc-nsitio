@@ -18,12 +18,24 @@ use \lib\register\VarsRegister;
  * Created @Feb 26, 2015
  */
 class HomeActions extends \lib\control\Controller {
-    
-    private $user = null;
-    private $group = null;
-    private $team = null;
-    
 
+    /**
+     * @var null
+     */
+    private $user = null;
+    /**
+     * @var null
+     */
+    private $group = null;
+    /**
+     * @var null
+     */
+    private $team = null;
+
+
+    /**
+     *
+     */
     public function defaultAction() {
         $this->setView('default');
 
@@ -32,8 +44,11 @@ class HomeActions extends \lib\control\Controller {
         $this->sectionProfile();
  
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function homenavAction() {
         $this->set('nav_clients', '');
         $this->set('nav_sales', '');
@@ -64,8 +79,11 @@ class HomeActions extends \lib\control\Controller {
         $this->set('tool-debug', UserMenu::toolDebug());
         return $this->dispatch();
     }
-    
-    
+
+
+    /**
+     *
+     */
     private function sectionProfile(){
         $value = (SessionUser::getPlayer() == false || SessionUser::haveUser() == false)? '' : $this->user->getName();
         $this->set('user-name', $value);

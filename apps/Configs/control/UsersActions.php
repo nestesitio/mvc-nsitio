@@ -20,12 +20,18 @@ use \apps\User\model\UserGroupModel;
  * Updated @%$dateUpdated% *
  */
 class UsersActions extends \lib\control\ControllerAdmin {
-    
+
+    /**
+     * @return mixed
+     */
     private function query(){
         return UserQuery::start()
                 ->joinUserGroup()->selectName()->selectDescription()->endUse();
     }
 
+    /**
+     *
+     */
     public function usersAction(){
         $this->set('h1', VarsRegister::getHeading());
         $query = $this->query();
@@ -34,23 +40,32 @@ class UsersActions extends \lib\control\ControllerAdmin {
         $form = UserForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'users');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function listUsersAction(){
         $query = $this->query();
         $results = $this->buildDataList('users', $query);
         $this->renderList($results);
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function editUsersAction() {
         $query = $this->query()->filterById(VarsRegister::getId())->findOne();
         $form = UserForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'users');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function newUsersAction() {
         $form = UserForm::initialize();
         $group = UserGroupQuery::start()->filterByName(UserGroupModel::GROUP_USER)->findOne();
@@ -60,7 +75,10 @@ class UsersActions extends \lib\control\ControllerAdmin {
         #more code about $form and $query
         $this->renderForm($form, 'users');
     }
-    
+
+    /**
+     *
+     */
     public function bindUsersAction() {
         $form = UserForm::initialize()->validate();
         $model = $this->buildProcess($form, 'users');
@@ -83,18 +101,27 @@ class UsersActions extends \lib\control\ControllerAdmin {
             $this->showUsersAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showUsersAction(){
         $model = $this->query()->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'users');
     }
-    
+
+    /**
+     *
+     */
     public function delUsersAction() {
         $model = UserQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function csvUsersAction(){
         $query = $this->query();
         $this->buildCsvExport($query);

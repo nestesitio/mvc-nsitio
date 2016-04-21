@@ -12,6 +12,9 @@ use \lib\register\VarsRegister as VarsRegister;
  */
 class AppsActions extends \lib\control\ControllerAdmin {
 
+    /**
+     *
+     */
     public function appsAction(){
         $this->set('h1', VarsRegister::getHeading());
         $query = \apps\Configs\model\AppsQuery::getApps();
@@ -21,26 +24,38 @@ class AppsActions extends \lib\control\ControllerAdmin {
         $form = \model\hybrid\PageForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'apps');
     }
-    
+
+    /**
+     *
+     */
     public function listAppsAction(){
         $query = \apps\Configs\model\AppsQuery::getApps();
         $results = $this->buildDataList('apps', $query);
         $this->renderList($results);
     }
-    
+
+    /**
+     *
+     */
     public function editAppsAction() {
         $query = \apps\Configs\model\AppsQuery::getApps()->filterById(VarsRegister::getId())->findOne();
         $form = \model\forms\HtmAppForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'apps');
     }
-    
+
+    /**
+     *
+     */
     public function newAppsAction() {
         $form = \model\forms\HtmAppForm::initialize();
         #more code about $form and $query
         $this->renderForm($form, 'apps');
     }
-    
+
+    /**
+     *
+     */
     public function bindAppsAction() {
         $form = \model\forms\HtmAppForm::initialize()->validate();
         $model = $this->buildProcess($form, 'apps');
@@ -48,12 +63,18 @@ class AppsActions extends \lib\control\ControllerAdmin {
             $this->showAppsAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showAppsAction(){
         $model = \apps\Configs\model\AppsQuery::getApps()->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'apps');
     }
-    
+
+    /**
+     *
+     */
     public function delAppsAction() {
         $model = \apps\Configs\model\AppsQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model, 'apps');

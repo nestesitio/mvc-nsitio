@@ -17,8 +17,11 @@ use \lib\guard\Guard;
  * Updated @%$dateUpdated% *
  */
 class LoginActions extends \lib\control\ControllerAdmin {
-    
 
+
+    /**
+     *
+     */
     public function loginAction(){
         $this->getPageSession();
         $this->set('h1', 'Área reservada. Faça login p.f.');
@@ -29,8 +32,11 @@ class LoginActions extends \lib\control\ControllerAdmin {
         $this->set('gOAuth-url', '/gsign.php');
         
     }
-    
 
+
+    /**
+     *
+     */
     public function validationLoginAction(){
         
         if(Guard::validateLogin() == true){
@@ -41,7 +47,10 @@ class LoginActions extends \lib\control\ControllerAdmin {
             header('Location:' . UrlHref::renderUrl(['app'=>'user','canonical'=>'login']));
         }
     }
-    
+
+    /**
+     * @return bool|int
+     */
     private function getPageSession() {
         $id = (Session::getSessionPage() == false)? 1 : Session::getSessionPage() ;
         Session::setSessionPage($id);

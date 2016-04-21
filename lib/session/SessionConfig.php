@@ -10,31 +10,53 @@ use \lib\session\Session;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Aug 24, 2015
  */
-class SessionConfig {
-
+class SessionConfig
+{
+    /**
+     *
+     */
     const KEY_XML = 'xml';
+    /**
+     *
+     */
     const KEY_ID = 'id';
 
 
-    public static function setXml($xml) {
+    /**
+     * @param $xml
+     */
+    public static function setXml($xml)
+    {
         Session::setSession(Session::SESS_CONFIG, [self::KEY_XML => $xml]);
     }
-    
-    
-    public static function getXml(){
+
+
+    /**
+     * @return bool
+     */
+    public static function getXml()
+    {
         $session = Session::getSessionVar(Session::SESS_CONFIG);
         if(isset($session[self::KEY_XML])){
             return $session[self::KEY_XML];
         }
         return false;
     }
-    
-    public static function addId($id){
+
+    /**
+     * @param $id
+     */
+    public static function addId($id)
+    {
         $xml = self::getXml();
         Session::setSession(Session::SESS_CONFIG, [self::KEY_XML => $xml, self::KEY_ID => $id]);
     }
-    
-    public static function getId(){
+
+    /**
+     * @return bool
+     */
+    public static function getId()
+    {
         $session = Session::getSessionVar(Session::SESS_CONFIG);
         if(isset($session[self::KEY_ID])){
             return $session[self::KEY_ID];

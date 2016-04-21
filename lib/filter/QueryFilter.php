@@ -16,13 +16,26 @@ use \lib\session\Session;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 31, 2015
  */
-class QueryFilter {
-    
+class QueryFilter
+{
+    /**
+     * @var QuerySelect
+     */
     private $query;
+    /**
+     * @var string
+     */
     private $controller;
-    
-    
-    public static function filter( $query, $config) {
+
+
+    /**
+     * @param $query
+     * @param $config
+     *
+     * @return QuerySelect
+     */
+    public static function filter($query, $config)
+    {
         $clear = VarsRegister::getRequests('clear-filters');
         if($clear == 1){
             \lib\session\Session::unsetFilter(VarsRegister::getCanonical(), 'filter');
@@ -35,19 +48,37 @@ class QueryFilter {
         $obj->setFilters($config);
         return $obj->getQuery();
     }
-    
-    public static function report( $query, $config) {
+
+    /**
+     * @param $query
+     * @param $config
+     *
+     * @return QuerySelect
+     */
+    public static function report($query, $config)
+    {
         $obj = new QueryFilter($query);
         $obj->setFilters($config);
         return $obj->getQuery();
     }
-    
-    public function __construct(QuerySelect $query) {
+
+    /**
+     * QueryFilter constructor.
+     * @param QuerySelect $query
+     */
+    public function __construct(QuerySelect $query)
+    {
         $this->query = $query;
         $this->controller = VarsRegister::getCanonical();
     }
-    
-    private static function extractValue($value){
+
+    /**
+     * @param $value
+     *
+     * @return mixed
+     */
+    private static function extractValue($value)
+    {
         if (strpos($value, '&&')) {
             $values = explode('&&', $value);
             foreach($values as $value){
@@ -58,8 +89,16 @@ class QueryFilter {
         }
         return $value;
     }
-    
-    public static function getDefaults(\lib\form\Form $form, $actionclass, Config $config){
+
+    /**
+     * @param \lib\form\Form $form
+     * @param String $actionclass
+     * @param Config $config
+     *
+     * @return \lib\form\Form
+     */
+    public static function getDefaults(\lib\form\Form $form, $actionclass, Config $config)
+    {
         $filters = SessionFilter::getFilters($actionclass, $config);
         foreach($filters as $field => $value){
             $value = self::extractValue($value);
@@ -73,8 +112,16 @@ class QueryFilter {
     }
 
         //public static function renderFilters($fields, \lib\form\Form $form, $actionclass, $filtertypes) {
-    
-    public static function renderFilters(\lib\form\Form $form, $actionclass, Config $config) {
+
+    /**
+     * @param \lib\form\Form $form
+     * @param $actionclass
+     * @param Config $config
+     *
+     * @return \lib\form\Form
+     */
+    public static function renderFilters(\lib\form\Form $form, $actionclass, Config $config)
+    {
         $filters = SessionFilter::getFilters($actionclass, $config);
         $fields = $config->getIndexes();
         foreach($fields as $field){
@@ -92,17 +139,21 @@ class QueryFilter {
                     $form->setFieldInput($table, $field, $input);
                     $form->renameInput($table, $field, 'filter_');
                 }
-                
+
             }
             if(isset($filters[$field])){
                  $form->setFieldValue($table, $field, $filters[$field]);
             }
-           
+
         }
         return $form;
     }
-    
-    public function setFilters(Config $config) {
+
+    /**
+     * @param Config $config
+     */
+    public function setFilters(Config $config)
+    {
         $columns = $this->query->getColumns();
         //\lib\session\Session::unsetFilter(VarsRegister::getCanonical(), 'filter');
         $filters = SessionFilter::getFilters($this->controller, $config, $columns);
@@ -130,8 +181,13 @@ class QueryFilter {
             }
         }
     }
-    
-    public static function getFilterPost($field){
+
+    /**
+     * @param $field
+     * @return array|bool|mixed
+     */
+    public static function getFilterPost($field)
+    {
         //sellerinvoice_filter_group
         $key = VarsRegister::getCanonical() . '_filter_' . $field;
         $post = VarsRegister::getPosts($key);
@@ -146,8 +202,12 @@ class QueryFilter {
         }
         return false;
     }
-    
-    public function setSort(Config $config){
+
+    /**
+     * @param Config $config
+     */
+    public function setSort(Config $config)
+    {
         $sorts = SessionFilter::getSorts($this->controller);
         $i = 0;
         $columns = $this->query->getColumns();
@@ -167,10 +227,14 @@ class QueryFilter {
                 $this->query->orderBy($field, $config->getConfigValue('sort'));
             }
         }
-        
+
     }
-    
-    public function setLimit(){
+
+    /**
+     *
+     */
+    public function setLimit()
+    {
         $limit = SessionFilter::getControllerLimit($this->controller);
         /*if limit is set for generator grid, set limit on query*/
         if($limit != null){
@@ -181,7 +245,11 @@ class QueryFilter {
     }
 
 
-    public function getQuery() {
+    /**
+     * @return QuerySelect
+     */
+    public function getQuery()
+    {
         return $this->query;
     }
 

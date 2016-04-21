@@ -22,18 +22,18 @@ use \lib\bkegenerator\Config;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Mar 30, 2015
  */
-class ControllerAdmin extends \lib\control\Controller {
-    
-    
+class ControllerAdmin extends \lib\control\Controller
+{
     /**
      * Get the array results from query.
      *
      * @param \lib\model\QuerySelect $query
      * @param Config $configs
-     * 
+     *
      * @return array $results
      */
-    protected function getQueryToList(QuerySelect $query, $configs = null){
+    protected function getQueryToList(QuerySelect $query, $configs = null)
+    {
         $query->setCalcFoundRows();
         $results = $query->find();
         $total = $query->calcFoundRows()->getFoundRows();
@@ -46,60 +46,72 @@ class ControllerAdmin extends \lib\control\Controller {
         }
         return $results;
     }
-    
-    
+
+
     /**
-     * 
+     * @param $xmlfile
+     * @param QuerySelect $query
+     * @param null $view
      * @return array $results
      */
-    protected function buildDataGrid($xmlfile, QuerySelect $query, $view = null){
+    protected function buildDataGrid($xmlfile, QuerySelect $query, $view = null)
+    {
         /* Generation or processing of template datagrid */
         $tpl = (null == $view)? '/layout/core/datagrid.htm' : $view;
-        $this->setView($tpl);     
+        $this->setView($tpl);
         Registry::setMonitor(Monitor::BOOKMARK, 'buildDataGrid');
-        
+
         $grid = GridIt::create($xmlfile, $this);
         $this->view->setOutput($grid->setGrid($this->view->getOutput()));
         $query = QueryFilter::filter($query, $grid->getFilters());
         return $this->getQueryToList($query, $grid->getFields());
 
     }
-    
+
     /**
-     * 
+     * @param $xmlfile
+     * @param QuerySelect $query
+     *
      * @return array $results
      */
-    protected function buildDataList($xmlfile,QuerySelect $query){
+    protected function buildDataList($xmlfile,QuerySelect $query)
+    {
         /* Generation or processing of template datalist */
         $this->setView('/layout/core/datalist.htm');
         Registry::setMonitor(Monitor::BOOKMARK, 'buildDataList');
-         
+
         $grid = GridIt::create($xmlfile, $this);
         $this->view->setOutput($grid->setGrid($this->view->getOutput()));
         $query = QueryFilter::filter($query, $grid->getFilters());
         return $this->getQueryToList($query, $grid->getFields());
-        
+
     }
-    
+
     /**
      * Build the list included in template.
      *
      * @param \lib\model\QuerySelect $query
      * @param DataGrid $configs
      * @param String $var Define the variable for while
-     * $xmlfile
+     *
      * @return array $results
      */
-    protected function buildIncludedList(QuerySelect $query, $configs, $var = null) {
-        
+    protected function buildIncludedList(QuerySelect $query, $configs, $var = null)
+    {
         $query = QueryFilter::filter($query, $configs);
         $results = $this->getQueryToList($query);
         $this->set('page' . $var, $this->get('pagination'));
         return $results;
     }
-    
-    
-    protected function buildDataSubList($xmlfile, QuerySelect $query, $view = null){
+
+
+    /**
+     * @param $xmlfile
+     * @param QuerySelect $query
+     * @param null $view
+     */
+    protected function buildDataSubList($xmlfile, QuerySelect $query, $view = null)
+    {
         /* Generation or processing of template datagrid */
         $tpl = (null == $view)? '/layout/core/datasublist.htm' : $view;
         $this->setView($tpl);
@@ -110,26 +122,36 @@ class ControllerAdmin extends \lib\control\Controller {
         $results = $this->getQueryToList($query, $grid->getFields());
         $this->renderList($results);
 
-        
+
     }
-    
-    
-    protected function renderList($results, $var = null) {
+
+
+    /**
+     * @param $results
+     * @param null $var
+     */
+    protected function renderList($results, $var = null)
+    {
         $var = ($var == null)? 'list': $var;
         $this->renderCollection($results, $var);
         $this->set('canonical', VarsRegister::getCanonical());
         $this->set('app', VarsRegister::getApp());
     }
-    
-    
-    protected function renderFilters(\lib\form\Form $form, $xmlfile) {
+
+
+    /**
+     * @param Form $form
+     * @param $xmlfile
+     */
+    protected function renderFilters(\lib\form\Form $form, $xmlfile)
+    {
         $this->renderUrl('action', 'list_' . VarsRegister::getCanonical());
         $config = new DataEdit($xmlfile, $this);
         $configs = $config->getConfigs('filter');
         $form = QueryFilter::renderFilters($form, VarsRegister::getCanonical(), $configs);
         $this->set('filters', $form->renderInputs(VarsRegister::getCanonical(), $configs));
     }
-    
+
     /**
      * Render form for template.
      *
@@ -137,31 +159,32 @@ class ControllerAdmin extends \lib\control\Controller {
      * @param String $xmlfile The path to xml file
      * @param String $action The url for process form
      * @param Array $querystring Querystrig to complete the url action
-     * 
+     *
      */
-    protected function renderForm(Form $form, $xmlfile, $action = null, $querystring = []) {
+    protected function renderForm(Form $form, $xmlfile, $action = null, $querystring = [])
+    {
         if($action == null){
             $action = str_replace(['edit','new'], 'bind', VarsRegister::getAction());
         }
         $this->setView('/layout/core/edit.htm');
         $this->renderUrl('action', $action, $querystring);
         $this->set('delaction', str_replace('bind','del',$action));
-        
+
         $this->set('hiddenfields', $form->renderHiddenFields(VarsRegister::getCanonical()));
         $config = new DataEdit($xmlfile, $this);
         $configs = $config->getConfigs('edit');
         $form = QueryFilter::getDefaults($form, $xmlfile, $configs);
-        
+
         $this->set('inputs', $form->renderInputs(VarsRegister::getCanonical(), $configs));
         $config->setHtml($this->view->getOutput())->renderButtons('edit');
         $this->view->setOutput($config->getHtml());
-        
+
         $this->set('dataid', VarsRegister::getId());
         $this->setUserMessage();
-        
+
     }
-    
-    
+
+
      /**
      * Save the object. If data is not valid, repeat form and return false.
      * @param Form $form The form
@@ -170,7 +193,8 @@ class ControllerAdmin extends \lib\control\Controller {
      *
      * @return \lib\model\Model $model
      */
-    protected function buildProcess(Form $form, $xmlfile, $view = null) {
+    protected function buildProcess(Form $form, $xmlfile, $view = null)
+    {
         $result = $form->isvalid();
         if($result == false){
             Registry::setMonitor(Monitor::FORMERROR, 'Repeat Form');
@@ -183,7 +207,7 @@ class ControllerAdmin extends \lib\control\Controller {
             return $model;
         }
     }
-    
+
      /**
      * Save the object. If data is not valid, repeat form and return false.
      * @param Form $form The form
@@ -192,7 +216,8 @@ class ControllerAdmin extends \lib\control\Controller {
      *
      * @return \lib\model\Model $model
      */
-    protected function buildMultipleProcess(Form $form, $action = null, $view = null) {
+    protected function buildMultipleProcess(Form $form, $action = null, $view = null)
+    {
         $tpl = (null == $view)? '/layout/core/insert.htm' : $view;
         $this->setView($tpl);
         $result = $form->isvalid();
@@ -208,14 +233,21 @@ class ControllerAdmin extends \lib\control\Controller {
             }
             if($action == null){
                 $action = str_replace('bind', 'list', VarsRegister::getAction());
-                
+
             }
             $this->renderUrl('url', $action);
         }
         return true;
     }
-    
-    protected function renderLangActions($results, $id, $action, $lang = null){
+
+    /**
+     * @param $results
+     * @param $id
+     * @param $action
+     * @param String $lang
+     */
+    protected function renderLangActions($results, $id, $action, $lang = null)
+    {
         $itens = [];
         foreach ($results as $i=>$obj){
             $data = $obj->getToArray();
@@ -230,18 +262,23 @@ class ControllerAdmin extends \lib\control\Controller {
         }
         $this->set('langs', $itens);
     }
-    
-    
-    /*render de data for action showAction() */
-    protected function renderValues($model, $xmlfile, $view = null) {
+
+    /**
+     * render de data for action showAction()
+     * @param $model
+     * @param $xmlfile
+     * @param null $view
+     */
+    protected function renderValues($model, $xmlfile, $view = null)
+    {
         $tpl = (null == $view) ? '/layout/core/show.htm' : $view;
         $this->setView($tpl);
-        
+
         $config = new DataEdit($xmlfile, $this);
         $config->setHtml($this->view->getOutput())->renderButtons('show');
         $this->view->setOutput($config->getHtml());
         $configs = $config->getConfigs('show');
-        
+
         $fields = $configs->getIndexes();
         $values = [];
         if ($model != false) {
@@ -256,47 +293,65 @@ class ControllerAdmin extends \lib\control\Controller {
 
         $action = str_replace(['bind', 'show'], 'edit', VarsRegister::getAction());
         $this->renderUrl('editaction', $action);
-        
+
         $this->set('delaction', str_replace('edit', 'del', $action));
         $this->set('dataid', VarsRegister::getId());
         $this->setUserMessage();
         $this->setCustomMessage();
     }
-    
-    private function convertValueByXml($value, $file){
+
+    /**
+     * @param $value
+     * @param $file
+     * @return string
+     */
+    private function convertValueByXml($value, $file)
+    {
         if(!empty($file)){
             $value = \lib\xml\XmlSimple::getConvertedValue('model/enum/' . $file, $value);
-            
+
         }
         return $value;
-    } 
+    }
 
-    protected function deleteObject(Model $model, $view = null){
+    /**
+     * @param Model $model
+     * @param String $view
+     */
+    protected function deleteObject(Model $model, $view = null)
+    {
         $tpl = (null == $view) ? '/layout/core/del.htm' : $view;
         $this->setView($tpl);
         $result = $model->delete();
         $this->setUserMessage();
         $this->set('dataid', (string) $result);
     }
-    
-    protected function renderUrl($tag, $action, $querystring = []) {
+
+    /**
+     * @param $tag
+     * @param $action
+     * @param array $querystring
+     */
+    protected function renderUrl($tag, $action, $querystring = [])
+    {
         $id = ($this->id == true)? VarsRegister::getId() : $this->id;
         $url = UrlHref::renderUrl(['app'=> $this->app, 'action'=>$action, 'id'=>$id, 'get'=>$querystring]);
         $this->set($tag, $url);
         Registry::setMonitor(Monitor::FORM, 'Form Action:' . $url);
         $this->set('app', $this->app);
     }
-    
+
     /**
      * Get the array results from query.
      *
      * @param \lib\model\QuerySelect $query
      * @param String $filename The file name to be downloaded
      * @param String $xmlfile The xml file with params
-     * 
+     *
      * @return array $results
-     */    
-    protected function buildCsvExport($query, $filename, $xmlfile = null) {
+     */
+    protected function buildCsvExport($query, $filename, $xmlfile = null)
+    {
         $this->layout = false;
         if (null != $xmlfile) {
             $config = GridIt::create($xmlfile, $this)->get();
@@ -315,6 +370,6 @@ class ControllerAdmin extends \lib\control\Controller {
 
         //return $this->dispatch();
     }
-    
+
 
 }

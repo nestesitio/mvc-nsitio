@@ -11,23 +11,45 @@ use \lib\register\Registry;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 24, 2014
  */
-class Xml {
-
+class Xml
+{
+    /**
+     * @var
+     */
     protected $xml;
 
-    public static function xmlString($string) {
+    /**
+     * @param $string
+     * @return string
+     */
+    public static function xmlString($string)
+    {
         return "<doc>" . utf8_encode($string) . "</doc>";
     }
 
-    function saveString() {
+    /**
+     * @return mixed
+     */
+    public function saveString()
+    {
         return $this->xml->saveXML();
     }
 
-    protected function getXml() {
+    /**
+     * @return mixed
+     */
+    protected function getXml()
+    {
         return $this->xml;
     }
 
-    protected function getAtributes($item, $atr) {
+    /**
+     * @param $item
+     * @param $atr
+     * @return string
+     */
+    protected function getAtributes($item, $atr)
+    {
         if (!is_null($item->attributes)) {
             foreach ($item->attributes as $i => $attr) {
                 if ($attr->name == $atr) {
@@ -38,7 +60,14 @@ class Xml {
         }
     }
 
-    public function arrayXPath($query, $what = 'name', $atr = '') {
+    /**
+     * @param $query
+     * @param string $what
+     * @param string $atr
+     * @return array
+     */
+    public function arrayXPath($query, $what = 'name', $atr = '')
+    {
         $arr = [];
         $xpath = new DOMXPath($this->xml);
 
@@ -72,7 +101,13 @@ class Xml {
         return $arr;
     }
 
-    public function nodeXPath($query, $attr = []) {
+    /**
+     * @param $query
+     * @param array $attr
+     * @return array
+     */
+    public function nodeXPath($query, $attr = [])
+    {
         $arr = [];
         $xpath = new DOMXPath($this->xml);
         $items = $xpath->query($query);
@@ -84,7 +119,14 @@ class Xml {
         return $arr;
     }
 
-    function queryXPath($path, $what = 'value', $atr = '') {
+    /**
+     * @param $path
+     * @param string $what
+     * @param string $atr
+     * @return int
+     */
+    public function queryXPath($path, $what = 'value', $atr = '')
+    {
         $xpath = new DOMXPath($this->xml);
 
         $items = $xpath->query($path);
@@ -110,8 +152,14 @@ class Xml {
             }
         }
     }
-    
-    protected function findLabel($path, $lang) {
+
+    /**
+     * @param $path
+     * @param $lang
+     * @return mixed
+     */
+    protected function findLabel($path, $lang)
+    {
         $value = $this->xml->queryXPath($path . "/label[@lang='" . $lang . "']");
         if (empty($value)) {
             $value = $this->xml->queryXPath($path . "/label[@lang='" . 'en' . "']");

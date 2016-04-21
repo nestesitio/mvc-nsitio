@@ -10,6 +10,9 @@ namespace apps\Backend\model;
  */
 class PagesAdminQuery {
 
+    /**
+     * @return mixed
+     */
     public static function getHtm(){
         return \model\querys\HtmQuery::start()->orderByName();
     }

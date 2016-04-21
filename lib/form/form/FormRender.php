@@ -12,9 +12,16 @@ use \lib\form\Form;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 27, 2015
  */
-class FormRender {
-    
-    public static function renderHiddenFields($queue, $forminputs, $actionclass = null){
+class FormRender
+{
+    /**
+     * @param $queue
+     * @param $forminputs
+     * @param null $actionclass
+     * @return string
+     */
+    public static function renderHiddenFields($queue, $forminputs, $actionclass = null)
+    {
         $inputs = '';
         $queue = array_merge($queue, [Form::VIRTUALTABLE]);
         foreach ($queue as $table) {
@@ -32,17 +39,35 @@ class FormRender {
         }
         return $inputs;
     }
-    
-    public static function getTableByColumn($key) {
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public static function getTableByColumn($key)
+    {
         return substr($key, 0, strpos($key, '.'));
     }
-    
-    public static function getFieldByColumn($key){
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public static function getFieldByColumn($key)
+    {
         return substr($key, strpos($key, '.') + 1);
     }
 
     //public static function renderInputs($forminputs, $formlabels, $fieldsandlabels = [], $actionclass = '', $ranges = null) {
-    public static function renderInputs($forminputs, $formlabels, $actionclass, Config $config) {
+    /**
+     * @param $forminputs
+     * @param $formlabels
+     * @param $actionclass
+     * @param Config $config
+     * @return array
+     */
+    public static function renderInputs($forminputs, $formlabels, $actionclass, Config $config)
+    {
         $inputs = [];
         $fields = $config->getIndexes();
         foreach ($fields as $field) {
@@ -67,15 +92,22 @@ class FormRender {
                     $label = ($config->getConfigValue('label') != null) ? $config->getConfigValue('label') : $formlabels[$table][$field];
                     $pack = self::getInput($field, $input, $name, $label, $config);
                     $inputs = array_merge($inputs, $pack);
-                    
+
                 }
             }
         }
 
         return $inputs;
     }
-    
-    public static function renderName($oldname, $actionclass, $config = null){
+
+    /**
+     * @param $oldname
+     * @param $actionclass
+     * @param null $config
+     * @return string
+     */
+    public static function renderName($oldname, $actionclass, $config = null)
+    {
         $name = $actionclass . '_';
         $name .= str_replace('.', '_', $oldname);
         if(null != $config){
@@ -83,8 +115,17 @@ class FormRender {
         }
         return $name;
     }
-    
-    private static function getInput($field, Input $input, $name, $label, Config $config){
+
+    /**
+     * @param $field
+     * @param Input $input
+     * @param $name
+     * @param $label
+     * @param Config $config
+     * @return array
+     */
+    private static function getInput($field, Input $input, $name, $label, Config $config)
+    {
         $inputs = [];
         $input->setName($name)->setId($name);
         if($input->getInputType() == Input::TYPE_CHECKBOX){
@@ -93,7 +134,7 @@ class FormRender {
         }else{
             if($config->getConfigValue('convert') != null){
                 $input->convertValuesByXml('model/enum/' . $config->getConfigValue('convert'));
-                
+
             }
             $inputs[$field]['input'] = $input->parseInput();
             $inputs[$field]['label'] = $label . ': ';
@@ -104,21 +145,27 @@ class FormRender {
                 $twin_inputs = self::cloneInput($input, $name);
                 $inputs[$field]['input'] = $twin_inputs['min']->parseInput();
                 $inputs[$field]['label'] = $label . ' from : ';
-                
+
                 $inputs[$field . '_max']['input'] = $twin_inputs['max']->parseInput();
                 $inputs[$field . '_max']['label'] = ' to';
                 $inputs[$field . '_max']['field'] = str_replace('_min_', '_max_', $name);
             } elseif ($config->getConfigValue('range') == 'multiple') {
                 $input->setMultiple();
                 $inputs[$field]['input'] = $input->parseInput();
-                
+
             }
         }
-        
+
         return $inputs;
     }
-    
-    private static function cloneInput($input, $name){
+
+    /**
+     * @param $input
+     * @param $name
+     * @return array
+     */
+    private static function cloneInput($input, $name)
+    {
         $clone_input = clone $input;
         $clone_input->setDataAttribute('data-link', $name);
         $clone_input->setDataAttribute('data-range', 'max');

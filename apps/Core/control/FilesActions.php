@@ -20,7 +20,10 @@ use \lib\bkegenerator\DataConfig;
  * Updated @%$dateUpdated% *
  */
 class FilesActions extends \lib\control\ControllerAdmin {
-    
+
+    /**
+     *
+     */
     public function imgFilesAction(){
         $this->setView('list_img');
 
@@ -32,6 +35,9 @@ class FilesActions extends \lib\control\ControllerAdmin {
         $this->listFiles($query);
     }
 
+    /**
+     * @param $query
+     */
     private function listFiles($query){
         $configs = $this->getConfigs(VarsRegister::getPosts('position'));
         $this->set('action-remove', $configs['action-remove']);
@@ -44,7 +50,11 @@ class FilesActions extends \lib\control\ControllerAdmin {
         $this->renderList($results);
         
     }
-    
+
+    /**
+     * @param $genre
+     * @return string
+     */
     private function getDataMime($genre){
         if($genre == 'img'){
             return 'image/*';
@@ -62,7 +72,10 @@ class FilesActions extends \lib\control\ControllerAdmin {
             return '.xml';
         }
     }
-    
+
+    /**
+     *
+     */
     public function newFilesAction() {
         $this->setView('fileinput');
         $this->set('data-url', '/core/upload_files');
@@ -70,7 +83,10 @@ class FilesActions extends \lib\control\ControllerAdmin {
         $this->set('data-mime', $this->getDataMime(VarsRegister::getRequests('genre')));
         
     }
-    
+
+    /**
+     *
+     */
     public function removeimgFilesAction(){
         $this->setView('file_remove');
         $query = HtmMediaQuery::start()->filterById(VarsRegister::getId())->findOne();
@@ -83,13 +99,20 @@ class FilesActions extends \lib\control\ControllerAdmin {
         
         
     }
-    
+
+    /**
+     * @param $node
+     * @return array
+     */
     private function getConfigs($node){
         $xml = SessionConfig::getXml();
         $configs = new DataConfig($xml);
         return $configs->getParams('configs/' . $node . '/*');
     }
-    
+
+    /**
+     *
+     */
     public function uploadFilesAction() {
         $this->layout = false;
         $this->setEmptyView();
@@ -121,15 +144,20 @@ class FilesActions extends \lib\control\ControllerAdmin {
         }
     }
 
+    /**
+     *
+     */
     public function editFilesAction() {
         $query = FilesQuery::get()->filterById(VarsRegister::getId())->findOne();
         $form = HtmMediaForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'files');
     }
-    
-    
-    
+
+
+    /**
+     *
+     */
     public function bindFilesAction() {
         $form = HtmMediaForm::initialize()->validate();
         #more code for processing - example
@@ -149,18 +177,27 @@ class FilesActions extends \lib\control\ControllerAdmin {
             $this->showFilesAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showFilesAction(){
         $model = FilesQuery::get()->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'files');
     }
-    
+
+    /**
+     *
+     */
     public function delFilesAction() {
         $model = \model\querys\HtmMediaQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function exportFilesAction(){
         $query = FilesQuery::get();
         $this->buildCsvExport($query);

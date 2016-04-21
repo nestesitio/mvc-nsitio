@@ -13,6 +13,9 @@ use \lib\model\Query;
  */
 class Optimize {
 
+    /**
+     * 
+     */
     public static function execute() {
         Query::exec("SET FOREIGN_KEY_CHECKS = 0");
         $result = Query::query("SELECT MAX(id) FROM invoice", PDO::FETCH_NUM);

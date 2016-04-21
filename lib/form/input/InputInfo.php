@@ -10,32 +10,59 @@ use \lib\form\Input;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Oct 5, 2015
  */
-class InputInfo extends \lib\form\Input {
-    
+class InputInfo extends \lib\form\Input
+{
+    /**
+     * @var null
+     */
     private $selectedcolumn = null;
+    /**
+     * @var null
+     */
     private $model = null;
+    /**
+     * @var null
+     */
     private $description = null;
 
-    public static function create($field = null){
+    /**
+     * @param null $field
+     * @return InputInfo
+     */
+    public static function create($field = null)
+    {
         $obj = new InputInfo($field, $field);
         $obj->setInputType(Input::TYPE_TEXT);
         return $obj;
     }
-    
-    
-    public function setModel($model, $selectedcolumn) {
+
+
+    /**
+     * @param $model
+     * @param $selectedcolumn
+     */
+    public function setModel($model, $selectedcolumn)
+    {
         unset($this->options);
         $this->model = $model;
         $this->selectedcolumn = $selectedcolumn;
         //asort($this->options);
 
     }
-    
-    public function setColumnsDescription($columns = []){
+
+    /**
+     * @param array $columns
+     */
+    public function setColumnsDescription($columns = [])
+    {
         $this->description = $columns;
     }
-    
-    private function parseModel(){
+
+    /**
+     * @return string
+     */
+    private function parseModel()
+    {
         if ($this->description != null) {
             foreach (array_keys($this->description) as $col) {
                 $this->model->setSelect($col);
@@ -52,19 +79,30 @@ class InputInfo extends \lib\form\Input {
             return $string;
         }
     }
-    
+
+    /**
+     * @var array
+     */
     private $convertedvalues = [];
-    
-    public function convertValuesByXml($file){
+
+    /**
+     * @param $file
+     */
+    public function convertValuesByXml($file)
+    {
         if(!empty($file)){
             $this->convertedvalues = \lib\xml\XmlSimple::getConvertedList($file);
         }
     }
 
-    public function parseInput() {
+    /**
+     * @return string
+     */
+    public function parseInput()
+    {
         $this->attributes();
         //<input type="text" name="country" value="Norway" readonly>
-        
+
         $value = ($this->model !=  null)? $this->parseModel() : $this->value;
         if(isset($this->convertedvalues[$value])){
             $value = $this->convertedvalues[$value];

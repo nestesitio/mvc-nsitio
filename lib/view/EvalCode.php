@@ -8,21 +8,42 @@ namespace lib\view;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 18, 2014
  */
-class EvalCode {
-    
+class EvalCode
+{
+    /**
+     * @var string
+     */
     private $code = '';
+    /**
+     * @var
+     */
     private $lenght;
+    /**
+     * @var
+     */
     private $string;
 
 
-    function __construct($string) {
+    /**
+     * EvalCode constructor.
+     * @param $string
+     */
+    public function __construct($string)
+    {
         $this->lenght = strpos($string, '%}') + 2;
         $this->string = $string;
         $this->code = str_replace(
                 ['{% ', ' elseif ', '('], ['', '', '($'], strstr($string, ' %}', true));
     }
-    
-    public function compareTest($value, $operator, $teste = 0){
+
+    /**
+     * @param $value
+     * @param $operator
+     * @param int $teste
+     * @return bool
+     */
+    public function compareTest($value, $operator, $teste = 0)
+    {
         $compare = str_replace("'",'',strstr(strstr($this->string, "'"), "')",true));
         switch ($operator) {
             case('='):
@@ -54,26 +75,43 @@ class EvalCode {
         }
     }
 
-    public function formatVar($var){
+    /**
+     * @param $var
+     * @return array
+     */
+    public function formatVar($var)
+    {
         if(strpos($var, '.')){
             $parent = strstr($var, '.', true);
-            $child = substr(strstr($var, '.'),1);      
+            $child = substr(strstr($var, '.'),1);
             return [0=>str_replace('$','',$parent), 1=>$child];
         }else{
             return [0=>str_replace('$','',$var)];
         }
     }
-    
-    public function getLenght(){
+
+    /**
+     * @return mixed
+     */
+    public function getLenght()
+    {
         return $this->lenght;
     }
 
 
-    public function getCode(){
+    /**
+     * @return mixed
+     */
+    public function getCode()
+    {
         return str_replace(['elseif','))'],['if',')'],$this->code);
     }
-    
-    public function getVar(){
+
+    /**
+     * @return bool|string
+     */
+    public function getVar()
+    {
         $function = '';
         $var = strstr($this->code, '$');
         if (strpos($this->code, '=')) {
@@ -90,7 +128,7 @@ class EvalCode {
             $function = 'isset';
         }
         $format_var = $this->formatVar($var);
-        if(empty($var) && $this->code=='else'){
+        if(empty($var) && $this->code=='else') {
             return 'else';
         }elseif(empty($var)){
             return false;

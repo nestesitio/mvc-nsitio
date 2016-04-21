@@ -3,8 +3,12 @@
 namespace lib\loader;
 
 
-class SplClassLoader {
-
+/**
+ * Class SplClassLoader
+ * @package lib\loader
+ */
+class SplClassLoader
+{
   /**
    * An associative array where the key is a namespace prefix and the value
    * is an array of base directories for classes in that namespace.
@@ -15,10 +19,11 @@ class SplClassLoader {
 
   /**
    * Register loader with SPL autoloader stack.
-   * 
+   *
    * @return void
    */
-  public function register() {
+  public function register()
+  {
     spl_autoload_extensions('.php');
     spl_autoload_register([$this, 'loadClass']);
   }
@@ -34,7 +39,8 @@ class SplClassLoader {
    * than last.
    * @return void
    */
-  public function addNamespace($prefix, $base_dir, $prepend = false) {
+  public function addNamespace($prefix, $base_dir, $prepend = false)
+  {
     // normalize namespace prefix
     $prefix = trim($prefix, '\\') . '\\';
 
@@ -55,7 +61,12 @@ class SplClassLoader {
   }
 
   //Added by Luis Pinto in 2014-11-05
-  public function registerDir($folder, $namespace = '') {
+  /**
+   * @param $folder
+   * @param string $namespace
+   */
+  public function registerDir($folder, $namespace = '')
+  {
     $dir = ROOT . DS . $folder;
     if (is_dir($dir)) {
       if (empty($namespace)) {
@@ -85,7 +96,8 @@ class SplClassLoader {
    * @return mixed The mapped file name on success, or boolean false on
    * failure.
    */
-  public function loadClass($class) {
+  public function loadClass($class)
+  {
     // the current namespace prefix
     $prefix = $class;
 
@@ -116,13 +128,14 @@ class SplClassLoader {
 
   /**
    * Load the mapped file for a namespace prefix and relative class.
-   * 
+   *
    * @param string $prefix The namespace prefix.
    * @param string $relative_class The relative class name.
    * @return mixed Boolean false if no mapped file can be loaded, or the
    * name of the mapped file that was loaded.
    */
-  protected function loadMappedFile($prefix, $relative_class) {
+  protected function loadMappedFile($prefix, $relative_class)
+  {
     // are there any base directories for this namespace prefix?
     if (isset($this->prefixes[$prefix]) === false) {
       return false;
@@ -151,11 +164,12 @@ class SplClassLoader {
 
   /**
    * If a file exists, require it from the file system.
-   * 
+   *
    * @param string $file The file to require.
    * @return bool True if the file exists, false if not.
    */
-  protected function requireFile($file) {
+  protected function requireFile($file)
+  {
     if (file_exists($file)) {
       require $file;
       return true;

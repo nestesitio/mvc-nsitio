@@ -10,23 +10,51 @@ namespace lib\form\input;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Dec 5, 2014
  */
-class SelectInput extends \lib\form\Input {
-    
+class SelectInput extends \lib\form\Input
+{
+    /**
+     * @var
+     */
     private $index;
+    /**
+     * @var bool
+     */
     protected $empty = false;
+    /**
+     * @var array
+     */
     protected $options = [];
+    /**
+     * @var null
+     */
     protected $model= null;
+    /**
+     * @var string
+     */
     protected $width = '100%';
 
-    public static function create($field = null){
+    /**
+     * @param null $field
+     * @return SelectInput
+     */
+    public static function create($field = null)
+    {
         $obj = new SelectInput($field, $field);
         $obj->setInputType(parent::TYPE_SELECT);
         return $obj;
     }
-    
+
+    /**
+     * @var bool
+     */
     private $select_all = false;
-    
-    public function setMultiple($select_all = null){
+
+    /**
+     * @param null $select_all
+     * @return $this
+     */
+    public function setMultiple($select_all = null)
+    {
         $this->attributes['multiple'] = 'multiple';
         if($select_all == true){
             $this->select_all = true;
@@ -34,13 +62,22 @@ class SelectInput extends \lib\form\Input {
         //$this->empty = false;
         return $this;
     }
-    
-    public function unsetMultiple(){
+
+    /**
+     * @return $this
+     */
+    public function unsetMultiple()
+    {
         unset($this->attributes['multiple']);
         return $this;
     }
-    
-    public function parseInput($cleaner = true) {
+
+    /**
+     * @param bool $cleaner
+     * @return string
+     */
+    public function parseInput($cleaner = true)
+    {
         if($this->model !=  null){
             $this->parseModel();
         }
@@ -48,8 +85,8 @@ class SelectInput extends \lib\form\Input {
         $this->attributes['id'] = 'id="' . $this->elemid . '"';
         $this->attributes['class'] = 'class="chosen-select '.$this->class.'"';
         $this->attributes['placeholder'] = 'placeholder="select"';
-        
-        
+
+
         $selecteds = explode('&&', $this->value);
         $optionoriginal = '<option value="#index" selected>#label</option>';
 
@@ -59,9 +96,9 @@ class SelectInput extends \lib\form\Input {
             if($this->empty !== true){
                 $this->input .= str_replace(['#index', 'selected', '#label'], ['', '',$this->empty], $optionoriginal);
             }else{
-                $this->input .= str_replace(['#index', 'selected', '#label'], ['', '',''], $optionoriginal); 
+                $this->input .= str_replace(['#index', 'selected', '#label'], ['', '',''], $optionoriginal);
             }
-           
+
         }
         if (isset($this->options)) {
             $this->renderOptions($optionoriginal, $selecteds);
@@ -70,11 +107,16 @@ class SelectInput extends \lib\form\Input {
         if($cleaner == true){
             $this->input .= '<a class="clear-input" data-id="'.$this->elemid.'"><span class="glyphicon glyphicon-refresh"></span></a>';
         }
-        
+
         return $this->input;
     }
-    
-    private function renderOptions($optionoriginal, $selecteds) {
+
+    /**
+     * @param $optionoriginal
+     * @param $selecteds
+     */
+    private function renderOptions($optionoriginal, $selecteds)
+    {
         foreach ($this->options as $i => $label) {
             if ($i === 0) {
                 $i = '0';
@@ -93,15 +135,25 @@ class SelectInput extends \lib\form\Input {
         }
     }
 
-    public function setAddValue($url, $function) {
+    /**
+     * @param $url
+     * @param $function
+     * @return $this
+     */
+    public function setAddValue($url, $function)
+    {
         $this->addon_r = '<a data-function="' . $function . '" data-id="' . $this->elemid . '" data-action="' . $url . '" class="btn-plus-value">'
                 . $this->buildAddon('+', 'input-addon addon-chosen') . '</a>';
         $this->class .= ' with-add-right';
         $this->width = '93%';
         return $this;
     }
-    
-    protected function parseModel(){
+
+    /**
+     * @return string
+     */
+    protected function parseModel()
+    {
         if ($this->index == null) {
             echo 'index is null for Select Input in ' . $this->name . '<br />';
         } else {
@@ -111,10 +163,10 @@ class SelectInput extends \lib\form\Input {
                 }
             }
             $list = $this->model->find();
-            
+
             foreach ($list as $item) {
                 $index = (string) $item->getColumnValue($this->index);
-                
+
                 if($this->columnlabels == null){
                     $string = (string) $item;
                 }else{
@@ -130,37 +182,64 @@ class SelectInput extends \lib\form\Input {
             }
             if($this->select_all == true){
                 $this->value = implode('&&', array_keys($this->options));
-                    
+
             }
         }
     }
-    
+
+    /**
+     * @var null
+     */
     private $columnlabels = null;
-    
-    public function setArrayLabel($columns = []) {
+
+    /**
+     * @param array $columns
+     * @return $this
+     */
+    public function setArrayLabel($columns = [])
+    {
         $this->columnlabels = $columns;
         return $this;
     }
-    
-    public function setModel($model) {
+
+    /**
+     * @param $model
+     * @return $this
+     */
+    public function setModel($model)
+    {
         unset($this->options);
         $this->model = $model;
         //asort($this->options);
         return $this;
 
     }
-    
-    public function getModel() {
+
+    /**
+     * @return null
+     */
+    public function getModel()
+    {
         return $this->model;
     }
-    
-    public function setOptionIndex($field){
+
+    /**
+     * @param $field
+     * @return $this
+     */
+    public function setOptionIndex($field)
+    {
         $this->index = $field;
         return $this;
     }
-    
-    
-    public function setValuesList($values = []){
+
+
+    /**
+     * @param array $values
+     * @return $this
+     */
+    public function setValuesList($values = [])
+    {
         $this->options = [];
         foreach($values as $value){
             $this->options[$value] = $value;
@@ -170,17 +249,27 @@ class SelectInput extends \lib\form\Input {
         }
         return $this;
     }
-    
-    public function convertValuesByXml($file){
+
+    /**
+     * @param $file
+     * @return $this
+     */
+    public function convertValuesByXml($file)
+    {
         if(!empty($file)){
             $values = \lib\xml\XmlSimple::getConvertedList($file);
             $this->setIndexedValuesList($values);
-            
+
         }
         return $this;
     }
-    
-    public function setIndexedValuesList($values = []){
+
+    /**
+     * @param array $values
+     * @return $this
+     */
+    public function setIndexedValuesList($values = [])
+    {
         $this->options = [];
         foreach($values as $key => $value){
             $this->options[$key] = $value;
@@ -190,16 +279,24 @@ class SelectInput extends \lib\form\Input {
         }
         return $this;
     }
-    
-    public function addEmpty($label = null) {
+
+    /**
+     * @param null $label
+     * @return $this
+     */
+    public function addEmpty($label = null)
+    {
         $this->empty = (null != $label)? $label : true;
-        
+
         return $this;
     }
-    
-    
-    public function removeEmpty(){
-        
+
+
+    /**
+     * @return $this
+     */
+    public function removeEmpty()
+    {
         $this->empty = false;
         return $this;
     }

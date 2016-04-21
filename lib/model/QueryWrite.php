@@ -11,14 +11,27 @@ use \lib\register\Monitor;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Dec 5, 2014
  */
-class QueryWrite extends \lib\model\Query implements \lib\model\Write {
-    
+class QueryWrite extends \lib\model\Query implements \lib\model\Write
+{
+    /**
+     * @var int
+     */
     protected $lastid = 0;
+    /**
+     * @var int
+     */
     protected $rowschanged = 0;
+    /**
+     * @var int
+     */
     protected $inserted = 0;
-    
-    
-    public function save(){
+
+
+    /**
+     * @return null
+     */
+    public function save()
+    {
         $table = $this->model->getTableName();
         $values = $this->model->getModelValues();
         $keys = $this->model->getPrimaryKey();
@@ -26,7 +39,7 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write {
         $fields = $data = $params = $udpates = [];
         if(null != $this->model->getAutoIncrement()){
             $updates[] = $this->model->getAutoIncrement() . '= LAST_INSERT_ID('.$this->model->getAutoIncrement().')';
-            
+
         }
         foreach(array_keys($values) as $col){
             $fields[] = $col;
@@ -39,7 +52,7 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write {
             }
             $data[] = ':'.$col;
         }
-        
+
         $start_time = microtime(true);
         $query = 'INSERT INTO ' . $table;
         $query .= ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $data) . ')';
@@ -48,15 +61,19 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write {
         }
         $this->executeQuery($query, $params);
         $this->register($query, $params, $start_time, $table);
-        
+
 
         if(null != $this->model->getAutoIncrement()){
             $this->model->setColumnValue($this->model->mergeToAlias($this->model->getAutoIncrement()), $this->getLastId());
         }
         return $this->model;
     }
-    
-    public function delete() {
+
+    /**
+     * @return mixed
+     */
+    public function delete()
+    {
         $table = $this->model->getTableName();
         $keys = $this->model->getPrimaryKey();
         $values = $this->model->getModelValues();
@@ -70,21 +87,36 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write {
         $this->executeQuery($query, $params);
         return  $this->pdostmt->rowCount();
     }
-    
-    private function register($query, $params, $start_time, $table = null){
+
+    /**
+     * @param $query
+     * @param $params
+     * @param $start_time
+     * @param null $table
+     */
+    private function register($query, $params, $start_time, $table = null)
+    {
         $this->lastid = $this->pdo->lastInsertId();
-        $this->setRowsChanged($this->pdostmt->rowCount());    
+        $this->setRowsChanged($this->pdostmt->rowCount());
         $this->setQueryInfo($query, $params, $start_time);
         Registry::setMonitor(Monitor::QUERY, 'id ' .  $this->lastid . ' inserted');
         Registry::setMonitor(Monitor::QUERY, $this->rowschanged . ' rows changed on ' . $table);
     }
-    
-    public function getInsertId(){
+
+    /**
+     * @return int
+     */
+    public function getInsertId()
+    {
         return $this->inserted;
     }
 
 
-    private function setRowsChanged($rows){
+    /**
+     * @param $rows
+     */
+    private function setRowsChanged($rows)
+    {
         if($rows == 1){
             $this->rowschanged = 0;
             $this->inserted = $this->lastid;
@@ -93,26 +125,40 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write {
             $this->rowschanged = 1;
             Registry::setUserMessages(null, $this->rowschanged . ' row updated');
         }else{
-           $this->rowschanged = $rows; 
+           $this->rowschanged = $rows;
            Registry::setUserMessages(null, $this->rowschanged . ' rows changed');
         }
     }
-    
-    private function setQueryInfo($query, $params, $start_time) {
+
+    /**
+     * @param $query
+     * @param $params
+     * @param $start_time
+     */
+    private function setQueryInfo($query, $params, $start_time)
+    {
         $end_time = microtime(true);
         $this->querytime = number_format($end_time - $start_time, 9);
         $this->writeQueryMessage($query, $params);
     }
-    
-    public function getLastId(){
+
+    /**
+     * @return int
+     */
+    public function getLastId()
+    {
         return $this->lastid;
     }
-    
-    public function getRowsChanged() {
+
+    /**
+     * @return int
+     */
+    public function getRowsChanged()
+    {
         return $this->rowschanged;
     }
 
-    
+
 
 
 }

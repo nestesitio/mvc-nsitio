@@ -14,24 +14,48 @@ use \lib\tools\StringTools as StringTools;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Sep 1, 2015
  */
-class CrudEnum {
-
-    public static function writeEnum($file, $values){
+class CrudEnum
+{
+    /**
+     * @param $file
+     * @param $values
+     */
+    public static function writeEnum($file, $values)
+    {
         $obj = new CrudEnum($file, $values);
         $obj->create();
     }
-    
+
+    /**
+     * @var string
+     */
     private $file;
+    /**
+     * @var array
+     */
     private $values = [];
+    /**
+     * @var array
+     */
     private $langs = ['en','pt'];
 
-    function __construct($file, $values) {
+    /**
+     * CrudEnum constructor.
+     * @param $file
+     * @param $values
+     */
+    public function __construct($file, $values)
+    {
         $this->file = 'model' . DS . 'enum' . DS . $file . '.xml';
         $this->values = $values;
 
     }
-    
-    public function create() {
+
+    /**
+     *
+     */
+    public function create()
+    {
         if (is_file($this->file)) {
             echo "Enum File " . $this->file . '.xml' . " exists, delete it first.... \n";
         } else {
@@ -40,7 +64,7 @@ class CrudEnum {
 
             $root = $doc->createElement("root");
             $doc->appendChild($root);
-            
+
             foreach($this->values as $value){
                 $value = str_replace("'", '', $value);
                 $node = $doc->createElement('value');
@@ -53,11 +77,11 @@ class CrudEnum {
                 }
                 $root->appendChild($node);
             }
-            
+
             $doc->save($this->file);
         }
     }
-    
-    
+
+
 
 }

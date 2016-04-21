@@ -6,46 +6,54 @@ use \lib\view\ParseTemplate;
 use \lib\view\StringTemplate;
 
 /**
- * Description of View 
- * 
+ * Description of View
+ *
  * the ordered methods are called in Controller
  * construct -> getExtended -> parse -> set -> display
- * 
+ *
  * created in 14/nov/2014
  * @author Luís Pinto - luis.nestesitio@gmail.com
  */
-class View {
-
+class View
+{
+    /**
+     * @var \lib\view\StringTemplate
+     */
     private $template;
-    
+
      /**
      * Create the obect ParseTemplate
      * The first roun of included tag will be processed  in class ParseTemplate
      * {% include ('Home/view/include.htm') %}
-      * 
+      *
      * @param String $string The path of the template file
      *
      * @return void
      */
-    function __construct($string, $file = true) {
+    public function __construct($string, $file = true)
+    {
         if ($file == true) {
             /* Template process extends and css / js extensions */
             $this->template = new ParseTemplate($string);
             /*
-             * The first round of included tag will be processed 
+             * The first round of included tag will be processed
              * {% include ('Home/view/include.htm') %}
              */
         } else {
             $this->template = new StringTemplate($string);
         }
     }
-    
-    public function getExtend(){
+
+    /**
+     * @return mixed
+     */
+    public function getExtend()
+    {
         return $this->template->getExtends();
     }
-    
+
     /**
-     * look for tags and functions in template 
+     * look for tags and functions in template
      * {% while (item in list) %} ... {% endwhile %}
      * {% if (status='open') %} ... {% elseif (status='ok') %} ... {% else %} ... {% endif %}
      * {% embed ('Core\Menu::nav' @'layout/modern-business/nav.htm') %}
@@ -53,7 +61,8 @@ class View {
      *
      * @return void
      */
-    public function parse() {
+    public function parse()
+    {
         $this->template->findTag('block');
         $this->template->setIncludes();
         $this->template->findTag('while');
@@ -61,7 +70,7 @@ class View {
         $this->template->findTag('if');
         $this->template->findTag('attr');
     }
-    
+
     /**
      * Building the array of pairs tag => data
      * where data can be an array, string, int or empty
@@ -70,34 +79,41 @@ class View {
      *
      * @return void
      */
-    public function set($tag, $data = ''){
+    public function set($tag, $data = '')
+    {
         $this->template->set($tag, $data);
-        
+
     }
-    
+
     /**
      * Process all the template, replacing tags for data
      *
      * @return String $this->template->getOutput() the completed html
      */
-    public function display() {
+    public function display()
+    {
         $this->template->parseAllPortions();
         $this->template->parseTags();
         return $this->template->getOutput();
     }
-    
+
     #other methods
-    
+
     /**
      * Get the complete HTML
      *
      * @return String $this->template->getOutput() the completed html
      */
-    public function getOutput() {
+    public function getOutput()
+    {
         return $this->template->getOutput();
     }
-    
-    public function setOutput($html) {
+
+    /**
+     * @param $html
+     */
+    public function setOutput($html)
+    {
         $this->template->setOutput($html);
     }
 

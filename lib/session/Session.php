@@ -13,29 +13,68 @@ use \lib\register\VarsRegister;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Dec 14, 2014
  */
-class Session {
-
+class Session
+{
+    /**
+     * @var
+     */
     private static $id;
-    
-    private static $session = [];
-    
-    private static $sessionFilters = [];
-    
-    private static $sessionShop = [];
-    
-    private static $sessionConf = [];
-    
-    const SESS_USER = 'user';
-    const SESS_PLAYER = 'player';
-    const SESS_FILTER = 'filters';
-    const SESS_SHOP = 'shop';
-    const SESS_PAGE = 'page';
-    const SESS_PAGERETURN = 'return';
-    const SESS_CONFIG = 'config';
-    
-    
 
-    public function __construct() {
+    /**
+     * @var array
+     */
+    private static $session = [];
+
+    /**
+     * @var array
+     */
+    private static $sessionFilters = [];
+
+    /**
+     * @var array
+     */
+    private static $sessionShop = [];
+
+    /**
+     * @var array
+     */
+    private static $sessionConf = [];
+
+    /**
+     *
+     */
+    const SESS_USER = 'user';
+    /**
+     *
+     */
+    const SESS_PLAYER = 'player';
+    /**
+     *
+     */
+    const SESS_FILTER = 'filters';
+    /**
+     *
+     */
+    const SESS_SHOP = 'shop';
+    /**
+     *
+     */
+    const SESS_PAGE = 'page';
+    /**
+     *
+     */
+    const SESS_PAGERETURN = 'return';
+    /**
+     *
+     */
+    const SESS_CONFIG = 'config';
+
+
+    /**
+     * Session constructor.
+     */
+    public function __construct()
+    {
         //var_dump(session_id());
         if (session_id() === '') {
             session_start();
@@ -46,16 +85,25 @@ class Session {
             #session_unset ();
         }
     }
-    
+
     /* regist specific session vars */
-    private function registSessionVars() {
+    /**
+     *
+     */
+    private function registSessionVars()
+    {
         SessionUser::registSessionUser();
         $this->registSessionFilters();
         $this->registSessionShop();
         $this->registSessionConfig();
     }
-    
-    public static function getSessionVar($key) {
+
+    /**
+     * @param $key
+     * @return bool
+     */
+    public static function getSessionVar($key)
+    {
         if (isset($_SESSION[$key])) {
             if(!isset(self::$session[$key])){
                 self::setSession($key, $_SESSION[$key]);
@@ -64,9 +112,14 @@ class Session {
         }
         return false;
     }
-    
+
     /* regist and refresh session vars */
-    public static function setSession($key, $value){
+    /**
+     * @param $key
+     * @param $value
+     */
+    public static function setSession($key, $value)
+    {
         if(is_array($value)){
             foreach($value as $k => $val){
                 self::$session[$key][$k] = $val;
@@ -77,21 +130,29 @@ class Session {
             $_SESSION[$key] = $value;
         }
     }
-    
 
-    public static function unsetSession($key){
+
+    /**
+     * @param $key
+     */
+    public static function unsetSession($key)
+    {
         if (isset(self::$session[$key])) {
             unset(self::$session[$key]);
         }
         if(isset($_SESSION[$key])){
             unset($_SESSION[$key]);
-        }  
+        }
     }
-    
 
-    
+
+
     /* $_SESSION['FILTERS']*/
-    private function registSessionFilters() {
+    /**
+     *
+     */
+    private function registSessionFilters()
+    {
         $filters = self::getSessionVar(self::SESS_FILTER);
         if ($filters != false) {
             foreach ($filters as $app => $session) {
@@ -102,15 +163,26 @@ class Session {
             self::setSession(self::SESS_FILTER, $filters);
         }
     }
-    
-    public static function removeSessionFilter($app, $type){
+
+    /**
+     * @param $app
+     * @param $type
+     */
+    public static function removeSessionFilter($app, $type)
+    {
         if(isset($_SESSION[self::SESS_FILTER][$app][$type])){
             unset($_SESSION[self::SESS_FILTER][$app][$type]);
         }
-        
+
     }
-    
-    public static function unsetFilter($app, $type, $field = null){
+
+    /**
+     * @param $app
+     * @param $type
+     * @param null $field
+     */
+    public static function unsetFilter($app, $type, $field = null)
+    {
         if($field == null){
             if (isset(self::$sessionFilters[$app][$type])) {
                 unset(self::$sessionFilters[$app][$type]);
@@ -124,7 +196,14 @@ class Session {
         }
     }
 
-    public static function setSessionFilter($app, $type, $value, $field = null){
+    /**
+     * @param $app
+     * @param $type
+     * @param $value
+     * @param null $field
+     */
+    public static function setSessionFilter($app, $type, $value, $field = null)
+    {
         if($field == null){
             $_SESSION[self::SESS_FILTER][$app][$type] = $value;
             self::$sessionFilters[$app][$type] = $value;
@@ -136,39 +215,65 @@ class Session {
         }
     }
 
-    public static function getSessionFilter($app, $type){
+    /**
+     * @param $app
+     * @param $type
+     * @return bool
+     */
+    public static function getSessionFilter($app, $type)
+    {
         if(isset(self::$sessionFilters[$app][$type])){
             return self::$sessionFilters[$app][$type];
         }
         return false;
     }
-    
-    
-    /* $_SESSION['page'] 
-     * allows user to return to the same page after 
+
+
+    /* $_SESSION['page']
+     * allows user to return to the same page after
      * some interaction like logout / login
      */
-    public static function setSessionPage($page) {
+    /**
+     * @param $page
+     */
+    public static function setSessionPage($page)
+    {
         self::setSession(self::SESS_PAGE, $page);
     }
-    
-    public static function getSessionPage() {
+
+    /**
+     * @return bool
+     */
+    public static function getSessionPage()
+    {
         return self::getSessionVar(self::SESS_PAGE);
     }
-    
-    public static function setPageReturn($page) {
+
+    /**
+     * @param $page
+     */
+    public static function setPageReturn($page)
+    {
         self::setSession(self::SESS_PAGERETURN, $page);
     }
-    
-    public static function getPageReturn() {
+
+    /**
+     * @return bool
+     */
+    public static function getPageReturn()
+    {
         return self::getSessionVar(self::SESS_PAGERETURN);
     }
-    
-    
+
+
     /* $_SESSION['SHOP']
      * E-Commerce tool
      */
-    private function registSessionShop() {
+    /**
+     *
+     */
+    private function registSessionShop()
+    {
         $session = self::getSessionVar(self::SESS_SHOP);
         if ($session != false) {
             foreach ($session as $key => $value) {
@@ -177,11 +282,15 @@ class Session {
             self::setSession(self::SESS_SHOP, $session);
         }
     }
-    
+
     /* $_SESSION['CONFIG']
      * Configs
      */
-    private function registSessionConfig() {
+    /**
+     *
+     */
+    private function registSessionConfig()
+    {
         $session = self::getSessionVar(self::SESS_CONFIG);
         if ($session != false) {
             foreach ($session as $key => $value) {
@@ -190,21 +299,32 @@ class Session {
             self::setSession(self::SESS_CONFIG, $session);
         }
     }
-    
-    private function registIp(){
+
+    /**
+     *
+     */
+    private function registIp()
+    {
         $ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
         $ip = filter_var($ip, FILTER_VALIDATE_IP);
         VarsRegister::setIp($ip);
 
     }
-    
-    
-    public static function close(){
+
+
+    /**
+     *
+     */
+    public static function close()
+    {
         session_write_close();
     }
-    
+
+    /**
+     *
+     */
     private function __clone() {}
-    
-    
+
+
 
 }

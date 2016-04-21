@@ -17,11 +17,13 @@ use \lib\session\SessionUserTools;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Feb 19, 2015
  */
-class SessionUser extends \lib\session\SessionUserBase {
-    
-
-    
-    public static function registSessionUser() {
+class SessionUser extends \lib\session\SessionUserBase
+{
+    /**
+     *
+     */
+    public static function registSessionUser()
+    {
         $session = Session::getSessionVar(Session::SESS_USER);
         if($session != false){
             if($session['time'] > time()){
@@ -33,12 +35,12 @@ class SessionUser extends \lib\session\SessionUserBase {
             if($user == false){
                 $user = SessionUserTools::getUserSession()->findOne();
                 $player = $user;
-                
+
             }else{
                 self::$registredUser = true;
-                
+
             }
-            
+
         }else{
             // don't have session registered
             Registry::setMonitor(Monitor::SESSION, 'USER SESSION IS FALSE');
@@ -55,12 +57,17 @@ class SessionUser extends \lib\session\SessionUserBase {
             }else{
                 $player = SessionUserTools::getUserSession($session[self::KEY_GROUPID])->filterById($session[self::KEY_ID])->findOne();
             }
-            
+
         }
         self::registPlayer($player);
     }
-    
-    public static function setSessionUserByEmail($email) {
+
+    /**
+     * @param $email
+     * @return bool
+     */
+    public static function setSessionUserByEmail($email)
+    {
         $user = UserBaseQuery::start(ONLY)->filterByUsername($email)->findOne();
         if($user != false){
             self::setUserVarsSession($user, Session::SESS_USER);
@@ -70,13 +77,21 @@ class SessionUser extends \lib\session\SessionUserBase {
             return false;
         }
     }
-    
-    private static function userQuery(){
+
+    /**
+     * @return UserBaseQuery
+     */
+    private static function userQuery()
+    {
         return UserBaseQuery::start(ONLY)->selectName()->selectUserGroupId();
     }
 
-    
-    public static function registPlayer($user){
+
+    /**
+     * @param $user
+     */
+    public static function registPlayer($user)
+    {
         $keys = [
             self::KEY_ID => UserBase::FIELD_ID,
             self::KEY_GROUPID => UserBase::FIELD_USER_GROUP_ID,
@@ -91,33 +106,46 @@ class SessionUser extends \lib\session\SessionUserBase {
         $values['time'] = time() + self::$sessiontime;
         Session::setSession(Session::SESS_PLAYER, $values);
     }
-    
-    public static function getAuth($level) {
+
+    /**
+     * @param $level
+     * @return bool
+     */
+    public static function getAuth($level)
+    {
         if(self::getPlayerLevel() != false && $level >= self::getPlayerLevel()){
             return true;
         }
-        
+
         return false;
     }
-    
 
-    public static function unsetUser(){
+
+    /**
+     *
+     */
+    public static function unsetUser()
+    {
         Session::unsetSession(Session::SESS_USER);
         Session::unsetSession(Session::SESS_PLAYER);
     }
-    
-    public static function getPlayer(){
+
+    /**
+     * @return bool|mixed
+     */
+    public static function getPlayer()
+    {
         $id = self::getPlayerId();
         if($id == false){
             $id = self::getUserId();
         }
         return $id;
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 
 }

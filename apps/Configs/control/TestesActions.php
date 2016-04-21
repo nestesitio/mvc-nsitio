@@ -18,10 +18,16 @@ use \model\querys\BudgetQuery;
  */
 class TestesActions extends \lib\control\ControllerAdmin {
 
+    /**
+     * @return mixed
+     */
     private function getQuery(){
         return ProjectQuery::start();
     }
 
+    /**
+     *
+     */
     public function testesAction(){
         $this->set('h1', VarsRegister::getHeading());
         $this->setView('testes');
@@ -39,7 +45,10 @@ class TestesActions extends \lib\control\ControllerAdmin {
         $this->set('projects', $itens_projects);
         $this->renderList($projects);
     }
-    
+
+    /**
+     *
+     */
     public function normalTestesAction(){
         $this->set('h1', VarsRegister::getHeading());
         $query = $this->getQuery();
@@ -47,28 +56,40 @@ class TestesActions extends \lib\control\ControllerAdmin {
         $form = ProjectForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'testes');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function listTestesAction(){
         $query = $this->getQuery();
         $this->buildDataList('testes', $query);
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function editTestesAction() {
         $query = $this->getQuery()->filterById(VarsRegister::getId())->findOne();
         $form = ProjectForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'testes');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function newTestesAction() {
         $form = ProjectForm::initialize();
         #more code about $form and $query
         $this->renderForm($form, 'testes');
     }
-    
+
+    /**
+     *
+     */
     public function bindTestesAction() {
         $form = ProjectForm::initialize()->validate();
         #more code for processing - example
@@ -88,18 +109,27 @@ class TestesActions extends \lib\control\ControllerAdmin {
             $this->showTestesAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showTestesAction(){
         $model = $this->getQuery()->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'testes');
     }
-    
+
+    /**
+     *
+     */
     public function delTestesAction() {
         $model = $this->getQuery()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function exportTestesAction(){
         $query = $this->getQuery();
         $this->buildDataExport($query);

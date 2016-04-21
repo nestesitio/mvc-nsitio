@@ -15,24 +15,44 @@ use \lib\session\Session;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Oct 27, 2015
  */
-class Guard {
-
+class Guard
+{
+    /**
+     * Guard constructor.
+     */
     private function __construct() {}
-    
+
+    /**
+     * @var
+     */
     private static $hash;
-    
-    public static function hashIt($string, $salt){
+
+    /**
+     * @param $string
+     * @param $salt
+     */
+    public static function hashIt($string, $salt)
+    {
         self::$hash = sha1($salt.$string);
     }
-    
-    public static function validate($key){
+
+    /**
+     * @param $key
+     * @return bool
+     */
+    public static function validate($key)
+    {
         if($key == self::$hash){
             return true;
         }
         return false;
     }
-    
-    public static function validateLogin(){
+
+    /**
+     * @return bool
+     */
+    public static function validateLogin()
+    {
         $user = UserBaseQuery::start()
                 ->filterByUsername(VarsRegister::getPosts('email'))
                 ->findOne();
@@ -46,22 +66,39 @@ class Guard {
         }
         return false;
     }
-    
-    public static function setKeys(UserBase $user){
+
+    /**
+     * @param UserBase $user
+     */
+    public static function setKeys(UserBase $user)
+    {
         $user->setSalt(sha1($user->getPassword()));
         $user->setUserkey(sha1($user->getSalt().$user->getPassword()));
         $user->save();
     }
-    
-    public static function prepareForm(UserBaseForm $form){
+
+    /**
+     * @param UserBaseForm $form
+     *
+     * @return UserBaseForm
+     */
+    public static function prepareForm(UserBaseForm $form)
+    {
         $form->unsetSaltInput();
         $form->unsetUserkeyInput();
         return $form;
     }
-    
+
+    /**
+     *
+     */
     const SESS_TOKEN = 'q48pkl';
-    
-    public static function generateSessToken(){
+
+    /**
+     * 
+     */
+    public static function generateSessToken()
+    {
         if(Session::getSessionVar(self::SESS_TOKEN) != null){
             // to be compared with post
             VarsRegister::setVars(self::SESS_TOKEN, Session::getSessionVar(self::SESS_TOKEN));
@@ -69,9 +106,9 @@ class Guard {
         $token = md5(VarsRegister::getIp() . (string) time());
         // used in form
         Session::setSession(self::SESS_TOKEN, $token);
-        
+
     }
-    
-    
+
+
 
 }

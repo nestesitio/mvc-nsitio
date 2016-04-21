@@ -11,10 +11,15 @@ use \lib\bkegenerator\Config;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 5, 2015
  */
-class DataEdit extends \lib\bkegenerator\DataConfig {
-    
-    
-    public function getConfigs($action) {
+class DataEdit extends \lib\bkegenerator\DataConfig
+{
+
+    /**
+     * @param $action
+     * @return \lib\bkegenerator\Config
+     */
+    public function getConfigs($action)
+    {
         $config = new Config();
         $nodes = $this->getnodes('show/fields/*');
         foreach($nodes as $node){
@@ -33,7 +38,7 @@ class DataEdit extends \lib\bkegenerator\DataConfig {
                     $config->setConfigValue('data-range', $this->x_conf->queryXPath($path, 'atr', 'data-range'));
                 }
                 $config->setConfigValue('convert', $this->x_conf->queryXPath($path, 'atr', 'convert'));
-                
+
             }
         }
         if(null == $this->identification){
@@ -42,9 +47,13 @@ class DataEdit extends \lib\bkegenerator\DataConfig {
         $config->setIdentification($this->identification);
         return $config;
     }
-    
-    
-    public function renderButtons($mode) {
+
+
+    /**
+     * @param $mode
+     */
+    public function renderButtons($mode)
+    {
         $btn_tpl = '<!--{{ buttons }}-->';
         if (strpos($this->html, '{{ buttons }}')) {
             $nodes = $this->getnodes('show/buttons/*');
@@ -59,7 +68,7 @@ class DataEdit extends \lib\bkegenerator\DataConfig {
                 }elseif(SessionUser::getAuth($auth) == false || ($mode == 'show' && ($node == 'saveform' || $node == 'resetform'))){
                     continue;
                 }
-                
+
                 $btn = '<a class="' . $node . ' btn btn-xs btn-primary" data-id="{{ dataid }}">';
                 $action = $this->x_conf->queryXPath($path, 'atr', 'action');
                 if(!empty($action)){
@@ -73,7 +82,7 @@ class DataEdit extends \lib\bkegenerator\DataConfig {
                 $btn .= $this->findLabel($path) . '</a>' . $btn_tpl;
                 $this->html = str_replace($btn_tpl, $btn, $this->html);
             }
-            
+
         }
     }
     /*

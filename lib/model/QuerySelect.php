@@ -11,19 +11,41 @@ use PDO;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 25, 2014
  */
-class QuerySelect extends \lib\model\QueryStatement {
-
+class QuerySelect extends \lib\model\QueryStatement
+{
+    /**
+     * @var int
+     */
     private $foundrows = 0;
+    /**
+     * @var
+     */
     private $params;
+    /**
+     * @var null
+     */
     private $primary_class = null;
+    /**
+     * @var
+     */
     protected $results;
-    
-    function __construct($model, $merge = ALL) {
+
+    /**
+     * QuerySelect constructor.
+     * @param null $model
+     * @param string $merge
+     */
+    public function __construct($model, $merge = ALL)
+    {
         parent::__construct($model, $merge);
-        
+
     }
-    
-    public function startPrimary(){
+
+    /**
+     *
+     */
+    public function startPrimary()
+    {
         $this->query_statement = new SelectStatement();
         foreach($this->columns as $column){
             $this->query_statement->setSelect($column);
@@ -33,14 +55,22 @@ class QuerySelect extends \lib\model\QueryStatement {
         }**/
         $this->fetch_assoc = $this->query_statement->getFetchAssoc();
     }
-    
-    public function startJoin(\lib\model\QuerySelect $merge){
+
+    /**
+     * @param QuerySelect $merge
+     */
+    public function startJoin(\lib\model\QuerySelect $merge)
+    {
         $this->query_statement = $merge->getStatement();
         $this->fetch_assoc = $merge->getFetchAssociation();
         $this->primary_class = $merge;
     }
-    
-    protected function completeMerge(){
+
+    /**
+     * @return null
+     */
+    protected function completeMerge()
+    {
         if(!is_object($this->primary_class)){
             echo 'Not primary class for ' . get_called_class();
             die();
@@ -50,44 +80,61 @@ class QuerySelect extends \lib\model\QueryStatement {
         $this->primary_class->addColumns($this->columns);
         return $this->primary_class;
     }
-    
 
 
-    public function setStatement($statement){
+    /**
+     * @param $statement
+     */
+    public function setStatement($statement)
+    {
         $this->query_statement = $statement;
     }
-    
-    public function setFetchAssociation($fetch){
+
+    /**
+     * @param $fetch
+     */
+    public function setFetchAssociation($fetch)
+    {
         $this->fetch_assoc = $fetch;
     }
-    
-    public function getFetchAssociation(){
+
+    /**
+     * @return array
+     */
+    public function getFetchAssociation()
+    {
         return $this->fetch_assoc;
     }
-     
-    
-    public function toString() {
+
+
+    /**
+     * @return mixed
+     */
+    public function toString()
+    {
         $this->params = $this->query_statement->getParams();
         $this->select($this->query_statement->getStatementString(), $this->params);
         return $this->string;
     }
-    
+
      /**
      * Completes query and return a collection of model objects
      *
      * @return \lib\model\Model[]
      */
-    public function find() {
+    public function find()
+    {
         #return a collection of models
         return $this->getResults($this->query_statement->getStatementString());
     }
-    
+
      /**
      * Completes query. If result is 0 create object
      *
      * @@return \lib\model\Model
      */
-    public function findOneOrCreate(){
+    public function findOneOrCreate()
+    {
         $this->query_statement->setLimit(1);
         $result = $this->getResults($this->query_statement->getStatementString());
         if(count($result) !== 0){
@@ -98,26 +145,28 @@ class QuerySelect extends \lib\model\QueryStatement {
             return $query->save();
         }
     }
-    
+
      /**
      * Completes query and return numrows.
      *
      * @return Integer
      */
-    public function findCount(){
+    public function findCount()
+    {
         $this->query_statement->countAll();
         $this->fetch_assoc = ['rows'];
         $result = $this->getResults($this->query_statement->getStatementString());
         return (!empty($result))? $result[0]->getColumnValue('rows') : 0;
 
     }
-    
+
      /**
      * Completes query and return only one value.
      *
      * @return String
      */
-    public function findValue($field, $function){
+    public function findValue($field, $function)
+    {
         $expresssion = $function . '(' . $field . ')';
         $this->query_statement->getOnly($expresssion);
         $this->fetch_assoc = ['result'];
@@ -125,26 +174,27 @@ class QuerySelect extends \lib\model\QueryStatement {
         return (!empty($result))? $result[0]->getColumnValue('result') : 0;
 
     }
-    
+
      /**
      * Completes query with limit 1.
      *
      * @return \lib\model\Model
      */
-    public function findOne(){
+    public function findOne()
+    {
         $this->query_statement->setLimit(1);
         $result = $this->getResults($this->query_statement->getStatementString());
         #return a model
         return (!empty($result))? $result[0] : false;
     }
-    
+
      /**
      * Convert results to a collection of the model
      *
      * @return array $collection
      */
-    private function getResults($query) {
-
+    private function getResults($query)
+    {
         $collection = [];
         $this->params = $this->query_statement->getParams();
         $className = get_class($this->model);
@@ -152,11 +202,11 @@ class QuerySelect extends \lib\model\QueryStatement {
         foreach ($results as $row) {
             $item = $this->getRow($className, $row);
             array_push($collection,$item);
-            
+
         }
         return $collection;
     }
-    
+
      /**
      * Convert row from result query to a model
      * @param String $className The name of the model class
@@ -164,19 +214,24 @@ class QuerySelect extends \lib\model\QueryStatement {
      *
      * @return \lib\model\Model $item
      */
-    private function getRow($className, $row){
+    private function getRow($className, $row)
+    {
         $item = new $className();
         foreach($row as $i => $value){
-            
+
             $column = $this->fetch_assoc[$i];
-            
+
             $item->setColumnValue($column, utf8_encode($value));
         }
         return $item;
     }
-    
+
     /* reset the mysql statement */
-    protected function prepareStatement() {
+    /**
+     * @return SelectStatement
+     */
+    protected function prepareStatement()
+    {
         $statement = new SelectStatement();
         foreach($this->columns as $column){
             $statement->setSelect($column);
@@ -189,22 +244,23 @@ class QuerySelect extends \lib\model\QueryStatement {
                 $statement->joinTable($table, $relation['join'], ['left' => $relation['left'], 'right' => $relation['right']]);
             }
         }
-         * 
+         *
          */
         $this->fetch_assoc = $statement->getFetchAssoc();
         return $statement;
- 
+
     }
 
 
-    /** 
+    /**
      * Pass a custom query and condition
      * @param String $query ('SELECT * FROM TABLE WHERE name=:user OR age<:age',array(name=>'Bond',age=>25))
      * @param array $params The array to bindParams to the specified variable name
-     * 
+     *
      * @return array containing all of the result set row
      */
-    private function select($query, $params = []) {
+    private function select($query, $params = [])
+    {
         #echo $query.'<hr />';
 
         $start_time = microtime(true);
@@ -218,7 +274,7 @@ class QuerySelect extends \lib\model\QueryStatement {
 
         /** Returns an array containing all of the result set rows */
         $result = $this->pdostmt->fetchAll(PDO::FETCH_NUM);
-        
+
         $this->count = count($result);
         if($this->count == 0 && $this->query_statement->getOffset()['offset'] > 0){
             $limit = $this->query_statement->getOffset()['limit'];
@@ -227,16 +283,24 @@ class QuerySelect extends \lib\model\QueryStatement {
             $this->query_statement->setLimit($limit, $offset);
             return $this->select($this->query_statement->getStatementString(), $params);
         }
-        
+
         $this->writeQueryMessage($query, $params);
         return $result;
     }
-    
-    public function setCalcFoundRows(){
+
+    /**
+     *
+     */
+    public function setCalcFoundRows()
+    {
         $this->query_statement->setCalcFoundRows();
     }
-    
-    public function calcFoundRows(){
+
+    /**
+     * @return $this
+     */
+    public function calcFoundRows()
+    {
         $c = $this->pdo->prepare('SELECT FOUND_ROWS() AS t;');
         $c->execute();
         $totals = $c->fetchAll();
@@ -244,7 +308,11 @@ class QuerySelect extends \lib\model\QueryStatement {
         return $this;
     }
 
-    public function setFoundRows(){
+    /**
+     * @return $this
+     */
+    public function setFoundRows()
+    {
         $this->query_statement->countAll();
         $c = $this->pdo->prepare($this->query_statement->getStatementString());
         foreach ($this->params as $field => $value) {
@@ -261,14 +329,18 @@ class QuerySelect extends \lib\model\QueryStatement {
     }
 
 
-    public function getFoundRows(){
-        /*this function only return after find() 
+    /**
+     * @return int
+     */
+    public function getFoundRows()
+    {
+        /*this function only return after find()
          * or other function that pdo execute of main the query
          * otherwise returns 0*/
         return $this->foundrows;
     }
-    
-    
-    
+
+
+
 
 }

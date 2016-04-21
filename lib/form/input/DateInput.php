@@ -6,7 +6,7 @@ namespace lib\form\input;
  * Description of DateInput
  * http://www.kelvinluck.com/assets/jquery/datePicker/v2/demo/scripts/jquery.datePicker.js
  * http://2008.kelvinluck.com/projects/jquery-date-picker/
- * 
+ *
  * http://eonasdan.github.io/bootstrap-datetimepicker/
  * Testes: http://jsfiddle.net/0Ltv25o8/230/
 };
@@ -14,21 +14,37 @@ namespace lib\form\input;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Dec 5, 2014
  */
-class DateInput extends \lib\form\Input {
-
-    public static function create($field = null){
+class DateInput extends \lib\form\Input
+{
+    /**
+     * @param null $field
+     * @return DateInput
+     */
+    public static function create($field = null)
+    {
         $obj = new DateInput($field, $field);
         return $obj;
     }
-    
-    
-    public function setTimestamp($timestamp) {
+
+
+    /**
+     * @param $timestamp
+     */
+    public function setTimestamp($timestamp)
+    {
         #DATE, DATETIME, TIME, OR TIMESTAMP
     }
-    
+
+    /**
+     * @var string
+     */
     private $dateformat = 'LL LT';
-    
-    public function setDataFormat($format) {
+
+    /**
+     * @param $format
+     */
+    public function setDataFormat($format)
+    {
         /*options:
          * LT : 'H:mm', HH:mm',
          * ->10:38
@@ -44,9 +60,13 @@ class DateInput extends \lib\form\Input {
          */
         $this->dateformat = $format;
     }
-    
-    
-    public function parseInput() {
+
+
+    /**
+     * @return string
+     */
+    public function parseInput()
+    {
         //$newticket['DateCreated'] = date('d-m-Y G:H', strtotime($phpDateVariable));
         if(!empty($this->value)){
             if(strpos($this->value,'&&')){
@@ -56,7 +76,7 @@ class DateInput extends \lib\form\Input {
                 $this->value = date('Y-m-d H:i', strtotime($this->value));
             }
         }
-        
+
         $this->attributes();
         unset($this->attributes['id']);
 

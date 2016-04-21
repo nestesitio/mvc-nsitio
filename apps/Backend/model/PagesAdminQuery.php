@@ -10,8 +10,14 @@ namespace apps\Backend\model;
  */
 class PagesAdminQuery {
 
+    /**
+     * @var
+     */
     private $var;
 
+    /**
+     * PagesAdminQuery constructor.
+     */
     function __construct() {
         
     }

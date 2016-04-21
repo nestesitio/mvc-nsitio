@@ -18,30 +18,64 @@ use \apps\Core\model\PageQuery;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 27, 2015
  */
-class CrudApp {
-
+class CrudApp
+{
+    /**
+     * @var
+     */
     private $name;
+    /**
+     * @var
+     */
     private $app;
+    /**
+     * @var mixed
+     */
     private $model;
+    /**
+     * @var
+     */
     private $table;
+    /**
+     * @var
+     */
     private $constrains;
+    /**
+     * @var PDO
+     */
     private $pdo;
 
+    /**
+     * @var string
+     */
     private $area = 'backend';
+    /**
+     * @var
+     */
     private $folder;
-    
-    function __construct($app, $name, $table) {
+
+    /**
+     * CrudApp constructor.
+     * @param $app
+     * @param $name
+     * @param $table
+     */
+    public function __construct($app, $name, $table)
+    {
         $this->app = ucfirst(strtolower($app));
         echo "App is " . $this->app . "\n";
         $this->name = ucfirst(strtolower($name));
         $this->table = $table;
-        
+
         $this->model = ModelTools::buildModelName($table);
         $this->pdo = PdoMysql::getConn();
     }
-    
-    public function createFolders(){
-        
+
+    /**
+     * @return $this
+     */
+    public function createFolders()
+    {
         $this->folder = ROOT . DS . 'apps' . DS . $this->app;
         if (!is_dir($this->folder)) {
             if (mkdir($this->folder) == true) {
@@ -64,12 +98,16 @@ class CrudApp {
         echo " \n";
         return $this;
     }
-    
-    private function savePage(){
+
+    /**
+     *
+     */
+    private function savePage()
+    {
         $app = HtmAppQuery::start()
                 ->filterBySlug(strtolower($this->app))
                 ->filterByName(ucfirst($this->app))->findOneOrCreate();
-        
+
         $slug = strtolower($this->name);
         $page = PageQuery::start()->filterBySlug($slug)->filterByHtmHtmAppId($app->getId())->findOne();
         if ($page == false) {
@@ -86,8 +124,13 @@ class CrudApp {
             $htmpage->save();
         }
     }
-    
-    public function execute($area, $file = null) {
+
+    /**
+     * @param $area
+     * @param null $file
+     */
+    public function execute($area, $file = null)
+    {
         $this->area = $area;
         //$this->savePage();
         if($file == null || $file == 'actions'){
@@ -106,13 +149,20 @@ class CrudApp {
             $this->createConfig();
         }
     }
-    
-    public function setConstrains($constrains){
+
+    /**
+     * @param $constrains
+     */
+    public function setConstrains($constrains)
+    {
         $this->constrains = $constrains;
     }
-    
-    private function createConfig() {
-        
+
+    /**
+     *
+     */
+    private function createConfig()
+    {
         $file = $this->folder . DS . 'config' . DS . strtolower($this->name) . '.xml';
         if (is_file($file)) {
             echo "Config File " . strtolower($this->name) . '.xml' . " exists, deleting.... \n";
@@ -121,8 +171,12 @@ class CrudApp {
         $xml = new \lib\crud\CrudConfig($file, $this->app, $this->name, $this->table);
         $xml->create();
     }
-    
-    private function createActions() {
+
+    /**
+     *
+     */
+    private function createActions()
+    {
         $tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'tpl_apps' . DS . 'actions_' . $this->area . '.tpl';
         $file = $this->folder . DS . 'control' . DS . $this->name . 'Actions.php';
         if (is_file($file)) {
@@ -135,17 +189,21 @@ class CrudApp {
             file_put_contents($file, $string);
         }
     }
-    
-    private function createModel(){
+
+    /**
+     *
+     */
+    private function createModel()
+    {
         $tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'tpl_apps' . DS . 'actions_model.tpl';
         $file = $this->folder . DS . 'model' . DS . $this->name . 'Queries.php';
-        
+
         if (is_file($file)) {
             echo "Model File " . $this->name . 'Query.php' . " exists, delete it to write \n";
         } else {
             CrudTools::copyFile($tpl, $file, $this->name);
             $string = $this->replace(file_get_contents($file));
-            
+
             foreach($this->constrains as $constrain){
                 if($constrain['TABLE_NAME'] == $this->table){
                     $string = $this->writeJoin($string, $constrain['REFERENCED_TABLE_NAME']);
@@ -159,8 +217,12 @@ class CrudApp {
             file_put_contents($file, $string);
         }
     }
-    
-    private function createForm(){
+
+    /**
+     *
+     */
+    private function createForm()
+    {
         $tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'tpl_apps' . DS . 'actions_form.tpl';
         $file = $this->folder . DS . 'model' . DS . $this->name . 'Form.php';
         if (is_file($file)) {
@@ -168,14 +230,20 @@ class CrudApp {
         }else{
             CrudTools::copyFile($tpl, $file, $this->name);
             $string = $this->replace(file_get_contents($file));
-            
+
             file_put_contents($file, $string);
         }
-        
-        
+
+
     }
-    
-    private function writeJoin($string, $table){
+
+    /**
+     * @param $string
+     * @param $table
+     * @return mixed
+     */
+    private function writeJoin($string, $table)
+    {
         echo $table . "\n";
         $fstr = '#$query->join->endUse();';
         $join = str_replace(['->join', '#'], ['->join' . CrudTools::crudName($table) . '()', ''], $fstr);
@@ -194,8 +262,12 @@ class CrudApp {
         $string = str_replace($fstr, $join . "\n\t" . $fstr, $string);
         return $string;
     }
-    
-    private function createView(){
+
+    /**
+     *
+     */
+    private function createView()
+    {
         $tpl = ROOT . DS . 'layout' . DS . 'core' . DS . 'tpl_' . $this->area . '.htm';
         $file = $this->folder . DS . 'view' . DS  . strtolower($this->name) . '.htm';
         if (!is_file($file)) {
@@ -204,8 +276,13 @@ class CrudApp {
             echo "View file index.htm exists, delete it to write \n";
         }
     }
-    
-    private function replace($string) {
+
+    /**
+     * @param $string
+     * @return mixed
+     */
+    private function replace($string)
+    {
         $tags = ['%$nameApp%', '%$modelName%', '%$fileName%'];
         $vars = [$this->app, $this->model, strtolower($this->name)];
         return str_replace($tags, $vars, $string);

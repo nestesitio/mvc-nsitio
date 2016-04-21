@@ -15,18 +15,27 @@ namespace lib\form\input;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jul 27, 2015
  */
-class WysihtmlInput extends \lib\form\input\TextAreaInput {
-
-    public static function create($field = null){
+class WysihtmlInput extends \lib\form\input\TextAreaInput
+{
+    /**
+     * @param null $field
+     * @return WysihtmlInput
+     */
+    public static function create($field = null)
+    {
         $obj = new WysihtmlInput($field, $field);
         return $obj;
     }
-    
-    public function parseInput() {
+
+    /**
+     * @return string
+     */
+    public function parseInput()
+    {
         $this->class = 'wysihtml';
         $this->attributes();
-        
-        
+
+
         $this->input = '<textarea style="width:100%" ' . implode(' ', $this->attributes) . '>' . $this->value . '</textarea>';
         $this->input .= '<a class="clear-input" data-id="'.$this->elemid.'"><span class="glyphicon glyphicon-refresh"></span></a>';
         return $this->input;

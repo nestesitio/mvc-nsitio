@@ -19,15 +19,17 @@ use \lib\view\EvalCode;
 
 
 /**
- * Description of ParseTemplate 
+ * Description of ParseTemplate
  * created in 15/nov/2014
  * @author Luís Pinto - luis.nestesitio@gmail.com
  */
-class ParseTemplate extends \lib\view\Template {
-
-    
+class ParseTemplate extends \lib\view\Template
+{
+    /**
+     * @var int
+     */
     private $dev = 0;
-    
+
      /**
      * Parse and look for tags in all the template
       * $this->tags -> The array tags
@@ -37,22 +39,31 @@ class ParseTemplate extends \lib\view\Template {
      *
      * @return void
      */
-    public function findTag($tag) {
+    public function findTag($tag)
+    {
         $parse = new ParseString($this->output);
         $parse->find($tag);
-        
+
         $this->output = $parse->getString();
-        
+
         $this->tags = array_merge($this->tags, $parse->getTag());
         Registry::setMonitor(Monitor::BOOKMARK, '<b>View parseAll</b> - ' . $tag . ' | ' . count($this->tags));
         $this->portions = array_merge($this->portions, $parse->getPortion());
         $this->args = array_merge($this->args, $parse->getArgs());
         //var_dump($this->tags);
         //echo '<hr />';
-        
+
     }
-    
-    public function parseAllPortions($string = null, $portions = null, $tags = null, $args = null) {
+
+    /**
+     * @param null $string
+     * @param null $portions
+     * @param null $tags
+     * @param null $args
+     * @return null
+     */
+    public function parseAllPortions($string = null, $portions = null, $tags = null, $args = null)
+    {
         $parent = false;
         if(null == $portions){
             $portions = $this->portions;
@@ -91,31 +102,33 @@ class ParseTemplate extends \lib\view\Template {
      *
      * @return void
      */
-    private function parseInclude($string) {
+    private function parseInclude($string)
+    {
         $parse = new ParseInclude($string);
         $include_string = $parse->getInclude();
-        
+
         if (strpos($include_string, '{')) {
-           $subparse = new ParseString($include_string); 
+           $subparse = new ParseString($include_string);
            $subparse->find('for|if|attr|include|while');
            $include_string = $this->parseAllPortions(
                             $include_string, $subparse->getPortion(), $subparse->getTag(), $subparse->getArgs());
-           
+
         }
         return $include_string;
     }
-    
-    /** process the 
+
+    /** process the
      * {% embed ('Home::teste') %}
      * or
      * {% embed ('Home::teste' with @list_title) %}
      */
-    private function parseEmbed($string) {
+    private function parseEmbed($string)
+    {
         $parse = new ParseEmbed($string);
-        
+
         $class = $parse->getClass();
         $controller = new $class();
-        
+
         $controller->setView($parse->getView());
         $action = $parse->getAction();
         Registry::setMonitor(Monitor::TPL, '<b>parse Embed</b> - ' . $class . ' / ' . $action . '/');
@@ -128,16 +141,17 @@ class ParseTemplate extends \lib\view\Template {
      * @param String $piece The string to repeat inside
      * @param String $args The arguments of the loop
      */
-    private function parseWhilePortion($piece, $args, $vars = null) {
+    private function parseWhilePortion($piece, $args, $vars = null)
+    {
         if(null == $vars){
             $vars = $this->vars;
         }
         $html = '';
         $string_original = preg_replace(
                 ["/\{% while \([^\)]+\) %\}/", "/(\{% endwhile %\})/"], '', $piece);
-        
+
         $string_original = $this->cleanString($string_original);
-        
+
         //find the data to replace tag
         list($arr, $vector) = explode(' in ', $args);
 
@@ -153,62 +167,80 @@ class ParseTemplate extends \lib\view\Template {
         }
         return $html;
     }
-    
-    private function cleanString($string_original){
+
+    /**
+     * @param $string_original
+     * @return mixed
+     */
+    private function cleanString($string_original)
+    {
         $string_original = trim(preg_replace('/\s\s+/', ' ', $string_original));
         $string_original = preg_replace("/\t/", '', $string_original);
         $string_original = preg_replace("/ +/", ' ', $string_original);
         $string_original = str_replace(['li> <li'], ['li><li'], $string_original);
         return $string_original;
     }
-    
-    private function reparse($string, $tags, $vars = null) {
+
+    /**
+     * @param $string
+     * @param $tags
+     * @param null $vars
+     * @return mixed
+     */
+    private function reparse($string, $tags, $vars = null)
+    {
         if (strpos($string, '{')) {
             $parse = new ParseString($string);
             $parse->find($tags);
             $tags = $parse->getTag();
             $portions = $parse->getPortion();
-            
+
             foreach ($tags as $key => $tag) {
                 $html = '';
                 if ($tag == 'if') {
                     $this->dev = 1;
                     $html = $this->parseIfPortion($portions[$key], $vars);
                 }
-                
+
                 $string = str_replace(trim($portions[$key]), trim($html), trim($string));
             }
         }
         $this->dev = 0;
         return $string;
     }
-    
-        /* process the 
+
+        /* process the
      * {% if (list) %} || {% if (content='something') %}
      * {% elseif (content='something else') %}
      * {% else %}
      * {% endif %}
      */
-    private function parseIfPortion($string, $vars = null){
+    /**
+     * @param $string
+     * @param null $vars
+     * @return mixed
+     */
+    private function parseIfPortion($string, $vars = null)
+    {
         if(null == $vars){
             $vars = $this->vars;
         }
         $matches = $submatches = $controls = $offsets = [];
-        
+
         $pattern = "/(\{% )(if|elseif|else|endif)[\s][\(]?/";
-        preg_match_all($pattern, $string, $matches, PREG_OFFSET_CAPTURE);     
-        
+        preg_match_all($pattern, $string, $matches, PREG_OFFSET_CAPTURE);
+
         foreach($matches[0] as $i => $match){
             $controls[$i] = str_replace(['{%','(',' '],'',$match[0]);
             $offsets[$i] = $match[1];
-        }       
-        
+        }
+
         foreach($offsets as $i=>$offset){
             $lenght = ($controls[$i] != 'endif')? $offsets[$i + 1] - $offset : 0;
             $portion = substr($string, $offset,$lenght);
             $eval_code = new EvalCode($portion, $vars);
             $var = $eval_code->getVar();
-            
+
             $portion = substr($portion, $eval_code->getLenght());
             if($var == 'else'){
                 return $portion;
@@ -225,32 +257,38 @@ class ParseTemplate extends \lib\view\Template {
             }
         }
     }
-    
-        /* process the 
+
+        /* process the
      * {% block (list) %}
      * {% endblock %}
          * processed before while and if
      */
-    private function parseBlockPortion($string, $vars = null){
+    /**
+     * @param $string
+     * @param null $vars
+     * @return mixed
+     */
+    private function parseBlockPortion($string, $vars = null)
+    {
         if(null == $vars){
             $vars = $this->vars;
         }
         $matches = $submatches = $controls = $offsets = [];
-        
+
         $pattern = "/(\{% )(block|endblock)[\s][\(]?/";
-        preg_match_all($pattern, $string, $matches, PREG_OFFSET_CAPTURE);     
-        
+        preg_match_all($pattern, $string, $matches, PREG_OFFSET_CAPTURE);
+
         foreach($matches[0] as $i => $match){
             $controls[$i] = str_replace(['{%','(',' '],'',$match[0]);
             $offsets[$i] = $match[1];
-        }       
-        
+        }
+
         foreach($offsets as $i=>$offset){
             $lenght = ($controls[$i] != 'endblock')? $offsets[$i + 1] - $offset : 0;
             $portion = substr($string, $offset,$lenght);
             $eval_code = new EvalCode($portion, $vars);
             $var = $eval_code->getVar();
-            
+
             $portion = substr($portion, $eval_code->getLenght());
             if($var != false){
                 $teste = ($this->dev == 1)? 1 : 0;
@@ -261,14 +299,15 @@ class ParseTemplate extends \lib\view\Template {
             }
         }
     }
-    
+
 
      /**
      * Replace the tags for data
      *
      * @return void
-     */ 
-    public function parseTags(){
+     */
+    public function parseTags()
+    {
         if (count($this->vars) > 0) {
             foreach ($this->vars as $tag => $data) {
                 if(!is_array($data)){

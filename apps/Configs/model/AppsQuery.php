@@ -11,12 +11,18 @@ use \lib\session\SessionUser;
  * Created @Dec 17, 2014
  */
 class AppsQuery extends \model\querys\HtmAppQuery {
-    
-    
+
+
+    /**
+     * @return \model\querys\HtmAppQuery
+     */
     public static function getApps(){
         return self::start()->orderByName();
     }
-    
+
+    /**
+     * @return mixed
+     */
     public static function getAppsAccess(){
         return self::start()
                 ->joinUserGroupHasHtmApp()

@@ -10,12 +10,18 @@ use \lib\view\ParseString;
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 19, 2014
- * 
+ *
  * {% include ('include.htm' with @includes) %}
  */
-class ParseInclude {
-
+class ParseInclude
+{
+    /**
+     * @var String
+     */
     private $string;
+    /**
+     * @var
+     */
     private $include;
 
     /**
@@ -24,19 +30,21 @@ class ParseInclude {
      *
      * @return void
      */
-    function __construct($string) {
+    public function __construct($string)
+    {
         $this->string = $string;
         $this->setIncludeFile();
         $this->string = $this->getInclude();
     }
-    
+
     /**
      * Return the string to replace tag
      * This method is recursive
      *
      * @return String $this->string
      */
-    public function getString(){
+    public function getString()
+    {
         $parse = new ParseString($this->string);
         $parse->find('include');
         $includes = $parse->getPortion();
@@ -46,13 +54,14 @@ class ParseInclude {
         }
         return $this->string;
     }
-    
+
     /**
      * Find and prepare the file to be included
      *
      * @return void
      */
-    private function setIncludeFile(){
+    private function setIncludeFile()
+    {
         $matches = [];
         $pattern = "/('){1}[^']+(\.htm){1}('){1}/";
         //-> {% include ('layout/core/datalist') %}
@@ -79,14 +88,15 @@ class ParseInclude {
      *
      * @return String $content The conten of included file
      */
-    public function getInclude() {
+    public function getInclude()
+    {
         if (is_file(ROOT . DS . $this->include)) {
             ob_start();
             include(ROOT . DS . $this->include);
             $content = ob_get_contents();
             ob_end_clean();
             $content = str_replace(["\n", "\r"], '', $content);
-            return $content;       
+            return $content;
         }
     }
 

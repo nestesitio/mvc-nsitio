@@ -10,36 +10,88 @@ use \lib\register\Monitor;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Dec 5, 2014
  */
-class VarsRegister {
-
+class VarsRegister
+{
+    /**
+     * @var array
+     */
     private static $vars = [];
+    /**
+     * @var array
+     */
     private static $requests = [];
+    /**
+     * @var array
+     */
     private static $posts = [];
-    
-    private static $app = '';
-    private static $action = '';
-    private static $canonical = '';
-    private static $id = false;
-    private static $slugvar = false;
-    private static $title;
-    private static $heading;
-    
 
+    /**
+     * @var string
+     */
+    private static $app = '';
+    /**
+     * @var string
+     */
+    private static $action = '';
+    /**
+     * @var string
+     */
+    private static $canonical = '';
+    /**
+     * @var bool
+     */
+    private static $id = false;
+    /**
+     * @var bool
+     */
+    private static $slugvar = false;
+    /**
+     * @var
+     */
+    private static $title;
+    /**
+     * @var
+     */
+    private static $heading;
+
+
+    /**
+     * VarsRegister constructor.
+     */
     private function __construct() {}
 
-    public static function setVars($key, $value) {
+    /**
+     * @param $key
+     * @param $value
+     */
+    public static function setVars($key, $value)
+    {
         self::$vars [$key] = $value;
     }
 
-    public static function getVars($key) {
+    /**
+     * @param $key
+     * @return bool
+     */
+    public static function getVars($key)
+    {
         return (isset(self::$vars [$key])) ? self::$objects [$key] : false;
     }
 
-    public static function setRequests($key, $value) {
+    /**
+     * @param $key
+     * @param $value
+     */
+    public static function setRequests($key, $value)
+    {
         self::$requests [$key] = $value;
     }
-    
-    public static function registPosts() {
+
+    /**
+     *
+     */
+    public static function registPosts()
+    {
         $inputs = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         Registry::setMonitor(Monitor::FORM, 'POST inputs: ' . count($inputs));
         if (!empty($inputs)) {
@@ -52,8 +104,12 @@ class VarsRegister {
             self::parseToken($inputs['token']);
         }
     }
-    
-    public static function registRequests() {
+
+    /**
+     *
+     */
+    public static function registRequests()
+    {
         $inputs = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
         Registry::setMonitor(Monitor::FORM, 'GET inputs: ' . count($inputs));
         if (!empty($inputs)) {
@@ -71,14 +127,22 @@ class VarsRegister {
 
     }
 
-    public static function parseToken($token){
+    /**
+     * @param $token
+     */
+    public static function parseToken($token)
+    {
         $vars = \lib\url\UrlRegister::decUrl($token);
         foreach($vars as $key=>$value){
             self::$vars [$key] = $value;
         }
     }
-    
-    public static function parseTokenToPost($token){
+
+    /**
+     * @param $token
+     */
+    public static function parseTokenToPost($token)
+    {
         $vars = \lib\url\UrlRegister::decUrl($token);
         foreach($vars as $key=>$value){
             self::$posts [$key] = $value;
@@ -86,88 +150,165 @@ class VarsRegister {
         }
     }
 
-    public static function getRequests($key = null) {
+    /**
+     * @param null $key
+     * @return array|bool|mixed
+     */
+    public static function getRequests($key = null)
+    {
         if($key == null){
             return self::$requests;
         }
         return (isset(self::$requests [$key])) ? self::$requests [$key] : false;
     }
-   
-    
-    public static function getPosts($key = null) {
+
+
+    /**
+     * @param null $key
+     * @return array|bool|mixed
+     */
+    public static function getPosts($key = null)
+    {
         if($key == null){
             return self::$posts;
         }
         return (isset(self::$posts [$key])) ? self::$posts [$key] : false;
     }
-    
-    
-    public static function setApp($app){
+
+
+    /**
+     * @param $app
+     */
+    public static function setApp($app)
+    {
         self::$app = $app;
     }
-    
-    public static function getApp(){
+
+    /**
+     * @return string
+     */
+    public static function getApp()
+    {
         return self::$app;
     }
-    
-    public static function setAction($a){
+
+    /**
+     * @param $a
+     */
+    public static function setAction($a)
+    {
         self::$action = $a;
     }
-    
-    public static function getAction(){
+
+    /**
+     * @return string
+     */
+    public static function getAction()
+    {
         return self::$action;
     }
-    
-    public static function getCanonical(){
+
+    /**
+     * @return string
+     */
+    public static function getCanonical()
+    {
         return self::$canonical;
     }
-    
-    public static function setCanonical($a){
+
+    /**
+     * @param $a
+     */
+    public static function setCanonical($a)
+    {
         self::$canonical = $a;
     }
-    
-    public static function setId($id){
+
+    /**
+     * @param $id
+     */
+    public static function setId($id)
+    {
         self::$id = $id;
     }
-    
-    public static function getId(){
+
+    /**
+     * @return bool
+     */
+    public static function getId()
+    {
         return self::$id;
     }
-    
-    
-    public static function setSlugVar($var){
+
+
+    /**
+     * @param $var
+     */
+    public static function setSlugVar($var)
+    {
         self::$slugvar = $var;
     }
-    
-    public static function getSlugVar(){
+
+    /**
+     * @return bool
+     */
+    public static function getSlugVar()
+    {
         return self::$slugvar;
     }
-    
-    
-    public static function setTitle($value){
+
+
+    /**
+     * @param $value
+     */
+    public static function setTitle($value)
+    {
         self::$title = $value;
     }
-    
-    public static function getTitle(){
+
+    /**
+     * @return mixed
+     */
+    public static function getTitle()
+    {
         return self::$title;
     }
-    
-    
-    public static function setHeadin($value){
+
+
+    /**
+     * @param $value
+     */
+    public static function setHeadin($value)
+    {
         self::$heading = $value;
     }
-    
-    public static function getHeading(){
+
+    /**
+     * @return mixed
+     */
+    public static function getHeading()
+    {
         return self::$heading;
     }
-    
+
+    /**
+     * @var
+     */
     private static $ip;
-    
-    public static function setIp($ip) {
+
+    /**
+     * @param $ip
+     */
+    public static function setIp($ip)
+    {
         self::$ip = $ip;
     }
-    
-    public static function getIp(){
+
+    /**
+     * @return mixed
+     */
+    public static function getIp()
+    {
         return self::$ip;
     }
 

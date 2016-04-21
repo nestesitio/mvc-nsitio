@@ -14,16 +14,33 @@ namespace lib\control;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 28, 2015
  */
-class ControlTools {
-
+class ControlTools
+{
+    /**
+     * ControlTools constructor.
+     */
     private function __construct() {}
-    
-    public static function getFielsAndLabelsFromXml($obj, $xmlfile){
+
+    /**
+     * @param $obj
+     * @param $xmlfile
+     * @return mixed
+     */
+    public static function getFielsAndLabelsFromXml($obj, $xmlfile)
+    {
         $config = new \lib\bkegenerator\DataEdit($obj, $xmlfile);
         return $config->getFielsAndLabels();
     }
-    
-    public static function validateFile($obj, $file, $type, $ext){
+
+    /**
+     * @param $obj
+     * @param $file
+     * @param $type
+     * @param $ext
+     * @return null|string
+     */
+    public static function validateFile($obj, $file, $type, $ext)
+    {
         if(!is_file(ROOT . DS . $file)){
             $file .= '.' . $ext;
         }
@@ -37,15 +54,21 @@ class ControlTools {
         }
         return $file;
     }
-    
-    public static function isFile($file, $ext = null){
+
+    /**
+     * @param $file
+     * @param null $ext
+     * @return string
+     */
+    public static function isFile($file, $ext = null)
+    {
         if(!is_file(ROOT . DS . $file)){
             if(null != $ext){
                 $file .= '.' . $ext;
             }else{
                 die('no file to ' . $file);
             }
-            
+
         }
         return ROOT . DS . $file;
     }

@@ -18,6 +18,9 @@ use \model\forms\UserGroupForm;
 class UsergroupsActions extends \lib\control\ControllerAdmin {
 
 
+    /**
+     *
+     */
     public function usergroupsAction(){
         $this->set('h1', VarsRegister::getHeading());
         $query = UsergroupsQuery::get();
@@ -28,30 +31,42 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
         $form = UserGroupForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'usergroups');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function listUsergroupsAction(){
         $query = UsergroupsQuery::get();
         $results = $this->buildDataList('usergroups', $query);
         #here you can process the results
         $this->renderList($results);
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function editUsergroupsAction() {
         $query = UsergroupsQuery::get()->filterById(VarsRegister::getId())->findOne();
         $form = UserGroupForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'usergroups');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function newUsergroupsAction() {
         $form = UserGroupForm::initialize();
         #more code about $form and $query
         $this->renderForm($form, 'usergroups');
     }
-    
+
+    /**
+     *
+     */
     public function bindUsergroupsAction() {
         $form = UserGroupForm::initialize()->validate();
         #more code for processing - example
@@ -71,18 +86,27 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
             $this->showUsergroupsAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showUsergroupsAction(){
         $model = UsergroupsQuery::get()->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'usergroups');
     }
-    
+
+    /**
+     *
+     */
     public function delUsergroupsAction() {
         $model = \model\querys\UserGroupQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function exportUsergroupsAction(){
         $query = UsergroupsQuery::get();
         $this->buildDataExport($query);

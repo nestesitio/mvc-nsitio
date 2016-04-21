@@ -13,6 +13,9 @@ use \model\querys\ProjectQuery;
  */
 class BackendActions extends \lib\control\Controller {
 
+    /**
+     *
+     */
     public function defaultAction() {
         $this->setView('dashboard');
         $this->set('h1', VarsRegister::getHeading());

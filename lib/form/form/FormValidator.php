@@ -12,11 +12,15 @@ use \lib\register\VarsRegister as VarsRegister;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 13, 2015
  */
-class FormValidator {
-    
-    
-    
-    public static function validateId($field, $query){
+class FormValidator
+{
+    /**
+     * @param $field
+     * @param $query
+     * @return array|bool|mixed|null
+     */
+    public static function validateId($field, $query)
+    {
         $value = self::getValue($field);
         if(is_numeric($value) && $value > 0){
             Registry::setMonitor(Monitor::FORM, 'Validate Id');
@@ -30,18 +34,31 @@ class FormValidator {
         }else{
             Registry::setMonitor(Monitor::FORM, 'Validate Id is null');
             return null;
-        } 
+        }
     }
-    
-    public static function validateText($field) {
+
+    /**
+     * @param $field
+     * @return mixed
+     */
+    public static function validateText($field)
+    {
         return filter_var(self::getValue($field), FILTER_SANITIZE_STRING);
     }
-    
-    public static function validateInt($field, $label, $required, $max) {
+
+    /**
+     * @param $field
+     * @param $label
+     * @param $required
+     * @param $max
+     * @return int|null
+     */
+    public static function validateInt($field, $label, $required, $max)
+    {
         $value = filter_var(self::getValue($field), FILTER_SANITIZE_STRING);
         $max = pow(10, $max) - 1;
         $value = str_replace(',', '.', $value);
-        $result = filter_var($value, FILTER_VALIDATE_INT, 
+        $result = filter_var($value, FILTER_VALIDATE_INT,
         ['options' => ['min_range' => ($max * -1), 'max_range' => $max]]);
         if($result === false && $required == true){
             Registry::setMonitor(Monitor::FORM, $field . ' value is not int ' . $value);
@@ -53,8 +70,15 @@ class FormValidator {
             return $result;
         }
     }
-    
-    public static function validateFloat($field, $label, $required) {
+
+    /**
+     * @param $field
+     * @param $label
+     * @param $required
+     * @return float|null
+     */
+    public static function validateFloat($field, $label, $required)
+    {
         $value = filter_var(self::getValue($field), FILTER_SANITIZE_STRING);
         $value = str_replace(',', '', $value);
         $options = ['decimal' => '.'];
@@ -68,13 +92,22 @@ class FormValidator {
         }else{
             return $result;
         }
-        
+
     }
-    
-    
-    public static function validateString($field, $label, $required, $minlen, $maxlen){
+
+
+    /**
+     * @param $field
+     * @param $label
+     * @param $required
+     * @param $minlen
+     * @param $maxlen
+     * @return array|bool|mixed
+     */
+    public static function validateString($field, $label, $required, $minlen, $maxlen)
+    {
         $value = self::getValue($field);
-        
+
         if(empty($value) && $required == true){
             Registry::setMonitor(Monitor::FORM, $field . ' value is empty ');
             Registry::setUserMessages(null, $label . ' String value is empty');
@@ -91,18 +124,33 @@ class FormValidator {
             return $value;
         }
     }
-    
-    public static function validateDate($field, $label){
+
+    /**
+     * @param $field
+     * @param $label
+     * @return array|bool|mixed
+     */
+    public static function validateDate($field, $label)
+    {
         $value = self::getValue($field);
-        
+
         return $value;
     }
 
-    public static function validateMultipleModel($field, $label, $query, $index, $required) {
+    /**
+     * @param $field
+     * @param $label
+     * @param $query
+     * @param $index
+     * @param $required
+     * @return array|bool
+     */
+    public static function validateMultipleModel($field, $label, $query, $index, $required)
+    {
         $values = [];
         $key = self::correctKey($field);
         $posts = VarsRegister::getPosts();
-        
+
         foreach($posts as $post => $value){
             if(strpos($post, $key) === 0 && !empty($value)){
                 $values[] = $value;
@@ -125,8 +173,18 @@ class FormValidator {
         Registry::setMonitor(Monitor::FORM, $field . ' result is true for ' . implode(', ', $values));
         return $values;
     }
-    
-    public static function validateModel($field, $label, $query, $index, $required, $default = null){
+
+    /**
+     * @param $field
+     * @param $label
+     * @param $query
+     * @param $index
+     * @param $required
+     * @param null $default
+     * @return bool|null
+     */
+    public static function validateModel($field, $label, $query, $index, $required, $default = null)
+    {
         $value = self::getValue($field);
         $result = $query->filterByColumn($index, $value)->findOne();
         if($result == false && $required == true){
@@ -139,12 +197,21 @@ class FormValidator {
         }else{
             return false;
         }
-        
+
     }
-    
-    public static function validateValues($field, $label, $possible_values, $required, $default = null){
+
+    /**
+     * @param $field
+     * @param $label
+     * @param $possible_values
+     * @param $required
+     * @param null $default
+     * @return array|bool|mixed|null
+     */
+    public static function validateValues($field, $label, $possible_values, $required, $default = null)
+    {
         $value = self::getValue($field);
-        
+
         if(in_array($value, $possible_values)){
             return $value;
         }elseif($required == true){
@@ -158,8 +225,16 @@ class FormValidator {
         }
         return $value;
     }
-    
-    public static function validateUnique($model, $field, $value, $label){
+
+    /**
+     * @param $model
+     * @param $field
+     * @param $value
+     * @param $label
+     * @return bool
+     */
+    public static function validateUnique($model, $field, $value, $label)
+    {
         $table = $model->getTableName();
         $query = Tools::buildModelQuery($table);
         foreach ($model->getPrimaryKey() as $pk) {
@@ -176,8 +251,14 @@ class FormValidator {
             return $value;
         }
     }
-    
-    public static function compareKeyToFields($key, $fields){
+
+    /**
+     * @param $key
+     * @param $fields
+     * @return mixed
+     */
+    public static function compareKeyToFields($key, $fields)
+    {
         //echo memory_get_usage() . '; ' . memory_get_peak_usage();
         $letters = str_split($key);
         foreach($letters as $k => $letter){
@@ -191,21 +272,36 @@ class FormValidator {
         reset($fields);
         return current($fields);
     }
-    
-    public static function correctKey($key){
+
+    /**
+     * @param $key
+     * @return string
+     */
+    public static function correctKey($key)
+    {
         #because javascript form submission alter keys when serializes data
         return VarsRegister::getCanonical() . '_' . str_replace('.', '_', $key);
     }
-    
-    public static function getColumnName($field){
+
+    /**
+     * @param $field
+     * @return mixed
+     */
+    public static function getColumnName($field)
+    {
         list(, $column) = explode('.', $field);
         return $column;
     }
-    
-    public static function getValue($field){
+
+    /**
+     * @param $field
+     * @return array|bool|mixed
+     */
+    public static function getValue($field)
+    {
         $key = FormValidator::correctKey($field);
         $value = VarsRegister::getPosts($key);
-        
+
         if($value == false){
             $value = \lib\form\PostTool::getMultiplePost($key);
         }

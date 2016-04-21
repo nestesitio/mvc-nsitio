@@ -15,6 +15,9 @@ use \apps\Core\model\PageQuery;
  */
 class MenuActions extends \lib\control\Controller {
 
+    /**
+     *
+     */
     public function navAction(){
         
         $this->set('nav_home', UrlHref::renderUrl('/'));
@@ -22,7 +25,10 @@ class MenuActions extends \lib\control\Controller {
         
         return $this->dispatch();
     }
-    
+
+    /**
+     *
+     */
     public function navtopAction(){
         
         $this->set('nav_home', UrlHref::renderUrl('/'));
@@ -30,8 +36,11 @@ class MenuActions extends \lib\control\Controller {
         
         return $this->dispatch();
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function headerAction(){
         
         return $this->dispatch();

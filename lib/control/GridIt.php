@@ -10,13 +10,28 @@ use \lib\bkegenerator\DataGrid;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Sep 23, 2015
  */
-class GridIt {
-
+class GridIt
+{
+    /**
+     * @var DataGrid
+     */
     private $grid;
+    /**
+     * @var \lib\bkegenerator\Config
+     */
     private $filters;
+    /**
+     * @var \lib\bkegenerator\Config
+     */
     private $fields;
 
-    function __construct($xmlfile, $obj) {
+    /**
+     * GridIt constructor.
+     * @param $xmlfile
+     * @param $obj
+     */
+    public function __construct($xmlfile, $obj)
+    {
         $grid = new DataGrid($xmlfile, $obj);
         $this->filters = $grid->getFilters();
         $this->fields = $grid->getFields();
@@ -26,60 +41,68 @@ class GridIt {
      * Build the configuration from xml file.
      *
      * @param String $xmlfile
-     * @param String $condition
-     * @param String $querystring
-     * 
+     * @param String $obj
+     *
      * @return \lib\bkegenerator\DataGrid $grid
      */
-    public static function create($xmlfile, $obj){
+    public static function create($xmlfile, $obj)
+    {
         $grid = new GridIt($xmlfile, $obj);
         return $grid;
     }
-    
-    public function addCondition($condition){
+
+    /**
+     * @param $condition
+     * @return $this
+     */
+    public function addCondition($condition)
+    {
         if($condition != null){
             $this->grid->setCondition($condition);
         }
         return $this;
     }
-    
-    public function addQueryString($querystring){
+
+    /**
+     * @param $querystring
+     * @return $this
+     */
+    public function addQueryString($querystring)
+    {
         if(null != $querystring){
             $this->grid->setQueryString($querystring);
         }
         return $this;
     }
-    
-    
-    
+
+
+
     /**
      * Build the configuration from xml file.
      *
-     * @param String $xmlfile
-     * @param String $condition
-     * @param String $querystring
-     * 
      * @return \lib\bkegenerator\DataGrid $grid
      */
-    public function get(){
+    public function get()
+    {
         return $this->grid;
     }
-    
+
     /**
      * Process all the html
      * (datagrid, datalist, edit, etc)
      *
      * @param String $output
-     * 
+     *
      * @return String
      */
-    public function setGrid($output){
+    public function setGrid($output)
+    {
         $this->grid->setHtml($output);
         /* process of html */
         $this->grid->execute();
         return $this->grid->getHtml();
     }
-    
+
     /**
      * Process file and include in html
      * (datagrid, datalist, edit, etc)
@@ -87,40 +110,54 @@ class GridIt {
      * @param String $file
      * @param String $tag
      * @param String $html
-     * 
+     *
      * @return String
      */
-    public function buildInclude($file, $tag, $html){
+    public function buildInclude($file, $tag, $html)
+    {
         $this->grid->getContentsFile($file, $tag);
         $this->grid->execute();
         return $this->grid->getHtml($html);
     }
-    
+
     /**
      * make configurations for the list from a xml file.
      *
      * @params \lib\bkegenerator\DataGrid $grid
      * @params String $var
      * @params String $view
-     * 
-     * @return lib\bkegenerator\Config $configs
+     *
+     * @return \lib\bkegenerator\Config $configs
      */
-    public function configureGrid($output, $var, $view = null){
+    public function configureGrid($output, $var, $view = null)
+    {
         $tpl = (null == $view)? '/layout/core/grid.htm' : $view;
         $this->grid->buildIncluded($output, $tpl, $var);
         $this->grid->execute();
         return $this->grid->getHtml();
     }
-    
-    public function getFilters(){
+
+    /**
+     * @return \lib\bkegenerator\Config
+     */
+    public function getFilters()
+    {
         return $this->filters;
     }
-    
-    public function getFields(){
+
+    /**
+     * @return \lib\bkegenerator\Config
+     */
+    public function getFields()
+    {
         return $this->fields;
     }
-    
-    public function getHtml(){
+
+    /**
+     * @return mixed
+     */
+    public function getHtml()
+    {
         return $this->grid->getHtml();
     }
 

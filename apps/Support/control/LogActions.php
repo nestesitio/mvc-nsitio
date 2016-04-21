@@ -17,6 +17,9 @@ use \model\forms\SupportLogForm;
  */
 class LogActions extends \lib\control\ControllerAdmin {
 
+    /**
+     *
+     */
     public function logAction(){
         $this->set('h1', VarsRegister::getHeading());
         $query = SupportLogQuery::start();
@@ -24,28 +27,40 @@ class LogActions extends \lib\control\ControllerAdmin {
         $form = SupportLogForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'log');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function listLogAction(){
         $query = SupportLogQuery::start();
         $this->buildDataList('log', $query);
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function editLogAction() {
         $query = SupportLogQuery::start()->filterById(VarsRegister::getId())->findOne();
         $form = SupportLogForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'log');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function newLogAction() {
         $form = SupportLogForm::initialize();
         #more code about $form and $query
         $this->renderForm($form, 'log');
     }
-    
+
+    /**
+     *
+     */
     public function bindLogAction() {
         $form = SupportLogForm::initialize()->validate();
         #more code for processing - example
@@ -65,18 +80,27 @@ class LogActions extends \lib\control\ControllerAdmin {
             $this->showLogAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showLogAction(){
         $model = SupportLogQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'log');
     }
-    
+
+    /**
+     *
+     */
     public function delLogAction() {
         $model = SupportLogQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function csvLogAction(){
         $query = SupportLogQuery::start();
         $this->buildCsvExport($query);

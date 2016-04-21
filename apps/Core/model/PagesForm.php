@@ -13,16 +13,27 @@ use \lib\form\input\HiddenInput;
  * Created @Jul 24, 2015
  */
 class PagesForm extends \lib\form\FormMerged {
-    
+
+    /**
+     * @var
+     */
     private $app;
 
+    /**
+     * @param $app
+     * @return PagesForm
+     */
     public static function init($app) {
         $form = new PagesForm();
         $form->declaration($app);
         
         return $form;
     }
-    
+
+    /**
+     * @param $app
+     * @return $this
+     */
     public function declaration($app) {
         $this->app = $app;
         
@@ -38,8 +49,11 @@ class PagesForm extends \lib\form\FormMerged {
         
         return $this;
     }
-    
-    
+
+
+    /**
+     * @return \model\forms\HtmForm
+     */
     private function declareHtmForm(){
         $form = \model\forms\HtmForm::initialize();
         $query = \model\querys\HtmAppQuery::start(ONLY)->filterBySlug($this->app)->findOne();
@@ -51,7 +65,10 @@ class PagesForm extends \lib\form\FormMerged {
         
         return $form;
     }
-    
+
+    /**
+     * @return \model\forms\HtmPageForm
+     */
     private function declareHtmPageForm(){
         $form = \model\forms\HtmPageForm::initialize();
         $input = HiddenInput::create(HtmPage::FIELD_HTM_ID)->setDefault(0);
@@ -60,7 +77,10 @@ class PagesForm extends \lib\form\FormMerged {
 	$form->setSlugInput($input);
         return $form;
     }
-    
+
+    /**
+     *
+     */
     protected function customValidate() {
         $title = $this->getValidatedValue(HtmPage::TABLE, HtmPage::FIELD_TITLE);
         $slug = \lib\tools\StringTools::slugify($title);

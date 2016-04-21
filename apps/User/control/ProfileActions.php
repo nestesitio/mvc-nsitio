@@ -30,7 +30,10 @@ class ProfileActions extends \lib\control\ControllerAdmin {
     private function getPlayer(){
         return SessionUser::getPlayerId();
     }
-    
+
+    /**
+     * @return UserInfoQuery
+     */
     private function getQuery(){
         return UserBaseQuery::start()
                 ->filterById($this->getPlayer())
@@ -39,29 +42,39 @@ class ProfileActions extends \lib\control\ControllerAdmin {
                 ->selectTlf()->selectTlm()
                 ->endUse();
     }
-    
+
+    /**
+     * @return UserInfoQuery
+     */
     private function getInfoQuery(){
         return UserInfoQuery::start()->filterByUserId($this->getPlayer());
     }
 
+    /**
+     *
+     */
     public function profileAction(){
         $this->set('h1', VarsRegister::getHeading());
         $this->set('nav_home','/');
         $this->setView('profile');
         $this->showProfileAction();
     }
-    
-    
-    
+
+
+    /**
+     *
+     */
     public function editProfileAction() {
         $user = $this->getQuery()->filterById($this->getPlayer())->findOne();
         $form = UserBaseForm::initialize()->setQueryValues($user);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'profile');
     }
-    
-    
-    
+
+
+    /**
+     *
+     */
     public function bindProfileAction() {
         $form = UserBaseForm::initialize()->validate();
         #more code for processing - example
@@ -81,7 +94,10 @@ class ProfileActions extends \lib\control\ControllerAdmin {
             $this->showProfileAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showProfileAction(){
         $model = $this->getQuery()->findOne();
         if ($model != false) {
@@ -98,7 +114,10 @@ class ProfileActions extends \lib\control\ControllerAdmin {
             return;
         }
     }
-    
+
+    /**
+     *
+     */
     public function nameProfileAction(){
         $value = $this->getJEditableValue();
         $model = $this->getQuery()->findOne();
@@ -106,7 +125,10 @@ class ProfileActions extends \lib\control\ControllerAdmin {
         $model->save();
         echo $value;
     }
-    
+
+    /**
+     *
+     */
     public function mailProfileAction(){
         $value = $this->getJEditableValue();
         $model = $this->getQuery()->findOne();
@@ -114,7 +136,10 @@ class ProfileActions extends \lib\control\ControllerAdmin {
         $model->save();
         echo $value;
     }
-    
+
+    /**
+     *
+     */
     public function tlmProfileAction(){
         $value = $this->getJEditableValue();
         $model = $this->getInfoQuery()->findOne();
@@ -122,7 +147,10 @@ class ProfileActions extends \lib\control\ControllerAdmin {
         $model->save();
         echo $value;
     }
-    
+
+    /**
+     *
+     */
     public function tlfProfileAction(){
         $value = $this->getJEditableValue();
         $model = $this->getInfoQuery()->findOne();
@@ -130,7 +158,10 @@ class ProfileActions extends \lib\control\ControllerAdmin {
         $model->save();
         echo $value;
     }
-    
+
+    /**
+     *
+     */
     public function addressProfileAction(){
         $value = $this->getJEditableValue();
         $model = $this->getInfoQuery()->findOne();
@@ -138,7 +169,10 @@ class ProfileActions extends \lib\control\ControllerAdmin {
         $model->save();
         echo $value;
     }
-    
+
+    /**
+     *
+     */
     public function zipProfileAction(){
         $value = $this->getJEditableValue();
         $model = $this->getInfoQuery()->findOne();
@@ -146,7 +180,10 @@ class ProfileActions extends \lib\control\ControllerAdmin {
         $model->save();
         echo $value;
     }
-    
+
+    /**
+     *
+     */
     public function localProfileAction(){
         $value = $this->getJEditableValue();
         $model = $this->getInfoQuery()->findOne();
@@ -154,11 +191,17 @@ class ProfileActions extends \lib\control\ControllerAdmin {
         $model->save();
         echo $value;
     }
-    
+
+    /**
+     *
+     */
     public function passwordProfileAction(){
         $this->setView('password');
     }
-    
+
+    /**
+     *
+     */
     public function changeProfileAction(){
         $this->setEmptyView();
         $pass1 = VarsRegister::getPosts('pass1');

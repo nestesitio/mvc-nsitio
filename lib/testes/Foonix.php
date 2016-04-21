@@ -6,22 +6,21 @@
  */
 
 /**
- * Description of Foonix 
+ * Description of Foonix
  * created in 5/Nov/2014
  * @author $luispinto@nestesitio.net
  */
 
-namespace lib\Testes;
+namespace lib\testes;
 
-class Foonix {
-
-  function __construct() {
-    
+class Foonix
+{
+  public function __construct()
+  {
   }
 
-  public static function execute() {
+  public static function execute()
+  {
     return 'foonix<br />';
   }
 }
-
-?>

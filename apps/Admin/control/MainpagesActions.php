@@ -17,36 +17,54 @@ use \model\hybrid\PagesForm;
  * Updated @%$dateUpdated% *
  */
 class MainpagesActions extends \apps\Core\control\PagesActions {
-    
+
+    /**
+     * @var string
+     */
     private $app_slug = 'home';
 
+    /**
+     *
+     */
     public function mainpagesAction(){
         $this->set('h1', VarsRegister::getHeading());
         
         \lib\session\SessionConfig::setXml('apps/Admin/config/mainpages');
         $this->mainAction($this->app_slug, 'mainpages');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function listMainpagesAction(){
         $this->listAction($this->app_slug, 'mainpages');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function editMainpagesAction() {
         $query = PagesQuery::get($this->app_slug)->filterById(VarsRegister::getId())->findOne();
         $form = PagesForm::init($this->app_slug)->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'mainpages');
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function newMainpagesAction() {
         $form = PagesForm::init($this->app_slug);
         #more code about $form and $query
         $this->renderForm($form, 'mainpages');
     }
-    
+
+    /**
+     *
+     */
     public function statusMainPagesAction(){
         $query = PagesQuery::get($this->app_slug)->filterById(VarsRegister::getId())->findOne();
         $form = HtmPageForm::initialize();
@@ -54,7 +72,10 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'page', null, 'bindstatus_mainpages');
     }
-    
+
+    /**
+     *
+     */
     public function bindstatusMainpagesAction() {
         $form = HtmPageForm::initialize();
         $form->unsetsetFieldInput(HtmPage::TABLE, HtmPage::FIELD_LANGS_TLD);
@@ -70,6 +91,9 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
     }
 
 
+    /**
+     *
+     */
     public function bindMainpagesAction() {
         $form = PagesForm::init($this->app_slug)->validate();
         #more code for processing - example
@@ -89,18 +113,27 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
             $this->showMainpagesAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showMainpagesAction(){
         $model = PagesQuery::get($this->app_slug)->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'mainpages');
     }
-    
+
+    /**
+     *
+     */
     public function delMainpagesAction() {
         $model = \model\querys\HtmPageQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function exportMainpagesAction(){
         $query = MainpagesQuery::get();
         $this->buildDataExport($query);

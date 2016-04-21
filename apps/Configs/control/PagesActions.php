@@ -16,15 +16,21 @@ use \model\querys\HtmQuery;
  * Created @Jan 26, 2015
  */
 class PagesActions extends \lib\control\ControllerAdmin {
-    
+
+    /**
+     * @return mixed
+     */
     private function query(){
         return PageQuery::start()
                 ->joinHtm()->selectStat()->selectOrd()->selectHtmAppId()
                 ->joinHtmApp()->selectSlug()->selectName()->orderByName()->endUse()->endUse()
                 ->orderByHtmId();
     }
-    
 
+
+    /**
+     *
+     */
     public function pagesAction(){
         $this->set('h1', VarsRegister::getHeading());
         $query = $this->query();
@@ -34,20 +40,29 @@ class PagesActions extends \lib\control\ControllerAdmin {
         $form = \model\hybrid\PageForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'pages');
     }
-    
+
+    /**
+     *
+     */
     public function listPagesAction(){
         $query = $this->query();
         $results = $this->buildDataList('pages', $query);
         $this->renderList($results);
     }
-    
+
+    /**
+     *
+     */
     public function editPagesAction() {
         $query = $this->query()->filterById(VarsRegister::getId())->findOne();
         $form = \model\hybrid\PageForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'pages');
     }
-    
+
+    /**
+     *
+     */
     public function newPagesAction() {
         $form = \model\hybrid\PageForm::initialize();
         $form->setDefault(Htm::TABLE, Htm::FIELD_STAT, 'public');
@@ -55,6 +70,9 @@ class PagesActions extends \lib\control\ControllerAdmin {
         $this->renderForm($form, 'pages');
     }
 
+    /**
+     *
+     */
     public function bindPagesAction() {
         $form = \model\hybrid\PageForm::initialize()->validate();
         #$form->setFieldValue($table, $field, $value);
@@ -66,12 +84,18 @@ class PagesActions extends \lib\control\ControllerAdmin {
             $this->showPagesAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showPagesAction(){
         $model = $this->query()->filterById(VarsRegister::getId())->findOne();
         $this->renderValues($model, 'pages');
     }
-    
+
+    /**
+     *
+     */
     public function delPagesAction() {
         $htmpage = HtmPageQuery::start(ONLY)->filterByHtmId(VarsRegister::getId())->findOne();
         $this->deleteObject($htmpage);

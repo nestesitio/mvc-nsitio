@@ -8,8 +8,8 @@ namespace lib\mysql;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 26, 2014
  */
-class Mysql {
-
+class Mysql
+{
     /** Comparison type. */
     const EQUAL = "=";
 
@@ -36,7 +36,7 @@ class Mysql {
 
     /** Comparison type. */
     const NOT_LIKE = " NOT LIKE ";
-    
+
     /** Comparison type. */
     const DISTINCT = "DISTINCT";
 
@@ -45,7 +45,7 @@ class Mysql {
 
     /** Comparison type. */
     const NOT_IN = " NOT IN ";
-    
+
     /** Comparison type. */
     const BETWEEN = " BETWEEN ";
 
@@ -72,7 +72,7 @@ class Mysql {
 
     /** "IS NOT NULL" null comparison */
     const ISNOTNULL = " IS NOT NULL ";
-    
+
     /** "LEFT JOIN" SQL statement */
     const LEFT_JOIN = "LEFT JOIN";
 
@@ -87,30 +87,30 @@ class Mysql {
 
     /** logical AND operator */
     const LOGICAL_AND = "AND";
-    
+
     /** mysql> SELECT DATE_ADD('2008-01-02', INTERVAL 31 DAY); **/
     const DATE_ADD = "DATE_ADD";
-    
+
     /** mysql> SELECT NOW(); **/
     const NOW = "NOW()";
-    
+
     /** mysql> search_modifier: AGAINST ('$search' IN NATURAL LANGUAGE MODE) **/
     const SEARCH_NATURAL = "IN NATURAL LANGUAGE MODE";
-    
+
     /** mysql> search_modifier: AGAINST ('$search' IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION) **/
     const SEARCH_NATURAL_WITH_QUERY = "IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION";
-    
+
     /** mysql> search_modifier: AGAINST ('$search' IN BOOLEAN MODE) **/
     const SEARCH_BOOLEAN = "IN BOOLEAN MODE";
-    
+
     /** mysql> SELECT MAX(...); **/
     const FUNCTION_MAX = "MAX";
-    
+
     /** mysql> SELECT MIN(...); **/
     const FUNCTION_MIN = "MIN";
-    
+
     /** mysql> ORDER BY RAND(); **/
     const FUNCTION_RAND = "RAND()";
-    
+
 
 }

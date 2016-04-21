@@ -9,10 +9,20 @@ namespace apps\Taskings\tasks;
  * Created @Mar 3, 2016
  */
 class Task {
-    
+
+    /**
+     * @var array
+     */
     private static $options = [];
+    /**
+     * @var
+     */
     private static $fp;
 
+    /**
+     * @param $options
+     * @param $fp
+     */
     public static function execute($options, $fp) {
         self::$options = $options;
         self::$fp = $fp;
@@ -30,7 +40,10 @@ class Task {
             self::manual();
         }
     }
-    
+
+    /**
+     *
+     */
     private static function manual() {
         echo "-t [model, admin, app] \n";
         echo "-t model \n";
@@ -38,8 +51,11 @@ class Task {
         echo "-t app -a (app_name) -t (table_name) \n";
         echo "-t convert -a folder -n (sell-out | sell-in) \n";
     }
-    
-    
+
+
+    /**
+     *
+     */
     private static function doGenerate(){
         $exec = new \lib\crud\Generate();
         # php task.php -t admin -a app -n control -m model -f ...

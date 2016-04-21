@@ -20,7 +20,10 @@ use \model\models\UserGroup;
  * Updated @%$dateUpdated% *
  */
 class AppgroupActions extends \lib\control\ControllerAdmin {
-    
+
+    /**
+     * @return mixed
+     */
     private function query(){
         return UserGroupHasHtmAppQuery::start()
                 ->joinUserGroup()->selectName()->selectDescription()->endUse()
@@ -28,21 +31,29 @@ class AppgroupActions extends \lib\control\ControllerAdmin {
                 ->filterByHtmAppId(VarsRegister::getId());
     }
 
+    /**
+     *
+     */
     public function appgroupAction(){
         $query = $this->query();
         $results = $this->buildDataGrid('appgroup', $query, '/layout/core/datasublist.htm');
         $this->renderList($results);
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function listAppgroupAction(){
         $query =  $this->query();
         $results = $this->buildDataList('appgroup', $query);
         $this->renderList($results);
     }
-    
-    
-    
+
+
+    /**
+     *
+     */
     public function newAppgroupAction() {
         $form = UserGroupHasHtmAppForm::initialize();
         $table = UserGroupHasHtmApp::TABLE;
@@ -59,7 +70,10 @@ class AppgroupActions extends \lib\control\ControllerAdmin {
         
         $this->renderForm($form, 'appgroup');
     }
-    
+
+    /**
+     *
+     */
     public function bindAppgroupAction() {
         $table = UserGroupHasHtmApp::TABLE;
         $form = UserGroupHasHtmAppForm::initialize()
@@ -68,7 +82,10 @@ class AppgroupActions extends \lib\control\ControllerAdmin {
         $this->buildMultipleProcess('bind', $form, 'appgroup');
         
     }
-    
+
+    /**
+     *
+     */
     public function delAppgroupAction() {
         $app = VarsRegister::getRequests('app');
         $group = VarsRegister::getRequests('group');

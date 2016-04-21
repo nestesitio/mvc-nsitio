@@ -16,13 +16,19 @@ use \lib\url\UrlHref;
 class BackendMenuActions extends \lib\control\Controller {
 
         /* Menu used on backend area */
+    /**
+     *
+     */
     public function topmenuAction(){
         $this->set('files-menu', $this->files());
         $this->set('user-menu', UserMenu::backendMenu());
         $this->set('tool-debug', UserMenu::toolDebug());
         return $this->dispatch();
     }
-    
+
+    /**
+     * @return array
+     */
     private function files(){
         $companies = CompaniesQuery::getActiveDistributors()->find();
         $files = [];
@@ -36,7 +42,10 @@ class BackendMenuActions extends \lib\control\Controller {
         }
         return $files;
     }
-    
+
+    /**
+     *
+     */
     public function navbackendAction(){
         $links = $mainlinks = [];
         $this->set('nav_home', UrlHref::renderUrl('/'));

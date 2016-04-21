@@ -8,21 +8,38 @@ namespace lib\form\input;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Aug 26, 2015
  */
-class ArrayCheckInput extends \lib\form\Input {
-    
+class ArrayCheckInput extends \lib\form\Input
+{
+    /**
+     * @var array
+     */
     private $list = [];
 
-    public static function create($field = null){
+    /**
+     * @param null $field
+     * @return ArrayCheckInput
+     */
+    public static function create($field = null)
+    {
         $obj = new ArrayCheckInput($field, $field);
         return $obj;
     }
-    
-    public function setValuesList($values = []){
+
+    /**
+     * @param array $values
+     * @return $this
+     */
+    public function setValuesList($values = [])
+    {
         $this->list = $values;
         return $this;
     }
-    
-    public function parseInput() {
+
+    /**
+     * @return string
+     */
+    public function parseInput()
+    {
         $this->attributes();
         /*' <input type="checkbox" name="vehicle" value="Bike">I have a bike<br> '*/
         $this->input = '<fieldset id="' . $this->elemid . '">';
@@ -40,7 +57,7 @@ class ArrayCheckInput extends \lib\form\Input {
             }
             $this->input .= ' /> ' . $label . '&nbsp;';
         }
-        
+
         $this->input .= '<a class="clear-input" data-id="'.$this->elemid.'"><span class="glyphicon glyphicon-refresh"></span></a>';
         return $this->input;
     }

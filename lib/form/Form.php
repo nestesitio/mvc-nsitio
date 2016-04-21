@@ -12,54 +12,122 @@ use \lib\form\form\FormValidator;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 23, 2015
  */
-class Form extends \lib\form\form\FormProcessing {
-
+class Form extends \lib\form\form\FormProcessing
+{
+    /**
+     * @var array
+     */
     protected $queue = [];
-    
-    protected $inputvalues = [];
-    protected $formlabels = [];
-    
-    protected $primarykey = 0;
-    
-    function __construct() {}
-    
 
-    public function setFieldInput($table, $field, Input $input){
+    /**
+     * @var array
+     */
+    protected $inputvalues = [];
+    /**
+     * @var array
+     */
+    protected $formlabels = [];
+
+    /**
+     * @var int
+     */
+    protected $primarykey = 0;
+
+    /**
+     * Form constructor.
+     */
+    public function __construct() {}
+
+
+    /**
+     * @param $table
+     * @param $field
+     * @param \lib\form\Input $input
+     * @return mixed
+     */
+    public function setFieldInput($table, $field, Input $input)
+    {
         $this->forminputs[$table][$field] = $input;
         return $this->forminputs[$table][$field];
     }
-    
-    public function unsetFieldInput($table, $field){
+
+    /**
+     * @param $table
+     * @param $field
+     * @return $this
+     */
+    public function unsetFieldInput($table, $field)
+    {
         unset($this->forminputs[$table][$field]);
         return $this;
     }
-    
-    public function setInputType($table, $field, $type){
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $type
+     * @return mixed
+     */
+    public function setInputType($table, $field, $type)
+    {
         return $this->forminputs[$table][$field]->setInputType($type);
     }
-    
-    public function setFieldLabel($table, $field, $label){
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $label
+     * @return mixed
+     */
+    public function setFieldLabel($table, $field, $label)
+    {
         $this->formlabels[$table][$field] = $label;
         return $this->formlabels[$table][$field];
     }
-    
-    public function setFieldValue($table, $field, $value) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $value
+     * @return mixed
+     */
+    public function setFieldValue($table, $field, $value)
+    {
         return $this->forminputs[$table][$field]->setValue($value);
     }
-    
-    public function setDefault($table, $field, $value) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $value
+     * @return mixed
+     */
+    public function setDefault($table, $field, $value)
+    {
         return $this->forminputs[$table][$field]->setDefault($value);
     }
-    
-    public function setMultipleField($table, $field) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @return $this
+     */
+    public function setMultipleField($table, $field)
+    {
         $input = $this->forminputs[$table][$field];
         if($input->getInputType() == Input::TYPE_SELECT){
             $input->setMultiple();
         }
         return $this;
     }
-    
-    public function getInputModel($table, $field) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @return null
+     */
+    public function getInputModel($table, $field)
+    {
         $input = $this->forminputs[$table][$field];
         if($input->getInputType() == Input::TYPE_SELECT){
             return $input->getModel();
@@ -67,45 +135,87 @@ class Form extends \lib\form\form\FormProcessing {
         return null;
 
     }
-    
-    public function setInputModel($table, $field, $model) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $model
+     * @return $this
+     */
+    public function setInputModel($table, $field, $model)
+    {
         $input = $this->forminputs[$table][$field];
         if($input->getInputType() == Input::TYPE_SELECT){
             $input->setModel($model);
         }
         return $this;
     }
-    
-    public function setQuery($table, $field, $query){
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $query
+     * @return $this
+     */
+    public function setQuery($table, $field, $query)
+    {
         $this->forminputs[$table][$field]->setModel($query);
-        return $this;    
+        return $this;
     }
-    
-    public function setDataAttribute($table, $field, $value){
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $value
+     * @return $this
+     */
+    public function setDataAttribute($table, $field, $value)
+    {
         $this->forminputs[$table][$field]->setDataAttribute('data-link', $value);
-        return $this;    
+        return $this;
     }
 
 
     #return for merged forms
-    public function getFormInputs($table = null) {
+    /**
+     * @param null $table
+     * @return array
+     */
+    public function getFormInputs($table = null)
+    {
         return (null == $table)? $this->forminputs : $this->forminputs[$table];
     }
-    
-    public function getInput($table, $field) {
-        
+
+    /**
+     * @param $table
+     * @param $field
+     * @return null
+     */
+    public function getInput($table, $field)
+    {
         if(isset($this->forminputs[$table][$field])){
             return $this->forminputs[$table][$field];
         }else{
             return null;
         }
     }
-    
-    public function getFormLabels($table = null) {
+
+    /**
+     * @param null $table
+     * @return array|mixed
+     */
+    public function getFormLabels($table = null)
+    {
         return (null == $table)? $this->formlabels : $this->formlabels[$table];
     }
-    
-    protected function getInputValue($table, $field){
+
+    /**
+     * @param $table
+     * @param $field
+     * @return array|bool|mixed
+     */
+    protected function getInputValue($table, $field)
+    {
         if(isset($this->validated[$table][$field])){
             return $this->validated[$table][$field];
         }
@@ -119,8 +229,14 @@ class Form extends \lib\form\form\FormProcessing {
         }
         return $this->forminputs[$table][$field]->getValue();
     }
-    
-    protected function getInputDate($table, $field){
+
+    /**
+     * @param $table
+     * @param $field
+     * @return array|bool|mixed
+     */
+    protected function getInputDate($table, $field)
+    {
         if(isset($this->validated[$table][$field])){
             return $this->validated[$table][$field];
         }
@@ -133,16 +249,21 @@ class Form extends \lib\form\form\FormProcessing {
                 if(!isset($value['max'])){
                     $value['max'] = null;
                 }
-                
+
             }
             return $value;
         }
-        return $this->forminputs[$table][$field]->getValue(); 
+        return $this->forminputs[$table][$field]->getValue();
     }
 
 
     #fullfill input values from query
-    public function setQueryValues($query = null){
+    /**
+     * @param null $query
+     * @return $this
+     */
+    public function setQueryValues($query = null)
+    {
         if(null != $query){
             if(method_exists($query,'exec')){
                 die("Error: execute query first by find() or findOne()");
@@ -152,11 +273,11 @@ class Form extends \lib\form\form\FormProcessing {
                 if(isset($this->models[$table])){
                     $fks = $this->models[$table]->getForeignKeys();
                 }
-                
+
                 foreach($forminputs as $field=>$input){
                     if (array_key_exists($field, $columns)) {
                         $value = $query->getColumnValue($field);
-                        
+
                         $input->setValue($value);
                         if(isset($fks[$field])){
                             $this->duplicateValue($fks[$field], $value, $input);
@@ -167,8 +288,14 @@ class Form extends \lib\form\form\FormProcessing {
         }
         return $this;
     }
-    
-    private function duplicateValue($fk, $value, $this_input){
+
+    /**
+     * @param $fk
+     * @param $value
+     * @param $this_input
+     */
+    private function duplicateValue($fk, $value, $this_input)
+    {
         #$this->fk[HtmPage::HTM_PAGE_HTM_ID] = ['table'=>'htm', 'field'=>'id'];
         $table = $fk['table'];
         $field = $table . '.' . $fk['field'];
@@ -181,34 +308,62 @@ class Form extends \lib\form\form\FormProcessing {
             }
         }
     }
-    
+
     #render form
-    public function renderHiddenFields($actionclass = null){
+    /**
+     * @param null $actionclass
+     * @return string
+     */
+    public function renderHiddenFields($actionclass = null)
+    {
         return FormRender::renderHiddenFields($this->queue, $this->forminputs, $actionclass);
     }
-    
-    public function renderInputs($actionclass, $config) {
+
+    /**
+     * @param $actionclass
+     * @param $config
+     * @return array
+     */
+    public function renderInputs($actionclass, $config)
+    {
         #echo $this->forminputs['client_prp']['client_prp.pact']->getInputType() . '<br />';
         #echo $this->getClientPrpForm()->getPactInput()->getInputType() . '<br />';
         return FormRender::renderInputs($this->forminputs, $this->formlabels, $actionclass, $config);
     }
-    
+
     #return for merged forms
-    public function getErrors() {
+    /**
+     * @return int
+     */
+    public function getErrors()
+    {
         return $this->processerrors;
     }
-    
-    public function getModels($table = null) {
+
+    /**
+     * @param null $table
+     * @return array
+     */
+    public function getModels($table = null)
+    {
         return (null == $table)? $this->models : $this->models[$table];
     }
-    
-    
-    public function getPrimaryKey() {
+
+
+    /**
+     * @return int
+     */
+    public function getPrimaryKey()
+    {
         return $this->primarykey;
     }
-    
+
     #filters
-    public function prepareFilters() {
+    /**
+     * @return $this
+     */
+    public function prepareFilters()
+    {
         foreach($this->forminputs as $form){
             foreach($form as $input){
                 $input->emptyValue();
@@ -219,8 +374,14 @@ class Form extends \lib\form\form\FormProcessing {
         }
         return $this;
     }
-    
-    public function renameInput($table, $field, $prefix) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $prefix
+     */
+    public function renameInput($table, $field, $prefix)
+    {
         $input = $this->forminputs[$table][$field];
         $name = $prefix . $input->getName();
         $input->setName($name)->setId($name);

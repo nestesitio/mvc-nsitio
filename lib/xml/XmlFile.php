@@ -12,9 +12,14 @@ use \lib\register\Monitor;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 24, 2014
  */
-class XmlFile extends \lib\xml\Xml {
-
-    function __construct($file) {
+class XmlFile extends \lib\xml\Xml
+{
+    /**
+     * XmlFile constructor.
+     * @param $file
+     */
+    public function __construct($file)
+    {
         if (strpos($file, '.xml') && is_file(ROOT . DS . $file)) {
             $this->xml = new DOMDocument();
             $this->xml->preserveWhiteSpace = FALSE;

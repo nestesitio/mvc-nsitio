@@ -10,15 +10,25 @@ use \lib\form\Input;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @May 11, 2015
  */
-class BooleanInput extends \lib\form\Input {
-
-    public static function create($field = null){
+class BooleanInput extends \lib\form\Input
+{
+    /**
+     * @param null $field
+     * @return BooleanInput
+     */
+    public static function create($field = null)
+    {
         $obj = new BooleanInput($field, $field);
         $obj->setInputType(Input::TYPE_CHECKBOX);
         return $obj;
     }
-    
-    public function parseInput($label) {
+
+    /**
+     * @param $label
+     * @return string
+     */
+    public function parseInput($label)
+    {
         $this->class = '';
         $this->attributes();
         unset($this->attributes['value']);

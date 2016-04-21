@@ -8,9 +8,14 @@ namespace lib\tools;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jul 17, 2015
  */
-class TimeTools {
-    
-    public static function serializeDate($datetime){
+class TimeTools
+{
+    /**
+     * @param $datetime
+     * @return array
+     */
+    public static function serializeDate($datetime)
+    {
         $datetime = trim($datetime);
         $date = [];
         if(strpos($datetime, ' ')){
@@ -26,7 +31,18 @@ class TimeTools {
         return $date;
     }
 
-    public static function modify($datetime, $y = null, $m = null, $d = null, $h = null, $i = null, $s = null){
+    /**
+     * @param $datetime
+     * @param null $y
+     * @param null $m
+     * @param null $d
+     * @param null $h
+     * @param null $i
+     * @param null $s
+     * @return mixed
+     */
+    public static function modify($datetime, $y = null, $m = null, $d = null, $h = null, $i = null, $s = null)
+    {
         $date = self::serializeDate($datetime);
         if($y === null){
             $y = $date['date']['y'];

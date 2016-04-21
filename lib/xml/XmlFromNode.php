@@ -10,9 +10,15 @@ use DOMXPath;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 24, 2014
  */
-class XmlFromNode extends \lib\xml\Xml {
-
-    function __construct(Xml $xml, $path) {
+class XmlFromNode extends \lib\xml\Xml
+{
+    /**
+     * XmlFromNode constructor.
+     * @param Xml $xml
+     * @param $path
+     */
+    public function __construct(Xml $xml, $path)
+    {
         $xpath = new DOMXPath($xml);
         if (empty($path)) {
             return false;
@@ -26,8 +32,12 @@ class XmlFromNode extends \lib\xml\Xml {
             }
         }
     }
-    
-    private function importNode($node) {
+
+    /**
+     * @param $node
+     */
+    private function importNode($node)
+    {
         // Import the node, and all its children, to the document
         $node = $this->xml->importNode($node, true);
         // And then append it to the "<root>" node

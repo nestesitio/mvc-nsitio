@@ -11,19 +11,47 @@ use \lib\register\Monitor;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 27, 2015
  */
-class FormProcessing {
-    
+class FormProcessing
+{
+    /**
+     * @var array
+     */
     protected $models = [];
+    /**
+     * @var array
+     */
     protected $forminputs = [];
+    /**
+     * @var array
+     */
     protected $nullvalues = [];
+    /**
+     * @var int
+     */
     protected $processerrors = 0;
+    /**
+     * @var int
+     */
     protected $primarykeyvalue = 0;
+    /**
+     * @var array
+     */
     protected $validated = [];
 
+    /**
+     *
+     */
     const VIRTUALTABLE = 'no_table';
 
-    #validation    
-    protected function validatePrimaryKey($table, $field, $query) {
+    #validation
+    /**
+     * @param $table
+     * @param $field
+     * @param $query
+     * @return mixed
+     */
+    protected function validatePrimaryKey($table, $field, $query)
+    {
         //$this->primarykey[$table] = $field;
         if (isset($this->validated[$table][$field])) {
             return $this->validated[$table][$field];
@@ -35,10 +63,16 @@ class FormProcessing {
         if($this->primarykey == 0){
            $this->primarykey = $field;
         }
-        return $this->setValidatedValue($table, $field, $value); 
+        return $this->setValidatedValue($table, $field, $value);
     }
-    
-    protected function validateBool($table, $field){
+
+    /**
+     * @param $table
+     * @param $field
+     * @return mixed
+     */
+    protected function validateBool($table, $field)
+    {
         if (isset($this->validated[$table][$field])) {
             return $this->validated[$table][$field];
         }
@@ -50,10 +84,19 @@ class FormProcessing {
         }else{
             $value = 1;
         }
-        return $this->setValidatedValue($table, $field, $value); 
+        return $this->setValidatedValue($table, $field, $value);
     }
-    
-    protected function validateString($table, $field, $required, $maxlen = 0, $minlen = 0) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $required
+     * @param int $maxlen
+     * @param int $minlen
+     * @return mixed|null
+     */
+    protected function validateString($table, $field, $required, $maxlen = 0, $minlen = 0)
+    {
         if (isset($this->validated[$table][$field])) {
             return $this->validated[$table][$field];
         }elseif(!isset($this->forminputs[$table][$field])){
@@ -65,8 +108,14 @@ class FormProcessing {
         }
         return $this->setValidatedValue($table, $field, $value);
     }
-    
-    protected function validateDate($table, $field){
+
+    /**
+     * @param $table
+     * @param $field
+     * @return mixed|null
+     */
+    protected function validateDate($table, $field)
+    {
         if (isset($this->validated[$table][$field])) {
             return $this->validated[$table][$field];
         }elseif(!isset($this->forminputs[$table][$field])){
@@ -75,14 +124,29 @@ class FormProcessing {
         $value = FormValidator::validateDate($field, $this->formlabels[$table][$field]);
         return $this->setValidatedValue($table, $field, $value);
     }
-    
-    public function setNullValues($table, $field) {
+
+    /**
+     * @param $table
+     * @param $field
+     */
+    public function setNullValues($table, $field)
+    {
         $this->nullvalues[$table][$field] = 0;
     }
-    
-    
+
+
     //$this->validatedValues['htm.htm_app_id'] = $this->validateModel('htm.htm_app_id', \model\querys\HtmAppQuery::start(),'id', true);
-    protected function validateModel($table, $field, $query, $index, $required, $default = null){
+    /**
+     * @param $table
+     * @param $field
+     * @param $query
+     * @param $index
+     * @param $required
+     * @param null $default
+     * @return mixed|null
+     */
+    protected function validateModel($table, $field, $query, $index, $required, $default = null)
+    {
         if (isset($this->validated[$table][$field])) {
             return $this->validated[$table][$field];
         }elseif(!isset($this->forminputs[$table][$field])){
@@ -96,14 +160,23 @@ class FormProcessing {
         }else{
             $value = FormValidator::validateModel($field, $this->formlabels[$table][$field], $query, $index, $required, $default);
         }
-        
+
         if($value == false && $required == true){
             $this->processerrors++;
         }
         return (is_array($value))? $this->setMultipleModels($table, $field, $value) : $this->setValidatedValue($table, $field, $value);
     }
-    
-    protected function validateValues($table, $field, $possible_values, $required, $default = null){
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $possible_values
+     * @param $required
+     * @param null $default
+     * @return mixed|null
+     */
+    protected function validateValues($table, $field, $possible_values, $required, $default = null)
+    {
         if (isset($this->validated[$table][$field])) {
             return $this->validated[$table][$field];
         }elseif(!isset($this->forminputs[$table][$field])){
@@ -115,8 +188,14 @@ class FormProcessing {
         }
         return $this->setValidatedValue($table, $field, $value);
     }
-    
-    protected function validateText($table, $field) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @return mixed|null
+     */
+    protected function validateText($table, $field)
+    {
         if(isset($this->validated[$table][$field])){
             return $this->validated[$table][$field];
         }elseif(!isset($this->forminputs[$table][$field])){
@@ -125,8 +204,16 @@ class FormProcessing {
         $value = FormValidator::validateText($field, $this->formlabels[$table][$field]);
         return $this->setValidatedValue($table, $field, $value);
     }
-    
-    protected function validateInt($table, $field, $required, $max) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $required
+     * @param $max
+     * @return mixed|null
+     */
+    protected function validateInt($table, $field, $required, $max)
+    {
         if(isset($this->validated[$table][$field])){
             return $this->validated[$table][$field];
         }elseif(!isset($this->forminputs[$table][$field])){
@@ -135,8 +222,16 @@ class FormProcessing {
         $value = FormValidator::validateInt($field, $this->formlabels[$table][$field], $required, $max);
         return $this->setValidatedValue($table, $field, $value);
     }
-    
-    protected function validateFloat($table, $field, $required, $format) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $required
+     * @param $format
+     * @return mixed|null
+     */
+    protected function validateFloat($table, $field, $required, $format)
+    {
         if(isset($this->validated[$table][$field])){
             return $this->validated[$table][$field];
         }elseif(!isset($this->forminputs[$table][$field])){
@@ -145,8 +240,15 @@ class FormProcessing {
         $value = FormValidator::validateFloat($field, $this->formlabels[$table][$field], $required, $format);
         return $this->setValidatedValue($table, $field, $value);
     }
-    
-    protected function validateUnique($table, $field, $value){
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $value
+     * @return bool
+     */
+    protected function validateUnique($table, $field, $value)
+    {
         $column = FormValidator::getColumnName($field);
         foreach($this->models[$table]->getUniqueKey() as $key){
             if($column == $key){
@@ -159,8 +261,15 @@ class FormProcessing {
         }
         return $value;
     }
-    
-    private function setMultipleModels($table, $field, $values){
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $values
+     * @return mixed
+     */
+    private function setMultipleModels($table, $field, $values)
+    {
         $models = [];
         for($i = 0; $i < count($values); $i++){
             if(is_array($this->models[$table]) && isset($this->models[$table][$i])){
@@ -176,8 +285,15 @@ class FormProcessing {
         $this->forminputs[$table][$field]->setArray($values);
         return $values;
     }
-    
-    private function setValidatedValue($table, $field, $value){
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $value
+     * @return mixed
+     */
+    private function setValidatedValue($table, $field, $value)
+    {
         if(is_array($this->models[$table])){
             foreach($this->models[$table] as $model){
                 $model->setColumnValue($field, $value);
@@ -190,33 +306,59 @@ class FormProcessing {
         #echo $field . '=' . $value . '<br />';
         return $value;
     }
-    
-    public function getValidatedValue($table, $field) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @return mixed
+     */
+    public function getValidatedValue($table, $field)
+    {
         return $this->forminputs[$table][$field]->getValue();
-        
+
     }
-    
-    
-    public function setModel($table, $model) {
+
+
+    /**
+     * @param $table
+     * @param $model
+     * @return $this
+     */
+    public function setModel($table, $model)
+    {
         $this->models[$table] = $model;
         return $this;
     }
-    
-    public function rePostValue($table, $field, $value) {
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $value
+     */
+    public function rePostValue($table, $field, $value)
+    {
         $this->setValidatedValue($table, $field, $value);
     }
-    
+
 
     #save
-    public function isvalid(){
+    /**
+     * @return bool
+     */
+    public function isvalid()
+    {
         Registry::setMonitor(Monitor::FORM, ' has ' . $this->processerrors . ' errors');
         if($this->processerrors > 0){
             return false;
         }
         return true;
     }
-    
-    public function save(){
+
+    /**
+     *
+     */
+    public function save()
+    {
         foreach ($this->models as $table=>$model){
             $fks = $model->getForeignKeys();
             foreach($model->getColumns($table) as $field){
@@ -238,14 +380,26 @@ class FormProcessing {
             }
         }
     }
-    
+
+    /**
+     * @var int
+     */
     private $inserted = 0;
-    
-    public function getInsertId() {
+
+    /**
+     * @return int
+     */
+    public function getInsertId()
+    {
         return $this->inserted;
     }
-    
-    public function getModel($table = null) {
+
+    /**
+     * @param null $table
+     * @return mixed
+     */
+    public function getModel($table = null)
+    {
         if(null != $table){
             return $this->models[$table];
         }else{
@@ -254,8 +408,14 @@ class FormProcessing {
             }
         }
     }
-    
-    protected function getFkValue($fk, $value = null){
+
+    /**
+     * @param $fk
+     * @param null $value
+     * @return null
+     */
+    protected function getFkValue($fk, $value = null)
+    {
         #$this->fk[HtmPage::HTM_PAGE_HTM_ID] = ['table'=>'htm', 'field'=>'id'];
         $table = $fk['table'];
         $field = $table . '.' . $fk['field'];
@@ -263,7 +423,7 @@ class FormProcessing {
             $value = $this->models[$table]->getColumnValue($field);
         }
         return $value;
-        
+
     }
 
 }

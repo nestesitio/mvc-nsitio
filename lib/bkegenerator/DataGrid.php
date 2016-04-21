@@ -14,16 +14,23 @@ use \lib\register\VarsRegister;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Dec 18, 2014
  */
-class DataGrid extends \lib\bkegenerator\DataConfig {
-    
-    
-    public function execute() {
+class DataGrid extends \lib\bkegenerator\DataConfig
+{
+    /**
+     *
+     */
+    public function execute()
+    {
         $this->renderLabels();
         $this->renderButtons();
         $this->doList();
     }
-    
-    public function doList() {
+
+    /**
+     *
+     */
+    public function doList()
+    {
         Registry::setMonitor(Monitor::BOOKMARK, 'do the List');
         $this->setPaging();
         $this->renderColumns();
@@ -37,9 +44,13 @@ class DataGrid extends \lib\bkegenerator\DataConfig {
             $this->html = str_replace('{% while (item in pagination) %}', '{% while (item in page' . $this->var . ') %}', $this->html);
         }
     }
-    
-    
-    public function getFilters() {
+
+
+    /**
+     * @return \lib\bkegenerator\Config
+     */
+    public function getFilters()
+    {
         $config = new Config();
         $nodes = $this->getnodes('show/fields/*');
         foreach($nodes as $node){
@@ -57,17 +68,31 @@ class DataGrid extends \lib\bkegenerator\DataConfig {
         $config->setIdentification($this->identification);
         return $config;
     }
-    
-    
-    private function setPaging(){
+
+
+    /*
+     *
+     */
+    /**
+     *
+     */
+    private function setPaging()
+    {
         $paging = $this->x_conf->queryXPath('grid', 'atr', 'paging');
-        
+
         if(!empty($paging)){
             SessionFilter::setControllerLimit($this->identification, $paging);
         }
     }
-    
-    private function renderButtons() {
+
+    /*
+     *
+     */
+    /**
+     *
+     */
+    private function renderButtons()
+    {
         $btn_tpl = '<!--{{ buttons }}-->';
         $btn = '';
         if (strpos($this->html, '{{ buttons }}')) {
@@ -79,16 +104,22 @@ class DataGrid extends \lib\bkegenerator\DataConfig {
                 }else if($this->getCondition($path) == false){
                     continue;
                 }
-                
+
                 $btn .= $this->renderBtn($path, $btn_tpl);
-                
+
             }
-            
+
         }
         $this->html = str_replace($btn_tpl, $btn, $this->html);
     }
-    
-    private function renderBtn($path, $btn_tpl) {
+
+    /**
+     * @param $path
+     * @param $btn_tpl
+     * @return string
+     */
+    private function renderBtn($path, $btn_tpl)
+    {
         $target = $this->x_conf->queryXPath($path, 'atr', 'target');
         $url = $this->x_conf->queryXPath($path, 'atr', 'url');
         $class = 'btn-action btn btn-xs btn-default ' . $this->x_conf->queryXPath($path, 'atr', 'brand');
@@ -113,14 +144,18 @@ class DataGrid extends \lib\bkegenerator\DataConfig {
         $btn .= $this->findLabel($path) . '</a>' . $btn_tpl;
         return $btn;
     }
-    
-    private function renderTools() {
+
+    /**
+     *
+     */
+    private function renderTools()
+    {
         $btn_tpl = '<!--<li class="row_tool">{{ column_tools }}</li>-->';
         $tpl_tpl = '<!--<li class="row_tool">{{ template_tools }}</li>-->';
-        
+
         $ul = '';
         $ul_hidden = '';
-        
+
         if (strpos($this->html, '{{ column_tools }}')) {
             $nodes = $this->getnodes('grid/tools/*');
             foreach($nodes as $node){
@@ -133,16 +168,22 @@ class DataGrid extends \lib\bkegenerator\DataConfig {
                 $str = $this->renderCommand($path, $node);
                 $ul_hidden .= $str['hidden'];
                 $ul .= $str['ul'];
-                
+
             }
-            
-            
+
+
         }
         $this->html = str_replace($btn_tpl, $ul, $this->html);
         $this->html = str_replace($tpl_tpl, $ul_hidden, $this->html);
     }
-    
-    private function renderCommand($path, $node){
+
+    /**
+     * @param $path
+     * @param $node
+     * @return array
+     */
+    private function renderCommand($path, $node)
+    {
         $tool = new \lib\bkegenerator\DataTool();
 
         $link = $this->x_conf->queryXPath($path, 'atr', 'link');
@@ -163,14 +204,17 @@ class DataGrid extends \lib\bkegenerator\DataConfig {
         $tool->setLabel($this->findLabel($path));
         $tool->setVars($this->findVars($path));
         $tool->complete($node, $this->x_conf->queryXPath($path, 'atr', 'class'), $editable);
-        
+
         return $tool->render();
     }
-    
-    
-    //<span class="order dropup">
-    
-    private function renderLabels() {
+
+
+
+    /**
+     * <span class="order dropup">
+     */
+    private function renderLabels()
+    {
         $th_tpl = '<!--<td class="{{ class }}">{{ column_label }}</td>-->';
         $th = '';
         $nodes = $this->getnodes('grid/columns/*');
@@ -187,19 +231,23 @@ class DataGrid extends \lib\bkegenerator\DataConfig {
                             . '<span class="glyphicon glyphicon-sort"></span></a>';
                 }
             }
-            
+
             $th .= '</td>';
         }
         $this->html = str_replace($th_tpl, $th, $this->html);
     }
-    
-    private function renderColumns() {
+
+    /**
+     *
+     */
+    private function renderColumns()
+    {
         $ul_tpl = '<!--<li>{{ column_data }}</li>-->';
         $tpl_tpl = '<!--<li>{{ template_column }}</li>-->';
-        
+
         $ul = '';
         $ul_hidden = '';
-            
+
         $nodes = $this->getnodes('grid/columns/*');
         foreach ($nodes as $node) {
             $path = 'grid/columns/' . $node;
@@ -222,12 +270,16 @@ class DataGrid extends \lib\bkegenerator\DataConfig {
         $this->html = str_pad($this->html, strlen($ul_hidden), ' ');
         $this->html = str_replace($tpl_tpl, $ul_hidden, $this->html);
         $this->html = rtrim($this->html);
-        
-        
-        
+
+
+
     }
-    
-    public function getFields() {
+
+    /**
+     * @return \lib\bkegenerator\Config
+     */
+    public function getFields()
+    {
         $config = new Config();
         $nodes = $this->getnodes('grid/columns/*');
         foreach($nodes as $node){
@@ -239,6 +291,6 @@ class DataGrid extends \lib\bkegenerator\DataConfig {
         }
         return $config;
     }
-    
+
 
 }

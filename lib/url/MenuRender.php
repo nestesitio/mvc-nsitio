@@ -8,35 +8,65 @@ namespace lib\url;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Mar 7, 2016
  */
-class MenuRender extends \lib\url\UrlHref {
-
-
+class MenuRender extends \lib\url\UrlHref
+{
+    /**
+     * @var string
+     */
     private $string = '';
+    /**
+     * @var array
+     */
     private $list = [];
-    
-    function __construct() {
-        
+
+    /**
+     * MenuRender constructor.
+     */
+    public function __construct()
+    {
     }
-    
-    public function setToogle($title){
+
+    /**
+     * @param $title
+     */
+    public function setToogle($title)
+    {
         $this->string .= '<a class="dropdown-toggle" data-toggle="dropdown" href="#">';
         $this->string .= $title;
         $this->string .= '</a>';
     }
-    
-    public function setDropdown($class){
+
+    /**
+     * @param $class
+     */
+    public function setDropdown($class)
+    {
         $this->string .= '<ul class="' . $class . '">$ul</ul>';
     }
-    
-    public function addItem($url, $title, $params=[]){
+
+    /**
+     * @param $url
+     * @param $title
+     * @param array $params
+     */
+    public function addItem($url, $title, $params=[])
+    {
         $this->list[] = self::renderMenuItem($url, $title, $params);
     }
-    
-    public function addDivider(){
+
+    /**
+     *
+     */
+    public function addDivider()
+    {
         $this->list[] = '<li class="divider"></li>';
     }
-    
-    public function renderString(){
+
+    /**
+     * @return string
+     */
+    public function renderString()
+    {
         foreach($this->list as $list){
             $this->string = str_replace('$ul', $list . '$ul', $this->string);
         }

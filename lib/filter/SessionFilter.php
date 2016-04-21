@@ -17,22 +17,41 @@ use \lib\form\PostTool;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 31, 2015
  */
-class SessionFilter {
-
+class SessionFilter
+{
+    /**
+     * @var array
+     */
     private static $pagings = [];
+    /**
+     * @var array
+     */
     private static $sorts = [];
+    /**
+     * @var array
+     */
     private static $filters = [];
+    /**
+     * @var array
+     */
     private static $columns = [];
-    
 
-    public static function getFilters($app, Config $config){
+
+    /**
+     * @param $app
+     * @param Config $config
+     *
+     * @return array|mixed
+     */
+    public static function getFilters($app, Config $config)
+    {
         self::$columns = $config->getIndexes();
         $posts = PostTool::getFilterFields(self::$columns, $config->getIdentification() . '_filter');
         $filters = Session::getSessionFilter($app, 'filter');
         foreach(array_keys(self::$columns) as $field){
             $config->setIndex($field);
             if(isset($posts[$field])){
-                
+
                 if($posts[$field] === '0' || !empty($posts[$field])){
                     Session::setSessionFilter($app, 'filter', $posts[$field], $field);
                     self::$filters[$app][$field] = $posts[$field];
@@ -48,21 +67,34 @@ class SessionFilter {
         }
         return (isset(self::$filters[$app]))? self::$filters[$app] : [];
     }
-    
-    
-    public static function getFilter($app, $field){
+
+
+    /**
+     * @param $app
+     * @param $field
+     *
+     * @return bool
+     */
+    public static function getFilter($app, $field)
+    {
         if(isset(self::$filters[$app][$field])){
             return self::$filters[$app][$field];
         }
         return false;
     }
-    
 
-    public static function getSorts($app){
+
+    /**
+     * @param $app
+     *
+     * @return array|mixed
+     */
+    public static function getSorts($app)
+    {
         $getfield = VarsRegister::getRequests('sort');
         $filters = Session::getSessionFilter($app, 'sort');
         $i = 0;
-                
+
         if($getfield != false){
             $value = Mysql::ASC;
             if(isset($filters[$getfield])){
@@ -81,8 +113,14 @@ class SessionFilter {
         }
         return self::getControllerSort($app);
     }
-    
-    private static function getControllerSort($app){
+
+    /**
+     * @param $app
+     *
+     * @return array|mixed
+     */
+    private static function getControllerSort($app)
+    {
         if(isset(self::$sorts[$app])){
             Session::removeSessionFilter($app, 'sort');
             foreach(self::$sorts[$app] as $field => $value){
@@ -95,15 +133,32 @@ class SessionFilter {
         }
     }
 
-    public static function setControllerLimit($app, $paging){
+    /**
+     * @param $app
+     * @param $paging
+     */
+    public static function setControllerLimit($app, $paging)
+    {
         self::$pagings[$app]['limit'] = $paging;
     }
-    
-    public static function getControllerLimit($app){
+
+    /**
+     * @param $app
+     *
+     * @return null
+     */
+    public static function getControllerLimit($app)
+    {
         return (isset(self::$pagings[$app]['limit']))? self::$pagings[$app]['limit'] : null;
     }
-    
-    public static function getControllerPaging($app){
+
+    /**
+     * @param $app
+     * 
+     * @return array|bool|int|mixed
+     */
+    public static function getControllerPaging($app)
+    {
         if (!isset(self::$pagings[$app]['paging'])) {
             $value = VarsRegister::getRequests('paging');
             if ($value == false) {
@@ -117,10 +172,10 @@ class SessionFilter {
         } else {
             $value = self::$pagings[$app]['paging'];
         }
-        
+
         return $value;
 
     }
-    
+
 
 }

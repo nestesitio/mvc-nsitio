@@ -16,6 +16,7 @@ class UserQueries {
     
     /**
     * Get the user data
+     * @param int $id
     *
     * @return \model\querys\UserBaseQuery;
     */
@@ -32,6 +33,7 @@ class UserQueries {
     
     /**
     * Get the user data
+     * @param int $id
     *
     * @return \model\querys\UserBaseQuery;
     */

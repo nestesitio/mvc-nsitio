@@ -14,22 +14,55 @@ use \lib\mysql\Mysql as Mysql;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 25, 2014
  */
-class Query {
-
+class Query
+{
+    /**
+     * @var int
+     */
     protected $count = 0;
+    /**
+     * @var PDO
+     */
     protected $pdo;
+    /**
+     * @var null
+     */
     protected $model;
+    /**
+     * @var
+     */
     protected $query_statement;
+    /**
+     * @var string
+     */
     protected $query_string = '';
-    
+
+    /**
+     * @var
+     */
     protected $columns;
+    /**
+     * @var
+     */
     protected $pdostmt;
-    
+
+    /**
+     * @var int
+     */
     protected $querytime = 0;
+    /**
+     * @var
+     */
     protected $string;
-    
-    
-    function __construct($class = null, $merge = ALL) {
+
+
+    /**
+     * Query constructor.
+     * @param null $class
+     * @param string $merge
+     */
+    public function __construct($class = null, $merge = ALL)
+    {
         if (null != $class) {
             $this->model = $class;
             //if($merge == ALL){$this->columns = $this->model->getMergedColumns();
@@ -38,38 +71,68 @@ class Query {
             }else{
                 $this->columns = $this->model->getOnlyModelColumns(ALL);
             }
-            
+
         }
         //Start PDO connection
         $this->pdo = PdoMysql::getConn();
-        
+
     }
-    
+
+    /**
+     * @var
+     */
     public $copy;
-    
-    function __clone(){
+
+    /**
+     *
+     */
+    public function __clone()
+    {
         // Force a copy of this->object, otherwise
         // it will point to same object.
         $this->copy = clone $this;
     }
-    
-    public static function exec($query){
+
+    /**
+     * @param $query
+     * @return int
+     */
+    public static function exec($query)
+    {
         $obj = new Query();
         return $obj->execute($query);
     }
-    
-    public function querySimple($query, $fetch = PDO::FETCH_ASSOC) {
+
+    /**
+     * @param $query
+     * @param int $fetch
+     * @return array
+     */
+    public function querySimple($query, $fetch = PDO::FETCH_ASSOC)
+    {
         $sth = $this->pdo->prepare($query);
         $sth->execute();
         return $sth->fetchAll($fetch);
     }
 
-    public static function query($query, $fetch = PDO::FETCH_ASSOC) {
+    /**
+     * @param $query
+     * @param int $fetch
+     * @return array
+     */
+    public static function query($query, $fetch = PDO::FETCH_ASSOC)
+    {
         $obj = new Query();
         return $obj->querySimple($query, $fetch);
     }
 
-    protected function executeQuery($query, $params, $values = null){
+    /**
+     * @param $query
+     * @param $params
+     * @param null $values
+     */
+    protected function executeQuery($query, $params, $values = null)
+    {
         $start_time = microtime(true);
         $this->pdostmt = $this->pdo->prepare($query);
         if(null != $values){
@@ -85,8 +148,14 @@ class Query {
         }
         $this->querytime = number_format(microtime(true) - $start_time, 9);
     }
-    
-    protected function getIncrementId($table, $col){
+
+    /**
+     * @param $table
+     * @param $col
+     * @return int
+     */
+    protected function getIncrementId($table, $col)
+    {
         $query = "SELECT $col + 1 FROM $table ORDER BY $col DESC LIMIT 1";
 
         $pdostmt = $this->pdo->prepare($query);
@@ -95,13 +164,18 @@ class Query {
         $id = ($result == false)? 1 : $result[0][0];
         //echo $id . '+';
         return $id;
-        
+
     }
-    
-    public static function getNextIdFromTable($table){
+
+    /**
+     * @param $table
+     * @return int
+     */
+    public static function getNextIdFromTable($table)
+    {
         $pdo = PdoMysql::getConn();
-         #SELECT c.id + 1 AS FirstAvailableId FROM product_code c LEFT JOIN product_code c1 ON c1.id = c.id + 1 
-         #WHERE c1.id IS NULL ORDER BY c.id LIMIT 0, 1 
+         #SELECT c.id + 1 AS FirstAvailableId FROM product_code c LEFT JOIN product_code c1 ON c1.id = c.id + 1
+         #WHERE c1.id IS NULL ORDER BY c.id LIMIT 0, 1
         $query = "SELECT a.id + 1 FROM $table a "
                 . "LEFT JOIN $table b ON a.id = b.id + 1 "
                 . "WHERE b.id IS NULL ORDER BY a.id LIMIT 1";
@@ -115,24 +189,45 @@ class Query {
     }
 
 
-    public function getColumns(){
+    /**
+     * @return mixed
+     */
+    public function getColumns()
+    {
         return $this->columns;
     }
-    
-    public function addColumns($columns){
+
+    /**
+     * @param $columns
+     */
+    public function addColumns($columns)
+    {
         $this->columns = array_merge($this->columns, $columns);
     }
-    
-    protected function execute($query){
+
+    /**
+     * @param $query
+     * @return int
+     */
+    protected function execute($query)
+    {
         $this->count = $this->pdo->exec($query);
         return $this->count;
     }
-    
-    public function getCount(){
+
+    /**
+     * @return int
+     */
+    public function getCount()
+    {
         return $this->count;
     }
-    
-    protected function bindValues($params = []) {
+
+    /**
+     * @param array $params
+     */
+    protected function bindValues($params = [])
+    {
         /*
          * $sex = 'male';
          * $s = $dbh->prepare('SELECT name FROM students WHERE sex = :sex');
@@ -148,30 +243,38 @@ class Query {
          */
         foreach ($params as $field => $value) {
             $value = utf8_decode($value);
-            
+
             $res = $this->pdostmt->bindValue(':' . $field, $value);
             if($res == false){
                 Registry::setMonitor(Monitor::FORMERROR, 'Bind :' . $field . ' => ' . $value);
             }
         }
     }
-    
-    public function setCondition($column, $values, $operator = Mysql::EQUAL, $wildcard= null){
+
+    /**
+     * @param $column
+     * @param $values
+     * @param string $operator
+     * @param null $wildcard
+     * @return $this
+     */
+    public function setCondition($column, $values, $operator = Mysql::EQUAL, $wildcard= null)
+    {
         if($operator == Mysql::BETWEEN){
             if($values['max'] == null && $values['min'] == null){
-               return $this; 
+               return $this;
             }elseif($values['max'] == null){
                 if($operator == Mysql::BETWEEN){
                     $this->query_statement->setCondition($column, Mysql::GREATER_EQUAL, $values['min']);
                 }else{
                     $this->query_statement->setCondition($column, $operator, $values['min']);
-                }  
+                }
             }elseif($values['min'] == null){
                 if($operator == Mysql::BETWEEN){
                     $this->query_statement->setCondition($column, Mysql::LESS_EQUAL, $values['max']);
                 }else{
                     $this->query_statement->setCondition($column, $operator, $values['max']);
-                } 
+                }
             }else{
                 $this->query_statement->setArrayCondition($column, $values, Mysql::BETWEEN);
             }
@@ -184,52 +287,100 @@ class Query {
             $this->query_statement->setCondition($column, $operator, $values, $wildcard);
             $this->model->setVirtualColumnValue($column, $values);
         }
-        
+
         return $this;
     }
-    
-    public function where($expression){
+
+    /**
+     * @param $expression
+     * @return $this
+     */
+    public function where($expression)
+    {
         $this->query_statement->where($expression);
         return $this;
     }
-    
-    public function getAndPopLastCondition(){
+
+    /**
+     * @return mixed
+     */
+    public function getAndPopLastCondition()
+    {
         return $this->query_statement->getAndPopLastWhere();
     }
-    
-    public function joinFilter($operator = Mysql::LOGICAL_OR){
+
+    /**
+     * @param string $operator
+     * @return $this
+     */
+    public function joinFilter($operator = Mysql::LOGICAL_OR)
+    {
         $expression = $this->getAndPopLastCondition();
         $this->query_statement->joinWhere($expression, $operator);
         return $this;
     }
-    
-    public function filterByColumnIsNull($column, $null = null){
+
+    /**
+     * @param $column
+     * @param null $null
+     * @return $this
+     */
+    public function filterByColumnIsNull($column, $null = null)
+    {
         $this->query_statement->whereIsNullOrNot($column, $null);
         return $this;
     }
-    
-    public function filterByColumn($column, $values, $operator = Mysql::EQUAL, $wildcard= null){
+
+    /**
+     * @param $column
+     * @param $values
+     * @param string $operator
+     * @param null $wildcard
+     * @return $this
+     */
+    public function filterByColumn($column, $values, $operator = Mysql::EQUAL, $wildcard= null)
+    {
         if($values === Mysql::ISNULL || $values === Mysql::ISNOTNULL){
             $this->filterByColumnIsNull($column, $values);
         }else{
             $this->setCondition($column, $values, $operator, $wildcard);
         }
-        
+
         return $this;
     }
-    
-    public function filterByConcat($expression, $alias, $value = null){
+
+    /**
+     * @param $expression
+     * @param $alias
+     * @param null $value
+     * @return $this
+     */
+    public function filterByConcat($expression, $alias, $value = null)
+    {
         $this->query_statement->setConcatCondition($expression, $alias, $value);
         $this->fetch_assoc = array_merge($this->fetch_assoc, [$alias]);
         return $this;
     }
-    
-    public function whereOr($array){
+
+    /**
+     * @param $array
+     * @return $this
+     */
+    public function whereOr($array)
+    {
         $this->query_statement->whereOr($array);
         return $this;
     }
-    
-    public function filterByDateColumn($column, $min, $max, $operator = Mysql::BETWEEN){
+
+    /**
+     * @param $column
+     * @param $min
+     * @param $max
+     * @param string $operator
+     * @return $this
+     */
+    public function filterByDateColumn($column, $min, $max, $operator = Mysql::BETWEEN)
+    {
         if($max == Mysql::EQUAL || $operator == Mysql::EQUAL){
             $value = \lib\tools\DateTools::convertToSqlDate($min);
             $this->setCondition($column, $value, Mysql::EQUAL);
@@ -238,9 +389,14 @@ class Query {
         }
         return $this;
     }
-    
-    
-    public function filterByPrimaryKeys($values) {
+
+
+    /**
+     * @param $values
+     * @return $this
+     */
+    public function filterByPrimaryKeys($values)
+    {
         $keys = $this->model->getPrimaryKey();
         $table = $this->model->getTableName();
         foreach($keys as $column){
@@ -250,8 +406,15 @@ class Query {
         return $this;
     }
 
-    
-    protected function writeQueryMessage($query, $params = [], $count = null) {
+
+    /**
+     * @param $query
+     * @param array $params
+     * @param null $count
+     * @return string
+     */
+    protected function writeQueryMessage($query, $params = [], $count = null)
+    {
         if (is_array($params)) {
             foreach ($params as $key => $value) {
                 $query = str_replace(':' . $key, "'" . $value . "'", $query);
@@ -264,24 +427,38 @@ class Query {
         Registry::setMonitor(Monitor::QUERY, $query);
         return $query;
     }
-    
-    function handleErrors($query, $params, $error_message) {
+
+    /**
+     * @param $query
+     * @param $params
+     * @param $error_message
+     */
+    public function handleErrors($query, $params, $error_message)
+    {
         echo '<pre>';
         echo $this->writeQueryMessage($query, $params);
         echo '</pre>';
         echo $error_message;
         die;
     }
-    
-    public function getStatement(){
+
+    /**
+     * @return mixed
+     */
+    public function getStatement()
+    {
         return $this->query_statement;
     }
-    
-    public function __toString() {
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
         return $this->writeQueryMessage($this->query_statement->getStatementString(), $this->query_statement->getParams());
     }
-    
-    
-    
+
+
+
 
 }

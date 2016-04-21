@@ -8,11 +8,18 @@ namespace lib\form;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 23, 2015
  */
-class FormMerged extends \lib\form\Form {
-    
+class FormMerged extends \lib\form\Form
+{
+    /**
+     * @var array
+     */
     protected $forms = [];
 
-    protected function merge($fk_merge = true) {
+    /**
+     * @param bool $fk_merge
+     */
+    protected function merge($fk_merge = true)
+    {
         foreach ($this->forms as $table=>$form){
             $this->forminputs[$table] = $form->getFormInputs($table);
             $this->formlabels[$table] = $form->getFormLabels($table);
@@ -28,12 +35,16 @@ class FormMerged extends \lib\form\Form {
     }
 
 
-    public function validate(){
+    /**
+     * @return \lib\form\FormMerged
+     */
+    public function validate()
+    {
         foreach ($this->forms as $table=>$form){
-            
+
             $fks = $this->models[$table]->getForeignKeys();
             foreach (array_keys($this->forminputs[$table]) as $field) {
-                
+
                 #$this->fk[HtmPage::HTM_PAGE_HTM_ID] = ['table'=>'htm', 'field'=>'id'];
                 if (isset($fks[$field]) && isset($this->forms[$fks[$field]['table']])) {
                     $value = $this->getFkValue($fks[$field]);
@@ -43,7 +54,7 @@ class FormMerged extends \lib\form\Form {
                 }
             }
             $this->forms[$table]->validate();
-            
+
             $this->processerrors += $form->getErrors();
             $this->models[$table] = $form->getModels($table);
             $this->forminputs[$table] = $form->getFormInputs($table);
@@ -51,12 +62,18 @@ class FormMerged extends \lib\form\Form {
         $this->customValidate();
         return $this;
     }
-    
-    public function unsetFieldInput($table, $field){
+
+    /**
+     * @param $table
+     * @param $field
+     * @return \lib\form\FormMerged
+     */
+    public function unsetFieldInput($table, $field)
+    {
         unset($this->forminputs[$table][$field]);
         return $this;
     }
 
-    
+
 
 }

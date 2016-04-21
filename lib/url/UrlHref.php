@@ -8,16 +8,35 @@ namespace lib\url;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Dec 16, 2014
  */
-class UrlHref {
-    
+class UrlHref
+{
+    /**
+     *
+     */
     const ICON_RIGHT = 'icon_right';
+    /**
+     *
+     */
     const ICON_LEFT = 'icon_left';
+    /**
+     *
+     */
     const CLASS_LI = 'class_li';
+    /**
+     *
+     */
     const CLASS_A = 'class_a';
+    /**
+     *
+     */
     const TARGET = '';
 
-    private static function renderRelativeHref($pieces = []){
-        
+    /**
+     * @param array $pieces
+     * @return string
+     */
+    private static function renderRelativeHref($pieces = [])
+    {
         if(isset($pieces['app'])){
             $url = '/' . $pieces['app'];
         }
@@ -36,33 +55,52 @@ class UrlHref {
                 $url .= '&' . $key . '=' . $value;
             }
         }
-        
+
         if($url == '/home'){
             $url = '/';
         }
-        
+
         return $url;
     }
-    
-    public static function renderUrl($url){
+
+    /**
+     * @param $url
+     * @return string
+     */
+    public static function renderUrl($url)
+    {
         if(is_array($url)){
             return self::renderRelativeHref($url);
         }else{
             return $url;
         }
-            
+
     }
-    
-    public static function renderMenuUrl($param_url, $title, $param_target = null) {
+
+    /**
+     * @param $param_url
+     * @param $title
+     * @param null $param_target
+     * @return string
+     */
+    public static function renderMenuUrl($param_url, $title, $param_target = null)
+    {
         $url = self::renderUrl($param_url);
         $target = ($param_target == null)? '' : ' target="' . $target . '"';
         return '<li>
                     <a href="' . $url . '">' . $title . '</a>
                 </li>';
     }
-    
-    
-    public static function renderMenuItem($param_url, $title, $params = []){
+
+
+    /**
+     * @param $param_url
+     * @param $title
+     * @param array $params
+     * @return string
+     */
+    public static function renderMenuItem($param_url, $title, $params = [])
+    {
         $url = self::renderUrl($param_url);
         $str = (isset($params[self::CLASS_LI])) ? '<li class="' . $params[self::CLASS_LI] .'">' : '<li>';
         $str .= '<a href="' . $url . '">';
@@ -73,12 +111,21 @@ class UrlHref {
         if(isset($params[self::ICON_RIGHT])){
             $str .= ' <i class="fa '.$params[self::ICON_RIGHT].'"></i>';
         }
-        
+
         return $str . '</a></li>';
     }
 
 
-    public static function renderButton($li, $a, $title = '', $href = null, $id = null) {
+    /**
+     * @param $li
+     * @param $a
+     * @param string $title
+     * @param null $href
+     * @param null $id
+     * @return string
+     */
+    public static function renderButton($li, $a, $title = '', $href = null, $id = null)
+    {
         $button = '<li class="' .$li. '"><a class="' .$a. '"';
         if($href != null){
             $button .= ' href="' . $href . '"';
@@ -89,6 +136,6 @@ class UrlHref {
         return $button . '>' . $title . '</a></li>';
     }
 
-    
+
 
 }

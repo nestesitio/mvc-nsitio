@@ -11,21 +11,55 @@ use \model\models\UserBase;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 18, 2015
  */
-class SessionUserBase {
+class SessionUserBase
+{
+    /**
+     *
+     */
     const KEY_ID = 'id';
+    /**
+     *
+     */
     const KEY_GROUPID = 'groupid';
+    /**
+     *
+     */
     const KEY_GROUPNAME = 'group';
+    /**
+     *
+     */
     const KEY_NAME = 'name';
-    
+
+    /**
+     * @var array
+     */
     protected static $sessionUser = [];
+    /**
+     * @var array
+     */
     protected static $sessionPlayer = [];
+    /**
+     * @var bool
+     */
     protected static $registredUser = false;
-    
+
+    /**
+     * @var bool
+     */
     protected static $authUser = false;
+    /**
+     * @var int
+     */
     protected static $sessiontime = 7200;
-    
-    
-    public static function setUserVarsSession($user, $sesskey) {
+
+
+    /**
+     * @param $user
+     * @param $sesskey
+     * @return string
+     */
+    public static function setUserVarsSession($user, $sesskey)
+    {
         $str = '';
         $keys = [
             self::KEY_ID => UserBase::FIELD_ID,
@@ -46,58 +80,105 @@ class SessionUserBase {
         Session::setSession($sesskey, $values);
         return $str;
     }
-    
-    public static function getUserId(){
+
+    /**
+     * @return bool|mixed
+     */
+    public static function getUserId()
+    {
         return (isset(self::$sessionUser[self::KEY_ID]))? self::$sessionUser[self::KEY_ID] : false;
     }
-    
-    public static function getPlayerId(){
+
+    /**
+     * @return bool|mixed
+     */
+    public static function getPlayerId()
+    {
         return (isset(self::$sessionPlayer[self::KEY_ID]))? self::$sessionPlayer[self::KEY_ID] : false;
     }
-    
-    
-    public static function getUserName(){
+
+
+    /**
+     * @return mixed
+     */
+    public static function getUserName()
+    {
         return self::$sessionUser[self::KEY_NAME];
     }
-    
-    public static function getPlayerName(){
+
+    /**
+     * @return mixed
+     */
+    public static function getPlayerName()
+    {
         return self::$sessionPlayer[self::KEY_NAME];
     }
-    
-    
-    public static function getUserGroup(){
+
+
+    /**
+     * @return bool|mixed
+     */
+    public static function getUserGroup()
+    {
         return (isset(self::$sessionUser[self::KEY_GROUPNAME]))? self::$sessionUser[self::KEY_GROUPNAME] : false;
     }
-    
-    public static function getPlayerGroup(){
+
+    /**
+     * @return bool|mixed
+     */
+    public static function getPlayerGroup()
+    {
         return (isset(self::$sessionPlayer[self::KEY_GROUPNAME]))? self::$sessionPlayer[self::KEY_GROUPNAME] : false;
     }
-    
-    
-    public static function getUserLevel(){
+
+
+    /**
+     * @return bool|mixed
+     */
+    public static function getUserLevel()
+    {
         return (isset(self::$sessionUser[self::KEY_GROUPID]))? self::$sessionUser[self::KEY_GROUPID] : false;
     }
-    
-    public static function getPlayerLevel(){
+
+    /**
+     * @return bool|mixed
+     */
+    public static function getPlayerLevel()
+    {
         return (isset(self::$sessionPlayer[self::KEY_GROUPID]))? self::$sessionPlayer[self::KEY_GROUPID] : false;
     }
-    
-    
-    
-    public static function setAuthUser(){
+
+
+    /**
+     *
+     */
+    public static function setAuthUser()
+    {
         self::$authUser = true;
     }
-    
-    public static function getAuthUser(){
+
+    /**
+     * @return bool
+     */
+    public static function getAuthUser()
+    {
         return self::$authUser;
     }
-    
-    
-    public static function haveUser() {
+
+
+    /**
+     * @return bool
+     */
+    public static function haveUser()
+    {
         return self::$registredUser;
     }
-    
-    public static function getIsRegisterd(){
+
+    /**
+     * @return bool
+     */
+    public static function getIsRegisterd()
+    {
         return self::$registredUser;
     }
 

@@ -45,8 +45,12 @@ class PagesQuery extends \model\querys\HtmPageQuery {
         
         return $query;
     }
-    
-    
+
+
+    /**
+     * @param $htm_id
+     * @return HtmPageQuery
+     */
     public static function getLangs($htm_id){
         return LangsQuery::start()
                 ->joinHtmPage(Mysql::LEFT_JOIN)

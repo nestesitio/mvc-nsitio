@@ -11,44 +11,118 @@ use \lib\register\Monitor;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 9, 2015
  */
-class Input {
-    
+class Input
+{
+    /**
+     *
+     */
     const TYPE_SELECT = 'select';
+    /**
+     *
+     */
     const TYPE_HIDDEN = 'hidden';
+    /**
+     *
+     */
     const TYPE_TEXT = 'text';
+    /**
+     *
+     */
     const TYPE_CHECKBOX = 'checkbox';
-    
-    const ADDON_L = 'L';
-    const ADDON_R = 'R';
-    
-    protected $input;
-    protected $attributes = [];
-    
-    protected $type = self::TYPE_TEXT;
-    protected $name = null;
-    protected $elemid = null;
-    
-    protected $value = null;
-    protected $default = null;
-    
-    protected $placeholder = null;
-    protected $disabledvalue = '';
-    protected $class = 'form-control';
-    
-    protected $addon_l = '';
-    protected $addon_r = '';
-    
-    protected $required = false;
-    protected $range = null;
-    
 
-    function __construct($name = null, $elemid = null) {
+    /**
+     *
+     */
+    const ADDON_L = 'L';
+    /**
+     *
+     */
+    const ADDON_R = 'R';
+
+    /**
+     * @var
+     */
+    protected $input;
+    /**
+     * @var array
+     */
+    protected $attributes = [];
+
+    /**
+     * @var string
+     */
+    protected $type = self::TYPE_TEXT;
+    /**
+     * @var null
+     */
+    protected $name = null;
+    /**
+     * @var null
+     */
+    protected $elemid = null;
+
+    /**
+     * @var null
+     */
+    protected $value = null;
+    /**
+     * @var null
+     */
+    protected $default = null;
+
+    /**
+     * @var null
+     */
+    protected $placeholder = null;
+    /**
+     * @var string
+     */
+    protected $disabledvalue = '';
+    /**
+     * @var string
+     */
+    protected $class = 'form-control';
+
+    /**
+     * @var string
+     */
+    protected $addon_l = '';
+    /**
+     * @var string
+     */
+    protected $addon_r = '';
+
+    /**
+     * @var bool
+     */
+    protected $required = false;
+    /**
+     * @var null
+     */
+    protected $range = null;
+
+
+    /**
+     * Input constructor.
+     * @param null $name
+     * @param null $elemid
+     */
+    public function __construct($name = null, $elemid = null)
+    {
         self::setElementId($name, $elemid);
     }
-    
+
+    /**
+     *
+     */
     public function __clone() {}
-    
-    public function setElementId($name = null, $elemid = null){
+
+    /**
+     * @param null $name
+     * @param null $elemid
+     */
+    public function setElementId($name = null, $elemid = null)
+    {
         if(null != $name){
             $this->name = $name;
         }
@@ -56,8 +130,12 @@ class Input {
             $this->elemid = $elemid;
         }
     }
-    
-    public function emptyValue() {
+
+    /**
+     * @return $this
+     */
+    public function emptyValue()
+    {
         $this->setValue();
         $type = $this->getInputType();
         if($type == self::TYPE_SELECT){
@@ -65,57 +143,102 @@ class Input {
         }
         return $this;
     }
-    
-    public function isMultiple(){
+
+    /**
+     * @return bool
+     */
+    public function isMultiple()
+    {
         return (isset($this->attributes['multiple']))? true : false;
     }
-    
-    public function setMultiple(){
+
+    /**
+     * @return $this
+     */
+    public function setMultiple()
+    {
         return $this;
     }
-    
-    public function setValue($value = ''){
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function setValue($value = '')
+    {
         $this->value = $value;
         if($this->disabledvalue == ''){
             $this->disabledvalue = $value;
         }
         if(!empty($value)){
-            Registry::setMonitor(Monitor::FORM, 'Set value for ' . $this->name . ' = ' . 
+            Registry::setMonitor(Monitor::FORM, 'Set value for ' . $this->name . ' = ' .
                     (is_array($value))? $value: 'Array: ' . implode("&",$value));
         }
         return $this;
     }
-    
-    public function setArray($values){
+
+    /**
+     * @param $values
+     * @return $this
+     */
+    public function setArray($values)
+    {
         $this->value = implode('&&', $values);
         Registry::setMonitor(Monitor::FORM, 'Set value for ' . $this->name . ' = ' . implode('&&', $values));
         return $this;
     }
-    
-    public function getValue(){
+
+    /**
+     * @return null
+     */
+    public function getValue()
+    {
         return $this->value;
     }
-    
-    public function getName(){
+
+    /**
+     * @return null
+     */
+    public function getName()
+    {
         return $this->name;
     }
-    
-    public function getId(){
+
+    /**
+     * @return null
+     */
+    public function getId()
+    {
         return $this->elemid;
     }
-    
-    public function setName($value){
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setName($value)
+    {
         $this->name = $value;
         return $this;
     }
-    
-    public function setId($value){
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setId($value)
+    {
         $this->elemid = $value;
         return $this;
     }
-    
-    
-    public function setDefault($value){
+
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setDefault($value)
+    {
         if(null == $this->value){
             $this->value = $value;
             $this->default = $value;
@@ -123,9 +246,15 @@ class Input {
         }
         return $this;
     }
-    
-    
-    public function setRequired($bool, $force = false) {
+
+
+    /**
+     * @param $bool
+     * @param bool $force
+     * @return $this
+     */
+    public function setRequired($bool, $force = false)
+    {
         if($force == true){
             $this->required = true;
         }
@@ -136,36 +265,67 @@ class Input {
         }
         return $this;
     }
-    
-    
-    public function setInputType($type){
+
+
+    /**
+     * @param $type
+     */
+    public function setInputType($type)
+    {
         $this->type=$type;
     }
-    
-    public function getInputType(){
+
+    /**
+     * @return string
+     */
+    public function getInputType()
+    {
         return $this->type;
     }
-    
-    public function setPlaceHolder($placeholder){
+
+    /**
+     * @param $placeholder
+     */
+    public function setPlaceHolder($placeholder)
+    {
         $this->placeholder=$placeholder;
     }
-    
-    public function getInput(){
+
+    /**
+     * @return mixed
+     */
+    public function getInput()
+    {
         return $this->input;
     }
-    
-    public function setMaxlength($length){
+
+    /**
+     * @param $length
+     * @return $this
+     */
+    public function setMaxlength($length)
+    {
         $this->attributes['maxlength'] = 'maxlength="' . $length . '"';
         return $this;
     }
-    
-    public function setDataAttribute($attribute, $value) {
+
+    /**
+     * @param $attribute
+     * @param $value
+     * @return $this
+     */
+    public function setDataAttribute($attribute, $value)
+    {
         $this->attributes[$attribute] = $attribute . '="' . $value . '"';
         return $this;
     }
 
 
-    protected function attributes() {
+    /**
+     *
+     */
+    protected function attributes()
+    {
         $this->elemid = str_replace('.', '_', $this->elemid);
         $this->name = str_replace('.', '_', $this->name);
         $this->attributes['type'] = 'type="' . $this->type . '"';
@@ -177,12 +337,24 @@ class Input {
             $this->attributes['placeholder'] = 'placeholder="' . $this->placeholder . '"';
         }
     }
-    
-    protected function buildAddon($char, $class){
+
+    /**
+     * @param $char
+     * @param $class
+     * @return string
+     */
+    protected function buildAddon($char, $class)
+    {
         return '<span class="' . $class . '">' . $char . '</span>';
     }
-    
-    public function setAddon($char, $pos = self::ADDON_L) {
+
+    /**
+     * @param $char
+     * @param string $pos
+     * @return $this
+     */
+    public function setAddon($char, $pos = self::ADDON_L)
+    {
         if($pos == self::ADDON_R){
             $this->addon_r = $this->buildAddon($char, 'input-addon addon-right');
             $this->class .= ' with-add-right';
@@ -192,16 +364,28 @@ class Input {
         }
         return $this;
     }
-    
-    public function addClass($class){
+
+    /**
+     * @param $class
+     */
+    public function addClass($class)
+    {
         $this->class .= ' ' . $class;
     }
-    
-    public function setRange($range){
+
+    /**
+     * @param $range
+     */
+    public function setRange($range)
+    {
         $this->range = $range;
     }
-    
-    public function getRange(){
+
+    /**
+     * @return null
+     */
+    public function getRange()
+    {
         return $this->range;
     }
 

@@ -14,29 +14,70 @@ use \lib\view\ParseString;
 use \lib\view\ParseInclude;
 
 /**
- * Description of Template 
+ * Description of Template
  * created in 15/nov/2014
  * @author Luís Pinto - luis.nestesitio@gmail.com
  */
-class Template {
-
+class Template
+{
+    /**
+     * @var null
+     */
     protected $fileview;
+    /**
+     * @var
+     */
     protected $output;
+    /**
+     * @var
+     */
     private $strview;
+    /**
+     * @var
+     */
     private $extends;
+    /**
+     * @var
+     */
     private $extendfile;
-    
+
+    /**
+     * @var array
+     */
     protected $vars = [];
-    
+
+    /**
+     * @var array
+     */
     protected $tags = [];
+    /**
+     * @var array
+     */
     protected $portions = [];
+    /**
+     * @var array
+     */
     protected $args = [];
-    
+
+    /**
+     * @var string
+     */
     private $patternExtends = "/\{% extends '[^%]+' %\}/";
+    /**
+     * @var string
+     */
     private $cssExtend = "/\{% cssextension '[^%]+' %\}/";
+    /**
+     * @var string
+     */
     private $jsExtend = "/\{% jsextension '[^%]+' %\}/";
 
-    function __construct($file = null) {
+    /**
+     * Template constructor.
+     * @param null $file
+     */
+    public function __construct($file = null)
+    {
         if (file_exists(ROOT . DS . $file)) {
             $this->fileview = $file;
             Registry::setMonitor(Monitor::TPL, $file);
@@ -44,17 +85,20 @@ class Template {
             include (ROOT . DS . $file);
             $this->output = ob_get_contents(); // get contents of buffer
             ob_end_clean();
-            
+
             $this->extensions();
-            
+
         } elseif(null != $file) {
             Registry::setErrorMessages(null, 'Error: Template file ' . $file . ' not found');
         }
     }
-    
 
 
-    private function extensions() {
+    /**
+     *
+     */
+    private function extensions()
+    {
         //$this->output = file_get_contents(ROOT . DS . $file);
         $this->setIncludes();
 
@@ -74,11 +118,12 @@ class Template {
     /**
      * Extend the template to a main template file if there is a tag:
      * {% extends 'main.htm' %}
-     * 
+     *
      *
      * @return String $this->output
      */
-    private function getExtend() {
+    private function getExtend()
+    {
         $matches = [];
         if (strpos($this->output, "% extends '") && preg_match($this->patternExtends, $this->output, $matches)) {
             //the original template
@@ -99,14 +144,15 @@ class Template {
         }
         return $this->output;
     }
-    
+
     /**
      * Process the includes inside the template
      * The template completed with the includes
      *
      * @return void
      */
-    public function setIncludes() {
+    public function setIncludes()
+    {
         $parse = new ParseString($this->output);
         //identify the tags include
         $parse->find('include');
@@ -120,7 +166,7 @@ class Template {
             $this->output = str_replace($include, $inc->getString(), $this->output);
         }
     }
-    
+
     /**
      * Build the array of pairs tag => data
      * @param String $tag The tag to be replaced {{ tag }}
@@ -128,12 +174,16 @@ class Template {
      *
      * @return void
      */
-    public function set($tag, $data = '') {
-        
+    public function set($tag, $data = '')
+    {
         $this->vars[$tag] = $data;
     }
 
-    public function getOutput() {
+    /**
+     * @return mixed
+     */
+    public function getOutput()
+    {
         $str = $this->output;
         $this->output = '';
         $str = str_replace(["\n", "\r", "\t", "</li>    <li", "</li>                <li"], ['', '', '', '</li><li', '</li><li'], $str);
@@ -142,20 +192,32 @@ class Template {
         $str = preg_replace($pattern, $replacement, $str);
         return $str;
     }
-    
-    public function setOutput($html) {
+
+    /**
+     * @param $html
+     */
+    public function setOutput($html)
+    {
         Registry::setMonitor(Monitor::BOOKMARK, 'All Template: ' . strlen($html) . ' chars in html; ');
         $this->output = $html;
     }
-    
-    public function getExtends() {
+
+    /**
+     * @return mixed
+     */
+    public function getExtends()
+    {
         return $this->extendfile;
     }
-    
-    
-    private function cssExtend() {
+
+
+    /**
+     *
+     */
+    private function cssExtend()
+    {
         /*
-         * extend css stylesheet to dynamic loading 
+         * extend css stylesheet to dynamic loading
          */
         $matches = [];
         $data = '';
@@ -173,10 +235,14 @@ class Template {
         }
         $this->output = str_replace('<link href="{{ dynamiccss }}"  rel="stylesheet">', $data, $this->output);
     }
-    
-    private function jsExtend() {
+
+    /**
+     *
+     */
+    private function jsExtend()
+    {
         /*
-         * extend js to dynamic loading 
+         * extend js to dynamic loading
          */
         $matches = [];
         $data = '';
@@ -189,7 +255,7 @@ class Template {
                      if (file_exists(HTMROOT . $file) || strpos($file, 'http') === 0) {
                          $data .= '<script src="' . $file . '"></script>' . "\n";
                          $files++;
-                     
+
                      }
                 }
                 $this->output = str_replace($match, '', $this->output);
@@ -198,8 +264,12 @@ class Template {
         Registry::setMonitor(Monitor::VIEW, 'Rendering ' . $files . ' js links');
         $this->output = str_replace('<script src="{{ dynamicjs }}"></script>', $data, $this->output);
     }
-    
-    private function scriptExtend(){
+
+    /**
+     *
+     */
+    private function scriptExtend()
+    {
         /*transfer custom scripts to main template */
         $pattern = "/(<script>){1}?(.|\n)+(<\/script>)/";
         $matches = [];
@@ -217,15 +287,21 @@ class Template {
         }
         Registry::setMonitor(Monitor::VIEW, 'Rendering ' . count($data) . ' scripts');
     }
-    
-    
-    protected function testIssetVars($variables, $vars) {
+
+
+    /**
+     * @param $variables
+     * @param $vars
+     * @return bool
+     */
+    protected function testIssetVars($variables, $vars)
+    {
         if (count($variables) == 1) {
             if (isset($vars[$variables[0]])) {
                 return $vars[$variables[0]] ;
             }
         } else {
-            if (isset($vars[$variables[0]][$variables[1]])) {              
+            if (isset($vars[$variables[0]][$variables[1]])) {
                 return $vars[$variables[0]][$variables[1]];
             }elseif(isset($vars[$variables[1]])){
                 return $vars[$variables[1]];

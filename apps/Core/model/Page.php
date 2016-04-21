@@ -12,6 +12,9 @@ use \model\models\Htm;
  */
 class Page extends \model\models\HtmPage {
 
+    /**
+     *
+     */
     function initialize() {
         $this->columnNames[HtmApp::TABLE] = ['slug', 'name'];
         //$this->columnNames['htm_txt'] = ['desc'];
@@ -20,19 +23,31 @@ class Page extends \model\models\HtmPage {
         unset($this->tableJoins['langs']);
         
     }
-    
+
+    /**
+     * @param $value
+     */
     function setHtmAppSlug($value) {
         $this->setColumnValue(HtmApp::FIELD_SLUG, $value);
     }
 
+    /**
+     * @return mixed|null
+     */
     function getHtmAppSlug() {
         return $this->getColumnValue(HtmApp::FIELD_SLUG);
     }
-    
+
+    /**
+     * @param $value
+     */
     function setHtmAppName($value) {
         $this->setColumnValue(HtmApp::FIELD_NAME, $value);
     }
 
+    /**
+     * @return mixed|null
+     */
     function getHtmAppName() {
         return $this->getColumnValue(HtmApp::FIELD_NAME);
     }

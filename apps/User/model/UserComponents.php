@@ -17,11 +17,17 @@ use \model\querys\UserInfoQuery;
  */
 class UserComponents {
 
+    /**
+     * @param $id
+     */
     public static function createUser($id){
         Registry::setMonitor(Monitor::BOOKMARK, 'Created');
         UserLogQuery::start()->filterByEvent(UserLog::EVENT_CREATED)->filterByUserId($id)->findOneOrCreate();
     }
-    
+
+    /**
+     * @param $id
+     */
     public static function createInfo($id){
         UserInfoQuery::start()->filterByUserId($id)->findOneOrCreate();
     }

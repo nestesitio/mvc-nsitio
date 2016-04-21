@@ -14,31 +14,67 @@ use \lib\tools\StringTools as StringTools;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 27, 2015
  */
-class CrudConfig {
-    
+class CrudConfig
+{
+    /**
+     * @var
+     */
     private $pdo;
-    
+
+    /**
+     * @var
+     */
     private $file;
+    /**
+     * @var
+     */
     private $name;
+    /**
+     * @var
+     */
     private $app;
+    /**
+     * @var
+     */
     private $table;
-    
+
+    /**
+     * @var array
+     */
     private $fields;
+    /**
+     * @var array
+     */
     private $langs = [];
+    /**
+     * @var
+     */
     private $columns;
-            
-    function __construct($file, $app, $name, $table) {
+
+    /**
+     * CrudConfig constructor.
+     * @param $file
+     * @param $app
+     * @param $name
+     * @param $table
+     */
+    public function __construct($file, $app, $name, $table)
+    {
         $this->file = $file;
         $this->name = strtolower($name);
         $this->app = strtolower($app);
         $this->table = $table;
-        
+
         $this->fields = $this->getFields($table);
         $this->getLangsForLabels();
         $this->columns = ModelTools::buildModel($table)->getColumns();
     }
-    
-    private function getLangsForLabels(){
+
+    /**
+     *
+     */
+    private function getLangsForLabels()
+    {
         $langs = \model\querys\LangsQuery::start()->find();
         foreach($langs as $row){
             $this->langs[] = $row->getTld();
@@ -46,13 +82,17 @@ class CrudConfig {
     }
 
 
-    public function create() {
+    /**
+     *
+     */
+    public function create()
+    {
         $doc = new DOMDocument('1.0', 'UTF-8');
         $doc->formatOutput = true;
 
         $root = $doc->createElement("root");
         $doc->appendChild($root);
-        
+
         #show
         $show = $doc->createElement('show');
         $node = $this->getFieldsNode($doc, 'fields', 'Fields for render');
@@ -60,29 +100,36 @@ class CrudConfig {
         $node = $this->getCommandsNode($doc, 'buttons', 'Commands for form and show');
         $show->appendChild($node);
         $root->appendChild($show);
-        
+
         #grid
         $grid = $doc->createElement('grid');
         $grid->setAttribute('identification', $this->name);
         $grid->setAttribute('paging', 25);
         $grid->setAttribute('fieldid', $this->table . '.id');
-        
+
         $node = $this->getColsNode($doc, 'columns', 'Columns for grid');
         $grid->appendChild($node);
-        
+
         $node = $this->getToolsNode($doc, 'tools', 'buttons in row');
         $grid->appendChild($node);
-        
+
         $node = $this->getButtonsNode($doc, 'buttons', 'buttons ion top');
         $grid->appendChild($node);
-        
+
         $root->appendChild($grid);
         //$root->appendChild( $doc->createTextNode($company_name));
 
         $doc->save($this->file);
     }
-    
-    private function getCommandsNode($doc, $parentname, $comment) {
+
+    /**
+     * @param $doc
+     * @param $parentname
+     * @param $comment
+     * @return mixed
+     */
+    private function getCommandsNode($doc, $parentname, $comment)
+    {
         $parent = $doc->createElement($parentname);
         $parent->setAttribute('comment', $comment);
         $tools['saveform'] = 'glyphicon glyphicon-save';
@@ -103,11 +150,18 @@ class CrudConfig {
             $node = $this->putLabels($doc, $node, $labels[$i++]);
             $parent->appendChild($node);
         }
-        
+
         return $parent;
     }
-    
-    private function getButtonsNode($doc, $parentname, $comment) {
+
+    /**
+     * @param $doc
+     * @param $parentname
+     * @param $comment
+     * @return mixed
+     */
+    private function getButtonsNode($doc, $parentname, $comment)
+    {
         $parent = $doc->createElement($parentname);
         $parent->setAttribute('comment', $comment);
         $tools = ['new'=>'glyphicon glyphicon-plus', 'export'=>'glyphicon glyphicon-export'];
@@ -118,7 +172,7 @@ class CrudConfig {
             }else{
                 $node->setAttribute('action', $this->app . '/' . $tool . '_' . $this->name);
             }
-            
+
             $node->setAttribute('class', $class);
             $node->setAttribute('auth', '1');
             $node = $this->putLabels($doc, $node, $tool);
@@ -126,8 +180,15 @@ class CrudConfig {
         }
         return $parent;
     }
-    
-    private function getToolsNode($doc, $parentname, $comment) {
+
+    /**
+     * @param $doc
+     * @param $parentname
+     * @param $comment
+     * @return mixed
+     */
+    private function getToolsNode($doc, $parentname, $comment)
+    {
         $parent = $doc->createElement($parentname);
         $parent->setAttribute('comment', $comment);
         $tools = ['edit'=>'fa-pencil', 'show'=>'fa-eye', 'del'=>'fa-trash-o'];
@@ -142,8 +203,15 @@ class CrudConfig {
         }
         return $parent;
     }
-    
-    private function putLabels($doc, $node, $name) {
+
+    /**
+     * @param $doc
+     * @param $node
+     * @param $name
+     * @return mixed
+     */
+    private function putLabels($doc, $node, $name)
+    {
         foreach ($this->langs as $lang) {
             $label = $doc->createElement('label');
             $label->setAttribute('lang', $lang);
@@ -153,7 +221,14 @@ class CrudConfig {
         return $node;
     }
 
-    private function getColsNode($doc, $parentname, $comment) {
+    /**
+     * @param $doc
+     * @param $parentname
+     * @param $comment
+     * @return mixed
+     */
+    private function getColsNode($doc, $parentname, $comment)
+    {
         $parent = $doc->createElement($parentname);
         $parent->setAttribute('comment', $comment);
         foreach ($this->columns as $table=>$columns){
@@ -182,10 +257,17 @@ class CrudConfig {
         echo "\n";
         return $parent;
     }
-    
-    
+
+
     #nodes for show, edit and filter
-    private function getFieldsNode($doc, $parentname, $comment) {
+    /**
+     * @param $doc
+     * @param $parentname
+     * @param $comment
+     * @return mixed
+     */
+    private function getFieldsNode($doc, $parentname, $comment)
+    {
         $parent = $doc->createElement($parentname);
         $parent->setAttribute('comment', $comment);
         foreach (array_keys($this->columns) as $table) {
@@ -209,11 +291,18 @@ class CrudConfig {
             $node = $this->buildFieldNode($doc, $field, $this->table );
             $parent->appendChild($node);
         }
-        
+
         return $parent;
     }
-    
-    private function buildFieldNode($doc, $field, $table) {
+
+    /**
+     * @param $doc
+     * @param $field
+     * @param $table
+     * @return mixed
+     */
+    private function buildFieldNode($doc, $field, $table)
+    {
         $node = $doc->createElement($this->getNodeName($table, $field['Field']));
         $node->setAttribute('field', $table . '.' . $field['Field']);
         if ($field['Key'] == 'PRI') {
@@ -235,8 +324,15 @@ class CrudConfig {
         $node = $this->appendLabel($doc, $node, $field['Field']);
         return $node;
     }
-    
-    private function appendLabel($doc, $node, $name){
+
+    /**
+     * @param $doc
+     * @param $node
+     * @param $name
+     * @return mixed
+     */
+    private function appendLabel($doc, $node, $name)
+    {
         foreach ($this->langs as $lang) {
             $label = $doc->createElement('label');
             $label->setAttribute('lang', $lang);
@@ -246,17 +342,28 @@ class CrudConfig {
         return $node;
     }
 
-    private function getNodeName($table, $name){
+    /**
+     * @param $table
+     * @param $name
+     * @return mixed
+     */
+    private function getNodeName($table, $name)
+    {
         $name = str_replace('_', '', $table) . str_replace('_', '', $name);
         return strtolower($name);
     }
-    
-    private function getFields($table){
+
+    /**
+     * @param $table
+     * @return array
+     */
+    private function getFields($table)
+    {
         $this->pdo = PdoMysql::getConn();
         $sth = $this->pdo->prepare("DESCRIBE " . $table);
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
-        
+
     }
 
 }

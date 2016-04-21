@@ -18,12 +18,18 @@ use \lib\mysql\Mysql;
  */
 class UserActions extends \lib\control\Controller {
 
-    
+
+    /**
+     *
+     */
     public function logoutUserAction(){
         SessionUser::unsetUser();
         header('Location:' . Configurator::getUrlLogoutExit());
     }
-    
+
+    /**
+     *
+     */
     public function resetUserAction(){
         if (SessionUser::getPlayer() != SessionUser::getUserId()) {
             $user = UserBaseQuery::start()->joinUserGroup()->selectName()->endUse()->filterById(SessionUser::getUserId())->findOne();
@@ -31,7 +37,10 @@ class UserActions extends \lib\control\Controller {
         }
         Redirect::redirectByPageNumber(Session::getPageReturn());
     }
-    
+
+    /**
+     *
+     */
     public function usernameUserAction(){
         $this->setEmptyView();
         $user = UserBaseQuery::start()

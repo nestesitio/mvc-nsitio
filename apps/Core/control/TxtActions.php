@@ -19,6 +19,9 @@ use \apps\Core\model\TxtForm;
  */
 class TxtActions extends \lib\control\ControllerAdmin {
 
+    /**
+     *
+     */
     public function txtAction(){
         $this->set('h1', VarsRegister::getHeading());
         $query = TxtQuery::get();
@@ -29,7 +32,10 @@ class TxtActions extends \lib\control\ControllerAdmin {
         $form = HtmPageForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'txt');
     }
-    
+
+    /**
+     *
+     */
     public function langTxtAction(){
         $this->setView('edit_text');
         
@@ -42,16 +48,22 @@ class TxtActions extends \lib\control\ControllerAdmin {
         $form->setQueryValues($query);
         $this->renderForm($form, 'txt', 'bind_txt', ['lang'=>VarsRegister::getRequests('lang')]);
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function listTxtAction(){
         $query = TxtQuery::get();
         $results = $this->buildDataList('txt', $query);
         #here you can process the results
         $this->renderList($results);
     }
-    
-    
+
+
+    /**
+     *
+     */
     public function bindTxtAction() {
         $form = TxtForm::init(VarsRegister::getId(), VarsRegister::getRequests('lang'))->validate();
         #more code for processing - example
@@ -71,7 +83,10 @@ class TxtActions extends \lib\control\ControllerAdmin {
             $this->showTxtAction();
         }
     }
-    
+
+    /**
+     *
+     */
     public function showTxtAction(){
         $this->setView('show_text');
         
@@ -82,13 +97,19 @@ class TxtActions extends \lib\control\ControllerAdmin {
         $model = PagesQuery::getPageByLang(VarsRegister::getId(), VarsRegister::getRequests('lang'))->findOne();
         $this->renderValues($model, 'txt');
     }
-    
+
+    /**
+     *
+     */
     public function delTxtAction() {
         $model = \model\querys\HtmPageQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }
-    
+
+    /**
+     *
+     */
     public function exportTxtAction(){
         $query = TxtQuery::get();
         $this->buildCsvExport($query);

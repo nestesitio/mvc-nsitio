@@ -12,36 +12,91 @@ use \lib\session\SessionUser;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Nov 21, 2014
  */
-class Model {
-    
+class Model
+{
+    /**
+     *
+     */
     const ACTION_INSERT = 'insert';
+    /**
+     *
+     */
     const ACTION_UPDATE = 'update';
+    /**
+     *
+     */
     const ACTION_NONE = 'update';
+    /**
+     *
+     */
     const ACTION_SHOW = 'show';
 
+    /**
+     * @var string
+     */
     protected $tableName = '';
+    /**
+     * @var array
+     */
     protected $columnNames = [];
-    
-    protected $tableJoins = [];
-    protected $primaryKey = [];
-    protected $fk = [];
-    
-    protected $uniqueKey = [];
-    protected $autoincrement = null;
-    
-    protected $tableAlias = '';
-    
-    #columns in query select
-    protected $columns = [];
-    protected $virtualColumns = [];
-    
-    protected $queue = [];
-    
-    protected $inserted = 0;
-    protected $action = Model::ACTION_SHOW;
-    
 
-    function __construct() {
+    /**
+     * @var array
+     */
+    protected $tableJoins = [];
+    /**
+     * @var array
+     */
+    protected $primaryKey = [];
+    /**
+     * @var array
+     */
+    protected $fk = [];
+
+    /**
+     * @var array
+     */
+    protected $uniqueKey = [];
+    /**
+     * @var null
+     */
+    protected $autoincrement = null;
+
+    /**
+     * @var string
+     */
+    protected $tableAlias = '';
+
+    #columns in query select
+    /**
+     * @var array
+     */
+    protected $columns = [];
+    /**
+     * @var array
+     */
+    protected $virtualColumns = [];
+
+    /**
+     * @var array
+     */
+    protected $queue = [];
+
+    /**
+     * @var int
+     */
+    protected $inserted = 0;
+    /**
+     * @var string
+     */
+    protected $action = Model::ACTION_SHOW;
+
+
+    /**
+     * Model constructor.
+     */
+    public function __construct()
+    {
         //these methods are allways in child \model\models\...
         $this->setModel();
         #$this->columnNames['table_name'] = ['id', 'constrain_field' 'field1'];
@@ -53,49 +108,64 @@ class Model {
         #the queued for processing insert / update
         $this->queue = [$this->tableName];
     }
-    
-    public function merge(\lib\model\Model $parent_model){
+
+    /**
+     * @param Model $parent_model
+     */
+    public function merge(\lib\model\Model $parent_model)
+    {
         $this->columns = $parent_model->getColumnValues();
     }
 
 
-    
-    public function getQueue() {
+    /**
+     * @return array
+     */
+    public function getQueue()
+    {
         return $this->queue;
     }
-    
+
      /**
      * Convert query result to array, called from Controller
      *
      * @return array
      */
-    public function getToArray() {
+    public function getToArray()
+    {
         $row = [];
         foreach (array_keys($this->columns) as $column) {
             $row[$column] = trim($this->getColumnValue($column));
         }
         return $row;
     }
-    
-    public function mergeToAlias($column) {
+
+    /**
+     * @param $column
+     * @return string
+     */
+    public function mergeToAlias($column)
+    {
         return $this->tableName . '.' . $column;
     }
-    
+
     /*
-    public function saveMerged(){
+    public function saveMerged()
+    {
         $queue = array_reverse($this->columnNames, true);
         foreach($queue as $table => $columns){
-            
+
         }
     }
      */
-    
+
      /**
      * Save the object.
      *
      * @return \lib\model\Model $this
      */
-    public function save() {
+    public function save()
+    {
         if(SessionUser::getAuthUser() == false){
             //return null;
         }
@@ -115,18 +185,30 @@ class Model {
             }
         }
         return $this;
-        
+
     }
-    
-    public function getInsertId() {
+
+    /**
+     * @return int
+     */
+    public function getInsertId()
+    {
         return $this->inserted;
     }
-    
-    public function getAction() {
+
+    /**
+     * @return string
+     */
+    public function getAction()
+    {
         return $this->action;
     }
-    
-    public function delete() {
+
+    /**
+     * @return mixed
+     */
+    public function delete()
+    {
         if(SessionUser::getAuthUser() == false){
             //return null;
         }
@@ -141,9 +223,13 @@ class Model {
         }
         return $result;
     }
-    
-    
-    public function getModelValues() {
+
+
+    /**
+     * @return array
+     */
+    public function getModelValues()
+    {
         #used by QueryWrite
         $values =[];
 
@@ -157,29 +243,53 @@ class Model {
         }
         return $values;
     }
-    
-    
-    public function addColumn($column) {
+
+
+    /**
+     * @param $column
+     */
+    public function addColumn($column)
+    {
         $this->columns = array_merge($this->columns, [$column]);
     }
-    
-    public function addColumnName($table, $column){
+
+    /**
+     * @param $table
+     * @param $column
+     */
+    public function addColumnName($table, $column)
+    {
         if(isset($this->columnNames[$table])){
             $this->columnNames[$table] = array_merge($this->columnNames[$table], [$column]);
         }else{
             $this->columnNames[$table] = [$column];
         }
     }
-    
-    public function setColumnValue($column, $value){
+
+    /**
+     * @param $column
+     * @param $value
+     */
+    public function setColumnValue($column, $value)
+    {
         $this->columns[$column] = $value;
     }
-    
-    public function setColumnDate($column, $value){
+
+    /**
+     * @param $column
+     * @param $value
+     */
+    public function setColumnDate($column, $value)
+    {
         $this->columns[$column] = \lib\tools\DateTools::convertToSqlDate($value);
     }
-    
-    public function getColumnValue($column){
+
+    /**
+     * @param $column
+     * @return mixed|null
+     */
+    public function getColumnValue($column)
+    {
         if(isset($this->columns[$column])){
             return $this->columns[$column];
         }else{
@@ -187,22 +297,40 @@ class Model {
             return null;
         }
     }
-    
-    public function getColumnValues(){
+
+    /**
+     * @return array
+     */
+    public function getColumnValues()
+    {
         return $this->columns;
     }
-    
-    public function setVirtualColumnValue($column,$value){
+
+    /**
+     * @param $column
+     * @param $value
+     */
+    public function setVirtualColumnValue($column, $value)
+    {
         $this->virtualColumns[$column] = $value;
     }
-    
-    protected function getVirtualColumnValue($column){
+
+    /**
+     * @param $column
+     * @return mixed
+     */
+    protected function getVirtualColumnValue($column)
+    {
         return $this->virtualColumns[$column];
     }
-    /* merge all columns from joins to query 
+    /* merge all columns from joins to query
      * called from new Query()
      */
-    public function getMergedColumns(){
+    /**
+     * @return array
+     */
+    public function getMergedColumns()
+    {
         $columns = [];
         foreach($this->columnNames as $table=>$cols){
             foreach($cols as $col){
@@ -211,8 +339,13 @@ class Model {
         }
         return $columns;
     }
-    
-    public function getOnlyModelColumns($all = ALL) {
+
+    /**
+     * @param string $all
+     * @return array
+     */
+    public function getOnlyModelColumns($all = ALL)
+    {
         $columns = [];
         foreach($this->columnNames[$this->tableName] as $col){
             $columns[] = $this->tableName . '.' . $col;
@@ -222,33 +355,54 @@ class Model {
         }
         return $columns;
     }
-    
-    
-    
-    public function getTableName(){
+
+
+    /**
+     * @return mixed
+     */
+    public function getTableName()
+    {
         return $this::TABLE;
     }
-    
-    public function getColumns($table = null){
+
+    /**
+     * @param null $table
+     * @return array|mixed
+     */
+    public function getColumns($table = null)
+    {
         if($table == null){
             return $this->columnNames;
         }else{
             return $this->columnNames[$table];
         }
     }
-    
-    public function getFields(){
+
+    /**
+     * @return array
+     */
+    public function getFields()
+    {
         return $this->columns;
     }
-    
-    public function isField($field){
+
+    /**
+     * @param $field
+     * @return bool
+     */
+    public function isField($field)
+    {
         if(isset($this->columns[$field])){
             return true;
         }
         return false;
     }
-    
-    public function convertToFields(){
+
+    /**
+     *
+     */
+    public function convertToFields()
+    {
         //used by QuerySelect::findOneOrCreate()
         foreach($this->columnNames[$this->tableName] as $column){
             $key = $this->tableName . '.' . $column;
@@ -258,28 +412,53 @@ class Model {
         }
     }
 
-    public function getPrimaryKey(){
+    /**
+     * @return array
+     */
+    public function getPrimaryKey()
+    {
         return $this->primaryKey;
     }
-    
-    public function getUniqueKey(){
+
+    /**
+     * @return array
+     */
+    public function getUniqueKey()
+    {
         return $this->uniqueKey;
     }
-    
-    public function getAutoIncrement(){
+
+    /**
+     * @return null
+     */
+    public function getAutoIncrement()
+    {
         return $this->autoincrement;
     }
-    public function getForeignKeys(){
+
+    /**
+     * @return array
+     */
+    public function getForeignKeys()
+    {
         return $this->fk;
     }
-    
-    public function getTableJoins(){
+
+    /**
+     * @return array
+     */
+    public function getTableJoins()
+    {
         return $this->tableJoins;
     }
-    
-    public function getTableAlias(){
+
+    /**
+     * @return string
+     */
+    public function getTableAlias()
+    {
         return $this->tableAlias;
     }
-    
+
 
 }

@@ -11,22 +11,35 @@ use \lib\filter\SessionFilter as SessionFilter;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Feb 2, 2015
  */
-class Pagination {
-
-
+class Pagination
+{
+    /**
+     * Pagination constructor.
+     */
     private function __construct() {}
-    
+
+    /**
+     *
+     */
     const PAGINATION = 25;
+    /**
+     *
+     */
     const MAX_LI = 6;
-    
-    public static function renderPagination($total_rows){
+
+    /**
+     * @param int $total_rows
+     * @return array
+     */
+    public static function renderPagination($total_rows)
+    {
         $pages = [];
         $action = VarsRegister::getCanonical();
         $index = SessionFilter::getControllerPaging($action);
-        
+
         $total_pages = 0;
         $pagination = (SessionFilter::getControllerLimit($action) != false)? SessionFilter::getControllerLimit($action): Pagination::PAGINATION;
-        
+
         if ($total_rows > 0 && $pagination < $total_rows) {
             $total_pages = ceil($total_rows / $pagination);
             $maxpages = $total_pages;
@@ -57,24 +70,41 @@ class Pagination {
         }
         return $pages;
     }
-    
-    private static function getPage($p, $index, $action) {
+
+    /**
+     * @param $p
+     * @param $index
+     * @param $action
+     * 
+     * @return array
+     */
+    private static function getPage($p, $index, $action)
+    {
         $arr = [];
         $arr['class'] = ($p == $index)? 'page-number active disabled' : 'page-number';
         $arr['action'] = VarsRegister::getApp() . '/list_' . $action;
         $arr['label'] = $p;
         $arr['id'] = $p;
-        
+
         return $arr;
     }
-    
-    private static function getFast($action, $option, $label, $id) {
+
+    /**
+     * @param $action
+     * @param $option
+     * @param $label
+     * @param $id
+     *
+     * @return array
+     */
+    private static function getFast($action, $option, $label, $id)
+    {
         $arr = [];
         $arr['class'] = $option;
         $arr['action'] = VarsRegister::getApp() . '/list_' . $action;
         $arr['label'] = $label;
         $arr['id'] = $id;
-        
+
         return $arr;
     }
 

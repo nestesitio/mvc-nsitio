@@ -18,14 +18,23 @@ use \lib\register\VarsRegister;
  */
 class SupportUserForm extends \lib\form\FormMerged {
 
+    /**
+     * @return SupportUserForm
+     */
     public static function init(){
         $form = new SupportUserForm();
         $form->setQueue();
         return $form;
     }
-    
+
+    /**
+     *
+     */
     protected function customValidate() {}
-    
+
+    /**
+     * @return $this
+     */
     public function setQueue() {
         $this->queue = [Support::TABLE, SupportLog::TABLE];
         
@@ -58,32 +67,48 @@ class SupportUserForm extends \lib\form\FormMerged {
         #$this->setFieldLabel(Htm::TABLE, HtmPage::HTM_PAGE_LANGS_TLD, 'Idioma');
         return $this;
     }
-    
-    
+
+
+    /**
+     * @param $field
+     * @return HiddenInput
+     */
     function getUserIdInput($field) {
         $input = HiddenInput::create($field);
 	$input->setValue(SessionUser::getUserId());      
         return $input;
     }
-    
+
+    /**
+     * @return HiddenInput
+     */
     function getSourceInput() {
         $input = HiddenInput::create(Support::FIELD_SOURCE);
 	$input->setValue('web');   
         return $input;
     }
-    
+
+    /**
+     * @return HiddenInput
+     */
     function getStatusInput() {
         $input = HiddenInput::create(Support::FIELD_STATUS);
 	$input->setValue('open');
         return $input;
     }
-    
+
+    /**
+     * @return HiddenInput
+     */
     function getTypeInput() {
         $input = HiddenInput::create(Support::FIELD_TYPE);
 	$input->setValue(VarsRegister::getSlugVar());      
         return $input;
     }
-    
+
+    /**
+     * @return HiddenInput
+     */
     function getEventInput(){
         $input = HiddenInput::create(SupportLog::FIELD_EVENT);
         $input->setValue('creation');

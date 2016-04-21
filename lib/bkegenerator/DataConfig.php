@@ -13,28 +13,67 @@ use \lib\register\VarsRegister;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Dec 18, 2014
  */
-class DataConfig {
-
+class DataConfig
+{
+    /**
+     * @var XmlFile
+     */
     protected $x_conf;
+    /**
+     * @var
+     */
     protected $html;
+    /**
+     * @var null
+     */
     protected $extended = null;
+    /**
+     * @var
+     */
     protected $tag;
+    /**
+     * @var int|null
+     */
     protected $identification = null;
+    /**
+     * @var null
+     */
     protected $var = null;
+    /**
+     * @var array
+     */
     protected $querystring = [];
+    /**
+     * @var array
+     */
     protected $condition = [];
 
-    function __construct($xmlfile, $obj = null) {
+    /**
+     * DataConfig constructor.
+     * @param String $xmlfile
+     * @param null $obj
+     */
+    public function __construct($xmlfile, $obj = null)
+    {
         $file = \lib\control\ControlTools::validateFile($obj, $xmlfile, 'config', 'xml');
         $this->x_conf = new XmlFile($file);
         $this->identification = $this->x_conf->queryXPath('grid', 'atr', 'identification');
     }
-    
-    public function setCondition($index){
+
+    /**
+     * @param $index
+     */
+    public function setCondition($index)
+    {
         $this->condition[$index] = true;
     }
-    
-    protected function getCondition($path){
+
+    /**
+     * @param $path
+     * @return bool
+     */
+    protected function getCondition($path)
+    {
         $index = $this->x_conf->queryXPath($path, 'atr', 'condition');
         if(!empty($index) && !isset($this->condition[$index])){
             return false;
@@ -43,39 +82,68 @@ class DataConfig {
     }
 
 
-    protected function getnodes($query) {
+    /**
+     * @param $query
+     * @return array
+     */
+    protected function getnodes($query)
+    {
         $nodes = $this->x_conf->arrayXPath($query);
         return $nodes;
     }
-    
-    public function setHtml($html) {
+
+    /**
+     * @param $html
+     * @return \lib\bkegenerator\DataConfig
+     */
+    public function setHtml($html)
+    {
         $this->html = $html;
         return $this;
     }
-    
-    
-    public function getContentsFile($file, $id){
+
+
+    /**
+     * @param $file
+     * @param $id
+     */
+    public function getContentsFile($file, $id)
+    {
         $this->var = $id;
         $this->tag = '{% build ('.$id.') %}';
         if (file_exists(ROOT . $file)) {
             $this->html =  file_get_contents(ROOT . $file); // get contents of buffer
-            
+
         }
     }
-    
-    public function getHtml($extended = null) {
+
+    /**
+     * @param null $extended
+     * @return mixed
+     */
+    public function getHtml($extended = null)
+    {
         Registry::setMonitor(Monitor::BOOKMARK, ' DataConfig return HTML');
         if($extended != null){
             $this->html = str_replace($this->tag, $this->html, $extended);
         }
         return $this->html;
     }
-    
-    public function setQueryString($querystring){
+
+    /**
+     * @param $querystring
+     */
+    public function setQueryString($querystring)
+    {
         $this->querystring = $querystring;
     }
-    
-    protected function findVars($path){
+
+    /**
+     * @param $path
+     * @return string
+     */
+    protected function findVars($path)
+    {
         $str = '';
         $arr = $this->x_conf->nodeXPath($path . '/vars', ['var','value','get','id','str']);
         foreach($arr as $line){
@@ -91,8 +159,13 @@ class DataConfig {
         }
         return $str;
     }
-    
-    public function getParams($path) {
+
+    /**
+     * @param $path
+     * @return array
+     */
+    public function getParams($path)
+    {
         $values = [];
         $nodes = $this->x_conf->nodeXPath($path, ['var', 'str']);
         foreach($nodes as $node){
@@ -100,8 +173,13 @@ class DataConfig {
         }
         return $values;
     }
-    
-    protected function findLabel($path) {
+
+    /**
+     * @param $path
+     * @return int
+     */
+    protected function findLabel($path)
+    {
         $value = $this->x_conf->queryXPath($path . "/label[@lang='" . 'pt' . "']");
         if (empty($value)) {
             $value = $this->xmdl->queryXPath($path . "/label[@lang='" . 'en' . "']");
@@ -111,6 +189,6 @@ class DataConfig {
         }
         return $value;
     }
-    
+
 
 }
