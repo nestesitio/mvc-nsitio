@@ -16,7 +16,7 @@ class InputText extends \lib\form\Input
     private $disabled = null;
 
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return InputText
      */
     public static function create($field = null)

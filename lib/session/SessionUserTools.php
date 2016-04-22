@@ -47,7 +47,7 @@ class SessionUserTools
     }
 
     /**
-     * @param null $groupid
+     * @param $groupid
      * @return UserBaseQuery|\model\querys\UserGroupQuery
      */
     public static function getUserSession($groupid = null)

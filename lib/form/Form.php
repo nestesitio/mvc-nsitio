@@ -175,10 +175,10 @@ class Form extends \lib\form\form\FormProcessing
         return $this;
     }
 
-
-    #return for merged forms
     /**
-     * @param null $table
+     * Get the inputs of the merged table in a array
+     * @param String $table The table name as index of merged form
+     * 
      * @return array
      */
     public function getFormInputs($table = null)
@@ -187,9 +187,10 @@ class Form extends \lib\form\form\FormProcessing
     }
 
     /**
-     * @param $table
-     * @param $field
-     * @return null
+     * Get the input by the form para associated by table and field
+     * @param String $table The table name as index of merged form
+     * @param String $field
+     * @return input|null
      */
     public function getInput($table, $field)
     {
@@ -201,7 +202,7 @@ class Form extends \lib\form\form\FormProcessing
     }
 
     /**
-     * @param null $table
+     * @param String $table The table name as index of merged form
      * @return array|mixed
      */
     public function getFormLabels($table = null)
@@ -259,16 +260,16 @@ class Form extends \lib\form\form\FormProcessing
 
     #fullfill input values from query
     /**
-     * @param null $query
+     * @param \lib\model\Model $model
      * @return $this
      */
-    public function setQueryValues($query = null)
+    public function setQueryValues(\lib\model\Model $model = null)
     {
-        if(null != $query){
-            if(method_exists($query,'exec')){
+        if(null != $model){
+            if(method_exists($model,'exec')){
                 die("Error: execute query first by find() or findOne()");
             }
-            $columns = $query->getFields();
+            $columns = $model->getFields();
             foreach($this->forminputs as $table=>$forminputs){
                 if(isset($this->models[$table])){
                     $fks = $this->models[$table]->getForeignKeys();
@@ -276,7 +277,7 @@ class Form extends \lib\form\form\FormProcessing
 
                 foreach($forminputs as $field=>$input){
                     if (array_key_exists($field, $columns)) {
-                        $value = $query->getColumnValue($field);
+                        $value = $model->getColumnValue($field);
 
                         $input->setValue($value);
                         if(isset($fks[$field])){
@@ -311,7 +312,9 @@ class Form extends \lib\form\form\FormProcessing
 
     #render form
     /**
-     * @param null $actionclass
+     * render the part of inputs type hidden
+     * @param String $actionclass That will be part of input names
+     * 
      * @return string
      */
     public function renderHiddenFields($actionclass = null)
@@ -341,7 +344,7 @@ class Form extends \lib\form\form\FormProcessing
     }
 
     /**
-     * @param null $table
+     * @param String $table The table name as index of merged form
      * @return array
      */
     public function getModels($table = null)

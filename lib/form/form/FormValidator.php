@@ -15,7 +15,7 @@ use \lib\register\VarsRegister as VarsRegister;
 class FormValidator
 {
     /**
-     * @param $field
+     * @param String $field The field name as index for the array of inputs
      * @param $query
      * @return array|bool|mixed|null
      */
@@ -47,8 +47,8 @@ class FormValidator
     }
 
     /**
-     * @param $field
-     * @param $label
+     * @param String $field The field name as index for the array of inputs
+     * @param String $label The label of the input
      * @param $required
      * @param $max
      * @return int|null
@@ -72,9 +72,10 @@ class FormValidator
     }
 
     /**
-     * @param $field
-     * @param $label
-     * @param $required
+     * @param String $field The field name as index for the array of inputs
+     * @param String $label The label of the input
+     * @param bool $required
+     * 
      * @return float|null
      */
     public static function validateFloat($field, $label, $required)
@@ -97,8 +98,8 @@ class FormValidator
 
 
     /**
-     * @param $field
-     * @param $label
+     * @param String $field The field name as index for the array of inputs
+     * @param String $label The label of the input
      * @param $required
      * @param $minlen
      * @param $maxlen
@@ -127,7 +128,7 @@ class FormValidator
 
     /**
      * @param $field
-     * @param $label
+     * @param String $label The label of the input
      * @return array|bool|mixed
      */
     public static function validateDate($field, $label)
@@ -138,11 +139,11 @@ class FormValidator
     }
 
     /**
-     * @param $field
-     * @param $label
+     * @param String $field The field name as index for the array of inputs
+     * @param String $label The label of the input
      * @param $query
      * @param $index
-     * @param $required
+     * @param bool $required
      * @return array|bool
      */
     public static function validateMultipleModel($field, $label, $query, $index, $required)
@@ -175,12 +176,13 @@ class FormValidator
     }
 
     /**
-     * @param $field
-     * @param $label
+     * @param String $field The field name as index for the array of inputs
+     * @param String $label The label of the input
      * @param $query
      * @param $index
      * @param $required
-     * @param null $default
+     * @param String $default
+     * 
      * @return bool|null
      */
     public static function validateModel($field, $label, $query, $index, $required, $default = null)
@@ -201,11 +203,11 @@ class FormValidator
     }
 
     /**
-     * @param $field
-     * @param $label
+     * @param String $field The field name as index for the array of inputs
+     * @param String $label The label of the input
      * @param $possible_values
      * @param $required
-     * @param null $default
+     * @param String $default
      * @return array|bool|mixed|null
      */
     public static function validateValues($field, $label, $possible_values, $required, $default = null)
@@ -227,10 +229,10 @@ class FormValidator
     }
 
     /**
-     * @param $model
-     * @param $field
+     * @param \lib\model\Model $model
+     * @param String $field The field name as index for the array of inputs
      * @param $value
-     * @param $label
+     * @param String $label The label of the input
      * @return bool
      */
     public static function validateUnique($model, $field, $value, $label)
@@ -253,8 +255,8 @@ class FormValidator
     }
 
     /**
-     * @param $key
-     * @param $fields
+     * @param String $key
+     * @param array $fields
      * @return mixed
      */
     public static function compareKeyToFields($key, $fields)
@@ -274,7 +276,7 @@ class FormValidator
     }
 
     /**
-     * @param $key
+     * @param String $key
      * @return string
      */
     public static function correctKey($key)
@@ -284,7 +286,7 @@ class FormValidator
     }
 
     /**
-     * @param $field
+     * @param String $field The field name as index for the array of inputs
      * @return mixed
      */
     public static function getColumnName($field)
@@ -294,7 +296,7 @@ class FormValidator
     }
 
     /**
-     * @param $field
+     * @param String $field The field name as index for the array of inputs
      * @return array|bool|mixed
      */
     public static function getValue($field)

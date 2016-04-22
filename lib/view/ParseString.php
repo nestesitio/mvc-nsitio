@@ -164,7 +164,7 @@ class ParseString
     }
 
     /**
-     * @param null $k
+     * @param $k
      * @return array|mixed
      */
     public function getArgs($k = null)
@@ -173,7 +173,7 @@ class ParseString
     }
 
     /**
-     * @param null $k
+     * @param $k
      * @return array|mixed
      */
     public function getTag($k = null)

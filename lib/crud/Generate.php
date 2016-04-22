@@ -75,11 +75,11 @@ class Generate
     }
 
     /**
-     * @param $app
-     * @param $name
-     * @param $model
-     * @param $area
-     * @param null $file
+     * @param String $app
+     * @param String $name
+     * @param String $model
+     * @param String $area
+     * @param String $file
      */
     public function buildApp($app, $name, $model, $area, $file = null)
     {

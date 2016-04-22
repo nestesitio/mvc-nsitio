@@ -80,7 +80,7 @@ class StringTools
     }
 
     /**
-     * @param null $stringValue
+     * @param $stringValue
      * @return bool
      */
     public static function cleanStringCode($stringValue = null)

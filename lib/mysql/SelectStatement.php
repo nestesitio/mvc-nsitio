@@ -126,7 +126,7 @@ class SelectStatement extends \lib\mysql\MysqlStatement
 
     /**
      * @param $column
-     * @param null $alias
+     * @param $alias
      */
     public function setDistinct($column, $alias = null)
     {
@@ -136,7 +136,7 @@ class SelectStatement extends \lib\mysql\MysqlStatement
 
     /**
      * @param $column
-     * @param null $alias
+     * @param $alias
      */
     public function countDistinct($column, $alias = null)
     {
@@ -146,7 +146,7 @@ class SelectStatement extends \lib\mysql\MysqlStatement
 
     /**
      * @param $column
-     * @param null $alias
+     * @param $alias
      */
     public function setSelect($column, $alias = null)
     {
@@ -169,7 +169,7 @@ class SelectStatement extends \lib\mysql\MysqlStatement
     /**
      * @param $expression
      * @param $alias
-     * @param null $value
+     * @param $value
      * @return $this
      */
     public function setConcatCondition($expression, $alias, $value = null)
@@ -186,7 +186,7 @@ class SelectStatement extends \lib\mysql\MysqlStatement
      * @param $table
      * @param string $join
      * @param array $relation
-     * @param null $alias
+     * @param $alias
      */
     public function joinTable($table, $join = Mysql::INNER_JOIN, $relation = [], $alias = null)
     {

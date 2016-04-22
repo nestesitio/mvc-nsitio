@@ -23,7 +23,7 @@ class ControlTools
 
     /**
      * @param $obj
-     * @param $xmlfile
+     * @param String $xmlfile
      * @return mixed
      */
     public static function getFielsAndLabelsFromXml($obj, $xmlfile)
@@ -56,8 +56,10 @@ class ControlTools
     }
 
     /**
+     * Test if file exist in the site directory
      * @param $file
-     * @param null $ext
+     * @param String $ext
+     * 
      * @return string
      */
     public static function isFile($file, $ext = null)

@@ -104,8 +104,8 @@ class Input
 
     /**
      * Input constructor.
-     * @param null $name
-     * @param null $elemid
+     * @param String $name The name for the input
+     * @param String $elemid The id for the input
      */
     public function __construct($name = null, $elemid = null)
     {
@@ -118,8 +118,10 @@ class Input
     public function __clone() {}
 
     /**
-     * @param null $name
-     * @param null $elemid
+     * Set id and name for the input
+     * 
+     * @param String $name The name for the input
+     * @param String $elemid The id for the input
      */
     public function setElementId($name = null, $elemid = null)
     {

@@ -53,9 +53,9 @@ class CrudTools
     }
 
     /**
-     * @param $table
-     * @param $field
-     * @param null $maintable
+     * @param String $table
+     * @param String $field
+     * @param String $maintable
      * @return string
      */
     public static function writeFieldConstantName($table, $field, $maintable = null)
@@ -65,9 +65,9 @@ class CrudTools
     }
 
     /**
-     * @param $table
-     * @param $field
-     * @param null $maintable
+     * @param String $table
+     * @param String $field
+     * @param String $maintable
      * @return string
      */
     public static function writeFieldConstant($table, $field, $maintable = null)

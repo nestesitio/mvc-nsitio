@@ -48,10 +48,10 @@ class CrudForm
 
     /**
      * CrudForm constructor.
-     * @param $table
-     * @param $class
-     * @param $fk
-     * @param null $composite_key
+     * @param String $table The table name
+     * @param String $class The class name
+     * @param String $fk The foreign key
+     * @param String $composite_key Primary key with more than one field
      */
     public function __construct($table, $class, $fk, $composite_key = null)
     {

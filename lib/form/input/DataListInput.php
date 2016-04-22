@@ -11,7 +11,7 @@ namespace lib\form\input;
 class DataListInput extends \lib\form\input\SelectInput
 {
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return DataListInput
      */
     public static function create($field = null)

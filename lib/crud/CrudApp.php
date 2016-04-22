@@ -126,8 +126,8 @@ class CrudApp
     }
 
     /**
-     * @param $area
-     * @param null $file
+     * @param String $area
+     * @param String $file
      */
     public function execute($area, $file = null)
     {

@@ -366,7 +366,7 @@ class Model
     }
 
     /**
-     * @param null $table
+     * @param $table
      * @return array|mixed
      */
     public function getColumns($table = null)

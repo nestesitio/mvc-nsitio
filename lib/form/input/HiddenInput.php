@@ -13,7 +13,7 @@ use \lib\form\Input;
 class HiddenInput extends \lib\form\Input
 {
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return HiddenInput
      */
     public static function create($field = null)

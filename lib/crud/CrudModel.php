@@ -442,9 +442,9 @@ class CrudModel
     }
 
     /**
-     * @param $table
-     * @param $fieldnames
-     * @param null $maintable
+     * @param String $table
+     * @param String $fieldnames
+     * @param String $maintable
      */
     private function writeConstants($table, $fieldnames, $maintable = null)
     {

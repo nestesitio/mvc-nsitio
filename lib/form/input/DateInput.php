@@ -17,7 +17,7 @@ namespace lib\form\input;
 class DateInput extends \lib\form\Input
 {
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return DateInput
      */
     public static function create($field = null)

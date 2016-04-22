@@ -18,7 +18,7 @@ namespace lib\form\input;
 class WysihtmlInput extends \lib\form\input\TextAreaInput
 {
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return WysihtmlInput
      */
     public static function create($field = null)

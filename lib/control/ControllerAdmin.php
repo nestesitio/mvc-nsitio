@@ -49,9 +49,10 @@ class ControllerAdmin extends \lib\control\Controller
 
 
     /**
-     * @param $xmlfile
+     * @param String $xmlfile
      * @param QuerySelect $query
-     * @param null $view
+     * @param String $view The path to template file
+     * 
      * @return array $results
      */
     protected function buildDataGrid($xmlfile, QuerySelect $query, $view = null)
@@ -69,7 +70,7 @@ class ControllerAdmin extends \lib\control\Controller
     }
 
     /**
-     * @param $xmlfile
+     * @param String $xmlfile
      * @param QuerySelect $query
      *
      * @return array $results
@@ -106,9 +107,9 @@ class ControllerAdmin extends \lib\control\Controller
 
 
     /**
-     * @param $xmlfile
+     * @param String $xmlfile
      * @param QuerySelect $query
-     * @param null $view
+     * @param String $view The path to template file
      */
     protected function buildDataSubList($xmlfile, QuerySelect $query, $view = null)
     {
@@ -127,8 +128,9 @@ class ControllerAdmin extends \lib\control\Controller
 
 
     /**
-     * @param $results
-     * @param null $var
+     * 
+     * @param mixed $results
+     * @param String $var
      */
     protected function renderList($results, $var = null)
     {
@@ -141,7 +143,7 @@ class ControllerAdmin extends \lib\control\Controller
 
     /**
      * @param Form $form
-     * @param $xmlfile
+     * @param String $xmlfile
      */
     protected function renderFilters(\lib\form\Form $form, $xmlfile)
     {
@@ -189,7 +191,7 @@ class ControllerAdmin extends \lib\control\Controller
      * Save the object. If data is not valid, repeat form and return false.
      * @param Form $form The form
      * @param String $xmlfile The path of xml file with configuration
-     * @param String $view $name Optional
+     * @param String $view The path to template file Optional
      *
      * @return \lib\model\Model $model
      */
@@ -212,7 +214,7 @@ class ControllerAdmin extends \lib\control\Controller
      * Save the object. If data is not valid, repeat form and return false.
      * @param Form $form The form
      * @param String $action The action to be done Optional
-     * @param String $view $name Optional
+     * @param String $view The path to template file (Optional)
      *
      * @return \lib\model\Model $model
      */
@@ -265,9 +267,9 @@ class ControllerAdmin extends \lib\control\Controller
 
     /**
      * render de data for action showAction()
-     * @param $model
-     * @param $xmlfile
-     * @param null $view
+     * @param \lib\model\Model $model Object to be rendered to html
+     * @param String $xmlfile The path to xml file with some configs
+     * @param String $view The path to template file
      */
     protected function renderValues($model, $xmlfile, $view = null)
     {
@@ -316,7 +318,7 @@ class ControllerAdmin extends \lib\control\Controller
 
     /**
      * @param Model $model
-     * @param String $view
+     * @param String $view The path to template file
      */
     protected function deleteObject(Model $model, $view = null)
     {

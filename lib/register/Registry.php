@@ -84,7 +84,7 @@ class Registry
     }
 
     /**
-     * @param null $key
+     * @param $key
      * @return array|bool|mixed
      */
     public static function getErrorMessages($key = null)
@@ -121,7 +121,7 @@ class Registry
     }
 
     /**
-     * @param null $key
+     * @param $key
      * @return array|bool|mixed
      */
     public static function getUserMessages($key = null)
@@ -147,7 +147,7 @@ class Registry
 
 
     /**
-     * @param null $key
+     * @param $key
      * @return array|bool|mixed
      */
     public static function getCustomMessages($key = null)
@@ -162,7 +162,7 @@ class Registry
     /**
      * @param $type
      * @param $value
-     * @param null $key
+     * @param $key
      */
     public static function setMonitor($type, $value, $key = null)
   {
@@ -173,7 +173,7 @@ class Registry
   }
 
     /**
-     * @param null $type
+     * @param $type
      * @return array|bool|mixed
      */
     public static function getMonitor($type = null)

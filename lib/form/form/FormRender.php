@@ -15,9 +15,10 @@ use \lib\form\Form;
 class FormRender
 {
     /**
-     * @param $queue
-     * @param $forminputs
-     * @param null $actionclass
+     * @param array $queue
+     * @param array $forminputs
+     * @param String $actionclass
+     * 
      * @return string
      */
     public static function renderHiddenFields($queue, $forminputs, $actionclass = null)
@@ -101,9 +102,9 @@ class FormRender
     }
 
     /**
-     * @param $oldname
-     * @param $actionclass
-     * @param null $config
+     * @param String $oldname
+     * @param String $actionclass
+     * @param \lib\bkenerator\Config $config
      * @return string
      */
     public static function renderName($oldname, $actionclass, $config = null)

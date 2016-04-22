@@ -92,7 +92,7 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write
      * @param $query
      * @param $params
      * @param $start_time
-     * @param null $table
+     * @param $table
      */
     private function register($query, $params, $start_time, $table = null)
     {

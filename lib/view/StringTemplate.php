@@ -14,7 +14,7 @@ class StringTemplate extends \lib\view\ParseTemplate
 {
     /**
      * StringTemplate constructor.
-     * @param null $html
+     * @param $html
      */
     public function __construct($html = null)
     {

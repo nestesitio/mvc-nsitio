@@ -26,7 +26,7 @@ class InputInfo extends \lib\form\Input
     private $description = null;
 
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return InputInfo
      */
     public static function create($field = null)

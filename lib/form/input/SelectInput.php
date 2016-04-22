@@ -34,7 +34,7 @@ class SelectInput extends \lib\form\Input
     protected $width = '100%';
 
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return SelectInput
      */
     public static function create($field = null)
@@ -50,7 +50,7 @@ class SelectInput extends \lib\form\Input
     private $select_all = false;
 
     /**
-     * @param null $select_all
+     * @param $select_all
      * @return $this
      */
     public function setMultiple($select_all = null)
@@ -281,7 +281,7 @@ class SelectInput extends \lib\form\Input
     }
 
     /**
-     * @param null $label
+     * @param $label
      * @return $this
      */
     public function addEmpty($label = null)

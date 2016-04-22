@@ -58,7 +58,7 @@ class Query
 
     /**
      * Query constructor.
-     * @param null $class
+     * @param $class
      * @param string $merge
      */
     public function __construct($class = null, $merge = ALL)
@@ -129,7 +129,7 @@ class Query
     /**
      * @param $query
      * @param $params
-     * @param null $values
+     * @param $values
      */
     protected function executeQuery($query, $params, $values = null)
     {
@@ -255,7 +255,7 @@ class Query
      * @param $column
      * @param $values
      * @param string $operator
-     * @param null $wildcard
+     * @param $wildcard
      * @return $this
      */
     public function setCondition($column, $values, $operator = Mysql::EQUAL, $wildcard= null)
@@ -322,7 +322,7 @@ class Query
 
     /**
      * @param $column
-     * @param null $null
+     * @param $null
      * @return $this
      */
     public function filterByColumnIsNull($column, $null = null)
@@ -335,7 +335,7 @@ class Query
      * @param $column
      * @param $values
      * @param string $operator
-     * @param null $wildcard
+     * @param $wildcard
      * @return $this
      */
     public function filterByColumn($column, $values, $operator = Mysql::EQUAL, $wildcard= null)
@@ -352,7 +352,7 @@ class Query
     /**
      * @param $expression
      * @param $alias
-     * @param null $value
+     * @param $value
      * @return $this
      */
     public function filterByConcat($expression, $alias, $value = null)
@@ -410,7 +410,7 @@ class Query
     /**
      * @param $query
      * @param array $params
-     * @param null $count
+     * @param $count
      * @return string
      */
     protected function writeQueryMessage($query, $params = [], $count = null)

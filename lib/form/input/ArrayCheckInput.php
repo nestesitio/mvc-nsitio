@@ -16,7 +16,7 @@ class ArrayCheckInput extends \lib\form\Input
     private $list = [];
 
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return ArrayCheckInput
      */
     public static function create($field = null)

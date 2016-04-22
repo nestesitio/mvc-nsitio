@@ -32,7 +32,7 @@ class QuerySelect extends \lib\model\QueryStatement
 
     /**
      * QuerySelect constructor.
-     * @param null $model
+     * @param $model
      * @param string $merge
      */
     public function __construct($model, $merge = ALL)

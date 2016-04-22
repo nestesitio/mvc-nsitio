@@ -72,9 +72,9 @@ class Pagination
     }
 
     /**
-     * @param $p
-     * @param $index
-     * @param $action
+     * @param int $p
+     * @param int $index
+     * @param String $action
      * 
      * @return array
      */

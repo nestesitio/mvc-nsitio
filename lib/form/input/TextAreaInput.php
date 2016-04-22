@@ -17,7 +17,7 @@ namespace lib\form\input;
 class TextAreaInput extends \lib\form\Input
 {
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return TextAreaInput
      */
     public static function create($field = null)

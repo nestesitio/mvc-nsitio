@@ -151,7 +151,7 @@ class VarsRegister
     }
 
     /**
-     * @param null $key
+     * @param $key
      * @return array|bool|mixed
      */
     public static function getRequests($key = null)
@@ -164,7 +164,7 @@ class VarsRegister
 
 
     /**
-     * @param null $key
+     * @param $key
      * @return array|bool|mixed
      */
     public static function getPosts($key = null)

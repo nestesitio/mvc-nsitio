@@ -69,7 +69,7 @@ class MysqlStatement
      * @param $column
      * @param $operator
      * @param $value
-     * @param null $wildcard
+     * @param $wildcard
      * @return string
      */
     protected function buildCondition($column, $operator, $value, $wildcard = null)
@@ -95,7 +95,7 @@ class MysqlStatement
      * @param $column
      * @param $operator
      * @param $value
-     * @param null $wildcard
+     * @param $wildcard
      * @return $this
      */
     public function setCondition($column, $operator, $value, $wildcard = null)
@@ -190,7 +190,7 @@ class MysqlStatement
 
     /**
      * @param $column
-     * @param null $null
+     * @param $null
      * @return $this
      */
     public function whereIsNullOrNot($column, $null = null)

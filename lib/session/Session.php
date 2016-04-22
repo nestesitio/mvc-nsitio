@@ -179,7 +179,7 @@ class Session
     /**
      * @param $app
      * @param $type
-     * @param null $field
+     * @param $field
      */
     public static function unsetFilter($app, $type, $field = null)
     {
@@ -200,7 +200,7 @@ class Session
      * @param $app
      * @param $type
      * @param $value
-     * @param null $field
+     * @param $field
      */
     public static function setSessionFilter($app, $type, $value, $field = null)
     {

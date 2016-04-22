@@ -33,12 +33,12 @@ class TimeTools
 
     /**
      * @param $datetime
-     * @param null $y
-     * @param null $m
-     * @param null $d
-     * @param null $h
-     * @param null $i
-     * @param null $s
+     * @param $y
+     * @param $m
+     * @param $d
+     * @param $h
+     * @param $i
+     * @param $s
      * @return mixed
      */
     public static function modify($datetime, $y = null, $m = null, $d = null, $h = null, $i = null, $s = null)

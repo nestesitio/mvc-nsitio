@@ -56,10 +56,10 @@ class ParseTemplate extends \lib\view\Template
     }
 
     /**
-     * @param null $string
-     * @param null $portions
-     * @param null $tags
-     * @param null $args
+     * @param $string
+     * @param $portions
+     * @param $tags
+     * @param $args
      * @return null
      */
     public function parseAllPortions($string = null, $portions = null, $tags = null, $args = null)
@@ -184,7 +184,7 @@ class ParseTemplate extends \lib\view\Template
     /**
      * @param $string
      * @param $tags
-     * @param null $vars
+     * @param $vars
      * @return mixed
      */
     private function reparse($string, $tags, $vars = null)
@@ -217,7 +217,7 @@ class ParseTemplate extends \lib\view\Template
      */
     /**
      * @param $string
-     * @param null $vars
+     * @param $vars
      * @return mixed
      */
     private function parseIfPortion($string, $vars = null)
@@ -265,7 +265,7 @@ class ParseTemplate extends \lib\view\Template
      */
     /**
      * @param $string
-     * @param null $vars
+     * @param $vars
      * @return mixed
      */
     private function parseBlockPortion($string, $vars = null)

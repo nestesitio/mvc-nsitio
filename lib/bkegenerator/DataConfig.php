@@ -50,8 +50,8 @@ class DataConfig
 
     /**
      * DataConfig constructor.
-     * @param String $xmlfile
-     * @param null $obj
+     * @param String $xmlfile The path to xml file that contains params to bkgenerator
+     * @param object $obj The class that called DataConfig
      */
     public function __construct($xmlfile, $obj = null)
     {
@@ -61,7 +61,7 @@ class DataConfig
     }
 
     /**
-     * @param $index
+     * @param int $index
      */
     public function setCondition($index)
     {
@@ -118,7 +118,8 @@ class DataConfig
     }
 
     /**
-     * @param null $extended
+     * Get the whole html as string
+     * @param String $extended
      * @return mixed
      */
     public function getHtml($extended = null)

@@ -73,7 +73,7 @@ class QueryStatement extends \lib\model\Query
 
     /**
      * @param $column
-     * @param null $alias
+     * @param $alias
      * @return $this
      */
     public function setDistinct($column, $alias = null)
@@ -85,7 +85,7 @@ class QueryStatement extends \lib\model\Query
 
     /**
      * @param $column
-     * @param null $alias
+     * @param $alias
      * @return $this
      */
     public function countDistinct($column, $alias = null)
@@ -97,7 +97,7 @@ class QueryStatement extends \lib\model\Query
 
     /**
      * @param $column
-     * @param null $alias
+     * @param $alias
      * @return $this
      */
     public function setSelect($column, $alias = null)
@@ -128,7 +128,7 @@ class QueryStatement extends \lib\model\Query
      * @param $fields
      * @param $search
      * @param string $modifier
-     * @param null $value
+     * @param $value
      * @return $this
      */
     public function match($fields, $search, $modifier = Mysql::SEARCH_BOOLEAN, $value = null)
@@ -182,7 +182,7 @@ class QueryStatement extends \lib\model\Query
      * @param $table
      * @param $join
      * @param $relation
-     * @param null $alias
+     * @param $alias
      * @return $this
      */
     public function join($table, $join, $relation, $alias = null)
@@ -194,7 +194,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $table
      * @param $relation
-     * @param null $alias
+     * @param $alias
      * @return $this
      */
     public function leftJoin($table, $relation, $alias = null)
@@ -206,7 +206,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $table
      * @param $relation
-     * @param null $alias
+     * @param $alias
      * @return $this
      */
     public function innerJoin($table, $relation, $alias = null)
@@ -218,7 +218,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $table
      * @param $relation
-     * @param null $alias
+     * @param $alias
      * @return $this
      */
     public function rightJoin($table, $relation, $alias = null)
@@ -254,7 +254,7 @@ class QueryStatement extends \lib\model\Query
 
     /**
      * @param $column
-     * @param null $alias
+     * @param $alias
      */
     protected function addSelectClause($column, $alias = null)
     {

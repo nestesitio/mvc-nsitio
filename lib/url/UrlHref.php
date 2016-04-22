@@ -80,7 +80,7 @@ class UrlHref
     /**
      * @param $param_url
      * @param $title
-     * @param null $param_target
+     * @param $param_target
      * @return string
      */
     public static function renderMenuUrl($param_url, $title, $param_target = null)
@@ -120,8 +120,8 @@ class UrlHref
      * @param $li
      * @param $a
      * @param string $title
-     * @param null $href
-     * @param null $id
+     * @param $href
+     * @param $id
      * @return string
      */
     public static function renderButton($li, $a, $title = '', $href = null, $id = null)

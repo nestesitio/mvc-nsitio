@@ -29,9 +29,9 @@ class DataTool
     }
 
     /**
-     * @param $link
-     * @param $id
-     * @param null $window
+     * @param String $link
+     * @param int $id
+     * @param String $window
      */
     public function setLink($link, $id, $window = null)
     {

@@ -74,7 +74,7 @@ class Template
 
     /**
      * Template constructor.
-     * @param null $file
+     * @param $file
      */
     public function __construct($file = null)
     {

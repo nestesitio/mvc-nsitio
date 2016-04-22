@@ -13,7 +13,7 @@ use \lib\form\Input;
 class BooleanInput extends \lib\form\Input
 {
     /**
-     * @param null $field
+     * @param String $field The db table field name for reerence to input
      * @return BooleanInput
      */
     public static function create($field = null)

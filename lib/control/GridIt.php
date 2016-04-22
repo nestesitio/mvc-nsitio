@@ -27,7 +27,7 @@ class GridIt
 
     /**
      * GridIt constructor.
-     * @param $xmlfile
+     * @param String $xmlfile
      * @param $obj
      */
     public function __construct($xmlfile, $obj)
