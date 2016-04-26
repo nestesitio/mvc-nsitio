@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -399,7 +399,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Aug 18, 2015</p><br>
-			<b>Located at</b> <a href="source-class-lib.media.UploadFile.html#10-111" title="Go to source code">lib/media/UploadFile.php</a>
+			<b>Located at</b> <a href="source-class-lib.media.UploadFile.html#10-156" title="Go to source code">lib/media/UploadFile.php</a>
 		<br>
 	</div>
 
@@ -419,14 +419,14 @@ Created @Aug 18, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.media.UploadFile.html#23-26" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-lib.media.UploadFile.html#35-41" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
-			
+			<p>UploadFile constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>UploadFile constructor.</p>
 
 
 
@@ -449,7 +449,7 @@ Created @Aug 18, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFolder">#</a>
-		<code><a href="source-class-lib.media.UploadFile.html#28-31" title="Go to source code">setFolder</a>( <span> <var>$folder</var></span> )</code>
+		<code><a href="source-class-lib.media.UploadFile.html#43-49" title="Go to source code">setFolder</a>( <span> <var>$folder</var></span> )</code>
 
 		<div class="description short">
 			
@@ -459,6 +459,11 @@ Created @Aug 18, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$folder</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -479,7 +484,7 @@ Created @Aug 18, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setName">#</a>
-		<code><a href="source-class-lib.media.UploadFile.html#33-36" title="Go to source code">setName</a>( <span> <var>$name</var></span> )</code>
+		<code><a href="source-class-lib.media.UploadFile.html#51-57" title="Go to source code">setName</a>( <span> <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -489,6 +494,11 @@ Created @Aug 18, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -502,14 +512,14 @@ Created @Aug 18, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resolveName">#</a>
-		<code><a href="source-class-lib.media.UploadFile.html#39-48" title="Go to source code">resolveName</a>( <span> <var>$title</var></span>, <span> <var>$id</var></span> )</code>
+		<code><a href="source-class-lib.media.UploadFile.html#60-74" title="Go to source code">resolveName</a>( <span> <var>$title</var></span>, <span> <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -519,7 +529,18 @@ Created @Aug 18, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$title</var></dt>
+					<dd></dd>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -539,7 +560,7 @@ Created @Aug 18, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-lib.media.UploadFile.html#68-87" title="Go to source code">execute</a>( <span> <var>$width</var></span>, <span> <var>$height</var></span> )</code>
+		<code><a href="source-class-lib.media.UploadFile.html#98-121" title="Go to source code">execute</a>( <span> <var>$width</var></span>, <span> <var>$height</var></span> )</code>
 
 		<div class="description short">
 			
@@ -549,6 +570,13 @@ Created @Aug 18, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$width</var></dt>
+					<dd></dd>
+					<dt><var>$height</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -562,14 +590,14 @@ Created @Aug 18, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array|boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getResult">#</a>
-		<code><a href="source-class-lib.media.UploadFile.html#89-92" title="Go to source code">getResult</a>( )</code>
+		<code><a href="source-class-lib.media.UploadFile.html#123-129" title="Go to source code">getResult</a>( )</code>
 
 		<div class="description short">
 			
@@ -580,6 +608,10 @@ Created @Aug 18, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array|boolean
+				</div>
 
 
 
@@ -592,14 +624,14 @@ Created @Aug 18, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array|boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rename">#</a>
-		<code><a href="source-class-lib.media.UploadFile.html#94-100" title="Go to source code">rename</a>( <span> <var>$name</var></span> )</code>
+		<code><a href="source-class-lib.media.UploadFile.html#131-141" title="Go to source code">rename</a>( <span> <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -609,7 +641,16 @@ Created @Aug 18, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					array|boolean
+				</div>
 
 
 
@@ -622,14 +663,14 @@ Created @Aug 18, 2015</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeFile">#</a>
-		<code><a href="source-class-lib.media.UploadFile.html#103-109" title="Go to source code">removeFile</a>( <span> <var>$file</var></span> )</code>
+		<code><a href="source-class-lib.media.UploadFile.html#144-154" title="Go to source code">removeFile</a>( <span> <var>$file</var></span> )</code>
 
 		<div class="description short">
 			
@@ -639,7 +680,16 @@ Created @Aug 18, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 

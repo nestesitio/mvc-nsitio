@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -402,7 +402,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Dec 14, 2014</p><br>
-			<b>Located at</b> <a href="source-class-lib.session.Session.html#10-228" title="Go to source code">lib/session/Session.php</a>
+			<b>Located at</b> <a href="source-class-lib.session.Session.html#10-330" title="Go to source code">lib/session/Session.php</a>
 		<br>
 	</div>
 
@@ -422,14 +422,14 @@ Created @Dec 14, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.session.Session.html#38-49" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-lib.session.Session.html#73-87" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Session constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Session constructor.</p>
 
 
 
@@ -445,14 +445,14 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSessionVar">#</a>
-		<code><a href="source-class-lib.session.Session.html#60-69" title="Go to source code">getSessionVar</a>( <span> <var>$key</var></span> )</code>
+		<code><a href="source-class-lib.session.Session.html#101-114" title="Go to source code">getSessionVar</a>( <span> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -462,7 +462,16 @@ Created @Dec 14, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 
@@ -482,7 +491,7 @@ Created @Dec 14, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSession">#</a>
-		<code><a href="source-class-lib.session.Session.html#72-83" title="Go to source code">setSession</a>( <span> <var>$key</var></span>, <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-lib.session.Session.html#117-132" title="Go to source code">setSession</a>( <span> <var>$key</var></span>, <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -492,6 +501,13 @@ Created @Dec 14, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -512,7 +528,7 @@ Created @Dec 14, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unsetSession">#</a>
-		<code><a href="source-class-lib.session.Session.html#86-94" title="Go to source code">unsetSession</a>( <span> <var>$key</var></span> )</code>
+		<code><a href="source-class-lib.session.Session.html#135-146" title="Go to source code">unsetSession</a>( <span> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -522,6 +538,11 @@ Created @Dec 14, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -542,7 +563,7 @@ Created @Dec 14, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeSessionFilter">#</a>
-		<code><a href="source-class-lib.session.Session.html#112-118" title="Go to source code">removeSessionFilter</a>( <span> <var>$app</var></span>, <span> <var>$type</var></span> )</code>
+		<code><a href="source-class-lib.session.Session.html#167-177" title="Go to source code">removeSessionFilter</a>( <span> <var>$app</var></span>, <span> <var>$type</var></span> )</code>
 
 		<div class="description short">
 			
@@ -552,6 +573,13 @@ Created @Dec 14, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$app</var></dt>
+					<dd></dd>
+					<dt><var>$type</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -572,7 +600,7 @@ Created @Dec 14, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unsetFilter">#</a>
-		<code><a href="source-class-lib.session.Session.html#120-133" title="Go to source code">unsetFilter</a>( <span> <var>$app</var></span>, <span> <var>$type</var></span>, <span> <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.session.Session.html#179-197" title="Go to source code">unsetFilter</a>( <span> <var>$app</var></span>, <span> <var>$type</var></span>, <span> <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -582,6 +610,15 @@ Created @Dec 14, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$app</var></dt>
+					<dd></dd>
+					<dt><var>$type</var></dt>
+					<dd></dd>
+					<dt><var>$field</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -602,7 +639,7 @@ Created @Dec 14, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSessionFilter">#</a>
-		<code><a href="source-class-lib.session.Session.html#135-146" title="Go to source code">setSessionFilter</a>( <span> <var>$app</var></span>, <span> <var>$type</var></span>, <span> <var>$value</var></span>, <span> <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.session.Session.html#199-216" title="Go to source code">setSessionFilter</a>( <span> <var>$app</var></span>, <span> <var>$type</var></span>, <span> <var>$value</var></span>, <span> <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -612,6 +649,17 @@ Created @Dec 14, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$app</var></dt>
+					<dd></dd>
+					<dt><var>$type</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+					<dt><var>$field</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -625,14 +673,14 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSessionFilter">#</a>
-		<code><a href="source-class-lib.session.Session.html#148-154" title="Go to source code">getSessionFilter</a>( <span> <var>$app</var></span>, <span> <var>$type</var></span> )</code>
+		<code><a href="source-class-lib.session.Session.html#218-229" title="Go to source code">getSessionFilter</a>( <span> <var>$app</var></span>, <span> <var>$type</var></span> )</code>
 
 		<div class="description short">
 			
@@ -642,7 +690,18 @@ Created @Dec 14, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$app</var></dt>
+					<dd></dd>
+					<dt><var>$type</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 
@@ -662,7 +721,7 @@ Created @Dec 14, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSessionPage">#</a>
-		<code><a href="source-class-lib.session.Session.html#161-164" title="Go to source code">setSessionPage</a>( <span> <var>$page</var></span> )</code>
+		<code><a href="source-class-lib.session.Session.html#236-242" title="Go to source code">setSessionPage</a>( <span> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -672,6 +731,11 @@ Created @Dec 14, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -685,14 +749,14 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSessionPage">#</a>
-		<code><a href="source-class-lib.session.Session.html#166-169" title="Go to source code">getSessionPage</a>( )</code>
+		<code><a href="source-class-lib.session.Session.html#244-250" title="Go to source code">getSessionPage</a>( )</code>
 
 		<div class="description short">
 			
@@ -703,6 +767,10 @@ Created @Dec 14, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 
@@ -722,7 +790,7 @@ Created @Dec 14, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPageReturn">#</a>
-		<code><a href="source-class-lib.session.Session.html#171-174" title="Go to source code">setPageReturn</a>( <span> <var>$page</var></span> )</code>
+		<code><a href="source-class-lib.session.Session.html#252-258" title="Go to source code">setPageReturn</a>( <span> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -732,6 +800,11 @@ Created @Dec 14, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -745,14 +818,14 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageReturn">#</a>
-		<code><a href="source-class-lib.session.Session.html#176-179" title="Go to source code">getPageReturn</a>( )</code>
+		<code><a href="source-class-lib.session.Session.html#260-266" title="Go to source code">getPageReturn</a>( )</code>
 
 		<div class="description short">
 			
@@ -763,6 +836,10 @@ Created @Dec 14, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 
@@ -782,7 +859,7 @@ Created @Dec 14, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_close">#</a>
-		<code><a href="source-class-lib.session.Session.html#219-222" title="Go to source code">close</a>( )</code>
+		<code><a href="source-class-lib.session.Session.html#315-321" title="Go to source code">close</a>( )</code>
 
 		<div class="description short">
 			
@@ -816,7 +893,7 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.session.Session.html#28" title="Go to source code"><b>SESS_USER</b></a>
+				<a href="source-class-lib.session.Session.html#43-46" title="Go to source code"><b>SESS_USER</b></a>
 			</code>
 
 			<div class="description short">
@@ -840,7 +917,7 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.session.Session.html#29" title="Go to source code"><b>SESS_PLAYER</b></a>
+				<a href="source-class-lib.session.Session.html#47-50" title="Go to source code"><b>SESS_PLAYER</b></a>
 			</code>
 
 			<div class="description short">
@@ -864,7 +941,7 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.session.Session.html#30" title="Go to source code"><b>SESS_FILTER</b></a>
+				<a href="source-class-lib.session.Session.html#51-54" title="Go to source code"><b>SESS_FILTER</b></a>
 			</code>
 
 			<div class="description short">
@@ -888,7 +965,7 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.session.Session.html#31" title="Go to source code"><b>SESS_SHOP</b></a>
+				<a href="source-class-lib.session.Session.html#55-58" title="Go to source code"><b>SESS_SHOP</b></a>
 			</code>
 
 			<div class="description short">
@@ -912,7 +989,7 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.session.Session.html#32" title="Go to source code"><b>SESS_PAGE</b></a>
+				<a href="source-class-lib.session.Session.html#59-62" title="Go to source code"><b>SESS_PAGE</b></a>
 			</code>
 
 			<div class="description short">
@@ -936,7 +1013,7 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.session.Session.html#33" title="Go to source code"><b>SESS_PAGERETURN</b></a>
+				<a href="source-class-lib.session.Session.html#63-66" title="Go to source code"><b>SESS_PAGERETURN</b></a>
 			</code>
 
 			<div class="description short">
@@ -960,7 +1037,7 @@ Created @Dec 14, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.session.Session.html#34" title="Go to source code"><b>SESS_CONFIG</b></a>
+				<a href="source-class-lib.session.Session.html#67-70" title="Go to source code"><b>SESS_CONFIG</b></a>
 			</code>
 
 			<div class="description short">

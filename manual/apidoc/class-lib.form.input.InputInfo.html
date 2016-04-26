@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -424,7 +424,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Oct 5, 2015</p><br>
-			<b>Located at</b> <a href="source-class-lib.form.input.InputInfo.html#7-86" title="Go to source code">lib/form/input/InputInfo.php</a>
+			<b>Located at</b> <a href="source-class-lib.form.input.InputInfo.html#7-118" title="Go to source code">lib/form/input/InputInfo.php</a>
 		<br>
 	</div>
 
@@ -437,14 +437,14 @@ Created @Oct 5, 2015</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			<code><a href="class-lib.form.input.InputInfo.html">lib\form\input\InputInfo</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-lib.form.input.InputInfo.html#19-24" title="Go to source code">create</a>( <span> <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.form.input.InputInfo.html#28-37" title="Go to source code">create</a>( <span>String <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -454,7 +454,16 @@ Created @Oct 5, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$field</var></dt>
+					<dd>The db table field name for reerence to input</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-lib.form.input.InputInfo.html">lib\form\input\InputInfo</a></code>
+				</div>
 
 
 
@@ -474,7 +483,7 @@ Created @Oct 5, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setModel">#</a>
-		<code><a href="source-class-lib.form.input.InputInfo.html#27-34" title="Go to source code">setModel</a>( <span> <var>$model</var></span>, <span> <var>$selectedcolumn</var></span> )</code>
+		<code><a href="source-class-lib.form.input.InputInfo.html#40-51" title="Go to source code">setModel</a>( <span> <var>$model</var></span>, <span> <var>$selectedcolumn</var></span> )</code>
 
 		<div class="description short">
 			
@@ -484,6 +493,13 @@ Created @Oct 5, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$model</var></dt>
+					<dd></dd>
+					<dt><var>$selectedcolumn</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -504,7 +520,7 @@ Created @Oct 5, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setColumnsDescription">#</a>
-		<code><a href="source-class-lib.form.input.InputInfo.html#36-39" title="Go to source code">setColumnsDescription</a>( <span> <var>$columns</var> = []</span> )</code>
+		<code><a href="source-class-lib.form.input.InputInfo.html#53-59" title="Go to source code">setColumnsDescription</a>( <span>array <var>$columns</var> = []</span> )</code>
 
 		<div class="description short">
 			
@@ -514,6 +530,11 @@ Created @Oct 5, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -534,7 +555,7 @@ Created @Oct 5, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_convertValuesByXml">#</a>
-		<code><a href="source-class-lib.form.input.InputInfo.html#62-67" title="Go to source code">convertValuesByXml</a>( <span> <var>$file</var></span> )</code>
+		<code><a href="source-class-lib.form.input.InputInfo.html#88-96" title="Go to source code">convertValuesByXml</a>( <span> <var>$file</var></span> )</code>
 
 		<div class="description short">
 			
@@ -544,6 +565,11 @@ Created @Oct 5, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -557,14 +583,14 @@ Created @Oct 5, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseInput">#</a>
-		<code><a href="source-class-lib.form.input.InputInfo.html#69-84" title="Go to source code">parseInput</a>( )</code>
+		<code><a href="source-class-lib.form.input.InputInfo.html#98-116" title="Go to source code">parseInput</a>( )</code>
 
 		<div class="description short">
 			
@@ -575,6 +601,10 @@ Created @Oct 5, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 

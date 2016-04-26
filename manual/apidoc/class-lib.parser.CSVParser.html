@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -398,7 +398,7 @@ created in 30/mar/2015</p>
 
 				<b>Author:</b>
 				Luís Pinto - luis.nestesitio@gmail.com<br>
-			<b>Located at</b> <a href="source-class-lib.parser.CSVParser.html#7-91" title="Go to source code">lib/parser/CSVParser.php</a>
+			<b>Located at</b> <a href="source-class-lib.parser.CSVParser.html#7-138" title="Go to source code">lib/parser/CSVParser.php</a>
 		<br>
 	</div>
 
@@ -418,16 +418,23 @@ created in 30/mar/2015</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.parser.CSVParser.html#19-26" title="Go to source code">__construct</a>( <span> <var>$filename</var></span>, <span> <var>$delimeter</var> = <span class="php-quote">';'</span></span> )</code>
+		<code><a href="source-class-lib.parser.CSVParser.html#31-43" title="Go to source code">__construct</a>( <span> <var>$filename</var></span>, <span>string <var>$delimeter</var> = <span class="php-quote">';'</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>CSVParser constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>CSVParser constructor.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filename</var></dt>
+					<dd></dd>
+					<dt><var>$delimeter</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -448,7 +455,7 @@ created in 30/mar/2015</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_put">#</a>
-		<code><a href="source-class-lib.parser.CSVParser.html#42-45" title="Go to source code">put</a>( <span>array <var>$line</var></span> )</code>
+		<code><a href="source-class-lib.parser.CSVParser.html#62-68" title="Go to source code">put</a>( <span>array <var>$line</var></span> )</code>
 
 		<div class="description short">
 			
@@ -458,6 +465,11 @@ created in 30/mar/2015</p>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$line</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -478,7 +490,7 @@ created in 30/mar/2015</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_close">#</a>
-		<code><a href="source-class-lib.parser.CSVParser.html#47-50" title="Go to source code">close</a>( )</code>
+		<code><a href="source-class-lib.parser.CSVParser.html#70-76" title="Go to source code">close</a>( )</code>
 
 		<div class="description short">
 			
@@ -508,7 +520,7 @@ created in 30/mar/2015</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_outputConfigurate">#</a>
-		<code><a href="source-class-lib.parser.CSVParser.html#52-62" title="Go to source code">outputConfigurate</a>( <span> <var>$filename</var></span>, <span><code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code> <var>$configs</var></span>, <span> <var>$result</var></span> )</code>
+		<code><a href="source-class-lib.parser.CSVParser.html#78-93" title="Go to source code">outputConfigurate</a>( <span> <var>$filename</var></span>, <span><code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code> <var>$configs</var></span>, <span> <var>$result</var></span> )</code>
 
 		<div class="description short">
 			
@@ -518,6 +530,15 @@ created in 30/mar/2015</p>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filename</var></dt>
+					<dd></dd>
+					<dt><var>$configs</var></dt>
+					<dd></dd>
+					<dt><var>$result</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -531,14 +552,14 @@ created in 30/mar/2015</p>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseHeadLine">#</a>
-		<code><a href="source-class-lib.parser.CSVParser.html#64-70" title="Go to source code">parseHeadLine</a>( <span><code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code> <var>$configs</var></span> )</code>
+		<code><a href="source-class-lib.parser.CSVParser.html#95-105" title="Go to source code">parseHeadLine</a>( <span><code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code> <var>$configs</var></span> )</code>
 
 		<div class="description short">
 			
@@ -548,7 +569,16 @@ created in 30/mar/2015</p>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$configs</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -561,14 +591,14 @@ created in 30/mar/2015</p>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseConfigLine">#</a>
-		<code><a href="source-class-lib.parser.CSVParser.html#72-79" title="Go to source code">parseConfigLine</a>( <span><code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code> <var>$configs</var></span>, <span> <var>$data</var></span> )</code>
+		<code><a href="source-class-lib.parser.CSVParser.html#107-119" title="Go to source code">parseConfigLine</a>( <span><code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code> <var>$configs</var></span>, <span> <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -578,7 +608,18 @@ created in 30/mar/2015</p>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$configs</var></dt>
+					<dd></dd>
+					<dt><var>$data</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -598,7 +639,7 @@ created in 30/mar/2015</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseRow">#</a>
-		<code><a href="source-class-lib.parser.CSVParser.html#81-84" title="Go to source code">parseRow</a>( <span> <var>$line</var></span> )</code>
+		<code><a href="source-class-lib.parser.CSVParser.html#121-127" title="Go to source code">parseRow</a>( <span> <var>$line</var></span> )</code>
 
 		<div class="description short">
 			
@@ -608,6 +649,11 @@ created in 30/mar/2015</p>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$line</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -621,14 +667,14 @@ created in 30/mar/2015</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_formatNum">#</a>
-		<code><a href="source-class-lib.parser.CSVParser.html#86-89" title="Go to source code">formatNum</a>( <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-lib.parser.CSVParser.html#129-136" title="Go to source code">formatNum</a>( <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -638,7 +684,16 @@ created in 30/mar/2015</p>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 

@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -440,7 +440,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Mar 30, 2015</p><br>
-			<b>Located at</b> <a href="source-class-lib.control.ControllerAdmin.html#19-334" title="Go to source code">lib/control/ControllerAdmin.php</a>
+			<b>Located at</b> <a href="source-class-lib.control.ControllerAdmin.html#19-377" title="Go to source code">lib/control/ControllerAdmin.php</a>
 		<br>
 	</div>
 
@@ -501,7 +501,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildDataGrid">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#51-67" title="Go to source code">buildDataGrid</a>( <span> <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span> <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#51-70" title="Go to source code">buildDataGrid</a>( <span>String <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -511,6 +511,15 @@ Created @Mar 30, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$xmlfile</var></dt>
+					<dd></dd>
+					<dt><var>$query</var></dt>
+					<dd></dd>
+					<dt><var>$view</var></dt>
+					<dd>The path to template file</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
@@ -535,7 +544,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildDataList">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#69-84" title="Go to source code">buildDataList</a>( <span> <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#72-89" title="Go to source code">buildDataList</a>( <span>String <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -545,6 +554,13 @@ Created @Mar 30, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$xmlfile</var></dt>
+					<dd></dd>
+					<dt><var>$query</var></dt>
+					<dd></dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
@@ -569,7 +585,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildIncludedList">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#86-101" title="Go to source code">buildIncludedList</a>( <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-lib.bkegenerator.DataGrid.html">lib\bkegenerator\DataGrid</a></code> <var>$configs</var></span>, <span>String <var>$var</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#91-106" title="Go to source code">buildIncludedList</a>( <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-lib.bkegenerator.DataGrid.html">lib\bkegenerator\DataGrid</a></code> <var>$configs</var></span>, <span>String <var>$var</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Build the list included in template.</p>
@@ -586,8 +602,7 @@ Created @Mar 30, 2015</p><br>
 					<dt><var>$configs</var></dt>
 					<dd></dd>
 					<dt><var>$var</var></dt>
-					<dd><p>Define the variable for while
-$xmlfile</p></dd>
+					<dd>Define the variable for while</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -613,7 +628,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildDataSubList">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#104-117" title="Go to source code">buildDataSubList</a>( <span> <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span> <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#109-127" title="Go to source code">buildDataSubList</a>( <span>String <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -623,6 +638,15 @@ $xmlfile</p></dd>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$xmlfile</var></dt>
+					<dd></dd>
+					<dt><var>$query</var></dt>
+					<dd></dd>
+					<dt><var>$view</var></dt>
+					<dd>The path to template file</dd>
+				</dl></div>
 
 
 
@@ -643,7 +667,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderList">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#120-126" title="Go to source code">renderList</a>( <span> <var>$results</var></span>, <span> <var>$var</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#130-141" title="Go to source code">renderList</a>( <span>mixed <var>$results</var></span>, <span>String <var>$var</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -653,6 +677,13 @@ $xmlfile</p></dd>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$results</var></dt>
+					<dd></dd>
+					<dt><var>$var</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -673,7 +704,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderFilters">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#129-136" title="Go to source code">renderFilters</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span> <var>$xmlfile</var></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#144-155" title="Go to source code">renderFilters</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$xmlfile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -683,6 +714,13 @@ $xmlfile</p></dd>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$form</var></dt>
+					<dd></dd>
+					<dt><var>$xmlfile</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -703,7 +741,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderForm">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#138-168" title="Go to source code">renderForm</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$xmlfile</var></span>, <span>String <var>$action</var> = <span class="php-keyword1">null</span></span>, <span>Array <var>$querystring</var> = []</span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#157-187" title="Go to source code">renderForm</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$xmlfile</var></span>, <span>String <var>$action</var> = <span class="php-keyword1">null</span></span>, <span>Array <var>$querystring</var> = []</span> )</code>
 
 		<div class="description short">
 			<p>Render form for template.</p>
@@ -744,7 +782,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildProcess">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#171-192" title="Go to source code">buildProcess</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$xmlfile</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#190-211" title="Go to source code">buildProcess</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$xmlfile</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Save the object. If data is not valid, repeat form and return false.</p>
@@ -761,7 +799,7 @@ $xmlfile</p></dd>
 					<dt><var>$xmlfile</var></dt>
 					<dd>The path of xml file with configuration</dd>
 					<dt><var>$view</var></dt>
-					<dd>$name Optional</dd>
+					<dd>The path to template file Optional</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -787,7 +825,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildMultipleProcess">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#194-224" title="Go to source code">buildMultipleProcess</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$action</var> = <span class="php-keyword1">null</span></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#213-243" title="Go to source code">buildMultipleProcess</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$action</var> = <span class="php-keyword1">null</span></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Save the object. If data is not valid, repeat form and return false.</p>
@@ -804,7 +842,7 @@ $xmlfile</p></dd>
 					<dt><var>$action</var></dt>
 					<dd>The action to be done Optional</dd>
 					<dt><var>$view</var></dt>
-					<dd>$name Optional</dd>
+					<dd>The path to template file (Optional)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -830,7 +868,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderLangActions">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#226-241" title="Go to source code">renderLangActions</a>( <span> <var>$results</var></span>, <span> <var>$id</var></span>, <span> <var>$action</var></span>, <span> <var>$lang</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#245-266" title="Go to source code">renderLangActions</a>( <span> <var>$results</var></span>, <span> <var>$id</var></span>, <span> <var>$action</var></span>, <span>String <var>$lang</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -840,6 +878,17 @@ $xmlfile</p></dd>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$results</var></dt>
+					<dd></dd>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+					<dt><var>$action</var></dt>
+					<dd></dd>
+					<dt><var>$lang</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -860,16 +909,25 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderValues">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#245-274" title="Go to source code">renderValues</a>( <span> <var>$model</var></span>, <span> <var>$xmlfile</var></span>, <span> <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#268-303" title="Go to source code">renderValues</a>( <span><code><a href="class-lib.model.Model.html">lib\model\Model</a></code> <var>$model</var></span>, <span>String <var>$xmlfile</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>render de data for action showAction()</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>render de data for action showAction()</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$model</var></dt>
+					<dd>Object to be rendered to html</dd>
+					<dt><var>$xmlfile</var></dt>
+					<dd>The path to xml file with some configs</dd>
+					<dt><var>$view</var></dt>
+					<dd>The path to template file</dd>
+				</dl></div>
 
 
 
@@ -890,7 +948,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteObject">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#285-292" title="Go to source code">deleteObject</a>( <span><code><a href="class-lib.model.Model.html">lib\model\Model</a></code> <var>$model</var></span>, <span> <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#319-330" title="Go to source code">deleteObject</a>( <span><code><a href="class-lib.model.Model.html">lib\model\Model</a></code> <var>$model</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -900,6 +958,13 @@ $xmlfile</p></dd>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$model</var></dt>
+					<dd></dd>
+					<dt><var>$view</var></dt>
+					<dd>The path to template file</dd>
+				</dl></div>
 
 
 
@@ -920,7 +985,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderUrl">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#294-301" title="Go to source code">renderUrl</a>( <span> <var>$tag</var></span>, <span> <var>$action</var></span>, <span> <var>$querystring</var> = []</span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#332-344" title="Go to source code">renderUrl</a>( <span> <var>$tag</var></span>, <span> <var>$action</var></span>, <span>array <var>$querystring</var> = []</span> )</code>
 
 		<div class="description short">
 			
@@ -930,6 +995,15 @@ $xmlfile</p></dd>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd></dd>
+					<dt><var>$action</var></dt>
+					<dd></dd>
+					<dt><var>$querystring</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -950,7 +1024,7 @@ $xmlfile</p></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildCsvExport">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#303-331" title="Go to source code">buildCsvExport</a>( <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span>String <var>$filename</var></span>, <span>String <var>$xmlfile</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#346-374" title="Go to source code">buildCsvExport</a>( <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span>String <var>$filename</var></span>, <span>String <var>$xmlfile</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Get the array results from query.</p>

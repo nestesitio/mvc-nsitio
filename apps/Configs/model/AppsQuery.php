@@ -27,7 +27,7 @@ class AppsQuery extends \model\querys\HtmAppQuery {
         return self::start()
                 ->joinUserGroupHasHtmApp()
                 ->joinUserGroup()
-                ->joinUser()->filterById(SessionUser::getPlayer())->endUse()
+                ->joinUserBase()->filterById(SessionUser::getPlayer())->endUse()
                 ->endUse()->endUse()
             ->find();
     }

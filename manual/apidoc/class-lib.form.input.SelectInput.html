@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -431,7 +431,7 @@ http://harvesthq.github.io/chosen/options.html</p>
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Dec 5, 2014</p><br>
-			<b>Located at</b> <a href="source-class-lib.form.input.SelectInput.html#5-223" title="Go to source code">lib/form/input/SelectInput.php</a>
+			<b>Located at</b> <a href="source-class-lib.form.input.SelectInput.html#5-305" title="Go to source code">lib/form/input/SelectInput.php</a>
 		<br>
 	</div>
 
@@ -444,14 +444,14 @@ Created @Dec 5, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			<code><a href="class-lib.form.input.SelectInput.html">lib\form\input\SelectInput</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#21-26" title="Go to source code">create</a>( <span> <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#36-45" title="Go to source code">create</a>( <span>String <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -461,7 +461,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$field</var></dt>
+					<dd>The db table field name for reerence to input</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-lib.form.input.SelectInput.html">lib\form\input\SelectInput</a></code>
+				</div>
 
 
 
@@ -481,7 +490,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setMultiple">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#30-38" title="Go to source code">setMultiple</a>( <span> <var>$select_all</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#52-64" title="Go to source code">setMultiple</a>( <span> <var>$select_all</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -491,7 +500,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$select_all</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -513,7 +531,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unsetMultiple">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#40-44" title="Go to source code">unsetMultiple</a>( )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#66-73" title="Go to source code">unsetMultiple</a>( )</code>
 
 		<div class="description short">
 			
@@ -524,6 +542,10 @@ Created @Dec 5, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -536,14 +558,14 @@ Created @Dec 5, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseInput">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#46-79" title="Go to source code">parseInput</a>( <span> <var>$cleaner</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#75-112" title="Go to source code">parseInput</a>( <span>boolean <var>$cleaner</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -553,7 +575,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cleaner</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -573,7 +604,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAddValue">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#101-108" title="Go to source code">setAddValue</a>( <span> <var>$url</var></span>, <span> <var>$function</var></span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#138-150" title="Go to source code">setAddValue</a>( <span> <var>$url</var></span>, <span> <var>$function</var></span> )</code>
 
 		<div class="description short">
 			
@@ -583,7 +614,18 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$url</var></dt>
+					<dd></dd>
+					<dt><var>$function</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -596,14 +638,14 @@ Created @Dec 5, 2014</p><br>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseModel">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#110-143" title="Go to source code">parseModel</a>( )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#152-188" title="Go to source code">parseModel</a>( )</code>
 
 		<div class="description short">
 			
@@ -614,6 +656,10 @@ Created @Dec 5, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -633,7 +679,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setArrayLabel">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#147-151" title="Go to source code">setArrayLabel</a>( <span> <var>$columns</var> = []</span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#195-203" title="Go to source code">setArrayLabel</a>( <span>array <var>$columns</var> = []</span> )</code>
 
 		<div class="description short">
 			
@@ -643,7 +689,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -663,7 +718,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setModel">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#153-160" title="Go to source code">setModel</a>( <span> <var>$model</var></span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#205-216" title="Go to source code">setModel</a>( <span> <var>$model</var></span> )</code>
 
 		<div class="description short">
 			
@@ -673,7 +728,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$model</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -686,14 +750,14 @@ Created @Dec 5, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModel">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#162-165" title="Go to source code">getModel</a>( )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#218-224" title="Go to source code">getModel</a>( )</code>
 
 		<div class="description short">
 			
@@ -704,6 +768,10 @@ Created @Dec 5, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					null
+				</div>
 
 
 
@@ -723,7 +791,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOptionIndex">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#167-171" title="Go to source code">setOptionIndex</a>( <span> <var>$field</var></span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#226-234" title="Go to source code">setOptionIndex</a>( <span> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -733,7 +801,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$field</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -753,7 +830,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setValuesList">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#174-184" title="Go to source code">setValuesList</a>( <span> <var>$values</var> = []</span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#237-251" title="Go to source code">setValuesList</a>( <span>array <var>$values</var> = []</span> )</code>
 
 		<div class="description short">
 			
@@ -763,7 +840,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -783,7 +869,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_convertValuesByXml">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#186-194" title="Go to source code">convertValuesByXml</a>( <span> <var>$file</var></span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#253-265" title="Go to source code">convertValuesByXml</a>( <span> <var>$file</var></span> )</code>
 
 		<div class="description short">
 			
@@ -793,7 +879,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -813,7 +908,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setIndexedValuesList">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#196-206" title="Go to source code">setIndexedValuesList</a>( <span> <var>$values</var> = []</span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#267-281" title="Go to source code">setIndexedValuesList</a>( <span>array <var>$values</var> = []</span> )</code>
 
 		<div class="description short">
 			
@@ -823,7 +918,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -843,7 +947,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addEmpty">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#208-213" title="Go to source code">addEmpty</a>( <span> <var>$label</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#283-292" title="Go to source code">addEmpty</a>( <span> <var>$label</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -853,7 +957,16 @@ Created @Dec 5, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$label</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -873,7 +986,7 @@ Created @Dec 5, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeEmpty">#</a>
-		<code><a href="source-class-lib.form.input.SelectInput.html#216-220" title="Go to source code">removeEmpty</a>( )</code>
+		<code><a href="source-class-lib.form.input.SelectInput.html#295-302" title="Go to source code">removeEmpty</a>( )</code>
 
 		<div class="description short">
 			
@@ -884,6 +997,10 @@ Created @Dec 5, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -959,7 +1076,7 @@ Created @Dec 5, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.input.SelectInput.html#16" title="Go to source code"><var>$empty</var></a>
+				<a href="source-class-lib.form.input.SelectInput.html#19-22" title="Go to source code"><var>$empty</var></a>
 
 			<div class="description short">
 				
@@ -984,7 +1101,7 @@ Created @Dec 5, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.input.SelectInput.html#17" title="Go to source code"><var>$options</var></a>
+				<a href="source-class-lib.form.input.SelectInput.html#23-26" title="Go to source code"><var>$options</var></a>
 
 			<div class="description short">
 				
@@ -1005,11 +1122,11 @@ Created @Dec 5, 2014</p><br>
 	<tr data-order="model" id="$model">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.input.SelectInput.html#18" title="Go to source code"><var>$model</var></a>
+				<a href="source-class-lib.form.input.SelectInput.html#27-30" title="Go to source code"><var>$model</var></a>
 
 			<div class="description short">
 				
@@ -1034,7 +1151,7 @@ Created @Dec 5, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.input.SelectInput.html#19" title="Go to source code"><var>$width</var></a>
+				<a href="source-class-lib.form.input.SelectInput.html#31-34" title="Go to source code"><var>$width</var></a>
 
 			<div class="description short">
 				

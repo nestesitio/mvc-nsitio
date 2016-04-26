@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -407,7 +407,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Dec 18, 2014</p><br>
-			<b>Located at</b> <a href="source-class-lib.bkegenerator.DataConfig.html#10-127" title="Go to source code">lib/bkegenerator/DataConfig.php</a>
+			<b>Located at</b> <a href="source-class-lib.bkegenerator.DataConfig.html#10-195" title="Go to source code">lib/bkegenerator/DataConfig.php</a>
 		<br>
 	</div>
 
@@ -427,16 +427,23 @@ Created @Dec 18, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#27-32" title="Go to source code">__construct</a>( <span> <var>$xmlfile</var></span>, <span> <var>$obj</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#51-61" title="Go to source code">__construct</a>( <span>String <var>$xmlfile</var></span>, <span>object <var>$obj</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>DataConfig constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>DataConfig constructor.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$xmlfile</var></dt>
+					<dd>The path to xml file that contains params to bkgenerator</dd>
+					<dt><var>$obj</var></dt>
+					<dd>The class that called DataConfig</dd>
+				</dl></div>
 
 
 
@@ -457,7 +464,7 @@ Created @Dec 18, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCondition">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#34-37" title="Go to source code">setCondition</a>( <span> <var>$index</var></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#63-69" title="Go to source code">setCondition</a>( <span>integer <var>$index</var></span> )</code>
 
 		<div class="description short">
 			
@@ -467,6 +474,11 @@ Created @Dec 18, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$index</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -480,14 +492,14 @@ Created @Dec 18, 2014</p><br>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCondition">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#39-46" title="Go to source code">getCondition</a>( <span> <var>$path</var></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#71-82" title="Go to source code">getCondition</a>( <span> <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -497,7 +509,16 @@ Created @Dec 18, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 
@@ -510,14 +531,14 @@ Created @Dec 18, 2014</p><br>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getnodes">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#49-53" title="Go to source code">getnodes</a>( <span> <var>$query</var></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#85-93" title="Go to source code">getnodes</a>( <span> <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -527,7 +548,16 @@ Created @Dec 18, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -540,14 +570,14 @@ Created @Dec 18, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			<code><a href="class-lib.bkegenerator.DataConfig.html">lib\bkegenerator\DataConfig</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setHtml">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#55-59" title="Go to source code">setHtml</a>( <span> <var>$html</var></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#95-103" title="Go to source code">setHtml</a>( <span> <var>$html</var></span> )</code>
 
 		<div class="description short">
 			
@@ -557,7 +587,16 @@ Created @Dec 18, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$html</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-lib.bkegenerator.DataConfig.html">lib\bkegenerator\DataConfig</a></code>
+				</div>
 
 
 
@@ -577,7 +616,7 @@ Created @Dec 18, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getContentsFile">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#62-70" title="Go to source code">getContentsFile</a>( <span> <var>$file</var></span>, <span> <var>$id</var></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#106-118" title="Go to source code">getContentsFile</a>( <span> <var>$file</var></span>, <span> <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -587,6 +626,13 @@ Created @Dec 18, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd></dd>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -600,24 +646,33 @@ Created @Dec 18, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getHtml">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#72-79" title="Go to source code">getHtml</a>( <span> <var>$extended</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#120-132" title="Go to source code">getHtml</a>( <span>String <var>$extended</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Get the whole html as string</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Get the whole html as string</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$extended</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -637,7 +692,7 @@ Created @Dec 18, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setQueryString">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#81-84" title="Go to source code">setQueryString</a>( <span> <var>$querystring</var></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#134-140" title="Go to source code">setQueryString</a>( <span> <var>$querystring</var></span> )</code>
 
 		<div class="description short">
 			
@@ -647,6 +702,11 @@ Created @Dec 18, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$querystring</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -660,14 +720,14 @@ Created @Dec 18, 2014</p><br>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findVars">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#86-102" title="Go to source code">findVars</a>( <span> <var>$path</var></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#142-162" title="Go to source code">findVars</a>( <span> <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -677,7 +737,16 @@ Created @Dec 18, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -690,14 +759,14 @@ Created @Dec 18, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParams">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#104-112" title="Go to source code">getParams</a>( <span> <var>$path</var></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#164-176" title="Go to source code">getParams</a>( <span> <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -707,7 +776,16 @@ Created @Dec 18, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -720,14 +798,14 @@ Created @Dec 18, 2014</p><br>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findLabel">#</a>
-		<code><a href="source-class-lib.bkegenerator.DataConfig.html#114-124" title="Go to source code">findLabel</a>( <span> <var>$path</var></span> )</code>
+		<code><a href="source-class-lib.bkegenerator.DataConfig.html#178-192" title="Go to source code">findLabel</a>( <span> <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -737,7 +815,16 @@ Created @Dec 18, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					integer
+				</div>
 
 
 
@@ -763,11 +850,11 @@ Created @Dec 18, 2014</p><br>
 	<tr data-order="x_conf" id="$x_conf">
 		<td class="attributes"><code>
 			protected  
-			
+			<code><a href="class-lib.xml.XmlFile.html">lib\xml\XmlFile</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.bkegenerator.DataConfig.html#18" title="Go to source code"><var>$x_conf</var></a>
+				<a href="source-class-lib.bkegenerator.DataConfig.html#18-21" title="Go to source code"><var>$x_conf</var></a>
 
 			<div class="description short">
 				
@@ -792,7 +879,7 @@ Created @Dec 18, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.bkegenerator.DataConfig.html#19" title="Go to source code"><var>$html</var></a>
+				<a href="source-class-lib.bkegenerator.DataConfig.html#22-25" title="Go to source code"><var>$html</var></a>
 
 			<div class="description short">
 				
@@ -813,11 +900,11 @@ Created @Dec 18, 2014</p><br>
 	<tr data-order="extended" id="$extended">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.bkegenerator.DataConfig.html#20" title="Go to source code"><var>$extended</var></a>
+				<a href="source-class-lib.bkegenerator.DataConfig.html#26-29" title="Go to source code"><var>$extended</var></a>
 
 			<div class="description short">
 				
@@ -842,7 +929,7 @@ Created @Dec 18, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.bkegenerator.DataConfig.html#21" title="Go to source code"><var>$tag</var></a>
+				<a href="source-class-lib.bkegenerator.DataConfig.html#30-33" title="Go to source code"><var>$tag</var></a>
 
 			<div class="description short">
 				
@@ -863,11 +950,11 @@ Created @Dec 18, 2014</p><br>
 	<tr data-order="identification" id="$identification">
 		<td class="attributes"><code>
 			protected  
-			
+			integer|null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.bkegenerator.DataConfig.html#22" title="Go to source code"><var>$identification</var></a>
+				<a href="source-class-lib.bkegenerator.DataConfig.html#34-37" title="Go to source code"><var>$identification</var></a>
 
 			<div class="description short">
 				
@@ -888,11 +975,11 @@ Created @Dec 18, 2014</p><br>
 	<tr data-order="var" id="$var">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.bkegenerator.DataConfig.html#23" title="Go to source code"><var>$var</var></a>
+				<a href="source-class-lib.bkegenerator.DataConfig.html#38-41" title="Go to source code"><var>$var</var></a>
 
 			<div class="description short">
 				
@@ -917,7 +1004,7 @@ Created @Dec 18, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.bkegenerator.DataConfig.html#24" title="Go to source code"><var>$querystring</var></a>
+				<a href="source-class-lib.bkegenerator.DataConfig.html#42-45" title="Go to source code"><var>$querystring</var></a>
 
 			<div class="description short">
 				
@@ -942,7 +1029,7 @@ Created @Dec 18, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.bkegenerator.DataConfig.html#25" title="Go to source code"><var>$condition</var></a>
+				<a href="source-class-lib.bkegenerator.DataConfig.html#46-49" title="Go to source code"><var>$condition</var></a>
 
 			<div class="description short">
 				

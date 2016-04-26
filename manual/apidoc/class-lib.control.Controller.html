@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -429,7 +429,7 @@
 		<b>Namespace:</b> <a href="namespace-lib.html">lib</a>\<a href="namespace-lib.control.html">control</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-lib.control.Controller.html#32-208" title="Go to source code">lib/control/Controller.php</a>
+			<b>Located at</b> <a href="source-class-lib.control.Controller.html#33-313" title="Go to source code">lib/control/Controller.php</a>
 		<br>
 	</div>
 
@@ -442,14 +442,14 @@
 		<td class="attributes"><code>
 			 protected 
 
-			
+			array|boolean|mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getJEditableValue">#</a>
-		<code><a href="source-class-lib.control.Controller.html#46-52" title="Go to source code">getJEditableValue</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#77-86" title="Go to source code">getJEditableValue</a>( )</code>
 
 		<div class="description short">
 			
@@ -460,6 +460,10 @@
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array|boolean|mixed
+				</div>
 
 
 
@@ -479,7 +483,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setUserMessage">#</a>
-		<code><a href="source-class-lib.control.Controller.html#54-57" title="Go to source code">setUserMessage</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#88-94" title="Go to source code">setUserMessage</a>( )</code>
 
 		<div class="description short">
 			
@@ -509,7 +513,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCustomMessage">#</a>
-		<code><a href="source-class-lib.control.Controller.html#59-62" title="Go to source code">setCustomMessage</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#96-102" title="Go to source code">setCustomMessage</a>( )</code>
 
 		<div class="description short">
 			
@@ -539,7 +543,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_writeMessage">#</a>
-		<code><a href="source-class-lib.control.Controller.html#64-68" title="Go to source code">writeMessage</a>( <span> <var>$message</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#104-111" title="Go to source code">writeMessage</a>( <span> <var>$message</var></span> )</code>
 
 		<div class="description short">
 			
@@ -549,6 +553,11 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -569,7 +578,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_dispatch">#</a>
-		<code><a href="source-class-lib.control.Controller.html#71-85" title="Go to source code">dispatch</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#114-131" title="Go to source code">dispatch</a>( )</code>
 
 		<div class="description short">
 			
@@ -592,14 +601,14 @@
 		<td class="attributes"><code>
 			 protected 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCollection">#</a>
-		<code><a href="source-class-lib.control.Controller.html#87-94" title="Go to source code">getCollection</a>( <span> <var>$results</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#133-144" title="Go to source code">getCollection</a>( <span> <var>$results</var></span> )</code>
 
 		<div class="description short">
 			
@@ -609,7 +618,16 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$results</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -629,7 +647,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderCollection">#</a>
-		<code><a href="source-class-lib.control.Controller.html#96-101" title="Go to source code">renderCollection</a>( <span> <var>$results</var></span>, <span> <var>$tag</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#146-155" title="Go to source code">renderCollection</a>( <span> <var>$results</var></span>, <span> <var>$tag</var></span> )</code>
 
 		<div class="description short">
 			
@@ -639,6 +657,13 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$results</var></dt>
+					<dd></dd>
+					<dt><var>$tag</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -659,7 +684,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-lib.control.Controller.html#103-107" title="Go to source code">set</a>( <span> <var>$tag</var></span>, <span> <var>$data</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#157-165" title="Go to source code">set</a>( <span> <var>$tag</var></span>, <span> <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -669,6 +694,13 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd></dd>
+					<dt><var>$data</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -682,14 +714,14 @@
 		<td class="attributes"><code>
 			 protected 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-lib.control.Controller.html#109-112" title="Go to source code">get</a>( <span> <var>$tag</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#167-174" title="Go to source code">get</a>( <span> <var>$tag</var></span> )</code>
 
 		<div class="description short">
 			
@@ -699,7 +731,16 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -712,14 +753,14 @@
 		<td class="attributes"><code>
 			 protected 
 
-			
+			String
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preRender">#</a>
-		<code><a href="source-class-lib.control.Controller.html#122-130" title="Go to source code">preRender</a>( <span> <var>$html</var></span>, <span> <var>$results</var></span>, <span> <var>$var</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#187-202" title="Go to source code">preRender</a>( <span> <var>$html</var></span>, <span> <var>$results</var></span>, <span> <var>$var</var></span> )</code>
 
 		<div class="description short">
 			
@@ -729,7 +770,20 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$html</var></dt>
+					<dd></dd>
+					<dt><var>$results</var></dt>
+					<dd></dd>
+					<dt><var>$var</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					String
+				</div>
 
 
 
@@ -749,7 +803,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setView">#</a>
-		<code><a href="source-class-lib.control.Controller.html#132-143" title="Go to source code">setView</a>( <span> <var>$filename</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#204-218" title="Go to source code">setView</a>( <span>String <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -759,6 +813,11 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filename</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -779,7 +838,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetView">#</a>
-		<code><a href="source-class-lib.control.Controller.html#145-149" title="Go to source code">resetView</a>( <span> <var>$filename</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#220-227" title="Go to source code">resetView</a>( <span>String <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -789,6 +848,11 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filename</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -809,7 +873,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setEmptyView">#</a>
-		<code><a href="source-class-lib.control.Controller.html#151-155" title="Go to source code">setEmptyView</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#232-236" title="Go to source code">setEmptyView</a>( )</code>
 
 		<div class="description short">
 			
@@ -839,7 +903,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTemplate">#</a>
-		<code><a href="source-class-lib.control.Controller.html#157-160" title="Go to source code">getTemplate</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#241-244" title="Go to source code">getTemplate</a>( )</code>
 
 		<div class="description short">
 			
@@ -862,14 +926,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getExtended">#</a>
-		<code><a href="source-class-lib.control.Controller.html#162-165" title="Go to source code">getExtended</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#246-252" title="Go to source code">getExtended</a>( )</code>
 
 		<div class="description short">
 			
@@ -880,6 +944,10 @@
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -899,7 +967,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setHeaderContentType">#</a>
-		<code><a href="source-class-lib.control.Controller.html#167-172" title="Go to source code">setHeaderContentType</a>( <span> <var>$mime</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#254-262" title="Go to source code">setHeaderContentType</a>( <span> <var>$mime</var></span> )</code>
 
 		<div class="description short">
 			
@@ -909,6 +977,11 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$mime</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -922,14 +995,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			lib\control\Controller.php
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setHeader">#</a>
-		<code><a href="source-class-lib.control.Controller.html#174-180" title="Go to source code">setHeader</a>( <span> <var>$mime</var></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#264-274" title="Go to source code">setHeader</a>( <span> <var>$mime</var></span> )</code>
 
 		<div class="description short">
 			
@@ -939,7 +1012,16 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$mime</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					lib\control\Controller.php
+				</div>
 
 
 
@@ -959,7 +1041,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_writeHeader">#</a>
-		<code><a href="source-class-lib.control.Controller.html#182-185" title="Go to source code">writeHeader</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#276-282" title="Go to source code">writeHeader</a>( )</code>
 
 		<div class="description short">
 			
@@ -989,7 +1071,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addMemory">#</a>
-		<code><a href="source-class-lib.control.Controller.html#187-191" title="Go to source code">addMemory</a>( <span> <var>$memory</var> = <span class="php-num">2512</span></span> )</code>
+		<code><a href="source-class-lib.control.Controller.html#284-291" title="Go to source code">addMemory</a>( <span>integer <var>$memory</var> = <span class="php-num">2512</span></span> )</code>
 
 		<div class="description short">
 			
@@ -999,6 +1081,11 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$memory</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -1019,14 +1106,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.control.Controller.html#195-199" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#294-301" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Controller constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Controller constructor.</p>
 
 
 
@@ -1049,7 +1136,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ob">#</a>
-		<code><a href="source-class-lib.control.Controller.html#201-206" title="Go to source code">ob</a>( )</code>
+		<code><a href="source-class-lib.control.Controller.html#303-311" title="Go to source code">ob</a>( )</code>
 
 		<div class="description short">
 			
@@ -1085,11 +1172,11 @@
 	<tr data-order="view" id="$view">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.control.Controller.html#36" title="Go to source code"><var>$view</var></a>
+				<a href="source-class-lib.control.Controller.html#43-46" title="Go to source code"><var>$view</var></a>
 
 			<div class="description short">
 				
@@ -1110,11 +1197,11 @@
 	<tr data-order="app" id="$app">
 		<td class="attributes"><code>
 			protected  
-			
+			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.control.Controller.html#37" title="Go to source code"><var>$app</var></a>
+				<a href="source-class-lib.control.Controller.html#47-50" title="Go to source code"><var>$app</var></a>
 
 			<div class="description short">
 				
@@ -1139,7 +1226,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.control.Controller.html#38" title="Go to source code"><var>$content_type</var></a>
+				<a href="source-class-lib.control.Controller.html#51-54" title="Go to source code"><var>$content_type</var></a>
 
 			<div class="description short">
 				
@@ -1164,7 +1251,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.control.Controller.html#40" title="Go to source code"><var>$model</var></a>
+				<a href="source-class-lib.control.Controller.html#59-62" title="Go to source code"><var>$model</var></a>
 
 			<div class="description short">
 				
@@ -1189,7 +1276,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.control.Controller.html#41" title="Go to source code"><var>$id</var></a>
+				<a href="source-class-lib.control.Controller.html#63-66" title="Go to source code"><var>$id</var></a>
 
 			<div class="description short">
 				
@@ -1214,7 +1301,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.control.Controller.html#42" title="Go to source code"><var>$messages</var></a>
+				<a href="source-class-lib.control.Controller.html#67-70" title="Go to source code"><var>$messages</var></a>
 
 			<div class="description short">
 				
@@ -1239,7 +1326,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.control.Controller.html#43" title="Go to source code"><var>$layout</var></a>
+				<a href="source-class-lib.control.Controller.html#71-74" title="Go to source code"><var>$layout</var></a>
 
 			<div class="description short">
 				

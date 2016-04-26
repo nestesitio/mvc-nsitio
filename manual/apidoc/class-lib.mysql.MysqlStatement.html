@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -406,7 +406,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Nov 26, 2014</p><br>
-			<b>Located at</b> <a href="source-class-lib.mysql.MysqlStatement.html#6-120" title="Go to source code">lib/mysql/MysqlStatement.php</a>
+			<b>Located at</b> <a href="source-class-lib.mysql.MysqlStatement.html#6-205" title="Go to source code">lib/mysql/MysqlStatement.php</a>
 		<br>
 	</div>
 
@@ -426,7 +426,7 @@ Created @Nov 26, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTableReference">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#25-29" title="Go to source code">setTableReference</a>( <span> <var>$table</var></span>, <span> <var>$alias</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#49-58" title="Go to source code">setTableReference</a>( <span> <var>$table</var></span>, <span>string <var>$alias</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -436,7 +436,18 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$table</var></dt>
+					<dd></dd>
+					<dt><var>$alias</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -449,14 +460,14 @@ Created @Nov 26, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParams">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#31-34" title="Go to source code">getParams</a>( )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#60-66" title="Go to source code">getParams</a>( )</code>
 
 		<div class="description short">
 			
@@ -467,6 +478,10 @@ Created @Nov 26, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -479,14 +494,14 @@ Created @Nov 26, 2014</p><br>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildCondition">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#36-42" title="Go to source code">buildCondition</a>( <span> <var>$column</var></span>, <span> <var>$operator</var></span>, <span> <var>$value</var></span>, <span> <var>$wildcard</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#68-81" title="Go to source code">buildCondition</a>( <span> <var>$column</var></span>, <span> <var>$operator</var></span>, <span> <var>$value</var></span>, <span> <var>$wildcard</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -496,7 +511,22 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+					<dt><var>$operator</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+					<dt><var>$wildcard</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -516,7 +546,7 @@ Created @Nov 26, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setJoinCondition">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#44-47" title="Go to source code">setJoinCondition</a>( <span> <var>$leftcol</var></span>, <span> <var>$rightcol</var></span>, <span> <var>$operator</var> = <code><a href="class-lib.mysql.Mysql.html#EQUAL">lib\mysql\Mysql::<b>EQUAL</b></a></code></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#83-91" title="Go to source code">setJoinCondition</a>( <span> <var>$leftcol</var></span>, <span> <var>$rightcol</var></span>, <span>string <var>$operator</var> = <code><a href="class-lib.mysql.Mysql.html#EQUAL">lib\mysql\Mysql::<b>EQUAL</b></a></code></span> )</code>
 
 		<div class="description short">
 			
@@ -526,6 +556,15 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$leftcol</var></dt>
+					<dd></dd>
+					<dt><var>$rightcol</var></dt>
+					<dd></dd>
+					<dt><var>$operator</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -546,7 +585,7 @@ Created @Nov 26, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCondition">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#51-56" title="Go to source code">setCondition</a>( <span> <var>$column</var></span>, <span> <var>$operator</var></span>, <span> <var>$value</var></span>, <span> <var>$wildcard</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#94-106" title="Go to source code">setCondition</a>( <span> <var>$column</var></span>, <span> <var>$operator</var></span>, <span> <var>$value</var></span>, <span> <var>$wildcard</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -556,7 +595,22 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+					<dt><var>$operator</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+					<dt><var>$wildcard</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -576,7 +630,7 @@ Created @Nov 26, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setExpressionCondition">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#58-62" title="Go to source code">setExpressionCondition</a>( <span> <var>$column</var></span>, <span> <var>$operator</var></span>, <span> <var>$expression</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#108-118" title="Go to source code">setExpressionCondition</a>( <span> <var>$column</var></span>, <span> <var>$operator</var></span>, <span>string <var>$expression</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -586,7 +640,20 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+					<dt><var>$operator</var></dt>
+					<dd></dd>
+					<dt><var>$expression</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -606,7 +673,7 @@ Created @Nov 26, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_where">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#64-68" title="Go to source code">where</a>( <span> <var>$expression</var></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#120-128" title="Go to source code">where</a>( <span> <var>$expression</var></span> )</code>
 
 		<div class="description short">
 			
@@ -616,7 +683,16 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$expression</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -636,7 +712,7 @@ Created @Nov 26, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_whereOr">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#70-82" title="Go to source code">whereOr</a>( <span> <var>$array</var></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#130-146" title="Go to source code">whereOr</a>( <span> <var>$array</var></span> )</code>
 
 		<div class="description short">
 			
@@ -646,7 +722,16 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$array</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -659,14 +744,14 @@ Created @Nov 26, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLastWhere">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#84-87" title="Go to source code">getLastWhere</a>( )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#148-154" title="Go to source code">getLastWhere</a>( )</code>
 
 		<div class="description short">
 			
@@ -677,6 +762,10 @@ Created @Nov 26, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -689,14 +778,14 @@ Created @Nov 26, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAndPopLastWhere">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#89-92" title="Go to source code">getAndPopLastWhere</a>( )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#156-162" title="Go to source code">getAndPopLastWhere</a>( )</code>
 
 		<div class="description short">
 			
@@ -707,6 +796,10 @@ Created @Nov 26, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -726,7 +819,7 @@ Created @Nov 26, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_joinWhere">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#94-99" title="Go to source code">joinWhere</a>( <span> <var>$expression</var></span>, <span> <var>$operator</var> = <code><a href="class-lib.mysql.Mysql.html#LOGICAL_OR">lib\mysql\Mysql::<b>LOGICAL_OR</b></a></code></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#164-173" title="Go to source code">joinWhere</a>( <span> <var>$expression</var></span>, <span>string <var>$operator</var> = <code><a href="class-lib.mysql.Mysql.html#LOGICAL_OR">lib\mysql\Mysql::<b>LOGICAL_OR</b></a></code></span> )</code>
 
 		<div class="description short">
 			
@@ -736,6 +829,13 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$expression</var></dt>
+					<dd></dd>
+					<dt><var>$operator</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -756,7 +856,7 @@ Created @Nov 26, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setArrayCondition">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#101-109" title="Go to source code">setArrayCondition</a>( <span> <var>$column</var></span>, <span> <var>$values</var> = []</span>, <span> <var>$clause</var> = <code><a href="class-lib.mysql.Mysql.html#IN">lib\mysql\Mysql::<b>IN</b></a></code></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#175-189" title="Go to source code">setArrayCondition</a>( <span> <var>$column</var></span>, <span>array <var>$values</var> = []</span>, <span>string <var>$clause</var> = <code><a href="class-lib.mysql.Mysql.html#IN">lib\mysql\Mysql::<b>IN</b></a></code></span> )</code>
 
 		<div class="description short">
 			
@@ -766,7 +866,20 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+					<dt><var>$values</var></dt>
+					<dd></dd>
+					<dt><var>$clause</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -786,7 +899,7 @@ Created @Nov 26, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_whereIsNullOrNot">#</a>
-		<code><a href="source-class-lib.mysql.MysqlStatement.html#111-117" title="Go to source code">whereIsNullOrNot</a>( <span> <var>$column</var></span>, <span> <var>$null</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.mysql.MysqlStatement.html#191-202" title="Go to source code">whereIsNullOrNot</a>( <span> <var>$column</var></span>, <span> <var>$null</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -796,7 +909,18 @@ Created @Nov 26, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+					<dt><var>$null</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -826,7 +950,7 @@ Created @Nov 26, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.mysql.MysqlStatement.html#14" title="Go to source code"><var>$statement</var></a>
+				<a href="source-class-lib.mysql.MysqlStatement.html#14-17" title="Go to source code"><var>$statement</var></a>
 
 			<div class="description short">
 				
@@ -851,7 +975,7 @@ Created @Nov 26, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.mysql.MysqlStatement.html#15" title="Go to source code"><var>$table_references</var></a>
+				<a href="source-class-lib.mysql.MysqlStatement.html#18-21" title="Go to source code"><var>$table_references</var></a>
 
 			<div class="description short">
 				
@@ -876,7 +1000,7 @@ Created @Nov 26, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.mysql.MysqlStatement.html#16" title="Go to source code"><var>$where_condition</var></a>
+				<a href="source-class-lib.mysql.MysqlStatement.html#22-25" title="Go to source code"><var>$where_condition</var></a>
 
 			<div class="description short">
 				
@@ -901,7 +1025,7 @@ Created @Nov 26, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.mysql.MysqlStatement.html#17" title="Go to source code"><var>$group_condition</var></a>
+				<a href="source-class-lib.mysql.MysqlStatement.html#26-29" title="Go to source code"><var>$group_condition</var></a>
 
 			<div class="description short">
 				
@@ -926,7 +1050,7 @@ Created @Nov 26, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.mysql.MysqlStatement.html#18" title="Go to source code"><var>$having_condition</var></a>
+				<a href="source-class-lib.mysql.MysqlStatement.html#30-33" title="Go to source code"><var>$having_condition</var></a>
 
 			<div class="description short">
 				
@@ -951,7 +1075,7 @@ Created @Nov 26, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.mysql.MysqlStatement.html#19" title="Go to source code"><var>$order_expr</var></a>
+				<a href="source-class-lib.mysql.MysqlStatement.html#34-37" title="Go to source code"><var>$order_expr</var></a>
 
 			<div class="description short">
 				
@@ -976,7 +1100,7 @@ Created @Nov 26, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.mysql.MysqlStatement.html#20" title="Go to source code"><var>$limit_expr</var></a>
+				<a href="source-class-lib.mysql.MysqlStatement.html#38-41" title="Go to source code"><var>$limit_expr</var></a>
 
 			<div class="description short">
 				
@@ -1001,7 +1125,7 @@ Created @Nov 26, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.mysql.MysqlStatement.html#22" title="Go to source code"><var>$params</var></a>
+				<a href="source-class-lib.mysql.MysqlStatement.html#43-46" title="Go to source code"><var>$params</var></a>
 
 			<div class="description short">
 				

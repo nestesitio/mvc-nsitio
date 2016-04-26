@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -420,7 +420,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Jan 9, 2015</p><br>
-			<b>Located at</b> <a href="source-class-lib.form.Input.html#8-234" title="Go to source code">lib/form/Input.php</a>
+			<b>Located at</b> <a href="source-class-lib.form.Input.html#8-394" title="Go to source code">lib/form/Input.php</a>
 		<br>
 	</div>
 
@@ -440,16 +440,23 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.form.Input.html#45-48" title="Go to source code">__construct</a>( <span> <var>$name</var> = <span class="php-keyword1">null</span></span>, <span> <var>$elemid</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#105-113" title="Go to source code">__construct</a>( <span>String <var>$name</var> = <span class="php-keyword1">null</span></span>, <span>String <var>$elemid</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Input constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Input constructor.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd>The name for the input</dd>
+					<dt><var>$elemid</var></dt>
+					<dd>The id for the input</dd>
+				</dl></div>
 
 
 
@@ -470,7 +477,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___clone">#</a>
-		<code><a href="source-class-lib.form.Input.html#50" title="Go to source code">__clone</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#115-118" title="Go to source code">__clone</a>( )</code>
 
 		<div class="description short">
 			
@@ -500,16 +507,23 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setElementId">#</a>
-		<code><a href="source-class-lib.form.Input.html#52-60" title="Go to source code">setElementId</a>( <span> <var>$name</var> = <span class="php-keyword1">null</span></span>, <span> <var>$elemid</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#120-134" title="Go to source code">setElementId</a>( <span>String <var>$name</var> = <span class="php-keyword1">null</span></span>, <span>String <var>$elemid</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set id and name for the input</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set id and name for the input</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd>The name for the input</dd>
+					<dt><var>$elemid</var></dt>
+					<dd>The id for the input</dd>
+				</dl></div>
 
 
 
@@ -530,7 +544,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_emptyValue">#</a>
-		<code><a href="source-class-lib.form.Input.html#62-70" title="Go to source code">emptyValue</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#136-147" title="Go to source code">emptyValue</a>( )</code>
 
 		<div class="description short">
 			
@@ -541,6 +555,10 @@ Created @Jan 9, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -553,14 +571,14 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isMultiple">#</a>
-		<code><a href="source-class-lib.form.Input.html#72-75" title="Go to source code">isMultiple</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#149-155" title="Go to source code">isMultiple</a>( )</code>
 
 		<div class="description short">
 			
@@ -571,6 +589,10 @@ Created @Jan 9, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 
@@ -590,7 +612,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setMultiple">#</a>
-		<code><a href="source-class-lib.form.Input.html#77-80" title="Go to source code">setMultiple</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#157-163" title="Go to source code">setMultiple</a>( )</code>
 
 		<div class="description short">
 			
@@ -601,6 +623,10 @@ Created @Jan 9, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -620,7 +646,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setValue">#</a>
-		<code><a href="source-class-lib.form.Input.html#82-93" title="Go to source code">setValue</a>( <span> <var>$value</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#165-180" title="Go to source code">setValue</a>( <span>string <var>$value</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -630,7 +656,16 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -650,7 +685,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setArray">#</a>
-		<code><a href="source-class-lib.form.Input.html#95-100" title="Go to source code">setArray</a>( <span> <var>$values</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#182-191" title="Go to source code">setArray</a>( <span> <var>$values</var></span> )</code>
 
 		<div class="description short">
 			
@@ -660,7 +695,16 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -673,14 +717,14 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getValue">#</a>
-		<code><a href="source-class-lib.form.Input.html#102-105" title="Go to source code">getValue</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#193-199" title="Go to source code">getValue</a>( )</code>
 
 		<div class="description short">
 			
@@ -691,6 +735,10 @@ Created @Jan 9, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					null
+				</div>
 
 
 
@@ -703,14 +751,14 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getName">#</a>
-		<code><a href="source-class-lib.form.Input.html#107-110" title="Go to source code">getName</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#201-207" title="Go to source code">getName</a>( )</code>
 
 		<div class="description short">
 			
@@ -721,6 +769,10 @@ Created @Jan 9, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					null
+				</div>
 
 
 
@@ -733,14 +785,14 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getId">#</a>
-		<code><a href="source-class-lib.form.Input.html#112-115" title="Go to source code">getId</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#209-215" title="Go to source code">getId</a>( )</code>
 
 		<div class="description short">
 			
@@ -751,6 +803,10 @@ Created @Jan 9, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					null
+				</div>
 
 
 
@@ -770,7 +826,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setName">#</a>
-		<code><a href="source-class-lib.form.Input.html#117-121" title="Go to source code">setName</a>( <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#217-225" title="Go to source code">setName</a>( <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -780,7 +836,16 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -800,7 +865,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setId">#</a>
-		<code><a href="source-class-lib.form.Input.html#123-127" title="Go to source code">setId</a>( <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#227-235" title="Go to source code">setId</a>( <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -810,7 +875,16 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -830,7 +904,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDefault">#</a>
-		<code><a href="source-class-lib.form.Input.html#130-138" title="Go to source code">setDefault</a>( <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#238-250" title="Go to source code">setDefault</a>( <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -840,7 +914,16 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -860,7 +943,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setRequired">#</a>
-		<code><a href="source-class-lib.form.Input.html#141-152" title="Go to source code">setRequired</a>( <span> <var>$bool</var></span>, <span> <var>$force</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#253-269" title="Go to source code">setRequired</a>( <span> <var>$bool</var></span>, <span>boolean <var>$force</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -870,7 +953,18 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$bool</var></dt>
+					<dd></dd>
+					<dt><var>$force</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -890,7 +984,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setInputType">#</a>
-		<code><a href="source-class-lib.form.Input.html#155-158" title="Go to source code">setInputType</a>( <span> <var>$type</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#272-278" title="Go to source code">setInputType</a>( <span> <var>$type</var></span> )</code>
 
 		<div class="description short">
 			
@@ -900,6 +994,11 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$type</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -913,14 +1012,14 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInputType">#</a>
-		<code><a href="source-class-lib.form.Input.html#160-163" title="Go to source code">getInputType</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#280-286" title="Go to source code">getInputType</a>( )</code>
 
 		<div class="description short">
 			
@@ -931,6 +1030,10 @@ Created @Jan 9, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -950,7 +1053,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPlaceHolder">#</a>
-		<code><a href="source-class-lib.form.Input.html#165-168" title="Go to source code">setPlaceHolder</a>( <span> <var>$placeholder</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#288-294" title="Go to source code">setPlaceHolder</a>( <span> <var>$placeholder</var></span> )</code>
 
 		<div class="description short">
 			
@@ -960,6 +1063,11 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$placeholder</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -973,14 +1081,14 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInput">#</a>
-		<code><a href="source-class-lib.form.Input.html#170-173" title="Go to source code">getInput</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#296-302" title="Go to source code">getInput</a>( )</code>
 
 		<div class="description short">
 			
@@ -991,6 +1099,10 @@ Created @Jan 9, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -1010,7 +1122,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setMaxlength">#</a>
-		<code><a href="source-class-lib.form.Input.html#175-179" title="Go to source code">setMaxlength</a>( <span> <var>$length</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#304-312" title="Go to source code">setMaxlength</a>( <span> <var>$length</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1020,7 +1132,16 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$length</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -1040,7 +1161,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDataAttribute">#</a>
-		<code><a href="source-class-lib.form.Input.html#181-185" title="Go to source code">setDataAttribute</a>( <span> <var>$attribute</var></span>, <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#314-323" title="Go to source code">setDataAttribute</a>( <span> <var>$attribute</var></span>, <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1050,7 +1171,18 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attribute</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -1070,7 +1202,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_attributes">#</a>
-		<code><a href="source-class-lib.form.Input.html#188-200" title="Go to source code">attributes</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#326-341" title="Go to source code">attributes</a>( )</code>
 
 		<div class="description short">
 			
@@ -1093,14 +1225,14 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildAddon">#</a>
-		<code><a href="source-class-lib.form.Input.html#202-205" title="Go to source code">buildAddon</a>( <span> <var>$char</var></span>, <span> <var>$class</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#343-351" title="Go to source code">buildAddon</a>( <span> <var>$char</var></span>, <span> <var>$class</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1110,7 +1242,18 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$char</var></dt>
+					<dd></dd>
+					<dt><var>$class</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -1130,7 +1273,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAddon">#</a>
-		<code><a href="source-class-lib.form.Input.html#207-217" title="Go to source code">setAddon</a>( <span> <var>$char</var></span>, <span> <var>$pos</var> = <code><a href="class-lib.form.Input.html#ADDON_L">lib\form\Input::<b>ADDON_L</b></a></code></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#353-368" title="Go to source code">setAddon</a>( <span> <var>$char</var></span>, <span>string <var>$pos</var> = <code><a href="class-lib.form.Input.html#ADDON_L">lib\form\Input::<b>ADDON_L</b></a></code></span> )</code>
 
 		<div class="description short">
 			
@@ -1140,7 +1283,18 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$char</var></dt>
+					<dd></dd>
+					<dt><var>$pos</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -1160,7 +1314,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addClass">#</a>
-		<code><a href="source-class-lib.form.Input.html#219-222" title="Go to source code">addClass</a>( <span> <var>$class</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#370-376" title="Go to source code">addClass</a>( <span> <var>$class</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1170,6 +1324,11 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$class</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -1190,7 +1349,7 @@ Created @Jan 9, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setRange">#</a>
-		<code><a href="source-class-lib.form.Input.html#224-227" title="Go to source code">setRange</a>( <span> <var>$range</var></span> )</code>
+		<code><a href="source-class-lib.form.Input.html#378-384" title="Go to source code">setRange</a>( <span> <var>$range</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1200,6 +1359,11 @@ Created @Jan 9, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$range</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -1213,14 +1377,14 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRange">#</a>
-		<code><a href="source-class-lib.form.Input.html#229-232" title="Go to source code">getRange</a>( )</code>
+		<code><a href="source-class-lib.form.Input.html#386-392" title="Go to source code">getRange</a>( )</code>
 
 		<div class="description short">
 			
@@ -1231,6 +1395,10 @@ Created @Jan 9, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					null
+				</div>
 
 
 
@@ -1254,7 +1422,7 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.Input.html#16" title="Go to source code"><b>TYPE_SELECT</b></a>
+				<a href="source-class-lib.form.Input.html#16-19" title="Go to source code"><b>TYPE_SELECT</b></a>
 			</code>
 
 			<div class="description short">
@@ -1278,7 +1446,7 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.Input.html#17" title="Go to source code"><b>TYPE_HIDDEN</b></a>
+				<a href="source-class-lib.form.Input.html#20-23" title="Go to source code"><b>TYPE_HIDDEN</b></a>
 			</code>
 
 			<div class="description short">
@@ -1302,7 +1470,7 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.Input.html#18" title="Go to source code"><b>TYPE_TEXT</b></a>
+				<a href="source-class-lib.form.Input.html#24-27" title="Go to source code"><b>TYPE_TEXT</b></a>
 			</code>
 
 			<div class="description short">
@@ -1326,7 +1494,7 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.Input.html#19" title="Go to source code"><b>TYPE_CHECKBOX</b></a>
+				<a href="source-class-lib.form.Input.html#28-31" title="Go to source code"><b>TYPE_CHECKBOX</b></a>
 			</code>
 
 			<div class="description short">
@@ -1350,7 +1518,7 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.Input.html#21" title="Go to source code"><b>ADDON_L</b></a>
+				<a href="source-class-lib.form.Input.html#33-36" title="Go to source code"><b>ADDON_L</b></a>
 			</code>
 
 			<div class="description short">
@@ -1374,7 +1542,7 @@ Created @Jan 9, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.Input.html#22" title="Go to source code"><b>ADDON_R</b></a>
+				<a href="source-class-lib.form.Input.html#37-40" title="Go to source code"><b>ADDON_R</b></a>
 			</code>
 
 			<div class="description short">
@@ -1407,7 +1575,7 @@ Created @Jan 9, 2015</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#24" title="Go to source code"><var>$input</var></a>
+				<a href="source-class-lib.form.Input.html#42-45" title="Go to source code"><var>$input</var></a>
 
 			<div class="description short">
 				
@@ -1432,7 +1600,7 @@ Created @Jan 9, 2015</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#25" title="Go to source code"><var>$attributes</var></a>
+				<a href="source-class-lib.form.Input.html#46-49" title="Go to source code"><var>$attributes</var></a>
 
 			<div class="description short">
 				
@@ -1457,7 +1625,7 @@ Created @Jan 9, 2015</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#27" title="Go to source code"><var>$type</var></a>
+				<a href="source-class-lib.form.Input.html#51-54" title="Go to source code"><var>$type</var></a>
 
 			<div class="description short">
 				
@@ -1478,11 +1646,11 @@ Created @Jan 9, 2015</p><br>
 	<tr data-order="name" id="$name">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#28" title="Go to source code"><var>$name</var></a>
+				<a href="source-class-lib.form.Input.html#55-58" title="Go to source code"><var>$name</var></a>
 
 			<div class="description short">
 				
@@ -1503,11 +1671,11 @@ Created @Jan 9, 2015</p><br>
 	<tr data-order="elemid" id="$elemid">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#29" title="Go to source code"><var>$elemid</var></a>
+				<a href="source-class-lib.form.Input.html#59-62" title="Go to source code"><var>$elemid</var></a>
 
 			<div class="description short">
 				
@@ -1528,11 +1696,11 @@ Created @Jan 9, 2015</p><br>
 	<tr data-order="value" id="$value">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#31" title="Go to source code"><var>$value</var></a>
+				<a href="source-class-lib.form.Input.html#64-67" title="Go to source code"><var>$value</var></a>
 
 			<div class="description short">
 				
@@ -1553,11 +1721,11 @@ Created @Jan 9, 2015</p><br>
 	<tr data-order="default" id="$default">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#32" title="Go to source code"><var>$default</var></a>
+				<a href="source-class-lib.form.Input.html#68-71" title="Go to source code"><var>$default</var></a>
 
 			<div class="description short">
 				
@@ -1578,11 +1746,11 @@ Created @Jan 9, 2015</p><br>
 	<tr data-order="placeholder" id="$placeholder">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#34" title="Go to source code"><var>$placeholder</var></a>
+				<a href="source-class-lib.form.Input.html#73-76" title="Go to source code"><var>$placeholder</var></a>
 
 			<div class="description short">
 				
@@ -1607,7 +1775,7 @@ Created @Jan 9, 2015</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#35" title="Go to source code"><var>$disabledvalue</var></a>
+				<a href="source-class-lib.form.Input.html#77-80" title="Go to source code"><var>$disabledvalue</var></a>
 
 			<div class="description short">
 				
@@ -1632,7 +1800,7 @@ Created @Jan 9, 2015</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#36" title="Go to source code"><var>$class</var></a>
+				<a href="source-class-lib.form.Input.html#81-84" title="Go to source code"><var>$class</var></a>
 
 			<div class="description short">
 				
@@ -1657,7 +1825,7 @@ Created @Jan 9, 2015</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#38" title="Go to source code"><var>$addon_l</var></a>
+				<a href="source-class-lib.form.Input.html#86-89" title="Go to source code"><var>$addon_l</var></a>
 
 			<div class="description short">
 				
@@ -1682,7 +1850,7 @@ Created @Jan 9, 2015</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#39" title="Go to source code"><var>$addon_r</var></a>
+				<a href="source-class-lib.form.Input.html#90-93" title="Go to source code"><var>$addon_r</var></a>
 
 			<div class="description short">
 				
@@ -1707,7 +1875,7 @@ Created @Jan 9, 2015</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#41" title="Go to source code"><var>$required</var></a>
+				<a href="source-class-lib.form.Input.html#95-98" title="Go to source code"><var>$required</var></a>
 
 			<div class="description short">
 				
@@ -1728,11 +1896,11 @@ Created @Jan 9, 2015</p><br>
 	<tr data-order="range" id="$range">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.form.Input.html#42" title="Go to source code"><var>$range</var></a>
+				<a href="source-class-lib.form.Input.html#99-102" title="Go to source code"><var>$range</var></a>
 
 			<div class="description short">
 				

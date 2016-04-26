@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -403,7 +403,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Sep 23, 2015</p><br>
-			<b>Located at</b> <a href="source-class-lib.control.GridIt.html#7-138" title="Go to source code">lib/control/GridIt.php</a>
+			<b>Located at</b> <a href="source-class-lib.control.GridIt.html#7-164" title="Go to source code">lib/control/GridIt.php</a>
 		<br>
 	</div>
 
@@ -423,16 +423,23 @@ Created @Sep 23, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#19-25" title="Go to source code">__construct</a>( <span> <var>$xmlfile</var></span>, <span> <var>$obj</var></span> )</code>
+		<code><a href="source-class-lib.control.GridIt.html#28-39" title="Go to source code">__construct</a>( <span>String <var>$xmlfile</var></span>, <span> <var>$obj</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>GridIt constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>GridIt constructor.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$xmlfile</var></dt>
+					<dd></dd>
+					<dt><var>$obj</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -453,7 +460,7 @@ Created @Sep 23, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#26-39" title="Go to source code">create</a>( <span>String <var>$xmlfile</var></span>, <span>String <var>$obj</var></span>, <span>String <var>$querystring</var>,…</span> )</code>
+		<code><a href="source-class-lib.control.GridIt.html#40-52" title="Go to source code">create</a>( <span>String <var>$xmlfile</var></span>, <span>String <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			<p>Build the configuration from xml file.</p>
@@ -468,8 +475,6 @@ Created @Sep 23, 2015</p><br>
 					<dt><var>$xmlfile</var></dt>
 					<dd></dd>
 					<dt><var>$obj</var></dt>
-					<dd>$condition</dd>
-					<dt><var>$querystring</var>,…</dt>
 					<dd></dd>
 				</dl></div>
 
@@ -496,7 +501,7 @@ Created @Sep 23, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addCondition">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#41-47" title="Go to source code">addCondition</a>( <span> <var>$condition</var></span> )</code>
+		<code><a href="source-class-lib.control.GridIt.html#54-64" title="Go to source code">addCondition</a>( <span> <var>$condition</var></span> )</code>
 
 		<div class="description short">
 			
@@ -506,7 +511,16 @@ Created @Sep 23, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$condition</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -526,7 +540,7 @@ Created @Sep 23, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addQueryString">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#49-55" title="Go to source code">addQueryString</a>( <span> <var>$querystring</var></span> )</code>
+		<code><a href="source-class-lib.control.GridIt.html#66-76" title="Go to source code">addQueryString</a>( <span> <var>$querystring</var></span> )</code>
 
 		<div class="description short">
 			
@@ -536,7 +550,16 @@ Created @Sep 23, 2015</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$querystring</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<br>$this
+				</div>
 
 
 
@@ -556,7 +579,7 @@ Created @Sep 23, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#59-71" title="Go to source code">get</a>( <span>String <var>$xmlfile</var>,…</span>, <span>String <var>$condition</var>,…</span>, <span>String <var>$querystring</var>,…</span> )</code>
+		<code><a href="source-class-lib.control.GridIt.html#80-88" title="Go to source code">get</a>( )</code>
 
 		<div class="description short">
 			<p>Build the configuration from xml file.</p>
@@ -566,15 +589,6 @@ Created @Sep 23, 2015</p><br>
 			<p>Build the configuration from xml file.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$xmlfile</var>,…</dt>
-					<dd></dd>
-					<dt><var>$condition</var>,…</dt>
-					<dd></dd>
-					<dt><var>$querystring</var>,…</dt>
-					<dd></dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
@@ -599,7 +613,7 @@ Created @Sep 23, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setGrid">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#73-87" title="Go to source code">setGrid</a>( <span>String <var>$output</var></span> )</code>
+		<code><a href="source-class-lib.control.GridIt.html#90-104" title="Go to source code">setGrid</a>( <span>String <var>$output</var></span> )</code>
 
 		<div class="description short">
 			<p>Process all the html
@@ -640,7 +654,7 @@ Created @Sep 23, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildInclude">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#89-104" title="Go to source code">buildInclude</a>( <span>String <var>$file</var></span>, <span>String <var>$tag</var></span>, <span>String <var>$html</var></span> )</code>
+		<code><a href="source-class-lib.control.GridIt.html#106-121" title="Go to source code">buildInclude</a>( <span>String <var>$file</var></span>, <span>String <var>$tag</var></span>, <span>String <var>$html</var></span> )</code>
 
 		<div class="description short">
 			<p>Process file and include in html
@@ -685,7 +699,7 @@ Created @Sep 23, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_configureGrid">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#106-121" title="Go to source code">configureGrid</a>( <span> <var>$output</var></span>, <span> <var>$var</var></span>, <span> <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.GridIt.html#123-138" title="Go to source code">configureGrid</a>( <span> <var>$output</var></span>, <span> <var>$var</var></span>, <span> <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>make configurations for the list from a xml file.</p>
@@ -718,14 +732,14 @@ Created @Sep 23, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			<code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFilters">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#123-126" title="Go to source code">getFilters</a>( )</code>
+		<code><a href="source-class-lib.control.GridIt.html#140-146" title="Go to source code">getFilters</a>( )</code>
 
 		<div class="description short">
 			
@@ -736,6 +750,10 @@ Created @Sep 23, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code>
+				</div>
 
 
 
@@ -748,14 +766,14 @@ Created @Sep 23, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			<code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFields">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#128-131" title="Go to source code">getFields</a>( )</code>
+		<code><a href="source-class-lib.control.GridIt.html#148-154" title="Go to source code">getFields</a>( )</code>
 
 		<div class="description short">
 			
@@ -766,6 +784,10 @@ Created @Sep 23, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code>
+				</div>
 
 
 
@@ -778,14 +800,14 @@ Created @Sep 23, 2015</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getHtml">#</a>
-		<code><a href="source-class-lib.control.GridIt.html#133-136" title="Go to source code">getHtml</a>( )</code>
+		<code><a href="source-class-lib.control.GridIt.html#156-162" title="Go to source code">getHtml</a>( )</code>
 
 		<div class="description short">
 			
@@ -796,6 +818,10 @@ Created @Sep 23, 2015</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 

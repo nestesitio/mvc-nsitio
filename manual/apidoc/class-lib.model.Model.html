@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -436,7 +436,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Nov 21, 2014</p><br>
-			<b>Located at</b> <a href="source-class-lib.model.Model.html#9-317" title="Go to source code">lib/model/Model.php</a>
+			<b>Located at</b> <a href="source-class-lib.model.Model.html#9-464" title="Go to source code">lib/model/Model.php</a>
 		<br>
 	</div>
 
@@ -456,14 +456,14 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.model.Model.html#44-56" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#95-110" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Model constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Model constructor.</p>
 
 
 
@@ -486,7 +486,7 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_merge">#</a>
-		<code><a href="source-class-lib.model.Model.html#58-61" title="Go to source code">merge</a>( <span><code><a href="class-lib.model.Model.html">lib\model\Model</a></code> <var>$parent_model</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#112-118" title="Go to source code">merge</a>( <span><code><a href="class-lib.model.Model.html">lib\model\Model</a></code> <var>$parent_model</var></span> )</code>
 
 		<div class="description short">
 			
@@ -496,6 +496,11 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parent_model</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -509,14 +514,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getQueue">#</a>
-		<code><a href="source-class-lib.model.Model.html#65-68" title="Go to source code">getQueue</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#121-127" title="Go to source code">getQueue</a>( )</code>
 
 		<div class="description short">
 			
@@ -527,6 +532,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -546,7 +555,7 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getToArray">#</a>
-		<code><a href="source-class-lib.model.Model.html#70-82" title="Go to source code">getToArray</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#129-141" title="Go to source code">getToArray</a>( )</code>
 
 		<div class="description short">
 			<p>Convert query result to array, called from Controller</p>
@@ -573,14 +582,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_mergeToAlias">#</a>
-		<code><a href="source-class-lib.model.Model.html#84-87" title="Go to source code">mergeToAlias</a>( <span> <var>$column</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#143-150" title="Go to source code">mergeToAlias</a>( <span> <var>$column</var></span> )</code>
 
 		<div class="description short">
 			
@@ -590,7 +599,16 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -610,7 +628,7 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-lib.model.Model.html#99-126" title="Go to source code">save</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#162-189" title="Go to source code">save</a>( )</code>
 
 		<div class="description short">
 			<p>Save the object.</p>
@@ -637,14 +655,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInsertId">#</a>
-		<code><a href="source-class-lib.model.Model.html#128-131" title="Go to source code">getInsertId</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#191-197" title="Go to source code">getInsertId</a>( )</code>
 
 		<div class="description short">
 			
@@ -655,6 +673,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					integer
+				</div>
 
 
 
@@ -667,14 +689,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAction">#</a>
-		<code><a href="source-class-lib.model.Model.html#133-136" title="Go to source code">getAction</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#199-205" title="Go to source code">getAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -685,6 +707,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -697,14 +723,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-lib.model.Model.html#138-153" title="Go to source code">delete</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#207-225" title="Go to source code">delete</a>( )</code>
 
 		<div class="description short">
 			
@@ -715,6 +741,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -727,14 +757,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModelValues">#</a>
-		<code><a href="source-class-lib.model.Model.html#156-170" title="Go to source code">getModelValues</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#228-245" title="Go to source code">getModelValues</a>( )</code>
 
 		<div class="description short">
 			
@@ -745,6 +775,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -764,7 +798,7 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addColumn">#</a>
-		<code><a href="source-class-lib.model.Model.html#173-176" title="Go to source code">addColumn</a>( <span> <var>$column</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#248-254" title="Go to source code">addColumn</a>( <span> <var>$column</var></span> )</code>
 
 		<div class="description short">
 			
@@ -774,6 +808,11 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -794,7 +833,7 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addColumnName">#</a>
-		<code><a href="source-class-lib.model.Model.html#178-185" title="Go to source code">addColumnName</a>( <span> <var>$table</var></span>, <span> <var>$column</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#256-267" title="Go to source code">addColumnName</a>( <span> <var>$table</var></span>, <span> <var>$column</var></span> )</code>
 
 		<div class="description short">
 			
@@ -804,6 +843,13 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$table</var></dt>
+					<dd></dd>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -824,7 +870,7 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setColumnValue">#</a>
-		<code><a href="source-class-lib.model.Model.html#187-190" title="Go to source code">setColumnValue</a>( <span> <var>$column</var></span>, <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#269-276" title="Go to source code">setColumnValue</a>( <span> <var>$column</var></span>, <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -834,6 +880,13 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -854,7 +907,7 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setColumnDate">#</a>
-		<code><a href="source-class-lib.model.Model.html#192-195" title="Go to source code">setColumnDate</a>( <span> <var>$column</var></span>, <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#278-285" title="Go to source code">setColumnDate</a>( <span> <var>$column</var></span>, <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -864,6 +917,13 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -877,14 +937,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			mixed|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getColumnValue">#</a>
-		<code><a href="source-class-lib.model.Model.html#197-205" title="Go to source code">getColumnValue</a>( <span> <var>$column</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#287-299" title="Go to source code">getColumnValue</a>( <span> <var>$column</var></span> )</code>
 
 		<div class="description short">
 			
@@ -894,7 +954,16 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed|null
+				</div>
 
 
 
@@ -907,14 +976,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getColumnValues">#</a>
-		<code><a href="source-class-lib.model.Model.html#207-210" title="Go to source code">getColumnValues</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#301-307" title="Go to source code">getColumnValues</a>( )</code>
 
 		<div class="description short">
 			
@@ -925,6 +994,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -944,7 +1017,7 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setVirtualColumnValue">#</a>
-		<code><a href="source-class-lib.model.Model.html#212-215" title="Go to source code">setVirtualColumnValue</a>( <span> <var>$column</var></span>, <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#309-316" title="Go to source code">setVirtualColumnValue</a>( <span> <var>$column</var></span>, <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -954,6 +1027,13 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -967,14 +1047,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getVirtualColumnValue">#</a>
-		<code><a href="source-class-lib.model.Model.html#217-220" title="Go to source code">getVirtualColumnValue</a>( <span> <var>$column</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#318-325" title="Go to source code">getVirtualColumnValue</a>( <span> <var>$column</var></span> )</code>
 
 		<div class="description short">
 			
@@ -984,7 +1064,16 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -997,14 +1086,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getMergedColumns">#</a>
-		<code><a href="source-class-lib.model.Model.html#224-233" title="Go to source code">getMergedColumns</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#329-341" title="Go to source code">getMergedColumns</a>( )</code>
 
 		<div class="description short">
 			
@@ -1015,6 +1104,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -1027,14 +1120,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOnlyModelColumns">#</a>
-		<code><a href="source-class-lib.model.Model.html#235-245" title="Go to source code">getOnlyModelColumns</a>( <span> <var>$all</var> = ALL</span> )</code>
+		<code><a href="source-class-lib.model.Model.html#343-357" title="Go to source code">getOnlyModelColumns</a>( <span>string <var>$all</var> = ALL</span> )</code>
 
 		<div class="description short">
 			
@@ -1044,7 +1137,16 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$all</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -1057,14 +1159,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTableName">#</a>
-		<code><a href="source-class-lib.model.Model.html#249-252" title="Go to source code">getTableName</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#360-366" title="Go to source code">getTableName</a>( )</code>
 
 		<div class="description short">
 			
@@ -1075,6 +1177,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -1087,14 +1193,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array|mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getColumns">#</a>
-		<code><a href="source-class-lib.model.Model.html#254-261" title="Go to source code">getColumns</a>( <span> <var>$table</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#368-379" title="Go to source code">getColumns</a>( <span> <var>$table</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1104,7 +1210,16 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$table</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					array|mixed
+				</div>
 
 
 
@@ -1117,14 +1232,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFields">#</a>
-		<code><a href="source-class-lib.model.Model.html#263-266" title="Go to source code">getFields</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#381-387" title="Go to source code">getFields</a>( )</code>
 
 		<div class="description short">
 			
@@ -1135,6 +1250,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -1147,14 +1266,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isField">#</a>
-		<code><a href="source-class-lib.model.Model.html#268-274" title="Go to source code">isField</a>( <span> <var>$field</var></span> )</code>
+		<code><a href="source-class-lib.model.Model.html#389-399" title="Go to source code">isField</a>( <span> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1164,7 +1283,16 @@ Created @Nov 21, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$field</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 
@@ -1184,7 +1312,7 @@ Created @Nov 21, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_convertToFields">#</a>
-		<code><a href="source-class-lib.model.Model.html#276-285" title="Go to source code">convertToFields</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#401-413" title="Go to source code">convertToFields</a>( )</code>
 
 		<div class="description short">
 			
@@ -1207,14 +1335,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPrimaryKey">#</a>
-		<code><a href="source-class-lib.model.Model.html#287-290" title="Go to source code">getPrimaryKey</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#415-421" title="Go to source code">getPrimaryKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -1225,6 +1353,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -1237,14 +1369,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getUniqueKey">#</a>
-		<code><a href="source-class-lib.model.Model.html#292-295" title="Go to source code">getUniqueKey</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#423-429" title="Go to source code">getUniqueKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -1255,6 +1387,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -1267,14 +1403,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAutoIncrement">#</a>
-		<code><a href="source-class-lib.model.Model.html#297-300" title="Go to source code">getAutoIncrement</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#431-437" title="Go to source code">getAutoIncrement</a>( )</code>
 
 		<div class="description short">
 			
@@ -1285,6 +1421,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					null
+				</div>
 
 
 
@@ -1297,14 +1437,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getForeignKeys">#</a>
-		<code><a href="source-class-lib.model.Model.html#301-304" title="Go to source code">getForeignKeys</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#439-445" title="Go to source code">getForeignKeys</a>( )</code>
 
 		<div class="description short">
 			
@@ -1315,6 +1455,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -1327,14 +1471,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTableJoins">#</a>
-		<code><a href="source-class-lib.model.Model.html#306-309" title="Go to source code">getTableJoins</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#447-453" title="Go to source code">getTableJoins</a>( )</code>
 
 		<div class="description short">
 			
@@ -1345,6 +1489,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -1357,14 +1505,14 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTableAlias">#</a>
-		<code><a href="source-class-lib.model.Model.html#311-314" title="Go to source code">getTableAlias</a>( )</code>
+		<code><a href="source-class-lib.model.Model.html#455-461" title="Go to source code">getTableAlias</a>( )</code>
 
 		<div class="description short">
 			
@@ -1375,6 +1523,10 @@ Created @Nov 21, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -1398,7 +1550,7 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.model.Model.html#17" title="Go to source code"><b>ACTION_INSERT</b></a>
+				<a href="source-class-lib.model.Model.html#17-20" title="Go to source code"><b>ACTION_INSERT</b></a>
 			</code>
 
 			<div class="description short">
@@ -1422,7 +1574,7 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.model.Model.html#18" title="Go to source code"><b>ACTION_UPDATE</b></a>
+				<a href="source-class-lib.model.Model.html#21-24" title="Go to source code"><b>ACTION_UPDATE</b></a>
 			</code>
 
 			<div class="description short">
@@ -1446,7 +1598,7 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.model.Model.html#19" title="Go to source code"><b>ACTION_NONE</b></a>
+				<a href="source-class-lib.model.Model.html#25-28" title="Go to source code"><b>ACTION_NONE</b></a>
 			</code>
 
 			<div class="description short">
@@ -1470,7 +1622,7 @@ Created @Nov 21, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.model.Model.html#20" title="Go to source code"><b>ACTION_SHOW</b></a>
+				<a href="source-class-lib.model.Model.html#29-32" title="Go to source code"><b>ACTION_SHOW</b></a>
 			</code>
 
 			<div class="description short">
@@ -1503,7 +1655,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#22" title="Go to source code"><var>$tableName</var></a>
+				<a href="source-class-lib.model.Model.html#34-37" title="Go to source code"><var>$tableName</var></a>
 
 			<div class="description short">
 				
@@ -1528,7 +1680,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#23" title="Go to source code"><var>$columnNames</var></a>
+				<a href="source-class-lib.model.Model.html#38-41" title="Go to source code"><var>$columnNames</var></a>
 
 			<div class="description short">
 				
@@ -1553,7 +1705,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#25" title="Go to source code"><var>$tableJoins</var></a>
+				<a href="source-class-lib.model.Model.html#43-46" title="Go to source code"><var>$tableJoins</var></a>
 
 			<div class="description short">
 				
@@ -1578,7 +1730,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#26" title="Go to source code"><var>$primaryKey</var></a>
+				<a href="source-class-lib.model.Model.html#47-50" title="Go to source code"><var>$primaryKey</var></a>
 
 			<div class="description short">
 				
@@ -1603,7 +1755,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#27" title="Go to source code"><var>$fk</var></a>
+				<a href="source-class-lib.model.Model.html#51-54" title="Go to source code"><var>$fk</var></a>
 
 			<div class="description short">
 				
@@ -1628,7 +1780,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#29" title="Go to source code"><var>$uniqueKey</var></a>
+				<a href="source-class-lib.model.Model.html#56-59" title="Go to source code"><var>$uniqueKey</var></a>
 
 			<div class="description short">
 				
@@ -1649,11 +1801,11 @@ Created @Nov 21, 2014</p><br>
 	<tr data-order="autoincrement" id="$autoincrement">
 		<td class="attributes"><code>
 			protected  
-			
+			null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#30" title="Go to source code"><var>$autoincrement</var></a>
+				<a href="source-class-lib.model.Model.html#60-63" title="Go to source code"><var>$autoincrement</var></a>
 
 			<div class="description short">
 				
@@ -1678,7 +1830,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#32" title="Go to source code"><var>$tableAlias</var></a>
+				<a href="source-class-lib.model.Model.html#65-68" title="Go to source code"><var>$tableAlias</var></a>
 
 			<div class="description short">
 				
@@ -1703,7 +1855,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#35" title="Go to source code"><var>$columns</var></a>
+				<a href="source-class-lib.model.Model.html#71-74" title="Go to source code"><var>$columns</var></a>
 
 			<div class="description short">
 				
@@ -1728,7 +1880,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#36" title="Go to source code"><var>$virtualColumns</var></a>
+				<a href="source-class-lib.model.Model.html#75-78" title="Go to source code"><var>$virtualColumns</var></a>
 
 			<div class="description short">
 				
@@ -1753,7 +1905,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#38" title="Go to source code"><var>$queue</var></a>
+				<a href="source-class-lib.model.Model.html#80-83" title="Go to source code"><var>$queue</var></a>
 
 			<div class="description short">
 				
@@ -1778,7 +1930,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#40" title="Go to source code"><var>$inserted</var></a>
+				<a href="source-class-lib.model.Model.html#85-88" title="Go to source code"><var>$inserted</var></a>
 
 			<div class="description short">
 				
@@ -1803,7 +1955,7 @@ Created @Nov 21, 2014</p><br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-lib.model.Model.html#41" title="Go to source code"><var>$action</var></a>
+				<a href="source-class-lib.model.Model.html#89-92" title="Go to source code"><var>$action</var></a>
 
 			<div class="description short">
 				

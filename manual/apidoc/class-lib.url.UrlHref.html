@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -405,7 +405,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Dec 16, 2014</p><br>
-			<b>Located at</b> <a href="source-class-lib.url.UrlHref.html#5-98" title="Go to source code">lib/url/UrlHref.php</a>
+			<b>Located at</b> <a href="source-class-lib.url.UrlHref.html#5-141" title="Go to source code">lib/url/UrlHref.php</a>
 		<br>
 	</div>
 
@@ -418,14 +418,14 @@ Created @Dec 16, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderUrl">#</a>
-		<code><a href="source-class-lib.url.UrlHref.html#47-55" title="Go to source code">renderUrl</a>( <span> <var>$url</var></span> )</code>
+		<code><a href="source-class-lib.url.UrlHref.html#66-78" title="Go to source code">renderUrl</a>( <span> <var>$url</var></span> )</code>
 
 		<div class="description short">
 			
@@ -435,7 +435,16 @@ Created @Dec 16, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$url</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -448,14 +457,14 @@ Created @Dec 16, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderMenuUrl">#</a>
-		<code><a href="source-class-lib.url.UrlHref.html#57-64" title="Go to source code">renderMenuUrl</a>( <span> <var>$param_url</var></span>, <span> <var>$title</var></span>, <span> <var>$param_target</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.url.UrlHref.html#80-93" title="Go to source code">renderMenuUrl</a>( <span> <var>$param_url</var></span>, <span> <var>$title</var></span>, <span> <var>$param_target</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -465,7 +474,20 @@ Created @Dec 16, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$param_url</var></dt>
+					<dd></dd>
+					<dt><var>$title</var></dt>
+					<dd></dd>
+					<dt><var>$param_target</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -478,14 +500,14 @@ Created @Dec 16, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderMenuItem">#</a>
-		<code><a href="source-class-lib.url.UrlHref.html#67-81" title="Go to source code">renderMenuItem</a>( <span> <var>$param_url</var></span>, <span> <var>$title</var></span>, <span> <var>$params</var> = []</span> )</code>
+		<code><a href="source-class-lib.url.UrlHref.html#96-116" title="Go to source code">renderMenuItem</a>( <span> <var>$param_url</var></span>, <span> <var>$title</var></span>, <span>array <var>$params</var> = []</span> )</code>
 
 		<div class="description short">
 			
@@ -495,7 +517,20 @@ Created @Dec 16, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$param_url</var></dt>
+					<dd></dd>
+					<dt><var>$title</var></dt>
+					<dd></dd>
+					<dt><var>$params</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -508,14 +543,14 @@ Created @Dec 16, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderButton">#</a>
-		<code><a href="source-class-lib.url.UrlHref.html#84-94" title="Go to source code">renderButton</a>( <span> <var>$li</var></span>, <span> <var>$a</var></span>, <span> <var>$title</var> = <span class="php-quote">''</span></span>, <span> <var>$href</var> = <span class="php-keyword1">null</span></span>, <span> <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.url.UrlHref.html#119-137" title="Go to source code">renderButton</a>( <span> <var>$li</var></span>, <span> <var>$a</var></span>, <span>string <var>$title</var> = <span class="php-quote">''</span></span>, <span> <var>$href</var> = <span class="php-keyword1">null</span></span>, <span> <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -525,7 +560,24 @@ Created @Dec 16, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$li</var></dt>
+					<dd></dd>
+					<dt><var>$a</var></dt>
+					<dd></dd>
+					<dt><var>$title</var></dt>
+					<dd></dd>
+					<dt><var>$href</var></dt>
+					<dd></dd>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -549,7 +601,7 @@ Created @Dec 16, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.url.UrlHref.html#13" title="Go to source code"><b>ICON_RIGHT</b></a>
+				<a href="source-class-lib.url.UrlHref.html#13-16" title="Go to source code"><b>ICON_RIGHT</b></a>
 			</code>
 
 			<div class="description short">
@@ -573,7 +625,7 @@ Created @Dec 16, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.url.UrlHref.html#14" title="Go to source code"><b>ICON_LEFT</b></a>
+				<a href="source-class-lib.url.UrlHref.html#17-20" title="Go to source code"><b>ICON_LEFT</b></a>
 			</code>
 
 			<div class="description short">
@@ -597,7 +649,7 @@ Created @Dec 16, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.url.UrlHref.html#15" title="Go to source code"><b>CLASS_LI</b></a>
+				<a href="source-class-lib.url.UrlHref.html#21-24" title="Go to source code"><b>CLASS_LI</b></a>
 			</code>
 
 			<div class="description short">
@@ -621,7 +673,7 @@ Created @Dec 16, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.url.UrlHref.html#16" title="Go to source code"><b>CLASS_A</b></a>
+				<a href="source-class-lib.url.UrlHref.html#25-28" title="Go to source code"><b>CLASS_A</b></a>
 			</code>
 
 			<div class="description short">
@@ -645,7 +697,7 @@ Created @Dec 16, 2014</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.url.UrlHref.html#17" title="Go to source code"><b>TARGET</b></a>
+				<a href="source-class-lib.url.UrlHref.html#29-32" title="Go to source code"><b>TARGET</b></a>
 			</code>
 
 			<div class="description short">

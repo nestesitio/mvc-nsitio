@@ -149,11 +149,6 @@
 						tasks					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Taskings.tools.html">
-						tools					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.User.html">
@@ -323,6 +318,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-PHP.html">
+						PHP					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -441,7 +441,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Dec 15, 2014</p><br>
-			<b>Located at</b> <a href="source-class-apps.Core.model.PageQuery.html#8-79" title="Go to source code">apps/Core/model/PageQuery.php</a>
+			<b>Located at</b> <a href="source-class-apps.Core.model.PageQuery.html#8-106" title="Go to source code">apps/Core/model/PageQuery.php</a>
 		<br>
 	</div>
 
@@ -454,14 +454,14 @@ Created @Dec 15, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			<code><a href="class-model.querys.HtmPageQuery.html">model\querys\HtmPageQuery</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_start">#</a>
-		<code><a href="source-class-apps.Core.model.PageQuery.html#16-27" title="Go to source code">start</a>( <span> <var>$merge</var> = ALL</span> )</code>
+		<code><a href="source-class-apps.Core.model.PageQuery.html#16-31" title="Go to source code">start</a>( <span>string <var>$merge</var> = ALL</span> )</code>
 
 		<div class="description short">
 			
@@ -471,7 +471,16 @@ Created @Dec 15, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$merge</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-model.querys.HtmPageQuery.html">model\querys\HtmPageQuery</a></code>
+				</div>
 
 
 
@@ -486,14 +495,14 @@ Created @Dec 15, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageRoute">#</a>
-		<code><a href="source-class-apps.Core.model.PageQuery.html#29-36" title="Go to source code">getPageRoute</a>( <span> <var>$htmapp</var></span>, <span> <var>$canonical</var></span> )</code>
+		<code><a href="source-class-apps.Core.model.PageQuery.html#33-45" title="Go to source code">getPageRoute</a>( <span> <var>$htmapp</var></span>, <span> <var>$canonical</var></span> )</code>
 
 		<div class="description short">
 			
@@ -503,7 +512,18 @@ Created @Dec 15, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$htmapp</var></dt>
+					<dd></dd>
+					<dt><var>$canonical</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -516,14 +536,14 @@ Created @Dec 15, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			<code><a href="class-model.models.HtmApp.html">model\models\HtmApp</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageExists">#</a>
-		<code><a href="source-class-apps.Core.model.PageQuery.html#38-44" title="Go to source code">getPageExists</a>( <span> <var>$htmapp</var></span>, <span> <var>$canonical</var></span> )</code>
+		<code><a href="source-class-apps.Core.model.PageQuery.html#47-58" title="Go to source code">getPageExists</a>( <span> <var>$htmapp</var></span>, <span> <var>$canonical</var></span> )</code>
 
 		<div class="description short">
 			
@@ -533,7 +553,18 @@ Created @Dec 15, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$htmapp</var></dt>
+					<dd></dd>
+					<dt><var>$canonical</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-model.models.HtmApp.html">model\models\HtmApp</a></code>
+				</div>
 
 
 
@@ -553,7 +584,7 @@ Created @Dec 15, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getBackendPages">#</a>
-		<code><a href="source-class-apps.Core.model.PageQuery.html#46-59" title="Go to source code">getBackendPages</a>( )</code>
+		<code><a href="source-class-apps.Core.model.PageQuery.html#60-73" title="Go to source code">getBackendPages</a>( )</code>
 
 		<div class="description short">
 			<p>Completes query and return a collection of HtmPage objects</p>
@@ -580,14 +611,14 @@ Created @Dec 15, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageById">#</a>
-		<code><a href="source-class-apps.Core.model.PageQuery.html#62-66" title="Go to source code">getPageById</a>( <span> <var>$id</var></span> )</code>
+		<code><a href="source-class-apps.Core.model.PageQuery.html#77-85" title="Go to source code">getPageById</a>( <span> <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -597,7 +628,16 @@ Created @Dec 15, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -610,14 +650,14 @@ Created @Dec 15, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			<code><a href="class-model.querys.HtmPageQuery.html">model\querys\HtmPageQuery</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPages">#</a>
-		<code><a href="source-class-apps.Core.model.PageQuery.html#68-70" title="Go to source code">getPages</a>( )</code>
+		<code><a href="source-class-apps.Core.model.PageQuery.html#87-92" title="Go to source code">getPages</a>( )</code>
 
 		<div class="description short">
 			
@@ -628,6 +668,10 @@ Created @Dec 15, 2014</p><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-model.querys.HtmPageQuery.html">model\querys\HtmPageQuery</a></code>
+				</div>
 
 
 
@@ -640,14 +684,14 @@ Created @Dec 15, 2014</p><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageFromAnotherLang">#</a>
-		<code><a href="source-class-apps.Core.model.PageQuery.html#72-76" title="Go to source code">getPageFromAnotherLang</a>( <span> <var>$id</var></span>, <span> <var>$tld</var></span> )</code>
+		<code><a href="source-class-apps.Core.model.PageQuery.html#94-103" title="Go to source code">getPageFromAnotherLang</a>( <span> <var>$id</var></span>, <span> <var>$tld</var></span> )</code>
 
 		<div class="description short">
 			
@@ -657,7 +701,18 @@ Created @Dec 15, 2014</p><br>
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+					<dt><var>$tld</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
