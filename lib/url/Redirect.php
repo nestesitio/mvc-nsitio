@@ -40,6 +40,9 @@ class Redirect
      */
     public static function redirectByRoute($url)
     {
+        if($url == false){
+            $url = '/';
+        }
         header('Location:' . $url);
     }
 

@@ -18,6 +18,7 @@ use \lib\session\SessionUser;
  * Updated @%$dateUpdated% *
  */
 class LoginActions extends \lib\control\ControllerAdmin {
+    
 
 
     /**
@@ -38,6 +39,7 @@ class LoginActions extends \lib\control\ControllerAdmin {
         }
         
     }
+    
 
 
     /**

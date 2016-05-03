@@ -70,7 +70,8 @@ class ParseString
                     $this->portions[$i] = $this->findTagIf($match[0], $endtag, $match[1]);
                 }else{
                     preg_match_all(
-                            "/" . "(" . preg_quote($match[0]) . "){1}" . "?(.|\n)+" .
+                            //"/" . "(" . preg_quote($match[0]) . "){1}" . "?(.|\n)+" .
+                            "/" . "(" . preg_quote($match[0]) . "){1}" . "?(.)+" .
                             "(" . preg_quote($endtag) . "){1}" .
                             "/", $this->string, $matches_b, PREG_PATTERN_ORDER);
 
