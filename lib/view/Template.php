@@ -271,7 +271,7 @@ class Template
     private function scriptExtend()
     {
         /*transfer custom scripts to main template */
-        $pattern = "/(<script>){1}?(.|\n)+(<\/script>)/";
+        $pattern = "/(<script>){1}?(.)+(<\/script>)/";
         $matches = [];
         $data = [];
         if (strpos($this->strview, "<script>")) {
