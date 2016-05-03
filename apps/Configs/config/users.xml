@@ -2,7 +2,7 @@
 <root>
   <show>
     <fields comment="Fields for render">
-      <id field="user.id" filter="false" show="false">
+      <id field="user_base.id" filter="false" show="false">
         <label lang="en">Id</label>
         <label lang="pt">Id</label>
       </id>
@@ -10,19 +10,19 @@
         <label lang="en">User Group</label>
         <label lang="pt">Grupo</label>
       </usergroupdescription>
-      <usergroupid field="user.user_group_id" filter="true" show="false" range="multiple">
+      <usergroupid field="user_base.user_group_id" filter="true" show="false" range="multiple">
         <label lang="en">User Group Id</label>
         <label lang="pt">Grupo</label>
       </usergroupid>
-      <name field="user.name" filter="true" show="true">
+      <name field="user_base.name" filter="true" show="true">
         <label lang="en">Name</label>
         <label lang="pt">Nome</label>
       </name>
-      <username field="user.username" filter="false" show="true">
+      <username field="user_base.username" filter="false" show="true">
         <label lang="en">Username</label>
         <label lang="pt">Username</label>
       </username>
-      <password field="user.password" filter="false" show="true">
+      <password field="user_base.password" filter="false" show="true">
         <label lang="en">Password</label>
         <label lang="pt">Password</label>
       </password>
@@ -50,9 +50,9 @@
       </closeform>
     </buttons>
   </show>
-  <grid identification="users" paging="25" fieldid="user.id">
+  <grid identification="users" paging="25" fieldid="user_base.id">
     <columns comment="Columns for grid">
-      <id field="user.id" class="id" sort="true">
+      <id field="user_base.id" class="id" sort="true">
         <label lang="en">Id</label>
         <label lang="pt">Id</label>
       </id>
@@ -60,25 +60,25 @@
         <label lang="en">Group</label>
         <label lang="pt">Grupo</label>
       </description>
-      <name field="user.name" class="name" sort="true">
+      <name field="user_base.name" class="name" sort="true">
         <label lang="en">Name</label>
         <label lang="pt">Nome</label>
       </name>
-      <username field="user.username" class="mail" sort="true">
+      <username field="user_base.username" class="mail" sort="true">
         <label lang="en">Username</label>
         <label lang="pt">Username</label>
       </username>
     </columns>
     <tools comment="buttons in row">
-      <edit action="configs/edit_users" class="fa-pencil" id="user.id" auth="1">
+      <edit action="configs/edit_users" class="fa-pencil" id="user_base.id" auth="1">
         <label lang="en">Edit</label>
         <label lang="pt">Editar</label>
       </edit>
-      <show action="configs/show_users" class="fa-eye" id="user.id" auth="1">
+      <show action="configs/show_users" class="fa-eye" id="user_base.id" auth="1">
         <label lang="en">Show</label>
         <label lang="pt">Show</label>
       </show>
-      <del action="configs/del_users" class="fa-trash-o" id="user.id" auth="1">
+      <del action="configs/del_users" class="fa-trash-o" id="user_base.id" auth="1">
         <label lang="en">Del</label>
         <label lang="pt">Del</label>
       </del>

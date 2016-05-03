@@ -47,7 +47,8 @@ class UrlRegister
     }
 
     /**
-     * @return string
+     * We sanitize the url
+     * @return string The url sanitized
      */
     public static function getUrlRequest()
     {

@@ -65,6 +65,7 @@ class SessionUserTools
 
         return $query;
     }
+    
 
 
 }

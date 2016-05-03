@@ -2,12 +2,13 @@
 
 namespace apps\User\control;
 
-use \lib\session\Session as Session;
+use \lib\session\Session;
 
-use \lib\url\UrlHref as UrlHref;
+use \lib\url\UrlHref;
 use \lib\url\Redirect;
 use \model\models\UserLog;
 use \lib\guard\Guard;
+use \lib\session\SessionUser;
 
 /**
  * Description of LoginActions
@@ -30,6 +31,11 @@ class LoginActions extends \lib\control\ControllerAdmin {
         Session::unsetSession('error');
         $this->set('user_message', $message);
         $this->set('gOAuth-url', '/gsign.php');
+        $warning = SessionUser::getWarning();
+        if($warning !=  false){
+            $this->set('warning', $warning);
+            SessionUser::resetWarning();
+        }
         
     }
 
@@ -41,7 +47,7 @@ class LoginActions extends \lib\control\ControllerAdmin {
         
         if(Guard::validateLogin() == true){
             \lib\session\SessionUserTools::logUser(UserLog::EVENT_LOGIN);
-            Redirect::redirectByPageNumber(Session::getPageReturn());
+            Redirect::redirectByRoute(Session::getPageReturn());
         }else{
             Session::setSession('error', 'O login não é válido');
             header('Location:' . UrlHref::renderUrl(['app'=>'user','canonical'=>'login']));

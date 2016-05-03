@@ -30,5 +30,29 @@ class XmlFile extends \lib\xml\Xml
             Registry::setErrorMessages(null, 'Xml file is not valid: ' . $file);
         }
     }
+    
+    /**
+     * 
+     * @param string $file Path to the XML file 
+     * @return \lib\xml\Xml
+     */
+    public static function getXmlFromFile($file){
+        $obj = new XmlFile($file);
+        return $obj->getXml();
+    }
+    
+    /**
+     * 
+     * @param string $file Path to the XML file 
+     * @return object | null
+     */
+    public static function getXmlSimpleFromFile($file){
+        if (strpos($file, '.xml') && is_file(ROOT . DS . $file)) {
+            return simplexml_load_file(ROOT . DS . $file);
+        }else{
+            Registry::setErrorMessages(null, 'Xml file is not valid: ' . $file);
+            return null;
+        }
+    }
 
 }

@@ -13,6 +13,7 @@ class XmlTools
     /**
      * @param $xml
      * @param bool $root
+     * 
      * @return array
      */
     public static function xml2Array($xml, $root = true)

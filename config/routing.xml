@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <route name="home" url="home">
+        <controller class="Home/HomeActions" />
+        <access group="all" />
+    </route>
+    <route name="casa" url="casa/user" id="">
+        <controller class="Home/HomeActions" />
+        <access group="visitor" redirect="/" />
+    </route>
+    <route name="backend" url="backend">
+        <controller class="Backend/Backend" />
+        <access group="owner" redirect="/user/login" />
+    </route>
+    <route name="login" url="user/login">
+        <controller class="User/Login" />
+        <access group="all" />
+    </route>
+</root>

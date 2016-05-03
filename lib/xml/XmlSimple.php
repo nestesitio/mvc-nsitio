@@ -12,6 +12,27 @@ use DOMXPath;
  */
 class XmlSimple extends \lib\xml\XmlFile
 {
+    
+    
+    /**
+     * 
+     * @param string $path
+     * @param string $attr
+     * @param string $value
+     * 
+     * @return \DOMElement | null
+     */
+    public function getNodeByAttr($path, $attr, $value){
+        $xpath = new DOMXPath($this->xml);
+        $items = $xpath->query($path);
+        foreach ($items as $item) {
+            if($value == self::getAtribute($item, $attr)){
+                return $item;
+            }
+        }
+
+        return null;
+    }
     /**
      * @param $file
      * @param $value
@@ -47,7 +68,7 @@ class XmlSimple extends \lib\xml\XmlFile
         $xpath = new DOMXPath($this->xml);
         $items = $xpath->query('/root/*');
         foreach ($items as $item) {
-            $key = $this->getAtributes($item, 'index');
+            $key = self::getAtribute($item, 'index');
             $values[$key] = $this->getLangValue($item, $lang);
         }
         return $values;
@@ -63,10 +84,10 @@ class XmlSimple extends \lib\xml\XmlFile
         $xpath = new DOMXPath($this->xml);
         $items = $xpath->query('/root/*');
         foreach ($items as $item) {
-            if($value == $this->getAtributes($item, 'index')){
+            if($value == self::getAtribute($item, 'index')){
                 $nodes = $item->childNodes;
-                if(null == $nodes && null != $this->getAtributes($item, 'value')){
-                    return $this->getAtributes($item, 'value');
+                if(null == $nodes && null != self::getAtribute($item, 'value')){
+                    return self::getAtribute($item, 'value');
                 }
                 return $this->getLangValue($item, $lang);
             }
@@ -84,7 +105,7 @@ class XmlSimple extends \lib\xml\XmlFile
     {
         $nodes = $item->childNodes;
         foreach ($nodes as $node) {
-            if ($lang == $this->getAtributes($node, 'lang')) {
+            if ($lang == self::getAtribute($node, 'lang')) {
                 return $node->nodeValue;
             }
         }

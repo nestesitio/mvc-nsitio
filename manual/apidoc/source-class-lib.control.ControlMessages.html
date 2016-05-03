@@ -53,11 +53,6 @@
 						control					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Backend.model.html">
-						model					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.Configs.html">
@@ -262,6 +257,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.routing.html">
+						routing					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.session.html">
 						session					</a>
 
@@ -338,7 +338,6 @@
 				<li><a href="class-apps.Admin.model.UsersQuery.html">apps\Admin\model\UsersQuery</a></li>
 				<li><a href="class-apps.Backend.control.BackendActions.html">apps\Backend\control\BackendActions</a></li>
 				<li><a href="class-apps.Backend.control.BackendMenuActions.html">apps\Backend\control\BackendMenuActions</a></li>
-				<li><a href="class-apps.Backend.model.PagesAdminQuery.html" class="invalid">apps\Backend\model\PagesAdminQuery</a></li>
 				<li><a href="class-apps.Configs.control.AppgroupActions.html">apps\Configs\control\AppgroupActions</a></li>
 				<li><a href="class-apps.Configs.control.AppsActions.html">apps\Configs\control\AppsActions</a></li>
 				<li><a href="class-apps.Configs.control.LayoutsActions.html">apps\Configs\control\LayoutsActions</a></li>
@@ -348,6 +347,7 @@
 				<li><a href="class-apps.Configs.control.UsersActions.html">apps\Configs\control\UsersActions</a></li>
 				<li><a href="class-apps.Configs.model.AppsQuery.html">apps\Configs\model\AppsQuery</a></li>
 				<li><a href="class-apps.Configs.model.LayoutsQuery.html">apps\Configs\model\LayoutsQuery</a></li>
+				<li><a href="class-apps.Configs.model.PagesAdminQuery.html">apps\Configs\model\PagesAdminQuery</a></li>
 				<li><a href="class-apps.Configs.model.UsergroupsQuery.html">apps\Configs\model\UsergroupsQuery</a></li>
 				<li><a href="class-apps.Core.control.ErrorActions.html">apps\Core\control\ErrorActions</a></li>
 				<li><a href="class-apps.Core.control.FilesActions.html">apps\Core\control\FilesActions</a></li>
@@ -381,6 +381,8 @@
 				<li><a href="class-apps.User.model.UserGroupModel.html">apps\User\model\UserGroupModel</a></li>
 				<li><a href="class-apps.User.model.UserQueries.html">apps\User\model\UserQueries</a></li>
 				<li><a href="class-apps.User.tools.UserMenu.html">apps\User\tools\UserMenu</a></li>
+				<li><a href="class-DOMElement.html">DOMElement</a></li>
+				<li><a href="class-DOMNode.html">DOMNode</a></li>
 				<li><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></li>
 				<li><a href="class-lib.bkegenerator.DataConfig.html">lib\bkegenerator\DataConfig</a></li>
 				<li><a href="class-lib.bkegenerator.DataEdit.html">lib\bkegenerator\DataEdit</a></li>
@@ -425,6 +427,7 @@
 				<li><a href="class-lib.form.input.WysihtmlInput.html">lib\form\input\WysihtmlInput</a></li>
 				<li><a href="class-lib.form.PostTool.html">lib\form\PostTool</a></li>
 				<li><a href="class-lib.guard.Guard.html">lib\guard\Guard</a></li>
+				<li><a href="class-lib.loader.Boot.html">lib\loader\Boot</a></li>
 				<li><a href="class-lib.loader.Configurator.html">lib\loader\Configurator</a></li>
 				<li><a href="class-lib.loader.Router.html">lib\loader\Router</a></li>
 				<li><a href="class-lib.loader.SplClassLoader.html">lib\loader\SplClassLoader</a></li>
@@ -443,6 +446,12 @@
 				<li><a href="class-lib.register.Monitor.html">lib\register\Monitor</a></li>
 				<li><a href="class-lib.register.Registry.html">lib\register\Registry</a></li>
 				<li><a href="class-lib.register.VarsRegister.html">lib\register\VarsRegister</a></li>
+				<li><a href="class-lib.routing.DBRouting.html">lib\routing\DBRouting</a></li>
+				<li><a href="class-lib.routing.ErrorPage.html">lib\routing\ErrorPage</a></li>
+				<li><a href="class-lib.routing.ParseRoute.html">lib\routing\ParseRoute</a></li>
+				<li><a href="class-lib.routing.QueryPage.html">lib\routing\QueryPage</a></li>
+				<li><a href="class-lib.routing.Router.html">lib\routing\Router</a></li>
+				<li><a href="class-lib.routing.XmlRouting.html">lib\routing\XmlRouting</a></li>
 				<li><a href="class-lib.session.Session.html">lib\session\Session</a></li>
 				<li><a href="class-lib.session.SessionConfig.html">lib\session\SessionConfig</a></li>
 				<li><a href="class-lib.session.SessionUser.html">lib\session\SessionUser</a></li>
@@ -628,89 +637,96 @@
 </span><span id="36" class="l"><a href="#36"> 36: </a>        <span class="php-var">$messages</span> = <span class="php-quote">''</span>;
 </span><span id="37" class="l"><a href="#37"> 37: </a>        <span class="php-var">$flags</span> = <span class="php-num">0</span>;
 </span><span id="38" class="l"><a href="#38"> 38: </a>        <span class="php-var">$controller</span> = <span class="php-keyword1">new</span> ControlMessages();
-</span><span id="39" class="l"><a href="#39"> 39: </a>        <span class="php-keyword1">if</span> (SessionUser::getUserGroup() == UserGroupModel::GROUP_DEVELOPER ||
-</span><span id="40" class="l"><a href="#40"> 40: </a>                Configurator::getDeveloperMode() == <span class="php-keyword1">true</span>) {
-</span><span id="41" class="l"><a href="#41"> 41: </a>            <span class="php-var">$flags</span> = <span class="php-var">$controller</span>-&gt;processDevelopMessages();
-</span><span id="42" class="l"><a href="#42"> 42: </a>
-</span><span id="43" class="l"><a href="#43"> 43: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$flags</span> &gt; <span class="php-num">0</span>) {
-</span><span id="44" class="l"><a href="#44"> 44: </a>                <span class="php-var">$controller</span>-&gt;setView(<span class="php-quote">'layout'</span> . DS . <span class="php-quote">'core'</span> . DS . <span class="php-quote">'messages.htm'</span>);
-</span><span id="45" class="l"><a href="#45"> 45: </a>                <span class="php-var">$controller</span>-&gt;set(<span class="php-quote">'dev_messages'</span>, <span class="php-var">$controller</span>-&gt;getMonitor());
-</span><span id="46" class="l"><a href="#46"> 46: </a>                <span class="php-var">$controller</span>-&gt;set(<span class="php-quote">'user_messages'</span>, <span class="php-var">$controller</span>-&gt;getUserMessages());
-</span><span id="47" class="l"><a href="#47"> 47: </a>                <span class="php-var">$messages</span> = <span class="php-var">$controller</span>-&gt;dispatch();
-</span><span id="48" class="l"><a href="#48"> 48: </a>            }
-</span><span id="49" class="l"><a href="#49"> 49: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$extend</span> == <span class="php-keyword1">true</span>) {
-</span><span id="50" class="l"><a href="#50"> 50: </a>                <span class="php-var">$html</span> = <span class="php-keyword2">str_replace</span>(<span class="php-quote">'{{ messages }}'</span>, <span class="php-var">$messages</span>, <span class="php-var">$html</span>);
-</span><span id="51" class="l"><a href="#51"> 51: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="52" class="l"><a href="#52"> 52: </a>                <span class="php-var">$html</span> .= <span class="php-quote">'&lt;div class=&quot;submessages&quot;&gt;'</span> . <span class="php-var">$messages</span> . <span class="php-quote">'&lt;/div&gt;'</span>;
-</span><span id="53" class="l"><a href="#53"> 53: </a>            }
-</span><span id="54" class="l"><a href="#54"> 54: </a>        }<span class="php-keyword1">else</span>{
-</span><span id="55" class="l"><a href="#55"> 55: </a>            <span class="php-var">$html</span> = <span class="php-keyword2">str_replace</span>(<span class="php-quote">'{{ messages }}'</span>, <span class="php-quote">''</span>, <span class="php-var">$html</span>);
-</span><span id="56" class="l"><a href="#56"> 56: </a>        }
-</span><span id="57" class="l"><a href="#57"> 57: </a>        <span class="php-keyword1">return</span> <span class="php-var">$html</span>;
-</span><span id="58" class="l"><a href="#58"> 58: </a>    }
-</span><span id="59" class="l"><a href="#59"> 59: </a>
-</span><span id="60" class="l"><a href="#60"> 60: </a>    <span class="php-comment">/**
-</span></span><span id="61" class="l"><a href="#61"> 61: </a><span class="php-comment">     * @return string
-</span></span><span id="62" class="l"><a href="#62"> 62: </a><span class="php-comment">     */</span>
-</span><span id="63" class="l"><a href="#63"> 63: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getMonitor()
-</span><span id="64" class="l"><a href="#64"> 64: </a>    {
-</span><span id="65" class="l"><a href="#65"> 65: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;dev_messages;
-</span><span id="66" class="l"><a href="#66"> 66: </a>    }
-</span><span id="67" class="l"><a href="#67"> 67: </a>
-</span><span id="68" class="l"><a href="#68"> 68: </a>    <span class="php-comment">/**
-</span></span><span id="69" class="l"><a href="#69"> 69: </a><span class="php-comment">     * @return string
-</span></span><span id="70" class="l"><a href="#70"> 70: </a><span class="php-comment">     */</span>
-</span><span id="71" class="l"><a href="#71"> 71: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUserMessages()
-</span><span id="72" class="l"><a href="#72"> 72: </a>    {
-</span><span id="73" class="l"><a href="#73"> 73: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;user_messages;
-</span><span id="74" class="l"><a href="#74"> 74: </a>    }
-</span><span id="75" class="l"><a href="#75"> 75: </a>
-</span><span id="76" class="l"><a href="#76"> 76: </a>    <span class="php-comment">/**
-</span></span><span id="77" class="l"><a href="#77"> 77: </a><span class="php-comment">     * @return mixed
-</span></span><span id="78" class="l"><a href="#78"> 78: </a><span class="php-comment">     */</span>
-</span><span id="79" class="l"><a href="#79"> 79: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> messagesAction()
-</span><span id="80" class="l"><a href="#80"> 80: </a>    {
-</span><span id="81" class="l"><a href="#81"> 81: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getDevelopMessages();
-</span><span id="82" class="l"><a href="#82"> 82: </a>    }
-</span><span id="83" class="l"><a href="#83"> 83: </a>
-</span><span id="84" class="l"><a href="#84"> 84: </a>
-</span><span id="85" class="l"><a href="#85"> 85: </a>    <span class="php-comment">/**
-</span></span><span id="86" class="l"><a href="#86"> 86: </a><span class="php-comment">     * @return int
-</span></span><span id="87" class="l"><a href="#87"> 87: </a><span class="php-comment">     */</span>
-</span><span id="88" class="l"><a href="#88"> 88: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> processDevelopMessages()
-</span><span id="89" class="l"><a href="#89"> 89: </a>    {
-</span><span id="90" class="l"><a href="#90"> 90: </a>        <span class="php-var">$flag</span> = <span class="php-num">0</span>;
+</span><span id="39" class="l"><a href="#39"> 39: </a>        
+</span><span id="40" class="l"><a href="#40"> 40: </a>        <span class="php-keyword1">if</span> (SessionUser::getUserGroup() == UserGroupModel::GROUP_DEVELOPER ||
+</span><span id="41" class="l"><a href="#41"> 41: </a>                Configurator::getDeveloperMode() == <span class="php-keyword1">true</span>) {
+</span><span id="42" class="l"><a href="#42"> 42: </a>            <span class="php-var">$flags</span> = <span class="php-var">$controller</span>-&gt;processDevelopMessages();
+</span><span id="43" class="l"><a href="#43"> 43: </a>
+</span><span id="44" class="l"><a href="#44"> 44: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$flags</span> &gt; <span class="php-num">0</span>) {
+</span><span id="45" class="l"><a href="#45"> 45: </a>                <span class="php-var">$controller</span>-&gt;setView(<span class="php-quote">'layout'</span> . DS . <span class="php-quote">'core'</span> . DS . <span class="php-quote">'messages.htm'</span>);
+</span><span id="46" class="l"><a href="#46"> 46: </a>                <span class="php-var">$controller</span>-&gt;set(<span class="php-quote">'dev_messages'</span>, <span class="php-var">$controller</span>-&gt;getMonitor());
+</span><span id="47" class="l"><a href="#47"> 47: </a>                <span class="php-var">$controller</span>-&gt;set(<span class="php-quote">'user_messages'</span>, <span class="php-var">$controller</span>-&gt;getUserMessages());
+</span><span id="48" class="l"><a href="#48"> 48: </a>                <span class="php-var">$messages</span> = <span class="php-var">$controller</span>-&gt;dispatch();
+</span><span id="49" class="l"><a href="#49"> 49: </a>            }
+</span><span id="50" class="l"><a href="#50"> 50: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$extend</span> == <span class="php-keyword1">true</span>) {
+</span><span id="51" class="l"><a href="#51"> 51: </a>                <span class="php-var">$html</span> = <span class="php-keyword2">str_replace</span>(<span class="php-quote">'{{ messages }}'</span>, <span class="php-var">$messages</span>, <span class="php-var">$html</span>);
+</span><span id="52" class="l"><a href="#52"> 52: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="53" class="l"><a href="#53"> 53: </a>                <span class="php-var">$html</span> .= <span class="php-quote">'&lt;div class=&quot;submessages&quot;&gt;'</span> . <span class="php-var">$messages</span> . <span class="php-quote">'&lt;/div&gt;'</span>;
+</span><span id="54" class="l"><a href="#54"> 54: </a>            }
+</span><span id="55" class="l"><a href="#55"> 55: </a>        }<span class="php-keyword1">else</span>{
+</span><span id="56" class="l"><a href="#56"> 56: </a>            <span class="php-var">$html</span> = <span class="php-keyword2">str_replace</span>(<span class="php-quote">'{{ messages }}'</span>, <span class="php-quote">''</span>, <span class="php-var">$html</span>);
+</span><span id="57" class="l"><a href="#57"> 57: </a>        }
+</span><span id="58" class="l"><a href="#58"> 58: </a>        <span class="php-keyword1">return</span> <span class="php-var">$html</span>;
+</span><span id="59" class="l"><a href="#59"> 59: </a>    }
+</span><span id="60" class="l"><a href="#60"> 60: </a>    
+</span><span id="61" class="l"><a href="#61"> 61: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> testOutput(){
+</span><span id="62" class="l"><a href="#62"> 62: </a>        <span class="php-var">$controller</span> = <span class="php-keyword1">new</span> ControlMessages();
+</span><span id="63" class="l"><a href="#63"> 63: </a>        <span class="php-var">$controller</span>-&gt;processDevelopMessages();
+</span><span id="64" class="l"><a href="#64"> 64: </a>        <span class="php-keyword1">return</span> <span class="php-var">$controller</span>-&gt;getMonitor();
+</span><span id="65" class="l"><a href="#65"> 65: </a>    }
+</span><span id="66" class="l"><a href="#66"> 66: </a>
+</span><span id="67" class="l"><a href="#67"> 67: </a>    <span class="php-comment">/**
+</span></span><span id="68" class="l"><a href="#68"> 68: </a><span class="php-comment">     * @return string
+</span></span><span id="69" class="l"><a href="#69"> 69: </a><span class="php-comment">     */</span>
+</span><span id="70" class="l"><a href="#70"> 70: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getMonitor()
+</span><span id="71" class="l"><a href="#71"> 71: </a>    {
+</span><span id="72" class="l"><a href="#72"> 72: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;dev_messages;
+</span><span id="73" class="l"><a href="#73"> 73: </a>    }
+</span><span id="74" class="l"><a href="#74"> 74: </a>
+</span><span id="75" class="l"><a href="#75"> 75: </a>    <span class="php-comment">/**
+</span></span><span id="76" class="l"><a href="#76"> 76: </a><span class="php-comment">     * @return string
+</span></span><span id="77" class="l"><a href="#77"> 77: </a><span class="php-comment">     */</span>
+</span><span id="78" class="l"><a href="#78"> 78: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUserMessages()
+</span><span id="79" class="l"><a href="#79"> 79: </a>    {
+</span><span id="80" class="l"><a href="#80"> 80: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;user_messages;
+</span><span id="81" class="l"><a href="#81"> 81: </a>    }
+</span><span id="82" class="l"><a href="#82"> 82: </a>
+</span><span id="83" class="l"><a href="#83"> 83: </a>    <span class="php-comment">/**
+</span></span><span id="84" class="l"><a href="#84"> 84: </a><span class="php-comment">     * @return mixed
+</span></span><span id="85" class="l"><a href="#85"> 85: </a><span class="php-comment">     */</span>
+</span><span id="86" class="l"><a href="#86"> 86: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> messagesAction()
+</span><span id="87" class="l"><a href="#87"> 87: </a>    {
+</span><span id="88" class="l"><a href="#88"> 88: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getDevelopMessages();
+</span><span id="89" class="l"><a href="#89"> 89: </a>    }
+</span><span id="90" class="l"><a href="#90"> 90: </a>
 </span><span id="91" class="l"><a href="#91"> 91: </a>
-</span><span id="92" class="l"><a href="#92"> 92: </a>        <span class="php-var">$errors</span> = Registry::getErrorMessages();
-</span><span id="93" class="l"><a href="#93"> 93: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$errors</span> <span class="php-keyword1">as</span> <span class="php-var">$error</span>) {
-</span><span id="94" class="l"><a href="#94"> 94: </a>            <span class="php-var">$this</span>-&gt;dev_messages .= <span class="php-quote">'&lt;div class=&quot;dev_errors alert alert-warning&quot;&gt;&lt;b&gt;ERROR: &lt;/b&gt;'</span> . <span class="php-var">$error</span> . <span class="php-quote">'&lt;/div&gt;'</span>;
-</span><span id="95" class="l"><a href="#95"> 95: </a>            <span class="php-var">$flag</span>++;
-</span><span id="96" class="l"><a href="#96"> 96: </a>        }
-</span><span id="97" class="l"><a href="#97"> 97: </a>        <span class="php-var">$msgs</span> = Registry::getMonitor();
-</span><span id="98" class="l"><a href="#98"> 98: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$msgs</span> <span class="php-keyword1">as</span> <span class="php-var">$msg</span>) {
-</span><span id="99" class="l"><a href="#99"> 99: </a>            <span class="php-var">$this</span>-&gt;dev_messages .= <span class="php-var">$msg</span>-&gt;write();
-</span><span id="100" class="l"><a href="#100">100: </a>            <span class="php-var">$flag</span>++;
-</span><span id="101" class="l"><a href="#101">101: </a>        }
-</span><span id="102" class="l"><a href="#102">102: </a>        <span class="php-var">$this</span>-&gt;dev_messages .= <span class="php-var">$this</span>-&gt;getMemoryTest();
-</span><span id="103" class="l"><a href="#103">103: </a>        <span class="php-keyword1">return</span> <span class="php-var">$flag</span>;
-</span><span id="104" class="l"><a href="#104">104: </a>    }
-</span><span id="105" class="l"><a href="#105">105: </a>
-</span><span id="106" class="l"><a href="#106">106: </a>    <span class="php-comment">/**
-</span></span><span id="107" class="l"><a href="#107">107: </a><span class="php-comment">     * @return string
-</span></span><span id="108" class="l"><a href="#108">108: </a><span class="php-comment">     */</span>
-</span><span id="109" class="l"><a href="#109">109: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> getMemoryTest()
-</span><span id="110" class="l"><a href="#110">110: </a>    {
-</span><span id="111" class="l"><a href="#111">111: </a>        <span class="php-var">$type</span> = \lib\register\Monitor::MEMORY;
-</span><span id="112" class="l"><a href="#112">112: </a>        <span class="php-var">$string</span> = <span class="php-quote">'&lt;div class=&quot;dm '</span> . <span class="php-var">$type</span> . <span class="php-quote">'&quot;&gt;&lt;b&gt;'</span> . <span class="php-var">$type</span> . <span class="php-quote">':&lt;/b&gt; '</span>;
-</span><span id="113" class="l"><a href="#113">113: </a>        <span class="php-var">$string</span> .= <span class="php-quote">' Memory: '</span> . MemoryTools::getMemoryUsage() . <span class="php-quote">' Kb'</span>;
-</span><span id="114" class="l"><a href="#114">114: </a>        <span class="php-var">$string</span> .= <span class="php-quote">' in '</span> . <span class="php-keyword2">ini_get</span>(<span class="php-quote">'memory_limit'</span>) .<span class="php-quote">' available; '</span>;
-</span><span id="115" class="l"><a href="#115">115: </a>        <span class="php-var">$string</span> .= <span class="php-quote">' Time: '</span> . MemoryTools::getTimeExecution() . <span class="php-quote">' of '</span> . <span class="php-keyword2">ini_get</span>(<span class="php-quote">'max_execution_time'</span>) . <span class="php-quote">' sec'</span>;
-</span><span id="116" class="l"><a href="#116">116: </a>
-</span><span id="117" class="l"><a href="#117">117: </a>        <span class="php-keyword1">return</span> <span class="php-quote">'&lt;/div&gt;'</span> . <span class="php-var">$string</span>;
-</span><span id="118" class="l"><a href="#118">118: </a>    }
-</span><span id="119" class="l"><a href="#119">119: </a>
-</span><span id="120" class="l"><a href="#120">120: </a>}
-</span><span id="121" class="l"><a href="#121">121: </a></span></code></pre>
+</span><span id="92" class="l"><a href="#92"> 92: </a>    <span class="php-comment">/**
+</span></span><span id="93" class="l"><a href="#93"> 93: </a><span class="php-comment">     * @return int
+</span></span><span id="94" class="l"><a href="#94"> 94: </a><span class="php-comment">     */</span>
+</span><span id="95" class="l"><a href="#95"> 95: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> processDevelopMessages()
+</span><span id="96" class="l"><a href="#96"> 96: </a>    {
+</span><span id="97" class="l"><a href="#97"> 97: </a>        <span class="php-var">$flag</span> = <span class="php-num">0</span>;
+</span><span id="98" class="l"><a href="#98"> 98: </a>
+</span><span id="99" class="l"><a href="#99"> 99: </a>        <span class="php-var">$errors</span> = Registry::getErrorMessages();
+</span><span id="100" class="l"><a href="#100">100: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$errors</span> <span class="php-keyword1">as</span> <span class="php-var">$error</span>) {
+</span><span id="101" class="l"><a href="#101">101: </a>            <span class="php-var">$this</span>-&gt;dev_messages .= <span class="php-quote">'&lt;div class=&quot;dev_errors alert alert-warning&quot;&gt;&lt;b&gt;ERROR: &lt;/b&gt;'</span> . <span class="php-var">$error</span>[<span class="php-quote">'message'</span>] . <span class="php-quote">'&lt;/div&gt;'</span>;
+</span><span id="102" class="l"><a href="#102">102: </a>            <span class="php-var">$flag</span>++;
+</span><span id="103" class="l"><a href="#103">103: </a>        }
+</span><span id="104" class="l"><a href="#104">104: </a>        <span class="php-var">$msgs</span> = Registry::getMonitor();
+</span><span id="105" class="l"><a href="#105">105: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$msgs</span> <span class="php-keyword1">as</span> <span class="php-var">$msg</span>) {
+</span><span id="106" class="l"><a href="#106">106: </a>            <span class="php-var">$this</span>-&gt;dev_messages .= <span class="php-var">$msg</span>-&gt;write();
+</span><span id="107" class="l"><a href="#107">107: </a>            <span class="php-var">$flag</span>++;
+</span><span id="108" class="l"><a href="#108">108: </a>        }
+</span><span id="109" class="l"><a href="#109">109: </a>        <span class="php-var">$this</span>-&gt;dev_messages .= <span class="php-var">$this</span>-&gt;getMemoryTest();
+</span><span id="110" class="l"><a href="#110">110: </a>        <span class="php-keyword1">return</span> <span class="php-var">$flag</span>;
+</span><span id="111" class="l"><a href="#111">111: </a>    }
+</span><span id="112" class="l"><a href="#112">112: </a>
+</span><span id="113" class="l"><a href="#113">113: </a>    <span class="php-comment">/**
+</span></span><span id="114" class="l"><a href="#114">114: </a><span class="php-comment">     * @return string
+</span></span><span id="115" class="l"><a href="#115">115: </a><span class="php-comment">     */</span>
+</span><span id="116" class="l"><a href="#116">116: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> getMemoryTest()
+</span><span id="117" class="l"><a href="#117">117: </a>    {
+</span><span id="118" class="l"><a href="#118">118: </a>        <span class="php-var">$type</span> = \lib\register\Monitor::MEMORY;
+</span><span id="119" class="l"><a href="#119">119: </a>        <span class="php-var">$string</span> = <span class="php-quote">'&lt;div class=&quot;dm '</span> . <span class="php-var">$type</span> . <span class="php-quote">'&quot;&gt;&lt;b&gt;'</span> . <span class="php-var">$type</span> . <span class="php-quote">':&lt;/b&gt; '</span>;
+</span><span id="120" class="l"><a href="#120">120: </a>        <span class="php-var">$string</span> .= <span class="php-quote">' Memory: '</span> . MemoryTools::getMemoryUsage() . <span class="php-quote">' Kb'</span>;
+</span><span id="121" class="l"><a href="#121">121: </a>        <span class="php-var">$string</span> .= <span class="php-quote">' in '</span> . <span class="php-keyword2">ini_get</span>(<span class="php-quote">'memory_limit'</span>) .<span class="php-quote">' available; '</span>;
+</span><span id="122" class="l"><a href="#122">122: </a>        <span class="php-var">$string</span> .= <span class="php-quote">' Time: '</span> . MemoryTools::getTimeExecution() . <span class="php-quote">' of '</span> . <span class="php-keyword2">ini_get</span>(<span class="php-quote">'max_execution_time'</span>) . <span class="php-quote">' sec'</span>;
+</span><span id="123" class="l"><a href="#123">123: </a>
+</span><span id="124" class="l"><a href="#124">124: </a>        <span class="php-keyword1">return</span> <span class="php-quote">'&lt;/div&gt;'</span> . <span class="php-var">$string</span>;
+</span><span id="125" class="l"><a href="#125">125: </a>    }
+</span><span id="126" class="l"><a href="#126">126: </a>
+</span><span id="127" class="l"><a href="#127">127: </a>}
+</span><span id="128" class="l"><a href="#128">128: </a></span></code></pre>
 
 	<div id="footer">
 		MVC Stage API documentation generated by <a href="http://apigen.org">ApiGen</a>
@@ -718,6 +734,6 @@
 </div>
 </div>
 <script src="resources/combined.js?cd021bc814832c24a7cec5319ea03335bfba1caf"></script>
-<script src="elementlist.js?b928388beadaba2599ceb8482082fd6b3bd7b9d5"></script>
+<script src="elementlist.js?e2bc6fe3540113e92fa23f9e2ba6430ec9831b5c"></script>
 </body>
 </html>

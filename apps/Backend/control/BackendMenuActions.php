@@ -20,28 +20,12 @@ class BackendMenuActions extends \lib\control\Controller {
      *
      */
     public function topmenuAction(){
-        $this->set('files-menu', $this->files());
+
         $this->set('user-menu', UserMenu::backendMenu());
         $this->set('tool-debug', UserMenu::toolDebug());
         return $this->dispatch();
     }
 
-    /**
-     * @return array
-     */
-    private function files(){
-        $companies = CompaniesQuery::getActiveDistributors()->find();
-        $files = [];
-        $i = 0;
-        foreach($companies as $company){
-            $values = XmlScandir::readPrfiles($company->getFolder());
-            if(!empty($values['files'])){
-                $files[$i]['company'] = $company->getName();
-                $files[$i++]['dates'] = implode("<br />&nbsp;", $values['dates']);
-            }
-        }
-        return $files;
-    }
 
     /**
      *

@@ -52,11 +52,6 @@
 						control					</a>
 
 						</li>
-				<li>
-					<a href="namespace-apps.Backend.model.html">
-						model					</a>
-
-						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.Configs.html">
@@ -261,6 +256,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.routing.html">
+						routing					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.session.html">
 						session					</a>
 
@@ -424,7 +424,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Sep 1, 2015</p><br>
-			<b>Located at</b> <a href="source-class-lib.xml.XmlSimple.html#7-93" title="Go to source code">lib/xml/XmlSimple.php</a>
+			<b>Located at</b> <a href="source-class-lib.xml.XmlSimple.html#7-114" title="Go to source code">lib/xml/XmlSimple.php</a>
 		<br>
 	</div>
 
@@ -432,6 +432,49 @@ Created @Sep 1, 2015</p><br>
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="getNodeByAttr" id="_getNodeByAttr">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-DOMElement.html">DOMElement</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getNodeByAttr">#</a>
+		<code><a href="source-class-lib.xml.XmlSimple.html#17-35" title="Go to source code">getNodeByAttr</a>( <span>string <var>$path</var></span>, <span>string <var>$attr</var></span>, <span>string <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd></dd>
+					<dt><var>$attr</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-DOMElement.html">DOMElement</a></code><br>| null
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getConvertedValue" id="_getConvertedValue">
 
 		<td class="attributes"><code>
@@ -444,7 +487,7 @@ Created @Sep 1, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConvertedValue">#</a>
-		<code><a href="source-class-lib.xml.XmlSimple.html#15-26" title="Go to source code">getConvertedValue</a>( <span> <var>$file</var></span>, <span> <var>$value</var></span>, <span>string <var>$lang</var> = <span class="php-quote">'pt'</span></span> )</code>
+		<code><a href="source-class-lib.xml.XmlSimple.html#36-47" title="Go to source code">getConvertedValue</a>( <span> <var>$file</var></span>, <span> <var>$value</var></span>, <span>string <var>$lang</var> = <span class="php-quote">'pt'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -487,7 +530,7 @@ Created @Sep 1, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConvertedList">#</a>
-		<code><a href="source-class-lib.xml.XmlSimple.html#28-38" title="Go to source code">getConvertedList</a>( <span> <var>$file</var></span>, <span>string <var>$lang</var> = <span class="php-quote">'pt'</span></span> )</code>
+		<code><a href="source-class-lib.xml.XmlSimple.html#49-59" title="Go to source code">getConvertedList</a>( <span> <var>$file</var></span>, <span>string <var>$lang</var> = <span class="php-quote">'pt'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -528,7 +571,7 @@ Created @Sep 1, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getListValues">#</a>
-		<code><a href="source-class-lib.xml.XmlSimple.html#40-54" title="Go to source code">getListValues</a>( <span> <var>$lang</var></span> )</code>
+		<code><a href="source-class-lib.xml.XmlSimple.html#61-75" title="Go to source code">getListValues</a>( <span> <var>$lang</var></span> )</code>
 
 		<div class="description short">
 			
@@ -567,7 +610,7 @@ Created @Sep 1, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNodeValue">#</a>
-		<code><a href="source-class-lib.xml.XmlSimple.html#56-76" title="Go to source code">getNodeValue</a>( <span> <var>$value</var></span>, <span> <var>$lang</var></span> )</code>
+		<code><a href="source-class-lib.xml.XmlSimple.html#77-97" title="Go to source code">getNodeValue</a>( <span> <var>$value</var></span>, <span> <var>$lang</var></span> )</code>
 
 		<div class="description short">
 			
@@ -602,7 +645,9 @@ Created @Sep 1, 2015</p><br>
 	<caption>Methods inherited from <a href="class-lib.xml.XmlFile.html#methods">lib\xml\XmlFile</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-lib.xml.XmlFile.html#___construct">__construct()</a>
+			<a href="class-lib.xml.XmlFile.html#___construct">__construct()</a>, 
+			<a href="class-lib.xml.XmlFile.html#_getXmlFromFile">getXmlFromFile()</a>, 
+			<a href="class-lib.xml.XmlFile.html#_getXmlSimpleFromFile">getXmlSimpleFromFile()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -612,7 +657,8 @@ Created @Sep 1, 2015</p><br>
 		<td><code>
 			<a href="class-lib.xml.Xml.html#_arrayXPath">arrayXPath()</a>, 
 			<a href="class-lib.xml.Xml.html#_findLabel">findLabel()</a>, 
-			<a href="class-lib.xml.Xml.html#_getAtributes">getAtributes()</a>, 
+			<a href="class-lib.xml.Xml.html#_getAtribute">getAtribute()</a>, 
+			<a href="class-lib.xml.Xml.html#_getValue">getValue()</a>, 
 			<a href="class-lib.xml.Xml.html#_getXml">getXml()</a>, 
 			<a href="class-lib.xml.Xml.html#_nodeXPath">nodeXPath()</a>, 
 			<a href="class-lib.xml.Xml.html#_queryXPath">queryXPath()</a>, 

@@ -26,7 +26,6 @@ namespace lib\control;
 use \lib\control\ControlTools;
 use \lib\register\Registry;
 use \lib\register\Monitor;
-use lib\view\StringTemplate;
 use \lib\view\View;
 use \lib\register\VarsRegister;
 
@@ -131,7 +130,7 @@ class Controller
     }
 
     /**
-     * @param $results
+     * @param array $results
      * @return array
      */
     protected function getCollection($results)
@@ -153,7 +152,7 @@ class Controller
         $itens = $this->getCollection($results);
         $this->set($tag, $itens);
     }
-
+    
     /**
      * @param $tag
      * @param $data
@@ -209,12 +208,15 @@ class Controller
         if ($this->template == null) {
             $file = ControlTools::validateFile($this, $filename, 'view', 'htm');
             if($file == null){
-                die('"' . $filename . '" is not a valid template file for ' . get_class($this));
+                Registry::setErrorMessages(null, ['message'=>'No valid template found for ' . get_class($this)]);
+                return false;
             }
             $this->view = new View($file);
             $this->template = $file;
             $this->extended = $this->view->getExtend();
         }
+        
+        return true;
     }
 
     /**

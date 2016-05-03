@@ -36,6 +36,7 @@ class ControlMessages extends \lib\control\Controller
         $messages = '';
         $flags = 0;
         $controller = new ControlMessages();
+        
         if (SessionUser::getUserGroup() == UserGroupModel::GROUP_DEVELOPER ||
                 Configurator::getDeveloperMode() == true) {
             $flags = $controller->processDevelopMessages();
@@ -55,6 +56,12 @@ class ControlMessages extends \lib\control\Controller
             $html = str_replace('{{ messages }}', '', $html);
         }
         return $html;
+    }
+    
+    public static function testOutput(){
+        $controller = new ControlMessages();
+        $controller->processDevelopMessages();
+        return $controller->getMonitor();
     }
 
     /**
@@ -91,7 +98,7 @@ class ControlMessages extends \lib\control\Controller
 
         $errors = Registry::getErrorMessages();
         foreach ($errors as $error) {
-            $this->dev_messages .= '<div class="dev_errors alert alert-warning"><b>ERROR: </b>' . $error . '</div>';
+            $this->dev_messages .= '<div class="dev_errors alert alert-warning"><b>ERROR: </b>' . $error['message'] . '</div>';
             $flag++;
         }
         $msgs = Registry::getMonitor();

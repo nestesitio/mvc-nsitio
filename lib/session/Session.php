@@ -63,6 +63,14 @@ class Session
     /**
      *
      */
+    const SESS_WARNING = 'warning';
+    /**
+     *
+     */
+    const SESS_INFO = 'info';
+    /**
+     *
+     */
     const SESS_PAGERETURN = 'return';
     /**
      *
@@ -250,7 +258,7 @@ class Session
     }
 
     /**
-     * @param $page
+     * @param string $page The url to return later, after login
      */
     public static function setPageReturn($page)
     {
@@ -258,7 +266,7 @@ class Session
     }
 
     /**
-     * @return bool
+     * @return string The url to return
      */
     public static function getPageReturn()
     {

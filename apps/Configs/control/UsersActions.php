@@ -4,11 +4,11 @@ namespace apps\Configs\control;
 
 use \lib\register\Registry;
 use \lib\register\Monitor;
-use \lib\register\VarsRegister as VarsRegister;
+use \lib\register\VarsRegister;
 
-use \model\models\User as User;
-use \model\querys\UserQuery as UserQuery;
-use \model\forms\UserForm as UserForm;
+use \model\models\User;
+use \model\querys\UserBaseQuery;
+use \model\forms\UserBaseForm;
 use \model\querys\UserGroupQuery;
 use \apps\User\model\UserGroupModel;
 
@@ -25,7 +25,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      * @return mixed
      */
     private function query(){
-        return UserQuery::start()
+        return UserBaseQuery::start()
                 ->joinUserGroup()->selectName()->selectDescription()->endUse();
     }
 
@@ -37,7 +37,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
         $query = $this->query();
         $results = $this->buildDataGrid('users', $query);
         $this->renderList($results);
-        $form = UserForm::initialize()->prepareFilters();
+        $form = UserBaseForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'users');
     }
 
@@ -57,7 +57,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      */
     public function editUsersAction() {
         $query = $this->query()->filterById(VarsRegister::getId())->findOne();
-        $form = UserForm::initialize()->setQueryValues($query);
+        $form = UserBaseForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'users');
     }
@@ -67,7 +67,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function newUsersAction() {
-        $form = UserForm::initialize();
+        $form = UserBaseForm::initialize();
         $group = UserGroupQuery::start()->filterByName(UserGroupModel::GROUP_USER)->findOne();
         $form->setUserGroupIdDefault($group->getId());
         $form->setNameDefault('Anonymous');
@@ -80,7 +80,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function bindUsersAction() {
-        $form = UserForm::initialize()->validate();
+        $form = UserBaseForm::initialize()->validate();
         $model = $this->buildProcess($form, 'users');
         if($model !== false){
             Registry::setMonitor(Monitor::BOOKMARK, 'Result is true in ' . $model->getAction());
@@ -114,7 +114,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delUsersAction() {
-        $model = UserQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = UserBaseQuery::start()->filterById(VarsRegister::getId())->findOne();
         $this->deleteObject($model);
         
     }

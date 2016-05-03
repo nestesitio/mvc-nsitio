@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Liga dos Campeões das Vendas Login</title>
+        <title>MVC Login</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="/css/base/bootstrap.min.css" rel="stylesheet">
@@ -56,6 +56,11 @@
                             <div class="panel-body" style="padding: 15px 26px">
                                 <form method="POST" action="/user/validation_login" onsubmit="return validateLogin()" name="login">
                                     <fieldset>
+                                        {% if (warning) %}
+                                        <div class="alert alert-warning">
+                                            {{ warning }}
+                                        </div>
+                                        {% endif %}
                                         <div class="form-group">
                                             <label>Username</label>
                                             <input class="form-control" placeholder="E-mail" name="email" type="text" autofocus>

@@ -34,26 +34,6 @@ class UserGroupModel {
     /**
      *
      */
-    const GROUP_ACNT = 'account';
-    /**
-     *
-     */
-    const GROUP_DIST = 'distributor';
-    /**
-     *
-     */
-    const GROUP_TEAMCOORD = 'team-coordinator';
-    /**
-     *
-     */
-    const GROUP_TEAMLEADER = 'team-leader';
-    /**
-     *
-     */
-    const GROUP_SELLER = 'seller';
-    /**
-     *
-     */
     const GROUP_VIRTUAL = 'virtual';
 
     /**
@@ -65,9 +45,6 @@ class UserGroupModel {
      */
     const CONFIG_MODE_PROD = 'production';
 
-    /**
-     * @var array
-     */
-    public static $team_groups = [self::GROUP_SELLER, self::GROUP_TEAMLEADER, self::GROUP_TEAMCOORD, self::GROUP_DIST];
+
 
 }

@@ -9,6 +9,7 @@ use \model\models\UserBase;
 use \apps\User\model\UserGroupModel;
 use \lib\session\Session;
 use \lib\session\SessionUserTools;
+use \lib\mysql\Mysql;
 
 
 /**
@@ -26,6 +27,7 @@ class SessionUser extends \lib\session\SessionUserBase
     {
         $session = Session::getSessionVar(Session::SESS_USER);
         if($session != false){
+            Registry::setMonitor(Monitor::SESSION, 'Session is true');
             if($session['time'] > time()){
                 $user = SessionUserTools::getUserSession($session[self::KEY_GROUPID])->filterById($session[self::KEY_ID])->findOne();
             }else{
@@ -51,6 +53,7 @@ class SessionUser extends \lib\session\SessionUserBase
         $str = self::setUserVarsSession($user, Session::SESS_USER);
         Registry::setMonitor(Monitor::SESSION, '[<b>USER</b>] ' . $str);
         if(!isset($player)){
+            Registry::setMonitor(Monitor::SESSION, 'No player ');
             $session = Session::getSessionVar(Session::SESS_PLAYER);
             if($session[self::KEY_ID] == self::getUserId() || $session == false){
                 $player = $user;
@@ -141,10 +144,36 @@ class SessionUser extends \lib\session\SessionUserBase
         }
         return $id;
     }
+    
+    /**
+     * 
+     * @param string $group
+     * 
+     * @return bool
+     */
+    public static function isValidGroup($group){
+        $check = \model\querys\UserGroupQuery::start()
+                ->filterByName($group)
+                ->filterById(self::getPlayerLevel(), Mysql::GREATER_EQUAL)
+                ->findOne();
+        return ($check == FALSE)? false : true;
+    }
 
 
-
-
+    public static function warningUser($warning){
+        Session::setSession(Session::SESS_WARNING, $warning);
+        
+    }
+    
+    public static function getWarning(){
+        return Session::getSessionVar(Session::SESS_WARNING);
+        
+    }
+    
+    public static function resetWarning(){
+        return Session::unsetSession(Session::SESS_WARNING); 
+        
+    }
 
 
 

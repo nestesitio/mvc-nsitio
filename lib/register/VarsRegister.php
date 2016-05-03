@@ -28,11 +28,23 @@ class VarsRegister
     /**
      * @var string
      */
+    private static $route = '/';   
+    /**
+     * @var string
+     */
+    private static $redirect = null; 
+    /**
+     * @var string
+     */
     private static $app = '';
     /**
      * @var string
      */
     private static $action = '';
+    /**
+     * @var string
+     */
+    private static $view = '';
     /**
      * @var string
      */
@@ -53,6 +65,10 @@ class VarsRegister
      * @var
      */
     private static $heading;
+    /**
+     * @var
+     */
+    private static $page;
 
 
     /**
@@ -175,9 +191,44 @@ class VarsRegister
         return (isset(self::$posts [$key])) ? self::$posts [$key] : false;
     }
 
+    /**
+     * Regist url
+     * @param string $a
+     */
+    public static function setRoute($a)
+    {
+        self::$route = $a;
+    }
 
     /**
-     * @param $app
+     * Get url registered
+     * @return string
+     */
+    public static function getRoute()
+    {
+        return self::$route;
+    }
+    
+    /**
+     * Regist url to redirect
+     * @param string $a
+     */
+    public static function setRedirect($a)
+    {
+        self::$redirect= $a;
+    }
+
+    /**
+     * Get url registered
+     * @return string
+     */
+    public static function getRedirect()
+    {
+        return self::$redirect;
+    }
+
+    /**
+     * @param string $app
      */
     public static function setApp($app)
     {
@@ -193,7 +244,7 @@ class VarsRegister
     }
 
     /**
-     * @param $a
+     * @param string $a
      */
     public static function setAction($a)
     {
@@ -206,6 +257,22 @@ class VarsRegister
     public static function getAction()
     {
         return self::$action;
+    }
+    
+    /**
+     * @param string $a
+     */
+    public static function setView($a)
+    {
+        self::$view = $a;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getView()
+    {
+        return self::$view;
     }
 
     /**
@@ -225,7 +292,7 @@ class VarsRegister
     }
 
     /**
-     * @param $id
+     * @param int $id
      */
     public static function setId($id)
     {
@@ -233,7 +300,7 @@ class VarsRegister
     }
 
     /**
-     * @return bool
+     * @return id
      */
     public static function getId()
     {
@@ -242,7 +309,7 @@ class VarsRegister
 
 
     /**
-     * @param $var
+     * @param string $var
      */
     public static function setSlugVar($var)
     {
@@ -250,16 +317,15 @@ class VarsRegister
     }
 
     /**
-     * @return bool
+     * @return string
      */
     public static function getSlugVar()
     {
         return self::$slugvar;
     }
 
-
     /**
-     * @param $value
+     * @param String $value
      */
     public static function setTitle($value)
     {
@@ -267,7 +333,7 @@ class VarsRegister
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public static function getTitle()
     {
@@ -311,5 +377,23 @@ class VarsRegister
     {
         return self::$ip;
     }
+    
+    
+   /**
+     * @param int $id
+     */
+    public static function setPage($id)
+    {
+        self::$page = $id;
+    }
+
+    /**
+     * @return id
+     */
+    public static function getPage()
+    {
+        return self::$page;
+    }
+    
 
 }

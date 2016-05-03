@@ -34,6 +34,14 @@ class Redirect
             header('Location: /');
         }
     }
+    
+    /**
+     * @param string $url
+     */
+    public static function redirectByRoute($url)
+    {
+        header('Location:' . $url);
+    }
 
     /**
      *

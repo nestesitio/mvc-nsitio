@@ -1,6 +1,6 @@
 <?php
 
-namespace apps\Backend\model;
+namespace apps\Configs\model;
 
 /**
  * Description of PagesAdminQuery

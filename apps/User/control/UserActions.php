@@ -35,7 +35,7 @@ class UserActions extends \lib\control\Controller {
             $user = UserBaseQuery::start()->joinUserGroup()->selectName()->endUse()->filterById(SessionUser::getUserId())->findOne();
             SessionUser::registPlayer($user);
         }
-        Redirect::redirectByPageNumber(Session::getPageReturn());
+        Redirect::redirectByRoute(Session::getPageReturn());
     }
 
     /**

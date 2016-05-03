@@ -44,11 +44,13 @@ class Xml
     }
 
     /**
-     * @param $item
-     * @param $atr
+     * Get the attribute value of a xml node
+     * @param \DOMElement $item The node
+     * @param string $atr The attribute
+     * 
      * @return string
      */
-    protected function getAtributes($item, $atr)
+    public static function getAtribute($item, $atr)
     {
         if (!is_null($item->attributes)) {
             foreach ($item->attributes as $i => $attr) {
@@ -59,9 +61,29 @@ class Xml
             return '';
         }
     }
+    
+    /**
+     * 
+     * @param string $query XPath expression 
+     * @param string $attr The attribute
+     * 
+     * @return string
+     */
+    public function getValue($query, $attr = null){
+        $xpath = new DOMXPath($this->xml);
+        $items = $xpath->query($query);
+        foreach ($items as $item) {
+            if ($attr != null) {
+                return utf8_encode(self::getAtribute($item, $attr));
+            }else{
+                return $item->nodeValue;
+            }
+        }
+        return '';
+    }
 
     /**
-     * @param $query
+     * @param $query XPath expression 
      * @param string $what
      * @param string $atr
      * @return array
@@ -91,7 +113,7 @@ class Xml
                     }
                     break;
                 default:
-                    $val = $this->getAtributes($item, $atr);
+                    $val = self::getAtribute($item, $atr);
                     if (!empty($val)) {
                         $arr[] = $val;
                     }
@@ -102,7 +124,7 @@ class Xml
     }
 
     /**
-     * @param $query
+     * @param $query XPath expression 
      * @param array $attr
      * @return array
      */
@@ -113,14 +135,14 @@ class Xml
         $items = $xpath->query($query);
         foreach ($items as $i => $item) {
             foreach ($attr as $atr) {
-                $arr[$i][$atr] = $this->getAtributes($item, $atr);
+                $arr[$i][$atr] = self::getAtribute($item, $atr);
             }
         }
         return $arr;
     }
 
     /**
-     * @param $path
+     * @param $path XPath expression 
      * @param string $what
      * @param string $atr
      * @return int
@@ -141,7 +163,7 @@ class Xml
                 $name = $item->nodeName;
                 return str_replace(strrchr($path, '/' . $name), '', $path);
             } elseif ($what == 'atr' || $what == null) {
-                return utf8_encode($this->getAtributes($item, $atr));
+                return utf8_encode(self::getAtribute($item, $atr));
             } else {
                 $value = utf8_decode($item->nodeValue);
                 if (empty($value)) {
@@ -154,7 +176,7 @@ class Xml
     }
 
     /**
-     * @param $path
+     * @param $path XPath expression 
      * @param $lang
      * @return mixed
      */

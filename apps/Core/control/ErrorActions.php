@@ -31,9 +31,10 @@ class ErrorActions extends \lib\control\Controller {
      * @param $tag
      * @param $data
      */
-    public function haveError($tag, $data){
+    public function haveError($data){
         $this->setView('errorpage');
-        $this->set($tag, $data);
+        $this->set('errors', $data);
+        $this->set('messages', '');
     }
 
     /**
