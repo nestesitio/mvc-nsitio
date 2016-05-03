@@ -14,6 +14,7 @@ use \apps\User\model\UserGroupModel;
 
 /**
  * Description of Router
+ * Deprecated
  * created in 7/Nov/2014
  * @author $luispinto@nestesitio.net
  */
