@@ -29,7 +29,7 @@ class DBRouting {
             }else{
                 Registry::setErrorMessages(null, ['message'=>'You don\'t have access to this page, please login']);
                 Session::setPageReturn(VarsRegister::getRoute());
-                \lib\session\SessionUser::warningUser('You don\'t have access to the page ' . VarsRegister::getRoute() . '.<br />Please login');
+                \lib\session\SessionUser::warningUser('You don\'t have access to the page<br />' . VarsRegister::getRoute() . '.<br />Please login');
                 \lib\url\Redirect::redirectToUrl('/user/login');
                 //VarsRegister::setRedirect('/user/login');
                 return false;

@@ -28,10 +28,10 @@ a:hover{color: #666;}
 }
 
 .layer-login{
-    background:url(/images/2016/fundo_04.png) no-repeat; 
+    background:url(/images/bg/bg-ignasi.png) no-repeat; 
     background-size: cover;
     position:fixed; width: 100%; height: 100%;
-    padding: 0; margin: 0; background-color: #02003d;
+    padding: 0; margin: 0; background-color: #fff;
     
 }
 .login-panel{background-color: #807F84; border-radius: 15px; border: none; margin: 0}

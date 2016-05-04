@@ -53,7 +53,7 @@ class Boot {
         if ($controller != false) {
             self::output($controller);
         }else{
-            echo \lib\routing\ErrorPage::execute(0, true);
+            echo \lib\routing\ErrorPage::execute(true);
         }
 
 
@@ -151,7 +151,7 @@ class Boot {
      * @param object $controller
      * @return boolean|object
      */
-    private static function fireView(\lib\control\Controller $controller) 
+    private static function fireView($controller) 
     {
         if ($controller != false) {
             //prepare View

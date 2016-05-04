@@ -50,28 +50,6 @@ class HomeActions extends \lib\control\Controller {
      *
      */
     public function homenavAction() {
-        $this->set('nav_clients', '');
-        $this->set('nav_sales', '');
-        $this->set('nav_opportunities', '');
-        if (SessionUser::haveUser() != false) {
-            $this->user = UserQueries::getUserGroup(SessionUser::getPlayer())->findOne();
-            $this->group = $this->user->getUserGroup()->getName();
-            if($this->group == UserGroupModel::GROUP_SELLER 
-                    || $this->group == UserGroupModel::GROUP_TEAMLEADER ){
-                if (VarsRegister::getCanonical() == 'index') {
-                    $this->set('nav_clients', MenuRender::renderMenuItem('#clients', 'Clientes', [MenuRender::CLASS_LI => 'page-scroll']));
-                    $this->set('nav_sales', MenuRender::renderMenuItem('#sales', 'Vendas', [MenuRender::CLASS_LI => 'page-scroll']));
-                    $this->set('nav_opportunities', MenuRender::renderMenuItem('#opportunities', 'Oportunidades', [MenuRender::CLASS_LI => 'page-scroll']));
-                }else{
-                    $this->set('nav_clients', MenuRender::renderMenuItem('/#clients', 'Clientes'));
-                    $this->set('nav_sales', MenuRender::renderMenuItem('/#sales', 'Vendas'));
-                    $this->set('nav_opportunities', MenuRender::renderMenuItem('/#opportunities', 'Oportunidades'));
-                }
-
-                $this->team = UtilsQueries::getMyTeam($this->user->getId());
-                
-            }
-        }
         $link = (\lib\session\SessionUserTools::haveAccess('backend') == true)? 
                 MenuRender::renderMenuItem(['app'=>'backend'], 'Backend', [MenuRender::ICON_RIGHT => 'fa-tachometer']): '';
         $this->set('nav_backend', $link);
