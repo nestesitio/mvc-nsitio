@@ -601,6 +601,9 @@ function exportOptions(element) {
 function generateOptions(element, url) {
     url += "&js=1";
     $(element).load(url, function (output) {
+        if(output.indexOf("error-routing") >= 0){
+            alert(output);
+        }
         $(element).html(output);
         $(element).trigger('chosen:updated');
         inputChanged(element);
@@ -631,6 +634,9 @@ function checkAvailability(element){
             "/?value=" + $(element).val();
     var label = getChildrenByClass(element.parentNode, 'input-msg');
     $(element).load(url, function (output) {
+        if(output.indexOf("error-routing") >= 0){
+            alert(output);
+        }
         //$(element).html(output);
         if(output === '1'){
             element.parentNode.className = "form-group has-error";

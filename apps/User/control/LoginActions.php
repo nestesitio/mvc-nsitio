@@ -47,9 +47,12 @@ class LoginActions extends \lib\control\ControllerAdmin {
      */
     public function validationLoginAction(){
         
+        
         if(Guard::validateLogin() == true){
             \lib\session\SessionUserTools::logUser(UserLog::EVENT_LOGIN);
+            
             Redirect::redirectByRoute(Session::getPageReturn());
+            
         }else{
             Session::setSession('error', 'O login não é válido');
             header('Location:' . UrlHref::renderUrl(['app'=>'user','canonical'=>'login']));

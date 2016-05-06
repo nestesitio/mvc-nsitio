@@ -165,8 +165,9 @@ class ControllerAdmin extends \lib\control\Controller
      */
     protected function renderForm(Form $form, $xmlfile, $action = null, $querystring = [])
     {
+        
         if($action == null){
-            $action = str_replace(['edit','new'], 'bind', VarsRegister::getAction());
+            $action = 'bind_' . VarsRegister::getCanonical();
         }
         $this->setView('/layout/core/edit.htm');
         $this->renderUrl('action', $action, $querystring);
@@ -234,7 +235,7 @@ class ControllerAdmin extends \lib\control\Controller
                 }
             }
             if($action == null){
-                $action = str_replace('bind', 'list', VarsRegister::getAction());
+                $action = str_replace('bind_', 'list_', VarsRegister::getAction());
 
             }
             $this->renderUrl('url', $action);

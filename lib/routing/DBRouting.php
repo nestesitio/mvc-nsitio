@@ -7,6 +7,7 @@ use \lib\register\VarsRegister;
 use \lib\session\Session;
 use \lib\register\Registry;
 
+
 /**
  * Description of DBRouting
  *
@@ -27,11 +28,16 @@ class DBRouting {
             if($page == false){
                 $page = false;
             }else{
-                Registry::setErrorMessages(null, ['message'=>'You don\'t have access to this page, please login']);
-                Session::setPageReturn(VarsRegister::getRoute());
                 \lib\session\SessionUser::warningUser('You don\'t have access to the page<br />' . VarsRegister::getRoute() . '.<br />Please login');
-                \lib\url\Redirect::redirectToUrl('/user/login');
-                //VarsRegister::setRedirect('/user/login');
+                Registry::setErrorMessages(null, ['message' => 'You don\'t have access to this page, please login']);
+                if (VarsRegister::getRequests('js') == false) {
+                    Session::setPageReturn(VarsRegister::getRoute());
+                    \lib\url\Redirect::redirectToUrl('/user/login');
+                }else{
+                    echo 'ERROR-PAGE-REDIRECT:/user/login';
+                    die();
+                }
+                
                 return false;
             }
         }else{

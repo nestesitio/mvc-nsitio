@@ -3,7 +3,10 @@ var flag = true;
 function ajaxLoad(elem, url) {
     url += "&js=1";
     $("#preload").fadeIn(100);
-    $(elem).load(url, function () {
+    $(elem).load(url, function (output) {
+         if(output.indexOf("ERROR-PAGE-REDIRECT") === 0){
+             window.top.location.href = output.substring(output.indexOf(":")+1); 
+        }
         $(elem).slideDown(300, function () {
             formcontainer = $(this).height();
             flag = true;
@@ -205,7 +208,7 @@ function saveForm(element) {
         //$("#jsmonitor").append(form.action+ "<br />");
         if (flag === true) {
             $("#preload").fadeIn(100);
-            $.post(form.action, form_data, function (data, status) {
+            $.post(form.action + "&js=1", form_data, function (data, status) {
                 $(form.parentElement).html(data);
                 $("#preload").hide();
                 flag = false;

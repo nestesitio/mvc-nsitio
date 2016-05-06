@@ -68,12 +68,7 @@ class HomeActions extends \lib\control\Controller {
         if (SessionUser::haveUser() != false) {
             $this->group = $this->user->getUserGroup()->getName();
             $this->set('user-group', $this->group);
-            if($this->group == UserGroupModel::GROUP_SELLER 
-                    || $this->group == UserGroupModel::GROUP_TEAMLEADER ){
-                $this->set('user-salesforce', 1);
-                $this->set('user-points', round($this->user->getColumnValue('points')));
-                $this->set('user-shop', 1);
-            }
+            
             
         }
         
