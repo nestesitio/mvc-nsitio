@@ -74,20 +74,6 @@ class Generate
 
     }
 
-    /**
-     * @param String $app
-     * @param String $name
-     * @param String $model
-     * @param String $area
-     * @param String $file
-     */
-    public function buildApp($app, $name, $model, $area, $file = null)
-    {
-        $crud = new \lib\crud\CrudApp($app, $name, $model);
-        $crud->setConstrains($this->getConstrains());
-        $crud->createFolders()->execute($area, $file);
-
-    }
 
     /**
      * @return array
@@ -131,6 +117,35 @@ class Generate
         $const = "const " . strtoupper($table) . " = '$table';";
         $str = str_replace($tpl, $const . "\n    " . $tpl, $str);
         file_put_contents($file, $str);
+    }
+    
+    /**
+     * 
+     * @param string $app The name of app folder
+     * @param string $name The name of action file
+     * @param string $model The name of the db table
+     */
+    public function buildApp($app, $name, $model)
+    {
+        $crud = new \lib\crud\CrudApp($app, $name, $model);
+        $crud->setConstrains($this->getConstrains());
+        $crud->createFolders()->execute('app');
+
+    }
+    
+    /**
+     * @param string $app The name of app folder
+     * @param string $name The name of action file
+     * @param string $model The name of the db table
+     * @param String $area
+     * @param String $file
+     */
+    public function buildAdmin($app, $name, $model, $area = 'admin', $file = null)
+    {
+        $crud = new \lib\crud\CrudApp($app, $name, $model);
+        $crud->setConstrains($this->getConstrains());
+        $crud->createFolders()->execute($area, $file);
+
     }
 
 }

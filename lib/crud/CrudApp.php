@@ -65,6 +65,7 @@ class CrudApp
         $this->app = ucfirst(strtolower($app));
         echo "App is " . $this->app . "\n";
         $this->name = ucfirst(strtolower($name));
+        
         $this->table = $table;
 
         $this->model = ModelTools::buildModelName($table);
@@ -133,20 +134,22 @@ class CrudApp
     {
         $this->area = $area;
         //$this->savePage();
-        if($file == null || $file == 'actions'){
+        if ($file == null || $file == 'actions') {
             $this->createActions();
         }
-        if($file == null || $file == 'view'){
+        if ($file == null || $file == 'view') {
             $this->createView();
         }
-        if($file == null || $file == 'models' || $file == 'form'){
-            $this->createForm();
+        if ($area == 'admin') {
+            if ($file == null || $file == 'models' || $file == 'form') {
+                $this->createForm();
+            }
+            if ($file == null || $file == 'config') {
+                $this->createConfig();
+            }
         }
-        if($file == null || $file == 'models' || $file == 'model'){
+        if ($file == null || $file == 'models' || $file == 'model') {
             $this->createModel();
-        }
-        if($area == 'admin' && ($file == null || $file == 'config')){
-            $this->createConfig();
         }
     }
 

@@ -3,7 +3,7 @@
 namespace apps\%$nameApp%\control;
 
 use \lib\register\VarsRegister;
-use \apps\%$nameApp%\model\%$className%Query;
+use \apps\%$nameApp%\model\%$className%Queries;
 use \model\models\%$modelName%;
 
 /**
@@ -17,13 +17,13 @@ class %$className%Actions extends \lib\control\Controller {
 
     public function %$fileName%Action(){
         $this->set('h1', VarsRegister::getHeading());
-        $query = %$modelName%Query::start();
+        $query = %$className%Queries::get();
         
     }
     
     public function page%$className%Action(){
         $this->set('h1', VarsRegister::getHeading());
-        $query = %$className%Query::get();
+        $query = %$className%Queries::get();
     }
     
     

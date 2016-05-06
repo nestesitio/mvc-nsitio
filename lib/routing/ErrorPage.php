@@ -38,28 +38,6 @@ class ErrorPage {
         echo self::output($controller, $extended);
     }
     
-    private static function setMessage($page, $message){
-        $msg = '';
-        if($page === false){
-            if (\lib\session\SessionUserTools::haveAccess($this->app) == false) {
-                $msg = ' This url does not exists or you don`t have access to ' . $this->route . '. <a href="/user/login">Please login.</a> or <a href="/">go home.</a> ';
-            }else{
-                $msg = ' This url in "' . VarsRegister::getApp(). '" is not valid or does not exists. <a href="/">Please go home.</a> or <a href="#" onClick="history.go(-1)">back</a>';
-            }
-        }elseif($page === 0){
-            $msg = ' You don`t have access to ' . $this->route . '. <a href="/user/login">Please login.</a> or <a href="/">go home.</a> ';
-            if(SessionUser::getIsRegisterd() == false){
-                if(VarsRegister::getRequests('js') == 1){
-                    $url = \lib\url\UrlHref::renderUrl(['app' => 'user', 'canonical' => 'login']);
-                    echo "<script>goPage('$url')</script>";
-                    return;
-                }
-                return \lib\url\Redirect::redirectLogin();
-            }
-        }
-        
-        return $msg;
-    }
     
     private static function output($controller, $extend) {
         $output = $controller->dispatch();

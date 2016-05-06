@@ -53,6 +53,7 @@ class Boot {
         if ($controller != false) {
             self::output($controller);
         }else{
+            
             echo \lib\routing\ErrorPage::execute(true);
         }
 

@@ -382,7 +382,7 @@ class CrudModel
      */
     private function writeEnum($string, $str_a, $column, $fieldtype)
     {
-        $strtype = str_replace(['set(',')'],['',''],$fieldtype);
+        $strtype = str_replace(['set(','enum(',')'],['',''],$fieldtype);
         $values = explode(',', $strtype);
         $property = 'public static $' . $column . 's = [' . implode(', ',$values) . '];';
         if (strpos($string, 'public static $' . $column) !== false) {
@@ -414,7 +414,8 @@ class CrudModel
             }
             $string = file_get_contents($this->model);
             $str_a = substr($string, 0, strripos($string, '}')-1);
-            if(strpos($fieldtypes[$i],'set') === 0 && $table == $this->table){
+            if((strpos($fieldtypes[$i],'set') === 0 || strpos($fieldtypes[$i],'enum') === 0)
+                    && $table == $this->table){
                 $string = $this->writeEnum($string, $str_a, $column, $fieldtypes[$i]);
                 file_put_contents($this->model, $string);
                 $string = file_get_contents($this->model);

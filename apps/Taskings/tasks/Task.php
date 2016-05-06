@@ -59,10 +59,17 @@ class Task {
     private static function doGenerate(){
         $exec = new \lib\crud\Generate();
         # php task.php -t admin -a app -n control -m model -f ...
-        if (self::$options['a'] && self::$options['n'] && self::$options['m']) {
+       if (isset(self::$options['a']) && 
+               isset(self::$options['n']) && 
+               isset(self::$options['m'])) {
             $file = (isset(self::$options['f'])) ? self::$options['f'] : null;
             // buildApp($app, $name, $model, $area, $file = null)
-            $exec->buildApp(self::$options['a'], self::$options['n'], self::$options['m'], self::$options['t'], $file);
+            if(self::$options['t'] == 'admin'){
+                $exec->buildAdmin(self::$options['a'], self::$options['n'], self::$options['m'], self::$options['t'], $file);
+            }else{
+                $exec->buildApp(self::$options['a'], self::$options['n'], self::$options['m']);
+            }
+            
         } else {
             echo "no arguments to build app -n appname, -m table_name ... \n";
         }
