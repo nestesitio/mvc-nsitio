@@ -235,7 +235,7 @@ class ControllerAdmin extends \lib\control\Controller
                 }
             }
             if($action == null){
-                $action = str_replace('bind_', 'list_', VarsRegister::getAction());
+                $action = 'list_' . VarsRegister::getCanonical();
 
             }
             $this->renderUrl('url', $action);
