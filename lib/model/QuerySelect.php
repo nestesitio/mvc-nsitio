@@ -220,8 +220,13 @@ class QuerySelect extends \lib\model\QueryStatement
         foreach($row as $i => $value){
 
             $column = $this->fetch_assoc[$i];
+            //utf8_encode($value)
+            if(!mb_check_encoding ($value, 'UTF-8')){
+                $value  = utf8_encode($value);
+            }
+            
 
-            $item->setColumnValue($column, utf8_encode($value));
+            $item->setColumnValue($column, $value);
         }
         return $item;
     }

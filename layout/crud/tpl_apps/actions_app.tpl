@@ -17,7 +17,8 @@ class %$className%Actions extends \lib\control\Controller {
 
     public function %$fileName%Action(){
         $this->set('h1', VarsRegister::getHeading());
-        $query = %$className%Queries::get();
+        $itens = %$className%Queries::get()->find();
+        $this->renderCollection($itens, 'list');
         
     }
     

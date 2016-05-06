@@ -242,7 +242,7 @@ class Query
          * $s->execute(); // executed with WHERE sex = 'male'
          */
         foreach ($params as $field => $value) {
-            $value = utf8_decode($value);
+            //$value = utf8_decode($value);
 
             $res = $this->pdostmt->bindValue(':' . $field, $value);
             if($res == false){
