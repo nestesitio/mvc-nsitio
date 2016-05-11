@@ -2,7 +2,7 @@
 
 namespace apps\Support\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \lib\session\SessionUser;
 
 use \model\querys\SupportQuery;
@@ -42,7 +42,7 @@ class SupportActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editSupportAction() {
-        $query = SupportQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $query = SupportQuery::start()->filterById(Vars::getId())->findOne();
         $form = SupportForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'support');
@@ -56,7 +56,7 @@ class SupportActions extends \lib\control\ControllerAdmin {
         $form = SupportUserForm::init();
         #more code about $form and $query
         $this->renderForm($form, 'support', 'new_support');
-        $slug = VarsRegister::getSlugVar();
+        $slug = Vars::getSlugVar();
         if($slug == 'suggestion'){
             $title = "Dás-nos a tua sugestão";
         }elseif($slug == 'issue'){
@@ -80,7 +80,7 @@ class SupportActions extends \lib\control\ControllerAdmin {
         $model = $this->buildProcess($form, 'support');
         if($model !== false){
             if($model->getAction() == Support::ACTION_INSERT){
-                VarsRegister::setId($model->getInsertId());
+                Vars::setId($model->getInsertId());
                 $this->feedbackSupportAction();
             }
         }
@@ -90,7 +90,7 @@ class SupportActions extends \lib\control\ControllerAdmin {
      *
      */
     public function feedbackSupportAction(){
-        $model = SupportLogQuery::start()->filterBySupportId(VarsRegister::getId())->findOne();
+        $model = SupportLogQuery::start()->filterBySupportId(Vars::getId())->findOne();
         $this->renderValues($model, 'support', 'process_support');
     }
 
@@ -98,7 +98,7 @@ class SupportActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delSupportAction() {
-        $model = SupportQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = SupportQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }

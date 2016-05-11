@@ -2,9 +2,8 @@
 
 namespace lib\control;
 
-use \lib\register\Registry;
 use \lib\register\Monitor;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \lib\url\UrlHref;
 use \lib\filter\QueryFilter;
 use \lib\bkegenerator\DataGrid;
@@ -60,7 +59,7 @@ class ControllerAdmin extends \lib\control\Controller
         /* Generation or processing of template datagrid */
         $tpl = (null == $view)? '/layout/core/datagrid.htm' : $view;
         $this->setView($tpl);
-        Registry::setMonitor(Monitor::BOOKMARK, 'buildDataGrid');
+        Monitor::setMonitor(Monitor::BOOKMARK, 'buildDataGrid');
 
         $grid = GridIt::create($xmlfile, $this);
         $this->view->setOutput($grid->setGrid($this->view->getOutput()));
@@ -79,7 +78,7 @@ class ControllerAdmin extends \lib\control\Controller
     {
         /* Generation or processing of template datalist */
         $this->setView('/layout/core/datalist.htm');
-        Registry::setMonitor(Monitor::BOOKMARK, 'buildDataList');
+        Monitor::setMonitor(Monitor::BOOKMARK, 'buildDataList');
 
         $grid = GridIt::create($xmlfile, $this);
         $this->view->setOutput($grid->setGrid($this->view->getOutput()));
@@ -136,8 +135,8 @@ class ControllerAdmin extends \lib\control\Controller
     {
         $var = ($var == null)? 'list': $var;
         $this->renderCollection($results, $var);
-        $this->set('canonical', VarsRegister::getCanonical());
-        $this->set('app', VarsRegister::getApp());
+        $this->set('canonical', Vars::getCanonical());
+        $this->set('app', Vars::getApp());
     }
 
 
@@ -147,11 +146,11 @@ class ControllerAdmin extends \lib\control\Controller
      */
     protected function renderFilters(\lib\form\Form $form, $xmlfile)
     {
-        $this->renderUrl('action', 'list_' . VarsRegister::getCanonical());
+        $this->renderUrl('action', 'list_' . Vars::getCanonical());
         $config = new DataEdit($xmlfile, $this);
         $configs = $config->getConfigs('filter');
-        $form = QueryFilter::renderFilters($form, VarsRegister::getCanonical(), $configs);
-        $this->set('filters', $form->renderInputs(VarsRegister::getCanonical(), $configs));
+        $form = QueryFilter::renderFilters($form, Vars::getCanonical(), $configs);
+        $this->set('filters', $form->renderInputs(Vars::getCanonical(), $configs));
     }
 
     /**
@@ -167,22 +166,22 @@ class ControllerAdmin extends \lib\control\Controller
     {
         
         if($action == null){
-            $action = 'bind_' . VarsRegister::getCanonical();
+            $action = 'bind_' . Vars::getCanonical();
         }
         $this->setView('/layout/core/edit.htm');
         $this->renderUrl('action', $action, $querystring);
         $this->set('delaction', str_replace('bind','del',$action));
 
-        $this->set('hiddenfields', $form->renderHiddenFields(VarsRegister::getCanonical()));
+        $this->set('hiddenfields', $form->renderHiddenFields(Vars::getCanonical()));
         $config = new DataEdit($xmlfile, $this);
         $configs = $config->getConfigs('edit');
         $form = QueryFilter::getDefaults($form, $xmlfile, $configs);
 
-        $this->set('inputs', $form->renderInputs(VarsRegister::getCanonical(), $configs));
+        $this->set('inputs', $form->renderInputs(Vars::getCanonical(), $configs));
         $config->setHtml($this->view->getOutput())->renderButtons('edit');
         $this->view->setOutput($config->getHtml());
 
-        $this->set('dataid', VarsRegister::getId());
+        $this->set('dataid', Vars::getId());
         $this->setUserMessage();
 
     }
@@ -200,13 +199,13 @@ class ControllerAdmin extends \lib\control\Controller
     {
         $result = $form->isvalid();
         if($result == false){
-            Registry::setMonitor(Monitor::FORMERROR, 'Repeat Form');
+            Monitor::setMonitor(Monitor::FORMERROR, 'Repeat Form');
             $this->renderForm($form, $xmlfile, $view);
             return false;
         }else{
             $form->save();
             $model = $form->getModel();
-            Registry::setMonitor(Monitor::FORM, 'Model ' . $model->getTableName() . ' saved');
+            Monitor::setMonitor(Monitor::FORM, 'Model ' . $model->getTableName() . ' saved');
             return $model;
         }
     }
@@ -225,7 +224,7 @@ class ControllerAdmin extends \lib\control\Controller
         $this->setView($tpl);
         $result = $form->isvalid();
         if ($result == false) {
-            Registry::setMonitor(Monitor::FORMERROR, 'Repeat Form');
+            Monitor::setMonitor(Monitor::FORMERROR, 'Repeat Form');
             return false;
         } else {
             $parts = $form->getModels();
@@ -235,7 +234,7 @@ class ControllerAdmin extends \lib\control\Controller
                 }
             }
             if($action == null){
-                $action = 'list_' . VarsRegister::getCanonical();
+                $action = 'list_' . Vars::getCanonical();
 
             }
             $this->renderUrl('url', $action);
@@ -294,11 +293,11 @@ class ControllerAdmin extends \lib\control\Controller
         }
         $this->set('inputs', $values);
 
-        $action = str_replace(['bind', 'show'], 'edit', VarsRegister::getAction());
+        $action = str_replace(['bind', 'show'], 'edit', Vars::getAction());
         $this->renderUrl('editaction', $action);
 
         $this->set('delaction', str_replace('edit', 'del', $action));
-        $this->set('dataid', VarsRegister::getId());
+        $this->set('dataid', Vars::getId());
         $this->setUserMessage();
         $this->setCustomMessage();
     }
@@ -337,10 +336,10 @@ class ControllerAdmin extends \lib\control\Controller
      */
     protected function renderUrl($tag, $action, $querystring = [])
     {
-        $id = ($this->id == true)? VarsRegister::getId() : $this->id;
+        $id = ($this->id == true)? Vars::getId() : $this->id;
         $url = UrlHref::renderUrl(['app'=> $this->app, 'action'=>$action, 'id'=>$id, 'get'=>$querystring]);
         $this->set($tag, $url);
-        Registry::setMonitor(Monitor::FORM, 'Form Action:' . $url);
+        Monitor::setMonitor(Monitor::FORM, 'Form Action:' . $url);
         $this->set('app', $this->app);
     }
 

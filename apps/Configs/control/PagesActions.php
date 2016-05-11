@@ -2,10 +2,9 @@
 
 namespace apps\Configs\control;
 
-use \lib\register\VarsRegister as VarsRegister;
+use \lib\register\Vars as Vars;
 
-use \model\hybrid\PageQuery;
-use \model\models\Htm as Htm;
+use \apps\Core\model\PageQuery;
 use \model\querys\HtmPageQuery;
 use \model\querys\HtmQuery;
 
@@ -26,19 +25,24 @@ class PagesActions extends \lib\control\ControllerAdmin {
                 ->joinHtmApp()->selectSlug()->selectName()->orderByName()->endUse()->endUse()
                 ->orderByHtmId();
     }
+    
+    private function getForm(){
+        $form = \apps\Core\model\PageForm::initialize();
+        return $form;
+    }
+    
 
 
     /**
      *
      */
     public function pagesAction(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $query = $this->query();
         $results = $this->buildDataGrid('pages', $query);
         $this->renderList($results);
         
-        $form = \model\hybrid\PageForm::initialize()->prepareFilters();
-        $this->renderFilters($form, 'pages');
+        $this->renderFilters($this->getForm()->prepareFilters(), 'pages');
     }
 
     /**
@@ -54,8 +58,8 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editPagesAction() {
-        $query = $this->query()->filterById(VarsRegister::getId())->findOne();
-        $form = \model\hybrid\PageForm::initialize()->setQueryValues($query);
+        $query = $this->query()->filterById(Vars::getId())->findOne();
+        $form = $this->getForm()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'pages');
     }
@@ -64,17 +68,15 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function newPagesAction() {
-        $form = \model\hybrid\PageForm::initialize();
-        $form->setDefault(Htm::TABLE, Htm::FIELD_STAT, 'public');
         #more code about $form and $query
-        $this->renderForm($form, 'pages');
+        $this->renderForm($this->getForm(), 'pages');
     }
 
     /**
      *
      */
     public function bindPagesAction() {
-        $form = \model\hybrid\PageForm::initialize()->validate();
+        $form = \apps\Core\model\PageForm::initialize()->validate();
         #$form->setFieldValue($table, $field, $value);
         $model = $form->getModels('htm_page');
         //$model->setColumnValue('htm_page.heading','Teste');
@@ -89,7 +91,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showPagesAction(){
-        $model = $this->query()->filterById(VarsRegister::getId())->findOne();
+        $model = $this->query()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'pages');
     }
 
@@ -97,9 +99,9 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delPagesAction() {
-        $htmpage = HtmPageQuery::start(ONLY)->filterByHtmId(VarsRegister::getId())->findOne();
+        $htmpage = HtmPageQuery::start(ONLY)->filterByHtmId(Vars::getId())->findOne();
         $this->deleteObject($htmpage);
-        $htm = HtmQuery::start(ONLY)->filterById(VarsRegister::getId())->findOne();
+        $htm = HtmQuery::start(ONLY)->filterById(Vars::getId())->findOne();
         $this->deleteObject($htm);
         
     }

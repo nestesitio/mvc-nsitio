@@ -2,8 +2,8 @@
 
 namespace lib\routing;
 
-use \lib\register\VarsRegister;
-use \lib\register\Registry;
+use \lib\register\Vars;
+
 use \lib\register\Monitor;
 use \lib\session\Session;
 
@@ -29,7 +29,7 @@ class Router {
     {
         
         list($app, $control) = explode('/', $controller);
-        VarsRegister::setApp($app);
+        Vars::setApp($app);
         
         self::$folder = ucfirst($app);
         $namespace = '\apps\\' . self::$folder . '\\';
@@ -74,7 +74,7 @@ class Router {
         // prepare Action
         $str = 'x' . str_replace('_', ' ', $params['action']);
         $action = str_replace(' ', '', substr(ucwords($str), 1));
-        VarsRegister::setAction($action);
+        Vars::setAction($action);
 
 
         $hasActionFunction = (int) method_exists($class, $action . 'Action');
@@ -84,7 +84,7 @@ class Router {
             
         $method = $action . 'Action';
         
-        Registry::setMonitor(Monitor::ACTION, $method);
+        Monitor::setMonitor(Monitor::ACTION, $method);
         return $method;
     }
     
@@ -100,14 +100,14 @@ class Router {
     {
         $extend = $controller->getExtended();
         if(!empty($extend)){
-            Registry::setMonitor(Monitor::TPL, $extend);
+            Monitor::setMonitor(Monitor::TPL, $extend);
             /* if is not a ajax call,
              * update SessionPage
              * else
              * this var is already refreshed
              */
             Session::setSessionPage($page);
-            Registry::setMonitor(Monitor::PAGID, $page);
+            Monitor::setMonitor(Monitor::PAGID, $page);
             return true;
         }else{
             return false;

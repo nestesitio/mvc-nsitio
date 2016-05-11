@@ -2,13 +2,14 @@
 
 namespace lib\loader;
 
-use \lib\register\Registry;
+
 use \lib\routing\ParseRoute;
 use \lib\session\Session;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \lib\routing\XmlRouting;
 use \lib\routing\DBRouting;
 use \lib\routing\Router;
+use \lib\register\Monitor;
 
 
 /**
@@ -30,7 +31,7 @@ class Boot {
          * from server parameter because php has parsed the url if we use $_GET
          */
         $url = \lib\url\UrlRegister::getUrlRequest();
-        VarsRegister::setRoute($url);
+        Vars::setRoute($url);
 
         //parse the url
         $parse = new ParseRoute($url);
@@ -83,13 +84,13 @@ class Boot {
     private static function registParams($params)
     {
          //regist all post variables
-        VarsRegister::registPosts();
-        VarsRegister::registRequests();
+        Vars::registPosts();
+        Vars::registRequests();
         $canonical = (isset($params['canonical']))? $params['canonical'] : 'index';
-        VarsRegister::setApp($params['appslug']);
-        VarsRegister::setCanonical($canonical);
-        VarsRegister::setAction($params['action']);
-        VarsRegister::setId($params['id']);
+        Vars::setApp($params['appslug']);
+        Vars::setCanonical($canonical);
+        Vars::setAction($params['action']);
+        Vars::setId($params['id']);
     }
     
     /** process url query string after ?, but ? was allready deleted by htaccess 
@@ -101,7 +102,7 @@ class Boot {
         if (count($params) > 1) {
             foreach ($params as $param) {
                 list($key, $value) = explode('=', $param);
-                VarsRegister::setVars($key, $value);
+                Vars::setVars($key, $value);
             }
         }
     }
@@ -115,7 +116,7 @@ class Boot {
         }
         
         if($route == null){
-            Registry::setErrorMessages(null, ['message'=>'No page found for url ' . VarsRegister::getRoute()]);
+            Monitor::setErrorMessages(null, ['message'=>'No page found for url ' . Vars::getRoute()]);
             return false;
         }
         
@@ -127,7 +128,7 @@ class Boot {
         
         $class = Router::getClass($route);
         if($class == false){
-            Registry::setErrorMessages(null, ['message'=>'No class found for url ' . VarsRegister::getRoute()]);
+            Monitor::setErrorMessages(null, ['message'=>'No class found for url ' . Vars::getRoute()]);
             return FALSE;
         }
         $controller = new $class();
@@ -135,7 +136,7 @@ class Boot {
         $action = Router::getAction($class, $params);
         
         if($action == false){
-            Registry::setErrorMessages(null, ['message'=>'No method found for url ' . VarsRegister::getRoute()]);
+            Monitor::setErrorMessages(null, ['message'=>'No method found for url ' . Vars::getRoute()]);
             return false;
         }
         
@@ -160,7 +161,7 @@ class Boot {
             $template = $controller->getTemplate();
 
             if (null == $template && $controller->layout == true) {
-                $view_file = VarsRegister::getAction();
+                $view_file = Vars::getAction();
                 $template = 'apps' . DS . Router::getFolder() . DS . 'view' . DS . $view_file;
                 //else here we define view
                 $result = $controller->setView($template);
@@ -168,7 +169,7 @@ class Boot {
                     return false;
                 }
             }
-            VarsRegister::setView($template);
+            Vars::setView($template);
 
             return $controller;
         }
@@ -193,12 +194,12 @@ class Boot {
     
     private static function displayError()
     {
-        $errors = Registry::getErrorMessages();
+        $errors = Monitor::getErrorMessages();
         echo 'EMPTY FILE - '.count($errors).' Errors<hr />';
         foreach ($errors as $error) {
             echo '<br />' . $error;
         }
-        $msgs = Registry::getMonitor();
+        $msgs = Monitor::getMonitor();
         foreach ($msgs as $msg) {
             echo $msg->write();
         }

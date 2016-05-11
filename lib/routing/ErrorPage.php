@@ -2,11 +2,12 @@
 
 namespace lib\routing;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \lib\session\SessionUser;
 use \apps\User\model\UserGroupModel;
 use \lib\loader\Configurator;
-use \lib\register\Registry;
+use \lib\register\Monitor;
+
 
 /**
  * Description of ErrorPage
@@ -25,7 +26,7 @@ class ErrorPage {
         
         $class = self::ERROR_CONTROLLER;
         $controller = new $class();
-        if(VarsRegister::getRequests('js') == false){
+        if(Vars::getRequests('js') == false){
             $controller->pageAction();
         }else{
             $controller->ajaxAction();
@@ -33,7 +34,7 @@ class ErrorPage {
         
         //$msg = self::setMessage($page, $message);
         self::dev();
-        $controller->haveError(Registry::getErrorMessages());
+        $controller->haveError(Monitor::getErrorMessages());
         
         echo self::output($controller, $extended);
     }
@@ -51,11 +52,11 @@ class ErrorPage {
     public static function dev(){
         if (SessionUser::getUserGroup() == UserGroupModel::GROUP_DEVELOPER ||
                 Configurator::getDeveloperMode() == true) {
-            Registry::setErrorMessages(null, ['message'=>'App: ' . VarsRegister::getApp()]);
-            Registry::setErrorMessages(null, ['message'=>'Action: ' . VarsRegister::getAction()]);
-            Registry::setErrorMessages(null, ['message'=>'Canonical: ' . VarsRegister::getCanonical()]);
-            Registry::setErrorMessages(null, ['message'=>'View: ' . VarsRegister::getView()]);
-            Registry::setErrorMessages(null, ['message'=>'Group: ' . SessionUser::getUserGroup()]);
+            Monitor::setErrorMessages(null, ['message'=>'App: ' . Vars::getApp()]);
+            Monitor::setErrorMessages(null, ['message'=>'Action: ' . Vars::getAction()]);
+            Monitor::setErrorMessages(null, ['message'=>'Canonical: ' . Vars::getCanonical()]);
+            Monitor::setErrorMessages(null, ['message'=>'View: ' . Vars::getView()]);
+            Monitor::setErrorMessages(null, ['message'=>'Group: ' . SessionUser::getUserGroup()]);
         }
     }
     

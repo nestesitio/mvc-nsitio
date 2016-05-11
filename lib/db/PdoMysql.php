@@ -2,7 +2,8 @@
 namespace lib\db;
 
 use PDO;
-use \lib\register\Registry;
+use \lib\register\Monitor;
+
 
 /**
  * Description of PdoMysql
@@ -45,8 +46,8 @@ class PdoMysql
                 //self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
             } catch (PDOException $err) {
-                Registry::setErrorMessages(null, $err->getMessage());
-                Registry::setUserMessages(null, 'ERRO: Ligação à base de dados não disponível');
+                Monitor::setErrorMessages(null, $err->getMessage());
+                Monitor::setUserMessages(null, 'ERRO: Ligação à base de dados não disponível');
             }
         }
 

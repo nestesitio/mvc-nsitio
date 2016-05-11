@@ -2,7 +2,7 @@
 
 namespace lib\model;
 
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
 
 /**
@@ -42,6 +42,7 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write
 
         }
         foreach(array_keys($values) as $col){
+            
             $fields[] = $col;
             if(in_array($col, $keys)){
                 $id = ($values[$col] == 'NULL')? $this->getIncrementId($table, $col) : $values[$col];
@@ -99,8 +100,8 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write
         $this->lastid = $this->pdo->lastInsertId();
         $this->setRowsChanged($this->pdostmt->rowCount());
         $this->setQueryInfo($query, $params, $start_time);
-        Registry::setMonitor(Monitor::QUERY, 'id ' .  $this->lastid . ' inserted');
-        Registry::setMonitor(Monitor::QUERY, $this->rowschanged . ' rows changed on ' . $table);
+        Monitor::setMonitor(Monitor::QUERY, 'id ' .  $this->lastid . ' inserted');
+        Monitor::setMonitor(Monitor::QUERY, $this->rowschanged . ' rows changed on ' . $table);
     }
 
     /**
@@ -120,13 +121,13 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write
         if($rows == 1){
             $this->rowschanged = 0;
             $this->inserted = $this->lastid;
-            Registry::setUserMessages(null, '1 row inserted');
+            Monitor::setUserMessages(null, '1 row inserted');
         }elseif($rows == 2){
             $this->rowschanged = 1;
-            Registry::setUserMessages(null, $this->rowschanged . ' row updated');
+            Monitor::setUserMessages(null, $this->rowschanged . ' row updated');
         }else{
            $this->rowschanged = $rows;
-           Registry::setUserMessages(null, $this->rowschanged . ' rows changed');
+           Monitor::setUserMessages(null, $this->rowschanged . ' rows changed');
         }
     }
 

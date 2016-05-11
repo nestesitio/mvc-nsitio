@@ -2,7 +2,6 @@
 
 namespace lib\form;
 
-use \lib\register\Registry;
 use \lib\register\Monitor;
 
 /**
@@ -173,7 +172,7 @@ class Input
             $this->disabledvalue = $value;
         }
         if(!empty($value)){
-            Registry::setMonitor(Monitor::FORM, 'Set value for ' . $this->name . ' = ' .
+            Monitor::setMonitor(Monitor::FORM, 'Set value for ' . $this->name . ' = ' .
                     (is_array($value))? $value: 'Array: ' . implode("&",$value));
         }
         return $this;
@@ -186,7 +185,7 @@ class Input
     public function setArray($values)
     {
         $this->value = implode('&&', $values);
-        Registry::setMonitor(Monitor::FORM, 'Set value for ' . $this->name . ' = ' . implode('&&', $values));
+        Monitor::setMonitor(Monitor::FORM, 'Set value for ' . $this->name . ' = ' . implode('&&', $values));
         return $this;
     }
 
@@ -244,7 +243,7 @@ class Input
         if(null == $this->value){
             $this->value = $value;
             $this->default = $value;
-            Registry::setMonitor(Monitor::FORM, 'Set default value for ' . $this->name . ' = ' . $value);
+            Monitor::setMonitor(Monitor::FORM, 'Set default value for ' . $this->name . ' = ' . $value);
         }
         return $this;
     }

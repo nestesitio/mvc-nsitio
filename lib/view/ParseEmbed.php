@@ -1,7 +1,7 @@
 <?php
 
 namespace lib\view;
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
 
 /**
@@ -124,21 +124,21 @@ class ParseEmbed
             // assign controller full name
             // if we have extended controller
             if (!class_exists($this->class)) {
-                Registry::setErrorMessages(null, $this->class . ' does not exist');
+                Monitor::setErrorMessages(null, $this->class . ' does not exist');
                 $this->class = '\\apps\\Core\\control\\ErrorActions';
                 $this->action = 'embed';
             } else {
                 $hasActionFunction = (int) method_exists($this->class, $this->action . 'Action');
                 if ($hasActionFunction == 0) {
-                    Registry::setErrorMessages(null, 'Method "' . $this->action . '" not found');
+                    Monitor::setErrorMessages(null, 'Method "' . $this->action . '" not found');
                 } else {
-                    Registry::setMonitor(Monitor::ACTION, $this->action . 'Action');
+                    Monitor::setMonitor(Monitor::ACTION, $this->action . 'Action');
                 }
                 $this->getFileTemplate($matches[0], $folder);
             }
         } else {
             $this->class = '';
-            Registry::setErrorMessages(null, 'Empty class value for embed');
+            Monitor::setErrorMessages(null, 'Empty class value for embed');
         }
     }
 

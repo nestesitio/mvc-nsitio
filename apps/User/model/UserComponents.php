@@ -2,7 +2,7 @@
 
 namespace apps\User\model;
 
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
 
 use \model\querys\UserLogQuery;

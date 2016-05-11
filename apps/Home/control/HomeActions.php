@@ -9,7 +9,7 @@ use \lib\url\MenuRender;
 use \lib\session\SessionUser;
 use \apps\User\model\UserGroupModel;
 use \apps\Home\model\UtilsQueries;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 /**
  * Description of HomeActions

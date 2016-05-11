@@ -24,10 +24,9 @@
 namespace lib\control;
 
 use \lib\control\ControlTools;
-use \lib\register\Registry;
 use \lib\register\Monitor;
 use \lib\view\View;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 class Controller
 {
@@ -80,7 +79,7 @@ class Controller
     {
         $this->layout = false;
         $this->setView('layout/core/empty.htm');
-        $value = VarsRegister::getPosts('value');
+        $value = Vars::getPosts('value');
         return $value;
     }
 
@@ -89,7 +88,7 @@ class Controller
      */
     protected function setUserMessage()
     {
-        $this->set('usermsg', Registry::getUserMessages());
+        $this->set('usermsg', Monitor::getUserMessages());
     }
 
     /**
@@ -97,7 +96,7 @@ class Controller
      */
     protected function setCustomMessage()
     {
-        $this->set('custommsg', Registry::getCustomMessages());
+        $this->set('custommsg', Monitor::getCustomMessages());
     }
 
     /**
@@ -105,8 +104,8 @@ class Controller
      */
     protected function writeMessage($message)
     {
-        Registry::setMessage($message);
-        $this->set('usermsg', Registry::getUserMessages());
+        Monitor::setMessages($message);
+        $this->set('usermsg', Monitor::getUserMessages());
     }
 
 
@@ -148,7 +147,7 @@ class Controller
      */
     protected function renderCollection($results, $tag)
     {
-        Registry::setMonitor(Monitor::BOOKMARK, get_class($this) . ' - renderCollection with ' . count($results) . ' row for tag ' . $tag);
+        Monitor::setMonitor(Monitor::BOOKMARK, get_class($this) . ' - renderCollection with ' . count($results) . ' row for tag ' . $tag);
         $itens = $this->getCollection($results);
         $this->set($tag, $itens);
     }
@@ -159,7 +158,7 @@ class Controller
      */
     protected function set($tag, $data)
     {
-        Registry::setDataDevMessage($tag, $data);
+        Monitor::setDataDevMessage($tag, $data);
         $this->tags[$tag] = $data;
     }
 
@@ -177,7 +176,7 @@ class Controller
      */
     private function renderData()
     {
-        Registry::setMonitor(Monitor::BOOKMARK, get_class($this) . ' - renderData');
+        Monitor::setMonitor(Monitor::BOOKMARK, get_class($this) . ' - renderData');
         foreach($this->tags as $tag=>$data){
             $this->view->set($tag, $data);
         }
@@ -192,7 +191,7 @@ class Controller
      */
     protected function preRender($html, $results, $var)
     {
-        Registry::setMonitor(Monitor::BOOKMARK, 'preRender');
+        Monitor::setMonitor(Monitor::BOOKMARK, 'preRender');
         $view = new View($html, FALSE);
         $itens = $this->getCollection($results);
         $view->set($var, $itens);
@@ -208,7 +207,7 @@ class Controller
         if ($this->template == null) {
             $file = ControlTools::validateFile($this, $filename, 'view', 'htm');
             if($file == null){
-                Registry::setErrorMessages(null, ['message'=>'No valid template found for ' . get_class($this)]);
+                Monitor::setErrorMessages(null, ['message'=>'No valid template found for ' . get_class($this)]);
                 return false;
             }
             $this->view = new View($file);
@@ -298,8 +297,8 @@ class Controller
      */
     public function __construct()
     {
-        Registry::setMonitor(Monitor::CONTROL, get_class($this));
-        $this->app = \lib\register\VarsRegister::getApp();
+        Monitor::setMonitor(Monitor::CONTROL, get_class($this));
+        $this->app = \lib\register\Vars::getApp();
     }
 
     /**

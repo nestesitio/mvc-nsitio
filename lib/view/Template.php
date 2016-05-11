@@ -8,7 +8,7 @@
 
 namespace lib\view;
 
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
 use \lib\view\ParseString;
 use \lib\view\ParseInclude;
@@ -80,7 +80,7 @@ class Template
     {
         if (file_exists(ROOT . DS . $file)) {
             $this->fileview = $file;
-            Registry::setMonitor(Monitor::TPL, $file);
+            Monitor::setMonitor(Monitor::TPL, $file);
             ob_start(); // start output buffer
             include (ROOT . DS . $file);
             $this->output = ob_get_contents(); // get contents of buffer
@@ -89,7 +89,7 @@ class Template
             $this->extensions();
 
         } elseif(null != $file) {
-            Registry::setErrorMessages(null, 'Error: Template file ' . $file . ' not found');
+            Monitor::setErrorMessages(null, 'Error: Template file ' . $file . ' not found');
         }
     }
 
@@ -112,6 +112,9 @@ class Template
         $this->jsExtend();
         //<script> ...
         $this->scriptExtend();
+        //<style>...
+        $this->styleExtend();
+        
         $this->setIncludes();
     }
 
@@ -136,9 +139,9 @@ class Template
                     $this->extendfile = $extended;
                     //now the template is extended with main file
                     $this->output = str_replace("{{ include('main') }}", $view, $this->output);
-                    Registry::setMonitor(Monitor::TPL, '<b>extended</b> - ' . $extended);
+                    Monitor::setMonitor(Monitor::TPL, '<b>extended</b> - ' . $extended);
                 } else {
-                    Registry::setErrorMessages(null, 'Error: Layout file ' . $extended . ' not found');
+                    Monitor::setErrorMessages(null, 'Error: Layout file ' . $extended . ' not found');
                 }
             }
         }
@@ -198,7 +201,7 @@ class Template
      */
     public function setOutput($html)
     {
-        Registry::setMonitor(Monitor::BOOKMARK, 'All Template: ' . strlen($html) . ' chars in html; ');
+        Monitor::setMonitor(Monitor::BOOKMARK, 'All Template: ' . strlen($html) . ' chars in html; ');
         $this->output = $html;
     }
 
@@ -261,8 +264,27 @@ class Template
                 $this->output = str_replace($match, '', $this->output);
             }
         }
-        Registry::setMonitor(Monitor::VIEW, 'Rendering ' . $files . ' js links');
+        Monitor::setMonitor(Monitor::VIEW, 'Rendering ' . $files . ' js links');
         $this->output = str_replace('<script src="{{ dynamicjs }}"></script>', $data, $this->output);
+    }
+    
+    private function styleExtend(){
+        $pattern = "/(\{% style %\}){1}[\s\S]*(\{% endstyle %\}){1}/";
+        $matches = [];
+        $data = [];
+        if (strpos($this->strview, "{% style")) {
+            preg_match_all($pattern, $this->strview, $matches, PREG_PATTERN_ORDER);
+            foreach ($matches[0] as $match) {
+                $data[] = str_replace(['{% style %}', '{% endstyle %}'], '', $match);
+            }
+            
+            foreach ($data as $str) {
+                $this->output = str_replace($str, '', $this->output);
+            }
+            $this->output = str_replace(['{% style %}', '{% endstyle %}'], '', $this->output);
+            $this->output = str_replace('<style>{{}}</style>', '<style>'.implode("\n", $data) . '</style><style>{{}}</style>', $this->output);
+        }
+        Monitor::setMonitor(Monitor::VIEW, 'Rendering ' . count($data) . ' styles');
     }
 
     /**
@@ -287,7 +309,7 @@ class Template
             }
             $this->output = str_replace('<script>{{}}</script>', implode("\n", $data) . '<script>{{}}</script>', $this->output);
         }
-        Registry::setMonitor(Monitor::VIEW, 'Rendering ' . count($data) . ' scripts');
+        Monitor::setMonitor(Monitor::VIEW, 'Rendering ' . count($data) . ' scripts');
     }
 
 

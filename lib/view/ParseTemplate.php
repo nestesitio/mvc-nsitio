@@ -8,13 +8,12 @@
 
 namespace lib\view;
 
-use \lib\register\Registry;
-use \lib\register\Monitor;
 
 use \lib\view\ParseString;
 use \lib\view\ParseInclude;
 use \lib\view\ParseEmbed;
 use \lib\view\EvalCode;
+use \lib\register\Monitor;
 
 
 
@@ -47,7 +46,7 @@ class ParseTemplate extends \lib\view\Template
         $this->output = $parse->getString();
 
         $this->tags = array_merge($this->tags, $parse->getTag());
-        Registry::setMonitor(Monitor::BOOKMARK, '<b>View parseAll</b> - ' . $tag . ' | ' . count($this->tags));
+        Monitor::setMonitor(Monitor::BOOKMARK, '<b>View parseAll</b> - ' . $tag . ' | ' . count($this->tags));
         $this->portions = array_merge($this->portions, $parse->getPortion());
         $this->args = array_merge($this->args, $parse->getArgs());
         //var_dump($this->tags);
@@ -131,7 +130,7 @@ class ParseTemplate extends \lib\view\Template
 
         $controller->setView($parse->getView());
         $action = $parse->getAction();
-        Registry::setMonitor(Monitor::TPL, '<b>parse Embed</b> - ' . $class . ' / ' . $action . '/');
+        Monitor::setMonitor(Monitor::TPL, '<b>parse Embed</b> - ' . $class . ' / ' . $action . '/');
         //output
         return $controller->$action();
     }
@@ -316,7 +315,7 @@ class ParseTemplate extends \lib\view\Template
                 unset($this->vars[$tag]);
             }
         } else {
-            Registry::setMonitor(Monitor::TPL_WARN, 'No tags were provided for replacement in ' . $this->fileview);
+            Monitor::setMonitor(Monitor::TPL_WARN, 'No tags were provided for replacement in ' . $this->fileview);
         }
     }
 

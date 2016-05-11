@@ -7,7 +7,7 @@ use \lib\loader\Configurator;
 use \model\querys\UserBaseQuery;
 use \lib\url\Redirect;
 use \lib\session\Session;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \lib\mysql\Mysql;
 
 /**
@@ -44,8 +44,8 @@ class UserActions extends \lib\control\Controller {
     public function usernameUserAction(){
         $this->setEmptyView();
         $user = UserBaseQuery::start()
-                ->filterById(VarsRegister::getId(), Mysql::NOT_EQUAL) 
-                ->filterByUsername(VarsRegister::getRequests('value'))->findOne();
+                ->filterById(Vars::getId(), Mysql::NOT_EQUAL) 
+                ->filterByUsername(Vars::getRequests('value'))->findOne();
         if($user == false){
             echo 0;
         }else{

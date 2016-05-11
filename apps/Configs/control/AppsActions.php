@@ -2,7 +2,7 @@
 
 namespace apps\Configs\control;
 
-use \lib\register\VarsRegister as VarsRegister;
+use \lib\register\Vars as Vars;
 
 /**
  * Description of appsActions
@@ -16,12 +16,12 @@ class AppsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function appsAction(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $query = \apps\Configs\model\AppsQuery::getApps();
         $results = $this->buildDataGrid('apps', $query);
         $this->renderList($results);
         
-        $form = \model\hybrid\PageForm::initialize()->prepareFilters();
+        $form = \apps\Core\model\PageForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'apps');
     }
 
@@ -38,7 +38,7 @@ class AppsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editAppsAction() {
-        $query = \apps\Configs\model\AppsQuery::getApps()->filterById(VarsRegister::getId())->findOne();
+        $query = \apps\Configs\model\AppsQuery::getApps()->filterById(Vars::getId())->findOne();
         $form = \model\forms\HtmAppForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'apps');
@@ -68,7 +68,7 @@ class AppsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showAppsAction(){
-        $model = \apps\Configs\model\AppsQuery::getApps()->filterById(VarsRegister::getId())->findOne();
+        $model = \apps\Configs\model\AppsQuery::getApps()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'apps');
     }
 
@@ -76,7 +76,7 @@ class AppsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delAppsAction() {
-        $model = \apps\Configs\model\AppsQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = \apps\Configs\model\AppsQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model, 'apps');
         
     }

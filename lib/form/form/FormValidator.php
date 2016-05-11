@@ -2,9 +2,9 @@
 
 namespace lib\form\form;
 
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
-use \lib\register\VarsRegister as VarsRegister;
+use \lib\register\Vars as Vars;
 
 /**
  * Description of FormValidator
@@ -23,16 +23,16 @@ class FormValidator
     {
         $value = self::getValue($field);
         if(is_numeric($value) && $value > 0){
-            Registry::setMonitor(Monitor::FORM, 'Validate Id');
+            Monitor::setMonitor(Monitor::FORM, 'Validate Id');
             $result = $query->filterByColumn($field, $value)->findOne();
             if($result == false){
-                Registry::setMonitor(Monitor::FORMERROR, $field . ' Validate Id for is false');
+                Monitor::setMonitor(Monitor::FORMERROR, $field . ' Validate Id for is false');
                 return false;
             }else{
                 return $value;
             }
         }else{
-            Registry::setMonitor(Monitor::FORM, 'Validate Id is null');
+            Monitor::setMonitor(Monitor::FORM, 'Validate Id is null');
             return null;
         }
     }
@@ -61,8 +61,8 @@ class FormValidator
         $result = filter_var($value, FILTER_VALIDATE_INT,
         ['options' => ['min_range' => ($max * -1), 'max_range' => $max]]);
         if($result === false && $required == true){
-            Registry::setMonitor(Monitor::FORM, $field . ' value is not int ' . $value);
-            Registry::setUserMessages(null, $label . ' value is not int');
+            Monitor::setMonitor(Monitor::FORM, $field . ' value is not int ' . $value);
+            Monitor::setUserMessages(null, $label . ' value is not int');
             return null;
         }elseif($result === false){
             return 0;
@@ -85,8 +85,8 @@ class FormValidator
         $options = ['decimal' => '.'];
         $result = filter_var($value, FILTER_VALIDATE_FLOAT, [['options' => $options]]);
         if($result === false && $required == true){
-            Registry::setMonitor(Monitor::FORM, $field . ' value is not float ' . $value);
-            Registry::setUserMessages(null, $label . ' value is not float');
+            Monitor::setMonitor(Monitor::FORM, $field . ' value is not float ' . $value);
+            Monitor::setUserMessages(null, $label . ' value is not float');
             return null;
         }elseif($result === false){
             return 0.0;
@@ -110,16 +110,16 @@ class FormValidator
         $value = self::getValue($field);
 
         if(empty($value) && $required == true){
-            Registry::setMonitor(Monitor::FORM, $field . ' value is empty ');
-            Registry::setUserMessages(null, $label . ' String value is empty');
+            Monitor::setMonitor(Monitor::FORM, $field . ' value is empty ');
+            Monitor::setUserMessages(null, $label . ' String value is empty');
             return false;
         }elseif(strlen($value) < $minlen){
-            Registry::setMonitor(Monitor::FORM, $field . ' value is less than minimum lenght ');
-            Registry::setUserMessages(null, $label . ' value is less than minimum lenght');
+            Monitor::setMonitor(Monitor::FORM, $field . ' value is less than minimum lenght ');
+            Monitor::setUserMessages(null, $label . ' value is less than minimum lenght');
             return false;
         }elseif($maxlen > $minlen && strlen($value) > $maxlen){
-            Registry::setMonitor(Monitor::FORM, $field . ' value exceeds the maximum lenght ');
-            Registry::setUserMessages(null, $label . ' value exceeds the maximum lenght');
+            Monitor::setMonitor(Monitor::FORM, $field . ' value exceeds the maximum lenght ');
+            Monitor::setUserMessages(null, $label . ' value exceeds the maximum lenght');
             return false;
         }else{
             return $value;
@@ -150,7 +150,7 @@ class FormValidator
     {
         $values = [];
         $key = self::correctKey($field);
-        $posts = VarsRegister::getPosts();
+        $posts = Vars::getPosts();
 
         foreach($posts as $post => $value){
             if(strpos($post, $key) === 0 && !empty($value)){
@@ -159,8 +159,8 @@ class FormValidator
         }
         $result = $query->filterByColumn($index, $values)->find();
         if($result == false && $required == true){
-            Registry::setMonitor(Monitor::FORMERROR, $field . ' result is false for foreign key ');
-            Registry::setUserMessages(null, 'values are not valid for ' . $label);
+            Monitor::setMonitor(Monitor::FORMERROR, $field . ' result is false for foreign key ');
+            Monitor::setUserMessages(null, 'values are not valid for ' . $label);
             return false;
         }elseif(count($values) != count($result)){
             $newvalues = [];
@@ -168,10 +168,10 @@ class FormValidator
                 $newvalues[] = $row->getColumnValue($index);
             }
             $diff = array_diff($values, $newvalues);
-            Registry::setMonitor(Monitor::FORMERROR, $field . ' have different results for ' . implode(', ', $diff));
+            Monitor::setMonitor(Monitor::FORMERROR, $field . ' have different results for ' . implode(', ', $diff));
             $values = $newvalues;
         }
-        Registry::setMonitor(Monitor::FORM, $field . ' result is true for ' . implode(', ', $values));
+        Monitor::setMonitor(Monitor::FORM, $field . ' result is true for ' . implode(', ', $values));
         return $values;
     }
 
@@ -190,11 +190,11 @@ class FormValidator
         $value = self::getValue($field);
         $result = $query->filterByColumn($index, $value)->findOne();
         if($result == false && $required == true){
-            Registry::setMonitor(Monitor::FORMERROR, $field . ' result is false for foreign key ');
-            Registry::setUserMessages(null, 'fk value is not valid for ' . $label);
+            Monitor::setMonitor(Monitor::FORMERROR, $field . ' result is false for foreign key ');
+            Monitor::setUserMessages(null, 'fk value is not valid for ' . $label);
             return ($default != null)? $default : false;
         }elseif($result != false){
-            Registry::setMonitor(Monitor::FORM, $field . ' result is true ' . $result->getColumnValue($index));
+            Monitor::setMonitor(Monitor::FORM, $field . ' result is true ' . $result->getColumnValue($index));
             return $result->getColumnValue($index);
         }else{
             return false;
@@ -218,10 +218,10 @@ class FormValidator
             return $value;
         }elseif($required == true){
             if($default != null){
-                Registry::setUserMessages(null, 'value "' . $value . '" is not permited for ' . $label);
+                Monitor::setUserMessages(null, 'value "' . $value . '" is not permited for ' . $label);
                 $value = $default;
             }else{
-                Registry::setUserMessages(null, $label . ' value is empty');
+                Monitor::setUserMessages(null, $label . ' value is empty');
                return false;
             }
         }
@@ -245,11 +245,11 @@ class FormValidator
         }
         $result = $query->filterByColumn($field, $value)->findOne();
         if($result != false){
-            Registry::setMonitor(Monitor::FORMERROR, $value. ' is not unique value for ' . $field);
-            Registry::setUserMessages(null, $value. ' must be unique for ' . $label );
+            Monitor::setMonitor(Monitor::FORMERROR, $value. ' is not unique value for ' . $field);
+            Monitor::setUserMessages(null, $value. ' must be unique for ' . $label );
             return false;
         }else{
-            Registry::setMonitor(Monitor::FORM, $field . ' result is unique ' . $value);
+            Monitor::setMonitor(Monitor::FORM, $field . ' result is unique ' . $value);
             return $value;
         }
     }
@@ -282,7 +282,7 @@ class FormValidator
     public static function correctKey($key)
     {
         #because javascript form submission alter keys when serializes data
-        return VarsRegister::getCanonical() . '_' . str_replace('.', '_', $key);
+        return Vars::getCanonical() . '_' . str_replace('.', '_', $key);
     }
 
     /**
@@ -302,7 +302,7 @@ class FormValidator
     public static function getValue($field)
     {
         $key = FormValidator::correctKey($field);
-        $value = VarsRegister::getPosts($key);
+        $value = Vars::getPosts($key);
 
         if($value == false){
             $value = \lib\form\PostTool::getMultiplePost($key);

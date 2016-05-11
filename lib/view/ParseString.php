@@ -2,7 +2,7 @@
 
 namespace lib\view;
 
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
 
 /**
@@ -48,7 +48,7 @@ class ParseString
      */
     public function find($tag)
     {
-        //Registry::setMonitor(Monitor::TPL, $tag);
+        //Monitor::setMonitor(Monitor::TPL, $tag);
         $matches = [];
         $matches_b = [];
         $p_functions = '('.$tag.')';

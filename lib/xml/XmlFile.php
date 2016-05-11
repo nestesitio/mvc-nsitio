@@ -3,7 +3,7 @@
 namespace lib\xml;
 
 use DOMDocument;
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
 
 /**
@@ -25,9 +25,9 @@ class XmlFile extends \lib\xml\Xml
             $this->xml->preserveWhiteSpace = FALSE;
             $this->xml->formatOutput = true;
             $this->xml->load(ROOT . DS . $file);
-            Registry::setMonitor(Monitor::XML, $file);
+            Monitor::setMonitor(Monitor::XML, $file);
         }else{
-            Registry::setErrorMessages(null, 'Xml file is not valid: ' . $file);
+            Monitor::setErrorMessages(null, 'Xml file is not valid: ' . $file);
         }
     }
     
@@ -50,7 +50,7 @@ class XmlFile extends \lib\xml\Xml
         if (strpos($file, '.xml') && is_file(ROOT . DS . $file)) {
             return simplexml_load_file(ROOT . DS . $file);
         }else{
-            Registry::setErrorMessages(null, 'Xml file is not valid: ' . $file);
+            Monitor::setErrorMessages(null, 'Xml file is not valid: ' . $file);
             return null;
         }
     }

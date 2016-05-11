@@ -2,7 +2,7 @@
 
 namespace apps\Configs\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 use \apps\Configs\model\LayoutsQuery;
 use \model\models\HtmLayout;
@@ -21,7 +21,7 @@ class LayoutsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function layoutsAction(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $query = LayoutsQuery::get();
         $results = $this->buildDataGrid('layouts', $query);
         #here you can process the results
@@ -47,7 +47,7 @@ class LayoutsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editLayoutsAction() {
-        $query = LayoutsQuery::get()->filterById(VarsRegister::getId())->findOne();
+        $query = LayoutsQuery::get()->filterById(Vars::getId())->findOne();
         $form = HtmLayoutForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'layouts');
@@ -90,7 +90,7 @@ class LayoutsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showLayoutsAction(){
-        $model = LayoutsQuery::get()->filterById(VarsRegister::getId())->findOne();
+        $model = LayoutsQuery::get()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'layouts');
     }
 
@@ -98,7 +98,7 @@ class LayoutsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delLayoutsAction() {
-        $model = \model\querys\HtmLayoutQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = \model\querys\HtmLayoutQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }

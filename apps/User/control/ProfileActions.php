@@ -2,7 +2,7 @@
 
 namespace apps\User\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 use \model\models\UserBase;
 use \model\models\UserInfo;
@@ -54,7 +54,7 @@ class ProfileActions extends \lib\control\ControllerAdmin {
      *
      */
     public function profileAction(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $this->set('nav_home','/');
         $this->setView('profile');
         $this->showProfileAction();
@@ -204,8 +204,8 @@ class ProfileActions extends \lib\control\ControllerAdmin {
      */
     public function changeProfileAction(){
         $this->setEmptyView();
-        $pass1 = VarsRegister::getPosts('pass1');
-        $pass2 = VarsRegister::getPosts('pass2');
+        $pass1 = Vars::getPosts('pass1');
+        $pass2 = Vars::getPosts('pass2');
         if($pass1 == $pass2){
             $user = $this->getQuery()->findOne();
             $user->setPassword($pass2);

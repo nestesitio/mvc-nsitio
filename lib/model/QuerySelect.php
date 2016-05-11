@@ -201,7 +201,9 @@ class QuerySelect extends \lib\model\QueryStatement
         $results = $this->select($query, $this->params);
         foreach ($results as $row) {
             $item = $this->getRow($className, $row);
+            
             array_push($collection,$item);
+
 
         }
         return $collection;

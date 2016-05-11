@@ -8,7 +8,7 @@ use \model\models\HtmPage;
 use \model\forms\HtmPageForm;
 
 use \apps\Core\model\PageQuery;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 
 /**
@@ -64,7 +64,7 @@ class PageForm extends \lib\form\FormMerged {
      *
      */
     protected function customValidate() {
-        $id = VarsRegister::getId();
+        $id = Vars::getId();
         if(!empty($id)){
             $tld = $this->getInputValue(HtmPage::TABLE, HtmPage::FIELD_LANGS_TLD);
             $htm = PageQuery::getPageFromAnotherLang($id, $tld);

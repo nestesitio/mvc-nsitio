@@ -2,7 +2,7 @@
 
 namespace lib\media;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \lib\tools\StringTools;
 use \model\querys\HtmMediaQuery;
 use \lib\media\Image;

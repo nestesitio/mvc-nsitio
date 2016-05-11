@@ -2,7 +2,7 @@
 
 namespace lib\filter;
 
-use \lib\register\VarsRegister as VarsRegister;
+use \lib\register\Vars as Vars;
 use \lib\filter\SessionFilter as SessionFilter;
 
 /**
@@ -34,7 +34,7 @@ class Pagination
     public static function renderPagination($total_rows)
     {
         $pages = [];
-        $action = VarsRegister::getCanonical();
+        $action = Vars::getCanonical();
         $index = SessionFilter::getControllerPaging($action);
 
         $total_pages = 0;
@@ -82,7 +82,7 @@ class Pagination
     {
         $arr = [];
         $arr['class'] = ($p == $index)? 'page-number active disabled' : 'page-number';
-        $arr['action'] = VarsRegister::getApp() . '/list_' . $action;
+        $arr['action'] = Vars::getApp() . '/list_' . $action;
         $arr['label'] = $p;
         $arr['id'] = $p;
 
@@ -101,7 +101,7 @@ class Pagination
     {
         $arr = [];
         $arr['class'] = $option;
-        $arr['action'] = VarsRegister::getApp() . '/list_' . $action;
+        $arr['action'] = Vars::getApp() . '/list_' . $action;
         $arr['label'] = $label;
         $arr['id'] = $id;
 

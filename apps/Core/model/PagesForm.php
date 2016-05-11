@@ -4,7 +4,7 @@ namespace apps\Core\model;
 use \model\models\Htm;
 use \model\models\HtmPage;
 use \lib\form\input\HiddenInput;
-#use \lib\register\VarsRegister;
+#use \lib\register\Vars;
 
 /**
  * Description of PagesForm

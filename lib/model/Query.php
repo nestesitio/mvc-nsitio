@@ -2,11 +2,11 @@
 
 namespace lib\model;
 
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
-use \lib\db\PdoMysql as PdoMysql;
+use \lib\db\PdoMysql;
 use PDO;
-use \lib\mysql\Mysql as Mysql;
+use \lib\mysql\Mysql;
 
 /**
  * Description of Query
@@ -246,7 +246,7 @@ class Query
 
             $res = $this->pdostmt->bindValue(':' . $field, $value);
             if($res == false){
-                Registry::setMonitor(Monitor::FORMERROR, 'Bind :' . $field . ' => ' . $value);
+                Monitor::setMonitor(Monitor::FORMERROR, 'Bind :' . $field . ' => ' . $value);
             }
         }
     }
@@ -424,7 +424,7 @@ class Query
         $numrows = (null != $count) ? $count : $this->count;
         $query .= '<br /><i>Query took ' . $this->querytime . ' sec</i> for ' . $numrows . ' results';
         $this->string = $query;
-        Registry::setMonitor(Monitor::QUERY, $query);
+        Monitor::setMonitor(Monitor::QUERY, $query);
         return $query;
     }
 

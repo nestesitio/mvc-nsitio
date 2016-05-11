@@ -2,7 +2,7 @@
 
 namespace lib\form\form;
 
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
 
 /**
@@ -357,7 +357,7 @@ class FormProcessing
      */
     public function isvalid()
     {
-        Registry::setMonitor(Monitor::FORM, ' has ' . $this->processerrors . ' errors');
+        Monitor::setMonitor(Monitor::FORM, ' has ' . $this->processerrors . ' errors');
         if($this->processerrors > 0){
             return false;
         }
@@ -386,7 +386,7 @@ class FormProcessing
             $key = (isset($this->forms[$table])) ? $this->forms[$table]->getPrimaryKey() : $this->getPrimaryKey();
             if ($this->primarykeyvalue == 0) {
                 $this->primarykeyvalue = $model->getColumnValue($key);
-                \lib\register\VarsRegister::setId($this->primarykeyvalue);
+                \lib\register\Vars::setId($this->primarykeyvalue);
             }
         }
     }

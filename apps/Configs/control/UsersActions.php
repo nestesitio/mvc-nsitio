@@ -2,15 +2,20 @@
 
 namespace apps\Configs\control;
 
-use \lib\register\Registry;
-use \lib\register\Monitor;
-use \lib\register\VarsRegister;
 
-use \model\models\User;
+use \lib\register\Monitor;
+use \lib\register\Vars;
+
+use \model\models\UserBase;
 use \model\querys\UserBaseQuery;
 use \model\forms\UserBaseForm;
+use \apps\Configs\model\UsersForm;
 use \model\querys\UserGroupQuery;
 use \apps\User\model\UserGroupModel;
+use \lib\mysql\Mysql;
+use \lib\guard\Guard;
+use \apps\User\model\UserComponents;
+use \lib\session\SessionUser;
 
 /**
  * Description of UsersActions
@@ -25,19 +30,26 @@ class UsersActions extends \lib\control\ControllerAdmin {
      * @return mixed
      */
     private function query(){
-        return UserBaseQuery::start()
-                ->joinUserGroup()->selectName()->selectDescription()->endUse();
+        $query = UserBaseQuery::start(ONLY)->selectUsername()->selectName()->selectUserGroupId();
+        $query->joinUserGroup()->selectDescription()
+                ->selectId()->selectName()->endUse();
+        $query->joinCompanyUser(Mysql::LEFT_JOIN)->selectUserId()
+                ->joinUserFunctions(Mysql::LEFT_JOIN)->selectFunction()->endUse()
+                ->joinCompany(Mysql::LEFT_JOIN)->selectName()->selectCode()->endUse()
+                ->selectId()->selectCompanyId()->selectUserFunctionsId()->selectCode()
+                ->endUse();
+        return $query;
     }
 
     /**
      *
      */
     public function usersAction(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $query = $this->query();
         $results = $this->buildDataGrid('users', $query);
         $this->renderList($results);
-        $form = UserBaseForm::initialize()->prepareFilters();
+        $form = UsersForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'users');
     }
 
@@ -56,8 +68,11 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editUsersAction() {
-        $query = $this->query()->filterById(VarsRegister::getId())->findOne();
-        $form = UserBaseForm::initialize()->setQueryValues($query);
+        $query = $this->query()->filterById(Vars::getId())->findOne();
+        $form = UserBaseForm::initialize();
+        $form = Guard::prepareForm($form);
+        $form->setQueryValues($query);
+        
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'users');
     }
@@ -68,6 +83,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      */
     public function newUsersAction() {
         $form = UserBaseForm::initialize();
+        $form = Guard::prepareForm($form);
         $group = UserGroupQuery::start()->filterByName(UserGroupModel::GROUP_USER)->findOne();
         $form->setUserGroupIdDefault($group->getId());
         $form->setNameDefault('Anonymous');
@@ -80,24 +96,24 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function bindUsersAction() {
-        $form = UserBaseForm::initialize()->validate();
+        $form = UserBaseForm::initialize();
+        $form = Guard::prepareForm($form);
+        $password = $form->getPasswordValue();
+        $form->unsetPasswordInput();
+        $form = $form->validate();
+        
         $model = $this->buildProcess($form, 'users');
         if($model !== false){
-            Registry::setMonitor(Monitor::BOOKMARK, 'Result is true in ' . $model->getAction());
-            if($model->getAction() == User::ACTION_INSERT){
+            Monitor::setMonitor(Monitor::BOOKMARK, 'Result is true in ' . $model->getAction());
+            if($model->getAction() == UserBase::ACTION_INSERT){
                 #operations after inserted
-                Registry::setMonitor(Monitor::BOOKMARK, 'Created');
-                $log = new \model\models\UserLog();
-                $log->setUserId($model->getColumnValue(User::FIELD_ID));
-                $log->setEvent('created');
-                $log->save();
-                Registry::setMonitor(Monitor::BOOKMARK, 'Log ' . $log->getId());
-                
-                $info = new \model\models\UserInfo();
-                $info->setUserId($model->getId());
-                $info->save();
+                UserComponents::createUser($model->getId());
+                UserComponents::createInfo($model->getId());
             }
-            Registry::setMonitor(Monitor::BOOKMARK, 'Let\'s show');
+            if($password != false){
+                $model->setPassword($password);
+                Guard::setKeys($model);
+            }
             $this->showUsersAction();
         }
     }
@@ -106,7 +122,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showUsersAction(){
-        $model = $this->query()->filterById(VarsRegister::getId())->findOne();
+        $model = $this->query()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'users');
     }
 
@@ -114,7 +130,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delUsersAction() {
-        $model = UserBaseQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = UserBaseQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }
@@ -125,6 +141,13 @@ class UsersActions extends \lib\control\ControllerAdmin {
     public function csvUsersAction(){
         $query = $this->query();
         $this->buildCsvExport($query);
+    }
+    
+    public function playUsersAction(){
+        $user = UserBaseQuery::start()->joinUserGroup()->selectName()->endUse()->filterById(Vars::getId())->findOne();
+        SessionUser::registPlayer($user);
+        $this->setEmptyView();
+        echo 'you are playing now as ' . $user->getName();
     }
 
 }

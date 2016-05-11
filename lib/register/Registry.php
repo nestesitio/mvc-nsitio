@@ -34,16 +34,7 @@ class Registry
      */
     private static $memory_ini = [];
 
-    /**
-     * @var
-     */
-    private static $key;
 
-
-    /**
-     * Registry constructor.
-     */
-    private function __construct() {}
 
     /**
      *
@@ -102,7 +93,7 @@ class Registry
     /**
      * @param $value
      */
-    public static function setMessage($value)
+    public static function setMessages($value)
     {
         self::$user_messages = [];
         self::$user_messages [0]['msg'] = $value;
@@ -199,12 +190,16 @@ class Registry
 
   }
 
+      /**
+     * @var
+     */
+    private static $key;
     /**
      *
      */
     public function setToken()
   {
-      self::$key = md5(uniqid(mt_rand($time), true));
+      self::$key = md5(uniqid(mt_rand(time()), true));
   }
 
 }

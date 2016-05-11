@@ -2,9 +2,8 @@
 namespace lib\bkegenerator;
 
 use \lib\xml\XmlFile as XmlFile;
-use \lib\register\Registry;
 use \lib\register\Monitor;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 
 /**
@@ -124,7 +123,7 @@ class DataConfig
      */
     public function getHtml($extended = null)
     {
-        Registry::setMonitor(Monitor::BOOKMARK, ' DataConfig return HTML');
+        Monitor::setMonitor(Monitor::BOOKMARK, ' DataConfig return HTML');
         if($extended != null){
             $this->html = str_replace($this->tag, $this->html, $extended);
         }
@@ -148,10 +147,10 @@ class DataConfig
         $str = '';
         $arr = $this->x_conf->nodeXPath($path . '/vars', ['var','value','get','id','str']);
         foreach($arr as $line){
-            if(!empty($line['get']) && VarsRegister::getRequests($line['get']) != false){
-                $str .= ' data-' . $line['var'] . '="' .  VarsRegister::getRequests($line['get']) . '"';
-            }elseif(!empty($line['id']) && VarsRegister::getId() != false){
-                $str .= ' data-' . $line['var'] . '="' .  VarsRegister::getId() . '"';
+            if(!empty($line['get']) && Vars::getRequests($line['get']) != false){
+                $str .= ' data-' . $line['var'] . '="' .  Vars::getRequests($line['get']) . '"';
+            }elseif(!empty($line['id']) && Vars::getId() != false){
+                $str .= ' data-' . $line['var'] . '="' .  Vars::getId() . '"';
             }elseif(!empty($line['value'])){
                 $str .= ' data-' . $line['var'] . '="{{ item.' . $line['value'] . ' }}"';
             }elseif(!empty($line['str'])){

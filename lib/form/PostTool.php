@@ -3,7 +3,7 @@
 namespace lib\form;
 
 use \lib\form\form\FormRender;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 /**
  * Description of PostTool
@@ -20,7 +20,7 @@ class PostTool
     public static function getMultiplePost($keyfield)
     {
         $values = [];
-        $posts = VarsRegister::getPosts();
+        $posts = Vars::getPosts();
         foreach (array_keys($posts) as $key) {
             if (strpos($key, $keyfield) !== false) {
                 if(substr($key, -4) == '_min'){
@@ -51,7 +51,7 @@ class PostTool
      */
     public static function getFilterFields($columns, $prefix)
     {
-        $posts = VarsRegister::getPosts();
+        $posts = Vars::getPosts();
         //var_dump($posts);
         $fields = [];
         $groups = [];

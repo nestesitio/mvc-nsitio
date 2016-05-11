@@ -3,7 +3,8 @@
 namespace lib\xml;
 
 use DOMXPath;
-use \lib\register\Registry;
+use \lib\register\Monitor;
+
 
 /**
  * Description of Xml
@@ -153,7 +154,7 @@ class Xml
 
         $items = $xpath->query($path);
         if (gettype($items) != 'object') {
-            Registry::setErrorMessages(null, 'XML Error: ' . gettype($items) . '->' . $path);
+            Monitor::setErrorMessages(null, 'XML Error: ' . gettype($items) . '->' . $path);
         }
         foreach ($items as $item) {
             if ($what == 'name') {

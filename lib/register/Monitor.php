@@ -13,7 +13,7 @@ namespace lib\register;
  * Class Monitor
  * @package lib\register
  */
-class Monitor
+class Monitor extends \lib\register\Registry
 {
     /**
      *

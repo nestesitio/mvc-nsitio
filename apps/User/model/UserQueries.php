@@ -3,7 +3,6 @@
 namespace apps\User\model;
 
 use \model\querys\UserBaseQuery;
-use \model\models\PrpPremiation;
 use \lib\mysql\Mysql;
 
 /**

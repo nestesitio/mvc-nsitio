@@ -2,8 +2,9 @@
 
 namespace lib\view;
 
-use \lib\register\Registry;
+
 use \lib\view\ParseString;
+use \lib\register\Monitor;
 
 /**
  * Description of ParseInclude
@@ -76,11 +77,11 @@ class ParseInclude
                 $this->include = 'layout' . DS . $file;
             }else{
                 $this->include = '';
-                Registry::setErrorMessages(null, 'Wrong path or unknow file for ' . ROOT . DS . 'layout|apps' . DS . $file);
+                Monitor::setErrorMessages(null, 'Wrong path or unknow file for ' . ROOT . DS . 'layout|apps' . DS . $file);
             }
         }else{
             $this->include = '';
-            Registry::setErrorMessages(null, 'Empty file.htm value for include');
+            Monitor::setErrorMessages(null, 'Empty file.htm value for include');
         }
     }
     /**

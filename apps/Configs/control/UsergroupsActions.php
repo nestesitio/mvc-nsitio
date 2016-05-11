@@ -2,7 +2,7 @@
 
 namespace apps\Configs\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 use \apps\Configs\model\UsergroupsQuery;
 use \model\models\UserGroup;
@@ -22,7 +22,7 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function usergroupsAction(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $query = UsergroupsQuery::get();
         $results = $this->buildDataGrid('usergroups', $query);
         #here you can process the results
@@ -48,7 +48,7 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editUsergroupsAction() {
-        $query = UsergroupsQuery::get()->filterById(VarsRegister::getId())->findOne();
+        $query = UsergroupsQuery::get()->filterById(Vars::getId())->findOne();
         $form = UserGroupForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'usergroups');
@@ -78,7 +78,7 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
             if($model->getAction() == UserGroup::ACTION_INSERT){
                 #operations after inserted
                 
-            }elseif($model->getAction() == UserGroup::ACTION_UPDATE){
+            }else{
                  #operations after updated
                 
             }
@@ -91,7 +91,7 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showUsergroupsAction(){
-        $model = UsergroupsQuery::get()->filterById(VarsRegister::getId())->findOne();
+        $model = UsergroupsQuery::get()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'usergroups');
     }
 
@@ -99,7 +99,7 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delUsergroupsAction() {
-        $model = \model\querys\UserGroupQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = \model\querys\UserGroupQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }
@@ -109,7 +109,7 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
      */
     public function exportUsergroupsAction(){
         $query = UsergroupsQuery::get();
-        $this->buildDataExport($query);
+        $this->buildCsvExport($query);
     }
 
 }

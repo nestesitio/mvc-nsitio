@@ -8,7 +8,7 @@ use \model\forms\SupportForm;
 use \model\forms\SupportLogForm;
 use \lib\form\input\HiddenInput;
 use \lib\session\SessionUser;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 /**
  * Description of SupportUserForm
@@ -102,7 +102,7 @@ class SupportUserForm extends \lib\form\FormMerged {
      */
     function getTypeInput() {
         $input = HiddenInput::create(Support::FIELD_TYPE);
-	$input->setValue(VarsRegister::getSlugVar());      
+	$input->setValue(Vars::getSlugVar());      
         return $input;
     }
 

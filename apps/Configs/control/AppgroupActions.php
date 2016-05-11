@@ -2,7 +2,7 @@
 
 namespace apps\Configs\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 use \model\models\UserGroupHasHtmApp;
 use \model\querys\UserGroupHasHtmAppQuery;
@@ -28,7 +28,7 @@ class AppgroupActions extends \lib\control\ControllerAdmin {
         return UserGroupHasHtmAppQuery::start()
                 ->joinUserGroup()->selectName()->selectDescription()->endUse()
                 ->joinHtmApp()->selectName()->endUse()
-                ->filterByHtmAppId(VarsRegister::getId());
+                ->filterByHtmAppId(Vars::getId());
     }
 
     /**
@@ -57,14 +57,14 @@ class AppgroupActions extends \lib\control\ControllerAdmin {
     public function newAppgroupAction() {
         $form = UserGroupHasHtmAppForm::initialize();
         $table = UserGroupHasHtmApp::TABLE;
-        $input = \lib\form\input\HiddenInput::create(UserGroupHasHtmApp::FIELD_HTM_APP_ID)->setValue(VarsRegister::getId());
-        //$input->setValue(VarsRegister::getId());
+        $input = \lib\form\input\HiddenInput::create()->setValue(Vars::getId());
+        //$input->setValue(Vars::getId());
         $form->setHtmAppIdInput($input);
 
         $form->setMultipleField($table, UserGroupHasHtmApp::FIELD_USER_GROUP_ID);
         $query = UserGroupQuery::start()
                 ->leftJoin(UserGroupHasHtmApp::TABLE, [UserGroup::FIELD_ID, UserGroupHasHtmApp::FIELD_USER_GROUP_ID])
-                ->addJoinCondition(UserGroupHasHtmApp::TABLE, UserGroupHasHtmApp::FIELD_HTM_APP_ID, VarsRegister::getId())
+                ->addJoinCondition(UserGroupHasHtmApp::TABLE, UserGroupHasHtmApp::FIELD_HTM_APP_ID, Vars::getId())
                 ->filterByColumnIsNull(UserGroupHasHtmApp::FIELD_HTM_APP_ID)->groupById();
         $form->setQuery($table, UserGroupHasHtmApp::FIELD_USER_GROUP_ID, $query);
         
@@ -79,7 +79,10 @@ class AppgroupActions extends \lib\control\ControllerAdmin {
         $form = UserGroupHasHtmAppForm::initialize()
                 ->setMultipleField($table, UserGroupHasHtmApp::FIELD_USER_GROUP_ID)
                 ->validate();
-        $this->buildMultipleProcess('bind', $form, 'appgroup');
+        $result = $this->buildMultipleProcess($form);
+        if($result == false){
+            $this->renderForm($form, 'appgroup');
+        }
         
     }
 
@@ -87,8 +90,8 @@ class AppgroupActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delAppgroupAction() {
-        $app = VarsRegister::getRequests('app');
-        $group = VarsRegister::getRequests('group');
+        $app = Vars::getRequests('app');
+        $group = Vars::getRequests('group');
         $model = UserGroupHasHtmAppQuery::start()->filterByHtmAppId($app)->filterByUserGroupId($group)->findOne();
         $this->deleteObject($model);
         

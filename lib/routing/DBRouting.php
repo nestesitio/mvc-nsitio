@@ -3,9 +3,10 @@
 namespace lib\routing;
 
 use \apps\Core\model\PageQuery;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \lib\session\Session;
-use \lib\register\Registry;
+use \lib\register\Monitor;
+
 
 
 /**
@@ -28,10 +29,10 @@ class DBRouting {
             if($page == false){
                 $page = false;
             }else{
-                \lib\session\SessionUser::warningUser('You don\'t have access to the page<br />' . VarsRegister::getRoute() . '.<br />Please login');
-                Registry::setErrorMessages(null, ['message' => 'You don\'t have access to this page, please login']);
-                if (VarsRegister::getRequests('js') == false) {
-                    Session::setPageReturn(VarsRegister::getRoute());
+                \lib\session\SessionUser::warningUser('You don\'t have access to the page<br />' . Vars::getRoute() . '.<br />Please login');
+                Monitor::setErrorMessages(null, ['message' => 'You don\'t have access to this page, please login']);
+                if (Vars::getRequests('js') == false) {
+                    Session::setPageReturn(Vars::getRoute());
                     \lib\url\Redirect::redirectToUrl('/user/login');
                 }else{
                     echo 'ERROR-PAGE-REDIRECT:/user/login';
@@ -41,11 +42,11 @@ class DBRouting {
                 return false;
             }
         }else{
-            VarsRegister::setTitle($page->getTitle());
-            VarsRegister::setHeadin($page->getHeading());
-            VarsRegister::setPage($page->getHtmId());
+            Vars::setTitle($page->getTitle());
+            Vars::setHeadin($page->getHeading());
+            Vars::setPage($page->getHtmId());
             
-            self::$controller = VarsRegister::getApp() . '/' . VarsRegister::getAction();
+            self::$controller = Vars::getApp() . '/' . Vars::getAction();
             
             return true;
         }

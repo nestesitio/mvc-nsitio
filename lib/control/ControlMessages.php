@@ -2,11 +2,12 @@
 
 namespace lib\control;
 
-use \lib\register\Registry;
-use \lib\tools\MemoryTools as MemoryTools;
+
+use \lib\tools\MemoryTools;
 use \lib\session\SessionUser;
 use \lib\loader\Configurator;
 use \apps\User\model\UserGroupModel;
+use \lib\register\Monitor;
 
 /**
  * Description of ControlMessages
@@ -96,12 +97,12 @@ class ControlMessages extends \lib\control\Controller
     {
         $flag = 0;
 
-        $errors = Registry::getErrorMessages();
+        $errors = Monitor::getErrorMessages();
         foreach ($errors as $error) {
             $this->dev_messages .= '<div class="dev_errors alert alert-warning"><b>ERROR: </b>' . $error['message'] . '</div>';
             $flag++;
         }
-        $msgs = Registry::getMonitor();
+        $msgs = Monitor::getMonitor();
         foreach ($msgs as $msg) {
             $this->dev_messages .= $msg->write();
             $flag++;

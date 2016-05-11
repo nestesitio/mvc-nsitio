@@ -2,7 +2,7 @@
 
 namespace lib\model;
 
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
 use \lib\session\SessionUser;
 
@@ -169,7 +169,7 @@ class Model
         if(SessionUser::getAuthUser() == false){
             //return null;
         }
-        Registry::setMonitor(Monitor::BOOKMARK, 'Save model ' . get_class($this) . ' to ' . $this->tableName);
+        Monitor::setMonitor(Monitor::BOOKMARK, 'Save model ' . get_class($this) . ' to ' . $this->tableName);
         $query = new \lib\model\QueryWrite($this);
         $query->save();
         $lastid = $query->getLastId();
@@ -215,11 +215,11 @@ class Model
         $query = new \lib\model\QueryWrite($this);
         $result = $query->delete();
         if($result == 0){
-            Registry::setMonitor(Monitor::QUERY, 'row was not deleted from ' . $this->tableName);
-            Registry::setUserMessages(null, 'row not deleted');
+            Monitor::setMonitor(Monitor::QUERY, 'row was not deleted from ' . $this->tableName);
+            Monitor::setUserMessages(null, 'row not deleted');
         }else{
-            Registry::setMonitor(Monitor::QUERY, $result . ' row deleted from ' . $this->tableName);
-            Registry::setUserMessages(null, $result . ' row deleted');
+            Monitor::setMonitor(Monitor::QUERY, $result . ' row deleted from ' . $this->tableName);
+            Monitor::setUserMessages(null, $result . ' row deleted');
         }
         return $result;
     }
@@ -293,7 +293,7 @@ class Model
         if(isset($this->columns[$column])){
             return $this->columns[$column];
         }else{
-            Registry::setMonitor(Monitor::DATA, 'Invalid column ' . $column);
+            Monitor::setMonitor(Monitor::DATA, 'Invalid column ' . $column);
             return null;
         }
     }

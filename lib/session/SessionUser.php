@@ -2,14 +2,14 @@
 
 namespace lib\session;
 
-use \lib\register\Registry;
-use \lib\register\Monitor;
+
 use \model\querys\UserBaseQuery;
 use \model\models\UserBase;
 use \apps\User\model\UserGroupModel;
 use \lib\session\Session;
 use \lib\session\SessionUserTools;
 use \lib\mysql\Mysql;
+use \lib\register\Monitor;
 
 
 /**
@@ -27,7 +27,7 @@ class SessionUser extends \lib\session\SessionUserBase
     {
         $session = Session::getSessionVar(Session::SESS_USER);
         if($session != false){
-            Registry::setMonitor(Monitor::SESSION, 'Session is true');
+            Monitor::setMonitor(Monitor::SESSION, 'Session is true');
             if($session['time'] > time()){
                 $user = SessionUserTools::getUserSession($session[self::KEY_GROUPID])->filterById($session[self::KEY_ID])->findOne();
             }else{
@@ -45,15 +45,15 @@ class SessionUser extends \lib\session\SessionUserBase
 
         }else{
             // don't have session registered
-            Registry::setMonitor(Monitor::SESSION, 'USER SESSION IS FALSE');
+            Monitor::setMonitor(Monitor::SESSION, 'USER SESSION IS FALSE');
             $user = self::userQuery()
                     ->joinUserGroup()->selectName()->filterByName(UserGroupModel::GROUP_VISITOR)->endUse()->findOne();
             $player = $user;
         }
         $str = self::setUserVarsSession($user, Session::SESS_USER);
-        Registry::setMonitor(Monitor::SESSION, '[<b>USER</b>] ' . $str);
+        Monitor::setMonitor(Monitor::SESSION, '[<b>USER</b>] ' . $str);
         if(!isset($player)){
-            Registry::setMonitor(Monitor::SESSION, 'No player ');
+            Monitor::setMonitor(Monitor::SESSION, 'No player ');
             $session = Session::getSessionVar(Session::SESS_PLAYER);
             if($session[self::KEY_ID] == self::getUserId() || $session == false){
                 $player = $user;

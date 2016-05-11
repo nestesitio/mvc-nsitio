@@ -2,11 +2,15 @@
 
 namespace apps\Admin\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
-use \apps\Admin\model\UsersQuery;
-use \model\models\User;
-use \model\forms\UserForm;
+use \model\models\UserBase;
+use \model\querys\UserBaseQuery;
+use \apps\Admin\model\UsersForm;
+use \model\forms\UserBaseForm;
+use \apps\User\model\UserGroupModel;
+use \model\querys\UserGroupQuery;
+use \apps\Admin\model\UsersQueries;
 
 /**
  * Description of UsersActions
@@ -21,8 +25,8 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function usersAction(){
-        $this->set('h1', VarsRegister::getHeading());
-        $query = UsersQuery::get();
+        $this->set('h1', Vars::getHeading());
+        $query = UsersQueries::get()->orderByName();
         $results = $this->buildDataGrid('users', $query);
         #here you can process the results
         $this->renderList($results);
@@ -36,19 +40,25 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function listUsersAction(){
-        $query = UsersQuery::get();
+        $query = UsersQueries::get();
         $results = $this->buildDataList('users', $query);
         #here you can process the results
         $this->renderList($results);
     }
-
-
-    /**
-     *
-     */
+    
+    private function getUserGroupInput(){
+        $input = \lib\form\input\HiddenInput::create();
+        $group = UserGroupQuery::start()->filterByName(UserGroupModel::GROUP_USER)->findOne();
+        $input->setDefault($group->getId());
+        return $input;
+    }
+    
+    
     public function editUsersAction() {
-        $query = UsersQuery::get()->filterById(VarsRegister::getId())->findOne();
-        $form = UserForm::initialize()->setQueryValues($query);
+        $query = UsersQueries::get()->filterById(Vars::getId())->findOne();
+        $form = UsersForm::initialize();
+        //$form->setUserGroupIdInput($this->getUserGroupInput());
+        $form->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'users');
     }
@@ -58,28 +68,40 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function newUsersAction() {
-        $form = UserForm::initialize();
+        $form = UsersForm::initialize();
         #more code about $form and $query
         $this->renderForm($form, 'users');
     }
-
-    /**
-     *
-     */
+    
     public function bindUsersAction() {
-        $form = UserForm::initialize()->validate();
+        $form = UsersForm::initialize();
+        $password = $form->getPassword();
+        $form->unsetPasswordInput();
+        $form = $form->validate();
         #more code for processing - example
         #$model = $form->getModels('table')->setColumnValue('field','value');
         #$form->setModel('table', $model);
         $model = $this->buildProcess($form, 'users');
         if($model !== false){
-            #$result is a model
-            if($model->getAction() == User::ACTION_INSERT){
+            #result is the model
+            if($model->getAction() == UserBase::ACTION_INSERT){
                 #operations after inserted
+                Monitor::setMonitor(Monitor::BOOKMARK, 'Created');
+                $log = new \model\models\UserLog();
+                $log->setUserId($model->getColumnValue(UserBase::FIELD_ID));
+                $log->setEvent(\model\models\UserLog::EVENT_CREATED);
+                $log->save();
+                Monitor::setMonitor(Monitor::BOOKMARK, 'Log ' . $log->getId());
                 
-            }elseif($model->getAction() == User::ACTION_UPDATE){
-                 #operations after updated
+                $info = new \model\models\UserInfo();
+                $info->setUserId($model->getId());
+                $info->save();
                 
+            }
+            
+            if($password != false){
+                $model->setPassword($password);
+                \lib\guard\Guard::setKeys($model);
             }
             
             $this->showUsersAction();
@@ -90,7 +112,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showUsersAction(){
-        $model = UsersQuery::get()->filterById(VarsRegister::getId())->findOne();
+        $model = UsersQueries::get()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'users');
     }
 
@@ -98,17 +120,17 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delUsersAction() {
-        $model = \model\querys\UserQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = UserBaseQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }
-
+    
     /**
      *
      */
-    public function exportUsersAction(){
-        $query = UsersQuery::get();
-        $this->buildDataExport($query);
+    public function csvUsersAction(){
+        $query = UsersQueries::get();
+        $this->buildCsvExport($query, 'users', 'users');
     }
 
 }

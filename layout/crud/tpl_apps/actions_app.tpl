@@ -2,7 +2,7 @@
 
 namespace apps\%$nameApp%\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \apps\%$nameApp%\model\%$className%Queries;
 use \model\models\%$modelName%;
 
@@ -16,14 +16,14 @@ use \model\models\%$modelName%;
 class %$className%Actions extends \lib\control\Controller {
 
     public function %$fileName%Action(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $itens = %$className%Queries::get()->find();
         $this->renderCollection($itens, 'list');
         
     }
     
     public function page%$className%Action(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $query = %$className%Queries::get();
     }
     

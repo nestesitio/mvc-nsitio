@@ -2,9 +2,8 @@
 
 namespace lib\filter;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \lib\session\Session;
-use \lib\register\Registry;
 use \lib\register\Monitor;
 
 use \lib\mysql\Mysql;
@@ -60,7 +59,7 @@ class SessionFilter
                 }
             }elseif(isset($filters[$field])){
                 self::$filters[$app][$field] = $filters[$field];
-                Registry::setMonitor(Monitor::SESSION, ' Filters:[' . $app . ']' . $field . '=' . $filters[$field]);
+                Monitor::setMonitor(Monitor::SESSION, ' Filters:[' . $app . ']' . $field . '=' . $filters[$field]);
             }elseif($config->getConfigValue('default') != null){
                 self::$filters[$app][$field] = $config->getConfigValue('default');
             }
@@ -91,7 +90,7 @@ class SessionFilter
      */
     public static function getSorts($app)
     {
-        $getfield = VarsRegister::getRequests('sort');
+        $getfield = Vars::getRequests('sort');
         $filters = Session::getSessionFilter($app, 'sort');
         $i = 0;
 
@@ -160,7 +159,7 @@ class SessionFilter
     public static function getControllerPaging($app)
     {
         if (!isset(self::$pagings[$app]['paging'])) {
-            $value = VarsRegister::getRequests('paging');
+            $value = Vars::getRequests('paging');
             if ($value == false) {
                 $value = Session::getSessionFilter($app, 'paging');
                 if ($value == false) {

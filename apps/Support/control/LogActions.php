@@ -2,7 +2,7 @@
 
 namespace apps\Support\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 use \model\models\SupportLog;
 use \model\querys\SupportLogQuery;
@@ -21,7 +21,7 @@ class LogActions extends \lib\control\ControllerAdmin {
      *
      */
     public function logAction(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $query = SupportLogQuery::start();
         $this->buildDataGrid('log', $query);
         $form = SupportLogForm::initialize()->prepareFilters();
@@ -42,7 +42,7 @@ class LogActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editLogAction() {
-        $query = SupportLogQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $query = SupportLogQuery::start()->filterById(Vars::getId())->findOne();
         $form = SupportLogForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'log');
@@ -85,7 +85,7 @@ class LogActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showLogAction(){
-        $model = SupportLogQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = SupportLogQuery::start()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'log');
     }
 
@@ -93,7 +93,7 @@ class LogActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delLogAction() {
-        $model = SupportLogQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = SupportLogQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }

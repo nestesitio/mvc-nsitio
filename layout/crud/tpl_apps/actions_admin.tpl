@@ -2,7 +2,7 @@
 
 namespace apps\%$nameApp%\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 use \apps\%$nameApp%\model\%$className%Queries;
 use \model\models\%$modelName%;
@@ -18,7 +18,7 @@ use \apps\%$nameApp%\model\%$className%Form;
 class %$className%Actions extends \lib\control\ControllerAdmin {
 
     public function %$fileName%Action(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $query = %$className%Queries::get();
         $results = $this->buildDataGrid('%$fileName%', $query);
         #here you can process the results
@@ -38,7 +38,7 @@ class %$className%Actions extends \lib\control\ControllerAdmin {
     
     
     public function edit%$className%Action() {
-        $query = %$className%Queries::get()->filterById(VarsRegister::getId())->findOne();
+        $query = %$className%Queries::get()->filterById(Vars::getId())->findOne();
         $form = %$className%Form::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, '%$fileName%');
@@ -72,12 +72,12 @@ class %$className%Actions extends \lib\control\ControllerAdmin {
     }
     
     public function show%$className%Action(){
-        $model = %$className%Queries::get()->filterById(VarsRegister::getId())->findOne();
+        $model = %$className%Queries::get()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, '%$fileName%');
     }
     
     public function del%$className%Action() {
-        $model = \model\querys\%$modelName%Query::start()->filterById(VarsRegister::getId())->findOne();
+        $model = \model\querys\%$modelName%Query::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }

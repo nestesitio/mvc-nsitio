@@ -2,8 +2,8 @@
 
 namespace apps\Core\control;
 
-use \lib\register\VarsRegister;
-use \lib\register\Registry;
+use \lib\register\Vars;
+
 
 use \apps\Core\model\FilesQuery;
 use \model\models\HtmMedia;
@@ -29,9 +29,9 @@ class FilesActions extends \lib\control\ControllerAdmin {
 
         $query = FilesQuery::get()->orderByCreated(\lib\mysql\Mysql::DESC)
                 ->filterByGenre(HtmMedia::GENRE_IMG)
-                ->filterByPosition(VarsRegister::getRequests('position'))
-                ->filterByHtmId(VarsRegister::getId());
-        \lib\session\SessionConfig::addId(VarsRegister::getId());
+                ->filterByPosition(Vars::getRequests('position'))
+                ->filterByHtmId(Vars::getId());
+        \lib\session\SessionConfig::addId(Vars::getId());
         $this->listFiles($query);
     }
 
@@ -39,11 +39,11 @@ class FilesActions extends \lib\control\ControllerAdmin {
      * @param $query
      */
     private function listFiles($query){
-        $configs = $this->getConfigs(VarsRegister::getPosts('position'));
+        $configs = $this->getConfigs(Vars::getPosts('position'));
         $this->set('action-remove', $configs['action-remove']);
         $this->set('data-insert', $configs['action-insert']);
-        $this->set('data-id', VarsRegister::getId());
-        $this->set('data-position', VarsRegister::getRequests('position'));
+        $this->set('data-id', Vars::getId());
+        $this->set('data-position', Vars::getRequests('position'));
         //$results = $this->buildDataGrid('images', $query);
         $results = $this->getQueryToList($query);
         #here you can process the results
@@ -79,8 +79,8 @@ class FilesActions extends \lib\control\ControllerAdmin {
     public function newFilesAction() {
         $this->setView('fileinput');
         $this->set('data-url', '/core/upload_files');
-        $this->set('data-position', VarsRegister::getRequests('position'));
-        $this->set('data-mime', $this->getDataMime(VarsRegister::getRequests('genre')));
+        $this->set('data-position', Vars::getRequests('position'));
+        $this->set('data-mime', $this->getDataMime(Vars::getRequests('genre')));
         
     }
 
@@ -89,12 +89,12 @@ class FilesActions extends \lib\control\ControllerAdmin {
      */
     public function removeimgFilesAction(){
         $this->setView('file_remove');
-        $query = HtmMediaQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $query = HtmMediaQuery::start()->filterById(Vars::getId())->findOne();
         $result = \lib\media\UploadFile::removeFile($query->getUrl());
         if($result == true){
             $this->delFilesAction();
         }  else {
-            Registry::setUserMessages('file', 'File was not deleted...');
+            Monitor::setUserMessages('file', 'File was not deleted...');
         }
         
         
@@ -116,19 +116,19 @@ class FilesActions extends \lib\control\ControllerAdmin {
     public function uploadFilesAction() {
         $this->layout = false;
         $this->setEmptyView();
-        $configs = $this->getConfigs(VarsRegister::getPosts('position'));
+        $configs = $this->getConfigs(Vars::getPosts('position'));
         $this->id = SessionConfig::getId();
         $action = new \lib\media\UploadFile();
         $action->setFolder('userfiles/' . $configs['folder'] . '/');
         $action->execute($configs['width'], $configs['height']);
         $result = $action->getResult();
         if($result != false){
-            $title = VarsRegister::getPosts('title');
+            $title = Vars::getPosts('title');
             $media = new HtmMedia();
             $media->setHtmId($this->id);
             $media->setGenre($configs['genre']);
             $media->setUrl($result);
-            $media->setPosition(VarsRegister::getPosts('position'));
+            $media->setPosition(Vars::getPosts('position'));
             $media->setTitle($title);           
             $media->save();
             $name = $action->resolveName($title, $media->getId());
@@ -148,7 +148,7 @@ class FilesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editFilesAction() {
-        $query = FilesQuery::get()->filterById(VarsRegister::getId())->findOne();
+        $query = FilesQuery::get()->filterById(Vars::getId())->findOne();
         $form = HtmMediaForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'files');
@@ -182,7 +182,7 @@ class FilesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showFilesAction(){
-        $model = FilesQuery::get()->filterById(VarsRegister::getId())->findOne();
+        $model = FilesQuery::get()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'files');
     }
 
@@ -190,7 +190,7 @@ class FilesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delFilesAction() {
-        $model = \model\querys\HtmMediaQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = \model\querys\HtmMediaQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }

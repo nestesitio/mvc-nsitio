@@ -2,7 +2,7 @@
 
 namespace apps\Core\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 use \apps\Core\model\PagesQuery;
 use \model\forms\HtmPageForm;
@@ -114,7 +114,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editPagesAction() {
-        $query = PagesQuery::get()->filterById(VarsRegister::getId())->findOne();
+        $query = PagesQuery::get()->filterById(Vars::getId())->findOne();
         $form = PagesForm::init('home')->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'pages');
@@ -157,7 +157,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showPagesAction(){
-        $model = PagesQuery::get()->filterById(VarsRegister::getId())->findOne();
+        $model = PagesQuery::get()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'pages');
     }
 
@@ -165,7 +165,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delPagesAction() {
-        $model = \model\querys\HtmPageQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = \model\querys\HtmPageQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }

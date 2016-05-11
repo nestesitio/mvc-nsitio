@@ -2,7 +2,7 @@
 
 namespace lib\tools;
 
-use \lib\register\Registry;
+use \lib\register\Monitor;
 
 /**
  * Description of MemoryTools
@@ -17,7 +17,7 @@ class MemoryTools
      */
     public static function getMemoryUsage()
     {
-        return ((memory_get_peak_usage() - Registry::getMemoryInitial()['mem'])/1024);
+        return ((memory_get_peak_usage() - Monitor::getMemoryInitial()['mem'])/1024);
     }
 
     /**
@@ -33,7 +33,7 @@ class MemoryTools
      */
     public static function getTimeExecution()
     {
-        $t = ((microtime(true) - Registry::getMemoryInitial()['time']) / 1000000 );
+        $t = ((microtime(true) - Monitor::getMemoryInitial()['time']) / 1000000 );
         return number_format($t, 10, '.', ' ');
     }
 

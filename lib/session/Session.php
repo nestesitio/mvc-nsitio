@@ -2,10 +2,10 @@
 
 namespace lib\session;
 
-use \lib\register\Registry;
+
 use \lib\register\Monitor;
 use \lib\session\SessionUser;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 /**
  * Description of Session
@@ -215,11 +215,11 @@ class Session
         if($field == null){
             $_SESSION[self::SESS_FILTER][$app][$type] = $value;
             self::$sessionFilters[$app][$type] = $value;
-            Registry::setMonitor(Monitor::SESSION, self::SESS_FILTER . ': ' . $app . ' - ' . $type . ': ' . $value);
+            Monitor::setMonitor(Monitor::SESSION, self::SESS_FILTER . ': ' . $app . ' - ' . $type . ': ' . $value);
         }else{
             $_SESSION[self::SESS_FILTER][$app][$type][$field] = $value;
             self::$sessionFilters[$app][$type][$field] = $value;
-            Registry::setMonitor(Monitor::SESSION, self::SESS_FILTER . ': ' . $app . ' - ' . $type . ': ' . $field . ' = ' . $value);
+            Monitor::setMonitor(Monitor::SESSION, self::SESS_FILTER . ': ' . $app . ' - ' . $type . ': ' . $field . ' = ' . $value);
         }
     }
 
@@ -315,7 +315,7 @@ class Session
     {
         $ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
         $ip = filter_var($ip, FILTER_VALIDATE_IP);
-        VarsRegister::setIp($ip);
+        Vars::setIp($ip);
 
     }
 

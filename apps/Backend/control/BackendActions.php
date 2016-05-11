@@ -2,7 +2,7 @@
 
 namespace apps\Backend\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \model\querys\ProjectQuery;
 
 /**
@@ -18,7 +18,7 @@ class BackendActions extends \lib\control\Controller {
      */
     public function defaultAction() {
         $this->setView('dashboard');
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         
     }
     

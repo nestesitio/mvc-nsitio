@@ -1,12 +1,11 @@
 <?php
 namespace lib\bkegenerator;
 
-use \lib\register\Registry;
 use \lib\register\Monitor;
 use \lib\session\SessionUser;
 use \lib\filter\SessionFilter;
 use \lib\bkegenerator\Config;
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 /**
  * Description of DataGrid
@@ -31,7 +30,7 @@ class DataGrid extends \lib\bkegenerator\DataConfig
      */
     public function doList()
     {
-        Registry::setMonitor(Monitor::BOOKMARK, 'do the List');
+        Monitor::setMonitor(Monitor::BOOKMARK, 'do the List');
         $this->setPaging();
         $this->renderColumns();
         $this->renderTools();
@@ -126,15 +125,15 @@ class DataGrid extends \lib\bkegenerator\DataConfig
         if (!empty($url)) {
             $btn = '<a href="' . $url . '"  class="btn btn-xs btn-default">';
         }elseif (!empty($target)) {
-            $btn = '<a href="/' . VarsRegister::getApp();
+            $btn = '<a href="/' . Vars::getApp();
             $btn .= '/' . $this->x_conf->queryXPath($path, 'atr', 'action');
-            $btn .= '/' . VarsRegister::getId();
+            $btn .= '/' . Vars::getId();
             $btn .= $this->findVars($path);
             $btn .= '" target="' . $target . '"  class="btn btn-xs btn-default">';
         } else {
             $btn = '<a data-action="' . $this->x_conf->queryXPath($path, 'atr', 'action') . '"';
             $btn .= $this->findVars($path);
-            $btn .= ' data-id="' . VarsRegister::getId() . '" class="' . $class . '">';
+            $btn .= ' data-id="' . Vars::getId() . '" class="' . $class . '">';
             foreach ($this->querystring as $key => $value) {
                 $btn = str_replace('<a ', '<a data-' . $key . '="' . $value . '"', $btn);
             }
@@ -224,7 +223,7 @@ class DataGrid extends \lib\bkegenerator\DataConfig
             $th .= '<td class="' . $class . '">';
             $th .= $this->findLabel($path);
             if($class != 'id'){
-                $sort = VarsRegister::getApp() . '/list_{{ canonical }}';
+                $sort = Vars::getApp() . '/list_{{ canonical }}';
                 if($this->x_conf->queryXPath($path, 'atr', 'sort') == 'true'){
                     $th .= '<a class="btn-sort" data-field="' . $this->x_conf->queryXPath($path, 'atr', 'field') . '"'
                             . ' data-action="' . $sort . '">'

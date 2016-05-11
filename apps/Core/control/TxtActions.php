@@ -2,7 +2,7 @@
 
 namespace apps\Core\control;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 
 use \apps\Admin\model\TxtQuery;
 use \model\models\HtmPage;
@@ -23,7 +23,7 @@ class TxtActions extends \lib\control\ControllerAdmin {
      *
      */
     public function txtAction(){
-        $this->set('h1', VarsRegister::getHeading());
+        $this->set('h1', Vars::getHeading());
         $query = TxtQuery::get();
         $results = $this->buildDataGrid('txt', $query);
         #here you can process the results
@@ -39,14 +39,14 @@ class TxtActions extends \lib\control\ControllerAdmin {
     public function langTxtAction(){
         $this->setView('edit_text');
         
-        $query = PagesQuery::getLangs(VarsRegister::getId())->find();
-        $action = VarsRegister::getApp() . '/lang_txt';
-        $this->renderLangActions($query, VarsRegister::getId(), $action, VarsRegister::getRequests('lang'));
+        $query = PagesQuery::getLangs(Vars::getId())->find();
+        $action = Vars::getApp() . '/lang_txt';
+        $this->renderLangActions($query, Vars::getId(), $action, Vars::getRequests('lang'));
         
-        $form = TxtForm::init(VarsRegister::getId(), VarsRegister::getRequests('lang'));
-        $query = PagesQuery::getPageByLang(VarsRegister::getId(), VarsRegister::getRequests('lang'))->findOne();
+        $form = TxtForm::init(Vars::getId(), Vars::getRequests('lang'));
+        $query = PagesQuery::getPageByLang(Vars::getId(), Vars::getRequests('lang'))->findOne();
         $form->setQueryValues($query);
-        $this->renderForm($form, 'txt', 'bind_txt', ['lang'=>VarsRegister::getRequests('lang')]);
+        $this->renderForm($form, 'txt', 'bind_txt', ['lang'=>Vars::getRequests('lang')]);
     }
 
 
@@ -65,7 +65,7 @@ class TxtActions extends \lib\control\ControllerAdmin {
      *
      */
     public function bindTxtAction() {
-        $form = TxtForm::init(VarsRegister::getId(), VarsRegister::getRequests('lang'))->validate();
+        $form = TxtForm::init(Vars::getId(), Vars::getRequests('lang'))->validate();
         #more code for processing - example
         #$model = $form->getModels('table')->setColumnValue('field','value');
         #$form->setModel('table', $model);
@@ -79,7 +79,7 @@ class TxtActions extends \lib\control\ControllerAdmin {
                  #operations after updated
                 
             }
-            VarsRegister::setId($model->getHtmId());
+            Vars::setId($model->getHtmId());
             $this->showTxtAction();
         }
     }
@@ -90,11 +90,11 @@ class TxtActions extends \lib\control\ControllerAdmin {
     public function showTxtAction(){
         $this->setView('show_text');
         
-        $query = PagesQuery::getLangs(VarsRegister::getId())->find();
-        $action = VarsRegister::getApp() . '/lang_txt';
-        $this->renderLangActions($query, VarsRegister::getId(), $action, VarsRegister::getRequests('lang'));
-        $this->set('datalang', VarsRegister::getRequests('lang'));
-        $model = PagesQuery::getPageByLang(VarsRegister::getId(), VarsRegister::getRequests('lang'))->findOne();
+        $query = PagesQuery::getLangs(Vars::getId())->find();
+        $action = Vars::getApp() . '/lang_txt';
+        $this->renderLangActions($query, Vars::getId(), $action, Vars::getRequests('lang'));
+        $this->set('datalang', Vars::getRequests('lang'));
+        $model = PagesQuery::getPageByLang(Vars::getId(), Vars::getRequests('lang'))->findOne();
         $this->renderValues($model, 'txt');
     }
 
@@ -102,7 +102,7 @@ class TxtActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delTxtAction() {
-        $model = \model\querys\HtmPageQuery::start()->filterById(VarsRegister::getId())->findOne();
+        $model = \model\querys\HtmPageQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }

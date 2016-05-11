@@ -2,7 +2,7 @@
 
 namespace lib\filter;
 
-use \lib\register\VarsRegister;
+use \lib\register\Vars;
 use \lib\filter\SessionFilter;
 use \lib\bkegenerator\Config;
 use \lib\model\QuerySelect;
@@ -36,11 +36,11 @@ class QueryFilter
      */
     public static function filter($query, $config)
     {
-        $clear = VarsRegister::getRequests('clear-filters');
+        $clear = Vars::getRequests('clear-filters');
         if($clear == 1){
-            \lib\session\Session::unsetFilter(VarsRegister::getCanonical(), 'filter');
-            \lib\session\Session::unsetFilter(VarsRegister::getCanonical(), 'sort');
-            \lib\session\Session::unsetFilter(VarsRegister::getCanonical(), 'paging');
+            \lib\session\Session::unsetFilter(Vars::getCanonical(), 'filter');
+            \lib\session\Session::unsetFilter(Vars::getCanonical(), 'sort');
+            \lib\session\Session::unsetFilter(Vars::getCanonical(), 'paging');
         }
         $obj = new QueryFilter($query);
         $obj->setLimit();
@@ -69,7 +69,7 @@ class QueryFilter
     public function __construct(QuerySelect $query)
     {
         $this->query = $query;
-        $this->controller = VarsRegister::getCanonical();
+        $this->controller = Vars::getCanonical();
     }
 
     /**
@@ -155,7 +155,7 @@ class QueryFilter
     public function setFilters(Config $config)
     {
         $columns = $this->query->getColumns();
-        //\lib\session\Session::unsetFilter(VarsRegister::getCanonical(), 'filter');
+        //\lib\session\Session::unsetFilter(Vars::getCanonical(), 'filter');
         $filters = SessionFilter::getFilters($this->controller, $config, $columns);
         foreach($filters as $key => $value){
             $config->setIndex($key);
@@ -189,13 +189,13 @@ class QueryFilter
     public static function getFilterPost($field)
     {
         //sellerinvoice_filter_group
-        $key = VarsRegister::getCanonical() . '_filter_' . $field;
-        $post = VarsRegister::getPosts($key);
+        $key = Vars::getCanonical() . '_filter_' . $field;
+        $post = Vars::getPosts($key);
         if($post != false){
-            Session::setSessionFilter(VarsRegister::getCanonical(), 'filter', $post, $field);
+            Session::setSessionFilter(Vars::getCanonical(), 'filter', $post, $field);
             return $post;
         }else{
-            $filters = Session::getSessionFilter(VarsRegister::getCanonical(), 'filter');
+            $filters = Session::getSessionFilter(Vars::getCanonical(), 'filter');
             if(isset($filters[$field])){
                 return $filters[$field];
             }
