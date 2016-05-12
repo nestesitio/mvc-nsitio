@@ -27,6 +27,7 @@ use \lib\control\ControlTools;
 use \lib\register\Monitor;
 use \lib\view\View;
 use \lib\register\Vars;
+use \lib\loader\Configurator;
 
 class Controller
 {
@@ -299,6 +300,13 @@ class Controller
     {
         Monitor::setMonitor(Monitor::CONTROL, get_class($this));
         $this->app = \lib\register\Vars::getApp();
+        $this->configSet();
+    }
+    
+    
+    private function configSet(){
+        $defaults = Configurator::geHtmlConf();
+        $this->set('site-title', $defaults['title']);
     }
 
     /**

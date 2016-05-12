@@ -32,7 +32,10 @@ class Configurator
      * @var array
      */
     private static $googleconf = [];
-
+    /**
+     * @var array
+     */
+    private static $site_title = [];
     /**
      * @var bool
      */
@@ -58,6 +61,7 @@ class Configurator
 
         $this->setDbConf();
         $this->setGoogleConf();
+        $this->setHtmlConf();
 
     }
 
@@ -100,6 +104,14 @@ class Configurator
 
         self::$googleconf['devkey'] = $this->xmlc->queryXPath($path, null, 'devkey');
     }
+    /**
+     *
+     */
+    private function setHtmlConf()
+    {
+        $path = 'html';
+        self::$site_title['title'] = $this->xmlc->queryXPath($path, null, 'title');
+    }
 
     /**
      * @return array
@@ -116,6 +128,15 @@ class Configurator
     {
         return self::$googleconf;
     }
+    
+    /**
+     * @return array
+     */
+    public static function geHtmlConf()
+    {
+        return self::$site_title;
+    }
+
 
     /**
      * @return bool

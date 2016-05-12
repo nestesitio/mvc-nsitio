@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Stage CMS MVC</title>
+        <title>{{ site-title }}</title>
         <link rel="icon" type="image/x-icon" href="/images/gc.ico" />
 
         <!-- Bootstrap Core CSS -->
@@ -21,16 +21,7 @@
         <link href="/css/personal/brand.css" rel="stylesheet">
         <link href="/css/personal/frontend.css" rel="stylesheet">
         <link href="{{ dynamiccss }}"  rel="stylesheet">
-        <style>
-            header{padding: 100px 0 0}
-            @media (max-width: 1198px) {
-                header{padding: 150px 0 0}
-            }
-            @media (max-width: 768px) {
-                header{padding: 50px 0 0}
-            }
-            section{padding: 50px}
-        </style>
+        <style>{{}}</style>
 
         <!-- Custom Fonts -->
         <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -48,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">Stage CMS MVC</a>
+                    <a class="navbar-brand" href="/">{{ site-title }}</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
