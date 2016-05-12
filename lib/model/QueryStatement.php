@@ -19,7 +19,7 @@ class QueryStatement extends \lib\model\Query
 
     /**
      * @param $column
-     * @return $this
+     * @return \QueryStatement
      */
     public function groupBy($column)
     {
@@ -29,7 +29,7 @@ class QueryStatement extends \lib\model\Query
 
     /**
      * @param $expression
-     * @return $this
+     * @return \QueryStatement
      */
     public function setHaving($expression)
     {
@@ -40,7 +40,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $column
      * @param string $order
-     * @return $this
+     * @return \QueryStatement
      */
     public function setFirstSort($column, $order = Mysql::ASC)
     {
@@ -51,7 +51,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $column
      * @param string $order
-     * @return $this
+     * @return \QueryStatement
      */
     public function orderBy($column, $order = Mysql::ASC)
     {
@@ -60,7 +60,7 @@ class QueryStatement extends \lib\model\Query
     }
 
     /**
-     * @return $this
+     * @return \QueryStatement
      */
     public function cleanSelect()
     {
@@ -74,7 +74,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $column
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function setDistinct($column, $alias = null)
     {
@@ -86,7 +86,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $column
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function countDistinct($column, $alias = null)
     {
@@ -98,7 +98,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $column
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function setSelect($column, $alias = null)
     {
@@ -113,7 +113,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $expression
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function setCustomSelect($expression, $alias)
     {
@@ -129,7 +129,7 @@ class QueryStatement extends \lib\model\Query
      * @param $search
      * @param string $modifier
      * @param $value
-     * @return $this
+     * @return \QueryStatement
      */
     public function match($fields, $search, $modifier = Mysql::SEARCH_BOOLEAN, $value = null)
     {
@@ -149,17 +149,39 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param $field
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function setSum($field, $alias)
     {
         $this->setCustomSelect('SUM(' . $field . ')', $alias);
         return $this;
     }
+    
+    /**
+     * @param $field
+     * @param $alias
+     * @return \QueryStatement
+     */
+    public function setMax($field, $alias)
+    {
+        $this->setCustomSelect('MAX(' . $field . ')', $alias);
+        return $this;
+    }
+    
+    /**
+     * @param $field
+     * @param $alias
+     * @return \QueryStatement
+     */
+    public function setMin($field, $alias)
+    {
+        $this->setCustomSelect('MIN(' . $field . ')', $alias);
+        return $this;
+    }
 
     /**
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function setCount($alias)
     {
@@ -170,7 +192,7 @@ class QueryStatement extends \lib\model\Query
     /**
      * @param int $row_count
      * @param int $offset
-     * @return $this
+     * @return \QueryStatement
      */
     public function limit($row_count = 1, $offset = 0)
     {
@@ -183,7 +205,7 @@ class QueryStatement extends \lib\model\Query
      * @param $join
      * @param $relation
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function join($table, $join, $relation, $alias = null)
     {
@@ -195,7 +217,7 @@ class QueryStatement extends \lib\model\Query
      * @param $table
      * @param $relation
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function leftJoin($table, $relation, $alias = null)
     {
@@ -207,7 +229,7 @@ class QueryStatement extends \lib\model\Query
      * @param $table
      * @param $relation
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function innerJoin($table, $relation, $alias = null)
     {
@@ -219,7 +241,7 @@ class QueryStatement extends \lib\model\Query
      * @param $table
      * @param $relation
      * @param $alias
-     * @return $this
+     * @return \QueryStatement
      */
     public function rightJoin($table, $relation, $alias = null)
     {
@@ -232,7 +254,7 @@ class QueryStatement extends \lib\model\Query
      * @param $column
      * @param $value
      * @param string $operator
-     * @return $this
+     * @return \QueryStatement
      */
     public function addJoinCondition($table, $column, $value, $operator = Mysql::EQUAL)
     {
@@ -244,7 +266,7 @@ class QueryStatement extends \lib\model\Query
      * @param $leftcol
      * @param $rightcol
      * @param string $operator
-     * @return $this
+     * @return \QueryStatement
      */
     public function setJoinCondition($leftcol, $rightcol, $operator = Mysql::EQUAL)
     {
