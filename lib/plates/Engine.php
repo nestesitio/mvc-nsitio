@@ -1,16 +1,16 @@
 <?php
 
-namespace League\Plates;
+namespace lib\plates;
 
-use League\Plates\Extension\ExtensionInterface;
-use League\Plates\Template\Data;
-use League\Plates\Template\Directory;
-use League\Plates\Template\FileExtension;
-use League\Plates\Template\Folders;
-use League\Plates\Template\Func;
-use League\Plates\Template\Functions;
-use League\Plates\Template\Name;
-use League\Plates\Template\Template;
+use lib\plates\Extension\ExtensionInterface;
+use lib\plates\Template\Data;
+use lib\plates\Template\Directory;
+use lib\plates\Template\FileExtension;
+use lib\plates\Template\Folders;
+use lib\plates\Template\Func;
+use lib\plates\Template\Functions;
+use lib\plates\Template\Name;
+use lib\plates\Template\Template;
 
 /**
  * Template API and environment settings storage.
@@ -153,7 +153,7 @@ class Engine
 
     /**
      * Get all preassigned template data.
-     * @param  null|string $template;
+     * @param  null|string $template
      * @return array
      */
     public function getData($template = null)
@@ -163,8 +163,8 @@ class Engine
 
     /**
      * Register a new template function.
-     * @param  string   $name;
-     * @param  callback $callback;
+     * @param  string   $name
+     * @param  callback $callback
      * @return Engine
      */
     public function registerFunction($name, $callback)
@@ -176,7 +176,7 @@ class Engine
 
     /**
      * Remove a template function.
-     * @param  string $name;
+     * @param  string $name
      * @return Engine
      */
     public function dropFunction($name)

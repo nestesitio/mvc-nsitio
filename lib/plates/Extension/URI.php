@@ -1,9 +1,9 @@
 <?php
 
-namespace League\Plates\Extension;
+namespace lib\plates\Extension;
 
-use League\Plates\Engine;
-use League\Plates\Template\Template;
+use lib\plates\Engine;
+use lib\plates\Template\Template;
 use LogicException;
 
 /**

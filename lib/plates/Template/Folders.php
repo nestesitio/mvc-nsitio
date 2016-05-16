@@ -1,6 +1,6 @@
 <?php
 
-namespace League\Plates\Template;
+namespace lib\plates\Template;
 
 use LogicException;
 

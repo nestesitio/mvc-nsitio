@@ -1,8 +1,8 @@
 <?php
 
-namespace League\Plates\Extension;
+namespace lib\plates\Extension;
 
-use League\Plates\Engine;
+use lib\plates\Engine;
 
 /**
  * A common interface for extensions.

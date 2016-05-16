@@ -1,6 +1,6 @@
 <?php
 
-namespace League\Plates\Template;
+namespace lib\plates\Template;
 
 use LogicException;
 
@@ -48,7 +48,7 @@ class Data
 
     /**
      * Add data shared with all templates.
-     * @param  array $data;
+     * @param  array $data
      * @return Data
      */
     public function shareWithAll($data)
@@ -60,8 +60,8 @@ class Data
 
     /**
      * Add data shared with some templates.
-     * @param  array $data;
-     * @param  array $templates;
+     * @param  array $data
+     * @param  array $templates
      * @return Data
      */
     public function shareWithSome($data, array $templates)
@@ -79,7 +79,7 @@ class Data
 
     /**
      * Get template data.
-     * @param  null|string $template;
+     * @param  null|string $template
      * @return array
      */
     public function get($template = null)

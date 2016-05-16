@@ -1,6 +1,6 @@
 <?php
 
-namespace League\Plates\Template;
+namespace lib\plates\Template;
 
 use LogicException;
 
@@ -17,8 +17,8 @@ class Functions
 
     /**
      * Add a new template function.
-     * @param  string    $name;
-     * @param  callback  $callback;
+     * @param  string    $name
+     * @param  callback  $callback
      * @return Functions
      */
     public function add($name, $callback)
@@ -36,7 +36,7 @@ class Functions
 
     /**
      * Remove a template function.
-     * @param  string    $name;
+     * @param  string    $name
      * @return Functions
      */
     public function remove($name)
