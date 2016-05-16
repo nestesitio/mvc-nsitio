@@ -154,6 +154,8 @@ class Controller
     }
     
     /**
+     * Passes data to template engine
+     * 
      * @param $tag
      * @param $data
      */
@@ -183,25 +185,11 @@ class Controller
         }
     }
 
-    /**
-     * @param $html
-     * @param $results
-     * @param $var
-     *
-     * @return String
-     */
-    protected function preRender($html, $results, $var)
-    {
-        Monitor::setMonitor(Monitor::BOOKMARK, 'preRender');
-        $view = new View($html, FALSE);
-        $itens = $this->getCollection($results);
-        $view->set($var, $itens);
-        $view->parse();
-        return $view->display();
-    }
 
     /**
-     * @param String $filename
+     * 
+     * @param string $filename
+     * @return boolean
      */
     public function setView($filename)
     {

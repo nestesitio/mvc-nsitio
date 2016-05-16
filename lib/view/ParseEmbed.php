@@ -73,6 +73,9 @@ class ParseEmbed
      */
     public function getAction()
     {
+        if($this->action == null){
+            return null;
+        }
         return $this->action . 'Action';
     }
 
@@ -100,6 +103,9 @@ class ParseEmbed
 
         }
         $this->template = ROOT . DS . 'apps' . DS . $folder . DS . 'view' . DS . $this->action . '.htm';
+        if(!is_file($this->template)){
+            $this->template = null;
+        }
 
     }
 
@@ -123,14 +129,16 @@ class ParseEmbed
 
             // assign controller full name
             // if we have extended controller
+            
             if (!class_exists($this->class)) {
-                Monitor::setErrorMessages(null, $this->class . ' does not exist');
-                $this->class = '\\apps\\Core\\control\\ErrorActions';
-                $this->action = 'embed';
+                Monitor::setMonitor(Monitor::TPL, '<b> parse Embed Class </b> - ' . $this->class . ' does not exist');
+                $this->class = null;
+                $this->action = null;
             } else {
                 $hasActionFunction = (int) method_exists($this->class, $this->action . 'Action');
                 if ($hasActionFunction == 0) {
-                    Monitor::setErrorMessages(null, 'Method "' . $this->action . '" not found');
+                    Monitor::setMonitor(Monitor::TPL, '<b> parse Embed Method </b> - ' . $this->action . ' does not exist');
+                    $this->action = null;
                 } else {
                     Monitor::setMonitor(Monitor::ACTION, $this->action . 'Action');
                 }

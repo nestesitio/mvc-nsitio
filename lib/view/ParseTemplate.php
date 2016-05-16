@@ -59,7 +59,7 @@ class ParseTemplate extends \lib\view\Template
      * @param $portions
      * @param $tags
      * @param $args
-     * @return null
+     * @return string
      */
     public function parseAllPortions($string = null, $portions = null, $tags = null, $args = null)
     {
@@ -99,7 +99,7 @@ class ParseTemplate extends \lib\view\Template
      * % include ('Home/view/include.htm' [with @includes, another_var]) %}
      * @param String $string The portion of the template to be processed
      *
-     * @return void
+     * @return string
      */
     private function parseInclude($string)
     {
@@ -120,16 +120,30 @@ class ParseTemplate extends \lib\view\Template
      * {% embed ('Home::teste') %}
      * or
      * {% embed ('Home::teste' with @list_title) %}
+     * 
+     * @param string $string
+     * @return object
      */
     private function parseEmbed($string)
     {
         $parse = new ParseEmbed($string);
 
-        $class = $parse->getClass();
+        $class = $parse->getClass(); 
+        if($class === null){
+            return 'NO CLASS';
+        }
         $controller = new $class();
 
-        $controller->setView($parse->getView());
+        $view = $parse->getView();
+        if($view === null){
+            return 'NO TEMPLATE FILE';
+        }
+        $controller->setView($view);
+        
         $action = $parse->getAction();
+        if($action === null){
+            return 'NO METHOD';
+        }
         Monitor::setMonitor(Monitor::TPL, '<b>parse Embed</b> - ' . $class . ' / ' . $action . '/');
         //output
         return $controller->$action();
@@ -137,6 +151,7 @@ class ParseTemplate extends \lib\view\Template
 
     /** process the tag {% while (list as item) %} ... {% endwhile %}
      * replacing tags for data
+     * 
      * @param String $piece The string to repeat inside
      * @param String $args The arguments of the loop
      */
@@ -208,13 +223,12 @@ class ParseTemplate extends \lib\view\Template
         return $string;
     }
 
-        /* process the
+    /* process the
      * {% if (list) %} || {% if (content='something') %}
      * {% elseif (content='something else') %}
      * {% else %}
      * {% endif %}
-     */
-    /**
+     * 
      * @param $string
      * @param $vars
      * @return mixed
@@ -257,12 +271,11 @@ class ParseTemplate extends \lib\view\Template
         }
     }
 
-        /* process the
+    /* process the
      * {% block (list) %}
      * {% endblock %}
-         * processed before while and if
-     */
-    /**
+     * processed before while and if
+     * 
      * @param $string
      * @param $vars
      * @return mixed
