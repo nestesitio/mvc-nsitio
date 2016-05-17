@@ -25,9 +25,9 @@ namespace lib\control;
 
 use \lib\control\ControlTools;
 use \lib\register\Monitor;
-use \lib\view\View;
 use \lib\register\Vars;
 use \lib\loader\Configurator;
+use \lib\control\ControlView;
 
 class Controller
 {
@@ -119,7 +119,7 @@ class Controller
          * after eventual generate of template
          * by class that extends DataConfig*/
         if (true == $this->layout) {
-            $this->view->parse();
+            //$this->view->parse();
             //inject data in view
             $this->renderData();
             //display
@@ -192,16 +192,22 @@ class Controller
      * @return boolean
      */
     public function setView($filename)
-    {
+    {   
         if ($this->template == null) {
             $file = ControlTools::validateFile($this, $filename, 'view', 'htm');
             if($file == null){
                 Monitor::setErrorMessages(null, ['message'=>'No valid template found for ' . get_class($this)]);
                 return false;
             }
+            
+            $this->view = new ControlView($file);
+            
+            /*
             $this->view = new View($file);
             $this->template = $file;
             $this->extended = $this->view->getExtend();
+             * 
+             */
         }
         
         return true;
@@ -294,7 +300,7 @@ class Controller
     
     private function configSet(){
         $defaults = Configurator::geHtmlConf();
-        $this->set('site-title', $defaults['title']);
+        $this->set('sitetitle', $defaults['title']);
     }
 
     /**
