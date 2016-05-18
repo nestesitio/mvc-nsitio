@@ -13,27 +13,27 @@ use \lib\session\Session;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Apr 27, 2016
  */
-class Router {
-    
+class Router
+{
     private function __construct() {}
-    
+
     private static $folder;
-    
+
     /**
-     * 
+     *
      * @param string $controller
-     * 
+     *
      * @return boolean | string
      */
     public static function getClass($controller)
     {
-        
+
         list($app, $control) = explode('/', $controller);
         Vars::setApp($app);
-        
+
         self::$folder = ucfirst($app);
         $namespace = '\apps\\' . self::$folder . '\\';
-        
+
         // assign controller full name
         $class = self::getControlClass($app, $control, $namespace);
         // if we have extended controller
@@ -42,13 +42,13 @@ class Router {
         }
         return $class;
     }
-    
+
     /**
-     * 
+     *
      * @param string $app
      * @param string $control
      * @param string $namespace
-     * 
+     *
      * @return string
      */
     private static function getControlClass($app, $control, $namespace)
@@ -63,8 +63,8 @@ class Router {
         $class = str_replace('ActionsActions', 'Actions', $class);
         return $class;
     }
-    
-    
+
+
     /**
      * @param $class
      * @return bool|string
@@ -80,18 +80,19 @@ class Router {
         $hasActionFunction = (int) method_exists($class, $action . 'Action');
         if ($hasActionFunction == 0) {
             return false;
-        } 
-            
+        }
+
         $method = $action . 'Action';
-        
+
         Monitor::setMonitor(Monitor::ACTION, $method);
         return $method;
     }
-    
-    public static function getFolder(){
+
+    public static function getFolder()
+    {
         return self::$folder;
     }
-    
+
     /**
      * @param object $controller
      * @return bool
@@ -113,6 +114,6 @@ class Router {
             return false;
         }
     }
-    
+
 
 }

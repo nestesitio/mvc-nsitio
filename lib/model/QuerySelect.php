@@ -201,7 +201,7 @@ class QuerySelect extends \lib\model\QueryStatement
         $results = $this->select($query, $this->params);
         foreach ($results as $row) {
             $item = $this->getRow($className, $row);
-            
+
             array_push($collection,$item);
 
 
@@ -226,7 +226,7 @@ class QuerySelect extends \lib\model\QueryStatement
             if(!mb_check_encoding ($value, 'UTF-8')){
                 $value  = utf8_encode($value);
             }
-            
+
 
             $item->setColumnValue($column, $value);
         }

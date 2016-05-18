@@ -75,7 +75,7 @@ class FormValidator
      * @param String $field The field name as index for the array of inputs
      * @param String $label The label of the input
      * @param bool $required
-     * 
+     *
      * @return float|null
      */
     public static function validateFloat($field, $label, $required)
@@ -182,7 +182,7 @@ class FormValidator
      * @param $index
      * @param $required
      * @param String $default
-     * 
+     *
      * @return bool|null
      */
     public static function validateModel($field, $label, $query, $index, $required, $default = null)

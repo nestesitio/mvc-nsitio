@@ -65,7 +65,7 @@ class CrudApp
         $this->app = ucfirst(strtolower($app));
         echo "App is " . $this->app . "\n";
         $this->name = ucfirst(strtolower($name));
-        
+
         $this->table = $table;
 
         $this->model = ModelTools::buildModelName($table);

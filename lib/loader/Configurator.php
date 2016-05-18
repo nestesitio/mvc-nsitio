@@ -128,7 +128,7 @@ class Configurator
     {
         return self::$googleconf;
     }
-    
+
     /**
      * @return array
      */

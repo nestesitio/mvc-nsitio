@@ -18,7 +18,7 @@ class FormRender
      * @param array $queue
      * @param array $forminputs
      * @param String $actionclass
-     * 
+     *
      * @return string
      */
     public static function renderHiddenFields($queue, $forminputs, $actionclass = null)

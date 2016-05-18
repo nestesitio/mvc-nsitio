@@ -129,7 +129,7 @@ class ParseEmbed
 
             // assign controller full name
             // if we have extended controller
-            
+
             if (!class_exists($this->class)) {
                 Monitor::setMonitor(Monitor::TPL, '<b> parse Embed Class </b> - ' . $this->class . ' does not exist');
                 $this->class = null;

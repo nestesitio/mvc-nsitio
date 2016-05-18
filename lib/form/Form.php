@@ -178,7 +178,7 @@ class Form extends \lib\form\form\FormProcessing
     /**
      * Get the inputs of the merged table in a array
      * @param String $table The table name as index of merged form
-     * 
+     *
      * @return array
      */
     public function getFormInputs($table = null)
@@ -314,7 +314,7 @@ class Form extends \lib\form\form\FormProcessing
     /**
      * render the part of inputs type hidden
      * @param String $actionclass That will be part of input names
-     * 
+     *
      * @return string
      */
     public function renderHiddenFields($actionclass = null)

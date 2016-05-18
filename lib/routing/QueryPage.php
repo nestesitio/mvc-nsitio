@@ -8,12 +8,12 @@ namespace lib\routing;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Apr 27, 2016
  */
-class QueryPage {
-
+class QueryPage
+{
     private $var;
 
-    function __construct() {
-        
+    public function __construct()
+    {
     }
 
 }

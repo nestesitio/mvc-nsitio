@@ -14,12 +14,12 @@ namespace lib\register;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @May 10, 2016
  */
-class VarsRegisted {
-  
+class VarsRegisted
+{
     /**
      * @var string
      */
-    protected static $redirect = null; 
+    protected static $redirect = null;
     /**
      * @var string
      */
@@ -40,11 +40,11 @@ class VarsRegisted {
      * @var bool
      */
     protected static $id = false;
-    
+
     /**
      * @var string
      */
-    protected static $route = '/'; 
+    protected static $route = '/';
     /**
      * Regist url
      * @param string $a
@@ -61,7 +61,7 @@ class VarsRegisted {
     {
         return self::$route;
     }
-    
+
     /**
      * Regist url to redirect
      * @param string $a
@@ -111,7 +111,7 @@ class VarsRegisted {
     {
         return self::$action;
     }
-    
+
     /**
      * @param string $a
      */
@@ -235,12 +235,12 @@ class VarsRegisted {
     {
         return self::$ip;
     }
-    
-    
+
+
     /**
      * @var
      */
-    protected static $page;   
+    protected static $page;
    /**
      * @param int $id
      */

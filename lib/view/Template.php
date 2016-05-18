@@ -114,7 +114,7 @@ class Template
         $this->scriptExtend();
         //<style>...
         $this->styleExtend();
-        
+
         $this->setIncludes();
     }
 
@@ -267,8 +267,9 @@ class Template
         Monitor::setMonitor(Monitor::VIEW, 'Rendering ' . $files . ' js links');
         $this->output = str_replace('<script src="{{ dynamicjs }}"></script>', $data, $this->output);
     }
-    
-    private function styleExtend(){
+
+    private function styleExtend()
+    {
         $pattern = "/(\{% style %\}){1}[\s\S]*(\{% endstyle %\}){1}/";
         $matches = [];
         $data = [];
@@ -277,7 +278,7 @@ class Template
             foreach ($matches[0] as $match) {
                 $data[] = str_replace(['{% style %}', '{% endstyle %}'], '', $match);
             }
-            
+
             foreach ($data as $str) {
                 $this->output = str_replace($str, '', $this->output);
             }
@@ -298,7 +299,7 @@ class Template
         $matches = [];
         $data = [];
         if (strpos($this->strview, "<script>")) {
-            
+
             preg_match_all($pattern, $this->strview, $matches, PREG_PATTERN_ORDER);
             foreach ($matches[0] as $match) {
                 $data[] = $match;

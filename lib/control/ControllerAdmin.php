@@ -51,7 +51,7 @@ class ControllerAdmin extends \lib\control\Controller
      * @param String $xmlfile
      * @param QuerySelect $query
      * @param String $view The path to template file
-     * 
+     *
      * @return array $results
      */
     protected function buildDataGrid($xmlfile, QuerySelect $query, $view = null)
@@ -127,7 +127,7 @@ class ControllerAdmin extends \lib\control\Controller
 
 
     /**
-     * 
+     *
      * @param mixed $results
      * @param String $var
      */
@@ -164,7 +164,7 @@ class ControllerAdmin extends \lib\control\Controller
      */
     protected function renderForm(Form $form, $xmlfile, $action = null, $querystring = [])
     {
-        
+
         if($action == null){
             $action = 'bind_' . Vars::getCanonical();
         }

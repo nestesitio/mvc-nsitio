@@ -147,7 +147,7 @@ class Vars extends \lib\register\VarsRegisted
         return (isset(self::$posts [$key])) ? self::$posts [$key] : false;
     }
 
-    
-    
+
+
 
 }

@@ -118,7 +118,7 @@ class Input
 
     /**
      * Set id and name for the input
-     * 
+     *
      * @param String $name The name for the input
      * @param String $elemid The id for the input
      */

@@ -48,7 +48,7 @@ class Xml
      * Get the attribute value of a xml node
      * @param \DOMElement $item The node
      * @param string $atr The attribute
-     * 
+     *
      * @return string
      */
     public static function getAtribute($item, $atr)
@@ -62,15 +62,16 @@ class Xml
             return '';
         }
     }
-    
+
     /**
-     * 
-     * @param string $query XPath expression 
+     *
+     * @param string $query XPath expression
      * @param string $attr The attribute
-     * 
+     *
      * @return string
      */
-    public function getValue($query, $attr = null){
+    public function getValue($query, $attr = null)
+    {
         $xpath = new DOMXPath($this->xml);
         $items = $xpath->query($query);
         foreach ($items as $item) {
@@ -84,7 +85,7 @@ class Xml
     }
 
     /**
-     * @param $query XPath expression 
+     * @param $query XPath expression
      * @param string $what
      * @param string $atr
      * @return array
@@ -125,7 +126,7 @@ class Xml
     }
 
     /**
-     * @param $query XPath expression 
+     * @param $query XPath expression
      * @param array $attr
      * @return array
      */
@@ -143,7 +144,7 @@ class Xml
     }
 
     /**
-     * @param $path XPath expression 
+     * @param $path XPath expression
      * @param string $what
      * @param string $atr
      * @return int
@@ -177,7 +178,7 @@ class Xml
     }
 
     /**
-     * @param $path XPath expression 
+     * @param $path XPath expression
      * @param $lang
      * @return mixed
      */

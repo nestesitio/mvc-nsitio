@@ -156,7 +156,7 @@ class QueryStatement extends \lib\model\Query
         $this->setCustomSelect('SUM(' . $field . ')', $alias);
         return $this;
     }
-    
+
     /**
      * @param $field
      * @param $alias
@@ -167,7 +167,7 @@ class QueryStatement extends \lib\model\Query
         $this->setCustomSelect('MAX(' . $field . ')', $alias);
         return $this;
     }
-    
+
     /**
      * @param $field
      * @param $alias

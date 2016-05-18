@@ -95,7 +95,7 @@ class Guard
     const SESS_TOKEN = 'q48pkl';
 
     /**
-     * 
+     *
      */
     public static function generateSessToken()
     {

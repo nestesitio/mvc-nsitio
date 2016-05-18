@@ -15,14 +15,15 @@ use \lib\register\Monitor;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @May 3, 2016
  */
-class DBRouting {
-    
+class DBRouting
+{
     /**
-     * 
+     *
      * @param array $params
      * @return boolean
      */
-    public static function check($params){
+    public static function check($params)
+    {
         $page = PageQuery::getPageRoute($params['appslug'] ,$params['canonical']);
         if($page == false){
             $page = PageQuery::getPageExists($params['appslug'] ,$params['canonical']);
@@ -38,29 +39,30 @@ class DBRouting {
                     echo 'ERROR-PAGE-REDIRECT:/user/login';
                     die();
                 }
-                
+
                 return false;
             }
         }else{
             Vars::setTitle($page->getTitle());
             Vars::setHeadin($page->getHeading());
             Vars::setPage($page->getHtmId());
-            
+
             self::$controller = Vars::getApp() . '/' . Vars::getAction();
-            
+
             return true;
         }
         return false;
-        
+
     }
 
     private static $controller = null;
-    
-    public static function getApp(){
+
+    public static function getApp()
+    {
         return self::$controller;
     }
 
     private function __construct() {}
-    
+
 
 }

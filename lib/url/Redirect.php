@@ -34,7 +34,7 @@ class Redirect
             header('Location: /');
         }
     }
-    
+
     /**
      * @param string $url
      */

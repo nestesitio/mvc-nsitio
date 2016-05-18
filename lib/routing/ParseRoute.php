@@ -16,31 +16,31 @@ use \lib\tools\StringTools;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Apr 27, 2016
  */
-class ParseRoute {
-
+class ParseRoute
+{
     /**
      * @var String
      */
     private $route;
-    
+
     /**
      * @var String
      */
     private $path;
-    
-    
+
+
     /**
      * Instantiate the class
      *
      * @param String $route The sanitized url
      */
-    function __construct($route) 
+    public function __construct($route)
     {
         $this->route = $route;
     }
-    
-    
-    
+
+
+
     /**
      * Get the url query string portion
      * @return string
@@ -60,15 +60,15 @@ class ParseRoute {
         }
         return $params;
     }
-    
+
 
     /**
-     * 
+     *
      * @return array
      */
     public function getRoutePortions()
     {
-        $components = ['app' => 'Home', 'appslug'=> 'home', 
+        $components = ['app' => 'Home', 'appslug'=> 'home',
             'canonical' => 'index', 'controller' => 'home', 'action' => 'default',
             'id' => null, 'slugvar' => null];
         $pieces = explode('/', $this->path);

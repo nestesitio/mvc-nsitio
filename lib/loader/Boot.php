@@ -18,8 +18,8 @@ use \lib\register\Monitor;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Apr 27, 2016
  */
-class Boot {
-
+class Boot
+{
     /**
      * Start some static core classes
      */
@@ -27,7 +27,7 @@ class Boot {
     {
         self::start();
         /*
-         * The routing url, we need to use original 'QUERY_STRING' 
+         * The routing url, we need to use original 'QUERY_STRING'
          * from server parameter because php has parsed the url if we use $_GET
          */
         $url = \lib\url\UrlRegister::getUrlRequest();
@@ -40,28 +40,28 @@ class Boot {
         //regist vars GET and POST
         self::registParams($params);
         self::registVars($querystring);
-        
+
         //set the action for the page
         $controller = false;
         $route = self::checkRoute($params);
-        
+
         if($route != false){
             $controller = self::fireController($params, $route);
             $controller = self::fireView($controller);
         }
-        
-        
+
+
         if ($controller != false) {
             self::output($controller);
         }else{
-            
+
             echo \lib\routing\ErrorPage::execute(true);
         }
 
 
         Session::close();
-        
-        
+
+
     }
 
     private static function start()
@@ -76,7 +76,7 @@ class Boot {
          */
         new Session();
     }
-    
+
     /**
      * Regist all the varables from POST and GET
      * @param array $params
@@ -92,8 +92,8 @@ class Boot {
         Vars::setAction($params['action']);
         Vars::setId($params['id']);
     }
-    
-    /** process url query string after ?, but ? was allready deleted by htaccess 
+
+    /** process url query string after ?, but ? was allready deleted by htaccess
      * @param string $querystring
      */
     private static function registVars($querystring)
@@ -106,54 +106,55 @@ class Boot {
             }
         }
     }
-    
-    private static function checkRoute($params){
+
+    private static function checkRoute($params)
+    {
         $route = null;
         if(XmlRouting::check($params) == true){
             $route = XmlRouting::getApp();
         }elseif(DBRouting::check($params) == true){
             $route = DBRouting::getApp();
         }
-        
+
         if($route == null){
             Monitor::setErrorMessages(null, ['message'=>'No page found for url ' . Vars::getRoute()]);
             return false;
         }
-        
+
         return $route;
-        
+
     }
-    
-    private static function fireController($params, $route){
-        
+
+    private static function fireController($params, $route)
+    {
         $class = Router::getClass($route);
         if($class == false){
             Monitor::setErrorMessages(null, ['message'=>'No class found for url ' . Vars::getRoute()]);
             return FALSE;
         }
         $controller = new $class();
-        
+
         $action = Router::getAction($class, $params);
-        
+
         if($action == false){
             Monitor::setErrorMessages(null, ['message'=>'No method found for url ' . Vars::getRoute()]);
             return false;
         }
-        
+
         $controller->$action();
-        
-        
+
+
         return $controller;
-        
-        
+
+
     }
-    
+
     /**
-     * 
+     *
      * @param object $controller
      * @return boolean|object
      */
-    private static function fireView($controller) 
+    private static function fireView($controller)
     {
         if ($controller != false) {
             //prepare View
@@ -175,9 +176,10 @@ class Boot {
         }
         return false;
     }
-    
-    
-    private static function output($controller) {
+
+
+    private static function output($controller)
+    {
         $extend = Router::aboutExtended($controller);
         //output
         $output = $controller->dispatch();
@@ -191,7 +193,7 @@ class Boot {
             echo \lib\control\ControlMessages::write($output, $extend);
         }
     }
-    
+
     private static function displayError()
     {
         $errors = Monitor::getErrorMessages();
@@ -204,6 +206,6 @@ class Boot {
             echo $msg->write();
         }
     }
-    
+
 
 }

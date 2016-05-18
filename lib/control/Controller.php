@@ -152,10 +152,10 @@ class Controller
         $itens = $this->getCollection($results);
         $this->set($tag, $itens);
     }
-    
+
     /**
      * Passes data to template engine
-     * 
+     *
      * @param $tag
      * @param $data
      */
@@ -187,29 +187,25 @@ class Controller
 
 
     /**
-     * 
+     *
      * @param string $filename
      * @return boolean
      */
     public function setView($filename)
-    {   
+    {
         if ($this->template == null) {
             $file = ControlTools::validateFile($this, $filename, 'view', 'htm');
             if($file == null){
                 Monitor::setErrorMessages(null, ['message'=>'No valid template found for ' . get_class($this)]);
                 return false;
             }
-            
+
             $this->view = new ControlView($file);
-            
-            /*
-            $this->view = new View($file);
             $this->template = $file;
             $this->extended = $this->view->getExtend();
-             * 
-             */
+
         }
-        
+
         return true;
     }
 
@@ -296,11 +292,13 @@ class Controller
         $this->app = \lib\register\Vars::getApp();
         $this->configSet();
     }
-    
-    
-    private function configSet(){
+
+
+    private function configSet()
+    {
         $defaults = Configurator::geHtmlConf();
         $this->set('sitetitle', $defaults['title']);
+        $this->set('h1', '');
     }
 
     /**

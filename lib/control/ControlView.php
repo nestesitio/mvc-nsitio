@@ -4,6 +4,7 @@ namespace lib\control;
 
 /**
  * Description of ControlView
+ * A interface between Control and View
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @May 16, 2016

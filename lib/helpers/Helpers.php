@@ -14,7 +14,6 @@ namespace lib\helpers;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @May 10, 2016
  */
-class Helpers {
-    
-    
+class Helpers
+{
 }

@@ -36,10 +36,12 @@ class ControlMessages extends \lib\control\Controller
     {
         $messages = '';
         $flags = 0;
+
         $controller = new ControlMessages();
-        
+
         if (SessionUser::getUserGroup() == UserGroupModel::GROUP_DEVELOPER ||
                 Configurator::getDeveloperMode() == true) {
+
             $flags = $controller->processDevelopMessages();
 
             if ($flags > 0) {
@@ -58,8 +60,9 @@ class ControlMessages extends \lib\control\Controller
         }
         return $html;
     }
-    
-    public static function testOutput(){
+
+    public static function testOutput()
+    {
         $controller = new ControlMessages();
         $controller->processDevelopMessages();
         return $controller->getMonitor();

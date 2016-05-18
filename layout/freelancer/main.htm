@@ -20,8 +20,7 @@
         <link href="/css/personal/freelancer.css" rel="stylesheet">
         <link href="/css/personal/brand.css" rel="stylesheet">
         <link href="/css/personal/frontend.css" rel="stylesheet">
-        <link href="{{ dynamiccss }}"  rel="stylesheet">
-        <style>{{}}</style>
+        <?=$this->section('css')?>
 
         <!-- Custom Fonts -->
         <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -88,8 +87,8 @@
         <script src="/js/core/core.js"></script>
         <script src="/js/personal/personal.js"></script>
         <!-- Dynamic Javascrip files and scripts -->
-        <script src="{{ dynamicjs }}"></script>
-        <script>{{}}</script>
+        <?=$this->section('js')?>
+
         <script>
             $( ".support-btn" ).click(function() {addSupport(this);});
             $(document).on('click', '.btn-modal', function(){modalLoad(this);});

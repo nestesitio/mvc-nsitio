@@ -12,17 +12,18 @@ use DOMXPath;
  */
 class XmlSimple extends \lib\xml\XmlFile
 {
-    
-    
+
+
     /**
-     * 
+     *
      * @param string $path
      * @param string $attr
      * @param string $value
-     * 
+     *
      * @return \DOMElement | null
      */
-    public function getNodeByAttr($path, $attr, $value){
+    public function getNodeByAttr($path, $attr, $value)
+    {
         $xpath = new DOMXPath($this->xml);
         $items = $xpath->query($path);
         foreach ($items as $item) {

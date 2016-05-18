@@ -47,7 +47,7 @@ class FormProcessing
     /**
      * @param String $table The table name as index for merged form
      * @param String $field The field name as index for the array of inputs
-     * 
+     *
      * @param $query
      * @return mixed
      */
@@ -70,7 +70,7 @@ class FormProcessing
     /**
      * @param String $table The table name as index for merged form
      * @param String $field The field name as index for the array of inputs
-     * 
+     *
      * @return mixed
      */
     protected function validateBool($table, $field)
@@ -95,7 +95,7 @@ class FormProcessing
      * @param bool $required
      * @param int $maxlen
      * @param int $minlen
-     * 
+     *
      * @return mixed|null
      */
     protected function validateString($table, $field, $required, $maxlen = 0, $minlen = 0)
@@ -115,7 +115,7 @@ class FormProcessing
     /**
      * @param String $table The table name as index for merged form
      * @param String $field The field name as index for the array of inputs
-     * 
+     *
      * @return mixed|null
      */
     protected function validateDate($table, $field)
@@ -177,7 +177,7 @@ class FormProcessing
      * @param array $possible_values
      * @param bool $required
      * @param String $default
-     * 
+     *
      * @return mixed|null
      */
     protected function validateValues($table, $field, $possible_values, $required, $default = null)
@@ -197,7 +197,7 @@ class FormProcessing
     /**
      * @param String $table The table name as index for merged form
      * @param String $field The field name as index for the array of inputs
-     * 
+     *
      * @return mixed|null
      */
     protected function validateText($table, $field)
@@ -216,7 +216,7 @@ class FormProcessing
      * @param String $field The field name as index for the array of inputs
      * @param bool $required
      * @param int $max
-     * 
+     *
      * @return mixed|null
      */
     protected function validateInt($table, $field, $required, $max)
@@ -297,7 +297,7 @@ class FormProcessing
      * @param String $table The table name as index for merged form
      * @param String $field The field name as index for the array of inputs
      * @param String $value
-     * 
+     *
      * @return mixed
      */
     private function setValidatedValue($table, $field, $value)
@@ -318,7 +318,7 @@ class FormProcessing
     /**
      * @param String $table The table name as index for merged form
      * @param String $field The field name as index for the array of inputs
-     * 
+     *
      * @return mixed
      */
     public function getValidatedValue($table, $field)
@@ -331,7 +331,7 @@ class FormProcessing
     /**
      * @param String $table The table name as index for merged form
      * @param \lib\model\Model $model
-     * 
+     *
      * @return \lib\form\Form
      */
     public function setModel($table, $model)

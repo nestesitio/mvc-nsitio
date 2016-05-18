@@ -75,7 +75,7 @@ class Pagination
      * @param int $p
      * @param int $index
      * @param String $action
-     * 
+     *
      * @return array
      */
     private static function getPage($p, $index, $action)

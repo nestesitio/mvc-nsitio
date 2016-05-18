@@ -118,9 +118,9 @@ class Generate
         $str = str_replace($tpl, $const . "\n    " . $tpl, $str);
         file_put_contents($file, $str);
     }
-    
+
     /**
-     * 
+     *
      * @param string $app The name of app folder
      * @param string $name The name of action file
      * @param string $model The name of the db table
@@ -132,7 +132,7 @@ class Generate
         $crud->createFolders()->execute('app');
 
     }
-    
+
     /**
      * @param string $app The name of app folder
      * @param string $name The name of action file

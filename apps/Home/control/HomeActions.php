@@ -42,6 +42,7 @@ class HomeActions extends \lib\control\Controller {
         $this->user = UserQueries::getUserData(SessionUser::getPlayer())->findOne();
         
         $this->sectionProfile();
+        $this->set('teste', 'one');
  
     }
 

@@ -153,7 +153,7 @@ class SessionFilter
 
     /**
      * @param $app
-     * 
+     *
      * @return array|bool|int|mixed
      */
     public static function getControllerPaging($app)

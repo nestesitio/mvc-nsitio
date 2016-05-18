@@ -144,14 +144,15 @@ class SessionUser extends \lib\session\SessionUserBase
         }
         return $id;
     }
-    
+
     /**
-     * 
+     *
      * @param string $group
-     * 
+     *
      * @return bool
      */
-    public static function isValidGroup($group){
+    public static function isValidGroup($group)
+    {
         $check = \model\querys\UserGroupQuery::start()
                 ->filterByName($group)
                 ->filterById(self::getPlayerLevel(), Mysql::GREATER_EQUAL)
@@ -160,19 +161,22 @@ class SessionUser extends \lib\session\SessionUserBase
     }
 
 
-    public static function warningUser($warning){
+    public static function warningUser($warning)
+    {
         Session::setSession(Session::SESS_WARNING, $warning);
-        
+
     }
-    
-    public static function getWarning(){
+
+    public static function getWarning()
+    {
         return Session::getSessionVar(Session::SESS_WARNING);
-        
+
     }
-    
-    public static function resetWarning(){
-        return Session::unsetSession(Session::SESS_WARNING); 
-        
+
+    public static function resetWarning()
+    {
+        return Session::unsetSession(Session::SESS_WARNING);
+
     }
 
 

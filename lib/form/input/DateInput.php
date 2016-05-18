@@ -39,7 +39,7 @@ class DateInput extends \lib\form\Input
      * @var string
      */
     private $dateformat = 'LL LT';
-    
+
     const FORMAT_DATE = 'LL';
     const FORMAT_TIME = 'LT';
 

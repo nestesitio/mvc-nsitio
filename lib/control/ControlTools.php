@@ -59,7 +59,7 @@ class ControlTools
      * Test if file exist in the site directory
      * @param $file
      * @param String $ext
-     * 
+     *
      * @return string
      */
     public static function isFile($file, $ext = null)

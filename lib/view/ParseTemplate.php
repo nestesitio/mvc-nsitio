@@ -120,7 +120,7 @@ class ParseTemplate extends \lib\view\Template
      * {% embed ('Home::teste') %}
      * or
      * {% embed ('Home::teste' with @list_title) %}
-     * 
+     *
      * @param string $string
      * @return object
      */
@@ -128,7 +128,7 @@ class ParseTemplate extends \lib\view\Template
     {
         $parse = new ParseEmbed($string);
 
-        $class = $parse->getClass(); 
+        $class = $parse->getClass();
         if($class === null){
             return 'NO CLASS';
         }
@@ -139,7 +139,7 @@ class ParseTemplate extends \lib\view\Template
             return 'NO TEMPLATE FILE';
         }
         $controller->setView($view);
-        
+
         $action = $parse->getAction();
         if($action === null){
             return 'NO METHOD';
@@ -151,7 +151,7 @@ class ParseTemplate extends \lib\view\Template
 
     /** process the tag {% while (list as item) %} ... {% endwhile %}
      * replacing tags for data
-     * 
+     *
      * @param String $piece The string to repeat inside
      * @param String $args The arguments of the loop
      */
@@ -228,7 +228,7 @@ class ParseTemplate extends \lib\view\Template
      * {% elseif (content='something else') %}
      * {% else %}
      * {% endif %}
-     * 
+     *
      * @param $string
      * @param $vars
      * @return mixed
@@ -275,7 +275,7 @@ class ParseTemplate extends \lib\view\Template
      * {% block (list) %}
      * {% endblock %}
      * processed before while and if
-     * 
+     *
      * @param $string
      * @param $vars
      * @return mixed
