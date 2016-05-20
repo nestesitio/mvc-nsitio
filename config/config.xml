@@ -16,4 +16,8 @@
     <redir>
         <noaccess developer="true" url="/" />
     </redir>
+    <themes>
+        <backend template="layout/sb-admin/main.htm" />
+        <frontend template="layout/freelancer/main.htm" />
+    </themes>
 </root>
