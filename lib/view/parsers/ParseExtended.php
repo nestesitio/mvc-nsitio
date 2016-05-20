@@ -32,10 +32,12 @@ class ParseExtended
         if (strpos($output, Tags::TAG_EXTENDS) !== false
                 && preg_match(Tags::PATTERN_EXTENDS, $output, $matches)) {
             $view = str_replace($matches[0], '', $output);
-
+            //what os the file?
             $extended = TemplateTools::getTagArgument($matches[0], Tags::TAG_EXTENDS);
-            if (file_exists(ROOT . DS . $extended)) {
-
+            //look for the file
+            $extended = self::lookIfIsConfig($extended);
+            $extended = self::lookForMainTemplate($extended);
+            if ($extended != null) {
                 $output = file_get_contents(ROOT . DS . $extended);
                 self::$layout = $extended;
                 //now the template is extended with main file
@@ -55,6 +57,35 @@ class ParseExtended
      */
     public static function getExtended() {
         return self::$layout;
+    }
+    
+ /**
+     * Look for the template file over the framework folders
+     * 
+     * @param string $file
+     * @return string The path form the file
+     */
+    private static function lookForMainTemplate($file){
+        $folders = ['', 'apps' . DS, 'layout' . DS];
+        $exts = ['', '.htm', '.html'];
+        foreach ($folders as $folder) {
+            foreach ($exts as $ext) {
+                if (is_file(ROOT . DS . $folder . $file . $ext)) {
+                    return $folder . $file . $ext;
+                }
+            }
+        }
+        Monitor::setErrorMessages(null, 'Wrong path or unknow file for extended template ' . $file);
+        return null;
+    }
+    
+    private static function lookIfIsConfig($file){
+        if(strpos($file, 'config:') === 0){
+            $index = substr(strstr($file, ':'), 1);
+            $file = \lib\loader\Configurator::getTemplate($index);
+        }
+        
+        return $file;
     }
 
 
