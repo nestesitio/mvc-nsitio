@@ -2,72 +2,72 @@
 
 namespace lib\view;
 
+use \lib\view\Template;
+
 /**
  * Description of View
- * A interface between Control and View
+ * A interface between Control and Template
+ * 1. Controller declare new View() -> Template load file and parse extend
+ * 2. Render data to template
+ * 3. Parse template
+ * 
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @May 18, 2016
  */
-class View {
-
+class View
+{
     /**
-     * Define a class property to store the template 
+     * Define a class property to store the template
      * @var object
      */
-    private $view;
-    
-    /**
-     * Define a class property to store the entries 
-     * @var object
-     */
-    private $data;
-    
-    /*
-     * Public method to output the result of the templating engine 
-     */
-    public function render(){
-        
-    }
-    
+    private $template;
 
-    function __construct($file) {
-        $this->loadTemplate($file);
-        $this->parseTemplate();
+
+
+
+    public function __construct($file)
+    {
+        $this->template = new Template($file);
     }
-    
-    /**
-     * Method to load the template
-     * 
-     * @param string $file
-     */
-    private function loadTemplate($file){
-        
-    }
-    
-    /**
-     * Method to parse the template
-     */
-    private function parseTemplate(){
-        
-    }
-    
+
+
     /**
      * Method to replace the template tags with entry data
-     * 
-     * 
+     *
+     *
      * @param type $tag
      * @param type $data
      * @return \lib\control\View
      */
-        public function set($tag, $data)
+        public function setData($tag, $data)
     {
-       
+            $this->template->addData($tag, $data);
+
             return $this;
     }
     
+    
+    /*
+     * Public method to output the result of the templating engine
+     */
+    public function render()
+    {
+        $this->template->parseTemplate();
+        return $this->template->getOutput();
+    }
 
-  
-  
+    /**
+     * 
+     * @return string The path to main layout
+     */    
+    public function getLayout()
+    {
+        return $this->template->getExtends();
+    }
+
+
+
+
 
 }

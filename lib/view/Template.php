@@ -1,76 +1,48 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace lib\view;
 
-
 use \lib\register\Monitor;
-use \lib\view\ParseString;
-use \lib\view\ParseInclude;
+use \lib\view\Parse;
+use \lib\view\parsers\ParseExtended;
 
 /**
  * Description of Template
- * created in 15/nov/2014
- * @author Luís Pinto - luis.nestesitio@gmail.com
+ * Templating engine
+ *
+ * @author Luís Pinto / luis.nestesitio@gmail.com
+ * Created @May 18, 2016
  */
 class Template
 {
     /**
-     * @var null
-     */
-    protected $fileview;
-    /**
-     * @var
-     */
-    protected $output;
-    /**
-     * @var
-     */
-    private $strview;
-    /**
-     * @var
-     */
-    private $extends;
-    /**
-     * @var
-     */
-    private $extendfile;
-
-    /**
-     * @var array
-     */
-    protected $vars = [];
-
-    /**
-     * @var array
-     */
-    protected $tags = [];
-    /**
-     * @var array
-     */
-    protected $portions = [];
-    /**
-     * @var array
-     */
-    protected $args = [];
-
-    /**
+     * Stores the location of the template file
      * @var string
      */
-    private $patternExtends = "/\{% extends '[^%]+' %\}/";
+    private $page_template;
     /**
+     * Stores the location of the main file extenting template
      * @var string
      */
-    private $cssExtend = "/\{% cssextension '[^%]+' %\}/";
+    private $extended_template;
+
     /**
+     * Stores the entries to be parsed in the template
+     * @var array
+     */
+    private static $data = [];
+
+    /**
+     * Stores the contents of the template file
      * @var string
      */
-    private $jsExtend = "/\{% jsextension '[^%]+' %\}/";
+    private $output = null;
+
+    /**
+     *
+     * @var object
+     */
+    private $parse;
 
     /**
      * Template constructor.
@@ -78,109 +50,43 @@ class Template
      */
     public function __construct($file = null)
     {
+        $this->load($file);
+    }
+
+    /**
+     * Loads a template file
+     * @param string $file
+     */
+    public function load($file)
+    {
         if (file_exists(ROOT . DS . $file)) {
-            $this->fileview = $file;
+            $this->page_template = $file;
             Monitor::setMonitor(Monitor::TPL, $file);
             ob_start(); // start output buffer
             include (ROOT . DS . $file);
             $this->output = ob_get_contents(); // get contents of buffer
             ob_end_clean();
-
-            $this->extensions();
-
-        } elseif(null != $file) {
+            //parse extension {extends 'file.htm'}
+            $this->output = ParseExtended::parse($this->output);
+            //regist the path for main template
+            $this->extended_template = ParseExtended::getExtended();
+        } elseif (null != $file) {
             Monitor::setErrorMessages(null, 'Error: Template file ' . $file . ' not found');
         }
     }
 
-
     /**
-     *
+     * Method to parse the template
      */
-    private function extensions()
+    public function parseTemplate()
     {
-        //$this->output = file_get_contents(ROOT . DS . $file);
-        $this->setIncludes();
+        //parse some other tags
+        $parse = new Parse($this->output);
+        //parse extension {include 'file.htm'}
+        $this->output = $parse->parseInclude();
 
-        //we keep the original template before extend it
-        $this->strview = $this->output;
-        //now we extend the template
-        $this->extends = $this->getExtend();
-        //{% cssextension '/file.css' %}
-        $this->cssExtend();
-        //{% jsextension '/file.js' %}
-        $this->jsExtend();
-        //<script> ...
-        $this->scriptExtend();
-        //<style>...
-        $this->styleExtend();
-
-        $this->setIncludes();
     }
 
-    /**
-     * Extend the template to a main template file if there is a tag:
-     * {% extends 'main.htm' %}
-     *
-     *
-     * @return String $this->output
-     */
-    private function getExtend()
-    {
-        $matches = [];
-        if (strpos($this->output, "% extends '") && preg_match($this->patternExtends, $this->output, $matches)) {
-            //the original template
-            $view = str_replace($matches[0], '', $this->output);
-            if (preg_match("/'[^%]+'/", $matches[0], $matches)) {
-                $extended = str_replace("'", '', $matches[0]);
-
-                if (file_exists(ROOT . DS . $extended)) {
-                    $this->output = file_get_contents(ROOT . DS . $extended);
-                    $this->extendfile = $extended;
-                    //now the template is extended with main file
-                    $this->output = str_replace("{{ include('main') }}", $view, $this->output);
-                    Monitor::setMonitor(Monitor::TPL, '<b>extended</b> - ' . $extended);
-                } else {
-                    Monitor::setErrorMessages(null, 'Error: Layout file ' . $extended . ' not found');
-                }
-            }
-        }
-        return $this->output;
-    }
-
-    /**
-     * Process the includes inside the template
-     * The template completed with the includes
-     *
-     * @return void
-     */
-    public function setIncludes()
-    {
-        $parse = new ParseString($this->output);
-        //identify the tags include
-        $parse->find('include');
-        //we get the array of tags
-        $includes = $parse->getPortion();
-        //we have the array of included portions
-        foreach($includes as $include){
-            //the tag to be replaced
-            $inc = new ParseInclude($include);
-            //replace the tag for the included content with other recursive includes
-            $this->output = str_replace($include, $inc->getString(), $this->output);
-        }
-    }
-
-    /**
-     * Build the array of pairs tag => data
-     * @param String $tag The tag to be replaced {{ tag }}
-     * @param mixed $data The data to replace tag
-     *
-     * @return void
-     */
-    public function set($tag, $data = '')
-    {
-        $this->vars[$tag] = $data;
-    }
 
     /**
      * @return mixed
@@ -197,142 +103,40 @@ class Template
     }
 
     /**
-     * @param $html
-     */
-    public function setOutput($html)
-    {
-        Monitor::setMonitor(Monitor::BOOKMARK, 'All Template: ' . strlen($html) . ' chars in html; ');
-        $this->output = $html;
-    }
-
-    /**
-     * @return mixed
+     * Get the path to main template
+     * @return string
      */
     public function getExtends()
     {
-        return $this->extendfile;
+        return $this->extended_template;
     }
 
-
     /**
+     * Build the array of pairs tag => data
+     * @param String $tag The tag to be replaced {$tag}
+     * @param mixed $data The data to replace tag
      *
+     * @return void
      */
-    private function cssExtend()
+    public function addData($tag, $data = '')
     {
-        /*
-         * extend css stylesheet to dynamic loading
-         */
-        $matches = [];
-        $data = '';
-        if (strpos($this->output, "% cssextension '") && preg_match_all($this->cssExtend, $this->output, $matches, PREG_PATTERN_ORDER)) {
-            foreach($matches[0] as $match){
-                $sub = [];
-                if (preg_match("/'[^%]+'/", $match, $sub)) {
-                    $file = str_replace("'", '', $sub[0]);
-                     if (file_exists(HTMROOT . $file)) {
-                         $data .= '<link href="' . $file . '" rel="stylesheet">' . "\n";
-                     }
-                }
-                $this->output = str_replace($match, '', $this->output);
-            }
-        }
-        $this->output = str_replace('<link href="{{ dynamiccss }}"  rel="stylesheet">', $data, $this->output);
+        self::$data[$tag] = $data;
     }
 
     /**
      *
-     */
-    private function jsExtend()
-    {
-        /*
-         * extend js to dynamic loading
-         */
-        $matches = [];
-        $data = '';
-        $files = 0;
-        if (strpos($this->output, "% jsextension '") && preg_match_all($this->jsExtend, $this->output, $matches, PREG_PATTERN_ORDER)) {
-            foreach($matches[0] as $match){
-                $sub = [];
-                if (preg_match("/'[^%]+'/", $match, $sub)) {
-                    $file = str_replace("'", '', $sub[0]);
-                     if (file_exists(HTMROOT . $file) || strpos($file, 'http') === 0) {
-                         $data .= '<script src="' . $file . '"></script>' . "\n";
-                         $files++;
-
-                     }
-                }
-                $this->output = str_replace($match, '', $this->output);
-            }
-        }
-        Monitor::setMonitor(Monitor::VIEW, 'Rendering ' . $files . ' js links');
-        $this->output = str_replace('<script src="{{ dynamicjs }}"></script>', $data, $this->output);
-    }
-
-    private function styleExtend()
-    {
-        $pattern = "/(\{% style %\}){1}[\s\S]*(\{% endstyle %\}){1}/";
-        $matches = [];
-        $data = [];
-        if (strpos($this->strview, "{% style")) {
-            preg_match_all($pattern, $this->strview, $matches, PREG_PATTERN_ORDER);
-            foreach ($matches[0] as $match) {
-                $data[] = str_replace(['{% style %}', '{% endstyle %}'], '', $match);
-            }
-
-            foreach ($data as $str) {
-                $this->output = str_replace($str, '', $this->output);
-            }
-            $this->output = str_replace(['{% style %}', '{% endstyle %}'], '', $this->output);
-            $this->output = str_replace('<style>{{}}</style>', '<style>'.implode("\n", $data) . '</style><style>{{}}</style>', $this->output);
-        }
-        Monitor::setMonitor(Monitor::VIEW, 'Rendering ' . count($data) . ' styles');
-    }
-
-    /**
+     * @param string $tag
      *
+     * @return mixed
      */
-    private function scriptExtend()
+    public static function getData($tag)
     {
-        /*transfer custom scripts to main template */
-        //$pattern = "/(<script>){1}(.|\n)?(<\/script>){1}/";
-        $pattern = "/<script>([\s\S]*?)<\/script>/";
-        $matches = [];
-        $data = [];
-        if (strpos($this->strview, "<script>")) {
-
-            preg_match_all($pattern, $this->strview, $matches, PREG_PATTERN_ORDER);
-            foreach ($matches[0] as $match) {
-                $data[] = $match;
-            }
-
-            foreach ($data as $str) {
-                $this->output = str_replace($str, '', $this->output);
-            }
-            $this->output = str_replace('<script>{{}}</script>', implode("\n", $data) . '<script>{{}}</script>', $this->output);
-        }
-        Monitor::setMonitor(Monitor::VIEW, 'Rendering ' . count($data) . ' scripts');
+        return self::$data[$tag];
     }
 
 
-    /**
-     * @param $variables
-     * @param $vars
-     * @return bool
-     */
-    protected function testIssetVars($variables, $vars)
-    {
-        if (count($variables) == 1) {
-            if (isset($vars[$variables[0]])) {
-                return $vars[$variables[0]] ;
-            }
-        } else {
-            if (isset($vars[$variables[0]][$variables[1]])) {
-                return $vars[$variables[0]][$variables[1]];
-            }elseif(isset($vars[$variables[1]])){
-                return $vars[$variables[1]];
-            }
-        }
-        return false;
-    }
+
+
+
 
 }
