@@ -38,11 +38,6 @@ class Template
      */
     private $output = null;
 
-    /**
-     *
-     * @var object
-     */
-    private $parse;
 
     /**
      * Template constructor.
@@ -73,33 +68,6 @@ class Template
         } elseif (null != $file) {
             Monitor::setErrorMessages(null, 'Error: Template file ' . $file . ' not found');
         }
-    }
-
-    /**
-     * Method to parse the template
-     */
-    public function parseTemplate()
-    {
-        //parse some other tags
-        $parse = new Parse($this->output);
-        //parse extension {include 'file.htm'}
-        $this->output = $parse->parseInclude();
-
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getOutput()
-    {
-        $str = $this->output;
-        $this->output = '';
-        $str = str_replace(["\n", "\r", "\t", "</li>    <li", "</li>                <li"], ['', '', '', '</li><li', '</li><li'], $str);
-        $pattern = '/(li>)[\s].(<li)/i';
-        $replacement = '</li><li';
-        $str = preg_replace($pattern, $replacement, $str);
-        return $str;
     }
 
     /**
@@ -136,7 +104,30 @@ class Template
 
 
 
+    /**
+     * Method to parse the template
+     */
+    public function parseTemplate()
+    {
+        //parse some other tags
+        $parse = new Parse($this->output);
+        //parse extension {include 'file.htm'}
+        $this->output = $parse->parseInclude();
 
+    }
 
-
+    
+    /**
+     * @return mixed
+     */
+    public function getOutput()
+    {
+        $str = $this->output;
+        $this->output = '';
+        $str = str_replace(["\n", "\r", "\t", "</li>    <li", "</li>                <li"], ['', '', '', '</li><li', '</li><li'], $str);
+        $pattern = '/(li>)[\s].(<li)/i';
+        $replacement = '</li><li';
+        $str = preg_replace($pattern, $replacement, $str);
+        return $str;
+    }
 }
