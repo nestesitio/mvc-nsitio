@@ -104,6 +104,29 @@ class Controller
     {
         return $this->tags[$tag];
     }
+    
+    /**
+     *
+     * @param string $filename
+     * @return boolean
+     */
+    public function setView($filename)
+    {
+        if ($this->template == null) {
+            $file = ControlTools::validateFile($this, $filename, 'view', 'htm');
+            if($file == null){
+                Monitor::setErrorMessages(null, ['message'=>'No valid template found for ' . get_class($this)]);
+                return false;
+            }
+
+            $this->view = new View($file);
+            $this->template = $file;
+            $this->extended = $this->view->getLayout();
+
+        }
+
+        return true;
+    }
 
 
     /**
@@ -159,30 +182,6 @@ class Controller
         foreach($this->tags as $tag=>$data){
             $this->view->setData($tag, $data);
         }
-    }
-
-
-    /**
-     *
-     * @param string $filename
-     * @return boolean
-     */
-    public function setView($filename)
-    {
-        if ($this->template == null) {
-            $file = ControlTools::validateFile($this, $filename, 'view', 'htm');
-            if($file == null){
-                Monitor::setErrorMessages(null, ['message'=>'No valid template found for ' . get_class($this)]);
-                return false;
-            }
-
-            $this->view = new View($file);
-            $this->template = $file;
-            $this->extended = $this->view->getLayout();
-
-        }
-
-        return true;
     }
 
     /**
