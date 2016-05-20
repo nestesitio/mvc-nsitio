@@ -27,7 +27,7 @@ use \lib\control\ControlTools;
 use \lib\register\Monitor;
 use \lib\register\Vars;
 use \lib\loader\Configurator;
-use \lib\control\ControlView;
+use \lib\view\View;
 
 class Controller
 {
@@ -83,30 +83,26 @@ class Controller
         $value = Vars::getPosts('value');
         return $value;
     }
-
+    
     /**
+     * Passes data to template engine
      *
+     * @param $tag
+     * @param $data
      */
-    protected function setUserMessage()
+    protected function set($tag, $data)
     {
-        $this->set('usermsg', Monitor::getUserMessages());
+        Monitor::setDataDevMessage($tag, $data);
+        $this->tags[$tag] = $data;
     }
 
     /**
-     *
+     * @param $tag
+     * @return mixed
      */
-    protected function setCustomMessage()
+    protected function get($tag)
     {
-        $this->set('custommsg', Monitor::getCustomMessages());
-    }
-
-    /**
-     * @param $message
-     */
-    protected function writeMessage($message)
-    {
-        Monitor::setMessages($message);
-        $this->set('usermsg', Monitor::getUserMessages());
+        return $this->tags[$tag];
     }
 
 
@@ -123,7 +119,7 @@ class Controller
             //inject data in view
             $this->renderData();
             //display
-            return $this->view->display();
+            return $this->view->render();
         }else{
             return;
         }
@@ -153,26 +149,6 @@ class Controller
         $this->set($tag, $itens);
     }
 
-    /**
-     * Passes data to template engine
-     *
-     * @param $tag
-     * @param $data
-     */
-    protected function set($tag, $data)
-    {
-        Monitor::setDataDevMessage($tag, $data);
-        $this->tags[$tag] = $data;
-    }
-
-    /**
-     * @param $tag
-     * @return mixed
-     */
-    protected function get($tag)
-    {
-        return $this->tags[$tag];
-    }
 
     /**
      *
@@ -181,7 +157,7 @@ class Controller
     {
         Monitor::setMonitor(Monitor::BOOKMARK, get_class($this) . ' - renderData');
         foreach($this->tags as $tag=>$data){
-            $this->view->set($tag, $data);
+            $this->view->setData($tag, $data);
         }
     }
 
@@ -200,9 +176,9 @@ class Controller
                 return false;
             }
 
-            $this->view = new ControlView($file);
+            $this->view = new View($file);
             $this->template = $file;
-            $this->extended = $this->view->getExtend();
+            $this->extended = $this->view->getLayout();
 
         }
 
@@ -299,6 +275,31 @@ class Controller
         $defaults = Configurator::geHtmlConf();
         $this->set('sitetitle', $defaults['title']);
         $this->set('h1', '');
+    }
+    
+    /**
+     *
+     */
+    protected function setUserMessage()
+    {
+        $this->set('usermsg', Monitor::getUserMessages());
+    }
+
+    /**
+     *
+     */
+    protected function setCustomMessage()
+    {
+        $this->set('custommsg', Monitor::getCustomMessages());
+    }
+
+    /**
+     * @param $message
+     */
+    protected function writeMessage($message)
+    {
+        Monitor::setMessages($message);
+        $this->set('usermsg', Monitor::getUserMessages());
     }
 
     /**
