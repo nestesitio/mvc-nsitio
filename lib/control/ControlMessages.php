@@ -102,7 +102,7 @@ class ControlMessages extends \lib\control\Controller
 
         $errors = Monitor::getErrorMessages();
         foreach ($errors as $error) {
-            $this->dev_messages .= '<div class="dev_errors alert alert-warning"><b>ERROR: </b>' . $error['message'] . '</div>';
+            $this->dev_messages .= '<div class="dev_errors alert alert-warning"><b>ERROR: </b>' . $error[$flag] . '</div>';
             $flag++;
         }
         $msgs = Monitor::getMonitor();
