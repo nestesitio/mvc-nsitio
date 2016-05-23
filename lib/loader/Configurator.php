@@ -27,15 +27,8 @@ class Configurator
     /**
      * @var array
      */
-    private static $dbconf = [];
-    /**
-     * @var array
-     */
     private static $googleconf = [];
-    /**
-     * @var array
-     */
-    private static $site_title = [];
+
     /**
      * @var bool
      */
@@ -62,6 +55,7 @@ class Configurator
         $this->setDbConf();
         $this->setGoogleConf();
         $this->setHtmlConf();
+        $this->setTemplates();
 
     }
 
@@ -75,6 +69,11 @@ class Configurator
 
     }
 
+    /**
+     * @var array
+     */
+    private static $dbconf = [];
+    
     /**
      *
      */
@@ -104,6 +103,12 @@ class Configurator
 
         self::$googleconf['devkey'] = $this->xmlc->queryXPath($path, null, 'devkey');
     }
+    
+    /**
+     * @var array
+     */
+    private static $site_title = [];
+    
     /**
      *
      */
@@ -152,6 +157,34 @@ class Configurator
     public static function getUrlLogoutExit()
     {
         return self::$logout_exit;
+    }
+    
+    
+    /**
+     * @var array
+     */
+    private static $templates = [];
+    
+    /**
+     *
+     */
+    private function setTemplates()
+    {
+        $path = 'themes';
+        
+        $nodes = $this->xmlc->arrayXPath($path . '/*');
+        foreach($nodes as $node){
+            self::$templates[$node] = $this->xmlc->queryXPath($path . '/' . $node, null, 'template');
+        }
+    }
+    
+    /**
+     * 
+     * @param string $index
+     * @return string The path for the template file
+     */
+    public static function getTemplate($index){
+        return self::$templates[$index];
     }
 
 }
