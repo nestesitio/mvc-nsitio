@@ -41,7 +41,7 @@ class ParseExtended
                 $output = file_get_contents(ROOT . DS . $extended);
                 self::$layout = $extended;
                 //now the template is extended with main file
-                $output = str_replace(Tags::TAG_CONTENT, $view, $output);
+                $output = str_replace(Tags::TAG_BLOCK_CONTENT, $view, $output);
                 Monitor::setMonitor(Monitor::TPL, '<b>extended</b> - ' . $extended);
             } else {
                 Monitor::setErrorMessages(null, 'Error: Extended file ' . $extended . ' not found');

@@ -6,6 +6,7 @@ use \lib\register\Monitor;
 use \lib\view\parsers\ParseExtended;
 use \lib\view\Parse;
 use \lib\view\parsers\ParseCondition;
+use \lib\view\parsers\ParseBlock;
 
 /**
  * Description of Template
@@ -114,14 +115,15 @@ class Template
     public function parseTemplate()
     {
         
+        //parse if statements
         $this->output = ParseCondition::parse($this->output);
-        
-        //parse included files {include 'file.htm'}
+        //parse included files {@include 'file.htm'}
         $this->output = \lib\view\parsers\ParseInclude::parse($this->output);
-        //eval code
-        $parse = new Parse($this->output);
+        //parse blocks
+        $this->output = ParseBlock::parse($this->output);
         
-        $this->output = $parse->reparse();
+        $this->output = ParseBlock::put($this->output);
+        
         
 
     }

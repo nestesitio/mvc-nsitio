@@ -26,7 +26,7 @@ class Tags {
     /**
      * @var string
      */
-    const TAG_CONTENT = " {block 'content'}";
+    const TAG_BLOCK_CONTENT = "{@block 'content'}";
 
     /**
      * Pattern for include tag
@@ -42,11 +42,11 @@ class Tags {
      * Pattern for block start tag
      * @var string
      */
-    const PATTERN_BLOCK_START = "/\{block name='[^']+'\}/";
+    const PATTERN_BLOCK_START = "/\{@block name='[^']+'\}/";
     /**
      * @var string
      */
-    const TAG_BLOCK_START = "{block name='";
+    const TAG_BLOCK_START = "{@block name='";
    /**
      * @var string
      */
@@ -56,11 +56,18 @@ class Tags {
      * Pattern for block tag
      * @var string
      */
-    const PATTERN_BLOCK = "/\{block '[^']+'\}/";
+    const PATTERN_BLOCK = "/\{@block '[^']+'\}/";
     /**
      * @var string
      */
-    const TAG_BLOCK = "{block '";
-
+    const TAG_BLOCK = "{@block '";
+    /**
+     * @var string
+     */
+    const TAG_BLOCK_CSS = '<link id="block:css" />';
+    /**
+     * @var string
+     */
+    const TAG_BLOCK_JS = '<script id="block:js" />';
 
 }

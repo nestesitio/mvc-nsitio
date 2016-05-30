@@ -5,6 +5,7 @@ namespace lib\view\parsers;
 use \lib\view\Tags;
 use \lib\view\TemplateTools;
 use \lib\view\Parse;
+use \lib\view\parsers\ParseCondition;
 
 /**
  * Description of ParseInclude
@@ -31,8 +32,9 @@ class ParseInclude {
                 $file = TemplateTools::lookForTemplate($file);
                 if (null != $file) {
                     $content = Parse::obFile($file);
+                    $content = ParseCondition::parse($content);
                     $content = self::parse($content);
-                    $content = \lib\view\parsers\ParseInclude::parse($content);
+                    $content = ParseInclude::parse($content);
                     $output = str_replace($match, $content, $output);
                 }
             }
