@@ -39,7 +39,7 @@ class TemplateTools {
         foreach ($folders as $folder) {
             foreach ($exts as $ext) {
                 if (is_file(ROOT . DS . $folder . $file . $ext)) {
-                    return ROOT . DS . $folder . $file . $ext;
+                    return $folder . $file . $ext;
                 }
             }
         }

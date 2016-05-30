@@ -4,6 +4,7 @@ namespace lib\view\parsers;
 
 use \lib\view\Tags;
 use \lib\view\TemplateTools;
+use \lib\view\Parse;
 
 /**
  * Description of ParseInclude
@@ -25,21 +26,15 @@ class ParseInclude {
         $matches = [];
         if (strpos($output, Tags::TAG_INCLUDE) !== false) {
             preg_match(Tags::PATTERN_INCLUDE, $output, $matches);
-            if(count($matches) > 0){
-                foreach($matches as $match){
-                    $file = TemplateTools::getTagArgument($match, Tags::TAG_INCLUDE);
-                    $file = TemplateTools::lookForTemplate($file);
-                    if(null != $file){
-                        ob_start();
-                        include($file);
-                        $content = ob_get_contents();
-                        ob_end_clean();
-                        $content = str_replace(["\n", "\r"], '', $content);
-                        $content = self::parse($content);
-                        $output = str_replace($match, $content, $output);
-                    }
+            foreach ($matches as $match) {
+                $file = TemplateTools::getTagArgument($match, Tags::TAG_INCLUDE);
+                $file = TemplateTools::lookForTemplate($file);
+                if (null != $file) {
+                    $content = Parse::obFile($file);
+                    $content = self::parse($content);
+                    $content = \lib\view\parsers\ParseInclude::parse($content);
+                    $output = str_replace($match, $content, $output);
                 }
-                
             }
         }
         return $output;

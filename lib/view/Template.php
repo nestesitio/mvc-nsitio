@@ -3,8 +3,9 @@
 namespace lib\view;
 
 use \lib\register\Monitor;
-use \lib\view\Parse;
 use \lib\view\parsers\ParseExtended;
+use \lib\view\Parse;
+use \lib\view\parsers\ParseCondition;
 
 /**
  * Description of Template
@@ -57,10 +58,7 @@ class Template
         if (file_exists(ROOT . DS . $file)) {
             $this->page_template = $file;
             Monitor::setMonitor(Monitor::TPL, $file);
-            ob_start(); // start output buffer
-            include (ROOT . DS . $file);
-            $this->output = ob_get_contents(); // get contents of buffer
-            ob_end_clean();
+            $this->output = Parse::obFile($file);// get contents of buffer
             //parse extension {extends 'file.htm'}
             $this->output = ParseExtended::parse($this->output);
             //regist the path for main template
@@ -99,7 +97,7 @@ class Template
      */
     public static function getData($tag)
     {
-        return self::$data[$tag];
+        return (isset(self::$data[$tag]))? self::$data[$tag] : null;
     }
 
 
@@ -109,10 +107,16 @@ class Template
      */
     public function parseTemplate()
     {
-        //parse some other tags
+        
+        $this->output = ParseCondition::parse($this->output);
+        
+        //parse included files {include 'file.htm'}
+        $this->output = \lib\view\parsers\ParseInclude::parse($this->output);
+        //eval code
         $parse = new Parse($this->output);
-        //parse extension {include 'file.htm'}
-        $this->output = $parse->parseInclude();
+        
+        $this->output = $parse->reparse();
+        
 
     }
 
@@ -122,12 +126,6 @@ class Template
      */
     public function getOutput()
     {
-        $str = $this->output;
-        $this->output = '';
-        $str = str_replace(["\n", "\r", "\t", "</li>    <li", "</li>                <li"], ['', '', '', '</li><li', '</li><li'], $str);
-        $pattern = '/(li>)[\s].(<li)/i';
-        $replacement = '</li><li';
-        $str = preg_replace($pattern, $replacement, $str);
-        return $str;
+        return $this->output;
     }
 }

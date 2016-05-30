@@ -39,17 +39,28 @@ class Tags {
     const TAG_INCLUDE = "{include '";
     
     /**
-     * Pattern for block tag
+     * Pattern for block start tag
      * @var string
      */
-    const PATTERN_BLOCK = "/\{block name='[^']+'\}/";
+    const PATTERN_BLOCK_START = "/\{block name='[^']+'\}/";
     /**
      * @var string
      */
-    const TAG_BLOCK = "{block name='";
+    const TAG_BLOCK_START = "{block name='";
    /**
      * @var string
      */
     const TAG_BLOCK_END = "{/block}";
+    
+    /**
+     * Pattern for block tag
+     * @var string
+     */
+    const PATTERN_BLOCK = "/\{block '[^']+'\}/";
+    /**
+     * @var string
+     */
+    const TAG_BLOCK = "{block '";
+
 
 }
