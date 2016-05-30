@@ -38,6 +38,12 @@ class Template
      * @var string
      */
     private $output = null;
+    
+    /**
+     *
+     * @var array
+     */
+    private $blocks = [];
 
 
     /**

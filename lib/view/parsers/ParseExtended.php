@@ -20,7 +20,7 @@ class ParseExtended
 
     /**
      * Extend the template to a main template file if there is a tag:
-     * {extends 'layout/freelancer/home.htm'}
+     * {@extends 'layout/freelancer/home.htm'}
      * Get the HTML with the main template
      * 
      * @param string $output

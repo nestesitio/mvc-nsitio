@@ -12,7 +12,6 @@ use \lib\view\Template;
  */
 class ParseCondition {
     
-    #const PATTERN_ALL = "/({if){1}.*({endif;}){1}/m";
     const PATTERN_STATEMENTS = "/{(if|elseif|else|endif){1}[^}]*}/";
 
     public static function parse($output){

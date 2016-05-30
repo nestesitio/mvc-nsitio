@@ -47,15 +47,5 @@ class Parse {
         return self::$output;
     }
     
-    private function setPhp($output){
-        
-        $search = ['{else:}', '{endif;}', '{elseif', '{if', '{foreach '];
-        $replace = ['<?php else: ?>', '<?php endif;}', '<?php elseif', '<?php if', '<?php foreach '];
-        $output = str_replace($search, $replace, $output);
-        $search = [':}'];
-        $replace = [': ?>'];
-        $output = str_replace($search, $replace, $output);
-        return $output ;
-    }
 
 }

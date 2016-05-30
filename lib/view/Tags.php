@@ -18,11 +18,11 @@ class Tags {
      * Pattern for the tag extended layout for primary template file
      * @var string
      */
-    const PATTERN_EXTENDS = "/\{extends '[^']+'\}/";
+    const PATTERN_EXTENDS = "/\{@extends '[^']+'\}/";
     /**
      * @var string
      */
-    const TAG_EXTENDS = "{extends '";
+    const TAG_EXTENDS = "{@extends '";
     /**
      * @var string
      */
@@ -32,11 +32,11 @@ class Tags {
      * Pattern for include tag
      * @var string
      */
-    const PATTERN_INCLUDE = "/\{include '[^']+'\}/";
+    const PATTERN_INCLUDE = "/\{@include '[^']+'\}/";
     /**
      * @var string
      */
-    const TAG_INCLUDE = "{include '";
+    const TAG_INCLUDE = "{@include '";
     
     /**
      * Pattern for block start tag
