@@ -7,6 +7,7 @@ use \lib\view\parsers\ParseExtended;
 use \lib\view\Parse;
 use \lib\view\parsers\ParseCondition;
 use \lib\view\parsers\ParseBlock;
+use \lib\view\parsers\ParseLoop;
 
 /**
  * Description of Template
@@ -104,6 +105,7 @@ class Template
      */
     public static function getData($tag)
     {
+        $tag = str_replace('$', '', $tag);
         return (isset(self::$data[$tag]))? self::$data[$tag] : null;
     }
 
@@ -123,6 +125,8 @@ class Template
         $this->output = ParseBlock::parse($this->output);
         
         $this->output = ParseBlock::put($this->output);
+        
+        $this->output = ParseLoop::parseForeach($this->output);
         
         
 
