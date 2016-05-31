@@ -5,10 +5,8 @@ namespace lib\view;
 use \lib\register\Monitor;
 use \lib\view\parsers\ParseExtended;
 use \lib\view\Parse;
-use \lib\view\parsers\ParseCondition;
 use \lib\view\parsers\ParseBlock;
 use \lib\view\parsers\ParseLoop;
-use \lib\view\parsers\ParseEmbed;
 
 /**
  * Description of Template
@@ -119,17 +117,19 @@ class Template
     {
         
         //parse if statements
-        $this->output = ParseCondition::parse($this->output);
+        $this->output = \lib\view\parsers\ParseCondition::parse($this->output);
         //parse included files {@include 'file.htm'}
         $this->output = \lib\view\parsers\ParseInclude::parse($this->output);
         //parse blocks
         $this->output = ParseBlock::parse($this->output);
-        
+        //insert blocks (or stacks)
         $this->output = ParseBlock::put($this->output);
-        
-        $this->output = ParseLoop::parseForeach($this->output);
-        
-        $this->output = ParseEmbed::parse($this->output);
+        //process while loops
+        $this->output = ParseLoop::parseWhile($this->output);
+        //process embed
+        $this->output = \lib\view\parsers\ParseEmbed::parse($this->output);
+        //process data
+        $this->output = \lib\view\parsers\ParseData::parse($this->output);
 
     }
 

@@ -27,7 +27,6 @@ class Tags {
      * @var string
      */
     const TAG_BLOCK_CONTENT = "{@block 'content'}";
-
     /**
      * Pattern for include tag
      * @var string
@@ -37,30 +36,18 @@ class Tags {
      * @var string
      */
     const TAG_INCLUDE = "{@include '";
-    
-    /**
-     * Pattern for block start tag
-     * @var string
-     */
-    const PATTERN_BLOCK_START = "/\{@block name='[^']+'\}/";
     /**
      * @var string
      */
-    const TAG_BLOCK_START = "{@block name='";
-   /**
-     * @var string
-     */
-    const TAG_BLOCK_END = "{/block}";
-    
-    /**
-     * Pattern for block tag
-     * @var string
-     */
-    const PATTERN_BLOCK = "/\{@block '[^']+'\}/";
+    const TAG_PUTBLOCK = "{@block 'name'}";
     /**
      * @var string
      */
-    const TAG_BLOCK = "{@block '";
+    const PATTERN_PUTBLOCK = "/({@block ')[^']*('})/";
+    /**
+     * @var string
+     */
+    const PATTERN_BLOCKS = "/{@block name='([^']*)'}(.*){@endblock}/m";
     /**
      * @var string
      */
@@ -69,5 +56,19 @@ class Tags {
      * @var string
      */
     const TAG_BLOCK_JS = '<script id="block:js" />';
+    /**
+     * Pattern for embed tag
+     * @var string
+     */
+    const PATTERN_EMBED = "/\{@embed ([^}]+)\}/";
+    /**
+     * @var string
+     */
+    const TAG_EMBED = "{@embed";
+    /**
+     * Pattern for data tag {$var}
+     * @var string
+     */
+    const PATTERN_DATA = "/{\\$([^(} ]+)([^}]*)}/";
 
 }
