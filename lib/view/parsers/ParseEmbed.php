@@ -32,20 +32,21 @@ class ParseEmbed {
     }
     
     private static function getEmbed($argument){
-        $embed = '';
         $args = self::getArgs($argument);
         
         if(null != $args['control']){
             return \lib\loader\Boot::embed($args['control'], $args['action'], $args['view']);
+        }elseif(null != $args['view']  && null != $args['vars']){
+            $template = new \lib\view\Template($args['view']);
+            /*
+            foreach($args['vars'] as $tag){
+                $template->addData($tag, $vars);
+            }
+             * 
+             */
+            $template->parseTemplate();
+            return $template->getOutput();
         }
-        
-        if(null != $args['vars']){
-            
-        }
-        
-        
-        
-        return $embed;
         
     }
     
