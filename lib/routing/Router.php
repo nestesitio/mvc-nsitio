@@ -87,6 +87,42 @@ class Router
         Monitor::setMonitor(Monitor::ACTION, $method);
         return $method;
     }
+    
+    /**
+     * Get class name to embed in view
+     * 
+     * @param string $route 'App/Control'
+     * @return boolean|string
+     */
+    public static function getEmbed($route){
+        list($app, $control) = explode('/', $route);
+        $namespace = '\apps\\' . ucfirst($app) . '\\';
+        
+        
+        // assign controller full name
+        $class = self::getControlClass($app, $control, $namespace);
+        // if we have extended controller
+        if (!class_exists($class)) {
+            return false;
+        }
+        
+        return $class;
+    }    
+    
+    public static function getEmbedAction($class, $action_name){
+        // prepare Action
+        $str = 'x' . str_replace('_', ' ', $action_name);
+        $action = str_replace(' ', '', substr(ucwords($str), 1));
+        
+        $hasActionFunction = (int) method_exists($class, $action . 'Action');
+        if ($hasActionFunction == 0) {
+            return false;
+        }
+
+        $method = $action . 'Action';
+
+        return $method;
+    }
 
     public static function getFolder()
     {

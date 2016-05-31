@@ -206,6 +206,31 @@ class Boot
             echo $msg->write();
         }
     }
+    
+    public static function embed($control, $action_name, $view = null){
+        
+        $class = Router::getEmbed($control);
+        if($class == false){
+            Monitor::setErrorMessages(null, ['message'=>'No class found for url ' . $control]);
+            return FALSE;
+        }
+        
+        $controller = new $class();
+
+        $action = Router::getEmbedAction($class, $action_name);
+
+        if($action == false){
+            Monitor::setErrorMessages(null, ['message'=>'No method found as ' . $action_name]);
+            return false;
+        }
+        
+        if (null != $view) {
+            $controller->setView($view);
+        }
+
+        return $controller->$action();
+ 
+    }
 
 
 }
