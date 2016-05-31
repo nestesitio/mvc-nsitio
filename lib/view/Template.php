@@ -8,6 +8,7 @@ use \lib\view\Parse;
 use \lib\view\parsers\ParseCondition;
 use \lib\view\parsers\ParseBlock;
 use \lib\view\parsers\ParseLoop;
+use \lib\view\parsers\ParseEmbed;
 
 /**
  * Description of Template
@@ -128,7 +129,7 @@ class Template
         
         $this->output = ParseLoop::parseForeach($this->output);
         
-        
+        $this->output = ParseEmbed::parse($this->output);
 
     }
 
