@@ -2,6 +2,8 @@
 
 namespace lib\view\parsers;
 
+use \lib\view\Tags;
+
 /**
  * Description of ParseEmbed
  *
@@ -10,20 +12,12 @@ namespace lib\view\parsers;
  */
 class ParseEmbed {
 
-    /**
-     * Pattern for include tag
-     * @var string
-     */
-    const PATTERN_EMBED = "/\{@embed ([^}]+)\}/";
-    /**
-     * @var string
-     */
-    const TAG_EMBED = "{@embed";
+
     
     public static function parse($output){
         $matches = [];
-        if (strpos($output, self::TAG_EMBED) !== false) {
-            preg_match_all(self::PATTERN_EMBED, $output, $matches, PREG_SET_ORDER);
+        if (strpos($output, Tags::TAG_EMBED) !== false) {
+            preg_match_all(Tags::PATTERN_EMBED, $output, $matches, PREG_SET_ORDER);
             foreach ($matches as $match) {
                 $output = str_replace($match[0], self::getEmbed($match[1]), $output);
             }

@@ -16,7 +16,7 @@ class ParseLoop {
     
     const PATTERN_ENDWHILE = "{@endwhile;}";
 
-    public static function parseForeach($output){
+    public static function parseWhile($output){
         $matches = [];
         if (preg_match(self::PATTERN_WHILE, $output)) {
             preg_match_all(self::PATTERN_WHILE, $output, $matches, PREG_SET_ORDER);
