@@ -12,7 +12,7 @@ use \lib\view\Template;
  */
 class ParseCondition {
     
-    const PATTERN_STATEMENTS = "/{(if|elseif|else|endif){1}[^}]*}/";
+    const PATTERN_STATEMENTS = "/{@(if|elseif|else|endif){1}[^}]*}/";
 
     public static function parse($output){
         $pieces = [];
@@ -24,14 +24,15 @@ class ParseCondition {
             $matches = array_reverse($matches[0], true);
             $length = $offset = 0;
             foreach ($matches as $match) {
+ 
                 $parts = self::decompose($match[0]);
-                $length = ($match[0] == '{endif;}') ? 0 : $offset - $match[1];
+                $length = ($match[0] == '{@endif;}') ? 0 : $offset - $match[1];
                 $pieces[] = ['string' => $match[0], 'control' => $parts['control'], 'result' => $parts['condition'], 'offset' => $match[1], 'length' => $length];
                 $offset = $match[1];
             }
 
             $pieces = array_reverse($pieces);
-
+            
             $output = self::parseOutput($output, $pieces);
         }
 
@@ -49,7 +50,6 @@ class ParseCondition {
             }
             
             $strlength = strlen($piece['string']);
-            
             
              if ($piece['result'] == true) {
                 $flag = true;
@@ -71,13 +71,12 @@ class ParseCondition {
             $i++;
         }
         
-        
         return $output;
     }
     
     public static function decompose($match){
         $parts = [];
-        $match = str_replace(['{', '}'], '', $match);
+        $match = str_replace(['{@', '}'], '', $match);
         $keywords = preg_split("/(\s\(|;|:)/", $match);
         $parts['control'] = $keywords[0];
         $parts['condition'] = '';
