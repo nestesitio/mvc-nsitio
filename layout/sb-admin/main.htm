@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Backend {{ site-title }}</title>
+        <title>Backend {$site-title}</title>
         <link rel="icon" type="image/x-icon" href="/images/nsitio.png" />
 
         <!-- Bootstrap Core CSS -->
@@ -16,7 +16,7 @@
         <link href="/themes/sb-admin-2/plugins_css/metisMenu/metisMenu.min.css" rel="stylesheet">
 
         <!-- Dynamic CSS -->
-        <link href="{{ dynamiccss }}"  rel="stylesheet">
+        <link id="block:css" />
 
         <!-- Custom CSS -->
         <link href="/themes/sb-admin-2/sb-admin-2.css" rel="stylesheet">
@@ -50,16 +50,16 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand-sitio" href="/">
-                        {{ site-title }}
+                        {$sitetitle}
                     </a>
                 </div>
                 <!-- /.navbar-header -->
 
-                {% embed ('Backend\BackendMenu::topmenu' @'apps/Backend/view/topmenu.htm') %}
+                {@embed control:'Backend/BackendMenu'; action:'topmenu'; view:'apps/Backend/view/topmenu.htm'}
                 <!--<ul class="nav navbar-top-links navbar-right">-->
                 <!-- /.navbar-top-links -->
 
-                {% embed ('Backend\BackendMenu::navbackend' @'layout/sb-admin/navside.htm') %}
+                {@embed control:'Backend/BackendMenu'; action:'navbackend'; view:'layout/sb-admin/navside.htm'}
             </nav>
             
 
@@ -68,17 +68,17 @@
                 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">{{ h1 }}</h1>
+                        <h1 class="page-header">{$h1}</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <div id="jsmonitor" style="position:fixed;bottom:5px;right:100px;z-index:360;background:#fff;color:red;"></div>
 
                 <!--controller action content -->
-                <div id="content_action">{{ include('main') }}</div>
+                <div id="content_action">{@block 'content'}</div>
 
                 <!--messages -->
-                <div id="messages">{{ messages }}</div>
+                <div id="messages">{$messages}</div>
             </div>
         </div>
 
@@ -101,7 +101,9 @@
         <script src="/js/personal/personal.js"></script>
 
         <!-- Dynamic Javascrip files -->
-        <script src="{{ dynamicjs }}"></script>
+        <script id="block:js" />
+        
+        {@block 'scripts'}
         
         <script>
             $( ".support-btn" ).click(function() {addSupport(this);});
@@ -111,6 +113,5 @@
             //$(function () {monitor();});
         </script>
 
-        <script>{{}}</script>
     </body>
 </html>

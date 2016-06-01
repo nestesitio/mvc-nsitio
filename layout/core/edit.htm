@@ -1,15 +1,15 @@
-<form action="{{ action }}" method="post">
+<form action="{$action}" method="post">
     <div class="btns-form">
-        <!--{{ buttons }}-->
+        <!--{$buttons}-->
     </div>
-    {% while (item in usermsg) %}
-    <div class="usermsg">{{ item.msg }}</div>
-    {% endwhile %}
-    {{ hiddenfields }}
-    {% while (item in inputs) %}
+    {@while (item in usermsg):}
+    <div class="usermsg">{$item.msg}</div>
+    {@endwhile;}
+    {$hiddenfields}
+    {@while (item in inputs):}
     <div class="form-group">
-        <label for="{{ item.field }}">{{ item.label }}</label><span class="input-msg"></span>
-        {{ item.input }}
+        <label for="{$item.field}">{$item.label}</label><span class="input-msg"></span>
+        {$item.input}
     </div>
-    {% endwhile %}    
+    {@endwhile;}    
 </form>

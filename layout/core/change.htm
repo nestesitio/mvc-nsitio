@@ -1,16 +1,16 @@
 <script class="update-row">changeRow();</script>
-<div class="data-id" style="display: none">{{ dataid }}</div>
+<div class="data-id" style="display: none">{$dataid}</div>
 <div class="alert alert-info">
-    {% while (item in usermsg) %}
-    <div>{{ item.msg }}</div>
-    {% endwhile %}
+    {@while (item in usermsg):}
+    <div>{$item.msg}</div>
+    {@endwhile;}
 </div>
 <div class="btns-form">
-    <!--{{ buttons }}-->
+    <!--{$buttons}-->
 </div>
-{% while (item in inputs) %}
+{@while (item in inputs):}
 <div class="form-group">
-    <label>{{ item.label }}</label><span class="input-msg"></span>
-    <div class="show-data" data-field="{{ item.field }}">{{ item.value }}</div>
+    <label>{$item.label}</label><span class="input-msg"></span>
+    <div class="show-data" data-field="{$item.field}">{$item.value}</div>
 </div>
-{% endwhile %}
+{@endwhile;}

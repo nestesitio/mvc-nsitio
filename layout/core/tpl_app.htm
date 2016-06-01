@@ -1,19 +1,25 @@
-{% extends 'layout/freelancer/main.htm' %}
+{@extends 'config:frontend'}
 
-{% cssextension '/css/core/core.css' %}
+{@block name='css'}
+<link href="/css/core/core.css" rel="stylesheet">
+{@endblock}
 
-{% jsextension '/js/core/core.js' %}
+{@block name='js'}
+<script src="/js/core/core.js"></script>
+{@endblock}
 
 <!-- Intro Content -->
 <div class="row">
-    {% while (item in list) %}
+    {@while (item in list):}
     <div class="col-lg-2">
-        <h3>{{ item.table_name.name }}</h3>
+        <h3>{$item.table_name.name}</h3>
     </div>
-    {% endwhile %}
+    {@endwhile;}
     
 </div>
 <!-- /.row -->
+{@block name='scripts'}
 <script>
 
 </script>
+{@endblock}

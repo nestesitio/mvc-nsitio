@@ -1,5 +1,5 @@
 <script class="remove-row">removeDataRow();</script>
-<div class="data-id" style="display: none">{{ dataid }}</div>
-{% while (item in usermsg) %}
-<div class="usermsg">{{ item.msg }}</div>
-{% endwhile %}
+<div class="data-id" style="display: none">{$dataid}</div>
+{@while (item in usermsg):}
+<div class="usermsg">{$item.msg}</div>
+{@endwhile;}

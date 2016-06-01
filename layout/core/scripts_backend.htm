@@ -1,3 +1,4 @@
+{@block name='scripts'}
 <script>
     $(document).on('click', '.datarow', function(){($(this).css('backgroundColor') === "rgb(255, 255, 153)") ?$(this).css('background-color', ""):$(this).css('background-color', '#ff9');});
     $(document).on('click', '.row-action', function(){setRowAction(this);});
@@ -42,3 +43,4 @@
     
     
 </script>
+{@endblock}

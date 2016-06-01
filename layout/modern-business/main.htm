@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>{{ site-title }}</title>
+        <title>{$site-title}</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="/css/base/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
         <!-- Custom CSS -->
         <link href="/css/core/core.css" rel="stylesheet">
         <link href="/css/personal/brand.css" rel="stylesheet">
-        <link href="{{ dynamiccss }}"  rel="stylesheet">
+        <link href="{$dynamiccss}"  rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -34,13 +34,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ nav_home }}">{{ site-title }}</a>
+                    <a class="navbar-brand" href="{$nav_home}">{$site-title}</a>
                 </div
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        {% embed ('Core\Menu::nav' @'layout/modern-business/nav.htm') %}
-                        {% embed ('User\Menu::front' @'apps/User/view/front.htm') %}
+                        {@embed control:'Home/Home'; action:'homenav'; view:'apps/Home/view/nav.htm'}
                     </ul>
                 </div>
             </div>
@@ -52,24 +51,24 @@
         <div class="container">
             
             <!--messages -->
-            <div id="messages">{{ messages }}</div>
+            <div id="messages">{$messages}</div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">{{ h1 }}</h1>
+                    <h1 class="page-header">{$h1}</h1>
                 </div>
             </div>
             <div id="jsmonitor" style="position:fixed;top:120px;right:100px;z-index:360;background:#fff;color:red"></div>
 
             <!--controller action content -->
-            <div id="conten_action">{{ include('main') }}</div>
+            <div id="conten_action">{$include('main'):}</div>
 
             <hr>
 
             <!-- Footer -->
             <footer>
                 <div class="row">
-                    {% include ('layout/modern-business/footer.htm') %}
+                    {@include 'layout/modern-business/footer.htm'}
                 </div>
             </footer>
             
@@ -86,8 +85,8 @@
         <script src="/js/core/core.js"></script>
         <script src="/js/personal/personal.js"></script>
         <!-- Dynamic Javascrip files and scripts -->
-        <script src="{{ dynamicjs }}"></script>
-        <script>{{}}</script>
+        <script src="{$dynamicjs}"></script>
+        
         <script>
             $( ".support-btn" ).click(function() {addSupport(this);});
             $(document).on('click', '.btn-modal', function(){modalLoad(this);});
