@@ -1,34 +1,34 @@
 <ul class="nav navbar-top-links navbar-right">
     <!-- /.dropdown -->
     <li class="dropdown">
-        {% embed ('Support\Support::menu' @'apps/Support/view/menu.htm') %}
+        {@embed control:'Support\Support'; action:'menu'; view:'apps/Support/view/menu.htm'}
         <!-- /.dropdown-support -->
     </li>
     <!-- /.dropdown -->
     <li class="dropdown">
-        {% if (files-menu) %}
+        {@if($files-menu):}
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-database fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
-        {% endif %}
+        {@endif;} 
         <ul class="dropdown-menu dropdown-user">
-            {% while (item in files-menu) %}
+            {@while ($item in $files-menu):}
             <li>
-                <a href="{{ item.url }}"><i class="fa fa-file fa-fw"></i>{{ item.company }}</a>
+                <a href="{$item.url}"><i class="fa fa-file fa-fw"></i>{$item.company}</a>
             </li>
             <li class="divider"></li>
-            <li>&nbsp;{{ item.dates }}</li>
+            <li>&nbsp;{$item.dates}</li>
             <li class="divider"></li>
-            {% endwhile %}
+            {@endwhile;}
         </ul>
         <!-- /.dropdown-files -->
     </li>
     <!-- /.dropdown -->
     <li class="dropdown">
-        {{ user-menu }}
+        {$user-menu}
         <!-- /.dropdown-user -->
     </li>
 
-    {{ tool-debug }}
+    {$tool-debug}
     <!-- /.dropdown -->
 </ul>

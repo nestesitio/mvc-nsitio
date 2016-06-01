@@ -1,4 +1,4 @@
-{% extends 'layout/sb-admin/main.htm' %}
+{@extends 'config:backend'}
 
 {% cssextension '/themes/sb-admin-2/plugins_css/dataTables.bootstrap.css' %}
 {% cssextension '/plugins/bootstrap-datetimepicker/datetimepicker.css' %}
@@ -26,34 +26,34 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                {{ h1 }} (<span id="list-results">{{ numrows }}</span> de <span id="list-total">{{ total }}</span> resultados)
+                {$h1} (<span id="list-results">{$numrows}</span> de <span id="list-total">{$total}</span> resultados)
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="table-responsive mothergrid">
                     <div class="grid-buttons">
-                        <!--{{ buttons }}-->
-                        <a class="btn-showfilter btn btn-xs btn-primary" data-action="list_{{ canonical }}">
+                        <!--{$buttons}-->
+                        <a class="btn-showfilter btn btn-xs btn-primary" data-action="list_{$canonical}">
                             <span class="glyphicon glyphicon-filter"></span> Filtrar</a>
                     </div>
                     <!-- grid head -->
                     <div class="headgrid">
                         <div class="grid-filters" style="display:none">
-                            {% include ('layout/core/filters.htm') %}
+                            {@include 'layout/core/filters.htm'}
                         </div>
                         <table class="grid">
                             <tr>
-                                <!--<td class="{{ class }}">{{ column_label }}</td>-->
+                                <!--<td class="{$class}">{$column_label}</td>-->
                             </tr>                
                         </table>
                     </div>
                     <!-- grid template for add datarow -->
                     <ul class="grid template-row">
-                        <!--<li>{{ template_column }}</li>-->
-                        <!--<li class="row_tool">{{ template_tools }}</li>-->
+                        <!--<li>{$template_column}</li>-->
+                        <!--<li class="row_tool">{$template_tools}</li>-->
                     </ul>
                     <div class="datagrid">
-                        {% include ('layout/core/datalist.htm') %}
+                        {@include 'layout/core/datalist.htm'}
                     </div>
                     
                     
@@ -69,7 +69,7 @@
 </div>
 <!-- /.row -->
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-{% include ('layout/core/scripts_backend.htm') %}
+{@include 'layout/core/scripts_backend.htm'}
 <script>
 $( document ).ajaxComplete(function() {fileupload();});
 $(document).on('click', '.start-upload', function(){fileupObj.startUpload();});

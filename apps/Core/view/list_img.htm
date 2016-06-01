@@ -1,9 +1,9 @@
-<div class="sublist-nums" style="display: none">{{ numrows }}/{{ total }}</div>
+<div class="sublist-nums" style="display: none">{$numrows}/{$total}</div>
 <div class="headgrid" style="max-width: 600px">
     <div class="grid-buttons">
         <a class="btn-action btn btn-xs btn-default" 
-           data-id="{{ data-id }}" data-genre="img" 
-           data-position="{{ data-position }}" data-action="{{ data-insert }}">
+           data-id="{$data-id}" data-genre="img" 
+           data-position="{$data-position}" data-action="{$data-insert}">
             <span class="glyphicon glyphicon-file"></span> New</a>
         <a class="closeform btn btn-xs btn-primary">
             <span class="glyphicon glyphicon-remove"></span> Fechar</a>
@@ -14,7 +14,7 @@
     <div class="file-gallery col-xs-6 col-md-3">
         <div class="thumbnail">
             <div class="thumb-tools">
-                <a title="Delete" data-action="{{ action-remove }}" data-command="del" class="thumb-action fa fa-trash-o"></a>
+                <a title="Delete" data-action="{$action-remove}" data-command="del" class="thumb-action fa fa-trash-o"></a>
             </div>
         </div>    
     </div>
@@ -22,26 +22,26 @@
 <div class="datagrid">
     <!-- grid body -->
     <div id="bodygrid" class="bodygrid">
-        {% while (item in list) %}
+        {@while (item in list):}
         <div class="file-gallery col-xs-6 col-md-3">
             <div class="thumbnail">
-                <img src="/{{ item.htm_media.url }}" />
+                <img src="/{$item.htm_media.url}" />
                 <div class="thumb-tools">
-                    <a title="Delete" data-id="{{ item.htm_media.id }}" data-action="{{ action-remove }}" data-command="del" class="thumb-action fa fa-trash-o"></a>
+                    <a title="Delete" data-id="{$item.htm_media.id}" data-action="{$action-remove}" data-command="del" class="thumb-action fa fa-trash-o"></a>
                 </div>
-                <div class="thumb-title">{{ item.htm_media.title }}</div>
+                <div class="thumb-title">{$item.htm_media.title}</div>
             </div>           
         </div>
-        {% endwhile %}
+        {@endwhile;}
     </div>
     <!-- grid footer -->
     <div class="footgrid">
         <ul class="pagination">
-            <!--{% while (item in pagination) %}-->
-            <li class="{{ item.class }}">
-                <a class="btn-pagin" data-id="{{ item.id }}" data-action="{{ item.action }}">{{ item.label }}</a>
+            <!--{@while (item in pagination):}-->
+            <li class="{$item.class}">
+                <a class="btn-pagin" data-id="{$item.id}" data-action="{$item.action}">{$item.label}</a>
             </li>
-            <!--{% endwhile %}-->
+            <!--{@endwhile;}-->
         </ul>
     </div>
 </div>

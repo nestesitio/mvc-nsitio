@@ -1,6 +1,27 @@
-<?php $this->layout('freelancer::main') ?>
-<p><?=$this->e($test)?></p>
+{@extends 'config:frontend'}
 
+
+{@block 'test'}
+
+<p>{$test}</p>
+{@if($a == 5):}
+<p>false</p>
+{@elseif ($a == 3):}
+<p class="istruee">True</p>
+{@else:}
+<p>Else</p>
+{@endif;}
+<ul>
+    {@while ($item in $list):}
+    <li class="id">{$item.a} -{$item.b} </li>
+    {@endwhile;}
+</ul>
+{@if (7 == $a):}
+<p>is true</p>
+{@endif;}
+{@if ($abc):}
+<p>exists</p>
+{@endif;}
 
 
 

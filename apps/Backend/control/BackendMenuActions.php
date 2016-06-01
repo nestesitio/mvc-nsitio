@@ -3,8 +3,6 @@
 namespace apps\Backend\control;
 
 use \apps\User\tools\UserMenu;
-use \apps\Salesforce\model\CompaniesQuery;
-use \apps\Task\tools\XmlScandir;
 use \lib\url\UrlHref;
 
 /**

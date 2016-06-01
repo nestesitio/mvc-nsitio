@@ -1,4 +1,4 @@
-{% extends 'layout/sb-admin/main.htm' %}
+{@extends 'config:backend'}
 
 {% cssextension '/plugins/chosen/chosen.css' %}
 {% cssextension '/css/core/backend.css' %}
@@ -20,12 +20,12 @@
     <div class="col-lg-12"> 
         
         <div class="panel panel-default">
-            {% while (item in transfers) %}
+            {@while (item in transfers):}
             <div style="margin:5px 5px 0" class="well well-sm">
-                <a class="btn-task" data-action="{{ item.url }}">{{ item.title }}</a>
+                <a class="btn-task" data-action="{$item.url}">{$item.title}</a>
             </div>
             <div class="panel-body">...</div>
-            {% endwhile %} 
+            {@endwhile;} 
         </div>
         
     </div>

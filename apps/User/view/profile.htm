@@ -1,4 +1,4 @@
-{% extends 'layout/freelancer/main.htm' %}
+{@extends 'layout/freelancer/main.htm'}
 
 {% cssextension '/plugins/bootstrap-datetimepicker/datetimepicker.css' %}
 {% cssextension '/plugins/chosen/chosen.css' %}
@@ -20,43 +20,43 @@ section{padding: 50px}
         <div class="panel panel-default">
             <div class="panel-body">
 
-                <div class="data-id" style="display: none">{{ dataid }}</div>
+                <div class="data-id" style="display: none">{$dataid}</div>
                 <div class="alert alert-info">
-                    {% while (item in usermsg) %}
-                    <div>{{ item.msg }}</div>
-                    {% endwhile %}
+                    {@while (item in usermsg):}
+                    <div>{$item.msg}</div>
+                    {@endwhile;}
                 </div>
                 <div class="btns-form">
-                    <!--{{ buttons }}-->
+                    <!--{$buttons}-->
                 </div>
 
                 <div class="form-group" style="max-width: 100% !important">
                     <label>Nome</label><span class="input-msg"></span>
-                    <div data-input="text" data-action="/user/name_profile/{{ data-id }}" class="show-data to-edit">{{ name }}</div>
+                    <div data-input="text" data-action="/user/name_profile/{$data-id}" class="show-data to-edit">{$name}</div>
                 </div>
                 <div class="form-group" style="max-width: 100% !important">
                     <label>E-mail</label><span class="input-msg"></span>
-                    <div data-input="text" data-action="/user/mail_profile/{{ data-id }}" class="show-data to-edit">{{ mail }}</div>
+                    <div data-input="text" data-action="/user/mail_profile/{$data-id}" class="show-data to-edit">{$mail}</div>
                 </div>
                 <div class="form-group" style="max-width: 100% !important">
                     <label>Telemóvel</label><span class="input-msg"></span>
-                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/tlm_profile/{{ data-id }}" class="show-data to-edit">{{ tlm }} </div>
+                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/tlm_profile/{$data-id}" class="show-data to-edit">{$tlm} </div>
                 </div>
                 <div class="form-group" style="max-width: 100% !important">
                     <label>Telefone</label><span class="input-msg"></span>
-                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/tlf_profile/{{ data-id }}" class="show-data to-edit">{{ tlf }} </div>
+                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/tlf_profile/{$data-id}" class="show-data to-edit">{$tlf} </div>
                 </div>
                 <div class="form-group" style="max-width: 100% !important">
                     <label>Morada</label><span class="input-msg"></span>
-                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/address_profile/{{ data-id }}" class="show-data to-edit">{{ address }} </div>
+                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/address_profile/{$data-id}" class="show-data to-edit">{$address} </div>
                 </div>
                 <div class="form-group" style="max-width: 100% !important">
                     <label>Código Postal</label><span class="input-msg"></span>
-                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/zip_profile/{{ data-id }}" class="show-data to-edit">{{ zip }} </div>
+                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/zip_profile/{$data-id}" class="show-data to-edit">{$zip} </div>
                 </div>
                 <div class="form-group" style="max-width: 100% !important">
                     <label>Localidade</label><span class="input-msg"></span>
-                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/local_profile/{{ data-id }}" class="show-data to-edit">{{ local }} </div>
+                    <div style="min-width: 15px; min-height: 10px" data-input="text" data-action="/user/local_profile/{$data-id}" class="show-data to-edit">{$local} </div>
                 </div>
             </div>
 
@@ -70,7 +70,7 @@ section{padding: 50px}
                 <div class="btns">
                     <a class="btn-modal btn btn-primary btn-bus" 
                        data-toggle="modal" data-target="#myModal"
-                       data-action="/user/password_profile/{{ data-id }}" data-layer="form-process">
+                       data-action="/user/password_profile/{$data-id}" data-layer="form-process">
                         <span class="glyphicon glyphicon-wrench"></span> Mudar password
                     </a>
                 </div>

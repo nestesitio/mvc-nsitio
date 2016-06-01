@@ -7,9 +7,6 @@ use \apps\User\model\UserQueries;
 use \apps\User\tools\UserMenu;
 use \lib\url\MenuRender;
 use \lib\session\SessionUser;
-use \apps\User\model\UserGroupModel;
-use \apps\Home\model\UtilsQueries;
-use \lib\register\Vars;
 
 /**
  * Description of HomeActions
@@ -43,6 +40,8 @@ class HomeActions extends \lib\control\Controller {
         
         $this->sectionProfile();
         $this->set('teste', 'one');
+        $this->set('a', 3);
+        $this->set('list', [0=>['a'=>'var A1', 'b'=>'var B1'],1=>['a'=>'var A2', 'b'=>'var B2']]);
  
     }
 

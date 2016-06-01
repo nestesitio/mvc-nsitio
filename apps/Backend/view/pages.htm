@@ -1,4 +1,4 @@
-{% extends 'layout/sb-admin/main.htm' %}
+{@extends 'config:backend'}
 
 {% jsextension '/themes/sb-admin-2/plugins_js/dataTables/jquery.dataTables.js' %}
 
@@ -25,16 +25,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% while (pages as item) %}
+                            {@while ($pages in $item):}
                             <tr>
-                                <td>{{ item.htm_app.name }}</td>
-                                <td>{{ item.htm_app.slug }}</td>
-                                <td>{{ item.htm.stat }}</td>
-                                <td>{{ item.htm_page.title }}</td>
-                                <td>{{ item.htm_page.canonical }}</td>
-                                <td>{{ item.htm_page.langs_tld }}</td>
+                                <td>{$item.htm_app.name}</td>
+                                <td>{$item.htm_app.slug}</td>
+                                <td>{$item.htm.stat}</td>
+                                <td>{$item.htm_page.title}</td>
+                                <td>{$item.htm_page.canonical}</td>
+                                <td>{$item.htm_page.langs_tld}</td>
                             </tr>
-                            {% endwhile %}
+                            {@endwhile;}
                             
                         </tbody>
                     </table>
