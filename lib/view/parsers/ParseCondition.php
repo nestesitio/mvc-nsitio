@@ -45,10 +45,6 @@ class ParseCondition {
         $i = 0;
         $flag = false;
         foreach($pieces as $piece){
-            if($piece['result'] == true){
-                $flag = true;
-            }
-            
             $strlength = strlen($piece['string']);
             
              if ($piece['result'] == true) {
@@ -74,16 +70,26 @@ class ParseCondition {
         return $output;
     }
     
+    private static $control = ['if', 'elseif', 'else', 'endif'];
+    
     public static function decompose($match){
         $parts = [];
-        $match = str_replace(['{@', '}'], '', $match);
-        $keywords = preg_split("/(\s\(|;|:)/", $match);
-        $parts['control'] = $keywords[0];
+        $match = str_replace(['{', '}'], '', $match);
+        foreach(self::$control as $c){
+            if(strpos($match, '@'. $c) === 0){
+                $parts['control'] = $c;
+            }
+        }
         $parts['condition'] = '';
+        
         if($parts['control'] == 'if' | $parts['control'] == 'elseif' ){
-            $parts['condition'] = self::testCondition($keywords[1]);
+            $condition = strstr($match, '(');
+            $condition = str_replace(['(', ')', ':'], '', $condition);
+            
+            $parts['condition'] = self::testCondition($condition);
         }
         
+
         return $parts;
         
     }
@@ -91,10 +97,10 @@ class ParseCondition {
     private static function testCondition($test){
         
         $result = '';
-        $test = str_replace([')'], '', $test);
         $var = self::getVar($test);
-        $test = self::replaceVar($test, $var);
         
+        $test = self::replaceVar($test, $var);
+        //echo $test . ' testef<br />';
         $result = eval('if('. $test .')return true;');
         return ($result == true)? true : false;
     }
@@ -106,6 +112,7 @@ class ParseCondition {
         $matches = [];
         preg_match(self::PATTERN_VAR, $test, $matches);
         foreach ($matches as $match){
+            //$match = str_replace(['[', ']'], ["['", "']"], $match);
             return $match;
         }
     }
@@ -124,7 +131,7 @@ class ParseCondition {
         }elseif($value == null){
             return 'NULL';
         }else{
-            return $value;
+            return "'" . $value . "'";
         }
     }
     
