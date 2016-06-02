@@ -47,7 +47,11 @@ class Tags {
     /**
      * @var string
      */
-    const PATTERN_BLOCKS = "/{@block name='([^']*)'}(.*){@endblock}/m";
+    const PATTERN_BLOCKS = "/{@block name='([^']*)'}/"; 
+    /**
+     * @var string
+     */
+    const PATTERN_ENDBLOCK = "{@endblock}";
     /**
      * @var string
      */
