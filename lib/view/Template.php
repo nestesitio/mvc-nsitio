@@ -70,6 +70,8 @@ class Template
             $this->output = ParseExtended::parse($this->output);
             //regist the path for main template
             $this->extended_template = ParseExtended::getExtended();
+            //parse included files {@include 'file.htm'}
+            $this->output = \lib\view\parsers\ParseInclude::parse($this->output);
         } elseif (null != $file) {
             Monitor::setErrorMessages(null, 'Error: Template file ' . $file . ' not found');
         }
@@ -118,8 +120,6 @@ class Template
         
         //parse if statements
         $this->output = \lib\view\parsers\ParseCondition::parse($this->output);
-        //parse included files {@include 'file.htm'}
-        $this->output = \lib\view\parsers\ParseInclude::parse($this->output);
         //parse blocks
         $this->output = ParseBlock::parse($this->output);
         //insert blocks (or stacks)
@@ -140,5 +140,9 @@ class Template
     public function getOutput()
     {
         return $this->output;
+    }
+    
+    public function setOutput($output){
+        return $this->output = $output;
     }
 }

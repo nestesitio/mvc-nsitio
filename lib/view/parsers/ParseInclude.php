@@ -28,6 +28,7 @@ class ParseInclude {
         if (strpos($output, Tags::TAG_INCLUDE) !== false) {
             preg_match(Tags::PATTERN_INCLUDE, $output, $matches);
             foreach ($matches as $match) {
+
                 $file = TemplateTools::getTagArgument($match, Tags::TAG_INCLUDE);
                 $file = TemplateTools::lookForTemplate($file);
                 if (null != $file) {

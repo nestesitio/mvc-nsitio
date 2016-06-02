@@ -25,7 +25,11 @@ class View
 
 
 
-
+    /**
+     * Template loads child and parent files
+     * 
+     * @param object $file
+     */
     public function __construct($file)
     {
         $this->template = new Template($file);
@@ -64,6 +68,14 @@ class View
     public function getLayout()
     {
         return $this->template->getExtends();
+    }
+    
+    public function getOutput(){
+        return $this->template->getOutput();
+    }
+    
+    public function setOutput($output){
+        return $this->template->setOutput($output);
     }
 
 
