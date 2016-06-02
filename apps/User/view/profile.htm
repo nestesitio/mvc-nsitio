@@ -22,7 +22,7 @@ section{padding: 50px}
 
                 <div class="data-id" style="display: none">{$dataid}</div>
                 <div class="alert alert-info">
-                    {@while (item in usermsg):}
+                    {@while ($item in $usermsg):}
                     <div>{$item.msg}</div>
                     {@endwhile;}
                 </div>

@@ -1,5 +1,5 @@
 {@extends 'config:backend'}
-{% jsextension '/themes/sb-admin-2/plugins_js/dataTables/jquery.dataTables.js' %}
+
 
 <!-- /.row -->
 <div class="row">
@@ -23,7 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {@while (pages as item):}
+                            {@while ($pages as $item):}
                             <tr>
                                 <td>{$item.htm_app.name}</td>
                                 <td>{$item.htm_app.slug}</td>

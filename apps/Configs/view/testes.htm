@@ -2,7 +2,7 @@
 
 <!-- /.row -->
 <div class="row">
-    {@while (item in projects):}
+    {@while ($item in $projects):}
     <h3>{$item.project.name}</h3>   
         {$item.budgets}
     {@endwhile;}

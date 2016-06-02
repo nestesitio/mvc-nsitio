@@ -4,7 +4,7 @@
         {$toogle}
     </a>
     <ul class="dropdown-menu">
-        {@while (item in list):}
+        {@while ($item in $list):}
         <li>
             <a href="{$item.url}"><i class="fa {$item.class} fa-fw"></i>{$item.name}</a>
         </li>

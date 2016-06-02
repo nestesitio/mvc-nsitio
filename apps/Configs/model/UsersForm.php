@@ -54,10 +54,7 @@ class UsersForm extends \lib\form\FormMerged {
         
         $query = \model\querys\CompanyQuery::start()->orderByName();
         $input = $form->getCompanyIdInput();
-        $input_to_export = FormRender::renderName('filter_' . TeamPlayer::FIELD_COMPANY_TEAM_ID, Vars::getCanonical());
-        $input->setDataAttribute('data-export', $input_to_export);
-        $input->setDataAttribute('data-function', 'exportOptions');
-        $input->setDataAttribute('data-action', '/salesforce/select_teams');
+        
         $input->setModel($query);
         $form->setCompanyIdInput($input);
         

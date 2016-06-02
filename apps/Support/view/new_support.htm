@@ -2,12 +2,12 @@
     <div class="btns-support">
         <!--{$buttons}-->
     </div>
-    {@while (item in usermsg):}
+    {@while ($item in $usermsg):}
     <div class="usermsg">{$item.msg}</div>
     {@endwhile;}
     <h3 style="font-size: 125%; width: 400px; text-align: center">{$title}</h3>
     {$hiddenfields}
-    {@while (item in inputs):}
+    {@while ($item in 4inputs):}
     <div class="form-group">
         <label for="{$item.field}">{$item.label}</label><span class="input-error"></span>
         {$item.input}
