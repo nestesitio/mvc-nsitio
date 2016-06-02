@@ -10,7 +10,7 @@
         <span class="glyphicon glyphicon-remove"></span> Close
     </a>
 </div>
-{@while (item in usermsg):}
+{@while ($item in $usermsg):}
 <div class="usermsg">{$item.msg}</div>
 {@endwhile;}
 <div class="form-group">

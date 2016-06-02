@@ -1,26 +1,30 @@
 {@extends 'config:backend'}
 
-{% cssextension '/themes/sb-admin-2/plugins_css/dataTables.bootstrap.css' %}
-{% cssextension '/plugins/bootstrap-datetimepicker/datetimepicker.css' %}
-{% cssextension '/plugins/chosen/chosen.css' %}
-{% cssextension '/plugins/wysiwyg-textarea/bootstrap3-wysihtml5.css' %}
-{% cssextension '/plugins/flag-icon/flag-icon.css' %}
-{% cssextension '/plugins/jquery-file-upload/css/uploadfile.css' %}
-{% cssextension '/css/core/backend.css' %}
+{@block name='css'}
+<link href="/themes/sb-admin-2/plugins_css/dataTables.bootstrap.css" rel="stylesheet">
+<link href="/plugins/bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
+<link href="/plugins/chosen/chosen.css" rel="stylesheet">
+<link href="/plugins/wysiwyg-textarea/bootstrap3-wysihtml5.css" rel="stylesheet">
+<link href="/plugins/flag-icon/flag-icon.css" rel="stylesheet">
+<link href="/plugins/jquery-file-upload/css/uploadfile.css" rel="stylesheet">
+<link href="/css/core/backend.css" rel="stylesheet">
+{@endblock}
 
-{% jsextension '/js/core/datagrid.js' %}
-{% jsextension '/js/core/dataform.js' %}
-{% jsextension '/js/core/bsInputs.js' %}
-{% jsextension '/js/core/scrollbuttons.js' %}
-{% jsextension '/plugins/bootstrap-datetimepicker/moment.min.js' %}
-{% jsextension '/plugins/bootstrap-datetimepicker/datetimepicker.js' %}
-{% jsextension '/plugins/bootstrap-datetimepicker/pt.js' %}
-{% jsextension '/plugins/bootstrap-datetimepicker/moment.parseFormat.js' %}
-{% jsextension '/plugins/chosen/chosen.jquery.min.js' %}
-{% jsextension '/plugins/jeditable/jquery.jeditable.js' %}
-{% jsextension '/plugins/wysiwyg-textarea/bootstrap3-wysihtml5.all.min.js' %}
-{% jsextension '/plugins/jquery-file-upload/js/jquery.uploadfile.js' %}
-{% jsextension '/js/core/fileupload.js' %}
+{@block name='js'}
+<script src="/js/core/datagrid.js"></script>
+<script src="/js/core/dataform.js"></script>
+<script src="/js/core/bsInputs.js"></script>
+<script src="/js/core/scrollbuttons.js"></script>
+<script src="/plugins/bootstrap-datetimepicker/moment.min.js"></script>
+<script src="/plugins/bootstrap-datetimepicker/datetimepicker.js"></script>
+<script src="/plugins/bootstrap-datetimepicker/pt.js"></script>
+<script src="/plugins/bootstrap-datetimepicker/moment.parseFormat.js"></script>
+<script src="/plugins/chosen/chosen.jquery.min.js"></script>
+<script src="/plugins/jeditable/jquery.jeditable.js"></script>
+<script src="/plugins/wysiwyg-textarea/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="/plugins/jquery-file-upload/js/jquery.uploadfile.js"></script>
+<script src="/js/core/fileupload.js"></script>
+{@endblock}
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">

@@ -22,7 +22,7 @@
 <div class="datagrid">
     <!-- grid body -->
     <div id="bodygrid" class="bodygrid">
-        {@while (item in list):}
+        {@while ($item in $list):}
         <div class="file-gallery col-xs-6 col-md-3">
             <div class="thumbnail">
                 <img src="/{$item.htm_media.url}" />
@@ -37,7 +37,7 @@
     <!-- grid footer -->
     <div class="footgrid">
         <ul class="pagination">
-            <!--{@while (item in pagination):}-->
+            <!--{@while ($item in $pagination):}-->
             <li class="{$item.class}">
                 <a class="btn-pagin" data-id="{$item.id}" data-action="{$item.action}">{$item.label}</a>
             </li>
