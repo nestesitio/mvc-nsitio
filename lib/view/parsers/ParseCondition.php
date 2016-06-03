@@ -100,7 +100,6 @@ class ParseCondition {
         $var = self::getVar($test);
         
         $test = self::replaceVar($test, $var);
-        //echo $test . ' testef<br />';
         $result = eval('if('. $test .')return true;');
         return ($result == true)? true : false;
     }
@@ -131,7 +130,10 @@ class ParseCondition {
         }elseif($value == null){
             return 'NULL';
         }else{
-            return "'" . $value . "'";
+            if(is_string($var)){
+                return "'" . str_replace(["'"], '', $value) . "'";
+            }
+            return $value;
         }
     }
     
