@@ -331,7 +331,7 @@ function adjustRowWidth() {
         if (w > 0) {
             for (var x = 0; x < datarow.length; x++) {
                 if(datarow[x].className === "datarow"){
-                    datarow[x].style.width = w + "px";
+                    datarow[x].style.width = w + "px";              
                 }
             }
         }
@@ -348,7 +348,7 @@ function getDataRowSize(element){
                 var ul = datarow[0].getElementsByTagName("LI");
                 //$.trim( $(ul).text().replace( /[\s\n\r]+/g, ' ' ) );
                 for (var i = 0; i < ul.length; i++) {
-                    w += ul[i].offsetWidth + 3;
+                    w += ul[i].offsetWidth + 4;
                 }
                 return w;
             }
