@@ -226,6 +226,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.helpers.html">
+						helpers					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.loader.html">
 						loader					</a>
 
@@ -233,6 +238,11 @@
 				<li>
 					<a href="namespace-lib.media.html">
 						media					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.menu.html">
+						menu					</a>
 
 						</li>
 				<li>
@@ -282,9 +292,16 @@
 						</li>
 				<li>
 					<a href="namespace-lib.view.html">
-						view					</a>
+						view<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-lib.view.parsers.html">
+						parsers					</a>
 
 						</li>
+							</ul></li>
 				<li>
 					<a href="namespace-lib.xml.html">
 						xml					</a>
@@ -336,6 +353,7 @@
 				<li class="active"><a href="class-lib.control.ControllerAdmin.html">ControllerAdmin</a></li>
 				<li><a href="class-lib.control.ControlMessages.html">ControlMessages</a></li>
 				<li><a href="class-lib.control.ControlTools.html">ControlTools</a></li>
+				<li><a href="class-lib.control.ControlView.html">ControlView</a></li>
 				<li><a href="class-lib.control.FormatData.html">FormatData</a></li>
 				<li><a href="class-lib.control.GridIt.html">GridIt</a></li>
 			</ul>
@@ -406,7 +424,6 @@
 		<h4>Direct known subclasses</h4>
 			<a href="class-apps.Admin.control.UsersActions.html">apps\Admin\control\UsersActions</a>, 
 			<a href="class-apps.Configs.control.AppgroupActions.html">apps\Configs\control\AppgroupActions</a>, 
-			<a href="class-apps.Core.control.TxtActions.html">apps\Core\control\TxtActions</a>, 
 			<a href="class-apps.Support.control.LogActions.html">apps\Support\control\LogActions</a>, 
 			<a href="class-apps.Support.control.SupportActions.html">apps\Support\control\SupportActions</a>, 
 			<a href="class-apps.Task.control.TransferActions.html">apps\Task\control\TransferActions</a>, 
@@ -415,17 +432,13 @@
 			<a href="class-apps.Configs.control.AppsActions.html">apps\Configs\control\AppsActions</a>, 
 			<a href="class-apps.Configs.control.LayoutsActions.html">apps\Configs\control\LayoutsActions</a>, 
 			<a href="class-apps.Configs.control.PagesActions.html">apps\Configs\control\PagesActions</a>, 
-			<a href="class-apps.Configs.control.TestesActions.html">apps\Configs\control\TestesActions</a>, 
 			<a href="class-apps.Configs.control.UsergroupsActions.html">apps\Configs\control\UsergroupsActions</a>, 
 			<a href="class-apps.Configs.control.UsersActions.html">apps\Configs\control\UsersActions</a>, 
 			<a href="class-apps.Core.control.FilesActions.html">apps\Core\control\FilesActions</a>, 
-			<a href="class-apps.Core.control.PagesActions.html">apps\Core\control\PagesActions</a>
+			<a href="class-apps.Core.control.PagesActions.html">apps\Core\control\PagesActions</a>, 
+			<a href="class-apps.Core.control.TxtActions.html">apps\Core\control\TxtActions</a>
 	</div>
 
-	<div>
-		<h4>Indirect known subclasses</h4>
-			<a href="class-apps.Admin.control.MainpagesActions.html">apps\Admin\control\MainpagesActions</a>
-	</div>
 
 
 
@@ -440,7 +453,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Mar 30, 2015</p><br>
-			<b>Located at</b> <a href="source-class-lib.control.ControllerAdmin.html#19-377" title="Go to source code">lib/control/ControllerAdmin.php</a>
+			<b>Located at</b> <a href="source-class-lib.control.ControllerAdmin.html#18-377" title="Go to source code">lib/control/ControllerAdmin.php</a>
 		<br>
 	</div>
 
@@ -460,7 +473,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getQueryToList">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#27-48" title="Go to source code">getQueryToList</a>( <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code> <var>$configs</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#26-47" title="Go to source code">getQueryToList</a>( <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-lib.bkegenerator.Config.html">lib\bkegenerator\Config</a></code> <var>$configs</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Get the array results from query.</p>
@@ -501,7 +514,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildDataGrid">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#51-70" title="Go to source code">buildDataGrid</a>( <span>String <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#50-69" title="Go to source code">buildDataGrid</a>( <span>String <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -544,7 +557,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildDataList">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#72-89" title="Go to source code">buildDataList</a>( <span>String <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#71-88" title="Go to source code">buildDataList</a>( <span>String <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -585,7 +598,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildIncludedList">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#91-106" title="Go to source code">buildIncludedList</a>( <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-lib.bkegenerator.DataGrid.html">lib\bkegenerator\DataGrid</a></code> <var>$configs</var></span>, <span>String <var>$var</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#90-105" title="Go to source code">buildIncludedList</a>( <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-lib.bkegenerator.DataGrid.html">lib\bkegenerator\DataGrid</a></code> <var>$configs</var></span>, <span>String <var>$var</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Build the list included in template.</p>
@@ -628,7 +641,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildDataSubList">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#109-127" title="Go to source code">buildDataSubList</a>( <span>String <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#108-126" title="Go to source code">buildDataSubList</a>( <span>String <var>$xmlfile</var></span>, <span><code><a href="class-lib.model.QuerySelect.html">lib\model\QuerySelect</a></code> <var>$query</var></span>, <span>String <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -667,7 +680,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderList">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#130-141" title="Go to source code">renderList</a>( <span>mixed <var>$results</var></span>, <span>String <var>$var</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#129-140" title="Go to source code">renderList</a>( <span>mixed <var>$results</var></span>, <span>String <var>$var</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -704,7 +717,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderFilters">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#144-155" title="Go to source code">renderFilters</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$xmlfile</var></span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#143-154" title="Go to source code">renderFilters</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$xmlfile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -741,7 +754,7 @@ Created @Mar 30, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderForm">#</a>
-		<code><a href="source-class-lib.control.ControllerAdmin.html#157-187" title="Go to source code">renderForm</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$xmlfile</var></span>, <span>String <var>$action</var> = <span class="php-keyword1">null</span></span>, <span>Array <var>$querystring</var> = []</span> )</code>
+		<code><a href="source-class-lib.control.ControllerAdmin.html#156-187" title="Go to source code">renderForm</a>( <span><code><a href="class-lib.form.Form.html">lib\form\Form</a></code> <var>$form</var></span>, <span>String <var>$xmlfile</var></span>, <span>String <var>$action</var> = <span class="php-keyword1">null</span></span>, <span>Array <var>$querystring</var> = []</span> )</code>
 
 		<div class="description short">
 			<p>Render form for template.</p>
@@ -1070,7 +1083,6 @@ Created @Mar 30, 2015</p><br>
 			<a href="class-lib.control.Controller.html#_getJEditableValue">getJEditableValue()</a>, 
 			<a href="class-lib.control.Controller.html#_getTemplate">getTemplate()</a>, 
 			<a href="class-lib.control.Controller.html#_ob">ob()</a>, 
-			<a href="class-lib.control.Controller.html#_preRender">preRender()</a>, 
 			<a href="class-lib.control.Controller.html#_renderCollection">renderCollection()</a>, 
 			<a href="class-lib.control.Controller.html#_resetView">resetView()</a>, 
 			<a href="class-lib.control.Controller.html#_set">set()</a>, 

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class lib\view\Header | MVC Stage</title>
+	<title>Class lib\view\Parse | MVC Stage</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -226,6 +226,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.helpers.html">
+						helpers					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.loader.html">
 						loader					</a>
 
@@ -233,6 +238,11 @@
 				<li>
 					<a href="namespace-lib.media.html">
 						media					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.menu.html">
+						menu					</a>
 
 						</li>
 				<li>
@@ -282,9 +292,16 @@
 						</li>
 				<li class="active">
 					<a href="namespace-lib.view.html">
-						view					</a>
+						view<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-lib.view.parsers.html">
+						parsers					</a>
 
 						</li>
+							</ul></li>
 				<li>
 					<a href="namespace-lib.xml.html">
 						xml					</a>
@@ -332,14 +349,10 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-lib.view.EvalCode.html">EvalCode</a></li>
-				<li class="active"><a href="class-lib.view.Header.html">Header</a></li>
-				<li><a href="class-lib.view.ParseEmbed.html">ParseEmbed</a></li>
-				<li><a href="class-lib.view.ParseInclude.html">ParseInclude</a></li>
-				<li><a href="class-lib.view.ParseString.html">ParseString</a></li>
-				<li><a href="class-lib.view.ParseTemplate.html">ParseTemplate</a></li>
-				<li><a href="class-lib.view.StringTemplate.html">StringTemplate</a></li>
+				<li class="active"><a href="class-lib.view.Parse.html">Parse</a></li>
+				<li><a href="class-lib.view.Tags.html">Tags</a></li>
 				<li><a href="class-lib.view.Template.html">Template</a></li>
+				<li><a href="class-lib.view.TemplateTools.html">TemplateTools</a></li>
 				<li><a href="class-lib.view.View.html">View</a></li>
 			</ul>
 
@@ -382,11 +395,12 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Header</h1>
+	<h1>Class Parse</h1>
 
 
 	<div class="description">
-	<p>Description of Header</p>
+	<p>Description of Parse
+Parse the template file</p>
 	</div>
 
 
@@ -405,120 +419,114 @@
 
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
-Created @Jan 15, 2015</p><br>
-			<b>Located at</b> <a href="source-class-lib.view.Header.html#5-22" title="Go to source code">lib/view/Header.php</a>
+Created @May 18, 2016</p><br>
+			<b>Located at</b> <a href="source-class-lib.view.Parse.html#7-51" title="Go to source code">lib/view/Parse.php</a>
 		<br>
 	</div>
 
 
 
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
 
+		<td class="attributes"><code>
+			 public 
 
-
-
-
-
-
-
-	<table class="summary constants" id="constants">
-	<caption>Constants summary</caption>
-	<tr data-order="CONTENTHTML" id="CONTENTHTML">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-lib.view.Header.html#13-16" title="Go to source code"><b>CONTENTHTML</b></a>
+			
+			
 			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
 		</td>
-		<td class="value">
-			<div>
-				<a href="#CONTENTHTML" class="anchor">#</a>
-				<code><span class="php-quote">&quot;Content-Type: text/html; charset=UTF-8&quot;</span></code>
-			</div>
-		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-lib.view.Parse.html#23-25" title="Go to source code">__construct</a>( <span> <var>$output</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
 	</tr>
-	<tr data-order="CONTENTXML" id="CONTENTXML">
+	<tr data-order="obFile" id="_obFile">
 
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-lib.view.Header.html#17" title="Go to source code"><b>CONTENTXML</b></a>
+		<td class="attributes"><code>
+			 public static
+
+			
+			
 			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
 		</td>
-		<td class="value">
-			<div>
-				<a href="#CONTENTXML" class="anchor">#</a>
-				<code><span class="php-quote">&quot;Content-Type: text/xml&quot;</span></code>
-			</div>
-		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_obFile">#</a>
+		<code><a href="source-class-lib.view.Parse.html#32-43" title="Go to source code">obFile</a>( <span> <var>$file</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
 	</tr>
-	<tr data-order="CONTENTCSV" id="CONTENTCSV">
+	<tr data-order="reparse" id="_reparse">
 
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-lib.view.Header.html#18" title="Go to source code"><b>CONTENTCSV</b></a>
+		<td class="attributes"><code>
+			 public 
+
+			
+			
 			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
 		</td>
-		<td class="value">
-			<div>
-				<a href="#CONTENTCSV" class="anchor">#</a>
-				<code><span class="php-quote">&quot;Content-Type: plain/text&quot;</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="CONTENTPDF" id="CONTENTPDF">
 
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-lib.view.Header.html#19" title="Go to source code"><b>CONTENTPDF</b></a>
-			</code>
+		<td class="name"><div>
+		<a class="anchor" href="#_reparse">#</a>
+		<code><a href="source-class-lib.view.Parse.html#45-48" title="Go to source code">reparse</a>( )</code>
 
-			<div class="description short">
-				
-			</div>
+		<div class="description short">
+			
+		</div>
 
-			<div class="description detailed hidden">
-				
+		<div class="description detailed hidden">
+			
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#CONTENTPDF" class="anchor">#</a>
-				<code><span class="php-quote">&quot;Content-Type: application/pdf&quot;</span></code>
-			</div>
-		</td>
+
+
+
+
+
+
+		</div>
+		</div></td>
 	</tr>
 	</table>
+
+
+
+
+
+
+
+
 
 
 

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class lib\view\ParseInclude | MVC Stage</title>
+	<title>Class lib\view\TemplateTools | MVC Stage</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -226,6 +226,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.helpers.html">
+						helpers					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.loader.html">
 						loader					</a>
 
@@ -233,6 +238,11 @@
 				<li>
 					<a href="namespace-lib.media.html">
 						media					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.menu.html">
+						menu					</a>
 
 						</li>
 				<li>
@@ -282,9 +292,16 @@
 						</li>
 				<li class="active">
 					<a href="namespace-lib.view.html">
-						view					</a>
+						view<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-lib.view.parsers.html">
+						parsers					</a>
 
 						</li>
+							</ul></li>
 				<li>
 					<a href="namespace-lib.xml.html">
 						xml					</a>
@@ -332,14 +349,10 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-lib.view.EvalCode.html">EvalCode</a></li>
-				<li><a href="class-lib.view.Header.html">Header</a></li>
-				<li><a href="class-lib.view.ParseEmbed.html">ParseEmbed</a></li>
-				<li class="active"><a href="class-lib.view.ParseInclude.html">ParseInclude</a></li>
-				<li><a href="class-lib.view.ParseString.html">ParseString</a></li>
-				<li><a href="class-lib.view.ParseTemplate.html">ParseTemplate</a></li>
-				<li><a href="class-lib.view.StringTemplate.html">StringTemplate</a></li>
+				<li><a href="class-lib.view.Parse.html">Parse</a></li>
+				<li><a href="class-lib.view.Tags.html">Tags</a></li>
 				<li><a href="class-lib.view.Template.html">Template</a></li>
+				<li class="active"><a href="class-lib.view.TemplateTools.html">TemplateTools</a></li>
 				<li><a href="class-lib.view.View.html">View</a></li>
 			</ul>
 
@@ -382,11 +395,11 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class ParseInclude</h1>
+	<h1>Class TemplateTools</h1>
 
 
 	<div class="description">
-	<p>Description of ParseInclude</p>
+	<p>Description of TemplateTools</p>
 	</div>
 
 
@@ -405,10 +418,8 @@
 
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
-Created @Nov 19, 2014</p>
-
-<p>{% include ('include.htm' with @includes) %}</p><br>
-			<b>Located at</b> <a href="source-class-lib.view.ParseInclude.html#8-103" title="Go to source code">lib/view/ParseInclude.php</a>
+Created @May 19, 2016</p><br>
+			<b>Located at</b> <a href="source-class-lib.view.TemplateTools.html#5-50" title="Go to source code">lib/view/TemplateTools.php</a>
 		<br>
 	</div>
 
@@ -416,69 +427,45 @@ Created @Nov 19, 2014</p>
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="getTagArgument" id="_getTagArgument">
 
 		<td class="attributes"><code>
-			 public 
+			 public static
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.view.ParseInclude.html#27-38" title="Go to source code">__construct</a>( <span>String <var>$string</var></span> )</code>
+		<a class="anchor" href="#_getTagArgument">#</a>
+		<code><a href="source-class-lib.view.TemplateTools.html#13-28" title="Go to source code">getTagArgument</a>( <span>string <var>$string</var></span>, <span>string <var>$start</var></span>, <span>string <var>$end</var> = <code><a href="class-lib.view.Tags.html#TAG_END">lib\view\Tags::<b>TAG_END</b></a></code></span>, <span>boolean <var>$trim</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
-			<p>Process the tag include and find and prepare the included file</p>
+			<p>Get a needle string stripped from haystack string
+based on start and end of needle string</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Process the tag include and find and prepare the included file</p>
+			<p>Get a needle string stripped from haystack string
+based on start and end of needle string</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$string</var></dt>
-					<dd>The tag of include {% include ('include.htm') %}</dd>
+					<dd>Haystack</dd>
+					<dt><var>$start</var></dt>
+					<dd>the start of the needle</dd>
+					<dt><var>$end</var></dt>
+					<dd>the end of the needle</dd>
+					<dt><var>$trim</var></dt>
+					<dd>should trim the needle</dd>
 				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getString" id="_getString">
-
-		<td class="attributes"><code>
-			 public 
-
-			String
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getString">#</a>
-		<code><a href="source-class-lib.view.ParseInclude.html#40-56" title="Go to source code">getString</a>( )</code>
-
-		<div class="description short">
-			<p>Return the string to replace tag
-This method is recursive</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return the string to replace tag
-This method is recursive</p>
-
-
 
 				<h4>Returns</h4>
 				<div class="list">
-					String<br>$this->string
+					string<br>Needle
 				</div>
 
 
@@ -487,32 +474,37 @@ This method is recursive</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getInclude" id="_getInclude">
+	<tr data-order="lookForTemplate" id="_lookForTemplate">
 
 		<td class="attributes"><code>
-			 public 
+			 public static
 
-			String
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getInclude">#</a>
-		<code><a href="source-class-lib.view.ParseInclude.html#86-101" title="Go to source code">getInclude</a>( )</code>
+		<a class="anchor" href="#_lookForTemplate">#</a>
+		<code><a href="source-class-lib.view.TemplateTools.html#30-48" title="Go to source code">lookForTemplate</a>( <span>string <var>$file</var></span> )</code>
 
 		<div class="description short">
-			<p>Include and get the file content</p>
+			<p>Look for the template file over the framework folders</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Include and get the file content</p>
+			<p>Look for the template file over the framework folders</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd></dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					String<br>$content The conten of included file
+					string<br>The path form the file
 				</div>
 
 

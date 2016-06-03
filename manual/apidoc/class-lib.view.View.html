@@ -226,6 +226,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.helpers.html">
+						helpers					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.loader.html">
 						loader					</a>
 
@@ -233,6 +238,11 @@
 				<li>
 					<a href="namespace-lib.media.html">
 						media					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.menu.html">
+						menu					</a>
 
 						</li>
 				<li>
@@ -282,9 +292,16 @@
 						</li>
 				<li class="active">
 					<a href="namespace-lib.view.html">
-						view					</a>
+						view<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-lib.view.parsers.html">
+						parsers					</a>
 
 						</li>
+							</ul></li>
 				<li>
 					<a href="namespace-lib.xml.html">
 						xml					</a>
@@ -332,14 +349,10 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-lib.view.EvalCode.html">EvalCode</a></li>
-				<li><a href="class-lib.view.Header.html">Header</a></li>
-				<li><a href="class-lib.view.ParseEmbed.html">ParseEmbed</a></li>
-				<li><a href="class-lib.view.ParseInclude.html">ParseInclude</a></li>
-				<li><a href="class-lib.view.ParseString.html">ParseString</a></li>
-				<li><a href="class-lib.view.ParseTemplate.html">ParseTemplate</a></li>
-				<li><a href="class-lib.view.StringTemplate.html">StringTemplate</a></li>
+				<li><a href="class-lib.view.Parse.html">Parse</a></li>
+				<li><a href="class-lib.view.Tags.html">Tags</a></li>
 				<li><a href="class-lib.view.Template.html">Template</a></li>
+				<li><a href="class-lib.view.TemplateTools.html">TemplateTools</a></li>
 				<li class="active"><a href="class-lib.view.View.html">View</a></li>
 			</ul>
 
@@ -386,12 +399,11 @@
 
 
 	<div class="description">
-	<p>Description of View</p>
-
-<p>the ordered methods are called in Controller
-construct -> getExtended -> parse -> set -> display</p>
-
-<p>created in 14/nov/2014</p>
+	<p>Description of View
+A interface between Control and Template
+1. Controller declare new View() -> Template load file and parse extend
+2. Render data to template
+3. Parse template</p>
 	</div>
 
 
@@ -409,8 +421,9 @@ construct -> getExtended -> parse -> set -> display</p>
 		
 
 				<b>Author:</b>
-				Luís Pinto - luis.nestesitio@gmail.com<br>
-			<b>Located at</b> <a href="source-class-lib.view.View.html#8-120" title="Go to source code">lib/view/View.php</a>
+				<p>Luís Pinto / luis.nestesitio@gmail.com
+Created @May 18, 2016</p><br>
+			<b>Located at</b> <a href="source-class-lib.view.View.html#7-85" title="Go to source code">lib/view/View.php</a>
 		<br>
 	</div>
 
@@ -430,24 +443,18 @@ construct -> getExtended -> parse -> set -> display</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.view.View.html#24-45" title="Go to source code">__construct</a>( <span>String <var>$string</var></span>, <span> <var>$file</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-lib.view.View.html#28-36" title="Go to source code">__construct</a>( <span>object <var>$file</var></span> )</code>
 
 		<div class="description short">
-			<p>Create the obect ParseTemplate
-The first roun of included tag will be processed  in class ParseTemplate
-{% include ('Home/view/include.htm') %}</p>
+			<p>Template loads child and parent files</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Create the obect ParseTemplate
-The first roun of included tag will be processed  in class ParseTemplate
-{% include ('Home/view/include.htm') %}</p>
+			<p>Template loads child and parent files</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$string</var></dt>
-					<dd>The path of the template file</dd>
 					<dt><var>$file</var></dt>
 					<dd></dd>
 				</dl></div>
@@ -459,32 +466,39 @@ The first roun of included tag will be processed  in class ParseTemplate
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getExtend" id="_getExtend">
+	<tr data-order="setData" id="_setData">
 
 		<td class="attributes"><code>
 			 public 
 
-			mixed
+			lib\control\View
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getExtend">#</a>
-		<code><a href="source-class-lib.view.View.html#47-53" title="Go to source code">getExtend</a>( )</code>
+		<a class="anchor" href="#_setData">#</a>
+		<code><a href="source-class-lib.view.View.html#39-52" title="Go to source code">setData</a>( <span>type <var>$tag</var></span>, <span>type <var>$data</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Method to replace the template tags with entry data</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Method to replace the template tags with entry data</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd></dd>
+					<dt><var>$data</var></dt>
+					<dd></dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed
+					lib\control\View
 				</div>
 
 
@@ -493,7 +507,7 @@ The first roun of included tag will be processed  in class ParseTemplate
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="parse" id="_parse">
+	<tr data-order="render" id="_render">
 
 		<td class="attributes"><code>
 			 public 
@@ -504,23 +518,15 @@ The first roun of included tag will be processed  in class ParseTemplate
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_parse">#</a>
-		<code><a href="source-class-lib.view.View.html#55-72" title="Go to source code">parse</a>( )</code>
+		<a class="anchor" href="#_render">#</a>
+		<code><a href="source-class-lib.view.View.html#58-62" title="Go to source code">render</a>( )</code>
 
 		<div class="description short">
-			<p>look for tags and functions in template
-{% while (item in list) %} ... {% endwhile %}
-{% if (status='open') %} ... {% elseif (status='ok') %} ... {% else %} ... {% endif %}
-{% embed ('Core\Menu::nav' @'layout/modern-business/nav.htm') %}
-Create array of tags and contents</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>look for tags and functions in template
-{% while (item in list) %} ... {% endwhile %}
-{% if (status='open') %} ... {% elseif (status='ok') %} ... {% else %} ... {% endif %}
-{% embed ('Core\Menu::nav' @'layout/modern-business/nav.htm') %}
-Create array of tags and contents</p>
+			
 
 
 
@@ -531,71 +537,32 @@ Create array of tags and contents</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="set" id="_set">
+	<tr data-order="getLayout" id="_getLayout">
 
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-lib.view.View.html#74-86" title="Go to source code">set</a>( <span>String <var>$tag</var></span>, <span>mixed <var>$data</var> = <span class="php-quote">''</span></span> )</code>
+		<a class="anchor" href="#_getLayout">#</a>
+		<code><a href="source-class-lib.view.View.html#64-71" title="Go to source code">getLayout</a>( )</code>
 
 		<div class="description short">
-			<p>Building the array of pairs tag => data
-where data can be an array, string, int or empty</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Building the array of pairs tag => data
-where data can be an array, string, int or empty</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$tag</var></dt>
-					<dd>The tag to be replaced {{ tag }}</dd>
-					<dt><var>$data</var></dt>
-					<dd>The data to replace tag</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="display" id="_display">
-
-		<td class="attributes"><code>
-			 public 
-
-			String
 			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_display">#</a>
-		<code><a href="source-class-lib.view.View.html#88-98" title="Go to source code">display</a>( )</code>
-
-		<div class="description short">
-			<p>Process all the template, replacing tags for data</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Process all the template, replacing tags for data</p>
+			
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					String<br>$this->template->getOutput() the completed html
+					string<br>The path to main layout
 				</div>
 
 
@@ -609,28 +576,24 @@ where data can be an array, string, int or empty</p>
 		<td class="attributes"><code>
 			 public 
 
-			String
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOutput">#</a>
-		<code><a href="source-class-lib.view.View.html#102-110" title="Go to source code">getOutput</a>( )</code>
+		<code><a href="source-class-lib.view.View.html#73-75" title="Go to source code">getOutput</a>( )</code>
 
 		<div class="description short">
-			<p>Get the complete HTML</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get the complete HTML</p>
+			
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					String<br>$this->template->getOutput() the completed html
-				</div>
 
 
 
@@ -650,7 +613,7 @@ where data can be an array, string, int or empty</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOutput">#</a>
-		<code><a href="source-class-lib.view.View.html#112-118" title="Go to source code">setOutput</a>( <span> <var>$html</var></span> )</code>
+		<code><a href="source-class-lib.view.View.html#77-79" title="Go to source code">setOutput</a>( <span> <var>$output</var></span> )</code>
 
 		<div class="description short">
 			
@@ -660,11 +623,6 @@ where data can be an array, string, int or empty</p>
 			
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$html</var></dt>
-					<dd></dd>
-				</dl></div>
 
 
 

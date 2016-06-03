@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class lib\view\EvalCode | MVC Stage</title>
+	<title>Namespace lib\view\parsers | MVC Stage</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -226,6 +226,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.helpers.html">
+						helpers					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.loader.html">
 						loader					</a>
 
@@ -233,6 +238,11 @@
 				<li>
 					<a href="namespace-lib.media.html">
 						media					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.menu.html">
+						menu					</a>
 
 						</li>
 				<li>
@@ -282,9 +292,16 @@
 						</li>
 				<li class="active">
 					<a href="namespace-lib.view.html">
-						view					</a>
+						view<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-lib.view.parsers.html">
+						parsers					</a>
 
 						</li>
+							</ul></li>
 				<li>
 					<a href="namespace-lib.xml.html">
 						xml					</a>
@@ -332,15 +349,13 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-lib.view.EvalCode.html">EvalCode</a></li>
-				<li><a href="class-lib.view.Header.html">Header</a></li>
-				<li><a href="class-lib.view.ParseEmbed.html">ParseEmbed</a></li>
-				<li><a href="class-lib.view.ParseInclude.html">ParseInclude</a></li>
-				<li><a href="class-lib.view.ParseString.html">ParseString</a></li>
-				<li><a href="class-lib.view.ParseTemplate.html">ParseTemplate</a></li>
-				<li><a href="class-lib.view.StringTemplate.html">StringTemplate</a></li>
-				<li><a href="class-lib.view.Template.html">Template</a></li>
-				<li><a href="class-lib.view.View.html">View</a></li>
+				<li><a href="class-lib.view.parsers.ParseBlock.html">ParseBlock</a></li>
+				<li><a href="class-lib.view.parsers.ParseCondition.html">ParseCondition</a></li>
+				<li><a href="class-lib.view.parsers.ParseData.html">ParseData</a></li>
+				<li><a href="class-lib.view.parsers.ParseEmbed.html">ParseEmbed</a></li>
+				<li><a href="class-lib.view.parsers.ParseExtended.html">ParseExtended</a></li>
+				<li><a href="class-lib.view.parsers.ParseInclude.html">ParseInclude</a></li>
+				<li><a href="class-lib.view.parsers.ParseLoop.html">ParseLoop</a></li>
 			</ul>
 
 
@@ -366,10 +381,9 @@
 			<li>
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
-			<li>
-				<a href="namespace-lib.view.html" title="Summary of lib\view"><span>Namespace</span></a>
-			</li>
 			<li class="active">
+<span>Namespace</span>			</li>
+			<li>
 <span>Class</span>			</li>
 		</ul>
 		<ul>
@@ -381,272 +395,43 @@
 		</ul>
 	</div>
 
-<div id="content" class="class">
-	<h1>Class EvalCode</h1>
-
-
-	<div class="description">
-	<p>Description of EvalCode</p>
-	</div>
-
-
-
-
-
-
-
-
-
-	<div class="info">
-		
-		
-		<b>Namespace:</b> <a href="namespace-lib.html">lib</a>\<a href="namespace-lib.view.html">view</a><br>
-		
-
-				<b>Author:</b>
-				<p>Luís Pinto / luis.nestesitio@gmail.com
-Created @Nov 18, 2014</p><br>
-			<b>Located at</b> <a href="source-class-lib.view.EvalCode.html#5-141" title="Go to source code">lib/view/EvalCode.php</a>
-		<br>
-	</div>
-
-
-
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-lib.view.EvalCode.html#27-37" title="Go to source code">__construct</a>( <span> <var>$string</var></span> )</code>
-
-		<div class="description short">
-			<p>EvalCode constructor.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>EvalCode constructor.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$string</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="compareTest" id="_compareTest">
-
-		<td class="attributes"><code>
-			 public 
-
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_compareTest">#</a>
-		<code><a href="source-class-lib.view.EvalCode.html#39-76" title="Go to source code">compareTest</a>( <span> <var>$value</var></span>, <span> <var>$operator</var></span>, <span>integer <var>$teste</var> = <span class="php-num">0</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$value</var></dt>
-					<dd></dd>
-					<dt><var>$operator</var></dt>
-					<dd></dd>
-					<dt><var>$teste</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="formatVar" id="_formatVar">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_formatVar">#</a>
-		<code><a href="source-class-lib.view.EvalCode.html#78-91" title="Go to source code">formatVar</a>( <span> <var>$var</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$var</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getLenght" id="_getLenght">
-
-		<td class="attributes"><code>
-			 public 
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getLenght">#</a>
-		<code><a href="source-class-lib.view.EvalCode.html#93-99" title="Go to source code">getLenght</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getCode" id="_getCode">
-
-		<td class="attributes"><code>
-			 public 
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getCode">#</a>
-		<code><a href="source-class-lib.view.EvalCode.html#102-108" title="Go to source code">getCode</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getVar" id="_getVar">
-
-		<td class="attributes"><code>
-			 public 
-
-			boolean|string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getVar">#</a>
-		<code><a href="source-class-lib.view.EvalCode.html#110-139" title="Go to source code">getVar</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean|string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div id="content" class="namespace">
+	<h1>Namespace <a href="namespace-lib.html">lib</a>\<a href="namespace-lib.view.html">view</a>\parsers</h1>
+
+
+
+<table class="summary" id="classes">
+<caption>Classes summary</caption>
+<tr>
+	<td class="name"><a href="class-lib.view.parsers.ParseBlock.html">ParseBlock</a></td>
+	<td>Description of ParseBlock</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-lib.view.parsers.ParseCondition.html">ParseCondition</a></td>
+	<td>Description of ParseCondition</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-lib.view.parsers.ParseData.html">ParseData</a></td>
+	<td>Description of ParseData</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-lib.view.parsers.ParseEmbed.html">ParseEmbed</a></td>
+	<td>Description of ParseEmbed</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-lib.view.parsers.ParseExtended.html">ParseExtended</a></td>
+	<td><p>Description of ParseExtended
+Merge page template with main template thru the tag extends</p></td>
+</tr>
+<tr>
+	<td class="name"><a href="class-lib.view.parsers.ParseInclude.html">ParseInclude</a></td>
+	<td>Description of ParseInclude</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-lib.view.parsers.ParseLoop.html">ParseLoop</a></td>
+	<td>Description of ParseLoop</td>
+</tr>
+</table>
 
 
 
@@ -659,7 +444,7 @@ Created @Nov 18, 2014</p><br>
 	</div>
 </div>
 </div>
-<script src="resources/combined.js"></script>
-<script src="elementlist.js"></script>
+<script src="resources/combined.js?cd021bc814832c24a7cec5319ea03335bfba1caf"></script>
+<script src="elementlist.js?f4a27b75e88824276356604d39a88b44b3f57bfb"></script>
 </body>
 </html>
