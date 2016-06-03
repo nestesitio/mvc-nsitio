@@ -5,7 +5,7 @@
         <a data-action="list_{$canonical}" class="btn-filter btn btn-xs btn-primary">
             <span class="glyphicon glyphicon-filter"></span>Filtrar</a>
     </div>
-    {@while (item in filters):}
+    {@while ($item in $filters):}
     <div class="form-group">
         <label for="{$item.field}">{$item.label}</label><span class="input-msg"></span>
         {$item.input}

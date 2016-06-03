@@ -1,5 +1,5 @@
 <ul class="list-inline langs">
-  {@while (item in langs):}
+  {@while ($item in $langs):}
   <li>
       <a class="float-action" data-command="edit" 
          data-lang="{$item.lang}" data-action="{$item.action}" data-id="{$item.id}">
