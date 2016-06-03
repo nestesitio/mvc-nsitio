@@ -34,13 +34,13 @@ class DataGrid extends \lib\bkegenerator\DataConfig
         $this->setPaging();
         $this->renderColumns();
         $this->renderTools();
-        $id = $this->x_conf->queryXPath('grid', 'atr', 'identification') . '_{{ item.'
-                . $this->x_conf->queryXPath('grid', 'atr', 'fieldid') . ' }}';
+        $id = $this->x_conf->queryXPath('grid', 'atr', 'identification') . '_{$item.'
+                . $this->x_conf->queryXPath('grid', 'atr', 'fieldid') . '}';
 
-        $this->html = str_replace('{{item.identification}}', $id, $this->html);
+        $this->html = str_replace('{$item.identification}', $id, $this->html);
         if(null != $this->var){
-            $this->html = str_replace('{% while (item in list) %}', '{% while (item in ' . $this->var . ') %}', $this->html);
-            $this->html = str_replace('{% while (item in pagination) %}', '{% while (item in page' . $this->var . ') %}', $this->html);
+            $this->html = str_replace('{@while ($item in $list) %}', '{@while ($item in $' . $this->var . '):}', $this->html);
+            $this->html = str_replace('{@while ($item in $pagination) %}', '{@while ($item in $page' . $this->var . '):}', $this->html);
         }
     }
 
@@ -92,9 +92,9 @@ class DataGrid extends \lib\bkegenerator\DataConfig
      */
     private function renderButtons()
     {
-        $btn_tpl = '<!--{{ buttons }}-->';
+        $btn_tpl = '<!--{$buttons}-->';
         $btn = '';
-        if (strpos($this->html, '{{ buttons }}')) {
+        if (strpos($this->html, '{$buttons}')) {
             $nodes = $this->getnodes('grid/buttons/*');
             foreach($nodes as $node){
                 $path = 'grid/buttons/' . $node;
@@ -149,13 +149,13 @@ class DataGrid extends \lib\bkegenerator\DataConfig
      */
     private function renderTools()
     {
-        $btn_tpl = '<!--<li class="row_tool">{{ column_tools }}</li>-->';
-        $tpl_tpl = '<!--<li class="row_tool">{{ template_tools }}</li>-->';
+        $btn_tpl = '<!--<li class="row_tool">{$column_tools}</li>-->';
+        $tpl_tpl = '<!--<li class="row_tool">{$template_tools}</li>-->';
 
         $ul = '';
         $ul_hidden = '';
 
-        if (strpos($this->html, '{{ column_tools }}')) {
+        if (strpos($this->html, '{$column_tools}')) {
             $nodes = $this->getnodes('grid/tools/*');
             foreach($nodes as $node){
                 $path = 'grid/tools/' . $node;
@@ -214,7 +214,7 @@ class DataGrid extends \lib\bkegenerator\DataConfig
      */
     private function renderLabels()
     {
-        $th_tpl = '<!--<td class="{{ class }}">{{ column_label }}</td>-->';
+        $th_tpl = '<!--<td class="{$class}">{$column_label}</td>-->';
         $th = '';
         $nodes = $this->getnodes('grid/columns/*');
         foreach ($nodes as $node) {
@@ -223,7 +223,7 @@ class DataGrid extends \lib\bkegenerator\DataConfig
             $th .= '<td class="' . $class . '">';
             $th .= $this->findLabel($path);
             if($class != 'id'){
-                $sort = Vars::getApp() . '/list_{{ canonical }}';
+                $sort = Vars::getApp() . '/list_{$canonical}';
                 if($this->x_conf->queryXPath($path, 'atr', 'sort') == 'true'){
                     $th .= '<a class="btn-sort" data-field="' . $this->x_conf->queryXPath($path, 'atr', 'field') . '"'
                             . ' data-action="' . $sort . '">'
@@ -241,8 +241,8 @@ class DataGrid extends \lib\bkegenerator\DataConfig
      */
     private function renderColumns()
     {
-        $ul_tpl = '<!--<li>{{ column_data }}</li>-->';
-        $tpl_tpl = '<!--<li>{{ template_column }}</li>-->';
+        $ul_tpl = '<!--<li>{$column_data}</li>-->';
+        $tpl_tpl = '<!--<li>{$template_column}</li>-->';
 
         $ul = '';
         $ul_hidden = '';
@@ -252,10 +252,10 @@ class DataGrid extends \lib\bkegenerator\DataConfig
             $path = 'grid/columns/' . $node;
             $class = $this->x_conf->queryXPath($path, 'atr', 'class');
             $field = $this->x_conf->queryXPath($path, 'atr', 'field');
-            $title = ($this->x_conf->queryXPath($path, 'atr', 'title') != 'false')? ' title="{{ item.' . $field . ' }}"' : '';
+            $title = ($this->x_conf->queryXPath($path, 'atr', 'title') != 'false')? ' title="{$item.' . $field . '}"' : '';
             $ul .= '<li' . $title . ' data-field="' . $field . '" class="col ' . $class . '">';
             if($class != 'id'){
-                $ul .= '{{ item.' . $this->x_conf->queryXPath($path, 'atr', 'field') . ' }}';
+                $ul .= '{$item.' . $this->x_conf->queryXPath($path, 'atr', 'field') . '}';
             }else{
                 $ul .= ':';
             }

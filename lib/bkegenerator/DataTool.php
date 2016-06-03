@@ -36,7 +36,7 @@ class DataTool
     public function setLink($link, $id, $window = null)
     {
         $this->ul_hidden .= '<a href="' . $link . '"';
-        $this->ul .= '<a href="' . $link . '{{ item.' . $id . ' }}' . '"';
+        $this->ul .= '<a href="' . $link . '{$item.' . $id . '}' . '"';
         if($window == 'blank'){
             $this->ul .= ' target="_blank"';
         }
@@ -51,7 +51,7 @@ class DataTool
     public function setEditable($editable, $id, $select)
     {
         $this->ul_hidden .= '<a ';
-        $this->ul .= '<a data-edit="' . $editable . '" data-id="{{ item.' . $id . ' }}"';
+        $this->ul .= '<a data-edit="' . $editable . '" data-id="{$item.' . $id . '}"';
         if (!empty($select)) {
             $this->ul .= ' data-select="' . $select . '"';
         }
@@ -66,7 +66,7 @@ class DataTool
         $this->ul_hidden .= '<a data-action="' . $action . '"';
         $this->ul .= '<a data-action="' . $action . '"';
         if (!empty($val)) {
-            $this->ul .= ' data-id="{{ item.' . $val . ' }}"';
+            $this->ul .= ' data-id="{$item.' . $val . '}"';
         }
     }
 
@@ -97,7 +97,7 @@ class DataTool
         $this->ul_hidden .= '<a data-action="core/' . $file . '_files"';
         $this->ul .= '<a data-action="core/' . $file . '_files"';
         if (!empty($val)) {
-            $this->ul .= ' data-id="{{ item.' . $val . ' }}"';
+            $this->ul .= ' data-id="{$item.' . $val . '}"';
         }
     }
 
@@ -166,7 +166,7 @@ class DataTool
      */
     public function getLangTools()
     {
-        return ['ul' => '{{ item.langs }}', 'hidden' => '{{ langs }}'];
+        return ['ul' => '{$item.langs}', 'hidden' => '{$langs}'];
     }
 
     /**

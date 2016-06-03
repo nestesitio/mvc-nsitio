@@ -152,7 +152,7 @@ class DataConfig
             }elseif(!empty($line['id']) && Vars::getId() != false){
                 $str .= ' data-' . $line['var'] . '="' .  Vars::getId() . '"';
             }elseif(!empty($line['value'])){
-                $str .= ' data-' . $line['var'] . '="{{ item.' . $line['value'] . ' }}"';
+                $str .= ' data-' . $line['var'] . '="{$item.' . $line['value'] . '}"';
             }elseif(!empty($line['str'])){
                 $str .= ' data-' . $line['var'] . '="' . $line['str'] . '"';
             }

@@ -54,8 +54,8 @@ class DataEdit extends \lib\bkegenerator\DataConfig
      */
     public function renderButtons($mode)
     {
-        $btn_tpl = '<!--{{ buttons }}-->';
-        if (strpos($this->html, '{{ buttons }}')) {
+        $btn_tpl = '<!--{$buttons}-->';
+        if (strpos($this->html, '{$buttons}')) {
             $nodes = $this->getnodes('show/buttons/*');
             foreach($nodes as $node){
                 $path = 'show/buttons/' . $node;
@@ -69,7 +69,7 @@ class DataEdit extends \lib\bkegenerator\DataConfig
                     continue;
                 }
 
-                $btn = '<a class="' . $node . ' btn btn-xs btn-primary" data-id="{{ dataid }}">';
+                $btn = '<a class="' . $node . ' btn btn-xs btn-primary" data-id="{$dataid}">';
                 $action = $this->x_conf->queryXPath($path, 'atr', 'action');
                 if(!empty($action)){
                     $btn = str_replace('>', ' data-action="' . $action . '">', $btn);
@@ -88,9 +88,9 @@ class DataEdit extends \lib\bkegenerator\DataConfig
     /*
      * <a class="saveform btn btn-xs btn-primary"><span class="glyphicon glyphicon-save"></span> Gravar</a>
         <a class="resetform btn btn-xs btn-primary"><span class="glyphicon glyphicon-refresh"></span> Limpar</a>
-        <a class="delform btn btn-xs btn-primary" data-action="{{ delaction }}" data-id="{{ dataid }}"><span class="glyphicon glyphicon-trash"></span> Apagar</a>
+        <a class="delform btn btn-xs btn-primary" data-action="{$delaction}" data-id="{$dataid}"><span class="glyphicon glyphicon-trash"></span> Apagar</a>
         <a class="closeform btn btn-xs btn-primary"><span class="glyphicon glyphicon-remove"></span> Fechar</a>
-     * <a class="editform btn btn-xs btn-primary" data-action="{{ editaction }}" data-id="{{ dataid }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+     * <a class="editform btn btn-xs btn-primary" data-action="{$editaction}" data-id="{$dataid}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
      */
 
 }
