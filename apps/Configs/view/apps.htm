@@ -22,7 +22,7 @@
                             </tr>
                         </thead>
                         <tbody id="dataList">
-                            {@while (apps as item):}
+                            {@while ($apps as $item):}
                             <tr>
                                 <td class="id">{$item.htm_app.id}</td>
                                 <td class="name">{$item.htm_app.name}</td>

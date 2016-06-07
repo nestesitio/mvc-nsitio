@@ -39,8 +39,8 @@ class DataGrid extends \lib\bkegenerator\DataConfig
 
         $this->html = str_replace('{$item.identification}', $id, $this->html);
         if(null != $this->var){
-            $this->html = str_replace('{@while ($item in $list) %}', '{@while ($item in $' . $this->var . '):}', $this->html);
-            $this->html = str_replace('{@while ($item in $pagination) %}', '{@while ($item in $page' . $this->var . '):}', $this->html);
+            $this->html = str_replace('{@while ($item in $list):}', '{@while ($item in $' . $this->var . '):}', $this->html);
+            $this->html = str_replace('{@while ($item in $pagination):}', '{@while ($item in $page' . $this->var . '):}', $this->html);
         }
     }
 

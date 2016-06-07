@@ -12,7 +12,6 @@ use \lib\view\Template;
  */
 class ParseLoop {
     
-    //const PATTERN_WHILE = "/{@while \(([^\)]*)\):}{@endwhile;}/m";
     const PATTERN_WHILE = "/{@while [^}]+\}/";
     
     const PATTERN_ENDWHILE = "{@endwhile;}";
@@ -28,9 +27,9 @@ class ParseLoop {
             preg_match_all(self::PATTERN_WHILE, $output, $matches, PREG_SET_ORDER);
             foreach ($matches as $match) {
                 
-                $piece = self::getPiece($output, $match[0]);
-                
                 list($vector, $tag) = explode(' in ', self::getCondition($match[0]));
+                
+                $piece = self::getPiece($output, $match[0]);
  
                 $html = self::buildPieces($tag, $vector, $piece);
                 
