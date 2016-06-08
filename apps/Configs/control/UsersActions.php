@@ -45,7 +45,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function usersAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = $this->query();
         $results = $this->buildDataGrid('users', $query);
         $this->renderList($results);

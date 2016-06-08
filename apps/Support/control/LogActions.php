@@ -21,7 +21,7 @@ class LogActions extends \lib\control\ControllerAdmin {
      *
      */
     public function logAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = SupportLogQuery::start();
         $this->buildDataGrid('log', $query);
         $form = SupportLogForm::initialize()->prepareFilters();

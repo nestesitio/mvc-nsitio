@@ -26,7 +26,7 @@ class LoginActions extends \lib\control\ControllerAdmin {
      */
     public function loginAction(){
         $this->getPageSession();
-        $this->set('h1', 'Área reservada. Faça login p.f.');
+        $this->set('heading', 'Área reservada. Faça login p.f.');
         $this->set('h2', 'Ou inicie sessão com: ');
         $message = (Session::getSessionVar('error') == false)? '' : Session::getSessionVar('error');
         Session::unsetSession('error');

@@ -134,10 +134,14 @@ class StringTools
      */
     public static function encodeToUtf8($data){
         $str =  (is_array($data)) ? implode('; ', $data) : $data;
+        if(mb_detect_encoding($str, 'UTF-8') != false){
+            return $data;
+        }
         if(mb_detect_encoding($str, 'ISO-8859-1') != false){
             $str = iconv('ISO-8859-1', 'UTF-8', $str);
+            return (is_array($data))? explode('; ', $str) : $str;
         }
-        return (is_array($data))? explode('; ', $str) : $str;
+        return $data;
     }
 
 }

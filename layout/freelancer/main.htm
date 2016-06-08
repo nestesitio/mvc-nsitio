@@ -54,14 +54,14 @@
         
         <!-- Header -->
         <header>
-            <h1>{$h1}</h1>
+            <h1>{$heading}</h1>
         </header>
         <!--messages -->
         <div id="messages">{$messages}</div>
         <!--main controller action content -->
-        <section id="conten_action">
+        <div id="conten_action">
             {@block 'content'}
-        </section>
+        </div>
         
         
         
@@ -91,6 +91,7 @@
         <script id="block:js" />
         
         {@block 'scripts'}
+	{@block 'scripts-b'}
 
         <script>
             $( ".support-btn" ).click(function() {addSupport(this);});

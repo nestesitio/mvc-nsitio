@@ -51,12 +51,12 @@ class ControlMessages extends \lib\control\Controller
                 $messages = $controller->dispatch();
             }
             if ($extend == true) {
-                $html = str_replace('{{ messages }}', $messages, $html);
+                $html = str_replace('{$messages}', $messages, $html);
             } else {
                 $html .= '<div class="submessages">' . $messages . '</div>';
             }
         }else{
-            $html = str_replace('{{ messages }}', '', $html);
+            $html = str_replace('{$messages}', '', $html);
         }
         return $html;
     }

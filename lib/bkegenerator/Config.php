@@ -112,7 +112,7 @@ class Config
 
      /**
      * Get value for the array index (configs[]) and change the current array index
-      *
+      * 
      * @param Int $index The current index
      * @param String $key The sub index is the attribute for the xml node
      *

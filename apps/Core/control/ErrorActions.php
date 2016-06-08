@@ -23,7 +23,7 @@ class ErrorActions extends \lib\control\Controller {
      */
     public function pageAction(){
         $this->setView('errorpage');
-        $this->set('h1','Error Page');
+        $this->set('heading','Error Page');
         $this->set('nav_home','/');
     }
 

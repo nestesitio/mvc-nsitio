@@ -25,7 +25,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      *
      */
     public function usersAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = UsersQueries::get()->orderByName();
         $results = $this->buildDataGrid('users', $query);
         #here you can process the results

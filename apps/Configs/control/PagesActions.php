@@ -37,7 +37,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function pagesAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = $this->query();
         $results = $this->buildDataGrid('pages', $query);
         $this->renderList($results);

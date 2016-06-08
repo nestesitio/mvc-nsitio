@@ -18,7 +18,7 @@ class BackendActions extends \lib\control\Controller {
      */
     public function defaultAction() {
         $this->setView('dashboard');
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         
     }
     

@@ -23,7 +23,7 @@ class TxtActions extends \lib\control\ControllerAdmin {
      *
      */
     public function txtAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = TxtQuery::get();
         $results = $this->buildDataGrid('txt', $query);
         #here you can process the results

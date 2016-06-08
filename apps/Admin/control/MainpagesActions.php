@@ -24,7 +24,7 @@ class MainpagesActions extends \apps\Pages\control\PagesActions {
      *
      */
     public function mainpagesAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         
         \lib\session\SessionConfig::setXml('apps/Admin/config/mainpages');
         $this->mainAction($this->app_slug, 'mainpages');

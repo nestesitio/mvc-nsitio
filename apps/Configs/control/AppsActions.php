@@ -16,7 +16,7 @@ class AppsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function appsAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = \apps\Configs\model\AppsQuery::getApps();
         $results = $this->buildDataGrid('apps', $query);
         $this->renderList($results);

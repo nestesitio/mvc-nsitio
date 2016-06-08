@@ -1,18 +1,22 @@
-{@extends 'layout/freelancer/main.htm'}
+{@extends 'config:frontend'}
 
-{% cssextension '/plugins/bootstrap-datetimepicker/datetimepicker.css' %}
-{% cssextension '/plugins/chosen/chosen.css' %}
-{% cssextension '/css/core/backend.css' %}
-{% jsextension '/js/core/dataform.js' %}
-{% jsextension '/js/core/bsInputs.js' %}
-{% jsextension '/plugins/jeditable/jquery.jeditable.js' %}
+{@block name='css'}
+<link href="/plugins/bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
+<link href="/plugins/chosen/chosen.css" rel="stylesheet">
+<link href="/css/core/backend.css" rel="stylesheet">
+<style>
+    header{padding: 100px 0 0}
+    @media (max-width: 1198px) {header{padding: 150px 0 0}}
+    @media (max-width: 768px) {header{padding: 50px 0 0}}
+    section{padding: 50px}
+</style>
+{@endblock}
 
-{% style %}
-header{padding: 100px 0 0}
-@media (max-width: 1198px) {header{padding: 150px 0 0}}
-@media (max-width: 768px) {header{padding: 50px 0 0}}
-section{padding: 50px}
-{% endstyle %}
+{@block name='js'}
+<script src="/js/core/dataform.js"></script>
+<script src="/js/core/bsInputs.js"></script>
+<script src="/plugins/jeditable/jquery.jeditable.js"></script>
+{@endblock}
 
 <!-- /.row -->
 <div class="row">
@@ -84,6 +88,7 @@ section{padding: 50px}
 
     </div>
 </div>
+{@block name='scripts'}
 <script>
     $(function () {
         toEdit();
@@ -119,3 +124,4 @@ section{padding: 50px}
         }
     }
 </script>
+{@endblock}

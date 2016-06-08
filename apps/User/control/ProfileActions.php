@@ -54,7 +54,7 @@ class ProfileActions extends \lib\control\ControllerAdmin {
      *
      */
     public function profileAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $this->set('nav_home','/');
         $this->setView('profile');
         $this->showProfileAction();

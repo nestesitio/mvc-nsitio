@@ -22,7 +22,7 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function usergroupsAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = UsergroupsQuery::get();
         $results = $this->buildDataGrid('usergroups', $query);
         #here you can process the results

@@ -21,7 +21,7 @@ class LayoutsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function layoutsAction(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = LayoutsQuery::get();
         $results = $this->buildDataGrid('layouts', $query);
         #here you can process the results
