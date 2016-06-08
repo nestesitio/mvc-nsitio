@@ -126,7 +126,7 @@ class ParseCondition {
         $var = str_replace('$', '', $var);
         $value = Template::getData($var);
         if(is_array($value)){
-            return [];
+            return true;
         }elseif($value == null){
             return 'NULL';
         }else{
