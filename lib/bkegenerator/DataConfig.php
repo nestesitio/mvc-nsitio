@@ -109,7 +109,7 @@ class DataConfig
     public function getContentsFile($file, $id)
     {
         $this->var = $id;
-        $this->tag = '{@build ('.$id.')}';
+        $this->tag = '{@insert ('.$id.')}';
         if (file_exists(ROOT . $file)) {
             $this->html =  file_get_contents(ROOT . $file); // get contents of buffer
 

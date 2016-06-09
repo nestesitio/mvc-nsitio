@@ -331,7 +331,7 @@ function adjustRowWidth() {
         if (w > 0) {
             for (var x = 0; x < datarow.length; x++) {
                 if(datarow[x].className === "datarow"){
-                    datarow[x].style.width = w + "px";              
+                    datarow[x].style.width = w + "px";
                 }
             }
         }
