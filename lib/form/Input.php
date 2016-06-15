@@ -389,5 +389,9 @@ class Input
     {
         return $this->range;
     }
+    
+    public function getPostKey(){
+        return \lib\form\form\FormValidator::correctKey($this->getName());
+    }
 
 }

@@ -10,7 +10,8 @@ namespace lib\form\input;
 
 /**
  * Description of WysihtmlInput
- * https://github.com/Waxolunist/bootstrap3-wysihtml5-bower/
+ * https://github.com/summernote/summernote
+ * http://summernote.org/
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jul 27, 2015
@@ -36,9 +37,15 @@ class WysihtmlInput extends \lib\form\input\TextAreaInput
         $this->attributes();
 
 
-        $this->input = '<textarea style="width:100%" ' . implode(' ', $this->attributes) . '>' . $this->value . '</textarea>';
+        $this->input = '<textarea class="wysihtml" '
+                . 'name="'.$this->elemid.'" id="'.$this->elemid.'"'
+                . 'style="width:100%">' . $this->value . '</textarea>';
         $this->input .= '<a class="clear-input" data-id="'.$this->elemid.'"><span class="glyphicon glyphicon-refresh"></span></a>';
         return $this->input;
+    }
+    
+    public function getValue() {
+        return filter_input(INPUT_POST, $this->getPostKey());
     }
 
 }

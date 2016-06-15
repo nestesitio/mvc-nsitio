@@ -4,7 +4,7 @@ namespace lib\form\form;
 
 
 use \lib\register\Monitor;
-use \lib\register\Vars as Vars;
+use \lib\register\Vars;
 
 /**
  * Description of FormValidator
@@ -43,6 +43,7 @@ class FormValidator
      */
     public static function validateText($field)
     {
+        
         return filter_var(self::getValue($field), FILTER_SANITIZE_STRING);
     }
 
