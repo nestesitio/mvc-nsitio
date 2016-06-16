@@ -10,8 +10,29 @@ function prepareBSInputs() {
 
 function prepareWysihtml5(){
     var inputs = document.getElementsByClassName("wysihtml");
+    var toolbar;
     for (var i = 0; i < inputs.length; i++) {
-        $(inputs[i]).summernote();
+        toolbar = inputs[i].getAttribute("data-toolbar");
+        if (toolbar === 'simple') {
+            $(inputs[i]).summernote({
+                toolbar: [['style', ['bold', 'italic', 'underline', 'clear']], ['para', ['ul', 'ol', 'paragraph']],
+                    ['link', ['linkDialogShow', 'unlink']], ['help', ['codeview', 'undo', 'help']]]});
+        } else if (toolbar === 'withmedia') {
+            $(inputs[i]).summernote({
+                toolbar: [
+                    ['head', ['style']], ['style', ['bold', 'italic', 'underline', 'clear']], ['para', ['ul', 'ol', 'paragraph']],
+                    ['link', ['linkDialogShow', 'unlink']], 
+                    ['media', ['picture', 'video', 'hr']], 
+                    ['help', ['codeview', 'undo', 'help']]
+                ]});
+        } else { //default
+            $(inputs[i]).summernote({
+                toolbar: [
+                    ['head', ['style']], ['style', ['bold', 'italic', 'underline', 'clear']], ['para', ['ul', 'ol', 'paragraph']],
+                    ['link', ['linkDialogShow', 'unlink']], ['help', ['codeview', 'undo', 'help']]
+                ]});
+        }
+
     }
 }
 

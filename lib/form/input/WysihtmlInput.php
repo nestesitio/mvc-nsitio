@@ -11,7 +11,6 @@ namespace lib\form\input;
 /**
  * Description of WysihtmlInput
  * https://github.com/summernote/summernote
- * http://summernote.org/
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jul 27, 2015
@@ -37,15 +36,23 @@ class WysihtmlInput extends \lib\form\input\TextAreaInput
         $this->attributes();
 
 
-        $this->input = '<textarea class="wysihtml" '
+        $this->input = '<textarea data-toolbar="'.$this->toolbar.'" class="wysihtml" '
                 . 'name="'.$this->elemid.'" id="'.$this->elemid.'"'
                 . 'style="width:100%">' . $this->value . '</textarea>';
         $this->input .= '<a class="clear-input" data-id="'.$this->elemid.'"><span class="glyphicon glyphicon-refresh"></span></a>';
         return $this->input;
     }
     
+    private $toolbar = 'default';
+    
+    public function setToolbar($toolbar){
+        $this->toolbar = $toolbar;
+    }
+    
     public function getValue() {
-        return filter_input(INPUT_POST, $this->getPostKey());
+        $value = filter_input(INPUT_POST, $this->getPostKey(), FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW);
+        //$value = strip_tags($value, $allowable_tags);
+        return $value;
     }
 
 }
