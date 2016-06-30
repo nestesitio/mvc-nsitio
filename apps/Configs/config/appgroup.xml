@@ -16,7 +16,7 @@
         <label lang="en">Save</label>
         <label lang="pt">Guardar</label>
       </saveform>
-      <closeform class="glyphicon glyphicon-remove" auth="1">
+      <closeform class="glyphicon glyphicon-remove" auth="4">
         <label lang="en">Close</label>
         <label lang="pt">Fechar</label>
       </closeform>
