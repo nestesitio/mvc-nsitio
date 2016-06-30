@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
     <html title="NSitio MVC" />
+    <lang default="pt" />
     <dbconn>
-        <dev host="localhost" db="stage" user="stage" password="dbpassword" />
+        <dev host="localhost" db="stage" user="root" password="gagfvv" />
         <prod host="localhost" db="stage" user="production" password="CL1(hvH3c*Xw" />
     </dbconn>
     <apis>
