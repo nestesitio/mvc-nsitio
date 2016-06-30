@@ -1,0 +1,16 @@
+<form action="{$action}" method="post">
+    <div class="btns-form">
+        <!--{$buttons}-->
+    </div>
+    {@while ($item in $usermsg):}
+    <div class="usermsg">{$item.msg}</div>
+    {@endwhile;}
+    <div class="usermsg" id="file-input-messages"></div>
+    {$hiddenfields}
+    {@while ($item in $inputs):}
+    <div class="form-gallery-group">
+        <label for="{$item.field}">{$item.label}</label><span class="input-msg"></span>
+        {$item.input}
+    </div>
+    {@endwhile;}  
+</form>

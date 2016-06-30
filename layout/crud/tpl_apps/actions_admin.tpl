@@ -18,7 +18,7 @@ use \apps\%$nameApp%\model\%$className%Form;
 class %$className%Actions extends \lib\control\ControllerAdmin {
 
     public function %$fileName%Action(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = %$className%Queries::get();
         $results = $this->buildDataGrid('%$fileName%', $query);
         #here you can process the results

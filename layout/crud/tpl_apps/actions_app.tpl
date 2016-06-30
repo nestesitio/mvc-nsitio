@@ -16,14 +16,14 @@ use \model\models\%$modelName%;
 class %$className%Actions extends \lib\control\Controller {
 
     public function %$fileName%Action(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $itens = %$className%Queries::get()->find();
         $this->renderCollection($itens, 'list');
         
     }
     
     public function page%$className%Action(){
-        $this->set('h1', Vars::getHeading());
+        $this->set('heading', Vars::getHeading());
         $query = %$className%Queries::get();
     }
     
