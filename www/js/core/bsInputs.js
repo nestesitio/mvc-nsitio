@@ -5,7 +5,33 @@ function prepareBSInputs() {
     prepareChosen();
     repareChosen();
     prepareWysihtml5();
+    prepareFileInput();
     
+}
+
+function prepareFileInput() {
+    var inputs = document.getElementsByClassName("fileinput");
+    var preview, extensions;
+    for (var i = 0; i < inputs.length; i++) {
+        preview = inputs[i].getAttribute("value");
+        extensions = inputs[i].getAttribute("data-allowed");
+        $(inputs[i]).fileinput({
+            uploadUrl: inputs[i].getAttribute("data-url"), uploadAsync: true, maxFileCount: 1, 
+            initialPreview:[preview], initialPreviewAsData: true,
+            elErrorContainer: '#file-input-messages', allowedFileExtensions: extensions.split(','), 
+            initialPreviewFileType: inputs[i].getAttribute("data-file"), showCaption: false,
+            deleteUrl: '/storedesk/deleteimage_prizes/', deleteExtraData: {id: 100, value: '100 Details'},
+            overwriteInitial: true,
+            maxFileSize: 1500,
+            showClose: false,
+            initialPreviewShowDelete: true,
+            browseLabel: '',
+            removeLabel: '',
+            removeTitle: 'Cancel or reset changes',
+            msgErrorClass: 'alert alert-block alert-danger'
+            
+        });
+    }
 }
 
 function prepareWysihtml5(){

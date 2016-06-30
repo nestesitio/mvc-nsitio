@@ -18,8 +18,12 @@ a.fa-gear{color: #f00}
 .dev_form-error{background-color: #FF0000}
 .dev_template-warning{background-color: #FFE51E}
 .usermsg{border: #000 solid 1px; border-radius: 5px; background-color: #FFE51E; color: #000; padding: 5px}
+#jsmonitor{
+    z-index:360; background:#fff; color:red;
+}
 
-li[title]:hover:after,  a[title]:hover:after{
+
+li.col[title]:hover:after,  .row_tool a[title]:hover:after{
   content: attr(title);padding: 4px 8px;background-color: #fff;color: #333;
   z-index: 20; white-space: nowrap;border-radius: 5px;box-shadow: 0px 0px 4px #222;
 }
@@ -59,6 +63,8 @@ div.btns-form-project{position:absolute;right:0;top:-35px;z-index:4}
 div.btns-filter{position:absolute;right:0;top:1px;z-index:6}
 /*********inputs*/
 div.form-group{max-width: 500px;position:relative; clear: both;}
+div.form-gallery-group{max-width: 120px; min-width: 120px;
+                   position:relative; float: left; display: inline-table; margin: 5px}
 .has-error > .input-msg{color:#F6622F;}
 .has-success > .input-msg{color:#3c763d;}
 span.input-msg{margin-left: 15px;clear: right}
