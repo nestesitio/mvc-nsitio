@@ -2,9 +2,7 @@
 
 namespace lib\media;
 
-use \lib\register\Vars;
 use \lib\tools\StringTools;
-use \model\querys\HtmMediaQuery;
 use \lib\media\Image;
 
 /**
@@ -26,7 +24,7 @@ class UploadFile
     /**
      * @var
      */
-    private $name;
+    private $name = null;
     /**
      * @var
      */
@@ -54,6 +52,15 @@ class UploadFile
     public function setName($name)
     {
         $this->name = $name;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
 
@@ -101,22 +108,32 @@ class UploadFile
      */
     public function execute($width, $height)
     {
-        if (isset($_FILES)) {
-            //You need to handle  both cases
-            //If Any browser does not support serializing of multiple files using FormData()
-            if (!is_array($_FILES['myfile']['name'])) { //single file
-                $this->getExtension($_FILES['myfile']['type']);
-                $fileName = $_FILES["myfile"]["name"];
+        /*
+         * array(1) {["prizes_prize_item_large_image"]=>
+         * array(5) {["name"]=>string(19) "20150222_152947.jpg"
+         * ["type"]=>string(10) "image/jpeg"
+         * ["tmp_name"]=>string(14) "/tmp/php8vlAl0"
+         * ["error"]=>int(0)
+         * ["size"]=>int(149362)
+         */
+        if (null != $_FILES) {
+            
+            foreach($_FILES as $key=> $data){
+                $this->getExtension($data['type']);
+                $fileName = $data["name"];
                 $this->name = $fileName;
+                
                 if(!empty($width) || !empty($height)){
-
-                    $image = new Image($_FILES["myfile"]["tmp_name"]);
-                    $image->resampleImageFile($this->folder . $fileName, $width, $height);
+                    $image = new Image($data["tmp_name"]);
+                    $image->resampleImageFile(HTMROOT . $this->folder . $fileName, $width, $height);
                 }else{
-                    move_uploaded_file($_FILES["myfile"]["tmp_name"], $this->folder . $fileName);
+                    move_uploaded_file($data["tmp_name"], HTMROOT . $this->folder . $fileName);
                 }
                 $this->result = $this->folder . $fileName;
+                
+                return $this->result;
             }
+            
         }
     }
 
@@ -136,7 +153,7 @@ class UploadFile
     {
         $file = $this->result;
         $this->result = str_replace($this->name, $name . '.' . $this->extension, $this->result);
-        rename(HTMROOT . DS . $file, HTMROOT . DS . $this->result);
+        rename(HTMROOT . $file, HTMROOT . $this->result);
         return $this->result;
     }
 

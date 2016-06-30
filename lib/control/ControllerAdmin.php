@@ -170,17 +170,34 @@ class ControllerAdmin extends \lib\control\Controller
         }
         $this->setView('/layout/core/edit.htm');
         $this->renderUrl('action', $action, $querystring);
+        
+        $this->runFormTasks($form, $xmlfile, $action);
+
+    }
+    
+    protected function renderFileForm(Form $form, $xmlfile, $action = null, $multiple = null, $querystring = []){
+        if($action == null){
+            $action = 'bind_' . Vars::getCanonical();
+        } 
+        $view = ($multiple == null)?'/layout/core/fileinput.htm':'/layout/core/filenultiinput.htm';
+        $this->setView($view);
+        $this->renderUrl('action', $action, $querystring);
+        
+        $this->runFormTasks($form, $xmlfile, $action);
+    }
+    
+    private function runFormTasks(Form $form, $xmlfile, $action){
         $this->set('delaction', str_replace('bind','del',$action));
 
         $this->set('hiddenfields', $form->renderHiddenFields(Vars::getCanonical()));
         $config = new DataEdit($xmlfile, $this);
         $configs = $config->getConfigs('edit');
         $form = QueryFilter::getDefaults($form, $xmlfile, $configs);
-
+        
         $this->set('inputs', $form->renderInputs(Vars::getCanonical(), $configs));
         $config->setHtml($this->view->getOutput())->renderButtons('edit');
         $this->view->setOutput($config->getHtml());
-
+        
         $this->set('dataid', Vars::getId());
         $this->setUserMessage();
 

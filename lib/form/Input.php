@@ -28,6 +28,10 @@ class Input
      *
      */
     const TYPE_CHECKBOX = 'checkbox';
+    /**
+     *
+     */
+    const TYPE_FILE = 'file';
 
     /**
      *
