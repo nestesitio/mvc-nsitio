@@ -68,36 +68,58 @@ class ParseRoute
      */
     public function getRoutePortions()
     {
-        $components = ['app' => 'Home', 'appslug'=> 'home',
-            'canonical' => 'index', 'controller' => 'home', 'action' => 'default',
-            'id' => null, 'slugvar' => null];
+        $components = $this->getComponentsArray();
         $pieces = explode('/', $this->path);
         if (count($pieces) > 1) {
             foreach ($pieces as $x => $piece) {
                 if (!empty($piece)) {
-                    if ($x == 1 && preg_match('/^[a-z]{3}[a-z_]+$/', $piece)) {
-                        $components['app'] = $piece;
-                        $components['appslug'] = $piece;
+                    if ($x >= 1 && preg_match('/^[a-z]{2}$/', $piece)) {
+                        $components[self::PART_LANG] = $piece;
+                    } elseif ($x == 1 && preg_match('/^[a-z]{3}[a-z_]+$/', $piece)) {
+                        $components[self::PART_APP] = $piece;
+                        $components[self::PART_APPSLUG] = $piece;
                     } elseif ($x == 1 && preg_match('/^[a-z]{3}[a-z-]+[a-z](\.htm){1}$/', $piece)) {
-                        $components['app'] = str_replace('.htm', '', $piece);
-                    } elseif ($x == 2 && $components['id'] == null && preg_match('/^[a-z]{3}[a-z_]+$/', $piece)) {
-                        $components['canonical'] = $components['action'] = $piece;
+                        $components[self::PART_APP] = str_replace('.htm', '', $piece);
+                    } elseif ($x == 2 && $components[self::PART_ID] == null && preg_match('/^[a-z]{3}[a-z_]+$/', $piece)) {
+                        $components[self::PART_CANONICAL] = $components['action'] = $piece;
                     } elseif ($x == 2 && preg_match('/^[a-z]{3}[a-z-]+[a-z](\.htm){1}$/', $piece)) {
-                        $components['canonical'] = $piece;
-                    } elseif ($x > 2 && $components['id'] == null && preg_match('/^[0-9]{1,11}$/', $piece)) {
-                        $components['id'] = $piece;
-                    } elseif ($x > 2 && $components['id']== null && preg_match('/^[a-z]+$/', $piece)) {
+                        $components[self::PART_CANONICAL] = $piece;
+                    } elseif ($x > 2 && $components[self::PART_ID] == null && preg_match('/^[0-9]{1,11}$/', $piece)) {
+                        $components[self::PART_ID] = $piece;
+                    } elseif ($x > 2 && $components[self::PART_ID]== null && preg_match('/^[a-z]+$/', $piece)) {
                         $components['slugvar'] = $piece;
                     }
                 }
             }
         }
-        $components['canonical'] = str_replace('.htm', '', $components['canonical']);
-        $components['canonical'] = StringTools::getStringAfterLastChar($components['canonical'], '_');
-        $components['canonical'] = StringTools::getStringUntilLastChar($components['canonical'], '/');
-        $components['controller'] = StringTools::getStringAfterLastChar($components['canonical'], '_');
+        $components[self::PART_CANONICAL] = str_replace('.htm', '', $components[self::PART_CANONICAL]);
+        $components[self::PART_CANONICAL] = StringTools::getStringAfterLastChar($components[self::PART_CANONICAL], '_');
+        $components[self::PART_CANONICAL] = StringTools::getStringUntilLastChar($components[self::PART_CANONICAL], '/');
+        $components[self::PART_CONTROLLER] = StringTools::getStringAfterLastChar($components[self::PART_CANONICAL], '_');
         return $components;
 
     }
+    
+    private function getComponentsArray(){
+        return [self::PART_APP => 'Home', self::PART_APPSLUG=> 'home',
+            self::PART_CANONICAL => 'index', self::PART_CONTROLLER => 'home', 
+            self::PART_ACTION => 'default',
+            self::PART_ID => null, self::PART_LANG => null, 
+            'slugvar' => null];
+    }
+    
+    const PART_APP = 'app';
+    
+    const PART_APPSLUG = 'appslug';
+    
+    const PART_CANONICAL = 'canonical';
+    
+    const PART_CONTROLLER = 'controller';
+    
+    const PART_ACTION = 'action';
+    
+    const PART_ID = 'id';
+    
+    const PART_LANG = 'lang';
 
 }

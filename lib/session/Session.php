@@ -39,7 +39,11 @@ class Session
      * @var array
      */
     private static $sessionConf = [];
-
+    
+    /**
+     * 
+     */
+    const SESS_LANG = 'lang';
     /**
      *
      */

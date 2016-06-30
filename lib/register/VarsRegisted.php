@@ -37,6 +37,10 @@ class VarsRegisted
      */
     protected static $canonical = '';
     /**
+     * @var string
+     */
+    protected static $lang = 'en';
+    /**
      * @var bool
      */
     protected static $id = false;
@@ -254,6 +258,21 @@ class VarsRegisted
     public static function getPage()
     {
         return self::$page;
+    }
+    
+   /**
+     * @param string $lang
+     */
+    public static function setLang($lang)
+    {
+        self::$lang = $lang;
+    }
+    /**
+     * @return string
+     */
+    public static function getLang()
+    {
+        return self::$lang;
     }
 
 }

@@ -25,47 +25,6 @@ class Boot
      */
     public static function run()
     {
-        self::start();
-        /*
-         * The routing url, we need to use original 'QUERY_STRING'
-         * from server parameter because php has parsed the url if we use $_GET
-         */
-        $url = \lib\url\UrlRegister::getUrlRequest();
-        Vars::setRoute($url);
-
-        //parse the url
-        $parse = new ParseRoute($url);
-        $querystring = $parse->getQueryString();
-        $params = $parse->getRoutePortions();
-        //regist vars GET and POST
-        self::registParams($params);
-        self::registVars($querystring);
-
-        //set the action for the page
-        $controller = false;
-        $route = self::checkRoute($params);
-
-        if($route != false){
-            $controller = self::fireController($params, $route);
-            $controller = self::fireView($controller);
-        }
-
-
-        if ($controller != false) {
-            self::output($controller);
-        }else{
-
-            echo \lib\routing\ErrorPage::execute(true);
-        }
-
-
-        Session::close();
-
-
-    }
-
-    private static function start()
-    {
         // initiate configs
         new \lib\loader\Configurator;
         //initiate pdo
@@ -75,6 +34,62 @@ class Boot
          * check if user is registered and what user group is
          */
         new Session();
+        /*
+         * The routing url, we need to use original 'QUERY_STRING'
+         * from server parameter because php has parsed the url if we use $_GET
+         */
+        $url = \lib\url\UrlRegister::getUrlRequest();
+        Vars::setRoute($url);
+
+        //parse the url
+        $querystring = self::parseUrl($url);
+        
+        //regist vars GET and POST
+        self::registParams(self::$params);
+        self::registVars($querystring);
+        
+        \lib\lang\Language::setlang();
+
+        //set the action for the page
+        $controller = false;
+        $route = self::checkRoute(self::$params);
+
+        if($route != false){
+            $controller = self::fireController(self::$params, $route);
+            $controller = self::fireView($controller);
+        }
+
+
+        self::output($controller);
+
+        Session::close();
+
+
+    }
+    
+    
+    /**
+     *
+     * @var array
+     */
+    private static $params = [];
+    
+    /**
+     * Parse the url and regist GET and POST variables
+     * 
+     * @param string $url
+     * @return string
+     */
+    private static function parseUrl($url){
+        
+        //parse the url
+        $parse = new ParseRoute($url);
+        $querystring = $parse->getQueryString();
+        self::$params = $parse->getRoutePortions();
+        
+        
+        return $querystring;
+        
     }
 
     /**
@@ -86,11 +101,12 @@ class Boot
          //regist all post variables
         Vars::registPosts();
         Vars::registRequests();
-        $canonical = (isset($params['canonical']))? $params['canonical'] : 'index';
-        Vars::setApp($params['appslug']);
+        $canonical = (isset($params[ParseRoute::PART_CANONICAL]))? $params[ParseRoute::PART_CANONICAL] : 'index';
+        Vars::setApp($params[ParseRoute::PART_APPSLUG]);
         Vars::setCanonical($canonical);
-        Vars::setAction($params['action']);
-        Vars::setId($params['id']);
+        Vars::setAction($params[ParseRoute::PART_ACTION]);
+        Vars::setId($params[ParseRoute::PART_ID]);
+        Vars::setLang($params[ParseRoute::PART_LANG]);
     }
 
     /** process url query string after ?, but ? was allready deleted by htaccess
@@ -178,19 +194,29 @@ class Boot
     }
 
 
+    /**
+     * 
+     * @param object $controller
+     */
     private static function output($controller)
     {
-        $extend = Router::aboutExtended($controller);
-        //output
-        $output = $controller->dispatch();
-        if ($controller->messages == false) {
-            echo $output;
-        } elseif ($controller->layout == false) {
-            exit;
-        } elseif (empty($output)) {
-            echo self::displayError();
-        } elseif ($controller->messages == true) {
-            echo \lib\control\ControlMessages::write($output, $extend);
+        if ($controller != false) {
+            
+            $extend = Router::aboutExtended($controller);
+            //output
+            $output = $controller->dispatch();
+            if ($controller->messages == false) {
+                echo $output;
+            } elseif ($controller->layout == false) {
+                exit;
+            } elseif (empty($output)) {
+                echo self::displayError();
+            } elseif ($controller->messages == true) {
+                echo \lib\control\ControlMessages::write($output, $extend);
+            }
+            
+        } else {
+            echo \lib\routing\ErrorPage::execute(true);
         }
     }
 

@@ -56,6 +56,7 @@ class Configurator
         $this->setGoogleConf();
         $this->setHtmlConf();
         $this->setTemplates();
+        $this->setLangDefault();
 
     }
 
@@ -185,6 +186,27 @@ class Configurator
      */
     public static function getTemplate($index){
         return self::$templates[$index];
+    }
+    
+    /**
+     *
+     * @var string
+     */
+    private static $lang_default;
+    
+    /**
+     * set the default language of the project
+     */
+    private function setLangDefault(){
+        self::$lang_default = $this->xmlc->queryXPath('lang', null, 'default');
+    }
+    
+    /**
+     * get the default language
+     * @return string
+     */
+    public static function getLangDefault(){
+        return self::$lang_default;
     }
 
 }
