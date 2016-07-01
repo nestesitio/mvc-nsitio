@@ -13,7 +13,11 @@ use \lib\view\Tags;
 class ParseEmbed {
 
 
-    
+    /**
+     * 
+     * @param mixed $output
+     * @return mixed
+     */
     public static function parse($output){
         $matches = [];
         if (strpos($output, Tags::TAG_EMBED) !== false) {
@@ -25,6 +29,11 @@ class ParseEmbed {
         return $output;
     }
     
+    /**
+     * 
+     * @param string $argument
+     * @return mixed
+     */
     private static function getEmbed($argument){
         $args = self::getArgs($argument);
         
@@ -45,7 +54,11 @@ class ParseEmbed {
     }
     
     
-    
+    /**
+     * 
+     * @param string $argument
+     * @return array
+     */
     private static function getArgs($argument){
         $arr = ['control'=>null, 'action'=>null, 'view'=>null, 'vars'=>null];
         // control:'Home\Home' action:'homenav'; view:'controls/Home/view/nav.htm'; vars:$var

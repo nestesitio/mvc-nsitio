@@ -130,6 +130,8 @@ class Template
         $this->output = \lib\view\parsers\ParseEmbed::parse($this->output);
         //process data
         $this->output = \lib\view\parsers\ParseData::parse($this->output);
+        //process specials
+        $this->output = \lib\view\parsers\ParseMenu::parse($this->output);
 
     }
 
