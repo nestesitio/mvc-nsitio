@@ -14,9 +14,6 @@
         <!-- Bootstrap Core CSS -->
         <link href="/css/base/bootstrap.min.css" rel="stylesheet">
 
-        <!-- MetisMenu CSS -->
-        <link href="/themes/sb-admin-2/plugins_css/metisMenu/metisMenu.min.css" rel="stylesheet">
-
         <!-- Dynamic CSS -->
         <link href="{$dynamiccss}"  rel="stylesheet">
 
@@ -43,8 +40,10 @@
         <div class="wrapper layer-login">
             <div class="container">
                 <div class="row" style="margin-top: 50px; text-align: center">
-                    <div class="col-md-4 col-md-offset-4" style="max-width: 350px">
-                        <img src="/images/icons/policeman-256.png" style="width: 60%; height: auto;" />
+                    <div class="col-md-4 col-md-offset-4 login-container">
+                        <div class="login-img">
+                            <img src="/images/icons/policeman-256.png" style="width: 60%; height: auto;" />
+                        </div>
                         <h4 style="text-align: center; color: #EFFF00; padding: 2px">{$user_message} </h4>
                         {@if($warning):}
                         <div class="alert alert-warning">
@@ -97,6 +96,7 @@
                             
                         </div>
                     </div>
+                    <br style="clear: both" />
                 </div>
             </div>
         </div>
