@@ -110,3 +110,14 @@ span.selected{border: #cc0 solid 2px}
     height: 400px; width: 100%;
 }
 
+/*login*/
+.login-container{max-width: 40%}
+@media (max-width: 768px) {
+    .login-container{max-width: 50%}
+}
+@media (max-width: 568px) {
+    .login-container{max-width: 60%}
+}
+@media (max-width: 480px) {
+    .login-container{max-width: 100%}
+}
