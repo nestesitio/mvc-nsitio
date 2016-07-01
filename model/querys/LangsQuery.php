@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of Langs
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-04-15 18:50
- * Updated @2016-04-15 18:50
+ * Created @2016-06-30 15:54
+ * Updated @2016-06-30 15:54
  */
 class LangsQuery extends \lib\model\QuerySelect {
     
@@ -134,6 +134,43 @@ class LangsQuery extends \lib\model\QuerySelect {
      */
     public function groupByName() {
         $this->groupBy(Langs::FIELD_NAME);
+        return $this;
+    }
+    
+    
+    /**
+     * 
+     * @return \model\querys\LangsQuery
+     */
+    public function selectLocale() {
+        $this->setSelect(Langs::FIELD_LOCALE);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\LangsQuery
+     */
+    public function filterByLocale($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(Langs::FIELD_LOCALE, $values, $operator);
+        return $this;
+    } 
+    
+    /**
+     * 
+     * @return \model\querys\LangsQuery
+     */
+    public function orderByLocale($order = Mysql::ASC) {
+        $this->orderBy(Langs::FIELD_LOCALE, $order);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\LangsQuery
+     */
+    public function groupByLocale() {
+        $this->groupBy(Langs::FIELD_LOCALE);
         return $this;
     }
     

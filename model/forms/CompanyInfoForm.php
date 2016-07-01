@@ -7,8 +7,8 @@ use \model\models\CompanyInfo;
  * Description of CompanyInfoForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-04-15 18:50
- * Updated @2016-04-15 18:50
+ * Created @2016-06-30 15:54
+ * Updated @2016-06-30 15:54
  */
 class CompanyInfoForm extends \lib\form\Form {
 

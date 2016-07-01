@@ -7,8 +7,8 @@ use \model\models\Langs;
  * Description of LangsForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-04-15 18:50
- * Updated @2016-04-15 18:50
+ * Created @2016-06-30 15:54
+ * Updated @2016-06-30 15:54
  */
 class LangsForm extends \lib\form\Form {
 
@@ -27,6 +27,7 @@ class LangsForm extends \lib\form\Form {
         
         $this->setTldInput();
 	$this->setNameInput();
+	$this->setLocaleInput();
 	
         return $this;
     }
@@ -35,6 +36,7 @@ class LangsForm extends \lib\form\Form {
         
         $this->validateTldInput();
 	$this->validateNameInput();
+	$this->validateLocaleInput();
 	
         
         return $this;
@@ -123,6 +125,49 @@ class LangsForm extends \lib\form\Form {
     
     public function validateNameInput() {
         $value = $this->validateString(Langs::TABLE, Langs::FIELD_NAME, false, 100);
+        return $value;
+    }
+    
+
+    /**
+    * Create and return the input associeted with field
+    * 
+    * @return \lib\form\input\InputText;
+    */
+    public function setLocaleInput($input = null) {
+        if($input == null){
+            $input = \lib\form\input\InputText::create(Langs::FIELD_LOCALE);$input->setMaxlength('5');
+        }else{
+            $input->setElementId(Langs::FIELD_LOCALE); 
+        }
+        
+        $this->setFieldLabel(Langs::TABLE, Langs::FIELD_LOCALE, 'Locale');
+        $this->setFieldInput(Langs::TABLE, Langs::FIELD_LOCALE, $input);
+        
+        return $input;
+    }
+    
+    public function setLocaleDefault($value) {
+        $this->setDefault(Langs::TABLE, Langs::FIELD_LOCALE, $value);
+    }
+    
+    public function unsetLocaleInput() {
+        $this->unsetFieldInput(Langs::TABLE, Langs::FIELD_LOCALE);
+    }
+    
+    /**
+    * @return \lib\form\input\InputText;
+    */
+    public function getLocaleInput(){
+        return $this->forminputs[Langs::TABLE][Langs::FIELD_LOCALE];
+    }
+    
+    public function getLocaleValue(){
+        return $this->getInputValue(Langs::TABLE, Langs::FIELD_LOCALE);
+    }
+    
+    public function validateLocaleInput() {
+        $value = $this->validateString(Langs::TABLE, Langs::FIELD_LOCALE, false, 5);
         return $value;
     }
     

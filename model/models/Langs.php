@@ -8,20 +8,21 @@ use \lib\mysql\Mysql;
  * Description of Langs
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-04-15 18:50
- * Updated @2016-04-15 18:50
+ * Created @2016-06-30 15:54
+ * Updated @2016-06-30 15:54
  */
 class Langs extends \lib\model\Model 
 {
 
     const FIELD_TLD = 'langs.tld';
     const FIELD_NAME = 'langs.name';
+    const FIELD_LOCALE = 'langs.locale';
     
     const TABLE = 'langs';
     
     
     protected function setModel(){
-        $this->columnNames['langs'] = ['tld', 'name'];
+        $this->columnNames['langs'] = ['tld', 'name', 'locale'];
             
         $this->tableName = 'langs';
         
@@ -53,6 +54,15 @@ class Langs extends \lib\model\Model
 
     public function getName() {
         return $this->getColumnValue(Langs::FIELD_NAME);
+    }  
+    
+
+    public function setLocale($value) {
+        $this->setColumnValue(Langs::FIELD_LOCALE, $value);
+    }
+
+    public function getLocale() {
+        return $this->getColumnValue(Langs::FIELD_LOCALE);
     }  
     
 
