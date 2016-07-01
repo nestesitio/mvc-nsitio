@@ -1,18 +1,24 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu1
+-- version 4.5.4.1deb2ubuntu2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2016 at 06:36 PM
--- Server version: 5.7.12-0ubuntu1
--- PHP Version: 7.0.5-3+donate.sury.org~xenial+1
+-- Generation Time: Jul 01, 2016 at 04:48 PM
+-- Server version: 5.7.12-0ubuntu1.1
+-- PHP Version: 7.0.8-3+deb.sury.org~xenial+1
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Database: `nsitio`
+-- Database: `stage`
 --
 
 -- --------------------------------------------------------
@@ -31,11 +37,6 @@ CREATE TABLE `company` (
   `oldid` int(3) DEFAULT NULL COMMENT 'ignore'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `company`
---
-
-TRUNCATE TABLE `company`;
 -- --------------------------------------------------------
 
 --
@@ -49,11 +50,6 @@ CREATE TABLE `company_htm` (
   `htm_type_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `company_htm`
---
-
-TRUNCATE TABLE `company_htm`;
 -- --------------------------------------------------------
 
 --
@@ -73,11 +69,6 @@ CREATE TABLE `company_info` (
   `notes` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `company_info`
---
-
-TRUNCATE TABLE `company_info`;
 -- --------------------------------------------------------
 
 --
@@ -93,11 +84,6 @@ CREATE TABLE `company_user` (
   `active` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `company_user`
---
-
-TRUNCATE TABLE `company_user`;
 -- --------------------------------------------------------
 
 --
@@ -112,11 +98,6 @@ CREATE TABLE `htm` (
   `ord` int(3) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `htm`
---
-
-TRUNCATE TABLE `htm`;
 --
 -- Dumping data for table `htm`
 --
@@ -156,11 +137,6 @@ CREATE TABLE `htm_app` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Truncate table before insert `htm_app`
---
-
-TRUNCATE TABLE `htm_app`;
---
 -- Dumping data for table `htm_app`
 --
 
@@ -188,11 +164,6 @@ CREATE TABLE `htm_log` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `htm_log`
---
-
-TRUNCATE TABLE `htm_log`;
 -- --------------------------------------------------------
 
 --
@@ -212,11 +183,6 @@ CREATE TABLE `htm_media` (
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `htm_media`
---
-
-TRUNCATE TABLE `htm_media`;
 -- --------------------------------------------------------
 
 --
@@ -226,7 +192,7 @@ TRUNCATE TABLE `htm_media`;
 CREATE TABLE `htm_page` (
   `id` int(9) NOT NULL,
   `htm_id` int(9) NOT NULL,
-  `langs_tld` varchar(2) NOT NULL DEFAULT 'en',
+  `langs_tld` varchar(2) NOT NULL DEFAULT 'pt',
   `title` varchar(100) NOT NULL DEFAULT 'Home' COMMENT 'to-string',
   `slug` varchar(100) NOT NULL DEFAULT 'index',
   `menu` varchar(100) DEFAULT NULL,
@@ -235,27 +201,23 @@ CREATE TABLE `htm_page` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Truncate table before insert `htm_page`
---
-
-TRUNCATE TABLE `htm_page`;
---
 -- Dumping data for table `htm_page`
 --
 
 INSERT INTO `htm_page` (`id`, `htm_id`, `langs_tld`, `title`, `slug`, `menu`, `heading`, `updated_at`) VALUES
-(1, 1, 'en', 'Home', 'index', 'Home', 'Site Title', '2015-01-16 22:51:52'),
-(2, 2, 'en', 'Dashboard', 'index', 'Backend', 'Dashboard', '2015-01-26 11:59:20'),
-(3, 3, 'en', 'Apps', 'apps', 'Apps', 'Apps', '2015-02-03 13:51:17'),
-(4, 4, 'en', 'Pages', 'pages', 'Pages', 'Pages', '2015-01-19 18:05:11'),
-(5, 5, 'en', 'Users', 'users', 'Users', 'Users', '2015-01-26 14:51:58'),
-(6, 6, 'en', 'Grupos Utilizadores', 'usergroups', 'Grupos', 'Gestão de grupos de utilizadores', '2015-02-25 10:37:18'),
-(7, 7, 'en', 'Profile', 'profile', 'Profile', 'User Profile', '2015-02-18 14:23:05'),
-(8, 8, 'en', 'Login', 'login', 'Login', 'Login', '2015-02-18 13:59:36'),
-(9, 9, 'en', 'Modules - Groups', 'appgroup', 'Appgroup', 'Modules - Groups', '2015-02-23 19:16:19'),
-(11, 11, 'en', 'Textos', 'txt', 'Textos', 'Textos', '2015-08-25 15:22:05'),
-(12, 12, 'en', 'Files', 'files', 'Files', 'Files', '2015-08-25 15:22:40'),
-(14, 14, 'en', 'Users', 'users', 'Users', 'Users management', '2015-09-02 15:59:56');
+(1, 1, 'pt', 'Home', 'index', 'Home', 'Liga dos Campeões das Vendas', '2015-01-16 22:51:52'),
+(2, 2, 'pt', 'Dashboard', 'index', 'Backend', 'Painel de Controle', '2015-01-26 11:59:20'),
+(3, 3, 'pt', 'Módulos', 'apps', 'Módulos', 'Módulos / Apps', '2015-02-03 13:51:17'),
+(4, 4, 'pt', 'Paginas', 'pages', 'Paginas', 'Paginas', '2015-01-19 18:05:11'),
+(5, 5, 'pt', 'Utilizadores', 'users', 'Utilizadores', 'Utilizadores', '2015-01-26 14:51:58'),
+(6, 6, 'pt', 'Grupos Utilizadores', 'usergroups', 'Grupos', 'Gestão de grupos de utilizadores', '2015-02-25 10:37:18'),
+(7, 7, 'pt', 'Perfil', 'profile', 'Perfil', 'Perfil do Utilizador', '2015-02-18 14:23:05'),
+(8, 8, 'pt', 'Login', 'login', 'Login', 'Login', '2015-02-18 13:59:36'),
+(9, 9, 'pt', 'Modulos - Grupos', 'appgroup', 'Appgroup', 'Modulos - Grupos', '2015-02-23 19:16:19'),
+(10, 10, 'pt', 'Correcção de Dados', 'correct', 'Correcções', 'Correcção de Dados', '2016-01-08 15:45:50'),
+(11, 11, 'pt', 'Textos', 'txt', 'Textos', 'Textos', '2015-08-25 15:22:05'),
+(12, 12, 'pt', 'Files', 'files', 'Files', 'Files', '2015-08-25 15:22:40'),
+(14, 14, 'pt', 'Utilizadores', 'users', 'Utilizadores', 'Gestão Utilizadores', '2015-09-02 15:59:56');
 
 -- --------------------------------------------------------
 
@@ -269,11 +231,6 @@ CREATE TABLE `htm_template` (
   `path` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `htm_template`
---
-
-TRUNCATE TABLE `htm_template`;
 -- --------------------------------------------------------
 
 --
@@ -287,11 +244,6 @@ CREATE TABLE `htm_txt` (
   `txt` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `htm_txt`
---
-
-TRUNCATE TABLE `htm_txt`;
 -- --------------------------------------------------------
 
 --
@@ -305,11 +257,6 @@ CREATE TABLE `htm_vars` (
   `value` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `htm_vars`
---
-
-TRUNCATE TABLE `htm_vars`;
 -- --------------------------------------------------------
 
 --
@@ -318,23 +265,19 @@ TRUNCATE TABLE `htm_vars`;
 
 CREATE TABLE `langs` (
   `tld` varchar(2) NOT NULL,
-  `name` varchar(100) DEFAULT NULL
+  `name` varchar(100) DEFAULT NULL,
+  `locale` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `langs`
---
-
-TRUNCATE TABLE `langs`;
 --
 -- Dumping data for table `langs`
 --
 
-INSERT INTO `langs` (`tld`, `name`) VALUES
-('en', NULL),
-('es', NULL),
-('fr', NULL),
-('en', NULL);
+INSERT INTO `langs` (`tld`, `name`, `locale`) VALUES
+('en', NULL, 'en_EN'),
+('es', NULL, 'es_ES'),
+('fr', NULL, 'fr_FR'),
+('pt', NULL, 'pt_PT');
 
 -- --------------------------------------------------------
 
@@ -350,11 +293,6 @@ CREATE TABLE `support` (
   `type` set('query','issue','suggestion') DEFAULT 'query'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `support`
---
-
-TRUNCATE TABLE `support`;
 -- --------------------------------------------------------
 
 --
@@ -370,11 +308,6 @@ CREATE TABLE `support_log` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `support_log`
---
-
-TRUNCATE TABLE `support_log`;
 -- --------------------------------------------------------
 
 --
@@ -395,16 +328,11 @@ CREATE TABLE `user_base` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Truncate table before insert `user_base`
---
-
-TRUNCATE TABLE `user_base`;
---
 -- Dumping data for table `user_base`
 --
 
 INSERT INTO `user_base` (`id`, `user_group_id`, `name`, `mail`, `username`, `password`, `status`, `confirmed`, `salt`, `userkey`) VALUES
-(1, 1, 'Luís Pinto', 'developer@mvc.com', 'developer', '', 'active', 0, '', ''),
+(1, 1, 'Luís Pinto', 'lpinto@buslisboa.agency', 'lpinto@buslisboa.agency', '1500lisboa', 'active', 0, '495a4368dadb1d94bc7c82075b0f7c5d', '248a9e71621bfd945e366b76038fe144dbf224e2'),
 (2, 22, 'Anonymous', '', 'anonymous', 'zwq4hfqxpffh948ca', 'active', 0, '', ''),
 (3, 16, 'Virtual User', '', 'virtual-user@mail.com', '1234', 'active', 0, '', '');
 
@@ -421,11 +349,6 @@ CREATE TABLE `user_functions` (
   `public` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `user_functions`
---
-
-TRUNCATE TABLE `user_functions`;
 --
 -- Dumping data for table `user_functions`
 --
@@ -445,11 +368,6 @@ CREATE TABLE `user_group` (
   `description` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `user_group`
---
-
-TRUNCATE TABLE `user_group`;
 --
 -- Dumping data for table `user_group`
 --
@@ -476,11 +394,6 @@ CREATE TABLE `user_group_has_htm_app` (
   `htm_app_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `user_group_has_htm_app`
---
-
-TRUNCATE TABLE `user_group_has_htm_app`;
 --
 -- Dumping data for table `user_group_has_htm_app`
 --
@@ -533,11 +446,6 @@ CREATE TABLE `user_info` (
   `notes` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `user_info`
---
-
-TRUNCATE TABLE `user_info`;
 -- --------------------------------------------------------
 
 --
@@ -552,10 +460,26 @@ CREATE TABLE `user_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Truncate table before insert `user_log`
+-- Dumping data for table `user_log`
 --
 
-TRUNCATE TABLE `user_log`;
+INSERT INTO `user_log` (`id`, `user_id`, `event`, `updated_at`) VALUES
+(1, 1, 'login', '2016-05-03 14:02:14'),
+(2, 1, 'login', '2016-05-03 15:23:33'),
+(3, 1, 'login', '2016-05-03 16:21:49'),
+(4, 1, 'login', '2016-05-04 09:59:51'),
+(5, 1, 'login', '2016-05-04 15:33:36'),
+(6, 1, 'login', '2016-05-12 16:44:34'),
+(7, 1, 'login', '2016-06-01 11:33:39'),
+(8, 1, 'login', '2016-06-01 14:24:13'),
+(9, 1, 'login', '2016-06-01 22:52:33'),
+(10, 1, 'login', '2016-06-02 09:36:35'),
+(11, 1, 'login', '2016-06-02 15:37:08'),
+(12, 1, 'login', '2016-06-02 21:36:59'),
+(13, 1, 'login', '2016-06-03 10:48:14'),
+(14, 1, 'login', '2016-06-20 11:30:28'),
+(15, 1, 'login', '2016-06-30 16:09:58');
+
 --
 -- Indexes for dumped tables
 --
@@ -800,7 +724,7 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Constraints for dumped tables
 --
@@ -890,3 +814,7 @@ ALTER TABLE `user_info`
 ALTER TABLE `user_log`
   ADD CONSTRAINT `fk_user_log_user` FOREIGN KEY (`user_id`) REFERENCES `user_base` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 SET FOREIGN_KEY_CHECKS=1;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
