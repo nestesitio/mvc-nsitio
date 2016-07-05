@@ -75,7 +75,7 @@ class ParseExtended
                 }
             }
         }
-        Monitor::setErrorMessages(null, 'Wrong path or unknow file for extended template ' . $file);
+        Monitor::setMonitor(Monitor::VIEW, '<b>ERROR</b>: Wrong path or unknow file for extended template ' . $file);
         return null;
     }
     

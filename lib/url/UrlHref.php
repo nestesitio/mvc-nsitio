@@ -103,7 +103,11 @@ class UrlHref
     {
         $url = self::renderUrl($param_url);
         $str = (isset($params[self::CLASS_LI])) ? '<li class="' . $params[self::CLASS_LI] .'">' : '<li>';
-        $str .= '<a href="' . $url . '">';
+        $str .= '<a href="' . $url . '"';
+        if(isset($params[self::CLASS_A])){
+            $str .= ' class="fa '.$params[self::CLASS_A].'"';
+        }
+        $str .= '>';
         if(isset($params[self::ICON_LEFT])){
             $str .= '<i class="fa '.$params[self::ICON_LEFT].'"></i> ';
         }
