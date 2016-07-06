@@ -69,15 +69,16 @@ class Tags {
      * @var string
      */
     const TAG_EMBED = "{@embed";
+
     /**
      * Pattern for embed tag
      * @var string
      */
-    const PATTERN_MENU = "/\{@menu ([^}]+)\}/";
+    const PATTERN_LOAD = "/\{@load ([^}]+)\}/";
     /**
      * @var string
      */
-    const TAG_MENU = "{@menu";
+    const TAG_LOAD = "{@load";
     /**
      * Pattern for data tag {$var}
      * @var string

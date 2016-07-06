@@ -5,12 +5,5 @@
         <!-- /.dropdown-support -->
     </li>
     
-    <!-- /.dropdown -->
-    <li class="dropdown">
-        {$user-menu}
-        <!-- /.dropdown-user -->
-    </li>
-
-    {$tool-debug}
-    <!-- /.dropdown -->
+    {@load \lib\url\Authool::render(user=>caret, debug=>tool)}
 </ul>

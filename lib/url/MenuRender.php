@@ -13,7 +13,7 @@ class MenuRender extends \lib\url\UrlHref
     /**
      * @var string
      */
-    private $string = '';
+    protected $string = '';
     /**
      * @var array
      */
@@ -71,6 +71,15 @@ class MenuRender extends \lib\url\UrlHref
             $this->string = str_replace('$ul', $list . '$ul', $this->string);
         }
         $this->string = str_replace('$ul', '', $this->string);
+        return $this->string;
+    }
+
+
+    /**
+     * 
+     * @return string
+     */
+    public function output(){
         return $this->string;
     }
 

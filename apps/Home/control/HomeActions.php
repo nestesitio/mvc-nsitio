@@ -46,17 +46,6 @@ class HomeActions extends \lib\control\Controller {
     }
 
 
-    /**
-     *
-     */
-    public function homenavAction() {
-        $link = (\lib\session\SessionUserTools::haveAccess('backend') == true)? 
-                MenuRender::renderMenuItem(['app'=>'backend'], 'Backend', [MenuRender::ICON_RIGHT => 'fa-tachometer']): '';
-        $this->set('nav_backend', $link);
-        $this->set('user-menu', UserMenu::frontendMenu());
-        $this->set('tool-debug', UserMenu::toolDebug());
-        return $this->dispatch();
-    }
 
 
     /**

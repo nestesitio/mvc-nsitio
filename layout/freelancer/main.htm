@@ -20,7 +20,7 @@
         <link href="/css/personal/freelancer.css" rel="stylesheet">
         <link href="/css/personal/brand.css" rel="stylesheet">
         <link href="/css/personal/frontend.css" rel="stylesheet">
-        
+
         <link id="block:css" />
 
         <!-- Custom Fonts -->
@@ -49,13 +49,18 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <!--<ul class="nav navbar-nav navbar-right">-->
-                    {@embed control:'Home/Home'; action:'homenav'; view:'apps/Home/view/nav.htm'}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        {@load \lib\url\Authool::render(backend=>Backend, user=>caret, debug=>tool)}
+                    </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
         </nav>
-        
+
         <!-- Header -->
         <header>
             {@if ($view=='home'):}
@@ -71,42 +76,50 @@
             {@block 'content'}
         </div>
         <div>{@debug-list}</div>
-        
-        
-        
+
+
+
         <!-- Footer -->
         <footer>
             {@include 'freelancer/footer'}
         </footer>
-        
+
         <!-- /.container -->
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="/js/base/bootstrap.min.js"></script>
-        
+
         <!-- Custom Core JavaScript -->
         <script src="/themes/freelancer/freelancer.js"></script>
         <!-- Plugin JavaScript -->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <script src="/themes/freelancer/js/classie.js"></script>
         <script src="/themes/freelancer/js/cbpAnimatedHeader.js"></script>
-        
-        
+
+
         <script src="/js/core/core.js"></script>
         <script src="/js/personal/personal.js"></script>
         <!-- Dynamic Javascrip files and scripts -->
         <script id="block:js" />
-        
+
         {@block 'scripts'}
-	{@block 'scripts-b'}
+        {@block 'scripts-b'}
 
         <script>
-            $( ".support-btn" ).click(function() {addSupport(this);});
-            $(document).on('click', '.btn-modal', function(){modalLoad(this);});
-            $( "#dev_display" ).click(function() {$(".dm").toggle();});
-            $(window).resize(function () {monitor();});
+            $(".support-btn").click(function () {
+                addSupport(this);
+            });
+            $(document).on('click', '.btn-modal', function () {
+                modalLoad(this);
+            });
+            $("#dev_display").click(function () {
+                $(".dm").toggle();
+            });
+            $(window).resize(function () {
+                monitor();
+            });
         </script>
     </body>
 </html>

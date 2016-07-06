@@ -19,8 +19,7 @@ class BackendMenuActions extends \lib\control\Controller {
      */
     public function topmenuAction(){
 
-        $this->set('user-menu', UserMenu::backendMenu());
-        $this->set('tool-debug', UserMenu::toolDebug());
+        
         return $this->dispatch();
     }
 

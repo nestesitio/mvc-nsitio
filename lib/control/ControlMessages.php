@@ -50,14 +50,12 @@ class ControlMessages extends \lib\control\Controller
                 $controller->set('user_messages', $controller->getUserMessages());
                 $messages = $controller->dispatch();
             }
-            if ($extend == true) {
-                $html = str_replace('{@debug-list}', $messages, $html);
-            } else {
+            
+            if ($extend != true) {
                 $html .= '<div class="submessages">' . $messages . '</div>';
             }
-        }else{
-            $html = str_replace('{@debug-list}', '', $html);
         }
+        $html = str_replace('{@debug-list}', $messages, $html);
         return $html;
     }
 
