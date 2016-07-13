@@ -58,10 +58,6 @@
         <label lang="en">Updated At</label>
         <label lang="pt">Actualização</label>
       </htmpageupdatedat>
-      <htmpagehtmlayoutid field="htm_page.htm_layout_id" range="multiple" show="false" filter="true">
-        <label lang="en">Layout</label>
-        <label lang="pt">Layout</label>
-      </htmpagehtmlayoutid>
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="core/bind_txt" auth="4">

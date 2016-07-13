@@ -74,6 +74,26 @@ class TxtForm extends \lib\form\FormMerged {
         
         return $form;
     }
+    
+    /**
+     * 
+     * @return \model\forms\HtmTxtForm
+     */
+    public function getTxtForm(){
+        return $this->forms[HtmTxt::TABLE];
+    }
+    
+    public function setTypeValue($value){
+        $form = $this->getTxtForm();
+        $input = $form->getTypeInput()->setValue($value);
+        $form->setTypeInput($input);
+        
+        
+        $this->forms[HtmTxt::TABLE] = $form;
+        
+        
+        return $this;
+    }
 
 
     /**
@@ -83,6 +103,9 @@ class TxtForm extends \lib\form\FormMerged {
         $title = $this->getValidatedValue(HtmPage::TABLE, HtmPage::FIELD_TITLE);
         $slug = \lib\tools\StringTools::slugify($title);
         $this->rePostValue(HtmPage::TABLE, HtmPage::FIELD_SLUG, $slug);
+        
+        $value = $this->getTxtForm()->getTxtInput()->getValue();
+        $this->rePostValue(HtmTxt::TABLE, HtmTxt::FIELD_TXT, $value);
     }
 
 }

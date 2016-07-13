@@ -8,6 +8,9 @@ use \apps\Core\model\PagesQuery;
 use \model\forms\HtmPageForm;
 use \apps\Core\model\PagesForm;
 use \model\querys\LangsQuery;
+use \apps\Core\tools\LangsRowTools;
+use \apps\Core\model\TxtForm;
+use \model\models\HtmPage;
 
 /**
  * Description of PagesActions
@@ -32,6 +35,8 @@ class PagesActions extends \lib\control\ControllerAdmin {
     }
 
     /**
+     * get all langs used in project
+     * 
      * @return array
      */
     private function queryLangs(){
@@ -43,45 +48,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
         return $arr;
     }
 
-    /**
-     * @param $langs
-     */
-    private function renderLangsTemplate($langs){
-        $str = '';
-        foreach($langs as $lang){
-            
-            $tool = new \lib\bkegenerator\DataTool();
-            $tool->setLangAction('core/lang_txt', 0);
-            $tool->setFlag($lang);
-            $tool->haveNoLang();
-            $str .= $tool->getUl();
-        }
-        
-        $this->set('langs', $str);
-    }
 
-    /**
-     * @param $results
-     * @param $langs
-     * @return mixed
-     */
-    private function renderLangTools($results, $langs){
-        foreach($results as $row){
-            $result = $row->getColumnValue('langs');
-            $str = '';
-            foreach($langs as $lang){
-                $tool = new \lib\bkegenerator\DataTool();
-                $tool->setLangAction('core/lang_txt', $row->getHtmId());
-                $tool->setFlag($lang);
-                if(strpos($result, $lang) === false){
-                    $tool->haveNoLang();
-                }
-                $str .= $tool->getUl();
-            }
-            $row->setColumnValue('langs', $str);
-        }
-        return $results;
-    }
 
     /**
      * @param $app_slug
@@ -92,9 +59,11 @@ class PagesActions extends \lib\control\ControllerAdmin {
         $langs = $this->queryLangs();
         
         $results = $this->buildDataGrid($xml_file, $this->query);
-        $this->renderLangsTemplate($langs);
+        
+        $this->set('langs', LangsRowTools::renderLangsTemplate($langs, $this->txt_action));
+        
         #here you can process the results
-        $this->renderLangTools($results, $langs);
+        $results = LangsRowTools::renderLangTools($results, $langs, $this->txt_action);
         $this->renderList($results);
         
         $form = HtmPageForm::initialize()->prepareFilters();
@@ -110,7 +79,67 @@ class PagesActions extends \lib\control\ControllerAdmin {
         
         $results = $this->buildDataList($xml_file, $this->query);
         #here you can process the results
+        $langs = $this->queryLangs();
+        $results = LangsRowTools::renderLangTools($results, $langs);
         $this->renderList($results);
+    }
+    
+    /**
+     * 
+     * @return TxtForm
+     */
+    protected function geTxtForm(){
+        return TxtForm::init(Vars::getId(), Vars::getRequests('lang'));
+    }
+    
+    
+    protected function txtAction($form, $xml_file){
+        
+        $this->setView('apps/Core/view/edit_text');
+        $query = PagesQuery::getLangs(Vars::getId())->find();
+        
+        
+        $this->renderLangActions($query, Vars::getId(), $this->txt_action, Vars::getRequests('lang'));
+        
+        $page = PagesQuery::getPageByLang(Vars::getId(), Vars::getRequests('lang'))->findOne();
+        
+        if($page != false){
+            $form->setQueryValues($page);
+        }
+        $action = str_replace($this->app . '/', '', $this->bindtxt_action);
+        
+        $this->renderForm($form, $xml_file, $action, ['lang'=>Vars::getRequests('lang')]);
+    }
+    
+    public function bindTxtAction($xml_file) {
+        $form = TxtForm::init(Vars::getId(), Vars::getRequests('lang'))->validate();
+        #more code for processing - example
+        #$model = $form->getModels('table')->setColumnValue('field','value');
+        #$form->setModel('table', $model);
+        $model = $this->buildProcess($form, $xml_file);
+        if($model !== false){
+            #$result is a model
+            if($model->getAction() == HtmPage::ACTION_INSERT){
+                #operations after inserted
+                
+            }elseif($model->getAction() == HtmPage::ACTION_UPDATE){
+                 #operations after updated
+                
+            }
+            Vars::setId($model->getHtmId());
+            $this->showTxtAction($xml_file);
+        }
+    }
+    
+    public function showTxtAction($xml_file){
+        $this->setView('apps/Core/view/show_text');
+        
+        $query = PagesQuery::getLangs(Vars::getId())->find();
+        
+        $this->renderLangActions($query, Vars::getId(), $this->txt_action, Vars::getRequests('lang'));
+        $this->set('datalang', Vars::getRequests('lang'));
+        $model = PagesQuery::getPageByLang(Vars::getId(), Vars::getRequests('lang'))->findOne();
+        $this->renderValues($model, $xml_file);
     }
 
 
