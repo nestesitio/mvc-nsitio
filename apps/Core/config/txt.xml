@@ -64,22 +64,10 @@
       </htmpagehtmlayoutid>
     </fields>
     <buttons comment="Commands for form and show">
-      <saveform class="glyphicon glyphicon-save" action="salesforce/edit_txt" auth="1">
+      <saveform class="glyphicon glyphicon-save" action="core/bind_txt" auth="4">
         <label lang="en">Save</label>
         <label lang="pt">Guardar</label>
       </saveform>
-      <editform class="glyphicon glyphicon-pencil" action="salesforce/edit_txt" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
-      </editform>
-      <resetform class="glyphicon glyphicon-refresh" auth="1">
-        <label lang="en">Reset</label>
-        <label lang="pt">Reset</label>
-      </resetform>
-      <delform class="glyphicon glyphicon-trash" action="del_txt" auth="1">
-        <label lang="en">Delete</label>
-        <label lang="pt">Eliminar</label>
-      </delform>
       <closeform class="glyphicon glyphicon-remove" auth="4">
         <label lang="en">Close</label>
         <label lang="pt">Fechar</label>

@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of Htm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-06-30 15:54
- * Updated @2016-06-30 15:54
+ * Created @2016-07-07 15:01
+ * Updated @2016-07-07 15:01
  */
 class HtmQuery extends \lib\model\QuerySelect {
     
@@ -142,43 +142,6 @@ class HtmQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmQuery
      */
-    public function selectHtmTemplateId() {
-        $this->setSelect(Htm::FIELD_HTM_TEMPLATE_ID);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmQuery
-     */
-    public function filterByHtmTemplateId($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(Htm::FIELD_HTM_TEMPLATE_ID, $values, $operator);
-        return $this;
-    } 
-    
-    /**
-     * 
-     * @return \model\querys\HtmQuery
-     */
-    public function orderByHtmTemplateId($order = Mysql::ASC) {
-        $this->orderBy(Htm::FIELD_HTM_TEMPLATE_ID, $order);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmQuery
-     */
-    public function groupByHtmTemplateId() {
-        $this->groupBy(Htm::FIELD_HTM_TEMPLATE_ID);
-        return $this;
-    }
-    
-    
-    /**
-     * 
-     * @return \model\querys\HtmQuery
-     */
     public function selectStat() {
         $this->setSelect(Htm::FIELD_STAT);
         return $this;
@@ -277,18 +240,6 @@ class HtmQuery extends \lib\model\QuerySelect {
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
-     * @return \model\querys\HtmTemplateQuery
-     */
-    function joinHtmTemplate($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\HtmTemplate::TABLE, $join, [Htm::FIELD_HTM_TEMPLATE_ID, \model\models\HtmTemplate::FIELD_ID]);
-        return \model\querys\HtmTemplateQuery::useModel($this);
-    }
-    
-    
-    /**
-     * Makes join
-     * @param \lib\mysql\Mysql $join
-     *
      * @return \model\querys\HtmLogQuery
      */
     function joinHtmLog($join = Mysql::INNER_JOIN) {
@@ -325,11 +276,11 @@ class HtmQuery extends \lib\model\QuerySelect {
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
-     * @return \model\querys\HtmVarsQuery
+     * @return \model\querys\HtmPageHasVarsQuery
      */
-    function joinHtmVars($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\HtmVars::TABLE, $join, [Htm::FIELD_ID, \model\models\HtmVars::FIELD_HTM_ID]);
-        return \model\querys\HtmVarsQuery::useModel($this);
+    function joinHtmPageHasVars($join = Mysql::INNER_JOIN) {
+        $this->join(\model\models\HtmPageHasVars::TABLE, $join, [Htm::FIELD_ID, \model\models\HtmPageHasVars::FIELD_HTM_ID]);
+        return \model\querys\HtmPageHasVarsQuery::useModel($this);
     }
     
     

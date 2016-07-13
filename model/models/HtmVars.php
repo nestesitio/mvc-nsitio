@@ -8,28 +8,27 @@ use \lib\mysql\Mysql;
  * Description of HtmVars
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-06-30 15:54
- * Updated @2016-06-30 15:54
+ * Created @2016-07-07 15:01
+ * Updated @2016-07-07 15:01
  */
 class HtmVars extends \lib\model\Model 
 {
 
     const FIELD_ID = 'htm_vars.id';
-    const FIELD_HTM_ID = 'htm_vars.htm_id';
     const FIELD_VAR = 'htm_vars.var';
     const FIELD_VALUE = 'htm_vars.value';
+    const FIELD_STATUS = 'htm_vars.status';
     
     const TABLE = 'htm_vars';
     
     
     protected function setModel(){
-        $this->columnNames['htm_vars'] = ['id', 'htm_id', 'var', 'value'];
+        $this->columnNames['htm_vars'] = ['id', 'var', 'value', 'status'];
             
         $this->tableName = 'htm_vars';
         
         $this->primaryKey = ['id'];
-        $this->fk[HtmVars::FIELD_HTM_ID] = ['table'=>'htm', 'field'=>'id'];
-	
+        
         #unique keys
         
         #auto increment field
@@ -47,15 +46,6 @@ class HtmVars extends \lib\model\Model
 
     public function getId() {
         return $this->getColumnValue(HtmVars::FIELD_ID);
-    }  
-    
-
-    public function setHtmId($value) {
-        $this->setColumnValue(HtmVars::FIELD_HTM_ID, $value);
-    }
-
-    public function getHtmId() {
-        return $this->getColumnValue(HtmVars::FIELD_HTM_ID);
     }  
     
 
@@ -78,13 +68,27 @@ class HtmVars extends \lib\model\Model
     
 
 
+    const STATUS_PUBLIC = 'public';
+    const STATUS_PRIVATE = 'private';
+    public static $statuss = ['public', 'private'];
+
+    public function setStatus($value) {
+        $this->setColumnValue(HtmVars::FIELD_STATUS, $value);
+    }
+
+    public function getStatus() {
+        return $this->getColumnValue(HtmVars::FIELD_STATUS);
+    }  
+    
+
+
     /**
     * Return model object
     * 
-    * @return new \model\models\Htm;
+    * @return new \model\models\HtmPageHasVars;
     */
-    public function getHtm() {
-        $obj = new \model\models\Htm();
+    public function getHtmPageHasVars() {
+        $obj = new \model\models\HtmPageHasVars();
         $obj->merge($this);
         return $obj;
     }  

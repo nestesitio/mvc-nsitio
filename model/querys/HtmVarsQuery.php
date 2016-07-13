@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmVars
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-06-30 15:54
- * Updated @2016-06-30 15:54
+ * Created @2016-07-07 15:01
+ * Updated @2016-07-07 15:01
  */
 class HtmVarsQuery extends \lib\model\QuerySelect {
     
@@ -105,43 +105,6 @@ class HtmVarsQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmVarsQuery
      */
-    public function selectHtmId() {
-        $this->setSelect(HtmVars::FIELD_HTM_ID);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmVarsQuery
-     */
-    public function filterByHtmId($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmVars::FIELD_HTM_ID, $values, $operator);
-        return $this;
-    } 
-    
-    /**
-     * 
-     * @return \model\querys\HtmVarsQuery
-     */
-    public function orderByHtmId($order = Mysql::ASC) {
-        $this->orderBy(HtmVars::FIELD_HTM_ID, $order);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmVarsQuery
-     */
-    public function groupByHtmId() {
-        $this->groupBy(HtmVars::FIELD_HTM_ID);
-        return $this;
-    }
-    
-    
-    /**
-     * 
-     * @return \model\querys\HtmVarsQuery
-     */
     public function selectVar() {
         $this->setSelect(HtmVars::FIELD_VAR);
         return $this;
@@ -213,14 +176,51 @@ class HtmVarsQuery extends \lib\model\QuerySelect {
     
     
     /**
+     * 
+     * @return \model\querys\HtmVarsQuery
+     */
+    public function selectStatus() {
+        $this->setSelect(HtmVars::FIELD_STATUS);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmVarsQuery
+     */
+    public function filterByStatus($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(HtmVars::FIELD_STATUS, $values, $operator);
+        return $this;
+    } 
+    
+    /**
+     * 
+     * @return \model\querys\HtmVarsQuery
+     */
+    public function orderByStatus($order = Mysql::ASC) {
+        $this->orderBy(HtmVars::FIELD_STATUS, $order);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmVarsQuery
+     */
+    public function groupByStatus() {
+        $this->groupBy(HtmVars::FIELD_STATUS);
+        return $this;
+    }
+    
+    
+    /**
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
-     * @return \model\querys\HtmQuery
+     * @return \model\querys\HtmPageHasVarsQuery
      */
-    function joinHtm($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\Htm::TABLE, $join, [HtmVars::FIELD_HTM_ID, \model\models\Htm::FIELD_ID]);
-        return \model\querys\HtmQuery::useModel($this);
+    function joinHtmPageHasVars($join = Mysql::INNER_JOIN) {
+        $this->join(\model\models\HtmPageHasVars::TABLE, $join, [HtmVars::FIELD_ID, \model\models\HtmPageHasVars::FIELD_HTM_TAGS_ID]);
+        return \model\querys\HtmPageHasVarsQuery::useModel($this);
     }
     
     

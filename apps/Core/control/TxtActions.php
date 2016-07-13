@@ -38,14 +38,19 @@ class TxtActions extends \lib\control\ControllerAdmin {
      */
     public function langTxtAction(){
         $this->setView('edit_text');
+
         
         $query = PagesQuery::getLangs(Vars::getId())->find();
         $action = Vars::getApp() . '/lang_txt';
         $this->renderLangActions($query, Vars::getId(), $action, Vars::getRequests('lang'));
         
         $form = TxtForm::init(Vars::getId(), Vars::getRequests('lang'));
-        $query = PagesQuery::getPageByLang(Vars::getId(), Vars::getRequests('lang'))->findOne();
-        $form->setQueryValues($query);
+        $page = PagesQuery::getPageByLang(Vars::getId(), Vars::getRequests('lang'))->findOne();
+        
+        if($page != false){
+            $form->setQueryValues($page);
+        }
+        
         $this->renderForm($form, 'txt', 'bind_txt', ['lang'=>Vars::getRequests('lang')]);
     }
 
@@ -69,7 +74,7 @@ class TxtActions extends \lib\control\ControllerAdmin {
         #more code for processing - example
         #$model = $form->getModels('table')->setColumnValue('field','value');
         #$form->setModel('table', $model);
-        $model = $this->buildProcess($form, 'txt', '/layout/core/edit_text.htm');
+        $model = $this->buildProcess($form, 'txt', 'edit_text');
         if($model !== false){
             #$result is a model
             if($model->getAction() == HtmPage::ACTION_INSERT){

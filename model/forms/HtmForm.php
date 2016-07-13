@@ -7,8 +7,8 @@ use \model\models\Htm;
  * Description of HtmForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-06-30 15:54
- * Updated @2016-06-30 15:54
+ * Created @2016-07-07 15:01
+ * Updated @2016-07-07 15:01
  */
 class HtmForm extends \lib\form\Form {
 
@@ -27,7 +27,6 @@ class HtmForm extends \lib\form\Form {
         
         $this->setIdInput();
 	$this->setHtmAppIdInput();
-	$this->setHtmTemplateIdInput();
 	$this->setStatInput();
 	$this->setOrdInput();
 	
@@ -38,7 +37,6 @@ class HtmForm extends \lib\form\Form {
         
         $this->validateIdInput();
 	$this->validateHtmAppIdInput();
-	$this->validateHtmTemplateIdInput();
 	$this->validateStatInput();
 	$this->validateOrdInput();
 	
@@ -133,53 +131,6 @@ class HtmForm extends \lib\form\Form {
     
     public function validateHtmAppIdInput() {
         $value = $this->validateModel(Htm::TABLE, Htm::FIELD_HTM_APP_ID, \model\querys\HtmAppQuery::start(), 'htm_app.id', true);
-        return $value;
-    }
-    
-
-    /**
-    * Create and return the input associeted with field
-    * 
-    * @return \lib\form\input\SelectInput;
-    */
-    public function setHtmTemplateIdInput($input = null) {
-        if($input == null){
-            $input = \lib\form\input\SelectInput::create(Htm::FIELD_HTM_TEMPLATE_ID);
-            $input->setRequired(true);
-            $input->setOptionIndex(\model\models\HtmTemplate::FIELD_ID);
-            $input->addEmpty();
-            $input->setModel(\model\querys\HtmTemplateQuery::start());
-        }else{
-            $input->setElementId(Htm::FIELD_HTM_TEMPLATE_ID); 
-        }
-        
-        $this->setFieldLabel(Htm::TABLE, Htm::FIELD_HTM_TEMPLATE_ID, 'Htm Template Id');
-        $this->setFieldInput(Htm::TABLE, Htm::FIELD_HTM_TEMPLATE_ID, $input);
-        
-        return $input;
-    }
-    
-    public function setHtmTemplateIdDefault($value) {
-        $this->setDefault(Htm::TABLE, Htm::FIELD_HTM_TEMPLATE_ID, $value);
-    }
-    
-    public function unsetHtmTemplateIdInput() {
-        $this->unsetFieldInput(Htm::TABLE, Htm::FIELD_HTM_TEMPLATE_ID);
-    }
-    
-    /**
-    * @return \lib\form\input\SelectInput;
-    */
-    public function getHtmTemplateIdInput(){
-        return $this->forminputs[Htm::TABLE][Htm::FIELD_HTM_TEMPLATE_ID];
-    }
-    
-    public function getHtmTemplateIdValue(){
-        return $this->getInputValue(Htm::TABLE, Htm::FIELD_HTM_TEMPLATE_ID);
-    }
-    
-    public function validateHtmTemplateIdInput() {
-        $value = $this->validateModel(Htm::TABLE, Htm::FIELD_HTM_TEMPLATE_ID, \model\querys\HtmTemplateQuery::start(), 'htm_template.id', true);
         return $value;
     }
     

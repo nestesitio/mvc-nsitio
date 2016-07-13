@@ -74,8 +74,11 @@
 <!-- /.row -->
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 {@include 'layout/core/scripts_backend.htm'}
+<!--
+{@block name='scripts-b'}
 <script>
-$( document ).ajaxComplete(function() {fileupload();});
+$(document).ajaxComplete(function() {fileupload();});
 $(document).on('click', '.start-upload', function(){fileupObj.startUpload();});
 $(document).on('click', '.thumb-action', function(){setThumbAction(this);});
 </script>
+{@endblock;}-->

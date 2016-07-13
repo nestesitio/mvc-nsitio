@@ -5,7 +5,7 @@ namespace model\models;
  * Description of ModelMap
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-06-30 15:54
+ * Created @2016-07-07 15:01
  * Updated @%$dateUpdated% *
  */
 class ModelMap {
@@ -19,7 +19,7 @@ class ModelMap {
     const HTM_LOG = 'htm_log';
     const HTM_MEDIA = 'htm_media';
     const HTM_PAGE = 'htm_page';
-    const HTM_TEMPLATE = 'htm_template';
+    const HTM_PAGE_HAS_VARS = 'htm_page_has_vars';
     const HTM_TXT = 'htm_txt';
     const HTM_VARS = 'htm_vars';
     const LANGS = 'langs';

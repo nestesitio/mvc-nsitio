@@ -6,6 +6,7 @@ use \model\querys\HtmPageQuery;
 use \lib\mysql\Mysql;
 use \model\querys\LangsQuery;
 use \model\models\HtmPage;
+use \model\querys\HtmQuery;
 
 /**
  * Description of PagesQuery
@@ -25,7 +26,6 @@ class PagesQuery extends \model\querys\HtmPageQuery {
         $query->joinHtm()
                 ->joinHtmApp()->filterBySlug($app_slug)->endUse()
                 ->selectId()->selectHtmAppId()->selectStat()->selectOrd()->endUse();
-	$query->joinHtmLayout()->selectName()->endUse();
 	$query->joinHtmTxt(Mysql::LEFT_JOIN)->selectId()->selectType()->selectTxt()->endUse();
 	$query->orderByTitle();
         
@@ -56,6 +56,21 @@ class PagesQuery extends \model\querys\HtmPageQuery {
                 ->joinHtmPage(Mysql::LEFT_JOIN)
                 ->addJoinCondition(HtmPage::TABLE, HtmPage::FIELD_HTM_ID, $htm_id)
                 ->selectLangsTld()->endUse();
+    }
+    
+    /**
+     * 
+     * @return Htm
+     */
+    public static function getPages(){
+        $query = HtmQuery::start()->groupById();
+        $query->joinHtmApp()->selectSlug()->selectName()->endUse();
+        $query->joinHtmPage()->selectId()->selectMenu()->selectSlug()->selectTitle()
+                ->joinLangs()->selectTld()->endUse()
+                ->endUse();
+        
+        
+        return $query;
     }
     
     

@@ -17,12 +17,14 @@ use \model\querys\LangsQuery;
  * Updated @%$dateUpdated% *
  */
 class PagesActions extends \lib\control\ControllerAdmin {
+    
+    protected $query;
 
     /**
      * @param $app_slug
      * @return \model\querys\HtmPageQuery
      */
-    private function query($app_slug){
+    protected function query($app_slug){
          $query = PagesQuery::get($app_slug)
                 ->setSelect('GROUP_CONCAT(DISTINCT htm_page.langs_tld ORDER BY htm_page.langs_tld DESC SEPARATOR ", ")', 'langs')
                  ->groupByHtmId();
@@ -47,12 +49,14 @@ class PagesActions extends \lib\control\ControllerAdmin {
     private function renderLangsTemplate($langs){
         $str = '';
         foreach($langs as $lang){
+            
             $tool = new \lib\bkegenerator\DataTool();
             $tool->setLangAction('core/lang_txt', 0);
             $tool->setFlag($lang);
             $tool->haveNoLang();
             $str .= $tool->getUl();
         }
+        
         $this->set('langs', $str);
     }
 
@@ -67,7 +71,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
             $str = '';
             foreach($langs as $lang){
                 $tool = new \lib\bkegenerator\DataTool();
-                $tool->setLangAction('core/lang_txt', $row->getId());
+                $tool->setLangAction('core/lang_txt', $row->getHtmId());
                 $tool->setFlag($lang);
                 if(strpos($result, $lang) === false){
                     $tool->haveNoLang();
@@ -83,11 +87,11 @@ class PagesActions extends \lib\control\ControllerAdmin {
      * @param $app_slug
      * @param $xml_file
      */
-    protected function mainAction($app_slug, $xml_file){
+    protected function mainAction($xml_file){
         $this->setView('/apps/Core/view/datagrid-cms.htm');
         $langs = $this->queryLangs();
-        $query = $this->query($app_slug);
-        $results = $this->buildDataGrid($xml_file, $query);
+        
+        $results = $this->buildDataGrid($xml_file, $this->query);
         $this->renderLangsTemplate($langs);
         #here you can process the results
         $this->renderLangTools($results, $langs);
@@ -102,9 +106,9 @@ class PagesActions extends \lib\control\ControllerAdmin {
      * @param $app_slug
      * @param $xml_file
      */
-    protected function listAction($app_slug, $xml_file){
-        $query = $this->query($app_slug);
-        $results = $this->buildDataList($xml_file, $query);
+    protected function listAction($xml_file){
+        
+        $results = $this->buildDataList($xml_file, $this->query);
         #here you can process the results
         $this->renderList($results);
     }

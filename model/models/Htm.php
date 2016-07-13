@@ -8,15 +8,14 @@ use \lib\mysql\Mysql;
  * Description of Htm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-06-30 15:54
- * Updated @2016-06-30 15:54
+ * Created @2016-07-07 15:01
+ * Updated @2016-07-07 15:01
  */
 class Htm extends \lib\model\Model 
 {
 
     const FIELD_ID = 'htm.id';
     const FIELD_HTM_APP_ID = 'htm.htm_app_id';
-    const FIELD_HTM_TEMPLATE_ID = 'htm.htm_template_id';
     const FIELD_STAT = 'htm.stat';
     const FIELD_ORD = 'htm.ord';
     
@@ -24,13 +23,12 @@ class Htm extends \lib\model\Model
     
     
     protected function setModel(){
-        $this->columnNames['htm'] = ['id', 'htm_app_id', 'htm_template_id', 'stat', 'ord'];
+        $this->columnNames['htm'] = ['id', 'htm_app_id', 'stat', 'ord'];
             
         $this->tableName = 'htm';
         
         $this->primaryKey = ['id'];
         $this->fk[Htm::FIELD_HTM_APP_ID] = ['table'=>'htm_app', 'field'=>'id'];
-	$this->fk[Htm::FIELD_HTM_TEMPLATE_ID] = ['table'=>'htm_template', 'field'=>'id'];
 	
         #unique keys
         
@@ -58,15 +56,6 @@ class Htm extends \lib\model\Model
 
     public function getHtmAppId() {
         return $this->getColumnValue(Htm::FIELD_HTM_APP_ID);
-    }  
-    
-
-    public function setHtmTemplateId($value) {
-        $this->setColumnValue(Htm::FIELD_HTM_TEMPLATE_ID, $value);
-    }
-
-    public function getHtmTemplateId() {
-        return $this->getColumnValue(Htm::FIELD_HTM_TEMPLATE_ID);
     }  
     
 
@@ -122,18 +111,6 @@ class Htm extends \lib\model\Model
     /**
     * Return model object
     * 
-    * @return new \model\models\HtmTemplate;
-    */
-    public function getHtmTemplate() {
-        $obj = new \model\models\HtmTemplate();
-        $obj->merge($this);
-        return $obj;
-    }  
-    
-
-    /**
-    * Return model object
-    * 
     * @return new \model\models\HtmLog;
     */
     public function getHtmLog() {
@@ -170,10 +147,10 @@ class Htm extends \lib\model\Model
     /**
     * Return model object
     * 
-    * @return new \model\models\HtmVars;
+    * @return new \model\models\HtmPageHasVars;
     */
-    public function getHtmVars() {
-        $obj = new \model\models\HtmVars();
+    public function getHtmPageHasVars() {
+        $obj = new \model\models\HtmPageHasVars();
         $obj->merge($this);
         return $obj;
     }  

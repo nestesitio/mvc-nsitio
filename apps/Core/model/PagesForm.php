@@ -23,7 +23,7 @@ class PagesForm extends \lib\form\FormMerged {
      * @param $app
      * @return PagesForm
      */
-    public static function init($app) {
+    public static function initialize($app) {
         $form = new PagesForm();
         $form->declaration($app);
         

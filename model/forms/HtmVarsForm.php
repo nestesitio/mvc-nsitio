@@ -7,8 +7,8 @@ use \model\models\HtmVars;
  * Description of HtmVarsForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-06-30 15:54
- * Updated @2016-06-30 15:54
+ * Created @2016-07-07 15:01
+ * Updated @2016-07-07 15:01
  */
 class HtmVarsForm extends \lib\form\Form {
 
@@ -26,9 +26,9 @@ class HtmVarsForm extends \lib\form\Form {
         $this->models[HtmVars::TABLE] = new HtmVars();
         
         $this->setIdInput();
-	$this->setHtmIdInput();
 	$this->setVarInput();
 	$this->setValueInput();
+	$this->setStatusInput();
 	
         return $this;
     }
@@ -36,9 +36,9 @@ class HtmVarsForm extends \lib\form\Form {
     public function validate(){
         
         $this->validateIdInput();
-	$this->validateHtmIdInput();
 	$this->validateVarInput();
 	$this->validateValueInput();
+	$this->validateStatusInput();
 	
         
         return $this;
@@ -91,58 +91,12 @@ class HtmVarsForm extends \lib\form\Form {
     /**
     * Create and return the input associeted with field
     * 
-    * @return \lib\form\input\SelectInput;
-    */
-    public function setHtmIdInput($input = null) {
-        if($input == null){
-            $input = \lib\form\input\SelectInput::create(HtmVars::FIELD_HTM_ID);
-            $input->setRequired(true);
-            $input->setOptionIndex(\model\models\Htm::FIELD_ID);
-            $input->addEmpty();
-            $input->setModel(\model\querys\HtmQuery::start());
-        }else{
-            $input->setElementId(HtmVars::FIELD_HTM_ID); 
-        }
-        
-        $this->setFieldLabel(HtmVars::TABLE, HtmVars::FIELD_HTM_ID, 'Htm Id');
-        $this->setFieldInput(HtmVars::TABLE, HtmVars::FIELD_HTM_ID, $input);
-        
-        return $input;
-    }
-    
-    public function setHtmIdDefault($value) {
-        $this->setDefault(HtmVars::TABLE, HtmVars::FIELD_HTM_ID, $value);
-    }
-    
-    public function unsetHtmIdInput() {
-        $this->unsetFieldInput(HtmVars::TABLE, HtmVars::FIELD_HTM_ID);
-    }
-    
-    /**
-    * @return \lib\form\input\SelectInput;
-    */
-    public function getHtmIdInput(){
-        return $this->forminputs[HtmVars::TABLE][HtmVars::FIELD_HTM_ID];
-    }
-    
-    public function getHtmIdValue(){
-        return $this->getInputValue(HtmVars::TABLE, HtmVars::FIELD_HTM_ID);
-    }
-    
-    public function validateHtmIdInput() {
-        $value = $this->validateModel(HtmVars::TABLE, HtmVars::FIELD_HTM_ID, \model\querys\HtmQuery::start(), 'htm.id', true);
-        return $value;
-    }
-    
-
-    /**
-    * Create and return the input associeted with field
-    * 
     * @return \lib\form\input\InputText;
     */
     public function setVarInput($input = null) {
         if($input == null){
-            $input = \lib\form\input\InputText::create(HtmVars::FIELD_VAR);$input->setMaxlength('50');
+            $input = \lib\form\input\InputText::create(HtmVars::FIELD_VAR);
+            $input->setDefault('tag');$input->setMaxlength('100');
         }else{
             $input->setElementId(HtmVars::FIELD_VAR); 
         }
@@ -173,7 +127,7 @@ class HtmVarsForm extends \lib\form\Form {
     }
     
     public function validateVarInput() {
-        $value = $this->validateString(HtmVars::TABLE, HtmVars::FIELD_VAR, false, 50);
+        $value = $this->validateString(HtmVars::TABLE, HtmVars::FIELD_VAR, false, 100);
         return $value;
     }
     
@@ -185,7 +139,7 @@ class HtmVarsForm extends \lib\form\Form {
     */
     public function setValueInput($input = null) {
         if($input == null){
-            $input = \lib\form\input\InputText::create(HtmVars::FIELD_VALUE);$input->setMaxlength('150');
+            $input = \lib\form\input\InputText::create(HtmVars::FIELD_VALUE);$input->setMaxlength('100');
         }else{
             $input->setElementId(HtmVars::FIELD_VALUE); 
         }
@@ -216,7 +170,51 @@ class HtmVarsForm extends \lib\form\Form {
     }
     
     public function validateValueInput() {
-        $value = $this->validateString(HtmVars::TABLE, HtmVars::FIELD_VALUE, false, 150);
+        $value = $this->validateString(HtmVars::TABLE, HtmVars::FIELD_VALUE, false, 100);
+        return $value;
+    }
+    
+
+    /**
+    * Create and return the input associeted with field
+    * 
+    * @return \lib\form\input\SelectInput;
+    */
+    public function setStatusInput($input = null) {
+        if($input == null){
+            $input = \lib\form\input\SelectInput::create(HtmVars::FIELD_STATUS);
+	$input->setValuesList(\model\models\HtmVars::$statuss);
+        }else{
+            $input->setElementId(HtmVars::FIELD_STATUS); 
+        }
+        
+        $this->setFieldLabel(HtmVars::TABLE, HtmVars::FIELD_STATUS, 'Status');
+        $this->setFieldInput(HtmVars::TABLE, HtmVars::FIELD_STATUS, $input);
+        
+        return $input;
+    }
+    
+    public function setStatusDefault($value) {
+        $this->setDefault(HtmVars::TABLE, HtmVars::FIELD_STATUS, $value);
+    }
+    
+    public function unsetStatusInput() {
+        $this->unsetFieldInput(HtmVars::TABLE, HtmVars::FIELD_STATUS);
+    }
+    
+    /**
+    * @return \lib\form\input\SelectInput;
+    */
+    public function getStatusInput(){
+        return $this->forminputs[HtmVars::TABLE][HtmVars::FIELD_STATUS];
+    }
+    
+    public function getStatusValue(){
+        return $this->getInputValue(HtmVars::TABLE, HtmVars::FIELD_STATUS);
+    }
+    
+    public function validateStatusInput() {
+        $value = $this->validateValues(HtmVars::TABLE, HtmVars::FIELD_STATUS, \model\models\HtmVars::$statuss, false);
         return $value;
     }
     
