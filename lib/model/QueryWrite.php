@@ -49,7 +49,7 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write
                 $params[$col] = $id;
             }else{
                 $updates[] = $col . ' = :' . $col;
-                $params[$col] = $values[$col];
+                $params[$col] = utf8_decode($values[$col]);
             }
             $data[] = ':'.$col;
         }
