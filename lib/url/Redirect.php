@@ -2,7 +2,7 @@
 
 namespace lib\url;
 
-use \apps\Core\model\PageQuery;
+use \lib\page\HtmPageQueries;
 use \lib\url\UrlHref;
 
 /**
@@ -26,7 +26,7 @@ class Redirect
      */
     public static function redirectByPageNumber($id)
     {
-        $page = PageQuery::getPageById($id);
+        $page = HtmPageQueries::getPageById($id);
         if ($page != false) {
             $url = UrlHref::renderUrl(['app' => $page->getHtm()->getHtmApp()->getSlug(), 'canonical' => $page->getSlug()]);
             header('Location:' . $url);

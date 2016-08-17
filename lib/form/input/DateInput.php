@@ -63,7 +63,14 @@ class DateInput extends \lib\form\Input
          */
         $this->dateformat = $format;
     }
-
+    
+    public function setFormatOnlyDate(){
+        $this->setDataFormat(self::FORMAT_DATE);
+    }
+    
+     public function setFormatOnlyTime(){
+        $this->setDataFormat(self::FORMAT_TIME);
+    }
 
     /**
      * @return string

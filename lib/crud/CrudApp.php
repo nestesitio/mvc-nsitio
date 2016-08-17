@@ -10,7 +10,7 @@ use PDO;
 use \model\querys\HtmAppQuery;
 use \model\models\Htm;
 use \model\models\HtmPage;
-use \apps\Core\model\PageQuery;
+use \lib\page\HtmPageQueries;
 
 /**
  * Description of CrudApp
@@ -75,7 +75,7 @@ class CrudApp
     /**
      * @return $this
      */
-    public function createFolders()
+    public function createFolders($subfolders = [])
     {
         $this->folder = ROOT . DS . 'apps' . DS . $this->app;
         if (!is_dir($this->folder)) {
@@ -110,7 +110,7 @@ class CrudApp
                 ->filterByName(ucfirst($this->app))->findOneOrCreate();
 
         $slug = strtolower($this->name);
-        $page = PageQuery::start()->filterBySlug($slug)->filterByHtmHtmAppId($app->getId())->findOne();
+        $page = HtmPageQueries::start()->filterBySlug($slug)->filterByHtmHtmAppId($app->getId())->findOne();
         if ($page == false) {
             $htm = new Htm();
             $htm->setHtmAppId($app->getId());
@@ -147,6 +147,9 @@ class CrudApp
             if ($file == null || $file == 'config') {
                 $this->createConfig();
             }
+        }
+        if ($area == 'cms') {
+            
         }
         if ($file == null || $file == 'models' || $file == 'model') {
             $this->createModel();
@@ -286,8 +289,8 @@ class CrudApp
      */
     private function replace($string)
     {
-        $tags = ['%$nameApp%', '%$modelName%', '%$fileName%'];
-        $vars = [$this->app, $this->model, strtolower($this->name)];
+        $tags = ['%$nameApp%', '%$slugApp%', '%$modelName%', '%$fileName%'];
+        $vars = [$this->app, strtolower($this->app), $this->model, strtolower($this->name)];
         return str_replace($tags, $vars, $string);
     }
 

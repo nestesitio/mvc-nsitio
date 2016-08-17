@@ -2,7 +2,7 @@
 
 namespace lib\routing;
 
-use \apps\Core\model\PageQuery;
+use \lib\page\HtmPageQueries;
 use \lib\register\Vars;
 use \lib\session\Session;
 use \lib\register\Monitor;
@@ -24,9 +24,9 @@ class DBRouting
      */
     public static function check($params)
     {
-        $page = PageQuery::getPageRoute($params['appslug'] ,$params['canonical']);
+        $page = HtmPageQueries::getPageRoute($params['appslug'] ,$params['canonical']);
         if($page == false){
-            $page = PageQuery::getPageExists($params['appslug'] ,$params['canonical']);
+            $page = HtmPageQueries::getPageExists($params['appslug'] ,$params['canonical']);
             if($page == false){
                 $page = false;
             }else{

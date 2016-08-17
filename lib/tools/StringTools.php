@@ -2,6 +2,8 @@
 
 namespace lib\tools;
 
+use \plugins\Transliterator\Transliterator\Transliterator;
+
 /**
  * Description of StringTools
  *
@@ -70,7 +72,9 @@ class StringTools
      */
     public static function slugify($string)
     {
-    $slug = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
+
+    $slug =  Transliterator::transliterate($string);
+    
     $slug = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $slug);
     $slug = strtolower(trim($slug, '-'));
         //$pattern, $replacement, $subject, $limit = -1, &$count = null

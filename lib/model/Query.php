@@ -300,7 +300,7 @@ class Query
         $this->query_statement->where($expression);
         return $this;
     }
-
+    
     /**
      * @return mixed
      */

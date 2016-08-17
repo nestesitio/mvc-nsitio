@@ -54,6 +54,7 @@ class FormMerged extends \lib\form\Form
                 }
             }
             $this->forms[$table]->validate();
+            
 
             $this->processerrors += $form->getErrors();
             $this->models[$table] = $form->getModels($table);
