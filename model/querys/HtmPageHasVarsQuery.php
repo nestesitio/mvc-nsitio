@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmPageHasVars
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-07-07 15:01
- * Updated @2016-07-07 15:01
+ * Created @2016-08-05 17:19
+ * Updated @2016-08-05 17:19
  */
 class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
     
@@ -68,8 +68,8 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmPageHasVarsQuery
      */
-    public function selectHtmTagsId() {
-        $this->setSelect(HtmPageHasVars::FIELD_HTM_TAGS_ID);
+    public function selectHtmVarsId() {
+        $this->setSelect(HtmPageHasVars::FIELD_HTM_VARS_ID);
         return $this;
     }
     
@@ -77,8 +77,8 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmPageHasVarsQuery
      */
-    public function filterByHtmTagsId($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmPageHasVars::FIELD_HTM_TAGS_ID, $values, $operator);
+    public function filterByHtmVarsId($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(HtmPageHasVars::FIELD_HTM_VARS_ID, $values, $operator);
         return $this;
     } 
     
@@ -86,8 +86,8 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmPageHasVarsQuery
      */
-    public function orderByHtmTagsId($order = Mysql::ASC) {
-        $this->orderBy(HtmPageHasVars::FIELD_HTM_TAGS_ID, $order);
+    public function orderByHtmVarsId($order = Mysql::ASC) {
+        $this->orderBy(HtmPageHasVars::FIELD_HTM_VARS_ID, $order);
         return $this;
     }
     
@@ -95,8 +95,8 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmPageHasVarsQuery
      */
-    public function groupByHtmTagsId() {
-        $this->groupBy(HtmPageHasVars::FIELD_HTM_TAGS_ID);
+    public function groupByHtmVarsId() {
+        $this->groupBy(HtmPageHasVars::FIELD_HTM_VARS_ID);
         return $this;
     }
     
@@ -157,7 +157,7 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
      * @return \model\querys\HtmVarsQuery
      */
     function joinHtmVars($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\HtmVars::TABLE, $join, [HtmPageHasVars::FIELD_HTM_TAGS_ID, \model\models\HtmVars::FIELD_ID]);
+        $this->join(\model\models\HtmVars::TABLE, $join, [HtmPageHasVars::FIELD_HTM_VARS_ID, \model\models\HtmVars::FIELD_ID]);
         return \model\querys\HtmVarsQuery::useModel($this);
     }
     

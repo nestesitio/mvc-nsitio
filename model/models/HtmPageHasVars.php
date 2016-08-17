@@ -8,26 +8,26 @@ use \lib\mysql\Mysql;
  * Description of HtmPageHasVars
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-07-07 15:01
- * Updated @2016-07-07 15:01
+ * Created @2016-08-05 17:19
+ * Updated @2016-08-05 17:19
  */
 class HtmPageHasVars extends \lib\model\Model 
 {
 
-    const FIELD_HTM_TAGS_ID = 'htm_page_has_vars.htm_tags_id';
+    const FIELD_HTM_VARS_ID = 'htm_page_has_vars.htm_vars_id';
     const FIELD_HTM_ID = 'htm_page_has_vars.htm_id';
     
     const TABLE = 'htm_page_has_vars';
     
     
     protected function setModel(){
-        $this->columnNames['htm_page_has_vars'] = ['htm_tags_id', 'htm_id'];
+        $this->columnNames['htm_page_has_vars'] = ['htm_vars_id', 'htm_id'];
             
         $this->tableName = 'htm_page_has_vars';
         
-        $this->primaryKey = ['htm_tags_id', 'htm_id'];
+        $this->primaryKey = ['htm_vars_id', 'htm_id'];
         $this->fk[HtmPageHasVars::FIELD_HTM_ID] = ['table'=>'htm', 'field'=>'id'];
-	$this->fk[HtmPageHasVars::FIELD_HTM_TAGS_ID] = ['table'=>'htm_vars', 'field'=>'id'];
+	$this->fk[HtmPageHasVars::FIELD_HTM_VARS_ID] = ['table'=>'htm_vars', 'field'=>'id'];
 	
         #unique keys
         
@@ -40,12 +40,12 @@ class HtmPageHasVars extends \lib\model\Model
     }
     
     
-    public function setHtmTagsId($value) {
-        $this->setColumnValue(HtmPageHasVars::FIELD_HTM_TAGS_ID, $value);
+    public function setHtmVarsId($value) {
+        $this->setColumnValue(HtmPageHasVars::FIELD_HTM_VARS_ID, $value);
     }
 
-    public function getHtmTagsId() {
-        return $this->getColumnValue(HtmPageHasVars::FIELD_HTM_TAGS_ID);
+    public function getHtmVarsId() {
+        return $this->getColumnValue(HtmPageHasVars::FIELD_HTM_VARS_ID);
     }  
     
 

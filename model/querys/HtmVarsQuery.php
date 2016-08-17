@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmVars
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-07-07 15:01
- * Updated @2016-07-07 15:01
+ * Created @2016-08-05 17:19
+ * Updated @2016-08-05 17:19
  */
 class HtmVarsQuery extends \lib\model\QuerySelect {
     
@@ -219,7 +219,7 @@ class HtmVarsQuery extends \lib\model\QuerySelect {
      * @return \model\querys\HtmPageHasVarsQuery
      */
     function joinHtmPageHasVars($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\HtmPageHasVars::TABLE, $join, [HtmVars::FIELD_ID, \model\models\HtmPageHasVars::FIELD_HTM_TAGS_ID]);
+        $this->join(\model\models\HtmPageHasVars::TABLE, $join, [HtmVars::FIELD_ID, \model\models\HtmPageHasVars::FIELD_HTM_VARS_ID]);
         return \model\querys\HtmPageHasVarsQuery::useModel($this);
     }
     
