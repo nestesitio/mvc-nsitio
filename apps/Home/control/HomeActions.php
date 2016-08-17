@@ -2,11 +2,9 @@
 
 namespace apps\Home\control;
 
-use \apps\User\model\UserQueries;
+use \apps\Core\model\PagesQuery;
 
-use \apps\User\tools\UserMenu;
-use \lib\url\MenuRender;
-use \lib\session\SessionUser;
+
 
 /**
  * Description of HomeActions
@@ -34,34 +32,34 @@ class HomeActions extends \lib\control\Controller {
      *
      */
     public function defaultAction() {
-        $this->setView('default');
-
-        $this->user = UserQueries::getUserData(SessionUser::getPlayer())->findOne();
-        
-        $this->sectionProfile();
-        $this->set('teste', 'one');
-        $this->set('a', 3);
-        $this->set('list', [0=>['a'=>'var A1', 'b'=>'var B1'],1=>['a'=>'var A2', 'b'=>'var B2']]);
+        $this->setView('layout/agency/home');
+        $page = PagesQuery::getPage('home');
+        $page = PagesQuery::getHtmByOrd('home', 'desc', 'pt')
+                ->joinHtmPageHasVars()->joinHtmVars()
+                ->filterByVar('local')->filterByValue('home-quem-somos')
+                ->endUse()->endUse()->findOne();
+        $this->set('about', $page->getHtmPage()->getHtmTxt()->getTxt());
+        $this->sectionServices();
  
     }
-
-
-
-
-    /**
-     *
-     */
-    private function sectionProfile(){
-        $value = (SessionUser::getPlayer() == false || SessionUser::haveUser() == false)? '' : $this->user->getName();
-        $this->set('user-name', $value);
-        if (SessionUser::haveUser() != false) {
-            $this->group = $this->user->getUserGroup()->getName();
-            $this->set('user-group', $this->group);
-            
-            
+    
+    private function sectionServices(){
+        $pages = PagesQuery::getHtmByOrd('home', 'desc', 'pt')
+                ->joinHtmPageHasVars()->joinHtmVars()
+                ->filterByVar('local')->filterByValue('home-services')
+                ->endUse()->endUse()->find();
+        
+        foreach($pages as $page){
+            $this->set('service-img' . $page->getOrd(), $page->getHtmPage()->getSlug());
+            $this->set('service-title' . $page->getOrd(), $page->getHtmPage()->getTitle());
         }
+        $this->renderCollection($pages, 'services');
+        
         
     }
+
+
+
     
     
     

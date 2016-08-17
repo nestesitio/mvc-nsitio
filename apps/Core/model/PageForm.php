@@ -7,7 +7,7 @@ use \model\forms\HtmForm;
 use \model\models\HtmPage;
 use \model\forms\HtmPageForm;
 
-use \apps\Core\model\PageQuery;
+use \lib\page\HtmPageQueries;
 use \lib\register\Vars;
 
 
@@ -68,7 +68,7 @@ class PageForm extends \lib\form\FormMerged {
         $id = Vars::getId();
         if(!empty($id)){
             $tld = $this->getInputValue(HtmPage::TABLE, HtmPage::FIELD_LANGS_TLD);
-            $htm = PageQuery::getPageFromAnotherLang($id, $tld);
+            $htm = HtmPageQueries::getPageFromAnotherLang($id, $tld);
             if($htm != false){
                 $id = $htm->getColumnValue(HtmPage::FIELD_HTM_ID);
             }

@@ -21,9 +21,10 @@ class PagesQuery extends \model\querys\HtmPageQuery {
     *
     * @return \model\querys\HtmPageQuery;
     */
-    public static function get($app_slug){
+    public static function getList($app_slug){
         $query = HtmPageQuery::start()->filterBySlug('index', Mysql::NOT_EQUAL);
         $query->joinHtm()
+                ->joinHtmPageHasVars(Mysql::LEFT_JOIN)->joinHtmVars(Mysql::LEFT_JOIN)->endUse()->endUse()
                 ->joinHtmApp()->filterBySlug($app_slug)->endUse()
                 ->selectId()->selectHtmAppId()->selectStat()->selectOrd()->endUse();
 	$query->joinHtmTxt(Mysql::LEFT_JOIN)->selectId()->selectType()->selectTxt()->endUse();
@@ -31,6 +32,7 @@ class PagesQuery extends \model\querys\HtmPageQuery {
         
         return $query;
     }
+    
     
     /**
     * Create and return the common query to this class
@@ -71,6 +73,31 @@ class PagesQuery extends \model\querys\HtmPageQuery {
         
         
         return $query;
+    }
+    
+    /**
+     * 
+     * @param string $app_slug
+     * @param type $var
+     * @param type $value
+     * @param string $txt
+     * 
+     * @return HtmQuery
+     */
+    public static function getHtmByOrd($app_slug, $txt, $lang){
+        $query = HtmQuery::start()->orderByOrd();
+        $query->joinHtmApp()->filterBySlug($app_slug)->endUse();
+        $query->joinHtmPage()->filterByLangsTld($lang)
+                ->selectSlug()->selectTitle()->selectHeading()
+                ->joinHtmTxt(Mysql::LEFT_JOIN)->filterByType($txt)->selectTxt()
+                ->endUse()->endUse();
+        
+        return $query;
+    }
+    
+    public static function getPage($app_slug){
+        $query = HtmQuery::start()->orderByOrd();
+        $query->joinHtmApp()->filterBySlug($app_slug)->endUse();
     }
     
     

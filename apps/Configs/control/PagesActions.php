@@ -4,7 +4,7 @@ namespace apps\Configs\control;
 
 use \lib\register\Vars as Vars;
 
-use \apps\Core\model\PageQuery;
+use \lib\page\HtmPageQueries;
 use \model\querys\HtmPageQuery;
 use \model\querys\HtmQuery;
 
@@ -20,7 +20,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      * @return mixed
      */
     private function query(){
-        return PageQuery::start()
+        return HtmPageQueries::start()
                 ->joinHtm()->selectStat()->selectOrd()->selectHtmAppId()
                 ->joinHtmApp()->selectSlug()->selectName()->orderByName()->endUse()->endUse()
                 ->orderByHtmId();
@@ -58,7 +58,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editPagesAction() {
-        $query = $this->query()->filterById(Vars::getId())->findOne();
+        $query = $this->query()->filterByHtmId(Vars::getId())->findOne();
         $form = $this->getForm()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'pages');
@@ -91,7 +91,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showPagesAction(){
-        $model = $this->query()->filterById(Vars::getId())->findOne();
+        $model = $this->query()->filterByHtmId(Vars::getId())->findOne();
         $this->renderValues($model, 'pages');
     }
 

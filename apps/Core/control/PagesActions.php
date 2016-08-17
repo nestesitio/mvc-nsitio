@@ -11,6 +11,7 @@ use \model\querys\LangsQuery;
 use \apps\Core\tools\LangsRowTools;
 use \apps\Core\model\TxtForm;
 use \model\models\HtmPage;
+use \model\models\HtmVars;
 
 /**
  * Description of PagesActions
@@ -28,10 +29,18 @@ class PagesActions extends \lib\control\ControllerAdmin {
      * @return \model\querys\HtmPageQuery
      */
     protected function query($app_slug){
-         $query = PagesQuery::get($app_slug)
+         $query = PagesQuery::getList($app_slug)
                 ->setSelect('GROUP_CONCAT(DISTINCT htm_page.langs_tld ORDER BY htm_page.langs_tld DESC SEPARATOR ", ")', 'langs')
                  ->groupByHtmId();
          return $query;
+    }
+    
+    protected function filterByLocal($value){
+        return $this->query->filterByColumn(HtmVars::FIELD_VAR, 'local')->filterByColumn(HtmVars::FIELD_VALUE, $value);
+    }
+    
+    protected function filterBySection($value){
+        return $this->query->filterByColumn(HtmVars::FIELD_VAR, 'section')->filterByColumn(HtmVars::FIELD_VALUE, $value);
     }
 
     /**
@@ -80,20 +89,28 @@ class PagesActions extends \lib\control\ControllerAdmin {
         $results = $this->buildDataList($xml_file, $this->query);
         #here you can process the results
         $langs = $this->queryLangs();
-        $results = LangsRowTools::renderLangTools($results, $langs);
+        $results = LangsRowTools::renderLangTools($results, $langs, $this->txt_action);
         $this->renderList($results);
     }
     
     /**
      * 
-     * @return TxtForm
+     * @return \apps\Core\model\TxtForm
      */
     protected function geTxtForm(){
         return TxtForm::init(Vars::getId(), Vars::getRequests('lang'));
     }
     
-    
-    protected function txtAction($form, $xml_file){
+    /**
+     * 
+     * @param \apps\Core\model\TxtForm $form
+     * @param string $xml_file
+     */
+    protected function txtAction($form, $xml_file = null){
+        
+        if($xml_file == null){
+            $xml_file = 'apps/Core/config/txt';
+        }
         
         $this->setView('apps/Core/view/edit_text');
         $query = PagesQuery::getLangs(Vars::getId())->find();
@@ -111,21 +128,21 @@ class PagesActions extends \lib\control\ControllerAdmin {
         $this->renderForm($form, $xml_file, $action, ['lang'=>Vars::getRequests('lang')]);
     }
     
-    public function bindTxtAction($xml_file) {
-        $form = TxtForm::init(Vars::getId(), Vars::getRequests('lang'))->validate();
-        #more code for processing - example
-        #$model = $form->getModels('table')->setColumnValue('field','value');
-        #$form->setModel('table', $model);
+    
+    /**
+     * 
+     * @param \apps\Core\model\TxtForm $form
+     * @param string $xml_file
+     */
+    public function bindTxtAction($form, $xml_file = null) {
+        if($xml_file == null){
+            $xml_file = 'apps/Core/config/txt';
+        }
+        
         $model = $this->buildProcess($form, $xml_file);
         if($model !== false){
             #$result is a model
-            if($model->getAction() == HtmPage::ACTION_INSERT){
-                #operations after inserted
-                
-            }elseif($model->getAction() == HtmPage::ACTION_UPDATE){
-                 #operations after updated
-                
-            }
+            
             Vars::setId($model->getHtmId());
             $this->showTxtAction($xml_file);
         }
@@ -147,7 +164,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function editPagesAction() {
-        $query = PagesQuery::get()->filterById(Vars::getId())->findOne();
+        $query = PagesQuery::getList()->filterById(Vars::getId())->findOne();
         $form = PagesForm::init('home')->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'pages');
@@ -190,7 +207,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function showPagesAction(){
-        $model = PagesQuery::get()->filterById(Vars::getId())->findOne();
+        $model = PagesQuery::getList()->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'pages');
     }
 
@@ -207,7 +224,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function exportPagesAction(){
-        $query = PagesQuery::get();
+        $query = PagesQuery::getList();
         $this->buildCsvExport($query);
     }
 

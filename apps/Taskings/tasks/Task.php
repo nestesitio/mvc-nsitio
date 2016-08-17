@@ -33,7 +33,7 @@ class Task {
                 $exec = new \lib\crud\Generate();
                 # php task.php -t model
                 $exec->buildModel();
-            } elseif ($task == 'admin' || $task == 'app') {
+            } elseif ($task == 'admin' || $task == 'app' || $task == 'cms') {
                 self::doGenerate();
             }
         } else {
@@ -45,11 +45,10 @@ class Task {
      *
      */
     private static function manual() {
-        echo "-t [model, admin, app] \n";
+        echo "-t [model, admin, app, cms] \n";
         echo "-t model \n";
-        echo "-t admin -t admin -a (app_name) -n (control_name) -m (model_name) -[f] filename (actions | config | model | models | form) \n";
+        echo "-t admin | cms -a (app_name) -n (control_name) -m (model_name) -[f] filename (actions | config | model | models | form) \n";
         echo "-t app -a (app_name) -t (table_name) \n";
-        echo "-t convert -a folder -n (sell-out | sell-in) \n";
     }
 
 
@@ -66,11 +65,14 @@ class Task {
             // buildApp($app, $name, $model, $area, $file = null)
             if(self::$options['t'] == 'admin'){
                 $exec->buildAdmin(self::$options['a'], self::$options['n'], self::$options['m'], self::$options['t'], $file);
+            }elseif(self::$options['t'] == 'cms'){
+                $exec->buildCms(self::$options['a'], self::$options['n'], self::$options['m'], self::$options['t'], $file);
             }else{
                 $exec->buildApp(self::$options['a'], self::$options['n'], self::$options['m']);
             }
             
         } else {
+            echo "-t admin | cms -a (app_name) -n (control_name) -m (model_name) -[f] filename (actions | config | model | models | form) \n";
             echo "no arguments to build app -n appname, -m table_name ... \n";
         }
     }

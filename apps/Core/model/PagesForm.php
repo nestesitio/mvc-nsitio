@@ -77,14 +77,30 @@ class PagesForm extends \lib\form\FormMerged {
 	$form->setSlugInput($input);
         return $form;
     }
+    
+    
+    public function getHtmForm(){
+        return $this->forms[Htm::TABLE];
+    }
+    
+    
+    public function getHtmPageForm(){
+        return $this->forms[HtmPage::TABLE];
+    }
+    
+     
 
     /**
      *
      */
     protected function customValidate() {
         $title = $this->getValidatedValue(HtmPage::TABLE, HtmPage::FIELD_TITLE);
-        $slug = \lib\tools\StringTools::slugify($title);
-        $this->rePostValue(HtmPage::TABLE, HtmPage::FIELD_SLUG, $slug);
+        $slug = $this->getValidatedValue(HtmPage::TABLE, HtmPage::FIELD_SLUG);
+        
+        if($slug == false || $slug == 'index'){
+            $slug = \lib\tools\StringTools::slugify($title);
+            $this->rePostValue(HtmPage::TABLE, HtmPage::FIELD_SLUG, $slug);
+        }
     }
 
 }

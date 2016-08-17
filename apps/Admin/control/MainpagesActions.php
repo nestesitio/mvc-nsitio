@@ -8,6 +8,7 @@ use \apps\Core\model\PagesQuery;
 use \model\models\HtmPage;
 use \model\forms\HtmPageForm;
 use \apps\Core\model\PagesForm;
+use \lib\session\SessionConfig;
 
 /**
  * Description of MainpagesActions
@@ -16,9 +17,14 @@ use \apps\Core\model\PagesForm;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class MainpagesActions extends \apps\Pages\control\PagesActions {
+class MainpagesActions extends \apps\Core\control\PagesActions {
     
     private $app_slug = 'home';
+    
+    protected $txt_action = 'admin/txt_mainpages';
+    protected $bindtxt_action = 'admin/bindtxt_mainpages';
+    
+    private $local = ['home'];
 
     /**
      *
@@ -26,8 +32,11 @@ class MainpagesActions extends \apps\Pages\control\PagesActions {
     public function mainpagesAction(){
         $this->set('heading', Vars::getHeading());
         
-        \lib\session\SessionConfig::setXml('apps/Admin/config/mainpages');
-        $this->mainAction($this->app_slug, 'mainpages');
+        SessionConfig::setXml('apps/Admin/config/mainpages');
+        $this->query = $this->query($this->app_slug);
+        $this->filterByLocal($this->local);
+        $this->mainAction('mainpages');
+        
     }
 
 
@@ -35,7 +44,10 @@ class MainpagesActions extends \apps\Pages\control\PagesActions {
      *
      */
     public function listMainpagesAction(){
-        $this->listAction($this->app_slug, 'mainpages');
+        SessionConfig::setXml('apps/Admin/config/mainpages');
+        $this->query = $this->query($this->app_slug);
+        $this->filterByLocal($this->local);
+        $this->listAction('mainpages');
     }
 
 
@@ -43,8 +55,8 @@ class MainpagesActions extends \apps\Pages\control\PagesActions {
      *
      */
     public function editMainpagesAction() {
-        $query = PagesQuery::get($this->app_slug)->filterById(Vars::getId())->findOne();
-        $form = PagesForm::init($this->app_slug)->setQueryValues($query);
+        $query = PagesQuery::getList($this->app_slug)->filterById(Vars::getId())->findOne();
+        $form = PagesForm::initialize($this->app_slug)->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'mainpages');
     }
@@ -54,7 +66,7 @@ class MainpagesActions extends \apps\Pages\control\PagesActions {
      *
      */
     public function newMainpagesAction() {
-        $form = PagesForm::init($this->app_slug);
+        $form = PagesForm::initialize($this->app_slug);
         #more code about $form and $query
         $this->renderForm($form, 'mainpages');
     }
@@ -63,9 +75,9 @@ class MainpagesActions extends \apps\Pages\control\PagesActions {
      *
      */
     public function statusMainPagesAction(){
-        $query = PagesQuery::get($this->app_slug)->filterById(Vars::getId())->findOne();
+        $query = PagesQuery::getList($this->app_slug)->filterById(Vars::getId())->findOne();
         $form = HtmPageForm::initialize();
-        $form = PagesForm::init($this->app_slug)->setQueryValues($query);
+        $form = PagesForm::initialize($this->app_slug)->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'page', null, 'bindstatus_mainpages');
     }
@@ -92,7 +104,7 @@ class MainpagesActions extends \apps\Pages\control\PagesActions {
      *
      */
     public function bindMainpagesAction() {
-        $form = PagesForm::init($this->app_slug)->validate();
+        $form = PagesForm::initialize($this->app_slug)->validate();
         #more code for processing - example
         #$model = $form->getModels('table')->setColumnValue('field','value');
         #$form->setModel('table', $model);
@@ -115,7 +127,7 @@ class MainpagesActions extends \apps\Pages\control\PagesActions {
      *
      */
     public function showMainpagesAction(){
-        $model = PagesQuery::get($this->app_slug)->filterById(Vars::getId())->findOne();
+        $model = PagesQuery::getList($this->app_slug)->filterById(Vars::getId())->findOne();
         $this->renderValues($model, 'mainpages');
     }
 

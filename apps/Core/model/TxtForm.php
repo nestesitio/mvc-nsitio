@@ -55,8 +55,11 @@ class TxtForm extends \lib\form\FormMerged {
         $form = \model\forms\HtmPageForm::initialize();
         $input = HiddenInput::create(HtmPage::FIELD_HTM_ID)->setValue($htm_id);
 	$form->setHtmIdInput($input);
+        /*
         $input = HiddenInput::create(HtmPage::FIELD_SLUG)->setDefault('index');
 	$form->setSlugInput($input);
+         * 
+         */
         $input = HiddenInput::create(HtmPage::FIELD_LANGS_TLD)->setValue($lang_tld);
         $form->setLangsTldInput($input);
         return $form;
@@ -101,9 +104,13 @@ class TxtForm extends \lib\form\FormMerged {
      */
     protected function customValidate() {
         $title = $this->getValidatedValue(HtmPage::TABLE, HtmPage::FIELD_TITLE);
-        $slug = \lib\tools\StringTools::slugify($title);
-        $this->rePostValue(HtmPage::TABLE, HtmPage::FIELD_SLUG, $slug);
+        $slug = $this->getValidatedValue(HtmPage::TABLE, HtmPage::FIELD_SLUG);
         
+        if($slug == false || $slug == 'index'){
+            $slug = \lib\tools\StringTools::slugify($title);
+            $this->rePostValue(HtmPage::TABLE, HtmPage::FIELD_SLUG, $slug);
+        }
+        //we cannot filter this input as others because it has html tags
         $value = $this->getTxtForm()->getTxtInput()->getValue();
         $this->rePostValue(HtmTxt::TABLE, HtmTxt::FIELD_TXT, $value);
     }

@@ -108,10 +108,6 @@
                 <label lang="en">Edit</label>
                 <label lang="pt">Editar</label>
             </editform>
-            <resetform class="glyphicon glyphicon-refresh" auth="1">
-                <label lang="en">Reset</label>
-                <label lang="pt">Reset</label>
-            </resetform>
             <delform class="glyphicon glyphicon-trash" action="configs/del_pages" auth="1">
                 <label lang="en">Delete</label>
                 <label lang="pt">Apagar</label>

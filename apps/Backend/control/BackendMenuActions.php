@@ -2,7 +2,6 @@
 
 namespace apps\Backend\control;
 
-use \apps\User\tools\UserMenu;
 use \lib\url\UrlHref;
 
 /**
@@ -32,7 +31,7 @@ class BackendMenuActions extends \lib\control\Controller {
         $this->set('nav_home', UrlHref::renderUrl('/'));
         $this->set('nav_backend', UrlHref::renderMenuUrl(['app'=>'backend'], 'Backend'));
         $apps = \apps\Configs\model\AppsQuery::getAppsAccess();
-        $pages = \apps\Core\model\PageQuery::getBackendPages()->find();
+        $pages = \lib\page\HtmPageQueries::getBackendPages()->find();
         foreach($pages as $page){
             $btn = UrlHref::renderMenuUrl(['app'=>$page->getHtm()->getHtmApp()->getSlug(),'canonical'=>$page->getSlug()], $page->getMenu());
             $links[$page->getHtm()->getHtmApp()->getSlug()][] = $btn;
