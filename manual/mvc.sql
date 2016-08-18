@@ -150,6 +150,34 @@ INSERT INTO `htm_app` (`id`, `slug`, `name`) VALUES
 (9, 'core', 'Core');
 
 -- --------------------------------------------------------
+--
+-- Table structure for table `htm_media`
+--
+
+DROP TABLE IF EXISTS `htm_media`;
+CREATE TABLE `htm_media` (
+  `id` int(9) NOT NULL,
+  `genre` set('img','file','embed','pdf') NOT NULL DEFAULT 'img',
+  `url` varchar(150) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `author` varchar(100) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `description` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+--
+-- Table structure for table `htm_has_media`
+--
+
+DROP TABLE IF EXISTS `htm_has_media`;
+CREATE TABLE `htm_has_media` (
+  `htm_id` int(9) NOT NULL,
+  `htm_media_id` int(9) NOT NULL,
+  `ord` int(3) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `htm_log`
@@ -222,18 +250,6 @@ INSERT INTO `htm_page` (`id`, `htm_id`, `langs_tld`, `title`, `slug`, `menu`, `h
 -- --------------------------------------------------------
 
 --
--- Table structure for table `htm_template`
---
-
-CREATE TABLE `htm_template` (
-  `id` int(6) NOT NULL,
-  `name` varchar(100) DEFAULT NULL COMMENT 'to-string',
-  `path` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `htm_txt`
 --
 
@@ -258,7 +274,17 @@ CREATE TABLE `htm_vars` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
+--
+-- Table structure for table `htm_page_has_vars`
+--
 
+DROP TABLE IF EXISTS `htm_page_has_vars`;
+CREATE TABLE `htm_page_has_vars` (
+  `htm_vars_id` int(6) NOT NULL,
+  `htm_id` int(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 --
 -- Table structure for table `langs`
 --
@@ -275,9 +301,9 @@ CREATE TABLE `langs` (
 
 INSERT INTO `langs` (`tld`, `name`, `locale`) VALUES
 ('en', NULL, 'en_EN'),
+('pt', NULL, 'pt_PT'),
 ('es', NULL, 'es_ES'),
-('fr', NULL, 'fr_FR'),
-('pt', NULL, 'pt_PT');
+('fr', NULL, 'fr_FR');
 
 -- --------------------------------------------------------
 
