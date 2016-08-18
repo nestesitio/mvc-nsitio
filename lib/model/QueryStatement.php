@@ -58,6 +58,20 @@ class QueryStatement extends \lib\model\Query
         $this->query_statement->setOrderBy($column, $order);
         return $this;
     }
+    
+    /**
+     * 
+     * @param string $column
+     * @param array $values
+     * @param string $order
+     * 
+     * @return \lib\model\QueryStatement
+     */
+    public function orderByFilter($column, $values = [], $order = Mysql::ASC)
+    {
+        $this->query_statement->setOrderByField($column, $values, $order);
+        return $this;
+    }
 
     /**
      * @return \QueryStatement
