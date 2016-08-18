@@ -90,6 +90,9 @@ class Language {
                 self::$langs = self::setToBegin(self::$langs, $l->getTld(), $l->getName());
                 self::$lang = $l->getTld();
                 self::$locale = $l->getLocale();
+                if(null == self::$langdefault){
+                    self::$langdefault = $l->getTld();
+                }
             }elseif($l->getTld() == Configurator::getLangDefault()){
                 if(self::$lang == null){
                     self::$lang = $l->getTld();
@@ -100,6 +103,7 @@ class Language {
                     self::$langs = self::setToBegin(array_slice(self::$langs, 1), $l->getTld(), $l->getName());
                     self::$langs = self::setToBegin(self::$langs, key($arr1), $arr1[key($arr1)]);
                 }
+                self::$langdefault = $l->getTld();
             }else{
                 self::$langs[$l->getTld()] = $l->getName();
             }
@@ -107,8 +111,18 @@ class Language {
 
     }
     
+    private static $langdefault = null;
+
+    public static function getLangDefault(){
+        return self::$langdefault;
+    }
+
     public static function getLangsArray(){
         return self::$langs;
+    }
+    
+    public static function getTldArray(){
+        return array_keys(self::$langs);
     }
     
     private static function setToBegin($arr, $key, $value){
