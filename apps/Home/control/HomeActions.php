@@ -4,6 +4,8 @@ namespace apps\Home\control;
 
 use \apps\Core\model\PagesQuery;
 
+use \lib\page\HtmQuerie;
+
 
 
 /**
@@ -14,18 +16,6 @@ use \apps\Core\model\PagesQuery;
  */
 class HomeActions extends \lib\control\Controller {
 
-    /**
-     * @var null
-     */
-    private $user = null;
-    /**
-     * @var null
-     */
-    private $group = null;
-    /**
-     * @var null
-     */
-    private $team = null;
 
 
     /**
@@ -33,27 +23,24 @@ class HomeActions extends \lib\control\Controller {
      */
     public function defaultAction() {
         $this->setView('layout/agency/home');
-        $page = PagesQuery::getPage('home');
-        $page = PagesQuery::getHtmByOrd('home', 'desc', 'pt')
-                ->joinHtmPageHasVars()->joinHtmVars()
-                ->filterByVar('local')->filterByValue('home-quem-somos')
-                ->endUse()->endUse()->findOne();
-        $this->set('about', $page->getHtmPage()->getHtmTxt()->getTxt());
+        
+        $page = HtmQuerie::startQuery()->filterByVar('local', 'home-quem-somos')->getPage();
+        $this->set('about', $page->getDesc());
         $this->sectionServices();
  
     }
     
     private function sectionServices(){
-        $pages = PagesQuery::getHtmByOrd('home', 'desc', 'pt')
-                ->joinHtmPageHasVars()->joinHtmVars()
-                ->filterByVar('local')->filterByValue('home-services')
-                ->endUse()->endUse()->find();
+        $pages = HtmQuerie::startQuery()->filterByVar('local', 'home-services')->getPages();
         
+
         foreach($pages as $page){
-            $this->set('service-img' . $page->getOrd(), $page->getHtmPage()->getSlug());
-            $this->set('service-title' . $page->getOrd(), $page->getHtmPage()->getTitle());
+            $this->set('service-img' . $page->getOrd(), $page->getSlug());
+            $this->set('service-title' . $page->getOrd(), $page->getTitle());
+
         }
         $this->renderCollection($pages, 'services');
+        
         
         
     }

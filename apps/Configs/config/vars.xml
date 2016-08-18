@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <htmvarsid field="htm_vars.id" show="false" filter="false">
+        <label lang="en">Id</label>
+        <label lang="es">Id</label>
+        <label lang="fr">Id</label>
+        <label lang="pt">Id</label>
+      </htmvarsid>
+      <htmvarsvar field="htm_vars.var" show="true" filter="true">
+        <label lang="en">Var</label>
+        <label lang="es">Var</label>
+        <label lang="fr">Var</label>
+        <label lang="pt">Var</label>
+      </htmvarsvar>
+      <htmvarsvalue field="htm_vars.value" show="true" filter="true">
+        <label lang="en">Value</label>
+        <label lang="es">Value</label>
+        <label lang="fr">Value</label>
+        <label lang="pt">Value</label>
+      </htmvarsvalue>
+      <htmvarsstatus field="htm_vars.status" show="true" filter="true">
+        <label lang="en">Status</label>
+        <label lang="es">Status</label>
+        <label lang="fr">Status</label>
+        <label lang="pt">Status</label>
+      </htmvarsstatus>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="configs/edit_vars" auth="1">
+        <label lang="en">Save</label>
+        <label lang="es">Save</label>
+        <label lang="fr">Save</label>
+        <label lang="pt">Save</label>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="configs/edit_vars" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="es">Edit</label>
+        <label lang="fr">Edit</label>
+        <label lang="pt">Edit</label>
+      </editform>
+      <resetform class="glyphicon glyphicon-refresh" auth="1">
+        <label lang="en">Reset</label>
+        <label lang="es">Reset</label>
+        <label lang="fr">Reset</label>
+        <label lang="pt">Reset</label>
+      </resetform>
+      <delform class="glyphicon glyphicon-trash" action="configs/del_vars" auth="1">
+        <label lang="en">Delete</label>
+        <label lang="es">Delete</label>
+        <label lang="fr">Delete</label>
+        <label lang="pt">Delete</label>
+      </delform>
+      <closeform class="glyphicon glyphicon-remove" auth="1">
+        <label lang="en">Close</label>
+        <label lang="es">Close</label>
+        <label lang="fr">Close</label>
+        <label lang="pt">Close</label>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="vars" paging="25" fieldid="htm_vars.id">
+    <columns comment="Columns for grid">
+      <htmvarsid field="htm_vars.id" class="id" sort="true">
+        <label lang="en">Id</label>
+        <label lang="pt">Id</label>
+      </htmvarsid>
+      <htmvarsvar field="htm_vars.var" class="name" sort="true">
+        <label lang="en">Var</label>
+        <label lang="pt">Var</label>
+      </htmvarsvar>
+      <htmvarsvalue field="htm_vars.value" class="title" sort="true">
+        <label lang="en">Value</label>
+        <label lang="pt">Valor</label>
+      </htmvarsvalue>
+      <htmvarsstatus field="htm_vars.status" class="code" sort="true">
+        <label lang="en">Status</label>
+        <label lang="pt">Status</label>
+      </htmvarsstatus>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="configs/edit_vars" class="fa-pencil" id="htm_vars.id" auth="1">
+        <label lang="en">Edit</label>
+        <label lang="pt">Edit</label>
+      </edit>
+      <show action="configs/show_vars" class="fa-eye" id="htm_vars.id" auth="1">
+        <label lang="en">Show</label>
+        <label lang="pt">Show</label>
+      </show>
+      <del action="configs/del_vars" class="fa-trash-o" id="htm_vars.id" auth="1">
+        <label lang="en">Del</label>
+        <label lang="pt">Del</label>
+      </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <new action="configs/new_vars" class="glyphicon glyphicon-plus" auth="1">
+        <label lang="en">New</label>
+        <label lang="pt">New</label>
+      </new>
+      <export url="/configs/export_vars" class="glyphicon glyphicon-export" auth="1">
+        <label lang="en">Export</label>
+        <label lang="pt">Export</label>
+      </export>
+    </buttons>
+  </grid>
+</root>
