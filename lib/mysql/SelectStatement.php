@@ -263,6 +263,17 @@ class SelectStatement extends \lib\mysql\MysqlStatement
         $this->order_expr[$column] = $column . ' ' . $order;
 
     }
+    
+    /**
+     * 
+     * @param string $column
+     * @param array $values
+     */
+    public function setOrderByField($column, $values = [], $order = Mysql::ASC)
+    {
+        $sequence = "'" . implode("','", $values) . "'";
+        $this->order_expr[$column] = 'FIELD(' . $column . ', ' . $sequence . ') ' . $order;
+    }
 
     /**
      * @param int $row_count
