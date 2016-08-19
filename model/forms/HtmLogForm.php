@@ -7,8 +7,8 @@ use \model\models\HtmLog;
  * Description of HtmLogForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-05 17:19
- * Updated @2016-08-05 17:19
+ * Created @2016-08-18 11:25
+ * Updated @2016-08-18 11:25
  */
 class HtmLogForm extends \lib\form\Form {
 

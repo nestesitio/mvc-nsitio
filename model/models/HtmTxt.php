@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmTxt
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-05 17:19
- * Updated @2016-08-05 17:19
+ * Created @2016-08-18 11:25
+ * Updated @2016-08-18 11:25
  */
 class HtmTxt extends \lib\model\Model 
 {
@@ -63,8 +63,9 @@ class HtmTxt extends \lib\model\Model
     const TYPE_DESC = 'desc';
     const TYPE_LEAD = 'lead';
     const TYPE_TXT = 'txt';
-    const TYPE_OTHER = 'other';
-    public static $types = ['desc', 'lead', 'txt', 'other'];
+    const TYPE_OBS = 'obs';
+    const TYPE_FOOTER = 'footer';
+    public static $types = ['desc', 'lead', 'txt', 'obs', 'footer'];
 
     public function setType($value) {
         $this->setColumnValue(HtmTxt::FIELD_TYPE, $value);
