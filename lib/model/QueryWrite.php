@@ -35,11 +35,16 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write
         $table = $this->model->getTableName();
         $values = $this->model->getModelValues();
         $keys = $this->model->getPrimaryKey();
-
+        
         $fields = $data = $params = $udpates = [];
         if(null != $this->model->getAutoIncrement()){
+            //one primary key with auto-increment
             $updates[] = $this->model->getAutoIncrement() . '= LAST_INSERT_ID('.$this->model->getAutoIncrement().')';
-
+        }elseif(count($keys) == 2){
+            //more than one primary key
+            foreach($keys as $key){
+                $updates[] = $key . ' = ' . $values[$key];
+            }
         }
         foreach(array_keys($values) as $col){
 
