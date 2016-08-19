@@ -49,7 +49,7 @@ class QueryWrite extends \lib\model\Query implements \lib\model\Write
         foreach(array_keys($values) as $col){
 
             $fields[] = $col;
-            if(in_array($col, $keys)){
+            if(in_array($col, $keys) && null != $this->model->getAutoIncrement()){
                 $id = ($values[$col] == 'NULL')? $this->getIncrementId($table, $col) : $values[$col];
                 $params[$col] = $id;
             }else{
