@@ -150,6 +150,10 @@ class Router
             return false;
         }
     }
+    
+    const STR_PAGE = 'page';
+    
+    const STR_DEFAULT = 'default';
 
 
 }

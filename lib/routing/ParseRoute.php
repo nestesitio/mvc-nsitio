@@ -79,12 +79,15 @@ class ParseRoute
                         $components[self::PART_APP] = $piece;
                         $components[self::PART_APPSLUG] = $piece;
                     } elseif ($x == 1 && preg_match('/^[a-z]{3}[a-z-]+[a-z](\.htm){1}$/', $piece)) {
-                        $components[self::PART_CANONICAL] = $piece;
-                        $components[self::PART_ACTION] = str_replace('.htm', '', $piece);
+                        $components[self::PART_CANONICAL] = $this->setCanonical($piece);
+                        $components[self::PART_ACTION] = Router::STR_PAGE;
                     } elseif ($x == 2 && preg_match('/^[a-z]{3}[a-z-]+[a-z](\.htm){1}$/', $piece)) {
-                        $components[self::PART_CANONICAL] = $piece;
+                        $components[self::PART_CANONICAL] = $this->setCanonical($piece);
+                        $components[self::PART_ACTION] = Router::STR_PAGE;
                     } elseif ($x == 2 && $components[self::PART_ID] == null && preg_match('/^[a-z]{3}[a-z_]+$/', $piece)) {
-                        $components[self::PART_CANONICAL] = $components['action'] = $piece;
+                        $components[self::PART_ACTION] = $piece;
+                        $components[self::PART_CANONICAL] = $this->setCanonical($piece);
+                        $components[self::PART_CONTROLLER] = StringTools::getStringAfterLastChar($components[self::PART_CANONICAL], '_');
                     } elseif ($x > 2 && $components[self::PART_ID] == null && preg_match('/^[0-9]{1,11}$/', $piece)) {
                         $components[self::PART_ID] = $piece;
                     } elseif ($x > 2 && $components[self::PART_ID]== null && preg_match('/^[a-z]+$/', $piece)) {
@@ -93,19 +96,23 @@ class ParseRoute
                 }
             }
         }
-        $components[self::PART_CANONICAL] = str_replace('.htm', '', $components[self::PART_CANONICAL]);
-        $components[self::PART_CANONICAL] = StringTools::getStringAfterLastChar($components[self::PART_CANONICAL], '_');
-        $components[self::PART_CANONICAL] = StringTools::getStringUntilLastChar($components[self::PART_CANONICAL], '/');
-        $components[self::PART_CONTROLLER] = StringTools::getStringAfterLastChar($components[self::PART_CANONICAL], '_');
         
         return $components;
 
     }
     
+    private function setCanonical($string){
+        $string = str_replace('.htm', '', $string);
+        $string = StringTools::getStringAfterLastChar($string, '_');
+        $string = StringTools::getStringUntilLastChar($string, '/');
+        
+        return $string;
+    }
+    
     private function getComponentsArray(){
         return [self::PART_APP => 'Home', self::PART_APPSLUG=> 'home',
             self::PART_CANONICAL => 'index', self::PART_CONTROLLER => 'home', 
-            self::PART_ACTION => 'default',
+            self::PART_ACTION => Router::STR_DEFAULT,
             self::PART_ID => null, self::PART_LANG => null, 
             'slugvar' => null];
     }
@@ -121,10 +128,14 @@ class ParseRoute
     
     const PART_CONTROLLER = 'controller';
     
+    /**
+     * Method in action controller as route part
+     */
     const PART_ACTION = 'action';
     
     const PART_ID = 'id';
     
     const PART_LANG = 'lang';
+    
 
 }
