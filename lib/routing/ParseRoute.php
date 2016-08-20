@@ -79,11 +79,12 @@ class ParseRoute
                         $components[self::PART_APP] = $piece;
                         $components[self::PART_APPSLUG] = $piece;
                     } elseif ($x == 1 && preg_match('/^[a-z]{3}[a-z-]+[a-z](\.htm){1}$/', $piece)) {
-                        $components[self::PART_APP] = str_replace('.htm', '', $piece);
-                    } elseif ($x == 2 && $components[self::PART_ID] == null && preg_match('/^[a-z]{3}[a-z_]+$/', $piece)) {
-                        $components[self::PART_CANONICAL] = $components['action'] = $piece;
+                        $components[self::PART_CANONICAL] = $piece;
+                        $components[self::PART_ACTION] = str_replace('.htm', '', $piece);
                     } elseif ($x == 2 && preg_match('/^[a-z]{3}[a-z-]+[a-z](\.htm){1}$/', $piece)) {
                         $components[self::PART_CANONICAL] = $piece;
+                    } elseif ($x == 2 && $components[self::PART_ID] == null && preg_match('/^[a-z]{3}[a-z_]+$/', $piece)) {
+                        $components[self::PART_CANONICAL] = $components['action'] = $piece;
                     } elseif ($x > 2 && $components[self::PART_ID] == null && preg_match('/^[0-9]{1,11}$/', $piece)) {
                         $components[self::PART_ID] = $piece;
                     } elseif ($x > 2 && $components[self::PART_ID]== null && preg_match('/^[a-z]+$/', $piece)) {
@@ -96,6 +97,7 @@ class ParseRoute
         $components[self::PART_CANONICAL] = StringTools::getStringAfterLastChar($components[self::PART_CANONICAL], '_');
         $components[self::PART_CANONICAL] = StringTools::getStringUntilLastChar($components[self::PART_CANONICAL], '/');
         $components[self::PART_CONTROLLER] = StringTools::getStringAfterLastChar($components[self::PART_CANONICAL], '_');
+        
         return $components;
 
     }
@@ -110,6 +112,9 @@ class ParseRoute
     
     const PART_APP = 'app';
     
+    /**
+     * app slug for url
+     */
     const PART_APPSLUG = 'appslug';
     
     const PART_CANONICAL = 'canonical';
