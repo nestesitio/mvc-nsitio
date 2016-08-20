@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmMedia
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-18 11:25
- * Updated @2016-08-18 11:25
+ * Created @2016-08-20 19:50
+ * Updated @2016-08-20 19:50
  */
 class HtmMediaQuery extends \lib\model\QuerySelect {
     
@@ -105,43 +105,6 @@ class HtmMediaQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmMediaQuery
      */
-    public function selectHtmId() {
-        $this->setSelect(HtmMedia::FIELD_HTM_ID);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmMediaQuery
-     */
-    public function filterByHtmId($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmMedia::FIELD_HTM_ID, $values, $operator);
-        return $this;
-    } 
-    
-    /**
-     * 
-     * @return \model\querys\HtmMediaQuery
-     */
-    public function orderByHtmId($order = Mysql::ASC) {
-        $this->orderBy(HtmMedia::FIELD_HTM_ID, $order);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmMediaQuery
-     */
-    public function groupByHtmId() {
-        $this->groupBy(HtmMedia::FIELD_HTM_ID);
-        return $this;
-    }
-    
-    
-    /**
-     * 
-     * @return \model\querys\HtmMediaQuery
-     */
     public function selectGenre() {
         $this->setSelect(HtmMedia::FIELD_GENRE);
         return $this;
@@ -208,43 +171,6 @@ class HtmMediaQuery extends \lib\model\QuerySelect {
      */
     public function groupByUrl() {
         $this->groupBy(HtmMedia::FIELD_URL);
-        return $this;
-    }
-    
-    
-    /**
-     * 
-     * @return \model\querys\HtmMediaQuery
-     */
-    public function selectPosition() {
-        $this->setSelect(HtmMedia::FIELD_POSITION);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmMediaQuery
-     */
-    public function filterByPosition($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmMedia::FIELD_POSITION, $values, $operator);
-        return $this;
-    } 
-    
-    /**
-     * 
-     * @return \model\querys\HtmMediaQuery
-     */
-    public function orderByPosition($order = Mysql::ASC) {
-        $this->orderBy(HtmMedia::FIELD_POSITION, $order);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmMediaQuery
-     */
-    public function groupByPosition() {
-        $this->groupBy(HtmMedia::FIELD_POSITION);
         return $this;
     }
     
@@ -438,11 +364,11 @@ class HtmMediaQuery extends \lib\model\QuerySelect {
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
-     * @return \model\querys\HtmQuery
+     * @return \model\querys\HtmHasMediaQuery
      */
-    function joinHtm($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\Htm::TABLE, $join, [HtmMedia::FIELD_HTM_ID, \model\models\Htm::FIELD_ID]);
-        return \model\querys\HtmQuery::useModel($this);
+    function joinHtmHasMedia($join = Mysql::INNER_JOIN) {
+        $this->join(\model\models\HtmHasMedia::TABLE, $join, [HtmMedia::FIELD_ID, \model\models\HtmHasMedia::FIELD_HTM_MEDIA_ID]);
+        return \model\querys\HtmHasMediaQuery::useModel($this);
     }
     
     

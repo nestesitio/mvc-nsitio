@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of Htm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-18 11:25
- * Updated @2016-08-18 11:25
+ * Created @2016-08-20 19:50
+ * Updated @2016-08-20 19:50
  */
 class Htm extends \lib\model\Model 
 {
@@ -18,12 +18,13 @@ class Htm extends \lib\model\Model
     const FIELD_HTM_APP_ID = 'htm.htm_app_id';
     const FIELD_STAT = 'htm.stat';
     const FIELD_ORD = 'htm.ord';
+    const FIELD_CONTROLLER = 'htm.controller';
     
     const TABLE = 'htm';
     
     
     protected function setModel(){
-        $this->columnNames['htm'] = ['id', 'htm_app_id', 'stat', 'ord'];
+        $this->columnNames['htm'] = ['id', 'htm_app_id', 'stat', 'ord', 'controller'];
             
         $this->tableName = 'htm';
         
@@ -37,7 +38,7 @@ class Htm extends \lib\model\Model
     }
     
     public function __toString (){
-        return "";
+        return $this->getController();
     }
     
     
@@ -83,6 +84,15 @@ class Htm extends \lib\model\Model
     }  
     
 
+    public function setController($value) {
+        $this->setColumnValue(Htm::FIELD_CONTROLLER, $value);
+    }
+
+    public function getController() {
+        return $this->getColumnValue(Htm::FIELD_CONTROLLER);
+    }  
+    
+
 
     /**
     * Return model object
@@ -111,10 +121,10 @@ class Htm extends \lib\model\Model
     /**
     * Return model object
     * 
-    * @return new \model\models\HtmLog;
+    * @return new \model\models\HtmHasMedia;
     */
-    public function getHtmLog() {
-        $obj = new \model\models\HtmLog();
+    public function getHtmHasMedia() {
+        $obj = new \model\models\HtmHasMedia();
         $obj->merge($this);
         return $obj;
     }  
@@ -123,10 +133,10 @@ class Htm extends \lib\model\Model
     /**
     * Return model object
     * 
-    * @return new \model\models\HtmMedia;
+    * @return new \model\models\HtmLog;
     */
-    public function getHtmMedia() {
-        $obj = new \model\models\HtmMedia();
+    public function getHtmLog() {
+        $obj = new \model\models\HtmLog();
         $obj->merge($this);
         return $obj;
     }  

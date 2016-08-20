@@ -7,8 +7,8 @@ use \model\models\HtmMedia;
  * Description of HtmMediaForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-18 11:25
- * Updated @2016-08-18 11:25
+ * Created @2016-08-20 19:50
+ * Updated @2016-08-20 19:50
  */
 class HtmMediaForm extends \lib\form\Form {
 
@@ -26,10 +26,8 @@ class HtmMediaForm extends \lib\form\Form {
         $this->models[HtmMedia::TABLE] = new HtmMedia();
         
         $this->setIdInput();
-	$this->setHtmIdInput();
 	$this->setGenreInput();
 	$this->setUrlInput();
-	$this->setPositionInput();
 	$this->setTitleInput();
 	$this->setAuthorInput();
 	$this->setDateInput();
@@ -41,10 +39,8 @@ class HtmMediaForm extends \lib\form\Form {
     public function validate(){
         
         $this->validateIdInput();
-	$this->validateHtmIdInput();
 	$this->validateGenreInput();
 	$this->validateUrlInput();
-	$this->validatePositionInput();
 	$this->validateTitleInput();
 	$this->validateAuthorInput();
 	$this->validateDateInput();
@@ -94,53 +90,6 @@ class HtmMediaForm extends \lib\form\Form {
     
     public function validateIdInput() {
         $value = $this->validatePrimaryKey(HtmMedia::TABLE, HtmMedia::FIELD_ID, \model\querys\HtmMediaQuery::start());
-        return $value;
-    }
-    
-
-    /**
-    * Create and return the input associeted with field
-    * 
-    * @return \lib\form\input\SelectInput;
-    */
-    public function setHtmIdInput($input = null) {
-        if($input == null){
-            $input = \lib\form\input\SelectInput::create(HtmMedia::FIELD_HTM_ID);
-            $input->setRequired(true);
-            $input->setOptionIndex(\model\models\Htm::FIELD_ID);
-            $input->addEmpty();
-            $input->setModel(\model\querys\HtmQuery::start());
-        }else{
-            $input->setElementId(HtmMedia::FIELD_HTM_ID); 
-        }
-        
-        $this->setFieldLabel(HtmMedia::TABLE, HtmMedia::FIELD_HTM_ID, 'Htm Id');
-        $this->setFieldInput(HtmMedia::TABLE, HtmMedia::FIELD_HTM_ID, $input);
-        
-        return $input;
-    }
-    
-    public function setHtmIdDefault($value) {
-        $this->setDefault(HtmMedia::TABLE, HtmMedia::FIELD_HTM_ID, $value);
-    }
-    
-    public function unsetHtmIdInput() {
-        $this->unsetFieldInput(HtmMedia::TABLE, HtmMedia::FIELD_HTM_ID);
-    }
-    
-    /**
-    * @return \lib\form\input\SelectInput;
-    */
-    public function getHtmIdInput(){
-        return $this->forminputs[HtmMedia::TABLE][HtmMedia::FIELD_HTM_ID];
-    }
-    
-    public function getHtmIdValue(){
-        return $this->getInputValue(HtmMedia::TABLE, HtmMedia::FIELD_HTM_ID);
-    }
-    
-    public function validateHtmIdInput() {
-        $value = $this->validateModel(HtmMedia::TABLE, HtmMedia::FIELD_HTM_ID, \model\querys\HtmQuery::start(), 'htm.id', true);
         return $value;
     }
     
@@ -230,51 +179,6 @@ class HtmMediaForm extends \lib\form\Form {
     
     public function validateUrlInput() {
         $value = $this->validateString(HtmMedia::TABLE, HtmMedia::FIELD_URL, false, 150);
-        return $value;
-    }
-    
-
-    /**
-    * Create and return the input associeted with field
-    * 
-    * @return \lib\form\input\InputText;
-    */
-    public function setPositionInput($input = null) {
-        if($input == null){
-            $input = \lib\form\input\InputText::create(HtmMedia::FIELD_POSITION);
-            $input->setRequired(true);
-            $input->setDefault('normal');$input->setMaxlength('20');
-        }else{
-            $input->setElementId(HtmMedia::FIELD_POSITION); 
-        }
-        
-        $this->setFieldLabel(HtmMedia::TABLE, HtmMedia::FIELD_POSITION, 'Position');
-        $this->setFieldInput(HtmMedia::TABLE, HtmMedia::FIELD_POSITION, $input);
-        
-        return $input;
-    }
-    
-    public function setPositionDefault($value) {
-        $this->setDefault(HtmMedia::TABLE, HtmMedia::FIELD_POSITION, $value);
-    }
-    
-    public function unsetPositionInput() {
-        $this->unsetFieldInput(HtmMedia::TABLE, HtmMedia::FIELD_POSITION);
-    }
-    
-    /**
-    * @return \lib\form\input\InputText;
-    */
-    public function getPositionInput(){
-        return $this->forminputs[HtmMedia::TABLE][HtmMedia::FIELD_POSITION];
-    }
-    
-    public function getPositionValue(){
-        return $this->getInputValue(HtmMedia::TABLE, HtmMedia::FIELD_POSITION);
-    }
-    
-    public function validatePositionInput() {
-        $value = $this->validateString(HtmMedia::TABLE, HtmMedia::FIELD_POSITION, true, 20);
         return $value;
     }
     

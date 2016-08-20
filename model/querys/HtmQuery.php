@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of Htm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-18 11:25
- * Updated @2016-08-18 11:25
+ * Created @2016-08-20 19:50
+ * Updated @2016-08-20 19:50
  */
 class HtmQuery extends \lib\model\QuerySelect {
     
@@ -213,6 +213,43 @@ class HtmQuery extends \lib\model\QuerySelect {
     
     
     /**
+     * 
+     * @return \model\querys\HtmQuery
+     */
+    public function selectController() {
+        $this->setSelect(Htm::FIELD_CONTROLLER);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmQuery
+     */
+    public function filterByController($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(Htm::FIELD_CONTROLLER, $values, $operator);
+        return $this;
+    } 
+    
+    /**
+     * 
+     * @return \model\querys\HtmQuery
+     */
+    public function orderByController($order = Mysql::ASC) {
+        $this->orderBy(Htm::FIELD_CONTROLLER, $order);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmQuery
+     */
+    public function groupByController() {
+        $this->groupBy(Htm::FIELD_CONTROLLER);
+        return $this;
+    }
+    
+    
+    /**
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
@@ -240,11 +277,11 @@ class HtmQuery extends \lib\model\QuerySelect {
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
-     * @return \model\querys\HtmLogQuery
+     * @return \model\querys\HtmHasMediaQuery
      */
-    function joinHtmLog($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\HtmLog::TABLE, $join, [Htm::FIELD_ID, \model\models\HtmLog::FIELD_HTM_ID]);
-        return \model\querys\HtmLogQuery::useModel($this);
+    function joinHtmHasMedia($join = Mysql::INNER_JOIN) {
+        $this->join(\model\models\HtmHasMedia::TABLE, $join, [Htm::FIELD_ID, \model\models\HtmHasMedia::FIELD_HTM_ID]);
+        return \model\querys\HtmHasMediaQuery::useModel($this);
     }
     
     
@@ -252,11 +289,11 @@ class HtmQuery extends \lib\model\QuerySelect {
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
-     * @return \model\querys\HtmMediaQuery
+     * @return \model\querys\HtmLogQuery
      */
-    function joinHtmMedia($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\HtmMedia::TABLE, $join, [Htm::FIELD_ID, \model\models\HtmMedia::FIELD_HTM_ID]);
-        return \model\querys\HtmMediaQuery::useModel($this);
+    function joinHtmLog($join = Mysql::INNER_JOIN) {
+        $this->join(\model\models\HtmLog::TABLE, $join, [Htm::FIELD_ID, \model\models\HtmLog::FIELD_HTM_ID]);
+        return \model\querys\HtmLogQuery::useModel($this);
     }
     
     

@@ -7,8 +7,8 @@ use \model\models\Htm;
  * Description of HtmForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-18 11:25
- * Updated @2016-08-18 11:25
+ * Created @2016-08-20 19:50
+ * Updated @2016-08-20 19:50
  */
 class HtmForm extends \lib\form\Form {
 
@@ -29,6 +29,7 @@ class HtmForm extends \lib\form\Form {
 	$this->setHtmAppIdInput();
 	$this->setStatInput();
 	$this->setOrdInput();
+	$this->setControllerInput();
 	
         return $this;
     }
@@ -39,6 +40,7 @@ class HtmForm extends \lib\form\Form {
 	$this->validateHtmAppIdInput();
 	$this->validateStatInput();
 	$this->validateOrdInput();
+	$this->validateControllerInput();
 	
         
         return $this;
@@ -222,6 +224,49 @@ class HtmForm extends \lib\form\Form {
     
     public function validateOrdInput() {
         $value = $this->validateInt(Htm::TABLE, Htm::FIELD_ORD, true, 3);
+        return $value;
+    }
+    
+
+    /**
+    * Create and return the input associeted with field
+    * 
+    * @return \lib\form\input\InputText;
+    */
+    public function setControllerInput($input = null) {
+        if($input == null){
+            $input = \lib\form\input\InputText::create(Htm::FIELD_CONTROLLER);$input->setMaxlength('100');
+        }else{
+            $input->setElementId(Htm::FIELD_CONTROLLER); 
+        }
+        
+        $this->setFieldLabel(Htm::TABLE, Htm::FIELD_CONTROLLER, 'Controller');
+        $this->setFieldInput(Htm::TABLE, Htm::FIELD_CONTROLLER, $input);
+        
+        return $input;
+    }
+    
+    public function setControllerDefault($value) {
+        $this->setDefault(Htm::TABLE, Htm::FIELD_CONTROLLER, $value);
+    }
+    
+    public function unsetControllerInput() {
+        $this->unsetFieldInput(Htm::TABLE, Htm::FIELD_CONTROLLER);
+    }
+    
+    /**
+    * @return \lib\form\input\InputText;
+    */
+    public function getControllerInput(){
+        return $this->forminputs[Htm::TABLE][Htm::FIELD_CONTROLLER];
+    }
+    
+    public function getControllerValue(){
+        return $this->getInputValue(Htm::TABLE, Htm::FIELD_CONTROLLER);
+    }
+    
+    public function validateControllerInput() {
+        $value = $this->validateString(Htm::TABLE, Htm::FIELD_CONTROLLER, false, 100);
         return $value;
     }
     

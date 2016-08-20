@@ -5,7 +5,7 @@ namespace model\models;
  * Description of ModelMap
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-18 11:25
+ * Created @2016-08-20 19:50
  * Updated @%$dateUpdated% *
  */
 class ModelMap {
@@ -16,6 +16,7 @@ class ModelMap {
     const COMPANY_USER = 'company_user';
     const HTM = 'htm';
     const HTM_APP = 'htm_app';
+    const HTM_HAS_MEDIA = 'htm_has_media';
     const HTM_LOG = 'htm_log';
     const HTM_MEDIA = 'htm_media';
     const HTM_PAGE = 'htm_page';

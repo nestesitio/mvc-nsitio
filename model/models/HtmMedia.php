@@ -8,17 +8,15 @@ use \lib\mysql\Mysql;
  * Description of HtmMedia
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-18 11:25
- * Updated @2016-08-18 11:25
+ * Created @2016-08-20 19:50
+ * Updated @2016-08-20 19:50
  */
 class HtmMedia extends \lib\model\Model 
 {
 
     const FIELD_ID = 'htm_media.id';
-    const FIELD_HTM_ID = 'htm_media.htm_id';
     const FIELD_GENRE = 'htm_media.genre';
     const FIELD_URL = 'htm_media.url';
-    const FIELD_POSITION = 'htm_media.position';
     const FIELD_TITLE = 'htm_media.title';
     const FIELD_AUTHOR = 'htm_media.author';
     const FIELD_DATE = 'htm_media.date';
@@ -29,13 +27,12 @@ class HtmMedia extends \lib\model\Model
     
     
     protected function setModel(){
-        $this->columnNames['htm_media'] = ['id', 'htm_id', 'genre', 'url', 'position', 'title', 'author', 'date', 'created', 'description'];
+        $this->columnNames['htm_media'] = ['id', 'genre', 'url', 'title', 'author', 'date', 'created', 'description'];
             
         $this->tableName = 'htm_media';
         
         $this->primaryKey = ['id'];
-        $this->fk[HtmMedia::FIELD_HTM_ID] = ['table'=>'htm', 'field'=>'id'];
-	
+        
         #unique keys
         
         #auto increment field
@@ -53,15 +50,6 @@ class HtmMedia extends \lib\model\Model
 
     public function getId() {
         return $this->getColumnValue(HtmMedia::FIELD_ID);
-    }  
-    
-
-    public function setHtmId($value) {
-        $this->setColumnValue(HtmMedia::FIELD_HTM_ID, $value);
-    }
-
-    public function getHtmId() {
-        return $this->getColumnValue(HtmMedia::FIELD_HTM_ID);
     }  
     
 
@@ -87,15 +75,6 @@ class HtmMedia extends \lib\model\Model
 
     public function getUrl() {
         return $this->getColumnValue(HtmMedia::FIELD_URL);
-    }  
-    
-
-    public function setPosition($value) {
-        $this->setColumnValue(HtmMedia::FIELD_POSITION, $value);
-    }
-
-    public function getPosition() {
-        return $this->getColumnValue(HtmMedia::FIELD_POSITION);
     }  
     
 
@@ -148,10 +127,10 @@ class HtmMedia extends \lib\model\Model
     /**
     * Return model object
     * 
-    * @return new \model\models\Htm;
+    * @return new \model\models\HtmHasMedia;
     */
-    public function getHtm() {
-        $obj = new \model\models\Htm();
+    public function getHtmHasMedia() {
+        $obj = new \model\models\HtmHasMedia();
         $obj->merge($this);
         return $obj;
     }  
