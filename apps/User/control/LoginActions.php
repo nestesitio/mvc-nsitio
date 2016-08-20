@@ -54,6 +54,7 @@ class LoginActions extends \lib\control\ControllerAdmin {
             Redirect::redirectByRoute(Session::getPageReturn());
             
         }else{
+            
             Session::setSession('error', 'O login não é válido');
             header('Location:' . UrlHref::renderUrl(['app'=>'user','canonical'=>'login']));
         }

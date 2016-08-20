@@ -23,8 +23,10 @@ class PagesQuery extends \model\querys\HtmPageQuery {
     */
     public static function getList($app_slug){
         $query = HtmPageQuery::start()->filterBySlug('index', Mysql::NOT_EQUAL);
-        $query->joinHtm()
-                ->joinHtmPageHasVars(Mysql::LEFT_JOIN)->joinHtmVars(Mysql::LEFT_JOIN)->endUse()->endUse()
+        $query->joinHtm()->groupById()
+                ->joinHtmPageHasVars(Mysql::LEFT_JOIN)
+                ->selectHtmId()->selectHtmVarsId()
+                ->joinHtmVars(Mysql::LEFT_JOIN)->endUse()->endUse()
                 ->joinHtmApp()->filterBySlug($app_slug)->endUse()
                 ->selectId()->selectHtmAppId()->selectStat()->selectOrd()->endUse();
 	$query->joinHtmTxt(Mysql::LEFT_JOIN)->selectId()->selectType()->selectTxt()->endUse();

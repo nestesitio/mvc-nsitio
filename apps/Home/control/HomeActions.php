@@ -2,8 +2,6 @@
 
 namespace apps\Home\control;
 
-use \apps\Core\model\PagesQuery;
-
 use \lib\page\HtmQuerie;
 
 

@@ -88,7 +88,51 @@ class PagesForm extends \lib\form\FormMerged {
         return $this->forms[HtmPage::TABLE];
     }
     
-     
+     /**
+     * 
+     * @param string $var
+     * @return \apps\Core\model\PagesForm
+     */
+    public function addHtmVars($var){
+        $this->queue = array_push($this->queue, HtmPageHasVars::TABLE);
+        $this->models[HtmPageHasVars::TABLE] = new HtmPageHasVars();
+        $this->forms[HtmPageHasVars::TABLE] = $this->declareHtmVarsForm($var);
+        
+        $this->merge();
+        return $this;
+    }
+    
+    /**
+     * @param string $var
+     * 
+     * @return HtmPageHasVarsForm
+     */
+    private function declareHtmVarsForm($var){
+        $form = HtmPageHasVarsForm::initialize();
+        /*
+        $input = HiddenInput::create(HtmPageHasVars::FIELD_HTM_ID)->setDefault(0);
+	$form->setHtmIdInput($input);
+         * 
+         */
+        
+        $input = $form->getHtmVarsIdInput();
+        $query = \model\querys\HtmVarsQuery::start()->filterByVar($var)->orderByValue();
+        
+        $input->setModel($query);
+        $input->setArrayLabel([\model\models\HtmVars::FIELD_VALUE => '']);
+        $form->setHtmVarsIdInput($input);
+        
+        return $form;
+    }
+    
+    
+    /**
+     * 
+     * @return HtmPageHasVarsForm
+     */
+    public function getHtmPageHasVarsForm(){
+        return $this->forms[HtmPageHasVars::TABLE];
+    }
 
     /**
      *
