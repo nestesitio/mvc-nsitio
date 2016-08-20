@@ -53,6 +53,7 @@ class Boot
         //set the action for the page
         $controller = false;
         $route = self::checkRoute(self::$params);
+       
 
         if($route != false){
             $controller = self::fireController(self::$params, $route);
@@ -130,6 +131,8 @@ class Boot
             $route = XmlRouting::getApp();
         }elseif(DBRouting::check($params) == true){
             $route = DBRouting::getApp();
+            self::$params[ParseRoute::PART_ACTION] = Vars::getAction();
+            
         }
 
         if($route == null){
@@ -145,6 +148,7 @@ class Boot
     {
         $class = Router::getClass($route);
         if($class == false){
+            Monitor::setMonitor(Monitor::CONTROL, 'There is no class name ' . $class);
             Monitor::setErrorMessages(null, ['message'=>'No class found for url ' . Vars::getRoute()]);
             return FALSE;
         }
@@ -153,6 +157,7 @@ class Boot
         $action = Router::getAction($class, $params);
 
         if($action == false){
+            Monitor::setMonitor(Monitor::ACTION, 'There is no action name ' . $action);
             Monitor::setErrorMessages(null, ['message'=>'No method found for url ' . Vars::getRoute()]);
             return false;
         }

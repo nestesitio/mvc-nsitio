@@ -28,7 +28,7 @@ class HtmQuerie {
     
     function __construct() {
         $this->query = HtmQuery::start(ONLY)->selectStat()->selectOrd()->groupById();
-        $this->query->joinHtmApp()->selectName()->endUse();
+        $this->query->joinHtmApp()->selectName()->selectSlug()->endUse();
         $this->query->joinHtmPage()->endUse();
     }
     

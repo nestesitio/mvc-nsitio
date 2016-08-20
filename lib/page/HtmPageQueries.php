@@ -22,7 +22,7 @@ class HtmPageQueries extends \model\querys\HtmPageQuery {
      */
     public static function getPageRoute($htmapp, $canonical){
         $result = self::start()
-                ->joinHtm()->joinHtmApp()->filterBySlug($htmapp)->joinUserGroupHasHtmApp()->joinUserGroup()
+                ->joinHtm()->selectController()->joinHtmApp()->filterBySlug($htmapp)->joinUserGroupHasHtmApp()->joinUserGroup()
                 ->joinUserBase()->filterById(SessionUser::getPlayer())->endUse()->endUse()->endUse()->endUse()->endUse()
                 ->filterBySlug($canonical)->findOne();
         //filterById(SELECT hp.id FROM htm_page hp WHERE hp.htm_id=ht_page.htm_id ORDER BY CASE WHEN hp.langs_tld = '".Regist::vars('lg')."' THEN 1 WHEN hp.langs_tld = '".Regist::vars('lgInt')."' THEN 2 WHEN hp.langs_tld = '".Regist::vars('lgDef')."' THEN 3 END LIMIT 1))

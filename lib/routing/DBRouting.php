@@ -46,6 +46,11 @@ class DBRouting
             Vars::setTitle($page->getTitle());
             Vars::setHeadin($page->getHeading());
             Vars::setPage($page->getHtmId());
+            
+            $c = $page->getHtm()->getController();
+            if($c != null){
+                Vars::setAction($c);
+            }
 
             self::$controller = Vars::getApp() . '/' . Vars::getAction();
 
