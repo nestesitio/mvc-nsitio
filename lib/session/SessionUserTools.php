@@ -26,6 +26,17 @@ class SessionUserTools
         $log->setUserId(SessionUser::getUserId());
         $log->save();
     }
+    
+    /**
+     * @param int $id
+     */
+    public static function logAttempt($id)
+    {
+        $log = new UserLog();
+        $log->setEvent(UserLog::EVENT_ATTEMPT);
+        $log->setUserId($id);
+        $log->save();
+    }
 
     /**
      * @param $app

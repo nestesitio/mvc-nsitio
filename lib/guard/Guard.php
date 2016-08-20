@@ -54,9 +54,12 @@ class Guard
     public static function validateLogin()
     {
         $user = UserBaseQuery::start()
-                ->filterByUsername(Vars::getPosts('email'))
-                ->findOne();
-        if($user != false){
+                //->filterByStatus([UserBase::STATUS_BLOCKED, UserBase::STATUS_VIRTUAL], Mysql::NOT_IN)
+                ->filterByUsername(Vars::getPosts('email'))->findOne();
+        if($user->getStatus() == UserBase::STATUS_BLOCKED){
+            \lib\session\SessionUserTools::logAttempt($user->getId());
+            
+        }elseif($user != false){
             self::hashIt(Vars::getPosts('password'), $user->getSalt());
             if(self::validate($user->getUserkey()) == true){
                 SessionUser::setUserVarsSession($user, Session::SESS_USER);
