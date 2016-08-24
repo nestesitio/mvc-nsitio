@@ -29,6 +29,8 @@ table.grid td{margin:1px;padding:2px;border:1px solid #ddd}
 div.headgrid{border-bottom:1px solid #333}
 li.row_tool{overflow: hidden;width:23px;text-align:center}
 
+td.coldir, li.coldir{text-align:right !important}
+
 td.id, li.id{min-width:10px;max-width:10px;color: #eee} li.id{text-align:right !important}
 td.tld, li.tld{min-width:25px;max-width:25px;}
 td.name, li.name{min-width:100px;max-width:100px}
@@ -53,6 +55,7 @@ td.c-40, li.c-40{min-width:40px;max-width:40px;}
 td.c-50, li.c-50{min-width:50px;max-width:50px;}
 li.ok{color: #008000}
 td.ccsd, li.ccsd{min-width:30px;max-width:30px; color: #666}
+li.euro:after{content: ' €'}
 
 div.row-editable{position: absolute;background-color:#FFF;border:#ccc 1px solid;border-radius:5px;}
 
