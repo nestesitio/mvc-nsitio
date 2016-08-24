@@ -18,6 +18,10 @@ class DataTool
      * @var string
      */
     private $ul_hidden;
+    
+    private $class = 'row-action';
+    
+    private $label = '';
 
     /**
      * DataTool constructor.
@@ -92,13 +96,20 @@ class DataTool
      * @param $file
      * @param $val
      */
-    public function setFileAction($file, $val)
+    /**
+     * 
+     * @param string $action
+     * @param string $file
+     * @param type $val
+     */
+    public function setFileAction($action, $val)
     {
-        $this->ul_hidden .= '<a data-action="core/' . $file . '_files"';
-        $this->ul .= '<a data-action="core/' . $file . '_files"';
+        $this->ul_hidden .= '<a data-action="' . $action . '"';
+        $this->ul .= '<a data-action="' . $action . '"';
         if (!empty($val)) {
             $this->ul .= ' data-id="{$item.' . $val . '}"';
         }
+        $this->class = 'modal-action';
     }
 
     /**
@@ -124,6 +135,7 @@ class DataTool
     public function setLabel($label)
     {
         $this->ul .= ' title="' . $label . '"';
+        $this->label = $label;
     }
 
     /**
@@ -141,13 +153,25 @@ class DataTool
      */
     public function complete($node, $class, $editable)
     {
+
         $this->ul .= ' data-command="' . $node . '"';
         $this->ul_hidden .= ' data-command="' . $node . '"';
-        $this->ul .= ' class="row-action fa ' . $class . '">';
+        $this->ul .= ' class="' . $this->class . ' fa ' . $class . '">';
         $this->ul_hidden .= ' class="row-action fa ' . $class . '">';
         if(!empty($editable)){
             $this->ul .= '<div class="row-editable" style="display:none"></div>';
+        }elseif($this->class == 'modal-action'){
+            $this->modal($node, $class);
         }
+        $this->close();
+    }
+    
+    public function modal(){
+        $this->ul = str_replace('>', ' data-toggle="modal">', $this->ul);
+        $this->ul_hidden = str_replace('>', ' data-toggle="modal">', $this->ul_hidden);
+        $this->ul = str_replace('>', ' data-title="' . $this->label . '">', $this->ul);
+        $this->ul_hidden = str_replace('>', ' data-title="' . $this->label . '">', $this->ul_hidden);
+        
         $this->close();
     }
 

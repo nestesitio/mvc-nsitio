@@ -192,7 +192,7 @@ class DataGrid extends \lib\bkegenerator\DataConfig
         if($node == 'langs'){
              return $tool->getLangTools();
         }elseif (!empty($file)) {
-              $tool->setFileAction($file, $this->x_conf->queryXPath($path, 'atr', 'id'));
+              $tool->setFileAction($action, $this->x_conf->queryXPath($path, 'atr', 'id'));
         }elseif (!empty($link)) {
             $tool->setLink($link, $this->x_conf->queryXPath($path, 'atr', 'id'), $this->x_conf->queryXPath($path, 'atr', 'target'));
         } elseif(!empty($editable)) {
@@ -202,6 +202,7 @@ class DataGrid extends \lib\bkegenerator\DataConfig
         }
         $tool->setLabel($this->findLabel($path));
         $tool->setVars($this->findVars($path));
+        
         $tool->complete($node, $this->x_conf->queryXPath($path, 'atr', 'class'), $editable);
 
         return $tool->render();
