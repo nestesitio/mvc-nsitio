@@ -1,0 +1,94 @@
+{@extends 'config:backend'}
+
+{@block name='css'}
+<link href="/plugins/bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
+<link href="/plugins/chosen/chosen.css" rel="stylesheet">
+<link href="/plugins/wysiwyg-textarea/summernote.css" rel="stylesheet">
+<link href="/plugins/flag-icon/flag-icon.css" rel="stylesheet">
+<link href="/plugins/fileinput/css/fileinput.css" rel="stylesheet">
+<link href="/css/core/backend.css" rel="stylesheet">
+{@endblock}
+
+{@block name='js'}
+<script src="/js/core/datagrid.js"></script>
+<script src="/js/core/dataform.js"></script>
+<script src="/js/core/bsInputs.js"></script>
+<script src="/js/core/scrollbuttons.js"></script>
+<script src="/plugins/bootstrap-datetimepicker/moment.min.js"></script>
+<script src="/plugins/bootstrap-datetimepicker/datetimepicker.js"></script>
+<script src="/plugins/bootstrap-datetimepicker/pt.js"></script>
+<script src="/plugins/bootstrap-datetimepicker/moment.parseFormat.js"></script>
+<script src="/plugins/chosen/chosen.jquery.min.js"></script>
+<script src="/plugins/jeditable/jquery.jeditable.js"></script>
+<script src="/plugins/wysiwyg-textarea/summernote.js"></script>
+<script src="/plugins/fileinput/js/fileinput.js"></script>
+{@endblock}
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {$heading} (<span id="list-results">{$numrows}</span> de <span id="list-total">{$total}</span> resultados)
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive mothergrid">
+                    <div class="grid-buttons">
+                        <!--{$buttons}-->
+                        <a class="btn-showfilter btn btn-xs btn-primary" data-action="list_{$canonical}">
+                            <span class="glyphicon glyphicon-filter"></span> Filtrar</a>
+                    </div>
+                    <!-- grid head -->
+                    <div class="headgrid">
+                        <div class="grid-filters" style="display:none">
+                            {@include 'layout/core/filters.htm'}
+                        </div>
+                        <table class="grid">
+                            <tr>
+                                <!--<td class="{$class}">{$column_label}</td>-->
+                            </tr>                
+                        </table>
+                    </div>
+                    <!-- grid template for add datarow -->
+                    <ul class="grid template-row">
+                        <!--<li>{$template_column}</li>-->
+                        <!--<li class="row_tool">{$template_tools}</li>-->
+                    </ul>
+                    <div class="datagrid">
+                        {@include 'layout/core/datalist.htm'}
+                    </div>
+                    
+                    
+                </div>
+                <!-- /.table-responsive -->
+                
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!--Modal for media-->
+<div class="modal fade">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Title</h2>
+        </div>
+        <div class="modal-body" id="media-modal"></div>
+    </div>
+  </div>
+</div>
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+{@include 'layout/core/scripts_backend.htm'}
+
+{@block name='scripts'}
+<script>
+
+$(document).on('click', '.img-choose', function(){imageChoose(this);});
+/*$(document).on('click', '.thumb-action', function(){setThumbAction(this);});*/
+</script>
+{@endblock}
