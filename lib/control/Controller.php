@@ -28,6 +28,7 @@ use \lib\register\Monitor;
 use \lib\register\Vars;
 use \lib\loader\Configurator;
 use \lib\view\View;
+use \lib\url\UrlHref;
 
 class Controller
 {
@@ -71,6 +72,11 @@ class Controller
      * @var bool
      */
     public $layout = true;
+    /**
+     *
+     * @var array
+     */
+    protected $json = [];
 
 
     /**
@@ -309,6 +315,34 @@ class Controller
         $this->layout = false;
         $this->setEmptyView();
         $this->start_time = \lib\tools\ObTool::obStart();
+    }
+    
+    /**
+     * @param $tag
+     * @param $action
+     * @param array $querystring
+     */
+    protected function renderUrl($tag, $action, $querystring = [])
+    {
+        $id = ($this->id == true)? Vars::getId() : $this->id;
+        $url = UrlHref::renderUrl(['app'=> $this->app, 'action'=>$action, 'id'=>$id, 'get'=>$querystring]);
+        $this->set($tag, $url);
+        Monitor::setMonitor(Monitor::FORM, 'Form Action:' . $url);
+        $this->set('app', $this->app);
+    }
+    
+    /**
+     * @param $value
+     * @param $file
+     * @return string
+     */
+    protected function convertValueByXml($value, $file)
+    {
+        if(!empty($file)){
+            $value = \lib\xml\XmlSimple::getConvertedValue('model/enum/' . $file, $value);
+
+        }
+        return $value;
     }
 
 }

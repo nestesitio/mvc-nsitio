@@ -320,20 +320,6 @@ class ControllerAdmin extends \lib\control\Controller
     }
 
     /**
-     * @param $value
-     * @param $file
-     * @return string
-     */
-    private function convertValueByXml($value, $file)
-    {
-        if(!empty($file)){
-            $value = \lib\xml\XmlSimple::getConvertedValue('model/enum/' . $file, $value);
-
-        }
-        return $value;
-    }
-
-    /**
      * @param Model $model
      * @param String $view The path to template file
      */
@@ -346,19 +332,6 @@ class ControllerAdmin extends \lib\control\Controller
         $this->set('dataid', (string) $result);
     }
 
-    /**
-     * @param $tag
-     * @param $action
-     * @param array $querystring
-     */
-    protected function renderUrl($tag, $action, $querystring = [])
-    {
-        $id = ($this->id == true)? Vars::getId() : $this->id;
-        $url = UrlHref::renderUrl(['app'=> $this->app, 'action'=>$action, 'id'=>$id, 'get'=>$querystring]);
-        $this->set($tag, $url);
-        Monitor::setMonitor(Monitor::FORM, 'Form Action:' . $url);
-        $this->set('app', $this->app);
-    }
 
     /**
      * Get the array results from query.
