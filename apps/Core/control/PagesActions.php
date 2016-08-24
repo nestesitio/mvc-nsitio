@@ -7,11 +7,9 @@ use \lib\register\Vars;
 use \apps\Core\model\PagesQuery;
 use \model\forms\HtmPageForm;
 use \apps\Core\model\PagesForm;
-use \model\querys\LangsQuery;
 use \apps\Core\tools\LangsRowTools;
 use \apps\Core\model\TxtForm;
 use \model\models\HtmPage;
-use \model\models\HtmVars;
 
 /**
  * Description of PagesActions
@@ -20,42 +18,9 @@ use \model\models\HtmVars;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class PagesActions extends \lib\control\ControllerAdmin {
+class PagesActions extends \apps\Core\control\CmsActions {
     
-    protected $query;
-
-    /**
-     * @param $app_slug
-     * @return \model\querys\HtmPageQuery
-     */
-    protected function query($app_slug){
-         $query = PagesQuery::getList($app_slug)
-                ->setSelect('GROUP_CONCAT(DISTINCT htm_page.langs_tld ORDER BY htm_page.langs_tld DESC SEPARATOR ", ")', 'langs')
-                 ->groupByHtmId();
-         return $query;
-    }
     
-    protected function filterByLocal($value){
-        return $this->query->filterByColumn(HtmVars::FIELD_VAR, 'local')->filterByColumn(HtmVars::FIELD_VALUE, $value);
-    }
-    
-    protected function filterBySection($value){
-        return $this->query->filterByColumn(HtmVars::FIELD_VAR, 'section')->filterByColumn(HtmVars::FIELD_VALUE, $value);
-    }
-
-    /**
-     * get all langs used in project
-     * 
-     * @return array
-     */
-    private function queryLangs(){
-        $results = LangsQuery::start()->find();
-        $arr = [];
-        foreach($results as $lang){
-            $arr[] = $lang->getTld();
-        }
-        return $arr;
-    }
 
 
 
@@ -64,7 +29,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      * @param $xml_file
      */
     protected function mainAction($xml_file){
-        $this->setView('/apps/Core/view/datagrid-cms.htm');
+        $this->setView('layout/core/datagrid-cms.htm');
         $langs = $this->queryLangs();
         
         $results = $this->buildDataGrid($xml_file, $this->query);
@@ -227,5 +192,46 @@ class PagesActions extends \lib\control\ControllerAdmin {
         $query = PagesQuery::getList();
         $this->buildCsvExport($query);
     }
+    
+    protected function listMediaActions($query, $action){
+        $this->setView('layout/core/list_img');
+        
+        \lib\session\SessionConfig::addId(Vars::getId());
+        $results = $this->getQueryToList($query);
+        #here you can process the results
+        $this->renderList($results);
+        $this->set('data-action', $action);
+        
+    }
+    
+    public function bindImageAction($params = []) {
+        $this->layout = false;
+        $this->setEmptyView();
+        $action = null;
+        if(null != $_FILES){
+            $action = new \lib\media\UploadFile();
+            $action->setFolder($params['folder'] . '/');
+            $action->execute($params['width'], $params['height']);
+            $result = $action->getResult();
+            if($result != false){
+                $this->json['upload'] = 'ok';
+                $this->json['result'] = $action->getResult();
+            }else{
+                $this->json['upload'] = 'error';
+            }
+        }else{
+            $this->json['upload'] = 'false';
+        }
+        
+        return $action;
+    }
+    
+    
+    public function choiceMediaAction(){
+        $this->layout = false;
+        $this->setEmptyView();
+        
+    }
+    
 
 }

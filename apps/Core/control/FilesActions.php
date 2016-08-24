@@ -11,6 +11,8 @@ use \model\querys\HtmMediaQuery;
 use \model\forms\HtmMediaForm;
 use \lib\session\SessionConfig;
 use \lib\bkegenerator\DataConfig;
+use \lib\form\widgets\FileInput;
+use \apps\Core\tools\DataMime;
 
 /**
  * Description of FilesActions
@@ -25,14 +27,54 @@ class FilesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function imgFilesAction(){
-        $this->setView('list_img');
+        $this->setView('layout/core/list_img');
 
-        $query = FilesQuery::get()->orderByCreated(\lib\mysql\Mysql::DESC)
+        $query = FilesQuery::get();
+        /*
                 ->filterByGenre(HtmMedia::GENRE_IMG)
                 ->filterByPosition(Vars::getRequests('position'))
                 ->filterByHtmId(Vars::getId());
+         * 
+         */
         \lib\session\SessionConfig::addId(Vars::getId());
         $this->listFiles($query);
+        
+        $this->set('data-position', Vars::getRequests('position'));
+        $this->set('data-mime', DataMime::getDataMime('img'));
+        
+        $input = FileInput::create()->addClass('input-group-lg');
+        $input->setuploadUrl('/core/bindimage_files');
+        $this->set('file-input', $input->render());
+        
+    }
+    
+    /**
+     *
+     */
+    public function bindimageFilesAction() {
+        $this->layout = false;
+        $this->setEmptyView();
+        if(null != $_FILES){
+            $arr['result'] = 'ok';
+            $this->uploadFilesAction();
+        }else{
+            $arr['result'] = 'no files';
+        }
+        
+        echo json_encode($arr);
+    }
+    
+    /**
+     *
+     */
+    public function bindFilesAction() {
+        $this->setEmptyView();
+        $arr = ['flag'=>'1'];
+        if(null != $_FILES){
+            $arr['result'] = 'ok';
+        }
+        
+        echo json_encode($arr);
     }
 
     /**
@@ -48,39 +90,6 @@ class FilesActions extends \lib\control\ControllerAdmin {
         $results = $this->getQueryToList($query);
         #here you can process the results
         $this->renderList($results);
-        
-    }
-
-    /**
-     * @param $genre
-     * @return string
-     */
-    private function getDataMime($genre){
-        if($genre == 'img'){
-            return 'image/*';
-        }
-        if($genre == 'txt'){
-            return 'text/plain';
-        }
-        if($genre == 'pdf'){
-            return '.pdf';
-        }
-        if($genre == 'csv'){
-            return '.csv';
-        }
-        if($genre == 'xml'){
-            return '.xml';
-        }
-    }
-
-    /**
-     *
-     */
-    public function newFilesAction() {
-        $this->setView('fileinput');
-        $this->set('data-url', '/core/upload_files');
-        $this->set('data-position', Vars::getRequests('position'));
-        $this->set('data-mime', $this->getDataMime(Vars::getRequests('genre')));
         
     }
 
@@ -114,9 +123,8 @@ class FilesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function uploadFilesAction() {
-        $this->layout = false;
-        $this->setEmptyView();
         $configs = $this->getConfigs(Vars::getPosts('position'));
+        var_dump(Vars::getPosts('position'));
         $this->id = SessionConfig::getId();
         $action = new \lib\media\UploadFile();
         $action->setFolder('userfiles/' . $configs['folder'] . '/');
@@ -155,28 +163,6 @@ class FilesActions extends \lib\control\ControllerAdmin {
     }
 
 
-    /**
-     *
-     */
-    public function bindFilesAction() {
-        $form = HtmMediaForm::initialize()->validate();
-        #more code for processing - example
-        #$model = $form->getModels('table')->setColumnValue('field','value');
-        #$form->setModel('table', $model);
-        $model = $this->buildProcess($form, 'files');
-        if($model !== false){
-            #$result is a model
-            if($model->getAction() == HtmMedia::ACTION_INSERT){
-                #operations after inserted
-                
-            }elseif($model->getAction() == HtmMedia::ACTION_UPDATE){
-                 #operations after updated
-                
-            }
-            
-            $this->showFilesAction();
-        }
-    }
 
     /**
      *

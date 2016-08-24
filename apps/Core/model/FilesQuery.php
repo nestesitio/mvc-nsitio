@@ -3,6 +3,8 @@
 namespace apps\Core\model;
 
 use \model\querys\HtmMediaQuery;
+use \lib\mysql\Mysql;
+
 
 /**
  * Description of FilesQuery
@@ -19,8 +21,10 @@ class FilesQuery extends \model\querys\HtmMediaQuery {
     * @return \model\querys\HtmMediaQuery;
     */
     public static function get(){
-        $query = HtmMediaQuery::start();
-        $query->joinHtm()->selectId()->selectHtmAppId()->selectStat()->selectOrd()->endUse();
+        $query = HtmMediaQuery::start()
+                ->joinHtmHasMedia(Mysql::LEFT_JOIN)->selectOrd()
+                ->joinHtm(Mysql::LEFT_JOIN)->selectId()->selectStat()->selectOrd();
+        $query = $query->endUse()->endUse();
 	
         
         return $query;

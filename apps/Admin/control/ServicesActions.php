@@ -9,84 +9,95 @@ use \model\models\HtmPage;
 use \apps\Core\model\PagesQuery;
 use \lib\session\SessionConfig;
 use \apps\Core\model\HtmForm;
+use \apps\Core\model\FilesQuery;
 
 /**
- * Description of HomecontentActions
+ * Description of ServicesActions
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class HomecontentActions extends \apps\Core\control\PagesActions {
-    
-    private $app_slug = 'home';
-    
-    protected $txt_action = 'admin/txt_homecontent';
-    protected $bindtxt_action = 'admin/bindtxt_homecontent';
-    
-    private $homelocal = ['home-quem-somos', 'home-services'];
+class ServicesActions extends \apps\Core\control\PagesActions {
 
-    /**
-     * 
-     */
-    public function homecontentAction(){
+    private $app_slug = 'services';
+    
+    protected $txt_action = 'admin/txt_services';
+    protected $bindtxt_action = 'admin/bindtxt_services';
+    
+    
+    public function servicesAction(){
         $this->set('heading', Vars::getHeading());
         
-        SessionConfig::setXml('apps/Admin/config/homecontent');
+        SessionConfig::setXml('apps/Admin/config/services');
         $this->query = $this->queryPages($this->app_slug);
-        $this->filterByLocal($this->homelocal);
-        $this->mainAction('homecontent');
+        $this->mainAction('services');
+    }
+    
+    
+    public function listServicesAction(){
+        SessionConfig::setXml('apps/Admin/config/services');
+        $this->query = $this->queryPages($this->app_slug);
+        $this->listAction('services');
+    }
+    
+    public function imagesServicesAction(){
+        $query = FilesQuery::get()->filterByGenre('img');
+        $this->listMediaActions($query, '/admin/bindimage_services');
+        $this->addInputMedia('/admin/uploadimage_services');
+        $this->set('data-page', Vars::getId());
+        $this->set('data-insert', 'admin/choiceimages_services');
+    }
+    
+    public function uploadimageServicesAction(){
+        $upload = $this->bindImageAction(['folder'=>'/uploads', 'width'=>500, 'height'=>500]);
+        if($upload != false){
+            $this->json['id'] = $this->saveMedia($upload);
+        }
         
-
+        echo json_encode($this->json);
     }
     
-    /**
-     * 
-     */
-    public function listHomecontentAction(){
-        SessionConfig::setXml('apps/Admin/config/homecontent');
-        $this->query = $this->queryPages($this->app_slug);
-        $this->filterByLocal($this->homelocal);
-        $this->listAction('homecontent');
+    public function choiceimagesServicesAction(){
+        $this->choiceMediaAction();
     }
     
     
-    public function txtHomecontentAction(){
+    public function txtServicesAction(){
         $form = $this->geTxtForm();
         $form = $form->setTypeValue('txt');
         
         $this->txtAction($form, 'hometxt');
     }
     
-    public function bindtxtHomecontentAction() {
+    public function bindtxtServicesAction() {
         $form = $this->geTxtForm();
         $form = $form->validate();
         
         $this->bindTxtAction($form, 'hometxt');
     }
-
-
     
-    public function editHomecontentAction() {
+    
+    public function editServicesAction() {
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
         $form = PagesForm::initialize($this->app_slug)->setQueryValues($query);
         
-        $this->renderForm($form, 'homecontent');
+        $this->renderForm($form, 'services');
     }
     
-    public function newHomecontentAction() {
+    
+    public function newServicesAction() {
         $form = PagesForm::initialize($this->app_slug);
         #more code about $form and $query
-        $this->renderForm($form, 'homecontent');
-        
+        $this->renderForm($form, 'services');
     }
     
-    public function bindHomecontentAction() {
+    public function bindServicesAction() {
         $form = PagesForm::initialize($this->app_slug)->validate();
         #more code for processing - example
         #$model = $form->getModels('table')->setColumnValue('field','value');
         #$form->setModel('table', $model);
-        $model = $this->buildProcess($form, 'homecontent');
+        $model = $this->buildProcess($form, 'services');
         if($model !== false){
             #$result is a model
             if($model->getAction() == HtmPage::ACTION_INSERT){
@@ -101,27 +112,26 @@ class HomecontentActions extends \apps\Core\control\PagesActions {
         }
     }
     
-    
-    public function showHomecontentAction(){
+    public function showServicesAction(){
         $model = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
-        $this->renderValues($model, 'homecontent');
+        $this->renderValues($model, 'services');
     }
     
     
     /**
      *
      */
-    public function statusHomecontentAction(){
+    public function statusServicesAction(){
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
         $form = HtmForm::initialize($this->app_slug)->addHtmVars('local')->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
-        $this->renderForm($form, 'apps/Core/config/htmvars', 'bindstatus_homecontent');
+        $this->renderForm($form, 'apps/Core/config/htmvars', 'bindstatus_services');
     }
     
     /**
      *
      */
-    public function bindstatusHomecontentAction() {
+    public function bindstatusServicesAction() {
         
         $form = HtmForm::initialize($this->app_slug)->addHtmVars('local');
         $form->validate();
@@ -131,15 +141,15 @@ class HomecontentActions extends \apps\Core\control\PagesActions {
         }
     }
     
-    public function delHomecontentAction() {
+    public function delServicesAction() {
         $model = \model\querys\HtmQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }
     
-    public function exportHomecontentAction(){
-        $query = HomecontentQuery::get();
-        $this->buildCsvExport($query, 'homecontent', 'homecontent');
+    public function exportServicesAction(){
+        $query = PagesQuery::getList($this->app_slug);
+        $this->buildCsvExport($query, 'services', 'services');
     }
 
 }
