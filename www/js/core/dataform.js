@@ -71,6 +71,7 @@ function processForm(form){
                     data = validateFormElement(data, form.elements[i], form.elements[i].value, required);
                 }
             }
+            
              
             //$("#jsmonitor").append(form.elements[i].id + ": " + form.elements[i].value + "<br />");
             

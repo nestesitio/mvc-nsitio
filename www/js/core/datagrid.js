@@ -70,6 +70,26 @@ function setThumbAction(element) {
     }
 }
 
+function closeModal(element){
+    var modal = getParentByClass(element, "modal");
+    $('.modal').find('.modal-body').text('');
+    $('.modal').modal('toggle');
+}
+
+function setModalAction(element) {
+    $('.modal').modal('toggle');
+    $('.modal').on('shown.bs.modal', function (event) {
+        var modal = $(this);
+        modal.find('h2').text(element.getAttribute("data-title"));
+        var url = getUrl(element);
+        ajaxLoad(modal.find('.modal-body'), url);
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        
+        
+    });
+}
+
 function setRowAction(element) {
     $(".row-editable").hide();
     if(element.getAttribute("data-edit") !== null){
@@ -367,3 +387,26 @@ function transferTask(element, row, url) {
             $(row).remove();
         }});
 }
+
+function addToGallery(response){
+    var div = getChildrenByClass(document.getElementById('modal-bodygrid'), 'file-gallery');
+    var item = div.cloneNode(true);
+    item.style.display = "block";
+    $( item ).find( "img" ).attr("src", response['result']);
+    $( item ).find( "a" ).attr("data-id", response['id']);
+    $(div.parentElement).prepend(item);
+}
+
+function imageChoose(element){
+    var thumb = $(element).closest('div[class^="thumbnail"]');
+    var id = $(element).attr('data-id');
+    if($(thumb).hasClass("media-choice")){
+        $(thumb).removeClass("media-choice");
+        choices.splice(choices.indexOf(id), 1);
+    }else{
+       $(thumb).addClass("media-choice");
+       choices.push(id);
+    }
+}
+
+var choices = [];

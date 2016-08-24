@@ -6,6 +6,7 @@
 .panel-heading, .panel-body{position:relative}
 .table-responsive{overflow-x: visible}
 .grid-buttons{position: absolute; right: 5px; top: -30px}
+.modal-buttons{position: absolute; right: 15px; top: -50px}
 .btn-xs{margin: 0 3px}
 
 .headgrid,.bodygrid,.footgrid{clear:both}
@@ -74,3 +75,5 @@ a.btn-sort{float: right; margin:3px 0 0 3px; font-size: 80%; color: #FFD900}
 }
 
 fieldset input{ margin-left: 10px !important;}
+
+div.media-choice{ border: 1px blue solid; background-color: #3071A9}

@@ -10,17 +10,35 @@ function prepareBSInputs() {
 }
 
 function prepareFileInput() {
-    var inputs = document.getElementsByClassName("fileinput");
-    var preview, extensions;
+    var inputs = document.getElementsByClassName("file-input");
+    var preview, extensions, type;
     for (var i = 0; i < inputs.length; i++) {
-        preview = inputs[i].getAttribute("value");
-        extensions = inputs[i].getAttribute("data-allowed");
-        $(inputs[i]).fileinput({
-            uploadUrl: inputs[i].getAttribute("data-url"), uploadAsync: true, maxFileCount: 1, 
-            initialPreview:[preview], initialPreviewAsData: true,
+        type = inputs[i].getAttribute("type");
+        if (type === 'file' && i === 0) {
+            
+            preview = inputs[i].getAttribute("value");
+            extensions = inputs[i].getAttribute("data-allowed");
+            $(inputs[i]).fileinput({
+                uploadUrl: inputs[i].getAttribute("data-url"), uploadAsync: true,
+                maxFileCount: 1
+
+            }).on('fileuploaded', function(event, data){    
+                /*{"upload":"ok","result":"/uploads/ary_papel.jpg","id":"5"}*/
+                addToGallery(data.response['result'], data.response['id']);
+                $(this).fileinput('clear').fileinput('enable');  
+            });
+        }
+
+    }
+}
+
+/*
+initialPreview:[preview], 
+            initialPreviewAsData: true,
             elErrorContainer: '#file-input-messages', allowedFileExtensions: extensions.split(','), 
             initialPreviewFileType: inputs[i].getAttribute("data-file"), showCaption: false,
-            deleteUrl: '/storedesk/deleteimage_prizes/', deleteExtraData: {id: 100, value: '100 Details'},
+            deleteUrl: '/core/deleteimage_files/', 
+            deleteExtraData: {id: 100, value: '100 Details'},
             overwriteInitial: true,
             maxFileSize: 1500,
             showClose: false,
@@ -28,11 +46,9 @@ function prepareFileInput() {
             browseLabel: '',
             removeLabel: '',
             removeTitle: 'Cancel or reset changes',
-            msgErrorClass: 'alert alert-block alert-danger'
-            
-        });
-    }
-}
+            msgErrorClass: 'alert alert-block alert-danger',
+            mainClass: "input-group-lg" 
+ */
 
 function prepareWysihtml5(){
     var inputs = document.getElementsByClassName("wysihtml");

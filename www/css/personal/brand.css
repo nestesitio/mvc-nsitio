@@ -1,14 +1,18 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : Mar 12, 2015, 9:27:21 AM
     Author     : dellpinto
 */
 a{color: #333;}
 a:hover{color: #666;}
+
+@font-face {
+    font-family: Avenir;
+    src: url(/fonts/AvenirLTStd-Medium.otf);
+}
+html, body {font-family: "Avenir", Helvetica, Arial, sans-serif;}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
 
 
 .navbar-static-top, .navbar-inverse {

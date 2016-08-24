@@ -7,3 +7,57 @@ and open the template in the editor.
     Created on : Mar 28, 2016, 12:09:12 PM
     Author     : dellpinto
 */
+.navbar-header{float: right;}
+
+/*carousel*/
+.carousel-heading{ position: absolute; text-align: left;}
+.carousel-heading h1, .carousel-heading p {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 2.2em;
+    margin: 0.67em 0;
+    line-height: 1.2;
+}
+#carousel-heading-1{ bottom: 1%; left: 5%; width: 50%;}
+#carousel-heading-2{ bottom: 10%; right: 5%; width: 50%; text-align: right;}
+#carousel-heading-3{ bottom: 10%; left: 5%; width: 60%;}
+
+.navbar-custom .nav li a:hover, .navbar-custom .nav li a:focus {
+    color: #D22630;
+}
+.navbar-custom .navbar-nav > .active > a {
+    background-color: #D22630;
+}
+.navbar-custom .navbar-nav > .active > a:hover, .navbar-custom .navbar-nav > .active > a:focus {
+    background-color: #D22630;
+}
+
+header {
+    background-image: none;
+}
+
+/*services*/
+.circ-hatt{color: #D22630}
+.service-img {width: 100%; height: auto;}
+.service-desc{ padding-top: 30px; padding-bottom: 30px;}
+.service-desc-text { padding-top: 20px;}
+.service-desc-text p{ font-size: 120%}
+.service-desc-img img{ box-shadow:10px 10px 5px #ccc;}
+.services-text h3 {font-size: 30px}
+
+
+
+
+/*footer*/
+ul.social-buttons li a {
+    background-color: #D22630;
+    border-radius: 20%;
+    color: white;
+    display: block;
+    font-size: 25px;
+    height: 50px;
+    line-height: 50px;
+    outline: medium none;
+    transition: all 0.3s ease 0s;
+    width: 50px;
+}
