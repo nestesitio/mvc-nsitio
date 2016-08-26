@@ -140,7 +140,7 @@ class UsersActions extends \lib\control\ControllerAdmin {
      */
     public function csvUsersAction(){
         $query = $this->query();
-        $this->buildCsvExport($query);
+        $this->buildCsvExport($query, 'Utilizadores', 'users');
     }
     
     public function playUsersAction(){

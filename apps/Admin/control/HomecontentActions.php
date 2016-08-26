@@ -34,7 +34,6 @@ class HomecontentActions extends \apps\Core\control\PagesActions {
         
         SessionConfig::setXml('apps/Admin/config/homecontent');
         $this->query = $this->queryPages($this->app_slug);
-        $this->filterByLocal($this->homelocal);
         $this->mainAction('homecontent');
         
 

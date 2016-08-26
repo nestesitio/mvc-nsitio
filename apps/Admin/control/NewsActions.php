@@ -12,44 +12,44 @@ use \lib\page\MediaQuery;
 use \lib\session\SessionConfig;
 
 /**
- * Description of ServicesActions
+ * Description of NewsActions
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class ServicesActions extends \apps\Core\control\PagesActions {
+class NewsActions extends \apps\Core\control\PagesActions {
+    
+    private $app_slug = 'news';
+    
+    protected $txt_action = 'admin/txt_news';
+    protected $bindtxt_action = 'admin/bindtxt_news';
 
-    private $app_slug = 'services';
-    
-    protected $txt_action = 'admin/txt_services';
-    protected $bindtxt_action = 'admin/bindtxt_services';
-    
-    
-    public function servicesAction(){
+    public function newsAction(){
         $this->set('heading', Vars::getHeading());
         
-        SessionConfig::setXml('apps/Admin/config/services');
+        SessionConfig::setXml('apps/Admin/config/news');
         $this->query = $this->queryPages($this->app_slug);
-        $this->mainAction('services');
+        $this->mainAction('news');
     }
     
     
-    public function listServicesAction(){
-        SessionConfig::setXml('apps/Admin/config/services');
+    public function listNewsAction(){
+        SessionConfig::setXml('apps/Admin/config/news');
         $this->query = $this->queryPages($this->app_slug);
-        $this->listAction('services');
+        $this->listAction('news');
     }
     
-    public function imagesServicesAction(){
+    
+    public function imagesNewsAction(){
         $query = MediaQuery::getListForPage(Vars::getId())->filterByGenre('img');
-        $this->listMediaActions($query, '/admin/choiceimage_services');
-        $this->addInputMedia('/admin/uploadimage_services');
+        $this->listMediaActions($query, '/admin/choiceimage_news');
+        $this->addInputMedia('/admin/uploadimage_news');
         $this->set('data-page', Vars::getId());
-        $this->set('data-insert', 'admin/choiceimages_services');
+        $this->set('data-insert', 'admin/choiceimages_news');
     }
     
-    public function uploadimageServicesAction(){
+    public function uploadimageNewsAction(){
         $upload = $this->bindImageAction(['folder'=>'/uploads', 'width'=>500, 'height'=>500]);
         if($upload != false){
             $this->json['id'] = $this->saveMedia($upload);
@@ -58,19 +58,19 @@ class ServicesActions extends \apps\Core\control\PagesActions {
         echo json_encode($this->json);
     }
     
-    public function choiceimageServicesAction(){
+    public function choiceimageNewsAction(){
         $this->choiceMediaAction();
     }
     
     
-    public function txtServicesAction(){
+    public function txtNewsAction(){
         $form = $this->geTxtForm();
         $form = $form->setTypeValue('txt');
         
         $this->txtAction($form, 'hometxt');
     }
     
-    public function bindtxtServicesAction() {
+    public function bindtxtNewsAction() {
         $form = $this->geTxtForm();
         $form = $form->validate();
         
@@ -78,26 +78,26 @@ class ServicesActions extends \apps\Core\control\PagesActions {
     }
     
     
-    public function editServicesAction() {
+    public function editNewsAction() {
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
         $form = PagesForm::initialize($this->app_slug)->setQueryValues($query);
         
-        $this->renderForm($form, 'services');
+        $this->renderForm($form, 'news');
     }
     
     
-    public function newServicesAction() {
+    public function newNewsAction() {
         $form = PagesForm::initialize($this->app_slug);
         #more code about $form and $query
-        $this->renderForm($form, 'services');
+        $this->renderForm($form, 'news');
     }
     
-    public function bindServicesAction() {
+    public function bindNewsAction() {
         $form = PagesForm::initialize($this->app_slug)->validate();
         #more code for processing - example
         #$model = $form->getModels('table')->setColumnValue('field','value');
         #$form->setModel('table', $model);
-        $model = $this->buildProcess($form, 'services');
+        $model = $this->buildProcess($form, 'news');
         if($model !== false){
             #$result is a model
             if($model->getAction() == HtmPage::ACTION_INSERT){
@@ -108,48 +108,48 @@ class ServicesActions extends \apps\Core\control\PagesActions {
                 
             }
             
-            $this->showServicesAction();
+            $this->showNewsAction();
         }
     }
     
-    public function showServicesAction(){
+    public function showNewsAction(){
         $model = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
-        $this->renderValues($model, 'services');
+        $this->renderValues($model, 'news');
     }
     
     
     /**
      *
      */
-    public function statusServicesAction(){
+    public function statusNewsAction(){
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
         $form = HtmForm::initialize($this->app_slug)->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
-        $this->renderForm($form, 'apps/Core/config/htmvars', 'bindstatus_services');
+        $this->renderForm($form, 'apps/Core/config/htmvars', 'bindstatus_news');
     }
     
     /**
      *
      */
-    public function bindstatusServicesAction() {
+    public function bindstatusNewsAction() {
         
         $form = HtmForm::initialize($this->app_slug);
         $form->validate();
         $model = $this->buildProcess($form, 'apps/Core/config/htmvars');
         if($model !== false){
-            $this->showServicesAction();
+            $this->showNewsAction();
         }
     }
     
-    public function delServicesAction() {
+    public function delNewsAction() {
         $model = \model\querys\HtmQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }
     
-    public function exportServicesAction(){
+    public function exportNewsAction(){
         $query = PagesQuery::getList($this->app_slug);
-        $this->buildCsvExport($query, 'services', 'services');
+        $this->buildCsvExport($query, 'news', 'news');
     }
 
 }

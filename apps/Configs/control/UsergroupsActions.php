@@ -99,6 +99,11 @@ class UsergroupsActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delUsergroupsAction() {
+        $rows = \model\querys\UserGroupHasHtmAppQuery::start()->filterByUserGroupId(Vars::getId())->find();
+        foreach($rows as $row){
+            $row->delete();
+        }
+        
         $model = \model\querys\UserGroupQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         

@@ -22,9 +22,7 @@ class FilesQuery extends \model\querys\HtmMediaQuery {
     */
     public static function get(){
         $query = HtmMediaQuery::start()
-                ->joinHtmHasMedia(Mysql::LEFT_JOIN)->selectOrd()
-                ->joinHtm(Mysql::LEFT_JOIN)->selectId()->selectStat()->selectOrd();
-        $query = $query->endUse()->endUse();
+                ->joinHtmHasMedia(Mysql::LEFT_JOIN)->selectHtmId()->selectOrd()->endUse();
 	
         
         return $query;

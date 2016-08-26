@@ -1,9 +1,11 @@
 <?php
 namespace apps\Core\model;
 
+use \lib\register\Vars;
 use \model\models\Htm;
 use \model\models\HtmPage;
 use \lib\form\input\HiddenInput;
+use \lib\form\form\FormRender;
 #use \lib\register\Vars;
 
 /**
@@ -60,7 +62,7 @@ class PagesForm extends \lib\form\FormMerged {
         $input = HiddenInput::create(Htm::FIELD_HTM_APP_ID)->setValue($query->getId());
         $form->setHtmAppIdInput($input);
         
-        $form->setStatInput()->setDefault(Htm::STAT_PRIVATE);
+        $form->setStatInput()->setDefault(Htm::STAT_PUBLIC);
         $form->setOrdInput()->setDefault(1);
         
         return $form;
@@ -75,6 +77,21 @@ class PagesForm extends \lib\form\FormMerged {
 	$form->setHtmIdInput($input);
         $input = HiddenInput::create(HtmPage::FIELD_SLUG)->setValue('index');
 	$form->setSlugInput($input);
+       $input = $form->getTitleInput()
+                ->setDataAttribute('data-function', 'exportValue')
+                ->setDataAttribute('data-export', FormRender::renderName(HtmPage::FIELD_MENU, Vars::getCanonical()));
+       $form->setTitleInput($input);
+       
+       $input = $form->getMenuInput()
+                ->setDataAttribute('data-function', 'exportValue')
+                ->setDataAttribute('data-export', FormRender::renderName(HtmPage::FIELD_HEADING, Vars::getCanonical()));
+       $form->setMenuInput($input);  
+       
+       $input = $form->getHeadingInput()
+                ->setDataAttribute('data-function', 'exportValue')
+                ->setDataAttribute('data-export', FormRender::renderName(HtmPage::FIELD_TITLE, Vars::getCanonical()));
+       $form->setHeadingInput($input);             
+        
         return $form;
     }
     

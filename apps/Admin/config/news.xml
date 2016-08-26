@@ -20,7 +20,7 @@
       </htmpagehtmlayoutid>
       <htmpagetitle field="htm_page.title" show="true" filter="false">
         <label lang="en">Title</label>
-        <label lang="pt">Title</label>
+        <label lang="pt">Titulo</label>
       </htmpagetitle>
       <htmpageslug field="htm_page.slug" show="true" filter="false">
         <label lang="en">Slug</label>
@@ -36,7 +36,7 @@
       </htmpageheading>
       <htmpageupdatedat field="htm_page.updated_at" range="range" show="true" filter="true" type="DateInput">
         <label lang="en">Updated At</label>
-        <label lang="pt">Actualização</label>
+        <label lang="pt">Updated At</label>
       </htmpageupdatedat>
       <htmappname field="htm_app.name" filter="false">
           <label lang="pt">Módulo</label>
@@ -56,39 +56,31 @@
       </htmhtmappid>
     </fields>
     <buttons comment="Commands for form and show">
-      <saveform class="glyphicon glyphicon-save" action="admin/edit_mainpages" auth="1">
+      <saveform class="glyphicon glyphicon-save" action="edit_news" auth="4">
         <label lang="en">Save</label>
-        <label lang="pt">Guardar</label>
+        <label lang="pt">Save</label>
       </saveform>
-      <editform class="glyphicon glyphicon-pencil" action="admin/edit_mainpages" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
-      </editform>
-      <resetform class="glyphicon glyphicon-refresh" auth="1">
-        <label lang="en">Reset</label>
-        <label lang="pt">Reset</label>
-      </resetform>
-      <delform class="glyphicon glyphicon-trash" action="del_mainpages" auth="1">
+      <delform class="glyphicon glyphicon-trash" action="del_news" auth="1">
         <label lang="en">Delete</label>
-        <label lang="pt">Eliminar</label>
+        <label lang="pt">Delete</label>
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="4">
         <label lang="en">Close</label>
-        <label lang="pt">Fechar</label>
+        <label lang="pt">Close</label>
       </closeform>
     </buttons>
   </show>
-  <grid identification="mainpages" paging="25" fieldid="htm_page.id">
+  <grid identification="news" paging="25" fieldid="htm.id">
     <columns comment="Columns for grid">
-      <htmpageid field="htm_page.id" class="id" sort="true">
+      <htmpageid field="htm.id" class="id" sort="true">
         <label lang="en">Id</label>
         <label lang="pt">Id</label>
       </htmpageid>
       <htmpagetitle field="htm_page.title" class="title" sort="true">
         <label lang="en">Title</label>
-        <label lang="pt">Title</label>
+        <label lang="pt">Titulo</label>
       </htmpagetitle>
-      <htmstat field="htm_page.stat" class="stat" sort="true">
+      <htmstat field="htm.stat" class="stat" sort="true">
           <label lang="en">Status</label>
           <label lang="pt">Estado</label>
       </htmstat>
@@ -102,35 +94,35 @@
       </htmpageupdatedat>
     </columns>
     <tools comment="buttons in row">
-      <langs id="htm_page.id" auth="4">
+      <langs id="htm.id" action="admin/txt_news" auth="4">
           <label lang="en">Langs</label>
           <label lang="pt">Idiomas</label>
       </langs>
-      <photo file="img" class="fa-file-image-o" id="htm_page.id" auth="4">
+      <photo id="htm.id" action="admin/images_news" file="img" class="fa-file-image-o" auth="4">
           <vars var="position" str="photo" />
           <vars var="folder" str="images" />
           <label lang="en">Images</label>
           <label lang="pt">Imagens</label>
       </photo>
-      <edit action="admin/status_mainpages" class="fa-pencil" id="htm_page.id" auth="1">
+      <edit id="htm.id" action="admin/status_news" class="fa-pencil" auth="4">
         <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+        <label lang="pt">Edit</label>
       </edit>
-      <show action="admin/show_mainpages" class="fa-eye" id="htm_page.id" auth="1">
+      <show id="htm.id" action="admin/show_news" class="fa-eye" auth="4">
         <label lang="en">Show</label>
-        <label lang="pt">Ver</label>
+        <label lang="pt">Show</label>
       </show>
-      <del action="admin/del_mainpages" class="fa-trash-o" id="htm_page.id" auth="1">
+      <del id="htm.id" action="admin/del_news" class="fa-trash-o" auth="1">
         <label lang="en">Del</label>
-        <label lang="pt">Eliminar</label>
+        <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
-      <new action="admin/new_mainpages" class="glyphicon glyphicon-plus" auth="1">
+      <new action="admin/new_news" class="glyphicon glyphicon-plus" auth="4">
         <label lang="en">New</label>
         <label lang="pt">Inserir</label>
       </new>
-      <csv target="_blank" url="/admin/export_mainpages" class="glyphicon glyphicon-export" auth="1">
+      <csv action="admin/csv_news" class="glyphicon glyphicon-export" auth="1">
         <label lang="en">Csv</label>
         <label lang="pt">Exportar</label>
       </csv>

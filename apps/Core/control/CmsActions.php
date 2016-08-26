@@ -37,7 +37,7 @@ class CmsActions extends \lib\control\ControllerAdmin {
         $results = LangsQuery::start()->find();
         $arr = [];
         foreach($results as $lang){
-            $arr[] = $lang->getTld();
+            $arr[$lang->getTld()] = $lang->getName();
         }
         return $arr;
     }

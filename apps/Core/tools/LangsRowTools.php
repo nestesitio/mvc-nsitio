@@ -14,11 +14,11 @@ class LangsRowTools {
 
     public static function renderLangsTemplate($langs, $action_url){
         $str = '';
-        foreach($langs as $lang){
+        foreach($langs as $tld => $lang){
             
             $tool = new DataTool();
-            $tool->setLangAction($action_url, 0);
-            $tool->setFlag($lang);
+            $tool->setLangAction($action_url, 0, $lang);
+            $tool->setFlag($tld);
             $tool->haveNoLang();
             $str .= $tool->getUl();
         }
@@ -35,11 +35,11 @@ class LangsRowTools {
         foreach($results as $row){
             $result = $row->getColumnValue('langs');
             $str = '';
-            foreach($langs as $lang){
+            foreach($langs as $tld=>$lang){
                 $tool = new DataTool();
-                $tool->setLangAction($action_url, $row->getHtmId());
-                $tool->setFlag($lang);
-                if(strpos($result, $lang) === false){
+                $tool->setLangAction($action_url, $row->getHtmId(), $lang);
+                $tool->setFlag($tld);
+                if(strpos($result, $tld) === false){
                     $tool->haveNoLang();
                 }
                 $str .= $tool->getUl();

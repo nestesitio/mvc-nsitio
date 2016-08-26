@@ -198,9 +198,15 @@ class PagesActions extends \apps\Core\control\CmsActions {
         
         \lib\session\SessionConfig::addId(Vars::getId());
         $results = $this->getQueryToList($query);
+        foreach($results as $media){
+            $htm = $media->getHtmHasMedia()->getHtmId();
+            $value = ($htm == NULL)? '' : 'media-choice';
+            $media->setColumnValue('choice', $value);
+        }
         #here you can process the results
         $this->renderList($results);
-        $this->set('data-action', $action);
+        $this->set('data-choice-action', $action);
+        $this->set('htm-id', Vars::getId());
         
     }
     
@@ -230,6 +236,13 @@ class PagesActions extends \apps\Core\control\CmsActions {
     public function choiceMediaAction(){
         $this->layout = false;
         $this->setEmptyView();
+        $result = \model\querys\HtmHasMediaQuery::start()
+                ->filterByHtmId(Vars::getPosts('htm'))
+                ->filterByHtmMediaId(Vars::getPosts('media'))
+                ->toogleOne();
+        if(null != $result){
+            echo true;
+        }
         
     }
     
