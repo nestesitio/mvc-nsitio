@@ -3,7 +3,7 @@
     $(document).on('click', '.datarow', function(){($(this).css('backgroundColor') === "rgb(255, 255, 153)") ?$(this).css('background-color', ""):$(this).css('background-color', '#ff9');});
     $(document).on('click', '.row-action', function(){setRowAction(this);});
     $(document).on('click', '.modal-action', function(){setModalAction(this);});
-    $(document).on('click', '.close-modal', function(){closeModal(this);});
+    $(document).on('click', '.close-modal', function(){closeModal();});
     $(document).on('click', '.float-action', function(){setFloatAction(this);});
     $(document).on('click', '.btn-action', function(){setButtonAction(this);});
     $(document).on('click', '.btn-action-flush', function(){setButtonActionFlush(this);});

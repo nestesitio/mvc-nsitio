@@ -1,24 +1,22 @@
 <div class="sublist-nums" style="display: none">{$numrows}/{$total}</div>
 <div class="head-list-modal">
     <div class="modal-buttons">
-        <a class="choice-modal btn btn-sm btn-default" 
-           data-id="{$data-page}" data-genre="img"  data-action="{$data-insert}">
-            <span class="glyphicon glyphicon-file"></span> Escolher</a>
         <a class="close-modal btn btn-sm btn-primary">
             <span class="glyphicon glyphicon-remove"></span> Fechar</a>
     </div>
+    <span class="hidden" id="data-htm">{$htm-id}</span>
 </div>
 <!-- grid template for add datarow -->
 
 <div class="datagrid">
     <!-- grid body -->
-    <div class="file-form">
+    <div class="file-form" style="margin-bottom: 20px">
         {$file-input}
     </div>
     <div id="modal-bodygrid" class="bodygrid">
         <div class="file-gallery col-xs-6 col-md-3" style="display: none">
             <div class="thumbnail">
-                <a class="img-choose" title="Choose?"><img /></a>
+                <a class="img-choose" title="Choose?" data-action="{$data-choice-action}" ><img /></a>
                 <div class="thumb-tools">
                     <a title="Delete" data-command="del" class="thumb-action fa fa-trash-o"></a>
                 </div>
@@ -27,8 +25,9 @@
         </div>
         {@while ($item in $list):}
         <div class="file-gallery col-xs-6 col-md-3">
-            <div class="thumbnail">
-                <a data-command="choice" data-action="{$data-action}" data-id="{$item.htm_media.id}" class="img-choose" title="Choose?"><img src="{$item.htm_media.url}" /></a>
+            <div class="thumbnail {$item.choice}">
+                <a data-command="choice" data-htm="{$htm-id}" data-action="{$data-choice-action}" data-id="{$item.htm_media.id}" class="img-choose" title="Choose?">
+                    <img src="{$item.htm_media.url}" /></a>
                 <div class="thumb-tools">
                     <a title="Delete" data-id="{$item.htm_media.id}" data-action="{$data-action}" 
                        data-command="del" class="thumb-action fa fa-trash-o"></a>

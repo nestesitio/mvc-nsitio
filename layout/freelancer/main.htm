@@ -105,21 +105,12 @@
         <script id="block:js" />
 
         {@block 'scripts'}
-        {@block 'scripts-b'}
 
         <script>
-            $(".support-btn").click(function () {
-                addSupport(this);
-            });
-            $(document).on('click', '.btn-modal', function () {
-                modalLoad(this);
-            });
-            $("#dev_display").click(function () {
-                $(".dm").toggle();
-            });
-            $(window).resize(function () {
-                monitor();
-            });
+            $( ".support-btn" ).click(function() {addSupport(this);});
+            $(document).on('click', '.btn-modal', function(){modalLoad(this);});
+            $( "#dev_display" ).click(function() {$(".dm").toggle();});
+            $(window).resize(function () {monitor();});
         </script>
     </body>
 </html>
