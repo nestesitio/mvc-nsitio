@@ -20,7 +20,7 @@ function prepareFileInput() {
             extensions = inputs[i].getAttribute("data-allowed");
             $(inputs[i]).fileinput({
                 uploadUrl: inputs[i].getAttribute("data-url"), uploadAsync: true,
-                maxFileCount: 1
+                maxFileCount: 1, fileActionSettings: {showZoom: false}, dropZoneEnabled: false
 
             }).on('fileuploaded', function(event, data){    
                 /*{"upload":"ok","result":"/uploads/ary_papel.jpg","id":"5"}*/
@@ -31,24 +31,6 @@ function prepareFileInput() {
 
     }
 }
-
-/*
-initialPreview:[preview], 
-            initialPreviewAsData: true,
-            elErrorContainer: '#file-input-messages', allowedFileExtensions: extensions.split(','), 
-            initialPreviewFileType: inputs[i].getAttribute("data-file"), showCaption: false,
-            deleteUrl: '/core/deleteimage_files/', 
-            deleteExtraData: {id: 100, value: '100 Details'},
-            overwriteInitial: true,
-            maxFileSize: 1500,
-            showClose: false,
-            initialPreviewShowDelete: true,
-            browseLabel: '',
-            removeLabel: '',
-            removeTitle: 'Cancel or reset changes',
-            msgErrorClass: 'alert alert-block alert-danger',
-            mainClass: "input-group-lg" 
- */
 
 function prepareWysihtml5(){
     var inputs = document.getElementsByClassName("wysihtml");

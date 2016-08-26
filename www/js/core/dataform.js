@@ -295,15 +295,18 @@ function updateData(ul, source, id) {
     var ii;
     li[0].textContent = ":";
     li[0].title = id;
+    $(ul).find('a').attr('data-id', id);
     for (var i = 0; i < showdata.length; i++) {
         for (ii = 0; ii < li.length; ii++) {
-            if (li[ii].hasAttribute("data-field") 
+            if (li[ii].hasAttribute("data-field")
                     && showdata[i].getAttribute("data-field") === li[ii].getAttribute("data-field")) {
                 //alert(showdata[i].getAttribute("data-field"));
                 li[ii].innerHTML = showdata[i].innerHTML;
                 setBool(showdata[i], li[ii]);
                 li[ii].title = showdata[i].textContent;
+                
             }
+            
         }
     }
     var btn = source.getElementsByClassName("editform")[0];
@@ -588,15 +591,24 @@ function importOptionsIfEmpty(element){
     }
 }
 
-function exportOptions(element) {
+function exportValue(element) {
     var exportTo = document.getElementById(element.getAttribute("data-export"));
-    var field = element.getAttribute("data-field");
-    var options = "";
-    $('#' + element.id + ' :selected').each(function (i, selected) {
-        options += $(selected).val() + "-";
-    });
-    var url = element.getAttribute("data-action") + "/?values=" + options + "&field=" + field;
-    generateOptions(exportTo, url);
+    var tag = element.tagName;
+    if (tag === 'SELECT') {
+        var field = element.getAttribute("data-field");
+        var options = "";
+        $('#' + element.id + ' :selected').each(function (i, selected) {
+            options += $(selected).val() + "-";
+        });
+        var url = element.getAttribute("data-action") + "/?values=" + options + "&field=" + field;
+        generateOptions(exportTo, url);
+    }else{
+        if($(exportTo).val() === ''){
+            $(exportTo).val( $(element).val() );
+            inputChanged(exportTo);
+        }
+        
+    }
 }
 
 function generateOptions(element, url) {

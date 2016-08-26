@@ -7,8 +7,8 @@ function inputChanged(element) {
         var f = element.getAttribute("data-function");
         //$("#jsmonitor").append(element.id + " ->"+  f + "<br />");
         
-        if (f === "exportOptions") {
-            exportOptions(element);
+        if (f === "exportValue") {
+            exportValue(element);
         }
         
         if (f === "importOptionsIfEmpty") {

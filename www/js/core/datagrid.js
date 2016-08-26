@@ -70,17 +70,17 @@ function setThumbAction(element) {
     }
 }
 
-function closeModal(element){
-    var modal = getParentByClass(element, "modal");
+function closeModal(){
     $('.modal').find('.modal-body').text('');
-    $('.modal').modal('toggle');
+    $('.modal').modal('hide');
+    $('.modal-backdrop').remove();
 }
 
 function setModalAction(element) {
-    $('.modal').modal('toggle');
+    $('.modal').modal('show');
     $('.modal').on('shown.bs.modal', function (event) {
         var modal = $(this);
-        modal.find('h2').text(element.getAttribute("data-title"));
+        modal.find('h2').text(element.getAttribute("title"));
         var url = getUrl(element);
         ajaxLoad(modal.find('.modal-body'), url);
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -388,25 +388,32 @@ function transferTask(element, row, url) {
         }});
 }
 
-function addToGallery(response){
+function addToGallery(src, id){
     var div = getChildrenByClass(document.getElementById('modal-bodygrid'), 'file-gallery');
     var item = div.cloneNode(true);
     item.style.display = "block";
-    $( item ).find( "img" ).attr("src", response['result']);
-    $( item ).find( "a" ).attr("data-id", response['id']);
+    $( item ).find( "img" ).attr("src", src);
+    $( item ).find( "a" ).attr("data-id", id);
+    $( item ).find( "a" ).attr("data-htm", $("#data-htm").text());
     $(div.parentElement).prepend(item);
 }
 
 function imageChoose(element){
     var thumb = $(element).closest('div[class^="thumbnail"]');
-    var id = $(element).attr('data-id');
-    if($(thumb).hasClass("media-choice")){
-        $(thumb).removeClass("media-choice");
-        choices.splice(choices.indexOf(id), 1);
-    }else{
-       $(thumb).addClass("media-choice");
-       choices.push(id);
-    }
+    
+    $.post(getUrl(element) + "&js=1", 
+    {media: $(element).attr('data-id'), htm: $(element).attr('data-htm')}, function (data, status) {
+        if (data === '1') {
+            if ($(thumb).hasClass("media-choice")) {
+                $(thumb).removeClass("media-choice");
+            } else {
+                $(thumb).addClass("media-choice");
+            }
+        }
+    });
+    
+    
 }
 
-var choices = [];
+
+
