@@ -79,6 +79,8 @@ class UploadFile
 
         return $name;
     }
+    
+    private $genre = '';
 
     /**
      * @param $type
@@ -88,18 +90,27 @@ class UploadFile
     {
         if (($type == 'image/pjpeg' XOR $type == 'image/jpeg' XOR $type == 'image/jpg')) {
             $this->extension = 'jpg';
+            $this->genre = 'img';
         } elseif ($type == 'image/png') {
             $this->extension = 'png';
+            $this->genre = 'img';
         } elseif ($type == 'image/gif') {
             $this->extension = 'gif';
+            $this->genre = 'img';
         } elseif ($type == 'audio/mpeg') {
             $this->extension = 'mp3';
+            $this->genre = 'audio';
         } elseif ($type == 'application/x-shockwave-flash') {
             $this->extension = 'swf';
         } elseif ($type == 'application/pdf') {
             $this->extension = 'pdf';
+            $this->genre = 'pdf';
         }
         return $this->extension;
+    }
+    
+    public function getGenre(){
+        return $this->genre;
     }
 
     /**
@@ -138,7 +149,7 @@ class UploadFile
     }
 
     /**
-     * @return array|bool
+     * @return string|bool
      */
     public function getResult()
     {
@@ -156,6 +167,7 @@ class UploadFile
         rename(HTMROOT . $file, HTMROOT . $this->result);
         return $this->result;
     }
+    
 
 
     /**

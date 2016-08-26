@@ -145,6 +145,24 @@ class QuerySelect extends \lib\model\QueryStatement
             return $query->save();
         }
     }
+    
+     /**
+     * Completes query. If result is 0 create object
+     *
+     * @@return \lib\model\Model
+     */
+    public function toogleOne()
+    {
+        $this->query_statement->setLimit(1);
+        $result = $this->getResults($this->query_statement->getStatementString());
+        if(count($result) !== 0){
+            return $result[0]->delete();
+        }else{
+            $this->model->convertToFields();
+            $query = new \lib\model\QueryWrite($this->model);
+            return $query->save();
+        }
+    }
 
      /**
      * Completes query and return numrows.

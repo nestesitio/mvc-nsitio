@@ -78,9 +78,10 @@ class DataTool
      * @param $action
      * @param $val
      */
-    public function setLangAction($action, $val)
+    public function setLangAction($action, $val, $lang)
     {
-        $str = '<a class="row-action fa" data-action="' . $action . '" data-command="edit"';
+        $str = '<a title="Text ' . $lang . '" '
+                . 'class="row-action fa" data-action="' . $action . '" data-command="edit"';
         $this->ul_hidden .= $str;
         $this->ul .= $str;
         if (!empty($val)) {
@@ -157,18 +158,14 @@ class DataTool
         $this->ul .= ' data-command="' . $node . '"';
         $this->ul_hidden .= ' data-command="' . $node . '"';
         $this->ul .= ' class="' . $this->class . ' fa ' . $class . '">';
-        $this->ul_hidden .= ' class="row-action fa ' . $class . '">';
+        $this->ul_hidden .= ' class="' . $this->class . ' fa ' . $class . '">';
         if(!empty($editable)){
             $this->ul .= '<div class="row-editable" style="display:none"></div>';
-        }elseif($this->class == 'modal-action'){
-            $this->modal($node, $class);
         }
         $this->close();
     }
     
     public function modal(){
-        $this->ul = str_replace('>', ' data-toggle="modal">', $this->ul);
-        $this->ul_hidden = str_replace('>', ' data-toggle="modal">', $this->ul_hidden);
         $this->ul = str_replace('>', ' data-title="' . $this->label . '">', $this->ul);
         $this->ul_hidden = str_replace('>', ' data-title="' . $this->label . '">', $this->ul_hidden);
         

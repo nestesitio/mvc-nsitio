@@ -102,15 +102,15 @@ class FormRender
     }
 
     /**
-     * @param String $oldname
+     * @param String $field The field associated with the input
      * @param String $actionclass
      * @param \lib\bkenerator\Config $config
      * @return string
      */
-    public static function renderName($oldname, $actionclass, $config = null)
+    public static function renderName($field, $actionclass, $config = null)
     {
         $name = $actionclass . '_';
-        $name .= str_replace('.', '_', $oldname);
+        $name .= str_replace('.', '_', $field);
         if(null != $config){
             $name .= (!is_null($config->getConfigValue('range')) && $config->getConfigValue('range') == 'range') ? '_min' : '';
         }

@@ -39,8 +39,12 @@ class ParseBlock {
                 $piece = self::getPiece($output, $match[0]);
                 
                 $id = $match[1];
-                self::$blocks[$id] = $piece;
-                
+                if(isset(self::$blocks[$id])){
+                    self::$blocks[$id] .= $piece;
+                }else{
+                    self::$blocks[$id] = $piece;
+                }
+               
                 $output = str_replace($match[0] . $piece . Tags::PATTERN_ENDBLOCK, '', $output);
             }
             
