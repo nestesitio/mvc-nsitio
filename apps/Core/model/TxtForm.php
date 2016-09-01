@@ -78,6 +78,7 @@ class TxtForm extends \lib\form\FormMerged {
         return $form;
     }
     
+    
     /**
      * 
      * @return \model\forms\HtmTxtForm
@@ -86,15 +87,31 @@ class TxtForm extends \lib\form\FormMerged {
         return $this->forms[HtmTxt::TABLE];
     }
     
+    /**
+     * 
+     * @param string $value
+     * @return \apps\Core\model\TxtForm
+     */
     public function setTypeValue($value){
         $form = $this->getTxtForm();
         $input = $form->getTypeInput()->setValue($value);
-        $form->setTypeInput($input);
-        
+        $form->setTypeInput($input);    
         
         $this->forms[HtmTxt::TABLE] = $form;
+        return $this;
+    }
+    
+    /**
+     * 
+     * @param string $toolbar
+     * @return \apps\Core\model\TxtForm
+     */
+    public function setToolbar($toolbar){
+        $form = $this->getTxtForm();
+        $input = $form->getTxtInput()->setToolbar($toolbar);
+        $form->setTxtInput($input);
         
-        
+        $this->forms[HtmTxt::TABLE] = $form;
         return $this;
     }
 

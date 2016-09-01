@@ -3,8 +3,8 @@
 namespace apps\Core\model;
 
 use \model\models\Htm;
-use \model\models\HtmPageHasVars;
-use \model\forms\HtmPageHasVarsForm;
+use \model\models\HtmHasVars;
+use \model\forms\HtmHasVarsForm;
 use \lib\form\input\HiddenInput;
 
 /**
@@ -69,9 +69,9 @@ class HtmForm extends \lib\form\FormMerged {
      * @return \apps\Core\model\HtmForm
      */
     public function addHtmVars($var){
-        $this->queue = array_merge($this->queue, [HtmPageHasVars::TABLE]);
-        $this->models[HtmPageHasVars::TABLE] = new HtmPageHasVars();
-        $this->forms[HtmPageHasVars::TABLE] = $this->declareHtmVarsForm($var);
+        $this->queue = array_merge($this->queue, [HtmHasVars::TABLE]);
+        $this->models[HtmHasVars::TABLE] = new HtmHasVars();
+        $this->forms[HtmHasVars::TABLE] = $this->declareHtmVarsForm($var);
         
         $this->merge();
         return $this;
@@ -81,7 +81,7 @@ class HtmForm extends \lib\form\FormMerged {
      * @return HtmForm
      */
     private function declareHtmVarsForm($var){
-        $form = HtmPageHasVarsForm::initialize();
+        $form = HtmHasVarsForm::initialize();
         
         $query = \model\querys\HtmVarsQuery::start()->filterByVar($var)->orderByValue();
         $input = $form->getHtmVarsIdInput();
@@ -92,13 +92,27 @@ class HtmForm extends \lib\form\FormMerged {
         return $form;
     }
     
+    /**
+     * 
+     * @param string $controller
+     * @return \apps\Core\model\PageTextForm
+     */
+    public function setHtmController($controller){
+        $form = $this->getHtmForm();
+        $input = HiddenInput::create()->setValue($controller);
+        $form->setControllerInput($input);
+        $this->forms[Htm::TABLE] = $form;
+        $this->merge();
+        return $this;
+    }
+    
     
     /**
      * 
-     * @return HtmPageHasVarsForm
+     * @return HtmHasVarsForm
      */
-    public function getHtmPageHasVarsForm(){
-        return $this->forms[HtmPageHasVars::TABLE];
+    public function getHtmHasVarsForm(){
+        return $this->forms[HtmHasVars::TABLE];
     }
     
     /**

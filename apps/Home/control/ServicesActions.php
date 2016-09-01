@@ -9,6 +9,7 @@
 namespace apps\Home\control;
 
 use \lib\page\HtmQuerie;
+use \model\models\HtmMedia;
 
 /**
  * Description of ServicesActions
@@ -19,7 +20,7 @@ use \lib\page\HtmQuerie;
 class ServicesActions extends \lib\control\Controller {
 
     public function servicesAction() {
-        $pages = HtmQuerie::startQuery()->filterByVar('local', 'home-services')->getPages();
+        $pages = HtmQuerie::startQuery()->getMedia(HtmMedia::GENRE_IMG)->filterByApp('services')->orderByOrd()->getPages();
         
 
         foreach($pages as $page){

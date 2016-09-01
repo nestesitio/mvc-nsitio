@@ -12,7 +12,7 @@ use \lib\register\Vars;
 
 
 /**
- * Description of PageForm
+ * Used to insert pages in CMS system
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jan 16, 2015

@@ -21,7 +21,7 @@ class VarsQueries {
     */
     public static function get(){
         $query = HtmVarsQuery::start()->groupById();
-        $query->joinHtmPageHasVars(Mysql::LEFT_JOIN)->selectHtmVarsId()->selectHtmId()->endUse();
+        $query->joinHtmHasVars(Mysql::LEFT_JOIN)->selectHtmVarsId()->selectHtmId()->endUse();
 	
         
         return $query;

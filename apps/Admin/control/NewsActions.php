@@ -5,7 +5,7 @@ namespace apps\Admin\control;
 use \lib\register\Vars;
 
 use \apps\Core\model\PagesQuery;
-use \apps\Core\model\PagesForm;
+use \apps\Core\model\PageTextForm;
 use \apps\Core\model\HtmForm;
 use \model\models\HtmPage;
 use \lib\page\MediaQuery;
@@ -50,7 +50,7 @@ class NewsActions extends \apps\Core\control\PagesActions {
     }
     
     public function uploadimageNewsAction(){
-        $upload = $this->bindImageAction(['folder'=>'/uploads', 'width'=>500, 'height'=>500]);
+        $upload = $this->bindImageAction(['folder'=>'/userfiles/images/news', 'width'=>500, 'height'=>500]);
         if($upload != false){
             $this->json['id'] = $this->saveMedia($upload);
         }
@@ -80,20 +80,20 @@ class NewsActions extends \apps\Core\control\PagesActions {
     
     public function editNewsAction() {
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
-        $form = PagesForm::initialize($this->app_slug)->setQueryValues($query);
+        $form = PageTextForm::initialize($this->app_slug)->setQueryValues($query);
         
         $this->renderForm($form, 'news');
     }
     
     
     public function newNewsAction() {
-        $form = PagesForm::initialize($this->app_slug);
+        $form = PageTextForm::initialize($this->app_slug);
         #more code about $form and $query
         $this->renderForm($form, 'news');
     }
     
     public function bindNewsAction() {
-        $form = PagesForm::initialize($this->app_slug)->validate();
+        $form = PageTextForm::initialize($this->app_slug)->validate();
         #more code for processing - example
         #$model = $form->getModels('table')->setColumnValue('field','value');
         #$form->setModel('table', $model);

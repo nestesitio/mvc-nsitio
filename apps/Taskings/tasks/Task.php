@@ -14,6 +14,7 @@ class Task {
      * @var array
      */
     private static $options = [];
+
     /**
      * @var
      */
@@ -55,19 +56,19 @@ class Task {
     /**
      *
      */
-    private static function doGenerate(){
+    private static function doGenerate() {
         $exec = new \lib\crud\Generate();
         # php task.php -t admin -a app -n control -m model -f ...
-       if (isset(self::$options['a']) && 
-               isset(self::$options['n']) && 
-               isset(self::$options['m'])) {
+        if (isset(self::$options['a']) &&
+                isset(self::$options['n']) &&
+                isset(self::$options['m'])) {
             $file = (isset(self::$options['f'])) ? self::$options['f'] : null;
             // buildApp($app, $name, $model, $area, $file = null)
-            if(self::$options['t'] == 'admin'){
+            if (self::$options['t'] == 'admin') {
                 $exec->buildAdmin(self::$options['a'], self::$options['n'], self::$options['m'], self::$options['t'], $file);
-            }elseif(self::$options['t'] == 'cms'){
+            } elseif (self::$options['t'] == 'cms') {
                 $exec->buildCms(self::$options['a'], self::$options['n'], self::$options['m'], self::$options['t'], $file);
-            }else{
+            } else {
                 $exec->buildApp(self::$options['a'], self::$options['n'], self::$options['m']);
             }
             

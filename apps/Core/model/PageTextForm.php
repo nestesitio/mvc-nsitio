@@ -9,12 +9,13 @@ use \lib\form\form\FormRender;
 #use \lib\register\Vars;
 
 /**
- * Description of PagesForm
+ * Used to edit pages in CMS system,
+ * contains rich text editor
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jul 24, 2015
  */
-class PagesForm extends \lib\form\FormMerged {
+class PageTextForm extends \lib\form\FormMerged {
 
     /**
      * @var
@@ -23,10 +24,10 @@ class PagesForm extends \lib\form\FormMerged {
 
     /**
      * @param $app
-     * @return PagesForm
+     * @return PageTextForm
      */
     public static function initialize($app) {
-        $form = new PagesForm();
+        $form = new PageTextForm();
         $form->declaration($app);
         
         return $form;
@@ -62,7 +63,9 @@ class PagesForm extends \lib\form\FormMerged {
         $input = HiddenInput::create(Htm::FIELD_HTM_APP_ID)->setValue($query->getId());
         $form->setHtmAppIdInput($input);
         
-        $form->setStatInput()->setDefault(Htm::STAT_PUBLIC);
+        $input = $form->getStatInput();
+        $input->setValuesList([Htm::STAT_PUBLIC, Htm::STAT_PRIVATE])->setValue(Htm::STAT_PUBLIC);
+        $form->setStatInput($input);
         $form->setOrdInput()->setDefault(1);
         
         return $form;
@@ -95,12 +98,32 @@ class PagesForm extends \lib\form\FormMerged {
         return $form;
     }
     
-    
+    /**
+     * 
+     * @return \model\forms\HtmForm
+     */
     public function getHtmForm(){
         return $this->forms[Htm::TABLE];
     }
     
+    /**
+     * 
+     * @param string $controller
+     * @return \apps\Core\model\PageTextForm
+     */
+    public function setHtmController($controller){
+        $form = $this->getHtmForm();
+        $input = HiddenInput::create()->setValue($controller);
+        $form->setControllerInput($input);
+        $this->forms[Htm::TABLE] = $form;
+        $this->merge();
+        return $this;
+    }
     
+    /**
+     * 
+     * @return \model\forms\HtmPageForm
+     */
     public function getHtmPageForm(){
         return $this->forms[HtmPage::TABLE];
     }
@@ -108,12 +131,12 @@ class PagesForm extends \lib\form\FormMerged {
      /**
      * 
      * @param string $var
-     * @return \apps\Core\model\PagesForm
+     * @return \apps\Core\model\PageTextForm
      */
     public function addHtmVars($var){
-        $this->queue = array_push($this->queue, HtmPageHasVars::TABLE);
-        $this->models[HtmPageHasVars::TABLE] = new HtmPageHasVars();
-        $this->forms[HtmPageHasVars::TABLE] = $this->declareHtmVarsForm($var);
+        $this->queue = array_push($this->queue, HtmHasVars::TABLE);
+        $this->models[HtmHasVars::TABLE] = new HtmHasVars();
+        $this->forms[HtmHasVars::TABLE] = $this->declareHtmVarsForm($var);
         
         $this->merge();
         return $this;
@@ -122,12 +145,12 @@ class PagesForm extends \lib\form\FormMerged {
     /**
      * @param string $var
      * 
-     * @return HtmPageHasVarsForm
+     * @return HtmHasVarsForm
      */
     private function declareHtmVarsForm($var){
-        $form = HtmPageHasVarsForm::initialize();
+        $form = HtmHasVarsForm::initialize();
         /*
-        $input = HiddenInput::create(HtmPageHasVars::FIELD_HTM_ID)->setDefault(0);
+        $input = HiddenInput::create(HtmHasVars::FIELD_HTM_ID)->setDefault(0);
 	$form->setHtmIdInput($input);
          * 
          */
@@ -145,10 +168,10 @@ class PagesForm extends \lib\form\FormMerged {
     
     /**
      * 
-     * @return HtmPageHasVarsForm
+     * @return HtmHasVarsForm
      */
-    public function getHtmPageHasVarsForm(){
-        return $this->forms[HtmPageHasVars::TABLE];
+    public function getHtmHasVarsForm(){
+        return $this->forms[HtmHasVars::TABLE];
     }
 
     /**

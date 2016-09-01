@@ -2,14 +2,14 @@
 <root>
   <show>
     <fields comment="Fields for render">
-      <htmpagehasvarshtmvarsid field="htm_page_has_vars.htm_vars_id" show="false" filter="false">
+      <htmhasvarshtmvarsid field="htm_has_vars.htm_vars_id" show="false" filter="false">
         <label lang="en">Htm Vars Id</label>
         <label lang="pt">Htm Vars Id</label>
-      </htmpagehasvarshtmvarsid>
-      <htmpagehasvarshtmid field="htm_page_has_vars.htm_id" show="false" filter="false">
+      </htmhasvarshtmvarsid>
+      <htmhasvarshtmid field="htm_has_vars.htm_id" show="false" filter="false">
         <label lang="en">Htm Id</label>
         <label lang="pt">Htm Id</label>
-      </htmpagehasvarshtmid>
+      </htmhasvarshtmid>
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="core/edit_htmhasvars" auth="1">
@@ -34,27 +34,27 @@
       </closeform>
     </buttons>
   </show>
-  <grid identification="htmhasvars" paging="25" fieldid="htm_page_has_vars.id">
+  <grid identification="htmhasvars" paging="25" fieldid="htm_has_vars.id">
     <columns comment="Columns for grid">
-      <htmpagehasvarshtmvarsid field="htm_page_has_vars.htm_vars_id" class="vars_id" sort="true">
+      <htmhasvarshtmvarsid field="htm_has_vars.htm_vars_id" class="vars_id" sort="true">
         <label lang="en">Htm Vars Id</label>
         <label lang="pt">Htm Vars Id</label>
-      </htmpagehasvarshtmvarsid>
-      <htmpagehasvarshtmid field="htm_page_has_vars.htm_id" class="id" sort="true">
+      </htmhasvarshtmvarsid>
+      <htmhasvarshtmid field="htm_has_vars.htm_id" class="id" sort="true">
         <label lang="en">Htm Id</label>
         <label lang="pt">Htm Id</label>
-      </htmpagehasvarshtmid>
+      </htmhasvarshtmid>
     </columns>
     <tools comment="buttons in row">
-      <edit action="core/edit_htmhasvars" class="fa-pencil" id="htm_page_has_vars.id" auth="1">
+      <edit action="core/edit_htmhasvars" class="fa-pencil" id="htm_has_vars.id" auth="1">
         <label lang="en">Edit</label>
         <label lang="pt">Edit</label>
       </edit>
-      <show action="core/show_htmhasvars" class="fa-eye" id="htm_page_has_vars.id" auth="1">
+      <show action="core/show_htmhasvars" class="fa-eye" id="htm_has_vars.id" auth="1">
         <label lang="en">Show</label>
         <label lang="pt">Show</label>
       </show>
-      <del action="core/del_htmhasvars" class="fa-trash-o" id="htm_page_has_vars.id" auth="1">
+      <del action="core/del_htmhasvars" class="fa-trash-o" id="htm_has_vars.id" auth="1">
         <label lang="en">Del</label>
         <label lang="pt">Del</label>
       </del>

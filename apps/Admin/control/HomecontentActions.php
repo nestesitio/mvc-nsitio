@@ -4,7 +4,7 @@ namespace apps\Admin\control;
 
 use \lib\register\Vars;
 
-use \apps\Core\model\PagesForm;
+use \apps\Core\model\PageTextForm;
 use \model\models\HtmPage;
 use \apps\Core\model\PagesQuery;
 use \lib\session\SessionConfig;
@@ -68,20 +68,20 @@ class HomecontentActions extends \apps\Core\control\PagesActions {
     
     public function editHomecontentAction() {
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
-        $form = PagesForm::initialize($this->app_slug)->setQueryValues($query);
+        $form = PageTextForm::initialize($this->app_slug)->setQueryValues($query);
         
         $this->renderForm($form, 'homecontent');
     }
     
     public function newHomecontentAction() {
-        $form = PagesForm::initialize($this->app_slug);
+        $form = PageTextForm::initialize($this->app_slug);
         #more code about $form and $query
         $this->renderForm($form, 'homecontent');
         
     }
     
     public function bindHomecontentAction() {
-        $form = PagesForm::initialize($this->app_slug)->validate();
+        $form = PageTextForm::initialize($this->app_slug)->validate();
         #more code for processing - example
         #$model = $form->getModels('table')->setColumnValue('field','value');
         #$form->setModel('table', $model);

@@ -6,10 +6,11 @@ use \lib\register\Vars;
 
 use \apps\Core\model\PagesQuery;
 use \model\forms\HtmPageForm;
-use \apps\Core\model\PagesForm;
+use \apps\Core\model\PageTextForm;
 use \apps\Core\tools\LangsRowTools;
 use \apps\Core\model\TxtForm;
 use \model\models\HtmPage;
+use \lib\form\input\WysihtmlInput;
 
 /**
  * Description of PagesActions
@@ -62,8 +63,9 @@ class PagesActions extends \apps\Core\control\CmsActions {
      * 
      * @return \apps\Core\model\TxtForm
      */
-    protected function geTxtForm(){
-        return TxtForm::init(Vars::getId(), Vars::getRequests('lang'));
+    protected function geTxtForm($toolbar = WysihtmlInput::TOOLBAR_DEFAULT){
+        return TxtForm::init(Vars::getId(), Vars::getRequests('lang'))
+                ->setToolbar($toolbar);
     }
     
     /**
@@ -130,7 +132,7 @@ class PagesActions extends \apps\Core\control\CmsActions {
      */
     public function editPagesAction() {
         $query = PagesQuery::getList()->filterById(Vars::getId())->findOne();
-        $form = PagesForm::init('home')->setQueryValues($query);
+        $form = PageTextForm::init('home')->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'pages');
     }

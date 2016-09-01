@@ -10,14 +10,14 @@
         <label lang="en">Htm App Id</label>
         <label lang="pt">Htm App Id</label>
       </htmhtmappid>
-      <htmpagehasvarshtmvarsid field="htm_page_has_vars.htm_vars_id" show="true" filter="false">
+      <htmhasvarshtmvarsid field="htm_has_vars.htm_vars_id" show="true" filter="false">
         <label lang="en">Htm Vars Id</label>
         <label lang="pt">Tag</label>
-      </htmpagehasvarshtmvarsid>
-      <htmpagehasvarshtmid field="htm_page_has_vars.htm_id" show="false" filter="false">
+      </htmhasvarshtmvarsid>
+      <htmhasvarshtmid field="htm_has_vars.htm_id" show="false" filter="false">
         <label lang="en">Htm Id</label>
         <label lang="pt">Htm Id</label>
-      </htmpagehasvarshtmid>
+      </htmhasvarshtmid>
       <htmstat field="htm.stat" show="true" filter="true">
         <label lang="en">Stat</label>
         <label lang="pt">Stat</label>
