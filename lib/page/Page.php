@@ -22,6 +22,8 @@ class Page {
     private $ord;
     private $app;
     
+    private $url;
+    
 
     /**
      * 
@@ -49,6 +51,12 @@ class Page {
         
         $this->setLangs();
         $this->setText();
+        $this->setMedia($model);
+        $this->model['page-url'] = $this->getUrl();
+    }
+    
+    public function getUrl(){
+        return \lib\url\UrlHref::renderPageLink($this->app, $this->slug) . '.htm';
     }
     
     /**
@@ -238,6 +246,22 @@ class Page {
     
     public function getFooter(){
         return $this->footer;
+    }
+    
+    private $mediasrc = null;
+    
+    public function setMedia(Htm $model){
+        $media = $model->getHtmHasMedia()->getHtmMedia();
+        $src = $media->getUrl();
+        if($src != null){
+           $this->mediasrc = $src;
+            $this->model['media-src'] = $this->mediasrc;
+        }
+        
+    }
+    
+    public function getMediaSrc(){
+        return $this->mediasrc;
     }
 
 }

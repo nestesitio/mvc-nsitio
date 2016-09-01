@@ -135,8 +135,12 @@ class UploadFile
                 $this->name = $fileName;
                 
                 if(!empty($width) || !empty($height)){
+                    
                     $image = new Image($data["tmp_name"]);
-                    $image->resampleImageFile(HTMROOT . $this->folder . $fileName, $width, $height);
+                    $file = $image->resampleImageFile(HTMROOT . $this->folder . $fileName, $width, $height);
+                    if(!is_file($file)){
+                        return 'no-file ';
+                    }
                 }else{
                     move_uploaded_file($data["tmp_name"], HTMROOT . $this->folder . $fileName);
                 }
@@ -146,6 +150,8 @@ class UploadFile
             }
             
         }
+        
+        
     }
 
     /**

@@ -182,10 +182,10 @@ class DataConfig
     {
         $value = $this->x_conf->queryXPath($path . "/label[@lang='" . 'pt' . "']");
         if (empty($value)) {
-            $value = $this->xmdl->queryXPath($path . "/label[@lang='" . 'en' . "']");
+            $value = $this->x_conf->queryXPath($path . "/label[@lang='" . 'en' . "']");
         }
         if (empty($value)) {
-            $value = $this->xmdl->queryXPath($path . "/label[@lang='" . 'pt' . "']");
+            $value = $this->x_conf->queryXPath($path . "/label[@lang='" . 'pt' . "']");
         }
         return $value;
     }

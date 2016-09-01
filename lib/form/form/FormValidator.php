@@ -57,13 +57,16 @@ class FormValidator
     public static function validateInt($field, $label, $required, $max)
     {
         $value = filter_var(self::getValue($field), FILTER_SANITIZE_STRING);
+        if(empty($value)){
+            $value = 0;
+        }
         $max = pow(10, $max) - 1;
         $value = str_replace(',', '.', $value);
         $result = filter_var($value, FILTER_VALIDATE_INT,
         ['options' => ['min_range' => ($max * -1), 'max_range' => $max]]);
         if($result === false && $required == true){
             Monitor::setMonitor(Monitor::FORM, $field . ' value is not int ' . $value);
-            Monitor::setUserMessages(null, $label . ' value is not int');
+            Monitor::setUserMessages(null, $label . ' value: ' .$value .' is not int');
             return null;
         }elseif($result === false){
             return 0;

@@ -139,6 +139,16 @@ class UrlHref
         }
         return $button . '>' . $title . '</a></li>';
     }
+    
+    /**
+     * 
+     * @param string $app
+     * @param string $canonical
+     * @return string a relative url
+     */
+    public static function renderPageLink($app, $canonical){
+        return self::renderRelativeHref(['app'=>$app, 'canonical'=>$canonical]);
+    }
 
 
 

@@ -6,6 +6,7 @@ use \model\querys\HtmQuery;
 use \model\models\HtmPage;
 use \model\models\HtmApp;
 use \lib\page\Page;
+use \lib\mysql\Mysql;
 
 /**
  * Description of HtmQuery
@@ -32,6 +33,14 @@ class HtmQuerie {
         $this->query->joinHtmPage()->endUse();
     }
     
+    public function getMedia($genre){
+        $this->query->joinHtmHasMedia(Mysql::LEFT_JOIN)->joinHtmMedia(Mysql::LEFT_JOIN)
+                ->filterByGenre($genre)
+                ->selectUrl()->selectTitle()
+                ->endUse()->endUse();
+        return $this;
+    }
+    
     /**
      * 
      * @param string $app
@@ -44,6 +53,17 @@ class HtmQuerie {
         $this->query->filterByColumn(HtmPage::FIELD_SLUG, $slug);
         return $this;
     }
+    
+    /**
+     * 
+     * @param string $value
+     * @return \lib\page\HtmQuery
+     */
+    public function filterByApp($value){
+        $this->query->filterByColumn(HtmApp::FIELD_SLUG, $value);
+        return $this;
+    }
+    
     
     /**
      * 
@@ -62,7 +82,7 @@ class HtmQuerie {
      * @return \lib\page\HtmQuerie
      */
     public function filterByVar($var, $value){
-        $this->query->joinHtmPageHasVars()
+        $this->query->joinHtmHasVars()
                 ->joinHtmVars()->filterByVar($var)->filterByValue($value)->endUse()
                 ->endUse();
         return $this;

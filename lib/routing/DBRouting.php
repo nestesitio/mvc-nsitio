@@ -42,7 +42,7 @@ class DBRouting
 
                 return false;
             }
-        }else{
+        }else{            
             Vars::setTitle($page->getTitle());
             Vars::setHeadin($page->getHeading());
             Vars::setPage($page->getHtmId());

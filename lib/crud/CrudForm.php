@@ -145,7 +145,7 @@ class CrudForm
             $input = 'DateInput';
             $valmethod = 'Date';
             $fstring = $this->writeDateInput($fstring, $field);
-        } elseif ($type == 'text') {
+        } elseif ($type == 'text' || $type == 'tinytext') {
             $input = 'TextAreaInput';
             $valmethod = 'Text';
             $fstring = str_replace(', %$args%', '', $fstring);

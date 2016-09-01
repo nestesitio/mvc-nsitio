@@ -74,6 +74,8 @@ class Image
                 }
             }
             ImageDestroy($dst_img);
+        }else{
+            move_uploaded_file($this->file, $destiny);
         }
         return $destiny;
     }

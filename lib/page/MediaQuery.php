@@ -19,8 +19,11 @@ class MediaQuery {
     
     public static function getListForPage($htm){
         $query = HtmMediaQuery::start()
-                ->joinHtmHasMedia(Mysql::LEFT_JOIN)->selectHtmId()->selectOrd()->endUse()
-                ->addJoinCondition(HtmHasMedia::TABLE, HtmHasMedia::FIELD_HTM_ID, $htm);
+                ->joinHtmHasMedia(Mysql::LEFT_JOIN)
+                ->selectHtmId()->selectOrd()
+                ->orderByHtmId(Mysql::DESC)->orderByOrd()
+                ->endUse()
+                ->addJoinCondition(HtmHasMedia::TABLE, HtmHasMedia::FIELD_HTM_ID ,$htm);
 	
         
         return $query;
@@ -80,7 +83,7 @@ class MediaQuery {
      * 
      * @return \lib\page\Media
      */
-    public function getPage(){
+    public function getMedia(){
         $result = $this->query->findOne();
         return Media::initialize($result);
     }

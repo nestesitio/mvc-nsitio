@@ -26,6 +26,12 @@ class WysihtmlInput extends \lib\form\input\TextAreaInput
         $obj = new WysihtmlInput($field, $field);
         return $obj;
     }
+    
+    const TOOLBAR_DEFAULT = 'default';
+    
+    const TOOLBAR_MEDIA = 'withmedia';
+    
+    const TOOLBAR_SIMPLE = 'simple';
 
     /**
      * @return string
