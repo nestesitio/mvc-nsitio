@@ -1,5 +1,5 @@
 
-function exportOptionsForUnknows(element){
+function exportValueForUnknows(element){
     var exportTo = document.getElementById(element.getAttribute("data-export"));
     
     var type_input = document.getElementById(element.getAttribute("data-export").replace("sku_id", "sku_type"));

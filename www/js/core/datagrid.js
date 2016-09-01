@@ -77,6 +77,7 @@ function closeModal(){
 }
 
 function setModalAction(element) {
+    $('.datawindow').remove();
     $('.modal').modal('show');
     $('.modal').on('shown.bs.modal', function (event) {
         var modal = $(this);
@@ -101,7 +102,6 @@ function setRowAction(element) {
         var url = getUrl(element);
         //$(".grid-filters").hide();
         closeFilter(document.getElementsByClassName("btn-hidefilter")[0]);
-        closeDataWindow(getParentByClass(element, "bodygrid"));
         if (command === "del") {
             deleteRow(row, url);
         }else if (command === "transfer") {

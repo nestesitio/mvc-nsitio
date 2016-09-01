@@ -62,7 +62,7 @@ div.btns-form{position:absolute;right:0;top:1px;z-index:4}
 div.btns-form-project{position:absolute;right:0;top:-35px;z-index:4}
 div.btns-filter{position:absolute;right:0;top:1px;z-index:6}
 /*********inputs*/
-div.form-group{max-width: 500px;position:relative; clear: both;}
+div.form-group{max-width: 600px;position:relative; clear: both;}
 div.form-gallery-group{max-width: 120px; min-width: 120px;
                    position:relative; float: left; display: inline-table; margin: 5px}
 .has-error > .input-msg{color:#F6622F;}
