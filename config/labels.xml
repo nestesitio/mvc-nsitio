@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <word key="insert">
+        <version lang="en">Insert</version>
+        <version lang="pt">Inserir</version>
+    </word>
+    <word key="export">
+        <version lang="en">Export</version>
+        <version lang="pt">Exportar</version>
+    </word>
+    <word key="langs">
+        <version lang="en">Langs</version>
+        <version lang="pt">Idiomas</version>
+    </word>
+    <word key="images">
+        <version lang="en">Images</version>
+        <version lang="pt">Imagens</version>
+    </word>
+    <word key="edit">
+        <version lang="en">Edit</version>
+        <version lang="pt">Editar</version>
+    </word>
+    <word key="show">
+        <version lang="en">Show</version>
+        <version lang="pt">Ver</version>
+    </word>
+    <word key="delete">
+        <version lang="en">Delete</version>
+        <version lang="pt">Eliminar</version>
+    </word>
+    <word key="save">
+        <version lang="en">Save</version>
+        <version lang="pt">Gravar</version>
+    </word>
+    <word key="close">
+        <version lang="en">Close</version>
+        <version lang="pt">Fechar</version>
+    </word>
+    <word key="status">
+        <version lang="en">Status</version>
+        <version lang="pt">Estado</version>
+    </word>
+    <word key="ord">
+        <version lang="en">Ord</version>
+        <version lang="pt">Ord</version>
+    </word>
+    <word key="udpated">
+        <version lang="en">Update</version>
+        <version lang="pt">Actualização</version>
+    </word>
+    <word key="date">
+        <version lang="en">Date</version>
+        <version lang="pt">Data</version>
+    </word>
+    <word key="dslug">
+        <version lang="en">Slug</version>
+        <version lang="pt">Canonico</version>
+    </word>
+    <word key="menu">
+        <version lang="en">Menu</version>
+        <version lang="pt">Menu</version>
+    </word>
+    <word key="heading">
+        <version lang="en">Heading</version>
+        <version lang="pt">Heading</version>
+    </word>
+    <word key="app">
+          <version lang="pt">Módulo</version>
+          <version lang="en">App</version>
+    </word>
+    <word key="id">
+        <version lang="en">Id</version>
+        <version lang="pt">Id</version>
+    </word>
+    <word key="title">
+        <version lang="en">Title</version>
+        <version lang="pt">Titulo</version>
+    </word>
+    <word key="name">
+        <version lang="en">Name</version>
+        <version lang="pt">Nome</version>
+    </word>
+</root>
