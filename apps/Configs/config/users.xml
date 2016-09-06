@@ -82,6 +82,10 @@
         <label lang="en">Del</label>
         <label lang="pt">Del</label>
       </del>
+      <play action="configs/play_users" class="fa-play-circle-o" id="user_base.id" auth="1">
+        <label lang="en">Play</label>
+        <label lang="pt">Play</label>
+      </play>
     </tools>
     <buttons comment="buttons ion top">
       <new action="configs/new_users" class="glyphicon glyphicon-plus" auth="1">

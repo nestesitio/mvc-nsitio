@@ -28,7 +28,7 @@
       </htmord>
     </fields>
     <buttons comment="Commands for form and show">
-      <saveform class="glyphicon glyphicon-save" action="core/edit_htm" auth="1">
+      <saveform class="glyphicon glyphicon-save" action="core/edit_htm" auth="4">
         <label lang="en">Save</label>
         <label lang="pt">Save</label>
       </saveform>
@@ -36,15 +36,11 @@
         <label lang="en">Edit</label>
         <label lang="pt">Edit</label>
       </editform>
-      <resetform class="glyphicon glyphicon-refresh" auth="1">
-        <label lang="en">Reset</label>
-        <label lang="pt">Reset</label>
-      </resetform>
       <delform class="glyphicon glyphicon-trash" action="core/del_htm" auth="1">
         <label lang="en">Delete</label>
         <label lang="pt">Delete</label>
       </delform>
-      <closeform class="glyphicon glyphicon-remove" auth="1">
+      <closeform class="glyphicon glyphicon-remove" auth="4">
         <label lang="en">Close</label>
         <label lang="pt">Close</label>
       </closeform>

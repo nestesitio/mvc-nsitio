@@ -149,5 +149,6 @@ class UsersActions extends \lib\control\ControllerAdmin {
         $this->setEmptyView();
         echo 'you are playing now as ' . $user->getName();
     }
+    
 
 }

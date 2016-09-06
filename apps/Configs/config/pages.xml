@@ -66,7 +66,7 @@
                 <label lang="pt">Estado</label>
                 <label lang="en">Status</label>
             </htmstat>
-            <ord field="htm.ord" show="true">
+            <ord field="htm.ord" show="true" filter="false">
                 <label lang="en">Order</label>
                 <label lang="pt">Ordenação no menu</label>
             </ord>
@@ -94,7 +94,7 @@
                 <label lang="pt">Layout</label>
                 <label lang="en">Layout da Página</label>
             </htmlayoutid>
-            <updatedat field="htm_page.updated_at" filter="true" type="DateInput" range="range">
+            <updatedat field="htm_page.updated_at" filter="false" type="DateInput" range="range">
                 <label lang="pt">Actualização</label>
                 <label lang="en">Updated</label>
             </updatedat>
