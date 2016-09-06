@@ -2,25 +2,20 @@
 <root>
     <grid paging="20" identification="pages" fieldid="htm_page.htm_id">
         <columns>
-            <id field="htm_page.htm_id" class="id" sort="true">
-        
+            <id field="htm_page.htm_id" class="id" sort="true">        
                 <label key="id" />
             </id>
             <app field="htm_app.name" class="name" sort="true">
-                <label lang="en">Bundle</label>
-                <label lang="pt">Módulo</label>
+                <label key="app" />
             </app>
             <title field="htm_page.title" class="title" sort="true">
-                <label lang="en">Title</label>
                 <label key="title" />
             </title>
             <slug field="htm_page.slug" class="slug" sort="true">
-                <label lang="en">Slug</label>
-                <label lang="pt">Canonico</label>
+                <label key="slug" />
             </slug>
             <stat field="htm.stat" class="stat" sort="true">
-                <label lang="en">Status</label>
-                <label lang="pt">Estado</label>
+                <label key="status" />
             </stat>
             <ord field="htm.ord" class="stat" sort="true">
                 <label lang="en">Or</label>
@@ -28,22 +23,18 @@
             </ord>
         </columns>
         <tools comment="buttons in row">
-            <edit action="configs/edit_pages" class="fa-pencil" id="htm_page.htm_id" auth="1">
-        
+            <edit action="configs/edit_pages" class="fa-pencil" id="htm_page.htm_id" auth="1">        
                 <label key="edit" />
             </edit>
             <show action="configs/show_pages" class="fa-eye" id="htm_page.htm_id" auth="1">
-                <label lang="en">See</label>
                 <label key="show" />
             </show>
-            <del action="configs/del_pages" class="fa-trash-o" id="htm_page.htm_id" auth="1">
-        
+            <del action="configs/del_pages" class="fa-trash-o" id="htm_page.htm_id" auth="1">      
                 <label key="delete" />
             </del>
         </tools>
         <buttons comment="buttons in header">
             <edit action="configs/new_pages" class="glyphicon glyphicon-plus" auth="1">
-                <label lang="en">Create</label>
                 <label key="insert" />
             </edit>
         </buttons>
@@ -51,36 +42,28 @@
     <show>
         <fields>
             <htmhtmappid field="htm.htm_app_id" show="false" filter="true" range="multiple">
-                <label lang="pt">Módulo</label>
-                <label lang="en">App</label>
+                <label key="app" />
             </htmhtmappid>
             <htmappname field="htm_app.name" filter="false">
-                <label lang="pt">Módulo</label>
-                <label lang="en">App</label>
+                <label key="app" />
             </htmappname>
             <htmpagetitle field="htm_page.title" filter="true" range="like">
-                <label lang="pt">Titulo da Página</label>
-                <label lang="en">Page Title</label>
+                <label key="title" />
             </htmpagetitle>
             <htmstat field="htm.stat" filter="true">
-                <label lang="pt">Estado</label>
-                <label lang="en">Status</label>
+                <label key="status" />
             </htmstat>
             <ord field="htm.ord" show="true" filter="false">
-                <label lang="en">Order</label>
-                <label lang="pt">Ordenação no menu</label>
+                <label key="order" />
             </ord>
             <htmpagemenu field="htm_page.menu" filter="false">
-                <label lang="pt">Texto Menu</label>
-                <label lang="en">Menu Text</label>
+                <label key="menu" />
             </htmpagemenu>
             <htmpageslug field="htm_page.slug" filter="false">
-                <label lang="pt">canonical</label>
-                <label lang="en">canonical</label>
+                <label key="slug" />
             </htmpageslug>
             <htmpageheading field="htm_page.heading" filter="false">
-                <label lang="pt">Cabeçalho</label>
-                <label lang="en">Heading</label>
+                <label key="heading" />
             </htmpageheading>
             <htmpagelangstld field="htm_page.langs_tld" filter="false">
                 <label lang="pt">Idioma</label>
@@ -95,25 +78,20 @@
                 <label lang="en">Layout da Página</label>
             </htmlayoutid>
             <updatedat field="htm_page.updated_at" filter="false" type="DateInput" range="range">
-                <label lang="pt">Actualização</label>
-                <label lang="en">Updated</label>
+                <label key="updated" />
             </updatedat>
         </fields>
         <buttons comment="Commands for form and show">
             <saveform class="glyphicon glyphicon-save" action="configs/edit_pages" auth="1">
-        
-                <label lang="pt">Guardar</label>
+                <label key="save" />
             </saveform>
-            <editform class="glyphicon glyphicon-pencil" action="configs/edit_pages" auth="1">
-        
+            <editform class="glyphicon glyphicon-pencil" action="configs/edit_pages" auth="1">     
                 <label key="edit" />
             </editform>
             <delform class="glyphicon glyphicon-trash" action="configs/del_pages" auth="1">
-        
                 <label key="delete" />
             </delform>
-            <closeform class="glyphicon glyphicon-remove" auth="1">
-        
+            <closeform class="glyphicon glyphicon-remove" auth="1">    
                 <label key="close" />
             </closeform>
         </buttons>
