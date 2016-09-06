@@ -53,13 +53,16 @@ class Boot
         //set the action for the page
         $controller = false;
         $route = self::checkRoute(self::$params);
+        
+        //open xml file for translations
+        new \lib\lang\Labels();
        
 
         if($route != false){
             $controller = self::fireController(self::$params, $route);
             $controller = self::fireView($controller);
         }
-
+        
 
         self::output($controller);
 

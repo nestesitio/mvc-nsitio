@@ -30,6 +30,11 @@ class Labels {
 
     }
     
+    /**
+     * 
+     * @param string $key
+     * @return string
+     */
     public static function getLabel($key){
 
         foreach (self::$xml->getElementsByTagName('word') as $node) {
