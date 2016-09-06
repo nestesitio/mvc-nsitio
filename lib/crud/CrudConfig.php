@@ -43,10 +43,6 @@ class CrudConfig
      */
     private $fields;
     /**
-     * @var array
-     */
-    private $langs = [];
-    /**
      * @var
      */
     private $columns;
@@ -66,20 +62,9 @@ class CrudConfig
         $this->table = $table;
 
         $this->fields = $this->getFields($table);
-        $this->getLangsForLabels();
         $this->columns = ModelTools::buildModel($table)->getColumns();
     }
 
-    /**
-     *
-     */
-    private function getLangsForLabels()
-    {
-        $langs = \model\querys\LangsQuery::start()->find();
-        foreach($langs as $row){
-            $this->langs[] = $row->getTld();
-        }
-    }
 
 
     /**
@@ -134,7 +119,6 @@ class CrudConfig
         $parent->setAttribute('comment', $comment);
         $tools['saveform'] = 'glyphicon glyphicon-save';
         $tools['editform'] = 'glyphicon glyphicon-pencil';
-        $tools['resetform'] = 'glyphicon glyphicon-refresh';
         $tools['delform'] = 'glyphicon glyphicon-trash';
         $tools['closeform'] = 'glyphicon glyphicon-remove';
         $labels = ['Save','Edit','Reset','Delete','Close'];
@@ -146,7 +130,7 @@ class CrudConfig
             if(!empty($actions[$i])){
                 $node->setAttribute('action', $this->app . '/' . $actions[$i] . '_' . $this->name);
             }
-            $node->setAttribute('auth', '1');
+            ($tool == 'closeform')? $node->setAttribute('auth', '9') : $node->setAttribute('auth', '1');
             $node = $this->putLabelKey($doc, $node, $labels[$i++]);
             $parent->appendChild($node);
         }
@@ -279,7 +263,7 @@ class CrudConfig
                         $node = $doc->createElement($this->getNodeName($table, $col['Field']));
                         $node->setAttribute('field', $table . '.' . $col['Field']);
                         $node->setAttribute('show', 'true');
-                        $node = $this->appendLabel($doc, $node, $table . ' ' . $col['Field']);
+                        $node = $this->putLabelKey($doc, $node, $table . ' ' . $col['Field']);
                         $parent->appendChild($node);
                     }
                 }
@@ -319,24 +303,7 @@ class CrudConfig
             $node->setAttribute('show', 'true');
             $node->setAttribute('filter', 'true');
         }
-        $node = $this->appendLabel($doc, $node, $field['Field']);
-        return $node;
-    }
-
-    /**
-     * @param $doc
-     * @param $node
-     * @param $name
-     * @return mixed
-     */
-    private function appendLabel($doc, $node, $name)
-    {
-        foreach ($this->langs as $lang) {
-            $label = $doc->createElement('label');
-            $label->setAttribute('lang', $lang);
-            $label->appendChild($doc->createTextNode(CrudTools::setLabel($name)));
-            $node->appendChild($label);
-        }
+        $node = $this->putLabelKey($doc, $node, $field['Field']);
         return $node;
     }
 

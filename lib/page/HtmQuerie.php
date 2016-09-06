@@ -105,8 +105,10 @@ class HtmQuerie {
     public function getPages(){
         $pages = [];
         $results = $this->query->find();
-        foreach($results as $result){
-            $pages[] = Page::initialize($result);
+        if ($results != false) {
+            foreach ($results as $result) {
+                $pages[] = Page::initialize($result);
+            }
         }
         return $pages;
     }
@@ -117,7 +119,12 @@ class HtmQuerie {
      */
     public function getPage(){
         $result = $this->query->findOne();
-        return Page::initialize($result);
+        if($result == false){
+            echo ($this->query->toString());
+        }else{
+            return Page::initialize($result);
+        }
+        
     }
 
 }
