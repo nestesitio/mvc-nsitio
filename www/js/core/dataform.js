@@ -113,7 +113,7 @@ function testEmptyValue(element) {
     if (id === null || id === "") {
         id = getParentByClass(element, "input-group").id;
     }
-    if (value === "" || value === null || value === "0") {
+    if (value === "" || value === null || value === 0) {
         div.className = "form-group has-error";
         labelErrorMessage(id, " this value is required");
         return 1;
@@ -621,24 +621,6 @@ function generateOptions(element, url) {
         $(element).trigger('chosen:updated');
         inputChanged(element);
     });
-}
-
-function toEdit() {
-    var element, url, input;
-    var elements = document.getElementsByClassName("to-edit");
-    for (var i = 0; i < elements.length; i++) {
-        element = elements[i];
-        url = element.getAttribute("data-action");
-        input = element.getAttribute("data-input");
-        $(element).editable(url, {
-            data: function (value, settings) {
-                return textFromPHP(value);
-            },
-            type: input, id: 'content', cancel: 'Cancel', submit: 'Gravar',
-            indicator: 'Saving...', tooltip: 'Click to edit...',
-            cssclass : 'jedit'
-        });
-    }
 }
 
 function checkAvailability(element){

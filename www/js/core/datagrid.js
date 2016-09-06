@@ -102,6 +102,7 @@ function setRowAction(element) {
         var url = getUrl(element);
         //$(".grid-filters").hide();
         closeFilter(document.getElementsByClassName("btn-hidefilter")[0]);
+        closeDataWindow(getParentByClass(element, "bodygrid"));
         if (command === "del") {
             deleteRow(row, url);
         }else if (command === "transfer") {

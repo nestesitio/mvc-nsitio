@@ -283,3 +283,22 @@ function changeContent(element){
         $(layer).html(output);
     });
 }
+
+function toEdit() {
+    var element, url, input;
+    var elements = document.getElementsByClassName("to-edit");
+    for (var i = 0; i < elements.length; i++) {
+        element = elements[i];
+        url = element.getAttribute("data-action");
+        input = element.getAttribute("data-input");
+        alert('+' + url);
+        $(element).editable(url, {
+            data: function (value, settings) {
+                return textFromPHP(value);
+            },
+            type: input, id: 'content', cancel: 'Cancel', submit: 'Gravar',
+            indicator: 'Saving...', tooltip: 'Click to edit...',
+            cssclass : 'jedit'
+        });
+    }
+}
