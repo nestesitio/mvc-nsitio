@@ -80,4 +80,36 @@
         <version lang="en">Name</version>
         <version lang="pt">Nome</version>
     </word>
+    <word key="type">
+        <version lang="en">Type</version>
+        <version lang="pt">Tipo</version>
+    </word>
+    <word key="ord">
+        <version lang="en">Ord</version>
+        <version lang="pt">Ord</version>
+    </word>
+    <word key="order">
+        <version lang="en">Order</version>
+        <version lang="pt">Ordem</version>
+    </word>
+    <word key="menu">
+        <version lang="en">Menu Name</version>
+        <version lang="pt">Titulo menu</version>
+    </word>
+    <word key="group">
+        <label lang="en">Group</label>
+        <label lang="pt">Grupo</label>
+    </word>
+    <word key="company">
+        <label lang="en">Company</label>
+        <label lang="pt">Empresa</label>
+    </word>
+    <word key="function">
+        <label lang="en">Function</label>
+        <label lang="pt">Função</label>
+    </word>
+    <word key="mail">
+        <label lang="en">E-mail</label>
+        <label lang="pt">E-mail</label>
+    </word>
 </root>
