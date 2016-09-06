@@ -102,7 +102,7 @@ class XmlSimple extends \lib\xml\XmlFile
      * @param $lang
      * @return mixed
      */
-    private function getLangValue($item, $lang)
+    public function getLangValue($item, $lang)
     {
         $nodes = $item->childNodes;
         foreach ($nodes as $node) {
@@ -110,6 +110,7 @@ class XmlSimple extends \lib\xml\XmlFile
                 return $node->nodeValue;
             }
         }
+        return false;
     }
 
 }

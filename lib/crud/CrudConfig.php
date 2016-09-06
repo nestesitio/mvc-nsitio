@@ -147,7 +147,7 @@ class CrudConfig
                 $node->setAttribute('action', $this->app . '/' . $actions[$i] . '_' . $this->name);
             }
             $node->setAttribute('auth', '1');
-            $node = $this->putLabels($doc, $node, $labels[$i++]);
+            $node = $this->putLabelKey($doc, $node, $labels[$i++]);
             $parent->appendChild($node);
         }
 
@@ -175,7 +175,7 @@ class CrudConfig
 
             $node->setAttribute('class', $class);
             $node->setAttribute('auth', '1');
-            $node = $this->putLabels($doc, $node, $tool);
+            $node = $this->putLabelKey($doc, $node, $tool);
             $parent->appendChild($node);
         }
         return $parent;
@@ -198,7 +198,7 @@ class CrudConfig
             $node->setAttribute('class', $class);
             $node->setAttribute('id', $this->table . '.id');
             $node->setAttribute('auth', '1');
-            $node = $this->putLabels($doc, $node, $tool);
+            $node = $this->putLabelKey($doc, $node, $tool);
             $parent->appendChild($node);
         }
         return $parent;
@@ -210,14 +210,12 @@ class CrudConfig
      * @param $name
      * @return mixed
      */
-    private function putLabels($doc, $node, $name)
+    private function putLabelKey($doc, $node, $name)
     {
-        foreach ($this->langs as $lang) {
-            $label = $doc->createElement('label');
-            $label->setAttribute('lang', $lang);
-            $label->appendChild($doc->createTextNode(CrudTools::setLabel($name)));
-            $node->appendChild($label);
-        }
+        $label = $doc->createElement('label');
+        $label->setAttribute('key', $name);
+        $node->appendChild($label);
+        
         return $node;
     }
 
@@ -249,7 +247,7 @@ class CrudConfig
                     $node->setAttribute('field', $table . '.' . $col);
                     $node->setAttribute('class', StringTools::getStringAfterLastChar($col, '_'));
                     $node->setAttribute('sort', 'true');
-                    $node = $this->putLabels($doc, $node, $col);
+                    $node = $this->putLabelKey($doc, $node, $col);
                     $parent->appendChild($node);
                 }
             }

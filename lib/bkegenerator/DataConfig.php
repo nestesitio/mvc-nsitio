@@ -1,7 +1,7 @@
 <?php
 namespace lib\bkegenerator;
 
-use \lib\xml\XmlFile as XmlFile;
+use \lib\xml\XmlFile;
 use \lib\register\Monitor;
 use \lib\register\Vars;
 
@@ -180,14 +180,14 @@ class DataConfig
      */
     protected function findLabel($path)
     {
-        $value = $this->x_conf->queryXPath($path . "/label[@lang='" . 'pt' . "']");
+        $value = $this->x_conf->queryXPath($path . "/label[@lang='" . \lib\lang\Language::getLang() . "']");
         if (empty($value)) {
-            $value = $this->x_conf->queryXPath($path . "/label[@lang='" . 'en' . "']");
+            $key = $this->x_conf->queryXPath($path . '/label', NULL, 'key');
+            return \lib\lang\Labels::getLabel($key);
+        }else{
+            return $value;
         }
-        if (empty($value)) {
-            $value = $this->x_conf->queryXPath($path . "/label[@lang='" . 'pt' . "']");
-        }
-        return $value;
+
     }
 
 
