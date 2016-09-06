@@ -1,26 +1,26 @@
 <?php
 namespace model\querys;
 
-use \model\models\HtmPageHasVars;
+use \model\models\HtmHasVars;
 use \lib\mysql\Mysql;
 
 /**
- * Description of HtmPageHasVars
+ * Description of HtmHasVars
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
-class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
+class HtmHasVarsQuery extends \lib\model\QuerySelect {
     
     public static function start($merge = ALL){
-        $obj = new HtmPageHasVarsQuery(new \model\models\HtmPageHasVars(), $merge);
+        $obj = new HtmHasVarsQuery(new \model\models\HtmHasVars(), $merge);
         $obj->startPrimary($merge);
         return $obj;
     }
     
     public static function useModel($merge){
-        $obj = new HtmPageHasVarsQuery(new \model\models\HtmPageHasVars());
+        $obj = new HtmHasVarsQuery(new \model\models\HtmHasVars());
         $obj->startJoin($merge);
         return $obj;
     }
@@ -29,7 +29,7 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
      * Completes the join and return primary query,
      * because Netbeans we put child query on return, the program will get primary class function endUse()
      *
-     * @return \model\querys\HtmPageHasVarsQuery
+     * @return \model\querys\HtmHasVarsQuery
      */
     public function endUse(){
         return parent::completeMerge();
@@ -37,9 +37,9 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
     
     
     /**
-     * Completes query and return a collection of HtmPageHasVars objects
+     * Completes query and return a collection of HtmHasVars objects
      *
-     * @return \model\models\HtmPageHasVars[]
+     * @return \model\models\HtmHasVars[]
      */
     public function find() {
         return parent::find();
@@ -48,7 +48,7 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
     /**
      * Completes query with limit 1.
      *
-     * @return \model\models\HtmPageHasVars
+     * @return \model\models\HtmHasVars
      */
     public function findOne(){
         return parent::findOne();
@@ -57,7 +57,7 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
     /**
      * Completes query. If result is 0 create object
      *
-     * @return \model\models\HtmPageHasVars
+     * @return \model\models\HtmHasVars
      */
     public function findOneOrCreate(){
         return parent::findOneOrCreate();
@@ -66,74 +66,74 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
 
     /**
      * 
-     * @return \model\querys\HtmPageHasVarsQuery
+     * @return \model\querys\HtmHasVarsQuery
      */
     public function selectHtmVarsId() {
-        $this->setSelect(HtmPageHasVars::FIELD_HTM_VARS_ID);
+        $this->setSelect(HtmHasVars::FIELD_HTM_VARS_ID);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmPageHasVarsQuery
+     * @return \model\querys\HtmHasVarsQuery
      */
     public function filterByHtmVarsId($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmPageHasVars::FIELD_HTM_VARS_ID, $values, $operator);
+        $this->filterByColumn(HtmHasVars::FIELD_HTM_VARS_ID, $values, $operator);
         return $this;
     } 
     
     /**
      * 
-     * @return \model\querys\HtmPageHasVarsQuery
+     * @return \model\querys\HtmHasVarsQuery
      */
     public function orderByHtmVarsId($order = Mysql::ASC) {
-        $this->orderBy(HtmPageHasVars::FIELD_HTM_VARS_ID, $order);
+        $this->orderBy(HtmHasVars::FIELD_HTM_VARS_ID, $order);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmPageHasVarsQuery
+     * @return \model\querys\HtmHasVarsQuery
      */
     public function groupByHtmVarsId() {
-        $this->groupBy(HtmPageHasVars::FIELD_HTM_VARS_ID);
+        $this->groupBy(HtmHasVars::FIELD_HTM_VARS_ID);
         return $this;
     }
     
     
     /**
      * 
-     * @return \model\querys\HtmPageHasVarsQuery
+     * @return \model\querys\HtmHasVarsQuery
      */
     public function selectHtmId() {
-        $this->setSelect(HtmPageHasVars::FIELD_HTM_ID);
+        $this->setSelect(HtmHasVars::FIELD_HTM_ID);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmPageHasVarsQuery
+     * @return \model\querys\HtmHasVarsQuery
      */
     public function filterByHtmId($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmPageHasVars::FIELD_HTM_ID, $values, $operator);
+        $this->filterByColumn(HtmHasVars::FIELD_HTM_ID, $values, $operator);
         return $this;
     } 
     
     /**
      * 
-     * @return \model\querys\HtmPageHasVarsQuery
+     * @return \model\querys\HtmHasVarsQuery
      */
     public function orderByHtmId($order = Mysql::ASC) {
-        $this->orderBy(HtmPageHasVars::FIELD_HTM_ID, $order);
+        $this->orderBy(HtmHasVars::FIELD_HTM_ID, $order);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmPageHasVarsQuery
+     * @return \model\querys\HtmHasVarsQuery
      */
     public function groupByHtmId() {
-        $this->groupBy(HtmPageHasVars::FIELD_HTM_ID);
+        $this->groupBy(HtmHasVars::FIELD_HTM_ID);
         return $this;
     }
     
@@ -145,7 +145,7 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
      * @return \model\querys\HtmQuery
      */
     function joinHtm($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\Htm::TABLE, $join, [HtmPageHasVars::FIELD_HTM_ID, \model\models\Htm::FIELD_ID]);
+        $this->join(\model\models\Htm::TABLE, $join, [HtmHasVars::FIELD_HTM_ID, \model\models\Htm::FIELD_ID]);
         return \model\querys\HtmQuery::useModel($this);
     }
     
@@ -157,7 +157,7 @@ class HtmPageHasVarsQuery extends \lib\model\QuerySelect {
      * @return \model\querys\HtmVarsQuery
      */
     function joinHtmVars($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\HtmVars::TABLE, $join, [HtmPageHasVars::FIELD_HTM_VARS_ID, \model\models\HtmVars::FIELD_ID]);
+        $this->join(\model\models\HtmVars::TABLE, $join, [HtmHasVars::FIELD_HTM_VARS_ID, \model\models\HtmVars::FIELD_ID]);
         return \model\querys\HtmVarsQuery::useModel($this);
     }
     

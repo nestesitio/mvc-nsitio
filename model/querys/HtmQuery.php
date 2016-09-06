@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of Htm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
 class HtmQuery extends \lib\model\QuerySelect {
     
@@ -289,6 +289,18 @@ class HtmQuery extends \lib\model\QuerySelect {
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
+     * @return \model\querys\HtmHasVarsQuery
+     */
+    function joinHtmHasVars($join = Mysql::INNER_JOIN) {
+        $this->join(\model\models\HtmHasVars::TABLE, $join, [Htm::FIELD_ID, \model\models\HtmHasVars::FIELD_HTM_ID]);
+        return \model\querys\HtmHasVarsQuery::useModel($this);
+    }
+    
+    
+    /**
+     * Makes join
+     * @param \lib\mysql\Mysql $join
+     *
      * @return \model\querys\HtmLogQuery
      */
     function joinHtmLog($join = Mysql::INNER_JOIN) {
@@ -306,18 +318,6 @@ class HtmQuery extends \lib\model\QuerySelect {
     function joinHtmPage($join = Mysql::INNER_JOIN) {
         $this->join(\model\models\HtmPage::TABLE, $join, [Htm::FIELD_ID, \model\models\HtmPage::FIELD_HTM_ID]);
         return \model\querys\HtmPageQuery::useModel($this);
-    }
-    
-    
-    /**
-     * Makes join
-     * @param \lib\mysql\Mysql $join
-     *
-     * @return \model\querys\HtmPageHasVarsQuery
-     */
-    function joinHtmPageHasVars($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\HtmPageHasVars::TABLE, $join, [Htm::FIELD_ID, \model\models\HtmPageHasVars::FIELD_HTM_ID]);
-        return \model\querys\HtmPageHasVarsQuery::useModel($this);
     }
     
     

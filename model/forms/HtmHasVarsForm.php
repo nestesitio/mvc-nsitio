@@ -1,19 +1,19 @@
 <?php
 namespace model\forms;
 
-use \model\models\HtmPageHasVars;
+use \model\models\HtmHasVars;
 
 /**
- * Description of HtmPageHasVarsForm
+ * Description of HtmHasVarsForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
-class HtmPageHasVarsForm extends \lib\form\Form {
+class HtmHasVarsForm extends \lib\form\Form {
 
     public static function initialize($declare = true){
-        $form = new HtmPageHasVarsForm();
+        $form = new HtmHasVarsForm();
         if($declare == true){
             $form->declareInputs();
         }
@@ -22,8 +22,8 @@ class HtmPageHasVarsForm extends \lib\form\Form {
     
     
     public function declareInputs(){
-        $this->queue[] = HtmPageHasVars::TABLE;
-        $this->models[HtmPageHasVars::TABLE] = new HtmPageHasVars();
+        $this->queue[] = HtmHasVars::TABLE;
+        $this->models[HtmHasVars::TABLE] = new HtmHasVars();
         
         $this->setHtmVarsIdInput();
 	$this->setHtmIdInput();
@@ -48,42 +48,42 @@ class HtmPageHasVarsForm extends \lib\form\Form {
     */
     public function setHtmVarsIdInput($input = null) {
         if($input == null){
-            $input = \lib\form\input\SelectInput::create(HtmPageHasVars::FIELD_HTM_VARS_ID);
+            $input = \lib\form\input\SelectInput::create(HtmHasVars::FIELD_HTM_VARS_ID);
             $input->setRequired(true);
             $input->setOptionIndex(\model\models\HtmVars::FIELD_ID);
             $input->addEmpty();
             $input->setModel(\model\querys\HtmVarsQuery::start());
         }else{
-            $input->setElementId(HtmPageHasVars::FIELD_HTM_VARS_ID); 
+            $input->setElementId(HtmHasVars::FIELD_HTM_VARS_ID); 
         }
         
-        $this->setFieldLabel(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_VARS_ID, 'Htm Vars Id');
-        $this->setFieldInput(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_VARS_ID, $input);
+        $this->setFieldLabel(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_VARS_ID, 'Htm Vars Id');
+        $this->setFieldInput(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_VARS_ID, $input);
         
         return $input;
     }
     
     public function setHtmVarsIdDefault($value) {
-        $this->setDefault(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_VARS_ID, $value);
+        $this->setDefault(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_VARS_ID, $value);
     }
     
     public function unsetHtmVarsIdInput() {
-        $this->unsetFieldInput(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_VARS_ID);
+        $this->unsetFieldInput(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_VARS_ID);
     }
     
     /**
     * @return \lib\form\input\SelectInput;
     */
     public function getHtmVarsIdInput(){
-        return $this->forminputs[HtmPageHasVars::TABLE][HtmPageHasVars::FIELD_HTM_VARS_ID];
+        return $this->forminputs[HtmHasVars::TABLE][HtmHasVars::FIELD_HTM_VARS_ID];
     }
     
     public function getHtmVarsIdValue(){
-        return $this->getInputValue(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_VARS_ID);
+        return $this->getInputValue(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_VARS_ID);
     }
     
     public function validateHtmVarsIdInput() {
-        $value = $this->validateModel(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_VARS_ID, \model\querys\HtmVarsQuery::start(), 'htm_vars.id', true);
+        $value = $this->validateModel(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_VARS_ID, \model\querys\HtmVarsQuery::start(), 'htm_vars.id', true);
         return $value;
     }
     
@@ -95,42 +95,42 @@ class HtmPageHasVarsForm extends \lib\form\Form {
     */
     public function setHtmIdInput($input = null) {
         if($input == null){
-            $input = \lib\form\input\SelectInput::create(HtmPageHasVars::FIELD_HTM_ID);
+            $input = \lib\form\input\SelectInput::create(HtmHasVars::FIELD_HTM_ID);
             $input->setRequired(true);
             $input->setOptionIndex(\model\models\Htm::FIELD_ID);
             $input->addEmpty();
             $input->setModel(\model\querys\HtmQuery::start());
         }else{
-            $input->setElementId(HtmPageHasVars::FIELD_HTM_ID); 
+            $input->setElementId(HtmHasVars::FIELD_HTM_ID); 
         }
         
-        $this->setFieldLabel(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_ID, 'Htm Id');
-        $this->setFieldInput(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_ID, $input);
+        $this->setFieldLabel(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_ID, 'Htm Id');
+        $this->setFieldInput(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_ID, $input);
         
         return $input;
     }
     
     public function setHtmIdDefault($value) {
-        $this->setDefault(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_ID, $value);
+        $this->setDefault(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_ID, $value);
     }
     
     public function unsetHtmIdInput() {
-        $this->unsetFieldInput(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_ID);
+        $this->unsetFieldInput(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_ID);
     }
     
     /**
     * @return \lib\form\input\SelectInput;
     */
     public function getHtmIdInput(){
-        return $this->forminputs[HtmPageHasVars::TABLE][HtmPageHasVars::FIELD_HTM_ID];
+        return $this->forminputs[HtmHasVars::TABLE][HtmHasVars::FIELD_HTM_ID];
     }
     
     public function getHtmIdValue(){
-        return $this->getInputValue(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_ID);
+        return $this->getInputValue(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_ID);
     }
     
     public function validateHtmIdInput() {
-        $value = $this->validateModel(HtmPageHasVars::TABLE, HtmPageHasVars::FIELD_HTM_ID, \model\querys\HtmQuery::start(), 'htm.id', true);
+        $value = $this->validateModel(HtmHasVars::TABLE, HtmHasVars::FIELD_HTM_ID, \model\querys\HtmQuery::start(), 'htm.id', true);
         return $value;
     }
     

@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmPage
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
 class HtmPageQuery extends \lib\model\QuerySelect {
     
@@ -319,6 +319,80 @@ class HtmPageQuery extends \lib\model\QuerySelect {
      */
     public function groupByHeading() {
         $this->groupBy(HtmPage::FIELD_HEADING);
+        return $this;
+    }
+    
+    
+    /**
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public function selectSummary() {
+        $this->setSelect(HtmPage::FIELD_SUMMARY);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public function filterBySummary($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(HtmPage::FIELD_SUMMARY, $values, $operator);
+        return $this;
+    } 
+    
+    /**
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public function orderBySummary($order = Mysql::ASC) {
+        $this->orderBy(HtmPage::FIELD_SUMMARY, $order);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public function groupBySummary() {
+        $this->groupBy(HtmPage::FIELD_SUMMARY);
+        return $this;
+    }
+    
+    
+    /**
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public function selectPublicationDate() {
+        $this->setSelect(HtmPage::FIELD_PUBLICATION_DATE);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public function filterByPublicationDate($min = null, $max = null, $operator = Mysql::BETWEEN) {
+        $this->filterByDateColumn(HtmPage::FIELD_PUBLICATION_DATE, $min, $max, $operator);
+        return $this;
+    } 
+    
+    /**
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public function orderByPublicationDate($order = Mysql::ASC) {
+        $this->orderBy(HtmPage::FIELD_PUBLICATION_DATE, $order);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public function groupByPublicationDate() {
+        $this->groupBy(HtmPage::FIELD_PUBLICATION_DATE);
         return $this;
     }
     

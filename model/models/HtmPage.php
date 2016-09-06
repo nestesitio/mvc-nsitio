@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmPage
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
 class HtmPage extends \lib\model\Model 
 {
@@ -21,13 +21,15 @@ class HtmPage extends \lib\model\Model
     const FIELD_SLUG = 'htm_page.slug';
     const FIELD_MENU = 'htm_page.menu';
     const FIELD_HEADING = 'htm_page.heading';
+    const FIELD_SUMMARY = 'htm_page.summary';
+    const FIELD_PUBLICATION_DATE = 'htm_page.publication_date';
     const FIELD_UPDATED_AT = 'htm_page.updated_at';
     
     const TABLE = 'htm_page';
     
     
     protected function setModel(){
-        $this->columnNames['htm_page'] = ['id', 'htm_id', 'langs_tld', 'title', 'slug', 'menu', 'heading', 'updated_at'];
+        $this->columnNames['htm_page'] = ['id', 'htm_id', 'langs_tld', 'title', 'slug', 'menu', 'heading', 'summary', 'publication_date', 'updated_at'];
             
         $this->tableName = 'htm_page';
         
@@ -106,6 +108,24 @@ class HtmPage extends \lib\model\Model
 
     public function getHeading() {
         return $this->getColumnValue(HtmPage::FIELD_HEADING);
+    }  
+    
+
+    public function setSummary($value) {
+        $this->setColumnValue(HtmPage::FIELD_SUMMARY, $value);
+    }
+
+    public function getSummary() {
+        return $this->getColumnValue(HtmPage::FIELD_SUMMARY);
+    }  
+    
+
+    public function setPublicationDate($value) {
+        $this->setColumnDate(HtmPage::FIELD_PUBLICATION_DATE, $value);
+    }
+
+    public function getPublicationDate() {
+        return $this->getColumnValue(HtmPage::FIELD_PUBLICATION_DATE);
     }  
     
 

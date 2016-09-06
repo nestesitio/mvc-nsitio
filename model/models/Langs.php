@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of Langs
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
 class Langs extends \lib\model\Model 
 {

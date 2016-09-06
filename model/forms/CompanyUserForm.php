@@ -7,8 +7,8 @@ use \model\models\CompanyUser;
  * Description of CompanyUserForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
 class CompanyUserForm extends \lib\form\Form {
 

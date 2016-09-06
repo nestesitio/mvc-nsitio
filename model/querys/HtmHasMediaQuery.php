@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmHasMedia
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
 class HtmHasMediaQuery extends \lib\model\QuerySelect {
     
@@ -68,43 +68,6 @@ class HtmHasMediaQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmHasMediaQuery
      */
-    public function selectHtmId() {
-        $this->setSelect(HtmHasMedia::FIELD_HTM_ID);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmHasMediaQuery
-     */
-    public function filterByHtmId($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmHasMedia::FIELD_HTM_ID, $values, $operator);
-        return $this;
-    } 
-    
-    /**
-     * 
-     * @return \model\querys\HtmHasMediaQuery
-     */
-    public function orderByHtmId($order = Mysql::ASC) {
-        $this->orderBy(HtmHasMedia::FIELD_HTM_ID, $order);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmHasMediaQuery
-     */
-    public function groupByHtmId() {
-        $this->groupBy(HtmHasMedia::FIELD_HTM_ID);
-        return $this;
-    }
-    
-    
-    /**
-     * 
-     * @return \model\querys\HtmHasMediaQuery
-     */
     public function selectHtmMediaId() {
         $this->setSelect(HtmHasMedia::FIELD_HTM_MEDIA_ID);
         return $this;
@@ -142,6 +105,80 @@ class HtmHasMediaQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmHasMediaQuery
      */
+    public function selectHtmId() {
+        $this->setSelect(HtmHasMedia::FIELD_HTM_ID);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function filterByHtmId($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(HtmHasMedia::FIELD_HTM_ID, $values, $operator);
+        return $this;
+    } 
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function orderByHtmId($order = Mysql::ASC) {
+        $this->orderBy(HtmHasMedia::FIELD_HTM_ID, $order);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function groupByHtmId() {
+        $this->groupBy(HtmHasMedia::FIELD_HTM_ID);
+        return $this;
+    }
+    
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function selectTitle() {
+        $this->setSelect(HtmHasMedia::FIELD_TITLE);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function filterByTitle($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(HtmHasMedia::FIELD_TITLE, $values, $operator);
+        return $this;
+    } 
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function orderByTitle($order = Mysql::ASC) {
+        $this->orderBy(HtmHasMedia::FIELD_TITLE, $order);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function groupByTitle() {
+        $this->groupBy(HtmHasMedia::FIELD_TITLE);
+        return $this;
+    }
+    
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
     public function selectOrd() {
         $this->setSelect(HtmHasMedia::FIELD_ORD);
         return $this;
@@ -171,6 +208,43 @@ class HtmHasMediaQuery extends \lib\model\QuerySelect {
      */
     public function groupByOrd() {
         $this->groupBy(HtmHasMedia::FIELD_ORD);
+        return $this;
+    }
+    
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function selectNotes() {
+        $this->setSelect(HtmHasMedia::FIELD_NOTES);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function filterByNotes($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(HtmHasMedia::FIELD_NOTES, $values, $operator);
+        return $this;
+    } 
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function orderByNotes($order = Mysql::ASC) {
+        $this->orderBy(HtmHasMedia::FIELD_NOTES, $order);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmHasMediaQuery
+     */
+    public function groupByNotes() {
+        $this->groupBy(HtmHasMedia::FIELD_NOTES);
         return $this;
     }
     

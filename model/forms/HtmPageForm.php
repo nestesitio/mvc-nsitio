@@ -7,8 +7,8 @@ use \model\models\HtmPage;
  * Description of HtmPageForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
 class HtmPageForm extends \lib\form\Form {
 
@@ -32,6 +32,8 @@ class HtmPageForm extends \lib\form\Form {
 	$this->setSlugInput();
 	$this->setMenuInput();
 	$this->setHeadingInput();
+	$this->setSummaryInput();
+	$this->setPublicationDateInput();
 	
         return $this;
     }
@@ -45,6 +47,8 @@ class HtmPageForm extends \lib\form\Form {
 	$this->validateSlugInput();
 	$this->validateMenuInput();
 	$this->validateHeadingInput();
+	$this->validateSummaryInput();
+	$this->validatePublicationDateInput();
 	
         
         return $this;
@@ -361,6 +365,92 @@ class HtmPageForm extends \lib\form\Form {
     
     public function validateHeadingInput() {
         $value = $this->validateString(HtmPage::TABLE, HtmPage::FIELD_HEADING, false, 100);
+        return $value;
+    }
+    
+
+    /**
+    * Create and return the input associeted with field
+    * 
+    * @return \lib\form\input\TextAreaInput;
+    */
+    public function setSummaryInput($input = null) {
+        if($input == null){
+            $input = \lib\form\input\TextAreaInput::create(HtmPage::FIELD_SUMMARY);
+        }else{
+            $input->setElementId(HtmPage::FIELD_SUMMARY); 
+        }
+        
+        $this->setFieldLabel(HtmPage::TABLE, HtmPage::FIELD_SUMMARY, 'Summary');
+        $this->setFieldInput(HtmPage::TABLE, HtmPage::FIELD_SUMMARY, $input);
+        
+        return $input;
+    }
+    
+    public function setSummaryDefault($value) {
+        $this->setDefault(HtmPage::TABLE, HtmPage::FIELD_SUMMARY, $value);
+    }
+    
+    public function unsetSummaryInput() {
+        $this->unsetFieldInput(HtmPage::TABLE, HtmPage::FIELD_SUMMARY);
+    }
+    
+    /**
+    * @return \lib\form\input\TextAreaInput;
+    */
+    public function getSummaryInput(){
+        return $this->forminputs[HtmPage::TABLE][HtmPage::FIELD_SUMMARY];
+    }
+    
+    public function getSummaryValue(){
+        return $this->getInputValue(HtmPage::TABLE, HtmPage::FIELD_SUMMARY);
+    }
+    
+    public function validateSummaryInput() {
+        $value = $this->validateText(HtmPage::TABLE, HtmPage::FIELD_SUMMARY);
+        return $value;
+    }
+    
+
+    /**
+    * Create and return the input associeted with field
+    * 
+    * @return \lib\form\input\DateInput;
+    */
+    public function setPublicationDateInput($input = null) {
+        if($input == null){
+            $input = \lib\form\input\DateInput::create(HtmPage::FIELD_PUBLICATION_DATE);
+        }else{
+            $input->setElementId(HtmPage::FIELD_PUBLICATION_DATE); 
+        }
+        
+        $this->setFieldLabel(HtmPage::TABLE, HtmPage::FIELD_PUBLICATION_DATE, 'Publication Date');
+        $this->setFieldInput(HtmPage::TABLE, HtmPage::FIELD_PUBLICATION_DATE, $input);
+        
+        return $input;
+    }
+    
+    public function setPublicationDateDefault($value) {
+        $this->setDefault(HtmPage::TABLE, HtmPage::FIELD_PUBLICATION_DATE, $value);
+    }
+    
+    public function unsetPublicationDateInput() {
+        $this->unsetFieldInput(HtmPage::TABLE, HtmPage::FIELD_PUBLICATION_DATE);
+    }
+    
+    /**
+    * @return \lib\form\input\DateInput;
+    */
+    public function getPublicationDateInput(){
+        return $this->forminputs[HtmPage::TABLE][HtmPage::FIELD_PUBLICATION_DATE];
+    }
+    
+    public function getPublicationDateValue(){
+        return $this->getInputDate(HtmPage::TABLE, HtmPage::FIELD_PUBLICATION_DATE);
+    }
+    
+    public function validatePublicationDateInput() {
+        $value = $this->validateDate(HtmPage::TABLE, HtmPage::FIELD_PUBLICATION_DATE);
         return $value;
     }
     

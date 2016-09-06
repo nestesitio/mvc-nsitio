@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmVars
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-20 19:50
- * Updated @2016-08-20 19:50
+ * Created @2016-08-29 16:42
+ * Updated @2016-08-29 16:42
  */
 class HtmVars extends \lib\model\Model 
 {
@@ -85,10 +85,10 @@ class HtmVars extends \lib\model\Model
     /**
     * Return model object
     * 
-    * @return new \model\models\HtmPageHasVars;
+    * @return new \model\models\HtmHasVars;
     */
-    public function getHtmPageHasVars() {
-        $obj = new \model\models\HtmPageHasVars();
+    public function getHtmHasVars() {
+        $obj = new \model\models\HtmHasVars();
         $obj->merge($this);
         return $obj;
     }  
