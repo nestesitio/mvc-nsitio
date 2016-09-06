@@ -149,9 +149,8 @@ class Generate
     }
     
     
-    public function buildCms($app, $name, $model, $area = 'cms', $file = null){
+    public function buildCms($app, $name, $model = 'htm', $area = 'cms', $file = null){
         $crud = new \lib\crud\CrudApp($app, $name, $model);
-        $crud->setConstrains($this->getConstrains());
         $crud->createFolders()->execute($area, $file); 
     }
 

@@ -135,7 +135,7 @@ class CrudApp
         $this->area = $area;
         //$this->savePage();
         if ($file == null || $file == 'actions') {
-            $this->createActions();
+            $this->createActions($area);
         }
         if ($file == null || $file == 'view') {
             $this->createView();
@@ -144,16 +144,16 @@ class CrudApp
             if ($file == null || $file == 'models' || $file == 'form') {
                 $this->createForm();
             }
+            if ($file == null || $file == 'models' || $file == 'model') {
+                $this->createModel();
+            }
+        }
+        if ($area == 'cms' || $area == 'admin') {
             if ($file == null || $file == 'config') {
                 $this->createConfig();
             }
         }
-        if ($area == 'cms') {
-            
-        }
-        if ($file == null || $file == 'models' || $file == 'model') {
-            $this->createModel();
-        }
+
     }
 
     /**
@@ -184,6 +184,7 @@ class CrudApp
     private function createActions()
     {
         $tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'tpl_apps' . DS . 'actions_' . $this->area . '.tpl';
+        
         $file = $this->folder . DS . 'control' . DS . $this->name . 'Actions.php';
         if (is_file($file)) {
             echo "Action File " . $this->name . 'Actions.php' . " exists, delete it to write \n";
