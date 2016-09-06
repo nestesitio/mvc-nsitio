@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of Company
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-08-29 16:42
- * Updated @2016-08-29 16:42
+ * Created @2016-09-06 12:59
+ * Updated @2016-09-06 12:59
  */
 class Company extends \lib\model\Model 
 {
