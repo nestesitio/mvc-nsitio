@@ -3,10 +3,10 @@
   <show>
     <fields comment="Fields for render">
       <htmvarsid field="htm_vars.id" show="false" filter="false">
-        <label lang="en">Id</label>
+
         <label lang="es">Id</label>
         <label lang="fr">Id</label>
-        <label lang="pt">Id</label>
+        <label key="id" />
       </htmvarsid>
       <htmvarsvar field="htm_vars.var" show="true" filter="true">
         <label lang="en">Var</label>
@@ -29,16 +29,16 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="configs/edit_vars" auth="1">
-        <label lang="en">Save</label>
+
         <label lang="es">Save</label>
         <label lang="fr">Save</label>
-        <label lang="pt">Save</label>
+        <label key="save" />
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="configs/edit_vars" auth="1">
-        <label lang="en">Edit</label>
+
         <label lang="es">Edit</label>
         <label lang="fr">Edit</label>
-        <label lang="pt">Edit</label>
+        <label key="edit" />
       </editform>
       <resetform class="glyphicon glyphicon-refresh" auth="1">
         <label lang="en">Reset</label>
@@ -47,24 +47,24 @@
         <label lang="pt">Reset</label>
       </resetform>
       <delform class="glyphicon glyphicon-trash" action="configs/del_vars" auth="1">
-        <label lang="en">Delete</label>
+
         <label lang="es">Delete</label>
         <label lang="fr">Delete</label>
-        <label lang="pt">Delete</label>
+        <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="1">
-        <label lang="en">Close</label>
+
         <label lang="es">Close</label>
         <label lang="fr">Close</label>
-        <label lang="pt">Close</label>
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
   <grid identification="vars" paging="25" fieldid="htm_vars.id">
     <columns comment="Columns for grid">
       <htmvarsid field="htm_vars.id" class="id" sort="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </htmvarsid>
       <htmvarsvar field="htm_vars.var" class="name" sort="true">
         <label lang="en">Var</label>
@@ -81,26 +81,26 @@
     </columns>
     <tools comment="buttons in row">
       <edit action="configs/edit_vars" class="fa-pencil" id="htm_vars.id" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Edit</label>
+
+        <label key="edit" />
       </edit>
       <show action="configs/show_vars" class="fa-eye" id="htm_vars.id" auth="1">
-        <label lang="en">Show</label>
-        <label lang="pt">Show</label>
+
+        <label key="show" />
       </show>
       <del action="configs/del_vars" class="fa-trash-o" id="htm_vars.id" auth="1">
-        <label lang="en">Del</label>
+
         <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="configs/new_vars" class="glyphicon glyphicon-plus" auth="1">
-        <label lang="en">New</label>
-        <label lang="pt">New</label>
+
+        <label key="insert" />
       </new>
       <export url="/configs/export_vars" class="glyphicon glyphicon-export" auth="1">
-        <label lang="en">Export</label>
-        <label lang="pt">Export</label>
+
+        <label key="export" />
       </export>
     </buttons>
   </grid>

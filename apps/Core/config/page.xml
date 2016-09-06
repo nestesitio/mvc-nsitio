@@ -3,8 +3,8 @@
   <show>
     <fields comment="Fields for render">
       <htmpageid field="htm_page.id" show="false" filter="false">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </htmpageid>
       <htmpagehtmid field="htm_page.htm_id" range="multiple" show="false" filter="true">
         <label lang="en">Htm Id</label>
@@ -29,16 +29,16 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="salesforce/edit_pages" auth="1">
-        <label lang="en">Save</label>
+
         <label lang="pt">Guardar</label>
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="salesforce/edit_pages" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </editform>
       <closeform class="glyphicon glyphicon-remove" auth="4">
-        <label lang="en">Close</label>
-        <label lang="pt">Fechar</label>
+
+        <label key="close" />
       </closeform>
     </buttons>
   </show>

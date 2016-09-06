@@ -15,8 +15,8 @@
         <label lang="pt">User Currency Curr</label>
       </usercurrencycurr>
       <projectid field="project.id" show="false" filter="false">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </projectid>
       <projectcompanyid field="project.company_id" range="multiple" show="false" filter="true">
         <label lang="en">Company Id</label>
@@ -39,8 +39,8 @@
         <label lang="pt">Type</label>
       </projecttype>
       <projectname field="project.name" show="true" filter="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </projectname>
       <projectstat field="project.stat" show="true" filter="true">
         <label lang="en">Stat</label>
@@ -57,40 +57,40 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="edit_testes" auth="1">
-        <label lang="en">Save</label>
+
         <label lang="pt">Guardar</label>
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="edit_testes" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </editform>
       <resetform class="glyphicon glyphicon-refresh" auth="1">
         <label lang="en">Reset</label>
         <label lang="pt">Reset</label>
       </resetform>
       <delform class="glyphicon glyphicon-trash" action="del_testes" auth="1">
-        <label lang="en">Delete</label>
-        <label lang="pt">Eliminar</label>
+
+        <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="1">
-        <label lang="en">Close</label>
-        <label lang="pt">Fechar</label>
+
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
   <grid identification="testes" paging="25" fieldid="project.id">
     <columns comment="Columns for grid">
       <projectid field="project.id" class="id" sort="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </projectid>
       <projecttype field="project.type" class="type" sort="true">
         <label lang="en">Type</label>
         <label lang="pt">Type</label>
       </projecttype>
       <projectname field="project.name" class="name" sort="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </projectname>
       <projectstat field="project.stat" class="stat" sort="true">
         <label lang="en">Stat</label>
@@ -105,8 +105,8 @@
         <label lang="pt">Notes</label>
       </projectnotes>
       <companyname field="company.name" class="name" sort="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </companyname>
       <companynif field="company.nif" class="nif" sort="true">
         <label lang="en">Nif</label>
@@ -121,20 +121,20 @@
         <label lang="pt">Tld</label>
       </countrytld>
       <countryname field="country.name" class="name" sort="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </countryname>
       <countrylangstld field="country.langs_tld" class="tld" sort="true">
         <label lang="en">Langs Tld</label>
-        <label lang="pt">Langs Tld</label>
+        <label key="langs" />
       </countrylangstld>
       <userusergroupid field="user.user_group_id" class="group_id" sort="true">
         <label lang="en">User Group Id</label>
         <label lang="pt">User Group Id</label>
       </userusergroupid>
       <username field="user.name" class="name" sort="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </username>
       <usermail field="user.mail" class="mail" sort="true">
         <label lang="en">Mail</label>
@@ -143,26 +143,26 @@
     </columns>
     <tools comment="buttons in row">
       <edit action="configs/edit_testes" class="fa-pencil" id="project.id" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </edit>
       <show action="configs/show_testes" class="fa-eye" id="project.id" auth="1">
-        <label lang="en">Show</label>
-        <label lang="pt">Show</label>
+
+        <label key="show" />
       </show>
       <del action="configs/del_testes" class="fa-trash-o" id="project.id" auth="1">
-        <label lang="en">Del</label>
+
         <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="configs/new_testes" class="glyphicon glyphicon-plus" auth="1">
-        <label lang="en">New</label>
-        <label lang="pt">Inserir</label>
+
+        <label key="insert" />
       </new>
       <csv action="configs/csv_testes" class="glyphicon glyphicon-export" auth="1">
         <label lang="en">Csv</label>
-        <label lang="pt">Csv</label>
+        <label key="export" />
       </csv>
     </buttons>
   </grid>

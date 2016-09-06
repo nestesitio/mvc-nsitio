@@ -3,8 +3,8 @@
   <show>
     <fields comment="Fields for render">
       <id field="user_base.id" filter="false" show="false">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </id>
       <usergroupdescription field="user_group.description" filter="false" show="true">
         <label lang="en">User Group</label>
@@ -15,8 +15,8 @@
         <label lang="pt">Grupo</label>
       </usergroupid>
       <name field="user_base.name" filter="true" show="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </name>
       <username field="user_base.username" filter="false" show="true">
         <label lang="en">Username</label>
@@ -29,40 +29,40 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="configs/edit_users" auth="1">
-        <label lang="en">Save</label>
+
         <label lang="pt">Guardar</label>
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="configs/edit_users" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </editform>
       <resetform class="glyphicon glyphicon-refresh" auth="1">
         <label lang="en">Reset</label>
         <label lang="pt">Reset</label>
       </resetform>
       <delform class="glyphicon glyphicon-trash" action="configs/del_users" auth="1">
-        <label lang="en">Delete</label>
-        <label lang="pt">Apagar</label>
+
+        <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="1">
-        <label lang="en">Close</label>
-        <label lang="pt">Fechar</label>
+
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
   <grid identification="users" paging="25" fieldid="user_base.id">
     <columns comment="Columns for grid">
       <id field="user_base.id" class="id" sort="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </id>
       <description field="user_group.description" class="name" sort="true">
         <label lang="en">Group</label>
         <label lang="pt">Grupo</label>
       </description>
       <name field="user_base.name" class="name" sort="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </name>
       <username field="user_base.username" class="mail" sort="true">
         <label lang="en">Username</label>
@@ -71,15 +71,15 @@
     </columns>
     <tools comment="buttons in row">
       <edit action="configs/edit_users" class="fa-pencil" id="user_base.id" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </edit>
       <show action="configs/show_users" class="fa-eye" id="user_base.id" auth="1">
-        <label lang="en">Show</label>
-        <label lang="pt">Show</label>
+
+        <label key="show" />
       </show>
       <del action="configs/del_users" class="fa-trash-o" id="user_base.id" auth="1">
-        <label lang="en">Del</label>
+
         <label lang="pt">Del</label>
       </del>
       <play action="configs/play_users" class="fa-play-circle-o" id="user_base.id" auth="1">
@@ -89,12 +89,12 @@
     </tools>
     <buttons comment="buttons ion top">
       <new action="configs/new_users" class="glyphicon glyphicon-plus" auth="1">
-        <label lang="en">New</label>
-        <label lang="pt">Inserir</label>
+
+        <label key="insert" />
       </new>
       <csv target="blank" action="configs/csv_users" class="glyphicon glyphicon-export" auth="1">
         <label lang="en">Csv</label>
-        <label lang="pt">Csv</label>
+        <label key="export" />
       </csv>
     </buttons>
   </grid>

@@ -3,12 +3,12 @@
   <show>
     <fields comment="Fields for render">
       <usergroupid field="user_group.id" show="false" filter="false">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </usergroupid>
       <usergroupname field="user_group.name" show="true" filter="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Name</label>
+
+        <label key="name" />
       </usergroupname>
       <usergroupdescription field="user_group.description" show="true" filter="true">
         <label lang="en">Description</label>
@@ -17,36 +17,36 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="edit_usergroups" auth="1">
-        <label lang="en">Save</label>
-        <label lang="pt">Save</label>
+
+        <label key="save" />
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="edit_usergroups" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Edit</label>
+
+        <label key="edit" />
       </editform>
       <resetform class="glyphicon glyphicon-refresh" auth="1">
         <label lang="en">Reset</label>
         <label lang="pt">Reset</label>
       </resetform>
       <delform class="glyphicon glyphicon-trash" action="del_usergroups" auth="1">
-        <label lang="en">Delete</label>
-        <label lang="pt">Delete</label>
+
+        <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="1">
-        <label lang="en">Close</label>
-        <label lang="pt">Close</label>
+
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
   <grid identification="usergroups" paging="25" fieldid="user_group.id">
     <columns comment="Columns for grid">
       <usergroupid field="user_group.id" class="id" sort="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </usergroupid>
       <usergroupname field="user_group.name" class="name" sort="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Name</label>
+
+        <label key="name" />
       </usergroupname>
       <usergroupdescription field="user_group.description" class="description" sort="true">
         <label lang="en">Description</label>
@@ -55,26 +55,26 @@
     </columns>
     <tools comment="buttons in row">
       <edit action="configs/edit_usergroups" class="fa-pencil" id="user_group.id" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Edit</label>
+
+        <label key="edit" />
       </edit>
       <show action="configs/show_usergroups" class="fa-eye" id="user_group.id" auth="1">
-        <label lang="en">Show</label>
-        <label lang="pt">Show</label>
+
+        <label key="show" />
       </show>
       <del action="configs/del_usergroups" class="fa-trash-o" id="user_group.id" auth="1">
-        <label lang="en">Del</label>
+
         <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="configs/new_usergroups" class="glyphicon glyphicon-plus" auth="1">
-        <label lang="en">New</label>
-        <label lang="pt">New</label>
+
+        <label key="insert" />
       </new>
       <csv action="configs/csv_usergroups" class="glyphicon glyphicon-export" auth="1">
         <label lang="en">Csv</label>
-        <label lang="pt">Csv</label>
+        <label key="export" />
       </csv>
     </buttons>
   </grid>

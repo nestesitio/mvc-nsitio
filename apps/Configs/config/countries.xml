@@ -3,50 +3,50 @@
   <show>
     <fields comment="Fields for render">
       <id field="country.id" filter="true" show="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </id>
       <tld field="country.tld" filter="true" show="true">
         <label lang="en">Tld</label>
         <label lang="pt">Tld</label>
       </tld>
       <name field="country.name" filter="true" show="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </name>
       <langstld field="country.langs_tld" filter="true" show="true" range="multiple">
         <label lang="en">Langs Tld</label>
-        <label lang="pt">Langs Tld</label>
+        <label key="langs" />
       </langstld>
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="configs/edit_countries" auth="1">
-        <label lang="en">Save</label>
+
         <label lang="pt">Guardar</label>
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="configs/edit_countries" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </editform>
       <resetform class="glyphicon glyphicon-refresh" auth="1">
         <label lang="en">Reset</label>
         <label lang="pt">Reset</label>
       </resetform>
       <delform class="glyphicon glyphicon-trash" action="configs/del_countries" auth="1">
-        <label lang="en">Delete</label>
-        <label lang="pt">Apagar</label>
+
+        <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="1">
-        <label lang="en">Close</label>
-        <label lang="pt">Fechar</label>
+
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
   <grid identification="countries" paging="25" fieldid="country.id">
     <columns comment="Columns for grid">
       <id field="country.id" class="id" sort="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </id>
       <tld field="country.tld" class="tld">
         <label lang="en">Tld</label>
@@ -63,26 +63,26 @@
     </columns>
     <tools comment="buttons in row">
       <edit action="configs/edit_countries" class="fa-pencil" id="country.id" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </edit>
       <show action="configs/show_countries" class="fa-eye" id="country.id" auth="1">
-        <label lang="en">Show</label>
-        <label lang="pt">Show</label>
+
+        <label key="show" />
       </show>
       <del action="configs/del_countries" class="fa-trash-o" id="country.id" auth="1">
-        <label lang="en">Del</label>
+
         <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="configs/new_countries" class="glyphicon glyphicon-plus" auth="1">
-        <label lang="en">New</label>
-        <label lang="pt">Inserir</label>
+
+        <label key="insert" />
       </new>
       <csv target="blank" action="configs/csv_countries" class="glyphicon glyphicon-export" auth="1">
         <label lang="en">Csv</label>
-        <label lang="pt">Csv</label>
+        <label key="export" />
       </csv>
     </buttons>
   </grid>

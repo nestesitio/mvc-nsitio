@@ -3,8 +3,8 @@
   <show>
     <fields comment="Fields for render">
       <htmpageid field="htm_page.id" show="false" filter="false">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </htmpageid>
       <htmpagehtmid field="htm_page.htm_id" range="multiple" show="false" filter="false">
         <label lang="en">Htm Id</label>
@@ -12,7 +12,7 @@
       </htmpagehtmid>
       <htmpagelangstld field="htm_page.langs_tld" range="multiple" show="false" filter="true">
         <label lang="en">Langs Tld</label>
-        <label lang="pt">Langs Tld</label>
+        <label key="langs" />
       </htmpagelangstld>
       <htmpagehtmlayoutid field="htm_page.htm_layout_id" range="multiple" show="false" filter="false">
         <label lang="en">Htm Layout Id</label>
@@ -20,7 +20,7 @@
       </htmpagehtmlayoutid>
       <htmpagetitle field="htm_page.title" show="true" filter="false">
         <label lang="en">Title</label>
-        <label lang="pt">Titulo</label>
+        <label key="title" />
       </htmpagetitle>
       <htmpageslug field="htm_page.slug" show="true" filter="false">
         <label lang="en">Slug</label>
@@ -57,28 +57,28 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="edit_news" auth="4">
-        <label lang="en">Save</label>
-        <label lang="pt">Save</label>
+
+        <label key="save" />
       </saveform>
       <delform class="glyphicon glyphicon-trash" action="del_news" auth="1">
-        <label lang="en">Delete</label>
-        <label lang="pt">Delete</label>
+
+        <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="4">
-        <label lang="en">Close</label>
-        <label lang="pt">Close</label>
+
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
   <grid identification="news" paging="25" fieldid="htm.id">
     <columns comment="Columns for grid">
       <htmpageid field="htm.id" class="id" sort="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </htmpageid>
       <htmpagetitle field="htm_page.title" class="title" sort="true">
         <label lang="en">Title</label>
-        <label lang="pt">Titulo</label>
+        <label key="title" />
       </htmpagetitle>
       <htmstat field="htm.stat" class="stat" sort="true">
           <label lang="en">Status</label>
@@ -105,26 +105,26 @@
           <label lang="pt">Imagens</label>
       </photo>
       <edit id="htm.id" action="admin/status_news" class="fa-pencil" auth="4">
-        <label lang="en">Edit</label>
-        <label lang="pt">Edit</label>
+
+        <label key="edit" />
       </edit>
       <show id="htm.id" action="admin/show_news" class="fa-eye" auth="4">
-        <label lang="en">Show</label>
-        <label lang="pt">Show</label>
+
+        <label key="show" />
       </show>
       <del id="htm.id" action="admin/del_news" class="fa-trash-o" auth="1">
-        <label lang="en">Del</label>
+
         <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="admin/new_news" class="glyphicon glyphicon-plus" auth="4">
-        <label lang="en">New</label>
-        <label lang="pt">Inserir</label>
+
+        <label key="insert" />
       </new>
       <csv action="admin/csv_news" class="glyphicon glyphicon-export" auth="1">
         <label lang="en">Csv</label>
-        <label lang="pt">Exportar</label>
+        <label key="export" />
       </csv>
     </buttons>
   </grid>

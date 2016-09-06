@@ -3,8 +3,8 @@
   <show>
     <fields comment="Fields for render">
       <id field="support_log.id" filter="true" show="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </id>
       <supportid field="support_log.support_id" filter="true" show="true" range="multiple">
         <label lang="en">Support Id</label>
@@ -29,32 +29,32 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="support/edit_log" auth="1">
-        <label lang="en">Save</label>
+
         <label lang="pt">Guardar</label>
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="support/edit_log" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </editform>
       <resetform class="glyphicon glyphicon-refresh" auth="1">
         <label lang="en">Reset</label>
         <label lang="pt">Reset</label>
       </resetform>
       <delform class="glyphicon glyphicon-trash" action="support/del_log" auth="1">
-        <label lang="en">Delete</label>
-        <label lang="pt">Apagar</label>
+
+        <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="1">
-        <label lang="en">Close</label>
-        <label lang="pt">Fechar</label>
+
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
   <grid identification="log" paging="25" fieldid="support_log.id">
     <columns comment="Columns for grid">
       <id field="support_log.id" class="id" sort="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </id>
       <supportid field="support_log.support_id" class="id" sort="true">
         <label lang="en">Support Id</label>
@@ -97,8 +97,8 @@
         <label lang="pt">User Group Id</label>
       </usergroupid>
       <name field="user.name" class="name" sort="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </name>
       <mail field="user.mail" class="mail" sort="true">
         <label lang="en">Mail</label>
@@ -115,26 +115,26 @@
     </columns>
     <tools comment="buttons in row">
       <edit action="support/edit_log" class="fa-pencil" id="support_log.id" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </edit>
       <show action="support/show_log" class="fa-eye" id="support_log.id" auth="1">
-        <label lang="en">Show</label>
-        <label lang="pt">Show</label>
+
+        <label key="show" />
       </show>
       <del action="support/del_log" class="fa-trash-o" id="support_log.id" auth="1">
-        <label lang="en">Del</label>
+
         <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="support/new_log" class="glyphicon glyphicon-plus" auth="1">
-        <label lang="en">New</label>
-        <label lang="pt">Inserir</label>
+
+        <label key="insert" />
       </new>
       <csv target="blank" action="support/csv_log" class="glyphicon glyphicon-export" auth="1">
         <label lang="en">Csv</label>
-        <label lang="pt">Csv</label>
+        <label key="export" />
       </csv>
     </buttons>
   </grid>

@@ -13,12 +13,12 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="configs/edit_appgroup" auth="1">
-        <label lang="en">Save</label>
+
         <label lang="pt">Guardar</label>
       </saveform>
       <closeform class="glyphicon glyphicon-remove" auth="4">
-        <label lang="en">Close</label>
-        <label lang="pt">Fechar</label>
+
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
@@ -37,14 +37,14 @@
         <del action="configs/del_appgroup" class="fa-trash-o" id="user_group_has_htm_app.htm_app_id" auth="1">
             <vars var="app" value="user_group_has_htm_app.htm_app_id" />
             <vars var="group" value="user_group_has_htm_app.user_group_id" />
-            <label lang="en">Del</label>
-            <label lang="pt">Apagar</label>
+    
+            <label key="delete" />
         </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="configs/new_appgroup" class="glyphicon glyphicon-plus" auth="1">
-        <label lang="en">New</label>
-        <label lang="pt">Inserir</label>
+
+        <label key="insert" />
       </new>
     </buttons>
   </grid>

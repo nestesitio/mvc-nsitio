@@ -3,10 +3,10 @@
   <show>
     <fields comment="Fields for render">
       <htmmediaid field="htm_media.id" show="false" filter="false">
-        <label lang="en">Id</label>
+
         <label lang="es">Id</label>
         <label lang="fr">Id</label>
-        <label lang="pt">Id</label>
+        <label key="id" />
       </htmmediaid>
       <htmmediahtmid field="htm_media.htm_id" range="multiple" show="false" filter="true">
         <label lang="en">Htm Id</label>
@@ -36,7 +36,7 @@
         <label lang="en">Title</label>
         <label lang="es">Title</label>
         <label lang="fr">Title</label>
-        <label lang="pt">Title</label>
+        <label key="title" />
       </htmmediatitle>
       <htmmediaauthor field="htm_media.author" show="true" filter="true">
         <label lang="en">Author</label>
@@ -65,16 +65,16 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="salesforce/edit_files" auth="1">
-        <label lang="en">Save</label>
+
         <label lang="es">Save</label>
         <label lang="fr">Save</label>
         <label lang="pt">Guardar</label>
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="salesforce/edit_files" auth="1">
-        <label lang="en">Edit</label>
+
         <label lang="es">Edit</label>
         <label lang="fr">Edit</label>
-        <label lang="pt">Editar</label>
+        <label key="edit" />
       </editform>
       <resetform class="glyphicon glyphicon-refresh" auth="1">
         <label lang="en">Reset</label>
@@ -83,26 +83,26 @@
         <label lang="pt">Reset</label>
       </resetform>
       <delform class="glyphicon glyphicon-trash" action="del_files" auth="1">
-        <label lang="en">Delete</label>
+
         <label lang="es">Delete</label>
         <label lang="fr">Delete</label>
-        <label lang="pt">Eliminar</label>
+        <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="4">
-        <label lang="en">Close</label>
+
         <label lang="es">Close</label>
         <label lang="fr">Close</label>
-        <label lang="pt">Fechar</label>
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
   <grid identification="files" paging="25" fieldid="htm_media.id">
     <columns comment="Columns for grid">
       <htmmediaid field="htm_media.id" class="id" sort="true">
-        <label lang="en">Id</label>
+
         <label lang="es">Id</label>
         <label lang="fr">Id</label>
-        <label lang="pt">Id</label>
+        <label key="id" />
       </htmmediaid>
       <htmmediagenre field="htm_media.genre" class="genre" sort="true">
         <label lang="en">Genre</label>
@@ -126,7 +126,7 @@
         <label lang="en">Title</label>
         <label lang="es">Title</label>
         <label lang="fr">Title</label>
-        <label lang="pt">Title</label>
+        <label key="title" />
       </htmmediatitle>
       <htmmediaauthor field="htm_media.author" class="author" sort="true">
         <label lang="en">Author</label>
@@ -155,30 +155,30 @@
     </columns>
     <tools comment="buttons in row">
       <edit action="core/edit_files" class="fa-pencil" id="htm_media.id" auth="1">
-        <label lang="en">Edit</label>
+
         <label lang="es">Edit</label>
         <label lang="fr">Edit</label>
-        <label lang="pt">Editar</label>
+        <label key="edit" />
       </edit>
       <show action="core/show_files" class="fa-eye" id="htm_media.id" auth="1">
-        <label lang="en">Show</label>
+
         <label lang="es">Show</label>
         <label lang="fr">Show</label>
-        <label lang="pt">Ver</label>
+        <label key="show" />
       </show>
       <del action="core/del_files" class="fa-trash-o" id="htm_media.id" auth="1">
-        <label lang="en">Del</label>
+
         <label lang="es">Del</label>
         <label lang="fr">Del</label>
-        <label lang="pt">Eliminar</label>
+        <label key="delete" />
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="core/new_files" class="glyphicon glyphicon-file" auth="4">
-        <label lang="en">New</label>
+
         <label lang="es">New</label>
         <label lang="fr">New</label>
-        <label lang="pt">Inserir</label>
+        <label key="insert" />
       </new>
     </buttons>
   </grid>

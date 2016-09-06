@@ -3,8 +3,8 @@
     <grid paging="20" identification="pages" fieldid="htm_page.htm_id">
         <columns>
             <id field="htm_page.htm_id" class="id" sort="true">
-                <label lang="en">Id</label>
-                <label lang="pt">Id</label>
+        
+                <label key="id" />
             </id>
             <app field="htm_app.name" class="name" sort="true">
                 <label lang="en">Bundle</label>
@@ -12,7 +12,7 @@
             </app>
             <title field="htm_page.title" class="title" sort="true">
                 <label lang="en">Title</label>
-                <label lang="pt">Titulo</label>
+                <label key="title" />
             </title>
             <slug field="htm_page.slug" class="slug" sort="true">
                 <label lang="en">Slug</label>
@@ -29,22 +29,22 @@
         </columns>
         <tools comment="buttons in row">
             <edit action="configs/edit_pages" class="fa-pencil" id="htm_page.htm_id" auth="1">
-                <label lang="en">Edit</label>
-                <label lang="pt">Editar</label>
+        
+                <label key="edit" />
             </edit>
             <show action="configs/show_pages" class="fa-eye" id="htm_page.htm_id" auth="1">
                 <label lang="en">See</label>
-                <label lang="pt">Ver</label>
+                <label key="show" />
             </show>
             <del action="configs/del_pages" class="fa-trash-o" id="htm_page.htm_id" auth="1">
-                <label lang="en">Delete</label>
-                <label lang="pt">Apagar</label>
+        
+                <label key="delete" />
             </del>
         </tools>
         <buttons comment="buttons in header">
             <edit action="configs/new_pages" class="glyphicon glyphicon-plus" auth="1">
                 <label lang="en">Create</label>
-                <label lang="pt">Inserir</label>
+                <label key="insert" />
             </edit>
         </buttons>
     </grid>
@@ -101,20 +101,20 @@
         </fields>
         <buttons comment="Commands for form and show">
             <saveform class="glyphicon glyphicon-save" action="configs/edit_pages" auth="1">
-                <label lang="en">Save</label>
+        
                 <label lang="pt">Guardar</label>
             </saveform>
             <editform class="glyphicon glyphicon-pencil" action="configs/edit_pages" auth="1">
-                <label lang="en">Edit</label>
-                <label lang="pt">Editar</label>
+        
+                <label key="edit" />
             </editform>
             <delform class="glyphicon glyphicon-trash" action="configs/del_pages" auth="1">
-                <label lang="en">Delete</label>
-                <label lang="pt">Apagar</label>
+        
+                <label key="delete" />
             </delform>
             <closeform class="glyphicon glyphicon-remove" auth="1">
-                <label lang="en">Close</label>
-                <label lang="pt">Fechar</label>
+        
+                <label key="close" />
             </closeform>
         </buttons>
     </show>

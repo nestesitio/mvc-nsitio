@@ -3,8 +3,8 @@
   <show>
     <fields comment="Fields for render">
       <id field="support.id" filter="true" show="false">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </id>
       <userid field="support.user_id" filter="true" show="false" range="multiple">
         <label lang="en">User Id</label>
@@ -37,20 +37,20 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="support/edit_support" auth="1">
-        <label lang="en">Save</label>
+
         <label lang="pt">Enviar</label>
       </saveform>
       <closeform class="glyphicon glyphicon-remove" auth="1">
-        <label lang="en">Close</label>
-        <label lang="pt">Fechar</label>
+
+        <label key="close" />
       </closeform>
     </buttons>
   </show>
   <grid identification="support" paging="25" fieldid="support.id">
     <columns comment="Columns for grid">
       <id field="support.id" class="id" sort="true">
-        <label lang="en">Id</label>
-        <label lang="pt">Id</label>
+
+        <label key="id" />
       </id>
       <userid field="support.user_id" class="id" sort="true">
         <label lang="en">User Id</label>
@@ -73,8 +73,8 @@
         <label lang="pt">User Group Id</label>
       </usergroupid>
       <name field="user.name" class="name" sort="true">
-        <label lang="en">Name</label>
-        <label lang="pt">Nome</label>
+
+        <label key="name" />
       </name>
       <mail field="user.mail" class="mail" sort="true">
         <label lang="en">Mail</label>
@@ -91,26 +91,26 @@
     </columns>
     <tools comment="buttons in row">
       <edit action="support/edit_support" class="fa-pencil" id="support.id" auth="1">
-        <label lang="en">Edit</label>
-        <label lang="pt">Editar</label>
+
+        <label key="edit" />
       </edit>
       <show action="support/show_support" class="fa-eye" id="support.id" auth="1">
-        <label lang="en">Show</label>
-        <label lang="pt">Show</label>
+
+        <label key="show" />
       </show>
       <del action="support/del_support" class="fa-trash-o" id="support.id" auth="1">
-        <label lang="en">Del</label>
+
         <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="support/new_support" class="glyphicon glyphicon-plus" auth="1">
-        <label lang="en">New</label>
-        <label lang="pt">Inserir</label>
+
+        <label key="insert" />
       </new>
       <csv target="blank" action="support/csv_support" class="glyphicon glyphicon-export" auth="1">
         <label lang="en">Csv</label>
-        <label lang="pt">Csv</label>
+        <label key="export" />
       </csv>
     </buttons>
   </grid>
