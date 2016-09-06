@@ -22,7 +22,7 @@ class HomeActions extends \lib\control\Controller {
     public function defaultAction() {
         $this->setView('layout/agency/home');
         
-        $page = HtmQuerie::startQuery()->filterByVar('local', 'home-quem-somos')->getPage();
+        $page = HtmQuerie::startQuery()->getPage();
         $this->set('about', $page->getDesc());
         $this->sectionServices();
  
