@@ -55,11 +55,21 @@
                 </div>
                 <!-- /.navbar-header -->
 
-                {@embed control:'Backend/BackendMenu'; action:'topmenu'; view:'apps/Backend/view/topmenu.htm'}
-                <!--<ul class="nav navbar-top-links navbar-right">-->
+                <ul class="nav navbar-top-links navbar-right">
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        {@embed control:'Support/Support'; action:'menu'; view:'apps/Support/view/menu.htm'}
+                        <!-- /.dropdown-support -->
+                    </li>
+                    {@load \lib\url\Authool::render(user=>caret, debug=>tool)}
+                </ul>
+                
                 <!-- /.navbar-top-links -->
-
-                {@embed control:'Backend/BackendMenu'; action:'navbackend'; view:'layout/sb-admin/navside.htm'}
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse-sitio">
+                        {@load \lib\url\BackendMenu::render(configs=>fa-gear, admin=>fa-gear)}
+                    </div>
+                </div>
             </nav>
             
 
