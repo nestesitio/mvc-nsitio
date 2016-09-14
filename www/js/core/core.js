@@ -291,7 +291,6 @@ function toEdit() {
         element = elements[i];
         url = element.getAttribute("data-action");
         input = element.getAttribute("data-input");
-        alert('+' + url);
         $(element).editable(url, {
             data: function (value, settings) {
                 return textFromPHP(value);
