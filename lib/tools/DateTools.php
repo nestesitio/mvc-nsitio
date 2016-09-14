@@ -65,6 +65,21 @@ class DateTools
         }
 
     }
+    
+    public static function getTest($field, $group){
+        if($group == 'YEAR'){
+            return 'YEAR('.$field.')';
+        }
+        if($group == 'QUARTER'){
+            return "CONCAT(YEAR(".$field."), '-', QUARTER(".$field ."))";
+        }
+        if($group == 'MONTH'){
+            return 'DATE_FORMAT('.$field .', "%Y-%m")';
+        }
+        if($group == 'WEEK'){
+             return 'DATE_FORMAT('.$field .', "%Y-%m-%u")';
+        }
+    }
 
     /**
      * @param $field

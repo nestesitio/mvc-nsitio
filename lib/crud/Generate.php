@@ -142,6 +142,7 @@ class Generate
      */
     public function buildAdmin($app, $name, $model, $area = 'admin', $file = null)
     {
+        
         $crud = new \lib\crud\CrudApp($app, $name, $model);
         $crud->setConstrains($this->getConstrains());
         $crud->createFolders()->execute($area, $file);

@@ -195,10 +195,18 @@ class Configurator
     private static $lang_default;
     
     /**
+     *
+     * @var string 
+     */
+    private static $single_lang;
+    
+    /**
      * set the default language of the project
      */
     private function setLangDefault(){
         self::$lang_default = $this->xmlc->queryXPath('lang', null, 'default');
+        
+        self::$single_lang = $this->xmlc->queryXPath('lang', null, 'singler');
     }
     
     /**
@@ -207,6 +215,13 @@ class Configurator
      */
     public static function getLangDefault(){
         return self::$lang_default;
+    }
+    
+    public static function getSingleLang(){
+        if(self::$single_lang != false){
+            return self::$single_lang;
+        }
+        return null;
     }
 
 }

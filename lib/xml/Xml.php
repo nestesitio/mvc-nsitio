@@ -54,7 +54,7 @@ class Xml
     public static function getAtribute($item, $atr)
     {
         if (!is_null($item->attributes)) {
-            foreach ($item->attributes as $i => $attr) {
+            foreach ($item->attributes as $attr) {
                 if ($attr->name == $atr) {
                     return utf8_decode($attr->value);
                 }
@@ -99,6 +99,8 @@ class Xml
         foreach ($items as $item) {
             switch ($what) {
                 case('name'):$arr[] = $item->nodeName;
+                    break;
+                case('node'):$arr[] = $item;
                     break;
                 case('value'):
                     if (!empty($atr) && !is_null($item->attributes)) {

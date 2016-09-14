@@ -12,7 +12,6 @@ use \lib\session\Session;
  */
 class SessionCart {
 
-    private static $cart = [];
     
     public static function reset(){
         Session::setSession(Session::SESS_SHOP, null);
@@ -20,17 +19,31 @@ class SessionCart {
     
     public static function addToCart($id, $quantity){
         $session = Session::getSessionVar(Session::SESS_SHOP);
-        if(is_array($session)){
-            array_unshift($session, ['id'=>$id, 'quantity' => $quantity]);
-        }else{
-            $session[] = ['id'=>$id, 'quantity' => $quantity];
-        }
-        self::$cart = $session;
+        $session[$id] = $quantity;
+
         Session::setSession(Session::SESS_SHOP, $session);
     }
     
     public static function getCart(){
         return Session::getSessionVar(Session::SESS_SHOP);
+    }
+    
+    public static function getItemQuantity($id){
+        $session = Session::getSessionVar(Session::SESS_SHOP);
+        if(isset($session[$id])){
+            return $session[$id];
+        }
+        
+
+        return 0;
+    }
+    
+    public static function setTotalPoints($points){
+        Session::setSession('points', $points);
+    }
+    
+    public static function getTotalPoints(){
+        Session::getSession('points');
     }
 
 }

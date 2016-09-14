@@ -76,6 +76,32 @@ class UrlHref
         }
 
     }
+    
+    /**
+     * 
+     * @param mixed $param_url
+     * @param string $title
+     * @param array $params
+     * @return string
+     */
+    public static function renderLink($param_url, $title, $params = []){
+        $url = self::renderUrl($param_url);
+        
+        $str = '<a href="' . $url . '"';
+        if(isset($params[self::CLASS_A])){
+            $str .= ' class="fa '.$params[self::CLASS_A].'"';
+        }
+        $str .= '>';
+        if(isset($params[self::ICON_LEFT])){
+            $str .= '<i class="fa '.$params[self::ICON_LEFT].'"></i> ';
+        }
+        $str .= $title;
+        if(isset($params[self::ICON_RIGHT])){
+            $str .= ' <i class="fa '.$params[self::ICON_RIGHT].'"></i>';
+        }
+
+        return $str . '</a>';
+    }
 
     /**
      * @param $param_url
@@ -105,7 +131,8 @@ class UrlHref
         $str = (isset($params[self::CLASS_LI])) ? '<li class="' . $params[self::CLASS_LI] .'">' : '<li>';
         $str .= '<a href="' . $url . '"';
         if(isset($params[self::CLASS_A])){
-            $str .= ' class="fa '.$params[self::CLASS_A].'"';
+            $class = (strpos($params[self::CLASS_A], 'fa'))? 'fa ' . $params[self::CLASS_A]: $params[self::CLASS_A];
+            $str .= ' class="'.$class.'"';
         }
         $str .= '>';
         if(isset($params[self::ICON_LEFT])){

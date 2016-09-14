@@ -48,7 +48,7 @@ class Boot
         self::registParams(self::$params);
         self::registVars($querystring);
         
-        \lib\lang\Language::setlang();
+        \lib\lang\Language::setLang(Configurator::getSingleLang());
 
         //set the action for the page
         $controller = false;

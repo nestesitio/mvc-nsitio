@@ -147,5 +147,15 @@ class StringTools
         }
         return $data;
     }
+    
+    public static function argsToArray($args){
+        $args = explode(', ', $args);
+        $arr = [];
+        foreach($args as $arg){
+            list($key, $label) = explode('=>', $arg);
+            $arr[$key] = $label;
+        }
+        return $arr;
+    }
 
 }

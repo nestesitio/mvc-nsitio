@@ -4,6 +4,7 @@ namespace lib\url;
 use \lib\session\SessionUser;
 use \apps\User\model\UserGroupModel;
 use \lib\loader\Configurator;
+use \lib\tools\StringTools;
 
 /**
  * Description of Authool
@@ -27,12 +28,7 @@ class Authool extends \lib\url\MenuRender {
      * @return mixed
      */
     public static function render($args = null){
-        $args = explode(', ', $args);
-        $links = [];
-        foreach($args as $arg){
-            list($key, $label) = explode('=>', $arg);
-            $links[$key] = $label;
-        }
+        $links = StringTools::argsToArray($args);
         
         $menu = new Authool();
         $menu->build($links);
