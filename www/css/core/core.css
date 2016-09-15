@@ -111,7 +111,8 @@ span.selected{border: #cc0 solid 2px}
 }
 
 /*login*/
-.login-container{max-width: 40%}
+.layer-login{ overflow: auto;}
+.login-container{max-width: 40%;}
 @media (max-width: 768px) {
     .login-container{max-width: 50%}
 }
