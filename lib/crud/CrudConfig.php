@@ -121,8 +121,8 @@ class CrudConfig
         $tools['editform'] = 'glyphicon glyphicon-pencil';
         $tools['delform'] = 'glyphicon glyphicon-trash';
         $tools['closeform'] = 'glyphicon glyphicon-remove';
-        $labels = ['Save','Edit','Reset','Delete','Close'];
-        $actions = ['edit','edit','','del',''];
+        $labels = ['Save','Edit','Delete','Close'];
+        $actions = ['edit','edit','del',''];
         $i = 0;
         foreach($tools as $tool=>$class){
             $node = $doc->createElement($tool);
@@ -148,7 +148,7 @@ class CrudConfig
     {
         $parent = $doc->createElement($parentname);
         $parent->setAttribute('comment', $comment);
-        $tools = ['new'=>'glyphicon glyphicon-plus', 'export'=>'glyphicon glyphicon-export'];
+        $tools = ['insert'=>'glyphicon glyphicon-plus', 'export'=>'glyphicon glyphicon-export'];
         foreach($tools as $tool=>$class){
             $node = $doc->createElement($tool);
             if($tool == 'export'){

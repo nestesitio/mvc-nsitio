@@ -56,6 +56,7 @@ class Guard
         $user = UserBaseQuery::start()
                 //->filterByStatus([UserBase::STATUS_BLOCKED, UserBase::STATUS_VIRTUAL], Mysql::NOT_IN)
                 ->filterByUsername(Vars::getPosts('email'))->findOne();
+        
         if($user != false && $user->getStatus() == UserBase::STATUS_BLOCKED){
             \lib\session\SessionUserTools::logAttempt($user->getId());
             
