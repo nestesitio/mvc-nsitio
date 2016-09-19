@@ -2,6 +2,7 @@
 namespace lib\db;
 
 use PDO;
+use \PDOException;
 use \lib\register\Monitor;
 
 
