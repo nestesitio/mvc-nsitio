@@ -1,9 +1,11 @@
 <form action="{$action}" method="post">
     <div class="btns-filter" style="margin-right: 30px">
-        <a data-action="/{$app}/list_{$canonical}" class="btn-list-all btn btn-xs btn-primary">
-            <span class="glyphicon glyphicon-refresh"></span>Limpar</a>
-        <a data-action="list_{$canonical}" class="btn-filter btn btn-xs btn-primary">
-            <span class="glyphicon glyphicon-filter"></span>Filtrar</a>
+        <div class="btns-container">
+            <a data-action="/{$app}/list_{$canonical}" class="btn-list-all btn btn-xs btn-primary">
+                <span class="glyphicon glyphicon-refresh"></span>Limpar</a>
+            <a data-action="list_{$canonical}" class="btn-filter btn btn-xs btn-primary">
+                <span class="glyphicon glyphicon-filter"></span>Filtrar</a>
+        </div>
     </div>
 
     {@while ($item in $filters):}
