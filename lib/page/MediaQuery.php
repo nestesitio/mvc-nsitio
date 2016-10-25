@@ -2,7 +2,7 @@
 
 namespace lib\page;
 
-use \model\querys\HtmMediaQuery;
+use \model\querys\MediaQuery as HtmMediaQuery;
 use \model\models\HtmHasMedia;
 use \lib\page\Media;
 use \lib\mysql\Mysql;
@@ -17,9 +17,31 @@ class MediaQuery {
 
     private $query;
     
+    /**
+     * 
+     * @param int $htm
+     * @return HtmMediaQuery
+     */
     public static function getListForPage($htm){
         $query = HtmMediaQuery::start()
                 ->joinHtmHasMedia(Mysql::LEFT_JOIN)
+                ->selectHtmId()->selectOrd()
+                ->orderByHtmId(Mysql::DESC)->orderByOrd()
+                ->endUse()
+                ->addJoinCondition(HtmHasMedia::TABLE, HtmHasMedia::FIELD_HTM_ID ,$htm);
+	
+        
+        return $query;
+    }
+    
+    /**
+     * 
+     * @param int $htm
+     * @return HtmMediaQuery
+     */
+    public static function getMediaOfPage($htm){
+        $query = HtmMediaQuery::start()
+                ->joinHtmHasMedia()
                 ->selectHtmId()->selectOrd()
                 ->orderByHtmId(Mysql::DESC)->orderByOrd()
                 ->endUse()
