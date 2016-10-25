@@ -90,7 +90,7 @@ class FormRender
                     }
                     $name = self::renderName($input->getName(), $actionclass, $config);
                     $input->setName($name)->setId($name);
-                    $label = ($config->getConfigValue('label') != null) ? $config->getConfigValue('label') : $formlabels[$table][$field];
+                    $label = self::getLabel($config, $formlabels, $table, $field);
                     $pack = self::getInput($field, $input, $name, $label, $config);
                     $inputs = array_merge($inputs, $pack);
 
@@ -99,6 +99,15 @@ class FormRender
         }
 
         return $inputs;
+    }
+    
+    private static function getLabel($config, $formlabels, $table, $field) {
+        if ($config->getConfigValue('label') != null) {
+            return $config->getConfigValue('label');
+        } elseif (isset($formlabels[$table][$field])) {
+            return $formlabels[$table][$field];
+        }
+        return '';
     }
 
     /**
