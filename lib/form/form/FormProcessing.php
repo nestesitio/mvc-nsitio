@@ -150,7 +150,7 @@ class FormProcessing
      * @return mixed|null
      */
     protected function validateModel($table, $field, $query, $index, $required, $default = null)
-    {
+    {   
         if (isset($this->validated[$table][$field])) {
             return $this->validated[$table][$field];
         }elseif(!isset($this->forminputs[$table][$field])){

@@ -32,7 +32,7 @@ class FormValidator
                 return $value;
             }
         }else{
-            Monitor::setMonitor(Monitor::FORM, 'Validate Id is null');
+            Monitor::setMonitor(Monitor::FORM, 'Validate Id ' . $field . ' is null');
             return null;
         }
     }
@@ -305,7 +305,7 @@ class FormValidator
      */
     public static function getValue($field)
     {
-        $key = FormValidator::correctKey($field);
+        $key = self::correctKey($field);
         $value = Vars::getPosts($key);
 
         if($value == false){
