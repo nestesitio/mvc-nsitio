@@ -19,8 +19,6 @@ $loader->register();
 // start some static core classes
 // initiate configs
 new \lib\loader\Configurator;
-//initiate pdo
-\lib\db\PdoMysql::getConn();
 
 $fp = fopen(ROOT . DS . 'logs' . DS . 'task_log.txt', 'a');
 \apps\Taskings\tasks\Task::execute(getopt("t:a:n:m:f:"), $fp);
