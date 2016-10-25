@@ -176,6 +176,7 @@ class Controller
         Monitor::setMonitor(Monitor::BOOKMARK, get_class($this) . ' - renderCollection with ' . count($results) . ' row for tag ' . $tag);
         $itens = $this->getCollection($results);
         $this->set($tag, $itens);
+        return $itens;
     }
 
 
@@ -336,13 +337,17 @@ class Controller
      * @param $file
      * @return string
      */
-    protected function convertValueByXml($value, $file)
+    protected function processValue2Show($value, $file)
     {
         if(!empty($file)){
             $value = \lib\xml\XmlSimple::getConvertedValue('model/enum/' . $file, $value);
 
         }
+        if(is_string($value)){
+            $value = nl2br($value);
+        }
         return $value;
     }
+    
 
 }
