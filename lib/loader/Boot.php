@@ -48,7 +48,7 @@ class Boot
         self::registParams(self::$params);
         self::registVars($querystring);
         
-        \lib\lang\Language::setLang(Configurator::getSingleLang());
+        \lib\lang\Language::setLang(Configurator::getLangDefault(), Configurator::getSingleLang());
 
         //set the action for the page
         $controller = false;
@@ -111,6 +111,7 @@ class Boot
         Vars::setAction($params[ParseRoute::PART_ACTION]);
         Vars::setId($params[ParseRoute::PART_ID]);
         Vars::setLang($params[ParseRoute::PART_LANG]);
+        Vars::setSlugVar($params[ParseRoute::PART_VAR]);
     }
 
     /** process url query string after ?, but ? was allready deleted by htaccess
@@ -160,7 +161,7 @@ class Boot
         $action = Router::getAction($class, $params);
 
         if($action == false){
-            Monitor::setMonitor(Monitor::ACTION, 'There is no action name ' . $action);
+            Monitor::setMonitor(Monitor::ACTION, 'There is no action name for ' . $action);
             Monitor::setErrorMessages(null, ['message'=>'No method found for url ' . Vars::getRoute()]);
             return false;
         }
