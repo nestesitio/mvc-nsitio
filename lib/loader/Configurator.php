@@ -206,7 +206,7 @@ class Configurator
     private function setLangDefault(){
         self::$lang_default = $this->xmlc->queryXPath('lang', null, 'default');
         
-        self::$single_lang = $this->xmlc->queryXPath('lang', null, 'singler');
+        self::$single_lang = $this->xmlc->queryXPath('lang', null, 'single');
     }
     
     /**
