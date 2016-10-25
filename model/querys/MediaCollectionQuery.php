@@ -1,26 +1,26 @@
 <?php
 namespace model\querys;
 
-use \model\models\HtmApp;
+use \model\models\MediaCollection;
 use \lib\mysql\Mysql;
 
 /**
- * Description of HtmApp
+ * Description of MediaCollection
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @2016-10-18 13:37
  * Updated @2016-10-18 13:37
  */
-class HtmAppQuery extends \lib\model\QuerySelect {
+class MediaCollectionQuery extends \lib\model\QuerySelect {
     
     public static function start($merge = ALL){
-        $obj = new HtmAppQuery(new \model\models\HtmApp(), $merge);
+        $obj = new MediaCollectionQuery(new \model\models\MediaCollection(), $merge);
         $obj->startPrimary($merge);
         return $obj;
     }
     
     public static function useModel($merge){
-        $obj = new HtmAppQuery(new \model\models\HtmApp());
+        $obj = new MediaCollectionQuery(new \model\models\MediaCollection());
         $obj->startJoin($merge);
         return $obj;
     }
@@ -29,7 +29,7 @@ class HtmAppQuery extends \lib\model\QuerySelect {
      * Completes the join and return primary query,
      * because Netbeans we put child query on return, the program will get primary class function endUse()
      *
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function endUse(){
         return parent::completeMerge();
@@ -37,9 +37,9 @@ class HtmAppQuery extends \lib\model\QuerySelect {
     
     
     /**
-     * Completes query and return a collection of HtmApp objects
+     * Completes query and return a collection of MediaCollection objects
      *
-     * @return \model\models\HtmApp[]
+     * @return \model\models\MediaCollection[]
      */
     public function find() {
         return parent::find();
@@ -48,7 +48,7 @@ class HtmAppQuery extends \lib\model\QuerySelect {
     /**
      * Completes query with limit 1.
      *
-     * @return \model\models\HtmApp
+     * @return \model\models\MediaCollection
      */
     public function findOne(){
         return parent::findOne();
@@ -57,7 +57,7 @@ class HtmAppQuery extends \lib\model\QuerySelect {
     /**
      * Completes query. If result is 0 create object
      *
-     * @return \model\models\HtmApp
+     * @return \model\models\MediaCollection
      */
     public function findOneOrCreate(){
         return parent::findOneOrCreate();
@@ -66,111 +66,111 @@ class HtmAppQuery extends \lib\model\QuerySelect {
 
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function selectId() {
-        $this->setSelect(HtmApp::FIELD_ID);
+        $this->setSelect(MediaCollection::FIELD_ID);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function filterById($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmApp::FIELD_ID, $values, $operator);
+        $this->filterByColumn(MediaCollection::FIELD_ID, $values, $operator);
         return $this;
     } 
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function orderById($order = Mysql::ASC) {
-        $this->orderBy(HtmApp::FIELD_ID, $order);
+        $this->orderBy(MediaCollection::FIELD_ID, $order);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function groupById() {
-        $this->groupBy(HtmApp::FIELD_ID);
+        $this->groupBy(MediaCollection::FIELD_ID);
         return $this;
     }
     
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function selectSlug() {
-        $this->setSelect(HtmApp::FIELD_SLUG);
+        $this->setSelect(MediaCollection::FIELD_SLUG);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function filterBySlug($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmApp::FIELD_SLUG, $values, $operator);
+        $this->filterByColumn(MediaCollection::FIELD_SLUG, $values, $operator);
         return $this;
     } 
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function orderBySlug($order = Mysql::ASC) {
-        $this->orderBy(HtmApp::FIELD_SLUG, $order);
+        $this->orderBy(MediaCollection::FIELD_SLUG, $order);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function groupBySlug() {
-        $this->groupBy(HtmApp::FIELD_SLUG);
+        $this->groupBy(MediaCollection::FIELD_SLUG);
         return $this;
     }
     
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function selectName() {
-        $this->setSelect(HtmApp::FIELD_NAME);
+        $this->setSelect(MediaCollection::FIELD_NAME);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function filterByName($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmApp::FIELD_NAME, $values, $operator);
+        $this->filterByColumn(MediaCollection::FIELD_NAME, $values, $operator);
         return $this;
     } 
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function orderByName($order = Mysql::ASC) {
-        $this->orderBy(HtmApp::FIELD_NAME, $order);
+        $this->orderBy(MediaCollection::FIELD_NAME, $order);
         return $this;
     }
     
     /**
      * 
-     * @return \model\querys\HtmAppQuery
+     * @return \model\querys\MediaCollectionQuery
      */
     public function groupByName() {
-        $this->groupBy(HtmApp::FIELD_NAME);
+        $this->groupBy(MediaCollection::FIELD_NAME);
         return $this;
     }
     
@@ -179,23 +179,11 @@ class HtmAppQuery extends \lib\model\QuerySelect {
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
-     * @return \model\querys\HtmQuery
+     * @return \model\querys\MediaInfoQuery
      */
-    function joinHtm($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\Htm::TABLE, $join, [HtmApp::FIELD_ID, \model\models\Htm::FIELD_HTM_APP_ID]);
-        return \model\querys\HtmQuery::useModel($this);
-    }
-    
-    
-    /**
-     * Makes join
-     * @param \lib\mysql\Mysql $join
-     *
-     * @return \model\querys\UserGroupHasHtmAppQuery
-     */
-    function joinUserGroupHasHtmApp($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\UserGroupHasHtmApp::TABLE, $join, [HtmApp::FIELD_ID, \model\models\UserGroupHasHtmApp::FIELD_HTM_APP_ID]);
-        return \model\querys\UserGroupHasHtmAppQuery::useModel($this);
+    function joinMediaInfo($join = Mysql::INNER_JOIN) {
+        $this->join(\model\models\MediaInfo::TABLE, $join, [MediaCollection::FIELD_ID, \model\models\MediaInfo::FIELD_MEDIA_COLLECTION_ID]);
+        return \model\querys\MediaInfoQuery::useModel($this);
     }
     
     

@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of Langs
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-09-06 12:59
- * Updated @2016-09-06 12:59
+ * Created @2016-10-18 13:37
+ * Updated @2016-10-18 13:37
  */
 class Langs extends \lib\model\Model 
 {
@@ -17,12 +17,13 @@ class Langs extends \lib\model\Model
     const FIELD_TLD = 'langs.tld';
     const FIELD_NAME = 'langs.name';
     const FIELD_LOCALE = 'langs.locale';
+    const FIELD_ORD = 'langs.ord';
     
     const TABLE = 'langs';
     
     
     protected function setModel(){
-        $this->columnNames['langs'] = ['tld', 'name', 'locale'];
+        $this->columnNames['langs'] = ['tld', 'name', 'locale', 'ord'];
             
         $this->tableName = 'langs';
         
@@ -66,6 +67,15 @@ class Langs extends \lib\model\Model
     }  
     
 
+    public function setOrd($value) {
+        $this->setColumnValue(Langs::FIELD_ORD, $value);
+    }
+
+    public function getOrd() {
+        return $this->getColumnValue(Langs::FIELD_ORD);
+    }  
+    
+
 
     /**
     * Return model object
@@ -74,6 +84,18 @@ class Langs extends \lib\model\Model
     */
     public function getHtmPage() {
         $obj = new \model\models\HtmPage();
+        $obj->merge($this);
+        return $obj;
+    }  
+    
+
+    /**
+    * Return model object
+    * 
+    * @return new \model\models\MediaInfo;
+    */
+    public function getMediaInfo() {
+        $obj = new \model\models\MediaInfo();
         $obj->merge($this);
         return $obj;
     }  

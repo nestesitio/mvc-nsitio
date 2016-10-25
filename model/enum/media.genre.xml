@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <value index="img">
+    <label lang="en">Img</label>
+    <label lang="pt">Img</label>
+  </value>
+  <value index="file">
+    <label lang="en">File</label>
+    <label lang="pt">File</label>
+  </value>
+  <value index="embed">
+    <label lang="en">Embed</label>
+    <label lang="pt">Embed</label>
+  </value>
+  <value index="pdf">
+    <label lang="en">Pdf</label>
+    <label lang="pt">Pdf</label>
+  </value>
+  <value index="banner">
+    <label lang="en">Banner</label>
+    <label lang="pt">Banner</label>
+  </value>
+</root>

@@ -7,8 +7,8 @@ use \model\models\HtmTxt;
  * Description of HtmTxtForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-09-06 12:59
- * Updated @2016-09-06 12:59
+ * Created @2016-10-18 13:37
+ * Updated @2016-10-18 13:37
  */
 class HtmTxtForm extends \lib\form\Form {
 
@@ -27,7 +27,6 @@ class HtmTxtForm extends \lib\form\Form {
         
         $this->setIdInput();
 	$this->setHtmPageIdInput();
-	$this->setTypeInput();
 	$this->setTxtInput();
 	
         return $this;
@@ -37,7 +36,6 @@ class HtmTxtForm extends \lib\form\Form {
         
         $this->validateIdInput();
 	$this->validateHtmPageIdInput();
-	$this->validateTypeInput();
 	$this->validateTxtInput();
 	
         
@@ -131,50 +129,6 @@ class HtmTxtForm extends \lib\form\Form {
     
     public function validateHtmPageIdInput() {
         $value = $this->validateModel(HtmTxt::TABLE, HtmTxt::FIELD_HTM_PAGE_ID, \model\querys\HtmPageQuery::start(), 'htm_page.id', true);
-        return $value;
-    }
-    
-
-    /**
-    * Create and return the input associeted with field
-    * 
-    * @return \lib\form\input\SelectInput;
-    */
-    public function setTypeInput($input = null) {
-        if($input == null){
-            $input = \lib\form\input\SelectInput::create(HtmTxt::FIELD_TYPE);
-	$input->setValuesList(\model\models\HtmTxt::$types);
-        }else{
-            $input->setElementId(HtmTxt::FIELD_TYPE); 
-        }
-        
-        $this->setFieldLabel(HtmTxt::TABLE, HtmTxt::FIELD_TYPE, 'Type');
-        $this->setFieldInput(HtmTxt::TABLE, HtmTxt::FIELD_TYPE, $input);
-        
-        return $input;
-    }
-    
-    public function setTypeDefault($value) {
-        $this->setDefault(HtmTxt::TABLE, HtmTxt::FIELD_TYPE, $value);
-    }
-    
-    public function unsetTypeInput() {
-        $this->unsetFieldInput(HtmTxt::TABLE, HtmTxt::FIELD_TYPE);
-    }
-    
-    /**
-    * @return \lib\form\input\SelectInput;
-    */
-    public function getTypeInput(){
-        return $this->forminputs[HtmTxt::TABLE][HtmTxt::FIELD_TYPE];
-    }
-    
-    public function getTypeValue(){
-        return $this->getInputValue(HtmTxt::TABLE, HtmTxt::FIELD_TYPE);
-    }
-    
-    public function validateTypeInput() {
-        $value = $this->validateValues(HtmTxt::TABLE, HtmTxt::FIELD_TYPE, \model\models\HtmTxt::$types, false);
         return $value;
     }
     

@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmTxt
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-09-06 12:59
- * Updated @2016-09-06 12:59
+ * Created @2016-10-18 13:37
+ * Updated @2016-10-18 13:37
  */
 class HtmTxtQuery extends \lib\model\QuerySelect {
     
@@ -134,43 +134,6 @@ class HtmTxtQuery extends \lib\model\QuerySelect {
      */
     public function groupByHtmPageId() {
         $this->groupBy(HtmTxt::FIELD_HTM_PAGE_ID);
-        return $this;
-    }
-    
-    
-    /**
-     * 
-     * @return \model\querys\HtmTxtQuery
-     */
-    public function selectType() {
-        $this->setSelect(HtmTxt::FIELD_TYPE);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmTxtQuery
-     */
-    public function filterByType($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmTxt::FIELD_TYPE, $values, $operator);
-        return $this;
-    } 
-    
-    /**
-     * 
-     * @return \model\querys\HtmTxtQuery
-     */
-    public function orderByType($order = Mysql::ASC) {
-        $this->orderBy(HtmTxt::FIELD_TYPE, $order);
-        return $this;
-    }
-    
-    /**
-     * 
-     * @return \model\querys\HtmTxtQuery
-     */
-    public function groupByType() {
-        $this->groupBy(HtmTxt::FIELD_TYPE);
         return $this;
     }
     

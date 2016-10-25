@@ -7,8 +7,8 @@ use \model\models\Langs;
  * Description of LangsForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-09-06 12:59
- * Updated @2016-09-06 12:59
+ * Created @2016-10-18 13:37
+ * Updated @2016-10-18 13:37
  */
 class LangsForm extends \lib\form\Form {
 
@@ -28,6 +28,7 @@ class LangsForm extends \lib\form\Form {
         $this->setTldInput();
 	$this->setNameInput();
 	$this->setLocaleInput();
+	$this->setOrdInput();
 	
         return $this;
     }
@@ -37,6 +38,7 @@ class LangsForm extends \lib\form\Form {
         $this->validateTldInput();
 	$this->validateNameInput();
 	$this->validateLocaleInput();
+	$this->validateOrdInput();
 	
         
         return $this;
@@ -168,6 +170,51 @@ class LangsForm extends \lib\form\Form {
     
     public function validateLocaleInput() {
         $value = $this->validateString(Langs::TABLE, Langs::FIELD_LOCALE, false, 5);
+        return $value;
+    }
+    
+
+    /**
+    * Create and return the input associeted with field
+    * 
+    * @return \lib\form\input\InputText;
+    */
+    public function setOrdInput($input = null) {
+        if($input == null){
+            $input = \lib\form\input\InputText::create(Langs::FIELD_ORD);
+            $input->setRequired(true);
+            $input->setDefault('0');$input->setMaxlength('2');
+        }else{
+            $input->setElementId(Langs::FIELD_ORD); 
+        }
+        
+        $this->setFieldLabel(Langs::TABLE, Langs::FIELD_ORD, 'Ord');
+        $this->setFieldInput(Langs::TABLE, Langs::FIELD_ORD, $input);
+        
+        return $input;
+    }
+    
+    public function setOrdDefault($value) {
+        $this->setDefault(Langs::TABLE, Langs::FIELD_ORD, $value);
+    }
+    
+    public function unsetOrdInput() {
+        $this->unsetFieldInput(Langs::TABLE, Langs::FIELD_ORD);
+    }
+    
+    /**
+    * @return \lib\form\input\InputText;
+    */
+    public function getOrdInput(){
+        return $this->forminputs[Langs::TABLE][Langs::FIELD_ORD];
+    }
+    
+    public function getOrdValue(){
+        return $this->getInputValue(Langs::TABLE, Langs::FIELD_ORD);
+    }
+    
+    public function validateOrdInput() {
+        $value = $this->validateInt(Langs::TABLE, Langs::FIELD_ORD, true, 2);
         return $value;
     }
     

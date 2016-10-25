@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of HtmHasMedia
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-09-06 12:59
- * Updated @2016-09-06 12:59
+ * Created @2016-10-18 13:37
+ * Updated @2016-10-18 13:37
  */
 class HtmHasMediaQuery extends \lib\model\QuerySelect {
     
@@ -68,8 +68,8 @@ class HtmHasMediaQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmHasMediaQuery
      */
-    public function selectHtmMediaId() {
-        $this->setSelect(HtmHasMedia::FIELD_HTM_MEDIA_ID);
+    public function selectMediaId() {
+        $this->setSelect(HtmHasMedia::FIELD_MEDIA_ID);
         return $this;
     }
     
@@ -77,8 +77,8 @@ class HtmHasMediaQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmHasMediaQuery
      */
-    public function filterByHtmMediaId($values, $operator = Mysql::EQUAL) {
-        $this->filterByColumn(HtmHasMedia::FIELD_HTM_MEDIA_ID, $values, $operator);
+    public function filterByMediaId($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(HtmHasMedia::FIELD_MEDIA_ID, $values, $operator);
         return $this;
     } 
     
@@ -86,8 +86,8 @@ class HtmHasMediaQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmHasMediaQuery
      */
-    public function orderByHtmMediaId($order = Mysql::ASC) {
-        $this->orderBy(HtmHasMedia::FIELD_HTM_MEDIA_ID, $order);
+    public function orderByMediaId($order = Mysql::ASC) {
+        $this->orderBy(HtmHasMedia::FIELD_MEDIA_ID, $order);
         return $this;
     }
     
@@ -95,8 +95,8 @@ class HtmHasMediaQuery extends \lib\model\QuerySelect {
      * 
      * @return \model\querys\HtmHasMediaQuery
      */
-    public function groupByHtmMediaId() {
-        $this->groupBy(HtmHasMedia::FIELD_HTM_MEDIA_ID);
+    public function groupByMediaId() {
+        $this->groupBy(HtmHasMedia::FIELD_MEDIA_ID);
         return $this;
     }
     
@@ -265,11 +265,11 @@ class HtmHasMediaQuery extends \lib\model\QuerySelect {
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
-     * @return \model\querys\HtmMediaQuery
+     * @return \model\querys\MediaQuery
      */
-    function joinHtmMedia($join = Mysql::INNER_JOIN) {
-        $this->join(\model\models\HtmMedia::TABLE, $join, [HtmHasMedia::FIELD_HTM_MEDIA_ID, \model\models\HtmMedia::FIELD_ID]);
-        return \model\querys\HtmMediaQuery::useModel($this);
+    function joinMedia($join = Mysql::INNER_JOIN) {
+        $this->join(\model\models\Media::TABLE, $join, [HtmHasMedia::FIELD_MEDIA_ID, \model\models\Media::FIELD_ID]);
+        return \model\querys\MediaQuery::useModel($this);
     }
     
     

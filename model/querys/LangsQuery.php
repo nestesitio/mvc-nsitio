@@ -8,8 +8,8 @@ use \lib\mysql\Mysql;
  * Description of Langs
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-09-06 12:59
- * Updated @2016-09-06 12:59
+ * Created @2016-10-18 13:37
+ * Updated @2016-10-18 13:37
  */
 class LangsQuery extends \lib\model\QuerySelect {
     
@@ -176,6 +176,43 @@ class LangsQuery extends \lib\model\QuerySelect {
     
     
     /**
+     * 
+     * @return \model\querys\LangsQuery
+     */
+    public function selectOrd() {
+        $this->setSelect(Langs::FIELD_ORD);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\LangsQuery
+     */
+    public function filterByOrd($values, $operator = Mysql::EQUAL) {
+        $this->filterByColumn(Langs::FIELD_ORD, $values, $operator);
+        return $this;
+    } 
+    
+    /**
+     * 
+     * @return \model\querys\LangsQuery
+     */
+    public function orderByOrd($order = Mysql::ASC) {
+        $this->orderBy(Langs::FIELD_ORD, $order);
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \model\querys\LangsQuery
+     */
+    public function groupByOrd() {
+        $this->groupBy(Langs::FIELD_ORD);
+        return $this;
+    }
+    
+    
+    /**
      * Makes join
      * @param \lib\mysql\Mysql $join
      *
@@ -184,6 +221,18 @@ class LangsQuery extends \lib\model\QuerySelect {
     function joinHtmPage($join = Mysql::INNER_JOIN) {
         $this->join(\model\models\HtmPage::TABLE, $join, [Langs::FIELD_TLD, \model\models\HtmPage::FIELD_LANGS_TLD]);
         return \model\querys\HtmPageQuery::useModel($this);
+    }
+    
+    
+    /**
+     * Makes join
+     * @param \lib\mysql\Mysql $join
+     *
+     * @return \model\querys\MediaInfoQuery
+     */
+    function joinMediaInfo($join = Mysql::INNER_JOIN) {
+        $this->join(\model\models\MediaInfo::TABLE, $join, [Langs::FIELD_TLD, \model\models\MediaInfo::FIELD_LANGS_TLD]);
+        return \model\querys\MediaInfoQuery::useModel($this);
     }
     
     

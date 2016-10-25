@@ -8,13 +8,13 @@ use \lib\mysql\Mysql;
  * Description of HtmHasMedia
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-09-06 12:59
- * Updated @2016-09-06 12:59
+ * Created @2016-10-18 13:37
+ * Updated @2016-10-18 13:37
  */
 class HtmHasMedia extends \lib\model\Model 
 {
 
-    const FIELD_HTM_MEDIA_ID = 'htm_has_media.htm_media_id';
+    const FIELD_MEDIA_ID = 'htm_has_media.media_id';
     const FIELD_HTM_ID = 'htm_has_media.htm_id';
     const FIELD_TITLE = 'htm_has_media.title';
     const FIELD_ORD = 'htm_has_media.ord';
@@ -24,13 +24,13 @@ class HtmHasMedia extends \lib\model\Model
     
     
     protected function setModel(){
-        $this->columnNames['htm_has_media'] = ['htm_media_id', 'htm_id', 'title', 'ord', 'notes'];
+        $this->columnNames['htm_has_media'] = ['media_id', 'htm_id', 'title', 'ord', 'notes'];
             
         $this->tableName = 'htm_has_media';
         
-        $this->primaryKey = ['htm_media_id', 'htm_id'];
+        $this->primaryKey = ['media_id', 'htm_id'];
         $this->fk[HtmHasMedia::FIELD_HTM_ID] = ['table'=>'htm', 'field'=>'id'];
-	$this->fk[HtmHasMedia::FIELD_HTM_MEDIA_ID] = ['table'=>'htm_media', 'field'=>'id'];
+	$this->fk[HtmHasMedia::FIELD_MEDIA_ID] = ['table'=>'media', 'field'=>'id'];
 	
         #unique keys
         
@@ -43,12 +43,12 @@ class HtmHasMedia extends \lib\model\Model
     }
     
     
-    public function setHtmMediaId($value) {
-        $this->setColumnValue(HtmHasMedia::FIELD_HTM_MEDIA_ID, $value);
+    public function setMediaId($value) {
+        $this->setColumnValue(HtmHasMedia::FIELD_MEDIA_ID, $value);
     }
 
-    public function getHtmMediaId() {
-        return $this->getColumnValue(HtmHasMedia::FIELD_HTM_MEDIA_ID);
+    public function getMediaId() {
+        return $this->getColumnValue(HtmHasMedia::FIELD_MEDIA_ID);
     }  
     
 
@@ -104,10 +104,10 @@ class HtmHasMedia extends \lib\model\Model
     /**
     * Return model object
     * 
-    * @return new \model\models\HtmMedia;
+    * @return new \model\models\Media;
     */
-    public function getHtmMedia() {
-        $obj = new \model\models\HtmMedia();
+    public function getMedia() {
+        $obj = new \model\models\Media();
         $obj->merge($this);
         return $obj;
     }  

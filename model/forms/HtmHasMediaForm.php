@@ -7,8 +7,8 @@ use \model\models\HtmHasMedia;
  * Description of HtmHasMediaForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-09-06 12:59
- * Updated @2016-09-06 12:59
+ * Created @2016-10-18 13:37
+ * Updated @2016-10-18 13:37
  */
 class HtmHasMediaForm extends \lib\form\Form {
 
@@ -25,7 +25,7 @@ class HtmHasMediaForm extends \lib\form\Form {
         $this->queue[] = HtmHasMedia::TABLE;
         $this->models[HtmHasMedia::TABLE] = new HtmHasMedia();
         
-        $this->setHtmMediaIdInput();
+        $this->setMediaIdInput();
 	$this->setHtmIdInput();
 	$this->setTitleInput();
 	$this->setOrdInput();
@@ -36,7 +36,7 @@ class HtmHasMediaForm extends \lib\form\Form {
     
     public function validate(){
         
-        $this->validateHtmMediaIdInput();
+        $this->validateMediaIdInput();
 	$this->validateHtmIdInput();
 	$this->validateTitleInput();
 	$this->validateOrdInput();
@@ -52,44 +52,44 @@ class HtmHasMediaForm extends \lib\form\Form {
     * 
     * @return \lib\form\input\SelectInput;
     */
-    public function setHtmMediaIdInput($input = null) {
+    public function setMediaIdInput($input = null) {
         if($input == null){
-            $input = \lib\form\input\SelectInput::create(HtmHasMedia::FIELD_HTM_MEDIA_ID);
+            $input = \lib\form\input\SelectInput::create(HtmHasMedia::FIELD_MEDIA_ID);
             $input->setRequired(true);
-            $input->setOptionIndex(\model\models\HtmMedia::FIELD_ID);
+            $input->setOptionIndex(\model\models\Media::FIELD_ID);
             $input->addEmpty();
-            $input->setModel(\model\querys\HtmMediaQuery::start());
+            $input->setModel(\model\querys\MediaQuery::start());
         }else{
-            $input->setElementId(HtmHasMedia::FIELD_HTM_MEDIA_ID); 
+            $input->setElementId(HtmHasMedia::FIELD_MEDIA_ID); 
         }
         
-        $this->setFieldLabel(HtmHasMedia::TABLE, HtmHasMedia::FIELD_HTM_MEDIA_ID, 'Htm Media Id');
-        $this->setFieldInput(HtmHasMedia::TABLE, HtmHasMedia::FIELD_HTM_MEDIA_ID, $input);
+        $this->setFieldLabel(HtmHasMedia::TABLE, HtmHasMedia::FIELD_MEDIA_ID, 'Media Id');
+        $this->setFieldInput(HtmHasMedia::TABLE, HtmHasMedia::FIELD_MEDIA_ID, $input);
         
         return $input;
     }
     
-    public function setHtmMediaIdDefault($value) {
-        $this->setDefault(HtmHasMedia::TABLE, HtmHasMedia::FIELD_HTM_MEDIA_ID, $value);
+    public function setMediaIdDefault($value) {
+        $this->setDefault(HtmHasMedia::TABLE, HtmHasMedia::FIELD_MEDIA_ID, $value);
     }
     
-    public function unsetHtmMediaIdInput() {
-        $this->unsetFieldInput(HtmHasMedia::TABLE, HtmHasMedia::FIELD_HTM_MEDIA_ID);
+    public function unsetMediaIdInput() {
+        $this->unsetFieldInput(HtmHasMedia::TABLE, HtmHasMedia::FIELD_MEDIA_ID);
     }
     
     /**
     * @return \lib\form\input\SelectInput;
     */
-    public function getHtmMediaIdInput(){
-        return $this->forminputs[HtmHasMedia::TABLE][HtmHasMedia::FIELD_HTM_MEDIA_ID];
+    public function getMediaIdInput(){
+        return $this->forminputs[HtmHasMedia::TABLE][HtmHasMedia::FIELD_MEDIA_ID];
     }
     
-    public function getHtmMediaIdValue(){
-        return $this->getInputValue(HtmHasMedia::TABLE, HtmHasMedia::FIELD_HTM_MEDIA_ID);
+    public function getMediaIdValue(){
+        return $this->getInputValue(HtmHasMedia::TABLE, HtmHasMedia::FIELD_MEDIA_ID);
     }
     
-    public function validateHtmMediaIdInput() {
-        $value = $this->validateModel(HtmHasMedia::TABLE, HtmHasMedia::FIELD_HTM_MEDIA_ID, \model\querys\HtmMediaQuery::start(), 'htm_media.id', true);
+    public function validateMediaIdInput() {
+        $value = $this->validateModel(HtmHasMedia::TABLE, HtmHasMedia::FIELD_MEDIA_ID, \model\querys\MediaQuery::start(), 'media.id', true);
         return $value;
     }
     

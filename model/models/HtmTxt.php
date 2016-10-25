@@ -8,22 +8,21 @@ use \lib\mysql\Mysql;
  * Description of HtmTxt
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-09-06 12:59
- * Updated @2016-09-06 12:59
+ * Created @2016-10-18 13:37
+ * Updated @2016-10-18 13:37
  */
 class HtmTxt extends \lib\model\Model 
 {
 
     const FIELD_ID = 'htm_txt.id';
     const FIELD_HTM_PAGE_ID = 'htm_txt.htm_page_id';
-    const FIELD_TYPE = 'htm_txt.type';
     const FIELD_TXT = 'htm_txt.txt';
     
     const TABLE = 'htm_txt';
     
     
     protected function setModel(){
-        $this->columnNames['htm_txt'] = ['id', 'htm_page_id', 'type', 'txt'];
+        $this->columnNames['htm_txt'] = ['id', 'htm_page_id', 'txt'];
             
         $this->tableName = 'htm_txt';
         
@@ -56,23 +55,6 @@ class HtmTxt extends \lib\model\Model
 
     public function getHtmPageId() {
         return $this->getColumnValue(HtmTxt::FIELD_HTM_PAGE_ID);
-    }  
-    
-
-
-    const TYPE_DESC = 'desc';
-    const TYPE_LEAD = 'lead';
-    const TYPE_TXT = 'txt';
-    const TYPE_OBS = 'obs';
-    const TYPE_FOOTER = 'footer';
-    public static $types = ['desc', 'lead', 'txt', 'obs', 'footer'];
-
-    public function setType($value) {
-        $this->setColumnValue(HtmTxt::FIELD_TYPE, $value);
-    }
-
-    public function getType() {
-        return $this->getColumnValue(HtmTxt::FIELD_TYPE);
     }  
     
 
