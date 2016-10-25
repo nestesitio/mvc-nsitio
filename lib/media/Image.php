@@ -186,11 +186,11 @@ class Image
                 $dst_h = floor($img_h / $factor);
             }
         } else {
-            if ($img_w > $max_w) {
+            if (null != $max_w && $img_w > $max_w) {
                 $dst_w = $max_w;
                 $factor = $img_w / $dst_w;
                 $dst_h = floor($img_h / $factor);
-            } elseif ($img_h > $max_h) {
+            } elseif (null != $max_h && $img_h > $max_h) {
                 $dst_h = $max_h;
                 $factor = $img_h / $dst_h;
                 $dst_w = floor($img_w / $factor);

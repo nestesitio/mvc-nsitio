@@ -4,6 +4,7 @@ namespace lib\media;
 
 use \lib\tools\StringTools;
 use \lib\media\Image;
+use \model\models\Media;
 
 /**
  * Description of UploadFile
@@ -90,13 +91,13 @@ class UploadFile
     {
         if (($type == 'image/pjpeg' XOR $type == 'image/jpeg' XOR $type == 'image/jpg')) {
             $this->extension = 'jpg';
-            $this->genre = 'img';
+            $this->genre = Media::GENRE_IMG;
         } elseif ($type == 'image/png') {
             $this->extension = 'png';
-            $this->genre = 'img';
+            $this->genre = Media::GENRE_IMG;
         } elseif ($type == 'image/gif') {
             $this->extension = 'gif';
-            $this->genre = 'img';
+            $this->genre = Media::GENRE_IMG;
         } elseif ($type == 'audio/mpeg') {
             $this->extension = 'mp3';
             $this->genre = 'audio';
@@ -104,9 +105,15 @@ class UploadFile
             $this->extension = 'swf';
         } elseif ($type == 'application/pdf') {
             $this->extension = 'pdf';
-            $this->genre = 'pdf';
+            $this->genre = Media::GENRE_PDF;
         }
         return $this->extension;
+    }
+    
+    public function setBannerGenre(){
+        if($this->genre == Media::GENRE_IMG){
+            $this->genre = Media::GENRE_BANNER;
+        }
     }
     
     public function getGenre(){
@@ -117,7 +124,7 @@ class UploadFile
      * @param $width
      * @param $height
      */
-    public function execute($width, $height)
+    public function execute($width = null, $height= null)
     {
         /*
          * array(1) {["prizes_prize_item_large_image"]=>
