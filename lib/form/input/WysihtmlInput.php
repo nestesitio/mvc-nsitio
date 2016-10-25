@@ -31,6 +31,8 @@ class WysihtmlInput extends \lib\form\input\TextAreaInput
     
     const TOOLBAR_MEDIA = 'withmedia';
     
+    const TOOLBAR_RICHTEXT = 'richtext';
+    
     const TOOLBAR_SIMPLE = 'simple';
 
     /**

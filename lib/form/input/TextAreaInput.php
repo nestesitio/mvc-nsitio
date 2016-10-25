@@ -40,5 +40,11 @@ At w3schools.com you will learn how to make a website. We offer free tutorials i
         $this->input .= '<a class="clear-input" data-id="'.$this->elemid.'"><span class="glyphicon glyphicon-refresh"></span></a>';
         return $this->input;
     }
+    
+    public function getHtmlValue(){
+        $value = filter_input(INPUT_POST, $this->getPostKey(), FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW);
+        //$value = strip_tags($value, $allowable_tags);
+        return $value;
+    }
 
 }
