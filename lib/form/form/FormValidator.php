@@ -285,6 +285,10 @@ class FormValidator
      */
     public static function correctKey($key)
     {
+        $key = str_replace('.', '_', $key);
+        if(Vars::getPosts($key) != false){
+            return $key;
+        }
         #because javascript form submission alter keys when serializes data
         return Vars::getCanonical() . '_' . str_replace('.', '_', $key);
     }
