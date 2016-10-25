@@ -40,7 +40,7 @@ function prepareWysihtml5(){
         if (toolbar === 'simple') {
             $(inputs[i]).summernote({
                 toolbar: [['style', ['bold', 'italic', 'underline', 'clear']], ['para', ['ul', 'ol', 'paragraph']],
-                    ['link', ['linkDialogShow', 'unlink']], ['help', ['codeview', 'help']]]});
+                    ['link', ['linkDialogShow', 'unlink']], ['help', ['help']]]});
         } else if (toolbar === 'withmedia') {
             $(inputs[i]).summernote({
                 toolbar: [
@@ -49,12 +49,20 @@ function prepareWysihtml5(){
                     ['insert', ['linkDialogShow', 'unlink', 'picture', 'video']],
                     ['help', ['codeview', 'help']]
                 ]});
+        } else if (toolbar === 'richtext') {
+            $(inputs[i]).summernote({
+                toolbar: [
+                    ['head', ['style']], ['style', ['bold', 'italic', 'underline', 'clear']], 
+                    ['para', ['ul', 'ol', 'paragraph', 'hr']], 
+                    ['insert', ['linkDialogShow']],
+                    ['help', ['codeview', 'help']]
+                ]});
         } else { //default
             $(inputs[i]).summernote({
                 toolbar: [
                     ['head', ['style']], ['style', ['bold', 'italic', 'underline', 'clear']], 
                     ['para', ['ul', 'ol', 'paragraph', 'hr']],
-                    ['link', ['linkDialogShow', 'unlink']], ['help', ['codeview', 'help']]
+                    ['link', ['linkDialogShow', 'unlink']], ['help', ['help']]
                 ]});
         }
         
