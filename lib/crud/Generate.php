@@ -1,8 +1,8 @@
 <?php
+
 namespace lib\crud;
 
-use \lib\db\PdoMysql as PdoMysql;
-use \lib\coreutils\ModelTools as Tools;
+use \lib\db\PdoMysql;
 
 /**
  * Description of Generate
@@ -37,10 +37,6 @@ class Generate
         array_map('unlink', glob(ROOT . DS . 'model' . DS . 'querys' . DS . '*'));
         array_map('unlink', glob(ROOT . DS . 'model' . DS . 'forms' . DS . '*'));
         $table_tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'templates' . DS . 'model_map.tpl';
-        $model_tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'templates' . DS . 'model.tpl';
-        $query_tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'templates' . DS . 'query.tpl';
-        $form_tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'templates' . DS . 'form.tpl';
-        $constrains = $this->getConstrains();
 
         $modelmap = ROOT . DS . 'model' . DS . 'models' . DS . 'ModelMap.php';
         CrudTools::copyFile($table_tpl, $modelmap, 'ModelMap');
@@ -49,29 +45,36 @@ class Generate
         $sth = $this->pdo->prepare($query);
         $sth->execute();
         $results = $sth->fetchAll();
-        foreach($results as $row){
+        foreach ($results as $row) {
             $table = $row[0];
-            if(strpos($table, 'sf_') === 0){
+            if (strpos($table, 'sf_') === 0) {
                 continue;
             }
-            echo "\n ** ". $table . " ->";
+            echo "\n ** " . $table . " ->";
             $this->modelMap($modelmap, $table);
-            $class = Tools::buildModelName($table);
-
-            $file = ROOT . DS . 'model' . DS . 'models' . DS . $class . '.php';
-            CrudTools::copyFile($model_tpl, $file, $class);
-
-            $file = ROOT . DS . 'model' . DS . 'querys' . DS . $class . 'Query.php';
-            CrudTools::copyFile($query_tpl, $file, $class);
-
-            $file = ROOT . DS . 'model' . DS . 'forms' . DS . $class . 'Form.php';
-            CrudTools::copyFile($form_tpl, $file, $class);
-
-            $crud = new \lib\crud\CrudModel($table, $class);
-            $crud->setConstrains($constrains);
-            $crud->crud();
+            $this->fetchCrud($table);
         }
+    }
 
+    private function fetchCrud($table) {
+        $model_tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'templates' . DS . 'model.tpl';
+        $query_tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'templates' . DS . 'query.tpl';
+        $form_tpl = ROOT . DS . 'layout' . DS . 'crud' . DS . 'templates' . DS . 'form.tpl';
+
+        $class = \lib\coreutils\ModelTools::buildModelName($table);
+
+        $file = ROOT . DS . 'model' . DS . 'models' . DS . $class . '.php';
+        CrudTools::copyFile($model_tpl, $file, $class);
+
+        $file = ROOT . DS . 'model' . DS . 'querys' . DS . $class . 'Query.php';
+        CrudTools::copyFile($query_tpl, $file, $class);
+
+        $file = ROOT . DS . 'model' . DS . 'forms' . DS . $class . 'Form.php';
+        CrudTools::copyFile($form_tpl, $file, $class);
+
+        $crud = new \lib\crud\CrudModel($table, $class);
+        $crud->setConstrains($this->getConstrains());
+        $crud->crud();
     }
 
 
@@ -93,7 +96,7 @@ class Generate
         $sth->execute();
         $results = $sth->fetchAll();
         $i = 0;
-        foreach($results as $row){
+        foreach ($results as $row) {
             $constrains[$i]['TABLE_NAME'] = $row[0];
             $constrains[$i]['CONSTRAINT_TYPE'] = $row[1];
             $constrains[$i]['REFERENCED_TABLE_NAME'] = $row[2];
@@ -150,9 +153,51 @@ class Generate
     }
     
     
-    public function buildCms($app, $name, $model = 'htm', $area = 'cms', $file = null){
+    public function buildCms($app, $name, $model = 'htm', $area = 'cms', $file = null) {
         $crud = new \lib\crud\CrudApp($app, $name, $model);
-        $crud->createFolders()->execute($area, $file); 
+        $crud->createFolders()->execute($area, $file);
+    }
+    
+    private function stdin($request, $password = false){
+        echo $request . ": ";
+        if($password == true){
+            system('stty -echo');
+        }
+        $value = trim(fgets(STDIN));
+        system('stty echo');
+        echo "\n";
+        return $value;
+    }
+
+    public function buildDataBase() {
+        $dbname = $this->stdin("Please type database name");
+
+        $args = \lib\loader\Configurator::getDbConf();
+        $password = $this->stdin("Please type database password");
+        // add a new line since the users CR didn't echo
+        echo "\n";
+        if (trim($password) == $args['password']) {
+            $db = PdoMysql::createDb($dbname);
+            echo ("database $db created \n");
+            if (file_exists(ROOT . DS . 'manual/mvc.sql')) {
+                echo "dumping database...\n";
+                $command = 'mysql'
+                        . ' --host=' . $args['host']
+                        . ' --user=' . $args['user']
+                        . ' --password=' . $args['password']
+                        . ' --database=' . $dbname
+                        . ' --execute="SOURCE ' . ROOT . DS . 'manual/mvc.sql' . '"';
+                shell_exec($command);
+            }else{
+                echo "sql file not found \n";
+            }
+            
+        }else{
+            echo "wrong password\n";
+        }
+        
+
+        
     }
 
 }
