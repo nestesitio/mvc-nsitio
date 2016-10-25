@@ -21,8 +21,7 @@ class Page {
     private $stat;
     private $ord;
     private $app;
-    
-    private $url;
+
     
 
     /**
@@ -52,6 +51,7 @@ class Page {
         $this->setLangs();
         $this->setText();
         $this->setMedia($model);
+        $this->setVarValue($model);
         $this->model['page-url'] = $this->getUrl();
     }
     
@@ -98,6 +98,7 @@ class Page {
      * 
      */
     public function setLangs(){
+         
         $pages = \model\querys\HtmPageQuery::start()->filterByHtmId($this->id)
                 ->orderByFilter(HtmPage::FIELD_LANGS_TLD, Language::getTldArray())
                 ->find();
@@ -111,6 +112,7 @@ class Page {
             $this->langmenu[$page->getLangsTld()] = 
                     ['app'=>  $this->app, 'slug'=> $page->getSlug(), 'tld'=>$page->getLangsTld()];
         }
+        
     }
     
     private $lang;
@@ -192,49 +194,19 @@ class Page {
     }
     
     
-    private $desc = '';
-    private $lead = '';
     private $txt = '';
     private $obs = '';
     private $footer = '';
     
     public function setText(){
-        $texts = \model\querys\HtmTxtQuery::start()->filterByHtmPageId($this->page)->find();
-        foreach($texts as $text){
-            if($text->getType() == HtmTxt::TYPE_DESC){
-                $this->desc = $text->getTxt();
-                $this->model[HtmTxt::TYPE_DESC] = $this->desc;
-            }
-            
-            if($text->getType() == HtmTxt::TYPE_LEAD){
-                $this->lead = $text->getTxt();
-                $this->model[HtmTxt::TYPE_LEAD] = $this->lead;
-            }
-            
-            if($text->getType() == HtmTxt::TYPE_TXT){
-                $this->txt = $text->getTxt();
-                $this->model[HtmTxt::TYPE_TXT] = $this->txt;
-            }
-            
-            if($text->getType() == HtmTxt::TYPE_OBS){
-                $this->obs = $text->getTxt();
-                $this->model[HtmTxt::TYPE_OBS] = $this->obs;
-            }
-            
-            if($text->getType() == HtmTxt::TYPE_FOOTER){
-                $this->footer = $text->getTxt();
-                $this->model[HtmTxt::TYPE_FOOTER] = $this->footer;
-            }
+        $this->model[HtmTxt::FIELD_TXT] = $this->txt = '';
+        $text = \model\querys\HtmTxtQuery::start()->filterByHtmPageId($this->page)->findOne();
+        if($text != false){
+            $this->model[HtmTxt::FIELD_TXT] = $this->txt = $text->getTxt();
         }
+        
     }
     
-    public function getDesc(){
-        return $this->desc;
-    }
-    
-    public function getLead(){
-        return $this->lead;
-    }
     
     public function getTxt(){
         return $this->txt;
@@ -251,17 +223,43 @@ class Page {
     private $mediasrc = null;
     
     public function setMedia(Htm $model){
-        $media = $model->getHtmHasMedia()->getHtmMedia();
-        $src = $media->getUrl();
+        $media = $model->getHtmHasMedia()->getMedia();
+        $src = $media->getSource();
         if($src != null){
            $this->mediasrc = $src;
-            $this->model['media-src'] = $this->mediasrc;
+           $this->model['media-src'] = $this->mediasrc;
         }
         
+    }
+    
+    public function setMediaSrc($src){
+        $this->mediasrc = $src;
+        $this->model['media-src'] = $this->mediasrc;
     }
     
     public function getMediaSrc(){
         return $this->mediasrc;
     }
+    
+    /*vars*/
+    public function setVarValue(Htm $model){
+        $htmvar = $model->getHtmHasVars()->getHtmVars();
+        $value = $htmvar->getValue();
+        if($value != null){
+            $this->model['var-value'] = $value;
+            $this->model['var'] = $htmvar->getVar();
+        }
+    }
+    
+    /**
+     * 
+     * @param string $column
+     * @param mixed $value
+     */
+    public function setColumnValue($column, $value){
+        $this->model[$column] = $value;
+    }
+    
+    
 
 }
