@@ -47,7 +47,7 @@ class Vars extends \lib\register\VarsRegisted
      */
     public static function getVars($key)
     {
-        return (isset(self::$vars [$key])) ? self::$objects [$key] : false;
+        return (isset(self::$vars [$key])) ? self::$vars [$key] : false;
     }
 
     /**
