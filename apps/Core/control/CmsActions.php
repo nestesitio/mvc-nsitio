@@ -52,12 +52,36 @@ class CmsActions extends \lib\control\ControllerAdmin {
         $this->set('file-input', $input->render());
     }
     
-    protected function saveMedia(\lib\media\UploadFile $upload){
-        $media = new \model\models\HtmMedia();
+    protected function saveMedia(\lib\media\UploadFile $upload, $id = null){
+        $media = ($id == null)? new \model\models\Media(): 
+            \model\querys\MediaQuery::start()->filterById($id)->findOne(); 
         $media->setGenre($upload->getGenre());
-        $media->setUrl($upload->getResult());
+        $media->setSource($upload->getResult());
         $media->save();
         return $media->getId();
+    }
+    
+    
+    public function bindImageAction($params = []) {
+        $this->layout = false;
+        $this->setEmptyView();
+        $action = null;
+        if(null != $_FILES){
+            $action = new \lib\media\UploadFile();
+            $action->setFolder($params['folder'] . '/');
+            $action->execute($params['width'], $params['height']);
+            $result = $action->getResult();
+            if($result != false){
+                $this->json['upload'] = 'ok';
+                $this->json['result'] = $action->getResult();
+            }else{
+                $this->json['upload'] = 'error';
+            }
+        }else{
+            $this->json['upload'] = 'false';
+        }
+        
+        return $action;
     }
 
 }

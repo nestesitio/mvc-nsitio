@@ -2,66 +2,66 @@
 <root>
   <show>
     <fields comment="Fields for render">
-      <htmmediaid field="htm_media.id" show="false" filter="false">
+      <mediaid field="media.id" show="false" filter="false">
 
         <label lang="es">Id</label>
         <label lang="fr">Id</label>
         <label key="id" />
-      </htmmediaid>
-      <htmmediahtmid field="htm_media.htm_id" range="multiple" show="false" filter="true">
+      </mediaid>
+      <mediahtmid field="media.htm_id" range="multiple" show="false" filter="true">
         <label lang="en">Htm Id</label>
         <label lang="es">Htm Id</label>
         <label lang="fr">Htm Id</label>
         <label lang="pt">Htm Id</label>
-      </htmmediahtmid>
-      <htmmediagenre field="htm_media.genre" show="true" filter="true">
+      </mediahtmid>
+      <mediagenre field="media.genre" show="true" filter="true">
         <label lang="en">Genre</label>
         <label lang="es">Genre</label>
         <label lang="fr">Genre</label>
         <label lang="pt">Genre</label>
-      </htmmediagenre>
-      <htmmediaurl field="htm_media.url" show="true" filter="true">
+      </mediagenre>
+      <mediaurl field="media.url" show="true" filter="true">
         <label lang="en">Url</label>
         <label lang="es">Url</label>
         <label lang="fr">Url</label>
         <label lang="pt">Url</label>
-      </htmmediaurl>
-      <htmmediaposition field="htm_media.position" show="true" filter="true">
+      </mediaurl>
+      <mediaposition field="media.position" show="true" filter="true">
         <label lang="en">Position</label>
         <label lang="es">Position</label>
         <label lang="fr">Position</label>
         <label lang="pt">Position</label>
-      </htmmediaposition>
-      <htmmediatitle field="htm_media.title" show="true" filter="true">
+      </mediaposition>
+      <mediatitle field="media.title" show="true" filter="true">
         <label lang="en">Title</label>
         <label lang="es">Title</label>
         <label lang="fr">Title</label>
         <label key="title" />
-      </htmmediatitle>
-      <htmmediaauthor field="htm_media.author" show="true" filter="true">
+      </mediatitle>
+      <mediaauthor field="media.author" show="true" filter="true">
         <label lang="en">Author</label>
         <label lang="es">Author</label>
         <label lang="fr">Author</label>
         <label lang="pt">Author</label>
-      </htmmediaauthor>
-      <htmmediadate field="htm_media.date" range="range" show="true" filter="true" type="DateInput">
+      </mediaauthor>
+      <mediadate field="media.date" range="range" show="true" filter="true" type="DateInput">
         <label lang="en">Date</label>
         <label lang="es">Date</label>
         <label lang="fr">Date</label>
         <label lang="pt">Date</label>
-      </htmmediadate>
-      <htmmediacreated field="htm_media.created" range="range" show="true" filter="true" type="DateInput">
+      </mediadate>
+      <mediacreated field="media.created" range="range" show="true" filter="true" type="DateInput">
         <label lang="en">Created</label>
         <label lang="es">Created</label>
         <label lang="fr">Created</label>
         <label lang="pt">Criado em</label>
-      </htmmediacreated>
-      <htmmediadescription field="htm_media.description" show="true" filter="true">
+      </mediacreated>
+      <mediadescription field="media.description" show="true" filter="true">
         <label lang="en">Description</label>
         <label lang="es">Description</label>
         <label lang="fr">Description</label>
         <label lang="pt">Description</label>
-      </htmmediadescription>
+      </mediadescription>
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="salesforce/edit_files" auth="1">
@@ -96,77 +96,77 @@
       </closeform>
     </buttons>
   </show>
-  <grid identification="files" paging="25" fieldid="htm_media.id">
+  <grid identification="files" paging="25" fieldid="media.id">
     <columns comment="Columns for grid">
-      <htmmediaid field="htm_media.id" class="id" sort="true">
+      <mediaid field="media.id" class="id" sort="true">
 
         <label lang="es">Id</label>
         <label lang="fr">Id</label>
         <label key="id" />
-      </htmmediaid>
-      <htmmediagenre field="htm_media.genre" class="genre" sort="true">
+      </mediaid>
+      <mediagenre field="media.genre" class="genre" sort="true">
         <label lang="en">Genre</label>
         <label lang="es">Genre</label>
         <label lang="fr">Genre</label>
         <label lang="pt">Genre</label>
-      </htmmediagenre>
-      <htmmediaurl field="htm_media.url" class="url" sort="true">
+      </mediagenre>
+      <mediaurl field="media.url" class="url" sort="true">
         <label lang="en">Url</label>
         <label lang="es">Url</label>
         <label lang="fr">Url</label>
         <label lang="pt">Url</label>
-      </htmmediaurl>
-      <htmmediaposition field="htm_media.position" class="position" sort="true">
+      </mediaurl>
+      <mediaposition field="media.position" class="position" sort="true">
         <label lang="en">Position</label>
         <label lang="es">Position</label>
         <label lang="fr">Position</label>
         <label lang="pt">Position</label>
-      </htmmediaposition>
-      <htmmediatitle field="htm_media.title" class="title" sort="true">
+      </mediaposition>
+      <mediatitle field="media.title" class="title" sort="true">
         <label lang="en">Title</label>
         <label lang="es">Title</label>
         <label lang="fr">Title</label>
         <label key="title" />
-      </htmmediatitle>
-      <htmmediaauthor field="htm_media.author" class="author" sort="true">
+      </mediatitle>
+      <mediaauthor field="media.author" class="author" sort="true">
         <label lang="en">Author</label>
         <label lang="es">Author</label>
         <label lang="fr">Author</label>
         <label lang="pt">Author</label>
-      </htmmediaauthor>
-      <htmmediadate field="htm_media.date" class="date" sort="true">
+      </mediaauthor>
+      <mediadate field="media.date" class="date" sort="true">
         <label lang="en">Date</label>
         <label lang="es">Date</label>
         <label lang="fr">Date</label>
         <label lang="pt">Date</label>
-      </htmmediadate>
-      <htmmediacreated field="htm_media.created" class="created" sort="true">
+      </mediadate>
+      <mediacreated field="media.created" class="created" sort="true">
         <label lang="en">Created</label>
         <label lang="es">Created</label>
         <label lang="fr">Created</label>
         <label lang="pt">Criado em</label>
-      </htmmediacreated>
-      <htmmediadescription field="htm_media.description" class="description" sort="true">
+      </mediacreated>
+      <mediadescription field="media.description" class="description" sort="true">
         <label lang="en">Description</label>
         <label lang="es">Description</label>
         <label lang="fr">Description</label>
         <label lang="pt">Description</label>
-      </htmmediadescription>
+      </mediadescription>
     </columns>
     <tools comment="buttons in row">
-      <edit action="core/edit_files" class="fa-pencil" id="htm_media.id" auth="1">
+      <edit action="core/edit_files" class="fa-pencil" id="media.id" auth="1">
 
         <label lang="es">Edit</label>
         <label lang="fr">Edit</label>
         <label key="edit" />
       </edit>
-      <show action="core/show_files" class="fa-eye" id="htm_media.id" auth="1">
+      <show action="core/show_files" class="fa-eye" id="media.id" auth="1">
 
         <label lang="es">Show</label>
         <label lang="fr">Show</label>
         <label key="show" />
       </show>
-      <del action="core/del_files" class="fa-trash-o" id="htm_media.id" auth="1">
+      <del action="core/del_files" class="fa-trash-o" id="media.id" auth="1">
 
         <label lang="es">Del</label>
         <label lang="fr">Del</label>

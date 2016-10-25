@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <mediaid field="media.id" show="false" filter="false">
+        <label key="id"/>
+      </mediaid>
+      <mediagenre field="media.genre" show="true" filter="true">
+        <label key="genre"/>
+      </mediagenre>
+      <mediasource field="media.source" show="true" filter="true">
+        <label key="source"/>
+      </mediasource>
+      <medialink field="media.link" show="true" filter="true">
+        <label key="link"/>
+      </medialink>
+      <mediadate field="media.date" range="range" show="true" filter="true" type="DateInput">
+        <label key="date"/>
+      </mediadate>
+      <mediacreated field="media.created" range="range" show="true" filter="true" type="DateInput">
+        <label key="created"/>
+      </mediacreated>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="admin/edit_media" auth="1">
+        <label key="save"/>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="admin/edit_media" auth="1">
+        <label key="edit"/>
+      </editform>
+      <delform class="glyphicon glyphicon-trash" action="admin/del_media" auth="1">
+        <label key="delete"/>
+      </delform>
+      <closeform class="glyphicon glyphicon-remove" auth="9">
+        <label key="close"/>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="media" paging="25" fieldid="media.id">
+    <columns comment="Columns for grid">
+      <mediaid field="media.id" class="id" sort="true">
+        <label key="id"/>
+      </mediaid>
+      <mediagenre field="media.genre" class="genre" sort="true">
+        <label key="genre"/>
+      </mediagenre>
+      <mediasource field="media.source" class="source" sort="true">
+        <label key="source"/>
+      </mediasource>
+      <medialink field="media.link" class="link" sort="true">
+        <label key="link"/>
+      </medialink>
+      <mediadate field="media.date" class="date" sort="true">
+        <label key="date"/>
+      </mediadate>
+      <mediacreated field="media.created" class="created" sort="true">
+        <label key="created"/>
+      </mediacreated>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="admin/edit_media" class="fa-pencil" id="media.id" auth="1">
+        <label key="edit"/>
+      </edit>
+      <show action="admin/show_media" class="fa-eye" id="media.id" auth="1">
+        <label key="show"/>
+      </show>
+      <del action="admin/del_media" class="fa-trash-o" id="media.id" auth="1">
+        <label key="del"/>
+      </del>
+    </tools>
+    <buttons comment="buttons ion top">
+      <insert url="/admin/new_media" class="glyphicon glyphicon-plus" auth="1">
+        <label key="insert"/>
+      </insert>
+      <export url="/admin/export_media" class="glyphicon glyphicon-export" auth="1">
+        <label key="export"/>
+      </export>
+    </buttons>
+  </grid>
+</root>

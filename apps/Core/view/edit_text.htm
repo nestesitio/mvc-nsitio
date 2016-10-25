@@ -13,7 +13,9 @@
 </ul>
 <form action="{$action}" method="post">
     <div class="btns-form">
-        <!--{$buttons}-->
+        <div class="btns-container">
+            <!--{$buttons}-->
+        </div>
     </div>
     {@while ($item in $usermsg):}
     <div class="usermsg">{$item.msg}</div>

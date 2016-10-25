@@ -2,7 +2,7 @@
 
 namespace apps\Core\model;
 
-use \model\querys\HtmMediaQuery;
+use \model\querys\MediaQuery;
 use \lib\mysql\Mysql;
 
 
@@ -13,15 +13,15 @@ use \lib\mysql\Mysql;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class FilesQuery extends \model\querys\HtmMediaQuery {
+class FilesQuery extends \model\querys\MediaQuery {
 
     /**
     * Create and return the common query to this class
     *
-    * @return \model\querys\HtmMediaQuery;
+    * @return \model\querys\MediaQuery;
     */
     public static function get(){
-        $query = HtmMediaQuery::start()
+        $query = MediaQuery::start()
                 ->joinHtmHasMedia(Mysql::LEFT_JOIN)->selectHtmId()->selectOrd()->endUse();
 	
         

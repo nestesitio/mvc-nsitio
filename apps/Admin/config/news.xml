@@ -57,15 +57,12 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="edit_news" auth="4">
-
         <label key="save" />
       </saveform>
       <delform class="glyphicon glyphicon-trash" action="del_news" auth="1">
-
         <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="4">
-
         <label key="close" />
       </closeform>
     </buttons>
@@ -73,7 +70,6 @@
   <grid identification="news" paging="25" fieldid="htm.id">
     <columns comment="Columns for grid">
       <htmpageid field="htm.id" class="id" sort="true">
-
         <label key="id" />
       </htmpageid>
       <htmpagetitle field="htm_page.title" class="title" sort="true">
@@ -105,21 +101,17 @@
           <label lang="pt">Imagens</label>
       </photo>
       <edit id="htm.id" action="admin/status_news" class="fa-pencil" auth="4">
-
         <label key="edit" />
       </edit>
       <show id="htm.id" action="admin/show_news" class="fa-eye" auth="4">
-
         <label key="show" />
       </show>
       <del id="htm.id" action="admin/del_news" class="fa-trash-o" auth="1">
-
         <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="admin/new_news" class="glyphicon glyphicon-plus" auth="4">
-
         <label key="insert" />
       </new>
       <csv action="admin/csv_news" class="glyphicon glyphicon-export" auth="1">

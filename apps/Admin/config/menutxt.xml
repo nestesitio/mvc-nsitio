@@ -20,12 +20,15 @@
         <label lang="en">Slug</label>
         <label lang="pt">Slug</label>
       </htmpageslug>
+      <htmpagemenu field="htm_page.menu" show="true" filter="false">
+        <label lang="en">Menu</label>
+        <label lang="pt">Menu</label>
+      </htmpagemenu>
       <htmpageheading field="htm_page.heading" show="true">
         <label lang="en">Heading</label>
         <label lang="pt">Subtitulo</label>
       </htmpageheading>
       <htmtxtid field="htm_txt.id" show="false">
-
         <label key="id" />
       </htmtxtid>
       <htmtxthtmpageid field="htm_txt.htm_page_id" show="false">
@@ -36,10 +39,6 @@
         <label lang="en">Txt</label>
         <label lang="pt">Texto</label>
       </htmtxttxt>
-      <htmtxttype field="htm_txt.type" show="false">
-        <label lang="en">Type</label>
-        <label lang="pt">Tipo</label>
-      </htmtxttype>
       <htmpageupdatedat field="htm_page.updated_at" range="range" show="true" filter="true" type="DateInput">
         <label lang="en">Updated At</label>
         <label lang="pt">Actualização</label>

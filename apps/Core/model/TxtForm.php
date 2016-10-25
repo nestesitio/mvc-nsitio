@@ -7,13 +7,14 @@ use \model\models\HtmTxt;
 use \lib\form\input\HiddenInput;
 use \lib\form\input\WysihtmlInput;
 
+
 /**
  * Description of TxtForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jul 28, 2015
  */
-class TxtForm extends \lib\form\FormMerged {
+class TxtForm extends \apps\Core\model\CmsForm {
 
     /**
      * @param $htm_id
@@ -45,6 +46,8 @@ class TxtForm extends \lib\form\FormMerged {
         
         return $this;
     }
+    
+    
 
     /**
      * @param $htm_id
@@ -72,8 +75,6 @@ class TxtForm extends \lib\form\FormMerged {
         $form = \model\forms\HtmTxtForm::initialize();
         $input = WysihtmlInput::create(HtmTxt::FIELD_TXT);
         $form->setTxtInput($input);
-        $input = HiddenInput::create(HtmTxt::FIELD_TYPE)->setValue(HtmTxt::TYPE_TXT);
-        $form->setTypeInput($input);
         
         return $form;
     }
@@ -87,19 +88,6 @@ class TxtForm extends \lib\form\FormMerged {
         return $this->forms[HtmTxt::TABLE];
     }
     
-    /**
-     * 
-     * @param string $value
-     * @return \apps\Core\model\TxtForm
-     */
-    public function setTypeValue($value){
-        $form = $this->getTxtForm();
-        $input = $form->getTypeInput()->setValue($value);
-        $form->setTypeInput($input);    
-        
-        $this->forms[HtmTxt::TABLE] = $form;
-        return $this;
-    }
     
     /**
      * 
@@ -128,8 +116,7 @@ class TxtForm extends \lib\form\FormMerged {
             $this->rePostValue(HtmPage::TABLE, HtmPage::FIELD_SLUG, $slug);
         }
         //we cannot filter this input as others because it has html tags
-        $value = $this->getTxtForm()->getTxtInput()->getValue();
-        $this->rePostValue(HtmTxt::TABLE, HtmTxt::FIELD_TXT, $value);
+        $this->repostWysihtmlValue();
     }
 
 }

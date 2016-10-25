@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <show>
+    <fields comment="Fields for render">
+      <mediaid field="media.id" show="false" filter="false">
+        <label key="id"/>
+      </mediaid>
+      <mediagenre field="media.genre" show="true" filter="true">
+        <label key="genre"/>
+      </mediagenre>
+      <mediainfoid field="media_info.id" show="false" filter="false">
+        <label key="id"/>
+      </mediainfoid>
+      <mediainfomediaid field="media_info.media_id" range="multiple" show="false" filter="true">
+        <label key="media"/>
+      </mediainfomediaid>
+      <mediainfomediacollectionid field="media_info.media_collection_id" range="multiple" show="false" filter="true">
+        <label key="collection"/>
+      </mediainfomediacollectionid>
+      <mediainfolangstld field="media_info.langs_tld" range="multiple" show="false" filter="true">
+        <label key="langs"/>
+      </mediainfolangstld>
+      <mediainfotitle field="media_info.title" show="true" filter="true">
+        <label key="title"/>
+      </mediainfotitle>
+      <medialink field="media.link" show="true" filter="true">
+        <label key="link"/>
+      </medialink>
+      <mediainfosummary field="media_info.summary" show="true" filter="true">
+        <label key="summary"/>
+      </mediainfosummary>
+    </fields>
+    <buttons comment="Commands for form and show">
+      <saveform class="glyphicon glyphicon-save" action="admin/edit_slider" auth="1">
+        <label key="save"/>
+      </saveform>
+      <editform class="glyphicon glyphicon-pencil" action="admin/edit_slider" auth="1">
+        <label key="edit"/>
+      </editform>
+      <closeform class="glyphicon glyphicon-remove" auth="9">
+        <label key="close"/>
+      </closeform>
+    </buttons>
+  </show>
+  <grid identification="slider" paging="25" fieldid="media_info.id">
+    <columns comment="Columns for grid">
+      <mediainfoid field="media_info.id" class="id" sort="true">
+        <label key="id"/>
+      </mediainfoid>
+      <mediainfotitle field="media_info.title" class="description" sort="true">
+        <label key="title"/>
+      </mediainfotitle>
+    </columns>
+    <tools comment="buttons in row">
+      <edit action="admin/edit_slider" class="fa-pencil" id="media_info.id" auth="1">
+        <label key="edit"/>
+      </edit>
+      <show action="admin/show_slider" class="fa-eye" id="media_info.id" auth="1">
+        <label key="show"/>
+      </show>
+      <del action="admin/del_slider" class="fa-trash-o" id="media_info.id" auth="1">
+        <label key="del"/>
+      </del>
+      <image id="media_info.id" action="admin/images_slider" file="img" class="fa-file-image-o" auth="4">
+          <vars var="folder" str="images" />
+          <vars var="genre" str="banner" />
+          <label lang="en">Image</label>
+          <label lang="pt">Imagem</label>
+      </image>
+    </tools>
+    <buttons comment="buttons ion top">
+      <insert action="admin/new_slider" class="glyphicon glyphicon-plus" auth="1">
+        <label key="insert"/>
+      </insert>
+      <export url="/admin/export_slider" class="glyphicon glyphicon-export" auth="1">
+        <label key="export"/>
+      </export>
+    </buttons>
+  </grid>
+</root>

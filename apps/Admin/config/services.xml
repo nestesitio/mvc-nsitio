@@ -3,7 +3,6 @@
   <show>
     <fields comment="Fields for render">
       <htmpageid field="htm_page.id" show="false" filter="false">
-
         <label key="id" />
       </htmpageid>
       <htmpagehtmid field="htm_page.htm_id" range="multiple" show="false" filter="false">
@@ -11,7 +10,6 @@
         <label lang="pt">Htm Id</label>
       </htmpagehtmid>
       <htmpagelangstld field="htm_page.langs_tld" range="multiple" show="false" filter="true">
-        <label lang="en">Langs Tld</label>
         <label key="langs" />
       </htmpagelangstld>
       <htmpagehtmlayoutid field="htm_page.htm_layout_id" range="multiple" show="false" filter="false">
@@ -19,16 +17,13 @@
         <label lang="pt">Htm Layout Id</label>
       </htmpagehtmlayoutid>
       <htmpagetitle field="htm_page.title" show="true" filter="false">
-        <label lang="en">Title</label>
         <label key="title" />
       </htmpagetitle>
       <htmpageslug field="htm_page.slug" show="true" filter="false">
-        <label lang="en">Slug</label>
-        <label lang="pt">Slug</label>
+        <label key="slug" />
       </htmpageslug>
       <htmpagemenu field="htm_page.menu" show="true" filter="false">
-        <label lang="en">Menu</label>
-        <label lang="pt">Menu</label>
+        <label key="menu" />
       </htmpagemenu>
       <htmpageheading field="htm_page.heading" show="true" filter="false">
         <label lang="en">Heading</label>
@@ -57,15 +52,12 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="edit_services" auth="4">
-
         <label key="save" />
       </saveform>
       <delform class="glyphicon glyphicon-trash" action="del_services" auth="1">
-
         <label key="delete" />
       </delform>
-      <closeform class="glyphicon glyphicon-remove" auth="4">
-
+      <closeform class="glyphicon glyphicon-remove" auth="9">
         <label key="close" />
       </closeform>
     </buttons>
@@ -73,11 +65,9 @@
   <grid identification="services" paging="25" fieldid="htm.id">
     <columns comment="Columns for grid">
       <htmpageid field="htm.id" class="id" sort="true">
-
         <label key="id" />
       </htmpageid>
       <htmpagetitle field="htm_page.title" class="title" sort="true">
-        <label lang="en">Title</label>
         <label key="title" />
       </htmpagetitle>
       <htmstat field="htm.stat" class="stat" sort="true">
@@ -105,25 +95,20 @@
           <label lang="pt">Imagens</label>
       </photo>
       <edit id="htm.id" action="admin/status_services" class="fa-pencil" auth="4">
-
         <label key="edit" />
       </edit>
       <show id="htm.id" action="admin/show_services" class="fa-eye" auth="4">
-
         <label key="show" />
       </show>
       <del id="htm.id" action="admin/del_services" class="fa-trash-o" auth="1">
-
-        <label lang="pt">Del</label>
+        <label key="delete" />
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="admin/new_services" class="glyphicon glyphicon-plus" auth="4">
-
         <label key="insert" />
       </new>
       <csv action="admin/csv_services" class="glyphicon glyphicon-export" auth="1">
-        <label lang="en">Csv</label>
         <label key="export" />
       </csv>
     </buttons>

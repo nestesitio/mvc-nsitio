@@ -65,7 +65,6 @@ class NewsActions extends \apps\Core\control\PagesActions {
     
     public function txtNewsAction(){
         $form = $this->geTxtForm();
-        $form = $form->setTypeValue('txt');
         
         $this->txtAction($form, 'hometxt');
     }

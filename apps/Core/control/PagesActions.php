@@ -25,11 +25,12 @@ class PagesActions extends \apps\Core\control\CmsActions {
 
 
 
-    /**
-     * @param $app_slug
-     * @param $xml_file
+    /** 
+     * 
+     * @param string $xml_file
+     * @param boolean $filter
      */
-    protected function mainAction($xml_file){
+    protected function mainAction($xml_file, $filter = true){
         $this->setView('layout/core/datagrid-cms.htm');
         $langs = $this->queryLangs();
         
@@ -41,8 +42,11 @@ class PagesActions extends \apps\Core\control\CmsActions {
         $results = LangsRowTools::renderLangTools($results, $langs, $this->txt_action);
         $this->renderList($results);
         
-        $form = HtmPageForm::initialize()->prepareFilters();
-        $this->renderFilters($form, $xml_file);
+        if($filter == true){
+            $form = HtmPageForm::initialize()->prepareFilters();
+            $this->renderFilters($form, $xml_file);
+        }
+        
     }
 
 
@@ -212,36 +216,27 @@ class PagesActions extends \apps\Core\control\CmsActions {
         
     }
     
-    public function bindImageAction($params = []) {
-        $this->layout = false;
-        $this->setEmptyView();
-        $action = null;
-        if(null != $_FILES){
-            $action = new \lib\media\UploadFile();
-            $action->setFolder($params['folder'] . '/');
-            $action->execute($params['width'], $params['height']);
-            $result = $action->getResult();
-            if($result != false){
-                $this->json['upload'] = 'ok';
-                $this->json['result'] = $action->getResult();
-            }else{
-                $this->json['upload'] = 'error';
-            }
-        }else{
-            $this->json['upload'] = 'false';
+    public function choiceMedia($htm = null, $media = null){
+        if(null == $htm){
+            $htm = Vars::getPosts('htm');
         }
-        
-        return $action;
+        if(null == $media){
+            $media = Vars::getPosts('media');
+        }
+        return \model\querys\HtmHasMediaQuery::start()
+                ->filterByHtmId($htm)
+                ->filterByMediaId($media)
+                ->toogleOne();
     }
     
     
-    public function choiceMediaAction(){
+    
+    public function choiceMediaAction($htm = null, $media = null){
         $this->layout = false;
         $this->setEmptyView();
-        $result = \model\querys\HtmHasMediaQuery::start()
-                ->filterByHtmId(Vars::getPosts('htm'))
-                ->filterByHtmMediaId(Vars::getPosts('media'))
-                ->toogleOne();
+        
+        $result = $this->choiceMedia($htm, $media);
+        
         if(null != $result){
             echo true;
         }

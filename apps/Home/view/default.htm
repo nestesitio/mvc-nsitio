@@ -1,6 +1,61 @@
 {@extends 'config:frontend'}
 
+{@block name='css'}
+<link href="/themes/full-slider/full-slider.css" rel="stylesheet">
+{@endblock}
+
+<header id="myCarousel" class="carousel slide">
+    {@include 'layout/agency/carousel.htm'}
+</header>
 
 
+<div id="jsmonitor" style="position:fixed;bottom:5px;right:100px;z-index:360;background:#fff;color:red;"></div>
+
+
+<section id="about">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-5 text-center about-title">
+                <p class="mrtailor-brand">{$sitetitle}</p>
+                <br />
+                <h2 class="mrtailor-text">{$desc}</h2>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 text-center about-text">
+                    {$about-text}
+                </div>        
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="services">
+    
+</section>
+
+<section id="how">
+
+</section>
+
+<section id="portfolio">
+    
+</section>
+
+
+<section id="contacts">
+    
+</section>
 
 <!-- /.row -->
+{@block name='scripts'}
+<script>
+    $('.carousel').carousel({interval: 2500});
+    $("#services .row:even").css("background-color", "#E5E5E5");
+
+</script>
+{@endblock}

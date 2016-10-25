@@ -10,6 +10,8 @@ use \apps\Core\model\HtmForm;
 use \model\models\HtmPage;
 use \lib\page\MediaQuery;
 use \lib\session\SessionConfig;
+use \lib\register\Monitor;
+use \lib\form\input\WysihtmlInput;
 
 /**
  * Description of MainpagesActions
@@ -25,7 +27,7 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
     protected $txt_action = 'admin/txt_mainpages';
     protected $bindtxt_action = 'admin/bindtxt_mainpages';
     
-    private $local = ['home'];
+    //private $local = ['home'];
 
     /**
      *
@@ -35,7 +37,6 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
         
         SessionConfig::setXml('apps/Admin/config/mainpages');
         $this->query = $this->queryPages($this->app_slug);
-        $this->filterByLocal($this->local);
         $this->mainAction('mainpages');
         
     }
@@ -47,7 +48,7 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
     public function listMainpagesAction(){
         SessionConfig::setXml('apps/Admin/config/mainpages');
         $this->query = $this->queryPages($this->app_slug);
-        $this->filterByLocal($this->local);
+        //$this->filterByLocal($this->local);
         $this->listAction('mainpages');
     }
     
@@ -76,17 +77,16 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
     
     
     public function txtMainpagesAction(){
-        $form = $this->geTxtForm();
-        $form = $form->setTypeValue('txt');
+        $form = $this->geTxtForm(WysihtmlInput::TOOLBAR_RICHTEXT);
         
-        $this->txtAction($form, 'hometxt');
+        $this->txtAction($form, 'menutxt');
     }
     
     public function bindtxtMainpagesAction() {
         $form = $this->geTxtForm();
         $form = $form->validate();
         
-        $this->bindTxtAction($form, 'hometxt');
+        $this->bindTxtAction($form, 'menutxt');
     }
 
 
@@ -105,7 +105,7 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
      *
      */
     public function newMainpagesAction() {
-        $form = PageTextForm::initialize($this->app_slug);
+        $form = PageTextForm::initialize($this->app_slug)->addHtmVars('anchor');
         #more code about $form and $query
         $this->renderForm($form, 'mainpages');
     }
@@ -115,7 +115,7 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
      */
     public function statusMainPagesAction(){
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
-        $form = HtmForm::initialize($this->app_slug)->setQueryValues($query);
+        $form = HtmForm::initialize($this->app_slug)->addHtmVars('anchor')->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'apps/Core/config/htmvars', 'bindstatus_mainpages');
     }
@@ -124,8 +124,11 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
      *
      */
     public function bindstatusMainpagesAction() {
-        $form = HtmForm::initialize($this->app_slug);
+        $form = HtmForm::initialize($this->app_slug)->addHtmVars('anchor');
         $form->validate();
+        
+        Monitor::setMonitor(Monitor::BOOKMARK, 'Form has been validated');
+        
         $model = $this->buildProcess($form, 'apps/Core/config/htmvars');
         if($model !== false){
             $this->showMainpagesAction();
@@ -138,7 +141,7 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
      *
      */
     public function bindMainpagesAction() {
-        $form = PageTextForm::initialize($this->app_slug)->validate();
+        $form = PageTextForm::initialize($this->app_slug)->addHtmVars('anchor')->validate();
         #more code for processing - example
         #$model = $form->getModels('table')->setColumnValue('field','value');
         #$form->setModel('table', $model);

@@ -6,9 +6,9 @@ use \lib\register\Vars;
 
 
 use \apps\Core\model\FilesQuery;
-use \model\models\HtmMedia;
-use \model\querys\HtmMediaQuery;
-use \model\forms\HtmMediaForm;
+use \model\models\Media;
+use \model\querys\MediaQuery;
+use \model\forms\MediaForm;
 use \lib\session\SessionConfig;
 use \lib\bkegenerator\DataConfig;
 use \lib\form\widgets\FileInput;
@@ -31,7 +31,7 @@ class FilesActions extends \lib\control\ControllerAdmin {
 
         $query = FilesQuery::get();
         /*
-                ->filterByGenre(HtmMedia::GENRE_IMG)
+                ->filterByGenre(Media::GENRE_IMG)
                 ->filterByPosition(Vars::getRequests('position'))
                 ->filterByHtmId(Vars::getId());
          * 
@@ -98,7 +98,7 @@ class FilesActions extends \lib\control\ControllerAdmin {
      */
     public function removeimgFilesAction(){
         $this->setView('file_remove');
-        $query = HtmMediaQuery::start()->filterById(Vars::getId())->findOne();
+        $query = MediaQuery::start()->filterById(Vars::getId())->findOne();
         $result = \lib\media\UploadFile::removeFile($query->getUrl());
         if($result == true){
             $this->delFilesAction();
@@ -132,7 +132,7 @@ class FilesActions extends \lib\control\ControllerAdmin {
         $result = $action->getResult();
         if($result != false){
             $title = Vars::getPosts('title');
-            $media = new HtmMedia();
+            $media = new Media();
             $media->setHtmId($this->id);
             $media->setGenre($configs['genre']);
             $media->setUrl($result);
@@ -157,7 +157,7 @@ class FilesActions extends \lib\control\ControllerAdmin {
      */
     public function editFilesAction() {
         $query = FilesQuery::get()->filterById(Vars::getId())->findOne();
-        $form = HtmMediaForm::initialize()->setQueryValues($query);
+        $form = MediaForm::initialize()->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'files');
     }
@@ -176,7 +176,7 @@ class FilesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function delFilesAction() {
-        $model = \model\querys\HtmMediaQuery::start()->filterById(Vars::getId())->findOne();
+        $model = \model\querys\MediaQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
         
     }

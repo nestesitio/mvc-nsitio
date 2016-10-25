@@ -3,9 +3,9 @@
 namespace apps\Core\model;
 
 use \model\models\Htm;
-use \model\models\HtmHasVars;
 use \model\forms\HtmHasVarsForm;
 use \lib\form\input\HiddenInput;
+
 
 /**
  * Description of HtmForm
@@ -14,9 +14,8 @@ use \lib\form\input\HiddenInput;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class HtmForm extends \lib\form\FormMerged {
+class HtmForm extends \apps\Core\model\CmsForm {
     
-    private $app;
 
     /**
     * Create and return the common query to this class
@@ -44,53 +43,7 @@ class HtmForm extends \lib\form\FormMerged {
         return $this;
     }
     
-    private function declareHtmForm(){
-        $form = \model\forms\HtmForm::initialize();
-        
-        $query = \model\querys\HtmAppQuery::start(ONLY)->filterBySlug($this->app)->findOne();
-        $input = HiddenInput::create(Htm::FIELD_HTM_APP_ID)->setValue($query->getId());
-        $form->setHtmAppIdInput($input);
-        
-        return $form;
-    }
     
-    /**
-    * Set some defaults on the new form
-    *
-    * @return \model\forms\HtmForm;
-    */
-    public function getHtmForm(){
-        return $this->forms[Htm::TABLE];
-    }
-    
-    /**
-     * 
-     * @param string $var
-     * @return \apps\Core\model\HtmForm
-     */
-    public function addHtmVars($var){
-        $this->queue = array_merge($this->queue, [HtmHasVars::TABLE]);
-        $this->models[HtmHasVars::TABLE] = new HtmHasVars();
-        $this->forms[HtmHasVars::TABLE] = $this->declareHtmVarsForm($var);
-        
-        $this->merge();
-        return $this;
-    }
-    
-    /**
-     * @return HtmForm
-     */
-    private function declareHtmVarsForm($var){
-        $form = HtmHasVarsForm::initialize();
-        
-        $query = \model\querys\HtmVarsQuery::start()->filterByVar($var)->orderByValue();
-        $input = $form->getHtmVarsIdInput();
-        $input->setModel($query);
-        $input->setArrayLabel([\model\models\HtmVars::FIELD_VALUE => '']);
-        $form->setHtmVarsIdInput($input);
-        
-        return $form;
-    }
     
     /**
      * 

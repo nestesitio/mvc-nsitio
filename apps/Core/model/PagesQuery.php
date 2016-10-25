@@ -26,10 +26,10 @@ class PagesQuery extends \model\querys\HtmPageQuery {
         $query->joinHtm()->groupById()
                 ->joinHtmHasVars(Mysql::LEFT_JOIN)
                 ->selectHtmId()->selectHtmVarsId()
-                ->joinHtmVars(Mysql::LEFT_JOIN)->endUse()->endUse()
+                ->joinHtmVars(Mysql::LEFT_JOIN)->selectVar()->selectValue()->endUse()->endUse()
                 ->joinHtmApp()->filterBySlug($app_slug)->endUse()
                 ->selectId()->selectHtmAppId()->selectStat()->selectOrd()->endUse();
-	$query->joinHtmTxt(Mysql::LEFT_JOIN)->selectId()->selectType()->selectTxt()->endUse();
+	$query->joinHtmTxt(Mysql::LEFT_JOIN)->selectId()->selectTxt()->endUse();
 	$query->orderByTitle();
         
         return $query;
@@ -45,7 +45,7 @@ class PagesQuery extends \model\querys\HtmPageQuery {
         $query = HtmPageQuery::start()
                 ->filterByHtmId($htm_id)->filterByLangsTld($lang)->groupById();
 	$query->joinHtmTxt(Mysql::LEFT_JOIN)
-                ->selectId()->selectHtmPageId()->selectType()->selectTxt()->endUse();
+                ->selectId()->selectHtmPageId()->selectTxt()->endUse();
         
         return $query;
     }
