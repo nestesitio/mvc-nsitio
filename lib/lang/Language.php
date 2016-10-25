@@ -28,7 +28,7 @@ class Language {
      * 
      * @param string $lang
      */
-    public static function setLang($lang = null){
+    public static function setLang($default, $lang = null){
 
         // look in the requests
         if($lang == null){
@@ -45,11 +45,12 @@ class Language {
             $lang = Session::getSessionVar(Session::SESS_LANG);
         }
         
-        if($lang == false){
-            //string(14) "en-US,en;q=0.5" 
-            list($http_str, ) = explode(';', filter_input(INPUT_SERVER, 'HTTP_ACCEPT_LANGUAGE'));
-            list(, $lang) = explode(',', $http_str);
-
+        if ($lang == false) {
+            $lang = $default;
+        }
+        
+        if ($lang == false) {
+            $lang = self::getHttpLanguage();
         }
         
         self::checkLang($lang);
@@ -61,6 +62,18 @@ class Language {
         
     }
     
+    private static function getHttpLanguage() {
+        $accept = filter_input(INPUT_SERVER, 'HTTP_ACCEPT_LANGUAGE');
+        if ($accept == null) {
+            return false;
+        } else {
+            //string(14) "en-US,en;q=0.5" 
+            list($http_str, ) = explode(';', filter_input(INPUT_SERVER, 'HTTP_ACCEPT_LANGUAGE'));
+
+            list(, $lang) = explode(',', $http_str);
+        }
+        return $lang;
+    }
 
     /**
      * Validate lang along langs table or xml config default lang
@@ -68,19 +81,6 @@ class Language {
      * @param string $lang
      */
     public static function checkLang($lang = null){
-        /**
-        if($lang != null){
-            $model = \model\querys\LangsQuery::start()->filterByTld($lang)->findOne();
-        }
-        if($model == false){
-            $lang = Configurator::getLangDefault();
-            $model = \model\querys\LangsQuery::start()->filterByTld($lang)->findOne();
-            
-        }
-        self::$lang = $model->getTld();
-        self::$locale = $model->getLocale();
-         * 
-         */
         
         $langs = \model\querys\LangsQuery::start()->find();
  

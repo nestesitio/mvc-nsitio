@@ -18,13 +18,13 @@ class Labels {
     
                 
     function __construct() {
-        $this->loadFile();
+        self::loadFile();
     }
     
     /**
      *
      */
-    private function loadFile()
+    private static function loadFile()
     {
         self::$xml = XmlFile::getXmlFromFile('config/labels.xml');
 
@@ -53,6 +53,42 @@ class Labels {
             }
         }
         return ucwords($key);
+    }
+    
+    private static $labels = [];
+    
+    public static function collectLabels(){
+        self::loadFile();
+        
+        foreach (self::$xml->getElementsByTagName('word') as $node) {
+            
+            $key = XmlFile::getAtribute($node, 'key');
+            
+            if($key != false){
+                self::$labels[$key] = self::chooseLabel($node);
+
+            }
+        }
+    }
+    
+    private static function chooseLabel($node){
+        $value = null;
+        foreach ($node->childNodes as $item) {
+             if(XmlFile::getAtribute($item, 'lang') == Language::getLang()){
+                 return $item->nodeValue;
+             }
+             if(XmlFile::getAtribute($item, 'lang') == Language::getLangDefault() && $value == null){
+                 $value = $item->nodeValue;
+             }
+        }
+        return $value;
+    }
+    
+    public static function getLabelBy($key){
+        if(isset(self::$labels[$key])){
+            return self::$labels[$key];
+        }
+        return '+';
     }
 
 }
