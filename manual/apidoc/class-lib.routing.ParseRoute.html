@@ -86,6 +86,11 @@
 						model					</a>
 
 						</li>
+				<li>
+					<a href="namespace-apps.Core.tools.html">
+						tools					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.Home.html">
@@ -179,6 +184,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.cart.html">
+						cart					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.control.html">
 						control					</a>
 
@@ -219,6 +229,11 @@
 						input					</a>
 
 						</li>
+				<li>
+					<a href="namespace-lib.form.widgets.html">
+						widgets					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-lib.guard.html">
@@ -228,6 +243,11 @@
 				<li>
 					<a href="namespace-lib.helpers.html">
 						helpers					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.lang.html">
+						lang					</a>
 
 						</li>
 				<li>
@@ -241,11 +261,6 @@
 
 						</li>
 				<li>
-					<a href="namespace-lib.menu.html">
-						menu					</a>
-
-						</li>
-				<li>
 					<a href="namespace-lib.model.html">
 						model					</a>
 
@@ -253,6 +268,11 @@
 				<li>
 					<a href="namespace-lib.mysql.html">
 						mysql					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.page.html">
+						page					</a>
 
 						</li>
 				<li>
@@ -352,7 +372,6 @@
 				<li><a href="class-lib.routing.DBRouting.html">DBRouting</a></li>
 				<li><a href="class-lib.routing.ErrorPage.html">ErrorPage</a></li>
 				<li class="active"><a href="class-lib.routing.ParseRoute.html">ParseRoute</a></li>
-				<li><a href="class-lib.routing.QueryPage.html">QueryPage</a></li>
 				<li><a href="class-lib.routing.Router.html">Router</a></li>
 				<li><a href="class-lib.routing.XmlRouting.html">XmlRouting</a></li>
 			</ul>
@@ -420,7 +439,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Apr 27, 2016</p><br>
-			<b>Located at</b> <a href="source-class-lib.routing.ParseRoute.html#13-103" title="Go to source code">lib/routing/ParseRoute.php</a>
+			<b>Located at</b> <a href="source-class-lib.routing.ParseRoute.html#13-143" title="Go to source code">lib/routing/ParseRoute.php</a>
 		<br>
 	</div>
 
@@ -509,7 +528,7 @@ Created @Apr 27, 2016</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRoutePortions">#</a>
-		<code><a href="source-class-lib.routing.ParseRoute.html#65-101" title="Go to source code">getRoutePortions</a>( )</code>
+		<code><a href="source-class-lib.routing.ParseRoute.html#65-102" title="Go to source code">getRoutePortions</a>( )</code>
 
 		<div class="description short">
 			
@@ -540,6 +559,201 @@ Created @Apr 27, 2016</p><br>
 
 
 
+	<table class="summary constants" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="PART_APP" id="PART_APP">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-lib.routing.ParseRoute.html#120" title="Go to source code"><b>PART_APP</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#PART_APP" class="anchor">#</a>
+				<code><span class="php-quote">'app'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="PART_APPSLUG" id="PART_APPSLUG">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-lib.routing.ParseRoute.html#122-125" title="Go to source code"><b>PART_APPSLUG</b></a>
+			</code>
+
+			<div class="description short">
+				<p>app slug for url</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>app slug for url</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#PART_APPSLUG" class="anchor">#</a>
+				<code><span class="php-quote">'appslug'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="PART_CANONICAL" id="PART_CANONICAL">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-lib.routing.ParseRoute.html#127" title="Go to source code"><b>PART_CANONICAL</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#PART_CANONICAL" class="anchor">#</a>
+				<code><span class="php-quote">'canonical'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="PART_CONTROLLER" id="PART_CONTROLLER">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-lib.routing.ParseRoute.html#129" title="Go to source code"><b>PART_CONTROLLER</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#PART_CONTROLLER" class="anchor">#</a>
+				<code><span class="php-quote">'controller'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="PART_ACTION" id="PART_ACTION">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-lib.routing.ParseRoute.html#131-134" title="Go to source code"><b>PART_ACTION</b></a>
+			</code>
+
+			<div class="description short">
+				<p>Method in action controller as route part</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Method in action controller as route part</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#PART_ACTION" class="anchor">#</a>
+				<code><span class="php-quote">'action'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="PART_ID" id="PART_ID">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-lib.routing.ParseRoute.html#136" title="Go to source code"><b>PART_ID</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#PART_ID" class="anchor">#</a>
+				<code><span class="php-quote">'id'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="PART_LANG" id="PART_LANG">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-lib.routing.ParseRoute.html#138" title="Go to source code"><b>PART_LANG</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#PART_LANG" class="anchor">#</a>
+				<code><span class="php-quote">'lang'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="PART_VAR" id="PART_VAR">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-lib.routing.ParseRoute.html#140" title="Go to source code"><b>PART_VAR</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#PART_VAR" class="anchor">#</a>
+				<code><span class="php-quote">'slugvar'</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
 
 
 

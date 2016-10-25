@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 08, 2016 at 05:51 PM
--- Server version: 5.7.13-0ubuntu0.16.04.2
+-- Generation Time: Sep 20, 2016 at 03:53 PM
+-- Server version: 5.7.15-0ubuntu0.16.04.1
 -- PHP Version: 7.0.10-2+deb.sury.org~xenial+1
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `company`
 --
 
+DROP TABLE IF EXISTS `company`;
 CREATE TABLE `company` (
   `id` int(6) NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'to-string',
@@ -48,6 +49,7 @@ TRUNCATE TABLE `company`;
 -- Table structure for table `company_htm`
 --
 
+DROP TABLE IF EXISTS `company_htm`;
 CREATE TABLE `company_htm` (
   `id` int(9) NOT NULL,
   `company_id` int(9) NOT NULL,
@@ -66,6 +68,7 @@ TRUNCATE TABLE `company_htm`;
 -- Table structure for table `company_info`
 --
 
+DROP TABLE IF EXISTS `company_info`;
 CREATE TABLE `company_info` (
   `company_id` int(6) NOT NULL,
   `address` varchar(150) DEFAULT NULL,
@@ -90,6 +93,7 @@ TRUNCATE TABLE `company_info`;
 -- Table structure for table `company_user`
 --
 
+DROP TABLE IF EXISTS `company_user`;
 CREATE TABLE `company_user` (
   `id` int(9) NOT NULL,
   `company_id` int(9) NOT NULL,
@@ -110,6 +114,7 @@ TRUNCATE TABLE `company_user`;
 -- Table structure for table `htm`
 --
 
+DROP TABLE IF EXISTS `htm`;
 CREATE TABLE `htm` (
   `id` int(9) NOT NULL,
   `htm_app_id` int(3) NOT NULL,
@@ -146,6 +151,7 @@ INSERT INTO `htm` (`id`, `htm_app_id`, `stat`, `ord`, `controller`) VALUES
 -- Table structure for table `htm_app`
 --
 
+DROP TABLE IF EXISTS `htm_app`;
 CREATE TABLE `htm_app` (
   `id` int(3) NOT NULL,
   `slug` varchar(100) NOT NULL,
@@ -176,6 +182,7 @@ INSERT INTO `htm_app` (`id`, `slug`, `name`) VALUES
 -- Table structure for table `htm_has_media`
 --
 
+DROP TABLE IF EXISTS `htm_has_media`;
 CREATE TABLE `htm_has_media` (
   `htm_media_id` int(9) NOT NULL,
   `htm_id` int(9) NOT NULL,
@@ -195,6 +202,7 @@ TRUNCATE TABLE `htm_has_media`;
 -- Table structure for table `htm_has_vars`
 --
 
+DROP TABLE IF EXISTS `htm_has_vars`;
 CREATE TABLE `htm_has_vars` (
   `htm_vars_id` int(6) NOT NULL,
   `htm_id` int(9) NOT NULL
@@ -211,6 +219,7 @@ TRUNCATE TABLE `htm_has_vars`;
 -- Table structure for table `htm_log`
 --
 
+DROP TABLE IF EXISTS `htm_log`;
 CREATE TABLE `htm_log` (
   `id` int(6) NOT NULL,
   `htm_id` int(9) NOT NULL,
@@ -231,6 +240,7 @@ TRUNCATE TABLE `htm_log`;
 -- Table structure for table `htm_media`
 --
 
+DROP TABLE IF EXISTS `htm_media`;
 CREATE TABLE `htm_media` (
   `id` int(9) NOT NULL,
   `genre` set('img','file','embed','pdf') NOT NULL DEFAULT 'img',
@@ -253,6 +263,7 @@ TRUNCATE TABLE `htm_media`;
 -- Table structure for table `htm_page`
 --
 
+DROP TABLE IF EXISTS `htm_page`;
 CREATE TABLE `htm_page` (
   `id` int(9) NOT NULL,
   `htm_id` int(9) NOT NULL,
@@ -294,6 +305,7 @@ INSERT INTO `htm_page` (`id`, `htm_id`, `langs_tld`, `title`, `slug`, `menu`, `h
 -- Table structure for table `htm_txt`
 --
 
+DROP TABLE IF EXISTS `htm_txt`;
 CREATE TABLE `htm_txt` (
   `id` int(9) NOT NULL,
   `htm_page_id` int(9) NOT NULL,
@@ -312,6 +324,7 @@ TRUNCATE TABLE `htm_txt`;
 -- Table structure for table `htm_vars`
 --
 
+DROP TABLE IF EXISTS `htm_vars`;
 CREATE TABLE `htm_vars` (
   `id` int(6) NOT NULL,
   `var` varchar(100) DEFAULT 'tag',
@@ -330,6 +343,7 @@ TRUNCATE TABLE `htm_vars`;
 -- Table structure for table `langs`
 --
 
+DROP TABLE IF EXISTS `langs`;
 CREATE TABLE `langs` (
   `tld` varchar(2) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -357,6 +371,7 @@ INSERT INTO `langs` (`tld`, `name`, `locale`) VALUES
 -- Table structure for table `support`
 --
 
+DROP TABLE IF EXISTS `support`;
 CREATE TABLE `support` (
   `id` int(9) NOT NULL,
   `user_id` int(6) NOT NULL,
@@ -376,6 +391,7 @@ TRUNCATE TABLE `support`;
 -- Table structure for table `support_log`
 --
 
+DROP TABLE IF EXISTS `support_log`;
 CREATE TABLE `support_log` (
   `id` int(9) NOT NULL,
   `support_id` int(9) NOT NULL,
@@ -396,6 +412,7 @@ TRUNCATE TABLE `support_log`;
 -- Table structure for table `user_base`
 --
 
+DROP TABLE IF EXISTS `user_base`;
 CREATE TABLE `user_base` (
   `id` int(6) NOT NULL,
   `user_group_id` int(3) NOT NULL DEFAULT '21',
@@ -429,6 +446,7 @@ INSERT INTO `user_base` (`id`, `user_group_id`, `name`, `mail`, `username`, `pas
 -- Table structure for table `user_functions`
 --
 
+DROP TABLE IF EXISTS `user_functions`;
 CREATE TABLE `user_functions` (
   `id` int(6) NOT NULL,
   `function` varchar(100) NOT NULL COMMENT 'to-string',
@@ -454,6 +472,7 @@ INSERT INTO `user_functions` (`id`, `function`, `description`, `public`) VALUES
 -- Table structure for table `user_group`
 --
 
+DROP TABLE IF EXISTS `user_group`;
 CREATE TABLE `user_group` (
   `id` int(3) NOT NULL,
   `name` varchar(100) DEFAULT NULL COMMENT 'to-string',
@@ -486,6 +505,7 @@ INSERT INTO `user_group` (`id`, `name`, `description`) VALUES
 -- Table structure for table `user_group_has_htm_app`
 --
 
+DROP TABLE IF EXISTS `user_group_has_htm_app`;
 CREATE TABLE `user_group_has_htm_app` (
   `user_group_id` int(3) NOT NULL,
   `htm_app_id` int(3) NOT NULL
@@ -533,6 +553,7 @@ INSERT INTO `user_group_has_htm_app` (`user_group_id`, `htm_app_id`) VALUES
 -- Table structure for table `user_info`
 --
 
+DROP TABLE IF EXISTS `user_info`;
 CREATE TABLE `user_info` (
   `user_id` int(6) NOT NULL,
   `address` varchar(150) DEFAULT NULL,
@@ -559,6 +580,7 @@ TRUNCATE TABLE `user_info`;
 -- Table structure for table `user_log`
 --
 
+DROP TABLE IF EXISTS `user_log`;
 CREATE TABLE `user_log` (
   `id` int(11) NOT NULL,
   `user_id` int(6) NOT NULL,
@@ -783,7 +805,7 @@ ALTER TABLE `company_user`
 -- AUTO_INCREMENT for table `htm`
 --
 ALTER TABLE `htm`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `htm_app`
 --
@@ -803,7 +825,7 @@ ALTER TABLE `htm_media`
 -- AUTO_INCREMENT for table `htm_page`
 --
 ALTER TABLE `htm_page`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `htm_txt`
 --

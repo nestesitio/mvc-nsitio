@@ -86,6 +86,11 @@
 						model					</a>
 
 						</li>
+				<li>
+					<a href="namespace-apps.Core.tools.html">
+						tools					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.Home.html">
@@ -179,6 +184,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.cart.html">
+						cart					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.control.html">
 						control					</a>
 
@@ -219,6 +229,11 @@
 						input					</a>
 
 						</li>
+				<li>
+					<a href="namespace-lib.form.widgets.html">
+						widgets					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-lib.guard.html">
@@ -228,6 +243,11 @@
 				<li>
 					<a href="namespace-lib.helpers.html">
 						helpers					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.lang.html">
+						lang					</a>
 
 						</li>
 				<li>
@@ -241,11 +261,6 @@
 
 						</li>
 				<li>
-					<a href="namespace-lib.menu.html">
-						menu					</a>
-
-						</li>
-				<li>
 					<a href="namespace-lib.model.html">
 						model					</a>
 
@@ -253,6 +268,11 @@
 				<li>
 					<a href="namespace-lib.mysql.html">
 						mysql					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.page.html">
+						page					</a>
 
 						</li>
 				<li>
@@ -349,15 +369,15 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-apps.Core.model.CmsForm.html">CmsForm</a></li>
 				<li><a href="class-apps.Core.model.FilesQuery.html">FilesQuery</a></li>
+				<li><a href="class-apps.Core.model.HtmForm.html">HtmForm</a></li>
+				<li><a href="class-apps.Core.model.MediaQueries.html">MediaQueries</a></li>
 				<li><a href="class-apps.Core.model.Page.html">Page</a></li>
 				<li><a href="class-apps.Core.model.PageForm.html">PageForm</a></li>
-				<li><a href="class-apps.Core.model.PageQuery.html">PageQuery</a></li>
-				<li><a href="class-apps.Core.model.PagesForm.html">PagesForm</a></li>
 				<li class="active"><a href="class-apps.Core.model.PagesQuery.html">PagesQuery</a></li>
 				<li><a href="class-apps.Core.model.TextQuery.html">TextQuery</a></li>
 				<li><a href="class-apps.Core.model.TxtForm.html">TxtForm</a></li>
-				<li><a href="class-apps.Core.model.TxtQuery.html">TxtQuery</a></li>
 			</ul>
 
 
@@ -458,7 +478,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Jul 27, 2015</p><br>
-			<b>Located at</b> <a href="source-class-apps.Core.model.PagesQuery.html#10-63" title="Go to source code">apps/Core/model/PagesQuery.php</a>
+			<b>Located at</b> <a href="source-class-apps.Core.model.PagesQuery.html#11-107" title="Go to source code">apps/Core/model/PagesQuery.php</a>
 		<br>
 	</div>
 
@@ -466,7 +486,7 @@ Created @Jul 27, 2015</p><br>
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="get" id="_get">
+	<tr data-order="getList" id="_getList">
 
 		<td class="attributes"><code>
 			 public static
@@ -477,8 +497,8 @@ Created @Jul 27, 2015</p><br>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-apps.Core.model.PagesQuery.html#18-33" title="Go to source code">get</a>( <span> <var>$app_slug</var></span> )</code>
+		<a class="anchor" href="#_getList">#</a>
+		<code><a href="source-class-apps.Core.model.PagesQuery.html#19-36" title="Go to source code">getList</a>( <span> <var>$app_slug</var></span> )</code>
 
 		<div class="description short">
 			<p>Create and return the common query to this class</p>
@@ -512,7 +532,7 @@ Created @Jul 27, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageByLang">#</a>
-		<code><a href="source-class-apps.Core.model.PagesQuery.html#35-47" title="Go to source code">getPageByLang</a>( <span> <var>$htm_id</var></span>, <span> <var>$lang</var></span> )</code>
+		<code><a href="source-class-apps.Core.model.PagesQuery.html#39-51" title="Go to source code">getPageByLang</a>( <span> <var>$htm_id</var></span>, <span> <var>$lang</var></span> )</code>
 
 		<div class="description short">
 			<p>Create and return the common query to this class</p>
@@ -546,7 +566,7 @@ Created @Jul 27, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLangs">#</a>
-		<code><a href="source-class-apps.Core.model.PagesQuery.html#50-59" title="Go to source code">getLangs</a>( <span> <var>$htm_id</var></span> )</code>
+		<code><a href="source-class-apps.Core.model.PagesQuery.html#54-63" title="Go to source code">getLangs</a>( <span> <var>$htm_id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -573,6 +593,115 @@ Created @Jul 27, 2015</p><br>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getPages" id="_getPages">
+
+		<td class="attributes"><code>
+			 public static
+
+			Htm
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPages">#</a>
+		<code><a href="source-class-apps.Core.model.PagesQuery.html#65-78" title="Go to source code">getPages</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Htm
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getHtmByOrd" id="_getHtmByOrd">
+
+		<td class="attributes"><code>
+			 public static
+
+			<code><a href="class-model.querys.HtmQuery.html">model\querys\HtmQuery</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getHtmByOrd">#</a>
+		<code><a href="source-class-apps.Core.model.PagesQuery.html#80-98" title="Go to source code">getHtmByOrd</a>( <span>string <var>$app_slug</var></span>, <span>type <var>$txt</var></span>, <span>type <var>$lang</var></span>, <span>string <var>$txt</var>,…</span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$app_slug</var></dt>
+					<dd></dd>
+					<dt><var>$txt</var></dt>
+					<dd>$var</dd>
+					<dt><var>$lang</var></dt>
+					<dd>$value</dd>
+					<dt><var>$txt</var>,…</dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-model.querys.HtmQuery.html">model\querys\HtmQuery</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPage" id="_getPage">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPage">#</a>
+		<code><a href="source-class-apps.Core.model.PagesQuery.html#100-103" title="Go to source code">getPage</a>( <span> <var>$app_slug</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	</table>
 
 	<table class="summary inherited">
@@ -585,7 +714,9 @@ Created @Jul 27, 2015</p><br>
 			<a href="class-model.querys.HtmPageQuery.html#_filterById">filterById()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_filterByLangsTld">filterByLangsTld()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_filterByMenu">filterByMenu()</a>, 
+			<a href="class-model.querys.HtmPageQuery.html#_filterByPublicationDate">filterByPublicationDate()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_filterBySlug">filterBySlug()</a>, 
+			<a href="class-model.querys.HtmPageQuery.html#_filterBySummary">filterBySummary()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_filterByTitle">filterByTitle()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_filterByUpdatedAt">filterByUpdatedAt()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_find">find()</a>, 
@@ -596,7 +727,9 @@ Created @Jul 27, 2015</p><br>
 			<a href="class-model.querys.HtmPageQuery.html#_groupById">groupById()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_groupByLangsTld">groupByLangsTld()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_groupByMenu">groupByMenu()</a>, 
+			<a href="class-model.querys.HtmPageQuery.html#_groupByPublicationDate">groupByPublicationDate()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_groupBySlug">groupBySlug()</a>, 
+			<a href="class-model.querys.HtmPageQuery.html#_groupBySummary">groupBySummary()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_groupByTitle">groupByTitle()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_groupByUpdatedAt">groupByUpdatedAt()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_joinHtm">joinHtm()</a>, 
@@ -607,7 +740,9 @@ Created @Jul 27, 2015</p><br>
 			<a href="class-model.querys.HtmPageQuery.html#_orderById">orderById()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_orderByLangsTld">orderByLangsTld()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_orderByMenu">orderByMenu()</a>, 
+			<a href="class-model.querys.HtmPageQuery.html#_orderByPublicationDate">orderByPublicationDate()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_orderBySlug">orderBySlug()</a>, 
+			<a href="class-model.querys.HtmPageQuery.html#_orderBySummary">orderBySummary()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_orderByTitle">orderByTitle()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_orderByUpdatedAt">orderByUpdatedAt()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_selectHeading">selectHeading()</a>, 
@@ -615,7 +750,9 @@ Created @Jul 27, 2015</p><br>
 			<a href="class-model.querys.HtmPageQuery.html#_selectId">selectId()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_selectLangsTld">selectLangsTld()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_selectMenu">selectMenu()</a>, 
+			<a href="class-model.querys.HtmPageQuery.html#_selectPublicationDate">selectPublicationDate()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_selectSlug">selectSlug()</a>, 
+			<a href="class-model.querys.HtmPageQuery.html#_selectSummary">selectSummary()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_selectTitle">selectTitle()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_selectUpdatedAt">selectUpdatedAt()</a>, 
 			<a href="class-model.querys.HtmPageQuery.html#_start">start()</a>, 
@@ -641,7 +778,8 @@ Created @Jul 27, 2015</p><br>
 			<a href="class-lib.model.QuerySelect.html#_setStatement">setStatement()</a>, 
 			<a href="class-lib.model.QuerySelect.html#_startJoin">startJoin()</a>, 
 			<a href="class-lib.model.QuerySelect.html#_startPrimary">startPrimary()</a>, 
-			<a href="class-lib.model.QuerySelect.html#_toString">toString()</a>
+			<a href="class-lib.model.QuerySelect.html#_toString">toString()</a>, 
+			<a href="class-lib.model.QuerySelect.html#_toogleOne">toogleOne()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -660,6 +798,7 @@ Created @Jul 27, 2015</p><br>
 			<a href="class-lib.model.QueryStatement.html#_limit">limit()</a>, 
 			<a href="class-lib.model.QueryStatement.html#_match">match()</a>, 
 			<a href="class-lib.model.QueryStatement.html#_orderBy">orderBy()</a>, 
+			<a href="class-lib.model.QueryStatement.html#_orderByFilter">orderByFilter()</a>, 
 			<a href="class-lib.model.QueryStatement.html#_rightJoin">rightJoin()</a>, 
 			<a href="class-lib.model.QueryStatement.html#_setCount">setCount()</a>, 
 			<a href="class-lib.model.QueryStatement.html#_setCustomSelect">setCustomSelect()</a>, 

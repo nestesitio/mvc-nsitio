@@ -86,6 +86,11 @@
 						model					</a>
 
 						</li>
+				<li>
+					<a href="namespace-apps.Core.tools.html">
+						tools					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.Home.html">
@@ -179,6 +184,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.cart.html">
+						cart					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.control.html">
 						control					</a>
 
@@ -219,6 +229,11 @@
 						input					</a>
 
 						</li>
+				<li>
+					<a href="namespace-lib.form.widgets.html">
+						widgets					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-lib.guard.html">
@@ -228,6 +243,11 @@
 				<li>
 					<a href="namespace-lib.helpers.html">
 						helpers					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.lang.html">
+						lang					</a>
 
 						</li>
 				<li>
@@ -241,11 +261,6 @@
 
 						</li>
 				<li>
-					<a href="namespace-lib.menu.html">
-						menu					</a>
-
-						</li>
-				<li>
 					<a href="namespace-lib.model.html">
 						model					</a>
 
@@ -253,6 +268,11 @@
 				<li>
 					<a href="namespace-lib.mysql.html">
 						mysql					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.page.html">
+						page					</a>
 
 						</li>
 				<li>
@@ -355,13 +375,16 @@
 				<li><a href="class-model.models.CompanyUser.html">CompanyUser</a></li>
 				<li><a href="class-model.models.Htm.html">Htm</a></li>
 				<li><a href="class-model.models.HtmApp.html">HtmApp</a></li>
+				<li><a href="class-model.models.HtmHasMedia.html">HtmHasMedia</a></li>
+				<li><a href="class-model.models.HtmHasVars.html">HtmHasVars</a></li>
 				<li><a href="class-model.models.HtmLog.html">HtmLog</a></li>
-				<li><a href="class-model.models.HtmMedia.html">HtmMedia</a></li>
 				<li><a href="class-model.models.HtmPage.html">HtmPage</a></li>
-				<li><a href="class-model.models.HtmTemplate.html">HtmTemplate</a></li>
 				<li><a href="class-model.models.HtmTxt.html">HtmTxt</a></li>
 				<li><a href="class-model.models.HtmVars.html">HtmVars</a></li>
 				<li><a href="class-model.models.Langs.html">Langs</a></li>
+				<li><a href="class-model.models.Media.html">Media</a></li>
+				<li><a href="class-model.models.MediaCollection.html">MediaCollection</a></li>
+				<li><a href="class-model.models.MediaInfo.html">MediaInfo</a></li>
 				<li class="active"><a href="class-model.models.ModelMap.html">ModelMap</a></li>
 				<li><a href="class-model.models.Support.html">Support</a></li>
 				<li><a href="class-model.models.SupportLog.html">SupportLog</a></li>
@@ -435,9 +458,9 @@
 
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
-Created @2016-04-15 18:50
+Created @2016-10-18 13:37
 Updated @%$dateUpdated% *</p><br>
-			<b>Located at</b> <a href="source-class-model.models.ModelMap.html#4-37" title="Go to source code">model/models/ModelMap.php</a>
+			<b>Located at</b> <a href="source-class-model.models.ModelMap.html#4-40" title="Go to source code">model/models/ModelMap.php</a>
 		<br>
 	</div>
 
@@ -597,12 +620,60 @@ Updated @%$dateUpdated% *</p><br>
 			</div>
 		</td>
 	</tr>
+	<tr data-order="HTM_HAS_MEDIA" id="HTM_HAS_MEDIA">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-model.models.ModelMap.html#19" title="Go to source code"><b>HTM_HAS_MEDIA</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#HTM_HAS_MEDIA" class="anchor">#</a>
+				<code><span class="php-quote">'htm_has_media'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="HTM_HAS_VARS" id="HTM_HAS_VARS">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-model.models.ModelMap.html#20" title="Go to source code"><b>HTM_HAS_VARS</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#HTM_HAS_VARS" class="anchor">#</a>
+				<code><span class="php-quote">'htm_has_vars'</span></code>
+			</div>
+		</td>
+	</tr>
 	<tr data-order="HTM_LOG" id="HTM_LOG">
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#19" title="Go to source code"><b>HTM_LOG</b></a>
+				<a href="source-class-model.models.ModelMap.html#21" title="Go to source code"><b>HTM_LOG</b></a>
 			</code>
 
 			<div class="description short">
@@ -621,36 +692,12 @@ Updated @%$dateUpdated% *</p><br>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="HTM_MEDIA" id="HTM_MEDIA">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-model.models.ModelMap.html#20" title="Go to source code"><b>HTM_MEDIA</b></a>
-			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#HTM_MEDIA" class="anchor">#</a>
-				<code><span class="php-quote">'htm_media'</span></code>
-			</div>
-		</td>
-	</tr>
 	<tr data-order="HTM_PAGE" id="HTM_PAGE">
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#21" title="Go to source code"><b>HTM_PAGE</b></a>
+				<a href="source-class-model.models.ModelMap.html#22" title="Go to source code"><b>HTM_PAGE</b></a>
 			</code>
 
 			<div class="description short">
@@ -666,30 +713,6 @@ Updated @%$dateUpdated% *</p><br>
 			<div>
 				<a href="#HTM_PAGE" class="anchor">#</a>
 				<code><span class="php-quote">'htm_page'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="HTM_TEMPLATE" id="HTM_TEMPLATE">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-model.models.ModelMap.html#22" title="Go to source code"><b>HTM_TEMPLATE</b></a>
-			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#HTM_TEMPLATE" class="anchor">#</a>
-				<code><span class="php-quote">'htm_template'</span></code>
 			</div>
 		</td>
 	</tr>
@@ -765,12 +788,84 @@ Updated @%$dateUpdated% *</p><br>
 			</div>
 		</td>
 	</tr>
+	<tr data-order="MEDIA" id="MEDIA">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-model.models.ModelMap.html#26" title="Go to source code"><b>MEDIA</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#MEDIA" class="anchor">#</a>
+				<code><span class="php-quote">'media'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="MEDIA_COLLECTION" id="MEDIA_COLLECTION">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-model.models.ModelMap.html#27" title="Go to source code"><b>MEDIA_COLLECTION</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#MEDIA_COLLECTION" class="anchor">#</a>
+				<code><span class="php-quote">'media_collection'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="MEDIA_INFO" id="MEDIA_INFO">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-model.models.ModelMap.html#28" title="Go to source code"><b>MEDIA_INFO</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#MEDIA_INFO" class="anchor">#</a>
+				<code><span class="php-quote">'media_info'</span></code>
+			</div>
+		</td>
+	</tr>
 	<tr data-order="SUPPORT" id="SUPPORT">
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#26" title="Go to source code"><b>SUPPORT</b></a>
+				<a href="source-class-model.models.ModelMap.html#29" title="Go to source code"><b>SUPPORT</b></a>
 			</code>
 
 			<div class="description short">
@@ -794,7 +889,7 @@ Updated @%$dateUpdated% *</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#27" title="Go to source code"><b>SUPPORT_LOG</b></a>
+				<a href="source-class-model.models.ModelMap.html#30" title="Go to source code"><b>SUPPORT_LOG</b></a>
 			</code>
 
 			<div class="description short">
@@ -818,7 +913,7 @@ Updated @%$dateUpdated% *</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#28" title="Go to source code"><b>USER_BASE</b></a>
+				<a href="source-class-model.models.ModelMap.html#31" title="Go to source code"><b>USER_BASE</b></a>
 			</code>
 
 			<div class="description short">
@@ -842,7 +937,7 @@ Updated @%$dateUpdated% *</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#29" title="Go to source code"><b>USER_FUNCTIONS</b></a>
+				<a href="source-class-model.models.ModelMap.html#32" title="Go to source code"><b>USER_FUNCTIONS</b></a>
 			</code>
 
 			<div class="description short">
@@ -866,7 +961,7 @@ Updated @%$dateUpdated% *</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#30" title="Go to source code"><b>USER_GROUP</b></a>
+				<a href="source-class-model.models.ModelMap.html#33" title="Go to source code"><b>USER_GROUP</b></a>
 			</code>
 
 			<div class="description short">
@@ -890,7 +985,7 @@ Updated @%$dateUpdated% *</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#31" title="Go to source code"><b>USER_GROUP_HAS_HTM_APP</b></a>
+				<a href="source-class-model.models.ModelMap.html#34" title="Go to source code"><b>USER_GROUP_HAS_HTM_APP</b></a>
 			</code>
 
 			<div class="description short">
@@ -914,7 +1009,7 @@ Updated @%$dateUpdated% *</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#32" title="Go to source code"><b>USER_INFO</b></a>
+				<a href="source-class-model.models.ModelMap.html#35" title="Go to source code"><b>USER_INFO</b></a>
 			</code>
 
 			<div class="description short">
@@ -938,7 +1033,7 @@ Updated @%$dateUpdated% *</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-model.models.ModelMap.html#33" title="Go to source code"><b>USER_LOG</b></a>
+				<a href="source-class-model.models.ModelMap.html#36" title="Go to source code"><b>USER_LOG</b></a>
 			</code>
 
 			<div class="description short">

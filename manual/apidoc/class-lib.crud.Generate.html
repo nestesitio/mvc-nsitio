@@ -86,6 +86,11 @@
 						model					</a>
 
 						</li>
+				<li>
+					<a href="namespace-apps.Core.tools.html">
+						tools					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-apps.Home.html">
@@ -179,6 +184,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-lib.cart.html">
+						cart					</a>
+
+						</li>
+				<li>
 					<a href="namespace-lib.control.html">
 						control					</a>
 
@@ -219,6 +229,11 @@
 						input					</a>
 
 						</li>
+				<li>
+					<a href="namespace-lib.form.widgets.html">
+						widgets					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-lib.guard.html">
@@ -228,6 +243,11 @@
 				<li>
 					<a href="namespace-lib.helpers.html">
 						helpers					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.lang.html">
+						lang					</a>
 
 						</li>
 				<li>
@@ -241,11 +261,6 @@
 
 						</li>
 				<li>
-					<a href="namespace-lib.menu.html">
-						menu					</a>
-
-						</li>
-				<li>
 					<a href="namespace-lib.model.html">
 						model					</a>
 
@@ -253,6 +268,11 @@
 				<li>
 					<a href="namespace-lib.mysql.html">
 						mysql					</a>
+
+						</li>
+				<li>
+					<a href="namespace-lib.page.html">
+						page					</a>
 
 						</li>
 				<li>
@@ -350,6 +370,7 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-lib.crud.CrudApp.html">CrudApp</a></li>
+				<li><a href="class-lib.crud.CrudCms.html">CrudCms</a></li>
 				<li><a href="class-lib.crud.CrudConfig.html">CrudConfig</a></li>
 				<li><a href="class-lib.crud.CrudEnum.html">CrudEnum</a></li>
 				<li><a href="class-lib.crud.CrudForm.html">CrudForm</a></li>
@@ -421,7 +442,7 @@
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Dec 9, 2014</p><br>
-			<b>Located at</b> <a href="source-class-lib.crud.Generate.html#7-151" title="Go to source code">lib/crud/Generate.php</a>
+			<b>Located at</b> <a href="source-class-lib.crud.Generate.html#7-203" title="Go to source code">lib/crud/Generate.php</a>
 		<br>
 	</div>
 
@@ -471,7 +492,7 @@ Created @Dec 9, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildModel">#</a>
-		<code><a href="source-class-lib.crud.Generate.html#30-75" title="Go to source code">buildModel</a>( )</code>
+		<code><a href="source-class-lib.crud.Generate.html#30-57" title="Go to source code">buildModel</a>( )</code>
 
 		<div class="description short">
 			
@@ -501,7 +522,7 @@ Created @Dec 9, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildApp">#</a>
-		<code><a href="source-class-lib.crud.Generate.html#122-134" title="Go to source code">buildApp</a>( <span>string <var>$app</var></span>, <span>string <var>$name</var></span>, <span>string <var>$model</var></span> )</code>
+		<code><a href="source-class-lib.crud.Generate.html#125-137" title="Go to source code">buildApp</a>( <span>string <var>$app</var></span>, <span>string <var>$name</var></span>, <span>string <var>$model</var>,…</span> )</code>
 
 		<div class="description short">
 			
@@ -517,7 +538,7 @@ Created @Dec 9, 2014</p><br>
 					<dd>The name of app folder</dd>
 					<dt><var>$name</var></dt>
 					<dd>The name of action file</dd>
-					<dt><var>$model</var></dt>
+					<dt><var>$model</var>,…</dt>
 					<dd>The name of the db table</dd>
 				</dl></div>
 
@@ -540,7 +561,7 @@ Created @Dec 9, 2014</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildAdmin">#</a>
-		<code><a href="source-class-lib.crud.Generate.html#136-149" title="Go to source code">buildAdmin</a>( <span>string <var>$app</var></span>, <span>string <var>$name</var></span>, <span>string <var>$model</var></span>, <span>String <var>$area</var> = <span class="php-quote">'admin'</span></span>, <span>String <var>$file</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.crud.Generate.html#139-153" title="Go to source code">buildAdmin</a>( <span>string <var>$app</var></span>, <span>string <var>$name</var></span>, <span>string <var>$model</var></span>, <span>String <var>$area</var> = <span class="php-quote">'admin'</span></span>, <span>String <var>$file</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -563,6 +584,66 @@ Created @Dec 9, 2014</p><br>
 					<dt><var>$file</var></dt>
 					<dd></dd>
 				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="buildCms" id="_buildCms">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_buildCms">#</a>
+		<code><a href="source-class-lib.crud.Generate.html#156-159" title="Go to source code">buildCms</a>( <span> <var>$app</var></span>, <span> <var>$name</var></span>, <span> <var>$model</var> = <span class="php-quote">'htm'</span></span>, <span> <var>$area</var> = <span class="php-quote">'cms'</span></span>, <span> <var>$file</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="buildDataBase" id="_buildDataBase">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_buildDataBase">#</a>
+		<code><a href="source-class-lib.crud.Generate.html#172-201" title="Go to source code">buildDataBase</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
 
 
 
