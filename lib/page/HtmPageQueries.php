@@ -4,6 +4,8 @@ namespace lib\page;
 
 use \lib\mysql\Mysql;
 use \lib\session\SessionUser;
+use \lib\lang\Language;
+use \model\models\Htm;
 
 /**
  * Description of HtmPageQueries
@@ -48,16 +50,31 @@ class HtmPageQueries extends \model\querys\HtmPageQuery {
      * Completes query and return a collection of HtmPage objects
      * used by BackendMenuActions
      *
-     * @return \model\models\HtmPage[]
+     * @return \model\querys\HtmPageQuery
      */
     public static function getBackendPages(){
-        return self::start()->joinHtm()->filterByStat('backend')->filterByOrd(0, Mysql::ALT_NOT_EQUAL)->orderByOrd()
+        return self::start()->joinHtm()->filterByStat(Htm::STAT_BACKEND)->filterByOrd(0, Mysql::ALT_NOT_EQUAL)->orderByOrd()
                 ->joinHtmApp()->selectSlug()
                 ->joinUserGroupHasHtmApp()->joinUserGroup()
                 ->joinUserBase()->filterById(SessionUser::getPlayer())->endUse()
                 ->endUse()->endUse()->endUse()->endUse()
                 ->orderByTitle();
         //filterById(SELECT hp.id FROM htm_page hp WHERE hp.htm_id=ht_page.htm_id ORDER BY CASE WHEN hp.langs_tld = '".Regist::vars('lg')."' THEN 1 WHEN hp.langs_tld = '".Regist::vars('lgInt')."' THEN 2 WHEN hp.langs_tld = '".Regist::vars('lgDef')."' THEN 3 END LIMIT 1))
+    }
+    
+    /**
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public static function getFrontendMenus($var){
+        return self::start()->filterByLangsTld(Language::getLang())
+                ->joinHtm()
+                ->joinHtmHasVars()->joinHtmVars()->selectValue()->filterByVar($var)->endUse()->endUse()
+                ->filterByStat(Htm::STAT_PUBLIC)->filterByOrd(0, Mysql::ALT_NOT_EQUAL)
+                ->orderByOrd()
+                ->joinHtmApp()->selectSlug()->filterBySlug('home')
+                ->endUse()->endUse();
+                
     }
     
 
