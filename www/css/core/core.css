@@ -37,10 +37,10 @@ li.col[title]:hover:after,  .row_tool a[title]:hover:after{
 div.datawindow{position: relative; z-index: 10001}
 div.window-normal{
     background-color:#fff; 
-    border: 1px #ccc solid; border-radius: 5px 0 5px 5px; position: relative}
+    border: 1px #ff9 solid; border-radius: 5px 0 5px 5px; position: relative}
 
 div.drag{
-    background-color: #ccc; border: 1px #ccc solid; 
+    background-color: #ff9; 
     border-radius: 0 5px 5px 0; position: relative;
     text-align: center; padding: 5px 5px 40px; cursor:move;
 }
@@ -58,9 +58,11 @@ div.datawork{ padding: 5px}
 
 form{margin-top: 20px}
 div.btns-support{position:absolute;bottom:5px;z-index:4;left:50%;margin-left:-50px;}
-div.btns-form{position:absolute;right:0;top:1px;z-index:4}
-div.btns-form-project{position:absolute;right:0;top:-35px;z-index:4}
-div.btns-filter{position:absolute;right:0;top:1px;z-index:6}
+div.btns-form, 
+div.btns-filter {position:absolute;right:0;top:0; }
+div.btns-form{z-index:4; width: 200px; }
+div.btns-filter{z-index:6; width: 150px;}
+div.btns-container{position:fixed; background-color: #F5F5F5; height: 35px; padding: 5px; border-radius: 5px;}
 /*********inputs*/
 div.form-group{max-width: 600px;position:relative; clear: both;}
 div.form-gallery-group{max-width: 120px; min-width: 120px;
@@ -110,15 +112,9 @@ span.selected{border: #cc0 solid 2px}
     height: 400px; width: 100%;
 }
 
-/*login*/
-.layer-login{ overflow: auto;}
-.login-container{max-width: 40%;}
-@media (max-width: 768px) {
-    .login-container{max-width: 50%}
-}
-@media (max-width: 568px) {
-    .login-container{max-width: 60%}
-}
-@media (max-width: 480px) {
-    .login-container{max-width: 100%}
+
+
+.col-centered{
+    float: none;
+    margin-left: auto; margin-right: auto;
 }
