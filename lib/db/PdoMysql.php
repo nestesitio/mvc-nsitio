@@ -2,8 +2,7 @@
 namespace lib\db;
 
 use PDO;
-use \PDOException;
-use \lib\register\Monitor;
+use \lib\loader\Configurator;
 
 
 /**
@@ -40,19 +39,47 @@ class PdoMysql
     public static function getConn()
      {
         if (!self::$conn) {
-            $args = \lib\loader\Configurator::getDbConf();
+            $args = Configurator::getDbConf();
             try {
                 $dsn = 'mysql:dbname=' . $args['db'] . ';host=' . $args['host'];
                 self::$conn = new PDO($dsn, $args['user'], $args['password']);
                 //self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
-            } catch (PDOException $err) {
-                Monitor::setErrorMessages(null, $err->getMessage());
-                Monitor::setUserMessages(null, 'ERRO: Ligação à base de dados não disponível');
+            } catch (\PDOException $err) 
+            {
+                if($err->getCode() == 1049){
+                    die('Create database or correct name of database settings in config/config.xml file');
+                }
+                if($err->getCode() == 1045){
+                    die('Create user or correct user and password of database settings in config/config.xml file');
+                }
+                die('ERROR: Database connection not available');
             }
         }
 
         return self::$conn;
+    }
+    
+    public static function createDb($dbname){
+        $args = Configurator::getDbConf();
+            try {
+                $dsn = 'mysql:host=' . $args['host'];
+                self::$conn = new PDO($dsn, $args['user'], $args['password']);
+                self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$conn->exec("CREATE DATABASE  IF NOT EXISTS " . $dbname . ";");
+                
+                return $dbname;
+                
+            } catch (\PDOException $err) 
+            {
+                if($err->getCode() == 1049){
+                    die('Create database or correct name of database settings in config/config.xml file');
+                }
+                if($err->getCode() == 1045){
+                    die('Create user or correct user and password of database settings in config/config.xml file');
+                }
+                die("DB ERROR: ". $err->getMessage());
+            }
     }
 
 }
