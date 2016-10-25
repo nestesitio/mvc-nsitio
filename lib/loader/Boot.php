@@ -90,6 +90,7 @@ class Boot
         $parse = new ParseRoute($url);
         $querystring = $parse->getQueryString();
         self::$params = $parse->getRoutePortions();
+        Vars::setVars('params', self::$params);
         
         
         return $querystring;
