@@ -125,7 +125,8 @@ class StringTools
     {
         $name = strtolower($name);
         $name = mb_convert_case($name, MB_CASE_TITLE, "UTF-8");
-        $name = str_replace([' Da ', ' De ', ' Do ', ' E '], [' da ', ' de ', ' do ', ' e '], $name);
+        
+        $name = str_replace([' Da ', ' De ', ' Do ', ' E ', '?'], [' da ', ' de ', ' do ', ' e ', ' '], $name);
         return $name;
 
     }
