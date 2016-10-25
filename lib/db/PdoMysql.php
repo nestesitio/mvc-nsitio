@@ -66,7 +66,9 @@ class PdoMysql
                 $dsn = 'mysql:host=' . $args['host'];
                 self::$conn = new PDO($dsn, $args['user'], $args['password']);
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                self::$conn->exec("CREATE DATABASE  IF NOT EXISTS " . $dbname . ";");
+                self::$conn->exec("CREATE DATABASE  IF NOT EXISTS " . $dbname . " 
+                    DEFAULT CHARACTER SET utf8 
+                    DEFAULT COLLATE utf8_general_ci;");
                 
                 return $dbname;
                 
