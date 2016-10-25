@@ -149,14 +149,47 @@ class StringTools
         return $data;
     }
     
+    /**
+     * 
+     * @param string $args
+     * @return array
+     */
     public static function argsToArray($args){
         $args = explode(', ', $args);
         $arr = [];
         foreach($args as $arg){
-            list($key, $label) = explode('=>', $arg);
-            $arr[$key] = $label;
+            if(strpos($arg, '=>')){
+                list($key, $label) = explode('=>', $arg);
+                $arr[$key] = $label;
+            }else{
+                $arr[] = $arg;
+            }
+            
         }
         return $arr;
+    }
+    
+    /**
+     * 
+     * @param string $args
+     * @return string
+     */
+    public static function argsToString($args){
+        return str_replace(['\'','"'], '', $args);
+    }
+    
+    /**
+     * 
+     * @param string $text
+     * @param string $focus
+     * @param string $class
+     * 
+     * @return string
+     */
+    public static function insertSpan($text, $focus, $class){
+        $replaced = '<span class="'.$class.'">' . $focus . '</span>';
+        $text = str_replace($focus, $replaced, $text);
+        return $text;
     }
 
 }
