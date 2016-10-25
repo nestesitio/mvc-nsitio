@@ -7,4 +7,21 @@ and open the template in the editor.
     Created on : Mar 21, 2016, 4:24:29 PM
     Author     : dellpinto
 */
+
+/*nav*/
+
+.navbar-static-top, .navbar-inverse {
+    background-color: #02003d;
+    border-color: #303030;
+}
+.navbar-header-sitio{
+    padding: 10px;
+}
+.navbar-header-sitio a{
+    color: #fff; font-size: 1.5em;
+    font-family: 'Kaushan Script',Helvetica,Arial,cursive;
+    text-decoration: none;
+}
+.navbar-top-links a{color: #fff;}
+
 .sidebar-nav ul:first-child{margin-top: 50px;}

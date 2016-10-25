@@ -2,62 +2,161 @@
     Created on : Mar 12, 2015, 9:27:21 AM
     Author     : dellpinto
 */
+
+
 a{color: #333;}
 a:hover{color: #666;}
 
-@font-face {
-    font-family: Avenir;
-    src: url(/fonts/AvenirLTStd-Medium.otf);
+/*nav*/
+.navbar-custom{
+    background-color:rgba(0, 0, 0, 0.7);
 }
-html, body {font-family: "Avenir", Helvetica, Arial, sans-serif;}
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
+.navbar-fixed-top .navbar-brand {
+    padding-top: 5px;
+}
+.navbar-custom.affix {
+    background-color:rgba(0, 0, 0, 0.7);
+    padding: 10px 0 15px;
+}
+
+#mainNav {
+    min-height: 100px;
+}
+.navbar-custom .navbar-toggle {
+    background: none !important;
+    border-color: #fff;
+}
+.navbar-toggle:hover{background-color: #999 !important;}
+.navbar-custom .nav li a{
+    font-family: "Brandon", Helvetica, Arial, sans-serif;
+    font-size: 1.11em;
+}
+
+a.navbar-brand{
+    padding-bottom: 15px;
+}
+a.navbar-brand img{
+    max-width: 100%;
+}
+
+.navbar-fixed-top .nav-main{
+    padding: 30px 0 5px; margin-bottom: -20px;
+}
+
+/*langs nav*/
+.navbar-langs{
+    float: right;
+}
+.nav-langs{
+    padding: 5px 0 !important;
+}
+.nav-langs li{ border-left: #fff solid 1px;}
+.nav-langs li:first-of-type{ border-left: none;}
+
+.navbar-custom .nav li span{
+    color: #fff; letter-spacing: 1px; text-transform: uppercase;
+}
+
+.nav-langs li a, .nav-langs li span{ padding: 0 5px; line-height: 0.8; font-size: 0.9em !important;}
+.nav-langs li span{font-weight: 700; display: block;}
+
+@media (max-width: 768px) {
+   .navbar-fixed-top .navbar-brand {padding-top: 10px;}
+   .navbar-brand-text{float: left; clear: both; margin-left: 15px;}
+   .navbar-langs{ position: absolute; top: 0.5em; right: 10em; }
+   .nav-langs li{display: inline; float: left;}
+}
+
+.navbar-custom .nav li a:hover,
+.navbar-custom .nav li a:focus {
+  color: #F85531;
+  outline: none;
 }
 
 
-.navbar-static-top, .navbar-inverse {
-    background-color: #02003d;
-    border-color: #303030;
-}
-
-.navbar-top-links a{color: #fff;}
 .sidebar{}
 
-
-#map-preload{
-    position: absolute; left: 0; top: 0;
-    width: 100%; height: 100%; z-index: 9999;
-    background: url(/images/map-preload.gif) center no-repeat;
-    height: 50em; width: 40em;
+/*footer and contacts*/
+footer {background-color: #E5E5E5; margin: 50px 0 0 !important;}
+footer i.fa{display: inline;}
+ul.contacts li a { 
+    border-radius: 10px;
+    border: #000 solid 2px;
+    color: #000;
+    display: block;
+    font-size: 25px;
+    height: 50px;
+    line-height: 50px;
+    outline: medium none;
+    transition: all 0.3s ease 0s;
+    width: 50px;
 }
 
-.layer-login{
-    background:url(/images/bg/bg-ignasi.png) no-repeat; 
-    background-size: cover;
-    width: 100%; height: 100%;
-    padding: 0; margin: 0; background-color: #fff;
-    
+ul.contacts li.mail a,
+ul.contacts li.phone a
+{
+    border: none;
 }
-.login-panel{background-color: #807F84; border-radius: 15px; border: none; margin: 0}
-.login-heading{border-radius: 15px 15px 0 0;}
-a.navbar-brand-sitio{ padding: 1px; color: #fff; font-size: 140%}
-a.navbar-brand-sitio img{height: 50px; width: auto;}
 
-.login-panel .form-group {margin-bottom: 5px;}
-.login-panel form {margin-top: 0;}
-.login-panel label{color: #fff; text-transform: uppercase; font-size: 14px; float: left; clear: right}
-.login-panel input{
-    background-color: #CECDD0; color: #000; border-radius: 0; margin: 0;
-    height: 25px; padding: 2px 12px;
+ul.contacts li div[id*=Skype] img
+{
+    margin: -15px 5px 25px !important;
+    filter: invert(100%); 
+    -webkit-filter: invert(100%);
 }
-.login-panel input[type="submit"]{background: none;
-     border: none; color: #fff;text-transform: uppercase; font-weight: 600; font-size: 14px;
-     cursor: pointer; }
 
-.login-oauth{
-    overflow: hidden; margin: 0; padding: 10px; background-color:#EFFF00; 
-    border-radius: 10px;text-align: center;
+ul.contacts li.mail a,
+ul.contacts li.phone a,
+ul.contacts li div[id*=Skype] a
+{
+    width: auto;
+    border-radius: 10px;
+    padding: 0 10px;
 }
 
 
-.footer-col a{color: #fff; font-size: 16px;}
+
+
+ul.contacts li.mail i,
+ul.contacts li.phone i{
+    margin: 0 10px; font-size: 120%;
+}
+
+
+ul.contacts li a:hover,
+ul.contacts li a:focus
+{
+    text-decoration: none; color: #333;
+}
+
+ul.contacts li.mail a:hover,
+ul.contacts li.mail a:focus,
+ul.contacts li.phone a:hover,
+ul.contacts li.phone a:focus
+{
+    background-color: #E5E5E5; 
+}
+
+footer .contacts li.tools a,
+footer .contacts li.tools i
+{
+    color: #fff; border: none;
+}
+footer .contacts li.tools a:hover,
+footer .contacts li.tools i:focus
+{
+    color:#fff; background: none;
+}
+ul.contacts li a,
+ul.contacts li div[id*=Skype]
+{
+    position: relative;
+}
+ul.contacts li a[title]:hover:after,
+ul.contacts li div[id*=Skype]:hover:after
+{
+  position: absolute; top: -80px; left: 0; font-size: 16px;
+  content: attr(title); padding: 2px 4px; background-color: #fff; color: #F85531;
+  z-index: 10; white-space: nowrap; border-radius: 5px; box-shadow: 0px 0px 4px #F85531;
+}
+
