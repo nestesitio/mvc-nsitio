@@ -29,7 +29,11 @@ class UrlHref
     /**
      *
      */
-    const TARGET = '';
+    const ALT = 'alt';
+    /**
+     *
+     */
+    const TARGET = 'target';
 
     /**
      * @param array $pieces
@@ -45,6 +49,9 @@ class UrlHref
         }
         if(isset($pieces['action'])){
             $url .= '/' . $pieces['action'];
+        }
+        if(isset($pieces['lang'])){
+            $url .= '/' . $pieces['lang'];
         }
         if(isset($pieces['id'])){
             $url .= '/' . $pieces['id'];
@@ -71,6 +78,7 @@ class UrlHref
     {
         if(is_array($url)){
             return self::renderRelativeHref($url);
+            
         }else{
             return $url;
         }
@@ -127,24 +135,47 @@ class UrlHref
      */
     public static function renderMenuItem($param_url, $title, $params = [])
     {
-        $url = self::renderUrl($param_url);
-        $str = (isset($params[self::CLASS_LI])) ? '<li class="' . $params[self::CLASS_LI] .'">' : '<li>';
-        $str .= '<a href="' . $url . '"';
-        if(isset($params[self::CLASS_A])){
-            $class = (strpos($params[self::CLASS_A], 'fa'))? 'fa ' . $params[self::CLASS_A]: $params[self::CLASS_A];
-            $str .= ' class="'.$class.'"';
+        $string = '<li><a>'.$title.'</a></li>';
+        
+        if(isset($params[self::CLASS_LI])){
+            $string = str_replace('<li>', '<li class="' . $params[self::CLASS_LI] .'">', $string);
         }
-        $str .= '>';
+        
         if(isset($params[self::ICON_LEFT])){
-            $str .= '<i class="fa '.$params[self::ICON_LEFT].'"></i> ';
-        }
-        $str .= $title;
-        if(isset($params[self::ICON_RIGHT])){
-            $str .= ' <i class="fa '.$params[self::ICON_RIGHT].'"></i>';
+            $string = str_replace('<a>', '<a> <i class="fa '.$params[self::ICON_LEFT].'"></i>', $string);
         }
 
-        return $str . '</a></li>';
+        if(isset($params[self::ICON_RIGHT])){
+            $string = str_replace('</a>', '<i class="fa '.$params[self::ICON_RIGHT].'"></i> </a>', $string);
+        }
+        
+        if ($param_url != null) {
+            $string = str_replace('<a>', '<a href="' . self::renderUrl($param_url) . '">', $string);
+        }else{
+            $string = str_replace('<a>', '<span>', $string);
+            $string = str_replace('</a>', '</span>', $string);
+        }
+        
+        if(isset($params[self::ALT]) && !empty($params[self::ALT])){
+            $string = str_replace('<a', '<a title="' . $params[self::ALT] . '"', $string);
+        }
+        
+        if (isset($params[self::CLASS_A])) {
+            $class = (strpos($params[self::CLASS_A], 'fa')) ? 
+                        'fa ' . $params[self::CLASS_A] : $params[self::CLASS_A];
+            $string = str_replace('<a', '<a class="' . $class . '"', $string);
+            
+        }
+        
+        if(isset($params[self::TARGET])){
+            $string = str_replace('<a', '<a target="' . self::TARGET . '"', $string);
+        }
+        
+        
+        
+        return $string;
     }
+    
 
 
     /**

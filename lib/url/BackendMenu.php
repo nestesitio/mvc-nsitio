@@ -3,6 +3,7 @@
 namespace lib\url;
 
 use \lib\tools\StringTools;
+use  \lib\url\MenuRender;
 
 /**
  * Description of BackendMenu
@@ -10,11 +11,10 @@ use \lib\tools\StringTools;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Sep 14, 2016
  */
-class BackendMenu extends \lib\url\MenuRender {
+class BackendMenu extends \lib\url\Menu {
 
     private $links = [];
     
-    private $menu = '';
     
     
     
@@ -32,7 +32,7 @@ class BackendMenu extends \lib\url\MenuRender {
         $apps = StringTools::argsToArray($args);
         $obj->groupLinks($apps);
         
-        return $obj->renderMenu();
+        return $obj->renderMenu('nav', 'side-menu');
     }
     
     
@@ -68,14 +68,14 @@ class BackendMenu extends \lib\url\MenuRender {
     
 
     public function renderHeader(){
-        $params = [self::CLASS_A=>'active', self::ICON_LEFT=>'fa-dashboard fa-fw'];
-        $this->menu .= '<li>'.self::renderMenuItem('/backend', 'Dashboard', $params) .'</li>';
+        $params = [MenuRender::CLASS_A=>'active', MenuRender::ICON_LEFT=>'fa-dashboard fa-fw'];
+        $this->menu .= '<li>'.MenuRender::renderMenuItem('/backend', 'Dashboard', $params) .'</li>';
     }
     
     public function getBackendLinks(){
         $pages = \lib\page\HtmPageQueries::getBackendPages()->find();
         foreach($pages as $page){
-            $btn = self::renderMenuUrl(['app'=>$page->getHtm()->getHtmApp()->getSlug(),'canonical'=>$page->getSlug()], $page->getMenu());
+            $btn = MenuRender::renderMenuUrl(['app'=>$page->getHtm()->getHtmApp()->getSlug(),'canonical'=>$page->getSlug()], $page->getMenu());
             $this->links[$page->getHtm()->getHtmApp()->getSlug()][] = $btn;
         }
     }
@@ -92,8 +92,8 @@ class BackendMenu extends \lib\url\MenuRender {
                  $this->menu .= '<li>';
                  //<a href="#"><i class="fa fa-gear fa-fw"></i> Configs<span class="fa arrow"></span></a>
 
-                 $this->menu .= self::renderlink('#', $auths[$app], 
-                         [self::ICON_LEFT => $icon . '  fa-fw', self::ICON_RIGHT=>'arrow']);
+                 $this->menu .= MenuRender::renderlink('#', $auths[$app], 
+                         [MenuRender::ICON_LEFT => $icon . '  fa-fw', MenuRender::ICON_RIGHT=>'arrow']);
                  
                  $this->menu .= '<ul class="nav nav-second-level">';
                  $this->menu .= implode('', $this->renderMenuGroup($app));
@@ -131,13 +131,5 @@ class BackendMenu extends \lib\url\MenuRender {
         return $auths;
     }
     
-    /**
-     * 
-     * @return string
-     */
-    public function renderMenu(){
-        return '<ul class="nav" id="side-menu">' . 
-                $this->menu . '</ul>';
-    }
 
 }

@@ -22,7 +22,7 @@ class Authool extends \lib\url\MenuRender {
 
         /**
      * Load from template
-     * {@load \lib\menu\Authool::render(link1, link2)}
+     * {@load \lib\menu\Authool::render(backend=> , login=> , debug=>tool)}
      * 
      * @param string $args
      * @return mixed
@@ -59,14 +59,14 @@ class Authool extends \lib\url\MenuRender {
         }
     }
     
-    public static function navLogin(){
+    public static function navLogin($label){
         
         if(SessionUser::haveUser() == false){
-            $params = [self::ICON_RIGHT => 'fa-sign-in'];
-            return self::renderMenuItem('/user/login', 'Login', $params);
+            $params = [self::ICON_RIGHT => 'fa-sign-in', self::CLASS_LI=>'tools'];
+            return self::renderMenuItem('/user/login', $label, $params);
         }else{
-            $params = [self::ICON_LEFT=>'fa-sign-out fa-fw'];
-            return self::renderMenuItem('/user/logout_user', 'Logout', $params);
+            $params = [self::ICON_LEFT=>'fa-sign-out fa-fw', self::CLASS_LI=>'tools'];
+            return self::renderMenuItem('/user/logout_user', $label, $params);
         }
     }
     
@@ -83,7 +83,7 @@ class Authool extends \lib\url\MenuRender {
     public static function toolDebug(){
         if(SessionUser::getUserGroup() == UserGroupModel::GROUP_DEVELOPER ||
                 Configurator::getDeveloperMode() == true){
-            return self::renderButton('dev_button', 'fa fa-gear', '', '', 'dev_display');
+            return self::renderButton('dev_button tools', 'fa fa-gear', '', '', 'dev_display');
         }
         return '';
     }
