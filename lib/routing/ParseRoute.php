@@ -91,7 +91,7 @@ class ParseRoute
                     } elseif ($x > 2 && $components[self::PART_ID] == null && preg_match('/^[0-9]{1,11}$/', $piece)) {
                         $components[self::PART_ID] = $piece;
                     } elseif ($x > 2 && $components[self::PART_ID]== null && preg_match('/^[a-z]+$/', $piece)) {
-                        $components['slugvar'] = $piece;
+                        $components[self::PART_VAR] = $piece;
                     }
                 }
             }
@@ -114,7 +114,7 @@ class ParseRoute
             self::PART_CANONICAL => 'index', self::PART_CONTROLLER => 'home', 
             self::PART_ACTION => Router::STR_DEFAULT,
             self::PART_ID => null, self::PART_LANG => null, 
-            'slugvar' => null];
+            self::PART_VAR => null];
     }
     
     const PART_APP = 'app';
@@ -136,6 +136,8 @@ class ParseRoute
     const PART_ID = 'id';
     
     const PART_LANG = 'lang';
+    
+    const PART_VAR = 'slugvar';
     
 
 }

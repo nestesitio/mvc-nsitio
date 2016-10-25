@@ -49,7 +49,11 @@ class DBRouting
             
             $c = $page->getHtm()->getController();
             if($c != null){
-                Vars::setAction($c);
+                Monitor::setMonitor(Monitor::ACTION, 'Controller detected in htm table: ' . $c);
+                Vars::setCanonical($c);
+                if(Vars::getAction() == null){
+                    Vars::setAction($c);
+                }
             }
 
             self::$controller = Vars::getApp() . '/' . Vars::getAction();

@@ -6,6 +6,7 @@ use \lib\register\Vars;
 
 use \lib\register\Monitor;
 use \lib\session\Session;
+use \lib\routing\ParseRoute;
 
 /**
  * Description of Router
@@ -72,9 +73,10 @@ class Router
     public static function getAction($class, $params = [])
     {
         // prepare Action
-        $str = 'x' . str_replace('_', ' ', $params['action']);
+        $str = 'x' . str_replace('_', ' ', $params[ParseRoute::PART_ACTION]);
         $action = str_replace(' ', '', substr(ucwords($str), 1));
         Vars::setAction($action);
+        Monitor::setMonitor(Monitor::ACTION, 'Action is ' . $action . ' for ' . $params[ParseRoute::PART_ACTION]);
 
 
         $hasActionFunction = (int) method_exists($class, $action . 'Action');
