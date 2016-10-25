@@ -90,6 +90,19 @@ class HtmQuerie {
     
     /**
      * 
+     * @param string $var
+     * @return \lib\page\HtmQuerie
+     */
+    public function joinVars($var){
+        $this->query->joinHtmHasVars(Mysql::LEFT_JOIN)
+                ->joinHtmVars(Mysql::LEFT_JOIN)->filterByVar($var)->selectValue()->endUse()
+                ->endUse();
+        return $this;
+    }
+
+
+    /**
+     * 
      * @return \lib\page\HtmQuerie
      */
     public function orderByOrd(){
