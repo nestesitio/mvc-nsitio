@@ -303,7 +303,7 @@ class ControllerAdmin extends \lib\control\Controller
             foreach ($fields as $column) {
                 $configs->setIndex($column);
                 $values[$column]['label'] = $configs->getConfigValue('label');
-                $values[$column]['value'] = $this->convertValueByXml($model->getColumnValue($column), $configs->getConfigValue('convert'));
+                $values[$column]['value'] = $this->processValue2Show($model->getColumnValue($column), $configs->getConfigValue('convert'));
                 $values[$column]['field'] = $column;
             }
         }
