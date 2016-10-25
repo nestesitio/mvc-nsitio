@@ -131,6 +131,9 @@ class Input
         if(null != $name){
             $this->name = $name;
         }
+        if(null != $name && null == $elemid){
+            $this->elemid = $name;
+        }
         if(null != $elemid){
             $this->elemid = $elemid;
         }
@@ -324,6 +327,7 @@ class Input
         $this->attributes[$attribute] = $attribute . '="' . $value . '"';
         return $this;
     }
+    
 
 
     /**
