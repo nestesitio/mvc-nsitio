@@ -44,7 +44,7 @@ class SessionConfig
     }
 
     /**
-     * @param $id
+     * @param int $id
      */
     public static function addId($id)
     {

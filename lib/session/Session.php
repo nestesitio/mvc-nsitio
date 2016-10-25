@@ -87,7 +87,6 @@ class Session
      */
     public function __construct()
     {
-        //var_dump(session_id());
         if (session_id() === '') {
             session_start();
             self::$id = session_id();
