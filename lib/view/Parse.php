@@ -24,11 +24,11 @@ class Parse {
         self::$output = $output;
     }
     
-
-    
-    
-    
-    
+    /**
+     * Open file for template
+     * @param string $file
+     * @return string
+     */
     public static function obFile($file){
         if (null != $file) {
             ob_start();
@@ -42,6 +42,10 @@ class Parse {
         return '';
     }
     
+    /**
+     * 
+     * @return string
+     */
     public function reparse() {
         
         return self::$output;
