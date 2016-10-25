@@ -29,7 +29,7 @@ class ParseLoad {
     }
     
     private static function runClass($argument){
-        
+
         //'\lib\menu\Authool::render()
         list($class, $method) = explode('::', $argument);
         if (class_exists($class)) {
@@ -40,11 +40,10 @@ class ParseLoad {
             if ($hasActionFunction == 0) {
                 return false;
             }
-            
             return $class::$method($args);
         }
+
         return false;
-        
         
         
     }

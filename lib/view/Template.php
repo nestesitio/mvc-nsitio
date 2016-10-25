@@ -132,7 +132,7 @@ class Template
         $this->output = \lib\view\parsers\ParseData::parse($this->output);
         //process loads
         $this->output = \lib\view\parsers\ParseLoad::parse($this->output);
-
+        
     }
 
     

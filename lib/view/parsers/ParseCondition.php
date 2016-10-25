@@ -124,7 +124,9 @@ class ParseCondition {
     
     private static function testVar($var){
         $var = str_replace('$', '', $var);
+        
         $value = Template::getData($var);
+        
         if(is_array($value)){
             return true;
         }elseif($value == null){
