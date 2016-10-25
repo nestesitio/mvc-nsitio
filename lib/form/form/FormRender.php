@@ -59,7 +59,6 @@ class FormRender
         return substr($key, strpos($key, '.') + 1);
     }
 
-    //public static function renderInputs($forminputs, $formlabels, $fieldsandlabels = [], $actionclass = '', $ranges = null) {
     /**
      * @param $forminputs
      * @param $formlabels
