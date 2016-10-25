@@ -128,10 +128,10 @@ class Generate
      * @param string $name The name of action file
      * @param string $model The name of the db table
      */
-    public function buildApp($app, $name, $model)
+    public function buildApp($app, $name)
     {
-        $crud = new \lib\crud\CrudApp($app, $name, $model);
-        $crud->setConstrains($this->getConstrains());
+        $crud = new \lib\crud\CrudApp($app, $name);
+        
         $crud->createFolders()->execute('app');
 
     }

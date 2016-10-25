@@ -121,7 +121,7 @@ class CrudConfig
         $tools['editform'] = 'glyphicon glyphicon-pencil';
         $tools['delform'] = 'glyphicon glyphicon-trash';
         $tools['closeform'] = 'glyphicon glyphicon-remove';
-        $labels = ['Save','Edit','Delete','Close'];
+        $labels = ['save','edit','delete','close'];
         $actions = ['edit','edit','del',''];
         $i = 0;
         foreach($tools as $tool=>$class){
@@ -153,6 +153,8 @@ class CrudConfig
             $node = $doc->createElement($tool);
             if($tool == 'export'){
                 $node->setAttribute('url', '/' . $this->app . '/' . $tool . '_' . $this->name);
+            }elseif($tool == 'insert'){
+                $node->setAttribute('url', '/' . $this->app . '/new_' . $this->name);
             }else{
                 $node->setAttribute('action', $this->app . '/' . $tool . '_' . $this->name);
             }

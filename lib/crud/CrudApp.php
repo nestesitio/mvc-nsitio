@@ -60,16 +60,18 @@ class CrudApp
      * @param $name
      * @param $table
      */
-    public function __construct($app, $name, $table)
+    public function __construct($app, $name, $table = null)
     {
         $this->app = ucfirst(strtolower($app));
         echo "App is " . $this->app . "\n";
         $this->name = ucfirst(strtolower($name));
+        
+        if (null != $table) {
+            $this->table = $table;
 
-        $this->table = $table;
-
-        $this->model = ModelTools::buildModelName($table);
-        $this->pdo = PdoMysql::getConn();
+            $this->model = ModelTools::buildModelName($table);
+            $this->pdo = PdoMysql::getConn();
+        }
     }
 
     /**
