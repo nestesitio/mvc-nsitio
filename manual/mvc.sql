@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 20, 2016 at 03:53 PM
--- Server version: 5.7.15-0ubuntu0.16.04.1
--- PHP Version: 7.0.10-2+deb.sury.org~xenial+1
+-- Generation Time: Oct 31, 2016 at 01:04 PM
+-- Server version: 5.7.16-0ubuntu0.16.04.1
+-- PHP Version: 7.0.12-1+deb.sury.org~xenial+1
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -38,11 +38,6 @@ CREATE TABLE `company` (
   `oldid` int(3) DEFAULT NULL COMMENT 'ignore'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `company`
---
-
-TRUNCATE TABLE `company`;
 -- --------------------------------------------------------
 
 --
@@ -57,11 +52,6 @@ CREATE TABLE `company_htm` (
   `htm_type_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `company_htm`
---
-
-TRUNCATE TABLE `company_htm`;
 -- --------------------------------------------------------
 
 --
@@ -82,11 +72,6 @@ CREATE TABLE `company_info` (
   `notes` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `company_info`
---
-
-TRUNCATE TABLE `company_info`;
 -- --------------------------------------------------------
 
 --
@@ -103,11 +88,6 @@ CREATE TABLE `company_user` (
   `active` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `company_user`
---
-
-TRUNCATE TABLE `company_user`;
 -- --------------------------------------------------------
 
 --
@@ -123,11 +103,6 @@ CREATE TABLE `htm` (
   `controller` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `htm`
---
-
-TRUNCATE TABLE `htm`;
 --
 -- Dumping data for table `htm`
 --
@@ -159,11 +134,6 @@ CREATE TABLE `htm_app` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Truncate table before insert `htm_app`
---
-
-TRUNCATE TABLE `htm_app`;
---
 -- Dumping data for table `htm_app`
 --
 
@@ -184,18 +154,13 @@ INSERT INTO `htm_app` (`id`, `slug`, `name`) VALUES
 
 DROP TABLE IF EXISTS `htm_has_media`;
 CREATE TABLE `htm_has_media` (
-  `htm_media_id` int(9) NOT NULL,
+  `media_id` int(9) NOT NULL,
   `htm_id` int(9) NOT NULL,
   `title` varchar(100) DEFAULT NULL,
   `ord` int(3) NOT NULL DEFAULT '1',
   `notes` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `htm_has_media`
---
-
-TRUNCATE TABLE `htm_has_media`;
 -- --------------------------------------------------------
 
 --
@@ -208,11 +173,6 @@ CREATE TABLE `htm_has_vars` (
   `htm_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `htm_has_vars`
---
-
-TRUNCATE TABLE `htm_has_vars`;
 -- --------------------------------------------------------
 
 --
@@ -229,34 +189,6 @@ CREATE TABLE `htm_log` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `htm_log`
---
-
-TRUNCATE TABLE `htm_log`;
--- --------------------------------------------------------
-
---
--- Table structure for table `htm_media`
---
-
-DROP TABLE IF EXISTS `htm_media`;
-CREATE TABLE `htm_media` (
-  `id` int(9) NOT NULL,
-  `genre` set('img','file','embed','pdf') NOT NULL DEFAULT 'img',
-  `url` varchar(150) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `author` varchar(100) DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `description` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Truncate table before insert `htm_media`
---
-
-TRUNCATE TABLE `htm_media`;
 -- --------------------------------------------------------
 
 --
@@ -277,11 +209,6 @@ CREATE TABLE `htm_page` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `htm_page`
---
-
-TRUNCATE TABLE `htm_page`;
 --
 -- Dumping data for table `htm_page`
 --
@@ -309,15 +236,9 @@ DROP TABLE IF EXISTS `htm_txt`;
 CREATE TABLE `htm_txt` (
   `id` int(9) NOT NULL,
   `htm_page_id` int(9) NOT NULL,
-  `type` set('desc','lead','txt','obs','footer') DEFAULT NULL,
   `txt` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `htm_txt`
---
-
-TRUNCATE TABLE `htm_txt`;
 -- --------------------------------------------------------
 
 --
@@ -332,11 +253,6 @@ CREATE TABLE `htm_vars` (
   `status` enum('public','private') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `htm_vars`
---
-
-TRUNCATE TABLE `htm_vars`;
 -- --------------------------------------------------------
 
 --
@@ -347,23 +263,70 @@ DROP TABLE IF EXISTS `langs`;
 CREATE TABLE `langs` (
   `tld` varchar(2) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
-  `locale` varchar(5) DEFAULT NULL
+  `locale` varchar(5) DEFAULT NULL,
+  `ord` int(2) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `langs`
---
-
-TRUNCATE TABLE `langs`;
 --
 -- Dumping data for table `langs`
 --
 
-INSERT INTO `langs` (`tld`, `name`, `locale`) VALUES
-('en', NULL, 'en_EN'),
-('es', NULL, 'es_ES'),
-('fr', NULL, 'fr_FR'),
-('pt', NULL, 'pt_PT');
+INSERT INTO `langs` (`tld`, `name`, `locale`, `ord`) VALUES
+('en', 'English', 'en_EN', 0),
+('pt', 'Português', 'pt_PT', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media`
+--
+
+DROP TABLE IF EXISTS `media`;
+CREATE TABLE `media` (
+  `id` int(9) NOT NULL,
+  `genre` set('img','file','embed','pdf','banner') NOT NULL DEFAULT 'img',
+  `source` varchar(150) DEFAULT NULL,
+  `link` varchar(100) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media_collection`
+--
+
+DROP TABLE IF EXISTS `media_collection`;
+CREATE TABLE `media_collection` (
+  `id` int(6) NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `media_collection`
+--
+
+INSERT INTO `media_collection` (`id`, `slug`, `name`) VALUES
+(1, 'all', 'General');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media_info`
+--
+
+DROP TABLE IF EXISTS `media_info`;
+CREATE TABLE `media_info` (
+  `id` int(6) NOT NULL,
+  `media_id` int(9) NOT NULL,
+  `media_collection_id` int(6) NOT NULL DEFAULT '1',
+  `langs_tld` varchar(2) CHARACTER SET utf8 NOT NULL DEFAULT 'pt',
+  `title` varchar(2) CHARACTER SET utf8 NOT NULL DEFAULT 'pt',
+  `author` varchar(2) CHARACTER SET utf8 NOT NULL DEFAULT 'pt',
+  `summary` varchar(2) CHARACTER SET utf8 NOT NULL DEFAULT 'pt'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -380,11 +343,6 @@ CREATE TABLE `support` (
   `type` set('query','issue','suggestion') DEFAULT 'query'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `support`
---
-
-TRUNCATE TABLE `support`;
 -- --------------------------------------------------------
 
 --
@@ -401,11 +359,6 @@ CREATE TABLE `support_log` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `support_log`
---
-
-TRUNCATE TABLE `support_log`;
 -- --------------------------------------------------------
 
 --
@@ -426,11 +379,6 @@ CREATE TABLE `user_base` (
   `userkey` varchar(128) DEFAULT NULL COMMENT 'no-join'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `user_base`
---
-
-TRUNCATE TABLE `user_base`;
 --
 -- Dumping data for table `user_base`
 --
@@ -455,11 +403,6 @@ CREATE TABLE `user_functions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Truncate table before insert `user_functions`
---
-
-TRUNCATE TABLE `user_functions`;
---
 -- Dumping data for table `user_functions`
 --
 
@@ -479,11 +422,6 @@ CREATE TABLE `user_group` (
   `description` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `user_group`
---
-
-TRUNCATE TABLE `user_group`;
 --
 -- Dumping data for table `user_group`
 --
@@ -511,11 +449,6 @@ CREATE TABLE `user_group_has_htm_app` (
   `htm_app_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `user_group_has_htm_app`
---
-
-TRUNCATE TABLE `user_group_has_htm_app`;
 --
 -- Dumping data for table `user_group_has_htm_app`
 --
@@ -569,11 +502,6 @@ CREATE TABLE `user_info` (
   `notes` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `user_info`
---
-
-TRUNCATE TABLE `user_info`;
 -- --------------------------------------------------------
 
 --
@@ -588,11 +516,6 @@ CREATE TABLE `user_log` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Truncate table before insert `user_log`
---
-
-TRUNCATE TABLE `user_log`;
 --
 -- Dumping data for table `user_log`
 --
@@ -671,8 +594,8 @@ ALTER TABLE `htm_app`
 -- Indexes for table `htm_has_media`
 --
 ALTER TABLE `htm_has_media`
-  ADD PRIMARY KEY (`htm_media_id`,`htm_id`),
-  ADD KEY `fk_htm_media_id` (`htm_media_id`),
+  ADD PRIMARY KEY (`media_id`,`htm_id`),
+  ADD KEY `fk_htm_media_id` (`media_id`),
   ADD KEY `fk_htm_media_htm` (`htm_id`);
 
 --
@@ -692,12 +615,6 @@ ALTER TABLE `htm_log`
   ADD KEY `fk_htm_log_user_idx` (`user_id`);
 
 --
--- Indexes for table `htm_media`
---
-ALTER TABLE `htm_media`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `htm_page`
 --
 ALTER TABLE `htm_page`
@@ -710,8 +627,7 @@ ALTER TABLE `htm_page`
 --
 ALTER TABLE `htm_txt`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_htm_txt_htm_page` (`htm_page_id`),
-  ADD KEY `type` (`type`);
+  ADD KEY `fk_htm_txt_htm_page` (`htm_page_id`);
 
 --
 -- Indexes for table `htm_vars`
@@ -724,6 +640,27 @@ ALTER TABLE `htm_vars`
 --
 ALTER TABLE `langs`
   ADD PRIMARY KEY (`tld`);
+
+--
+-- Indexes for table `media`
+--
+ALTER TABLE `media`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `media_collection`
+--
+ALTER TABLE `media_collection`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `media_info`
+--
+ALTER TABLE `media_info`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_media_info_collection_idx` (`media_collection_id`),
+  ADD KEY `fk_media_info_langs_idx` (`langs_tld`) USING BTREE,
+  ADD KEY `fk_info_page_media_idx` (`media_id`) USING BTREE;
 
 --
 -- Indexes for table `support`
@@ -817,11 +754,6 @@ ALTER TABLE `htm_app`
 ALTER TABLE `htm_log`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `htm_media`
---
-ALTER TABLE `htm_media`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `htm_page`
 --
 ALTER TABLE `htm_page`
@@ -835,6 +767,21 @@ ALTER TABLE `htm_txt`
 -- AUTO_INCREMENT for table `htm_vars`
 --
 ALTER TABLE `htm_vars`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `media`
+--
+ALTER TABLE `media`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `media_collection`
+--
+ALTER TABLE `media_collection`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `media_info`
+--
+ALTER TABLE `media_info`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `support`
@@ -902,7 +849,7 @@ ALTER TABLE `htm`
 --
 ALTER TABLE `htm_has_media`
   ADD CONSTRAINT `fk_htm_media_htm` FOREIGN KEY (`htm_id`) REFERENCES `htm` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_htm_media_id` FOREIGN KEY (`htm_media_id`) REFERENCES `htm_media` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_media_id` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `htm_has_vars`
@@ -930,6 +877,14 @@ ALTER TABLE `htm_page`
 --
 ALTER TABLE `htm_txt`
   ADD CONSTRAINT `fk_htm_txt_htm_page` FOREIGN KEY (`htm_page_id`) REFERENCES `htm_page` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `media_info`
+--
+ALTER TABLE `media_info`
+  ADD CONSTRAINT `fk_media_info_collection` FOREIGN KEY (`media_collection_id`) REFERENCES `media_collection` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_media_info_langs` FOREIGN KEY (`langs_tld`) REFERENCES `langs` (`tld`),
+  ADD CONSTRAINT `fk_media_info_media` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `user_base`
