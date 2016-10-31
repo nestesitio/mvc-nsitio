@@ -60,7 +60,6 @@ function processForm(form){
                 type = form.elements[i].getAttribute('type');
                 if (type === "checkbox") {
                     if (form.elements[i].value === 'on') {
-                        alert(form.elements[i].value);
                         data.push($(form.elements[i]).serializeArray());
                     } else if (required === true) {
                         form_errors++;

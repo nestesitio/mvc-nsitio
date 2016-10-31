@@ -37,7 +37,9 @@ function prepareWysihtml5(){
     var toolbar;
     for (var i = 0; i < inputs.length; i++) {
         toolbar = inputs[i].getAttribute("data-toolbar");
-        if (toolbar === 'simple') {
+        if (toolbar === 'all') {
+            $(inputs[i]).summernote();
+        } else if (toolbar === 'simple') {
             $(inputs[i]).summernote({
                 toolbar: [['style', ['bold', 'italic', 'underline', 'clear']], ['para', ['ul', 'ol', 'paragraph']],
                     ['link', ['linkDialogShow', 'unlink']], ['help', ['help']]]});
