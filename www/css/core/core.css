@@ -105,11 +105,21 @@ span.selected{border: #cc0 solid 2px}
 
 #monitor{position: fixed; top: 150px; right: 0; background-color: #fff; color: #000; z-index: 20}
 
-#preload{
+#preload,
+#modal-preload
+{
     position: absolute; background-image: url("/images/map-preload.gif"); background-repeat: no-repeat;
-    background-position: left; background-size: 20% auto;
+    width: 100%; background-size: 20% auto;
+    background-position: center;
     z-index: 10; top: 0; left: 0; 
-    height: 400px; width: 100%;
+}
+#preload
+{
+    height: 400px;
+}
+#modal-preload
+{
+    height: 100%;
 }
 
 
