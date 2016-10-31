@@ -56,6 +56,16 @@ class HtmQuerie {
     
     /**
      * 
+     * @param string $lang
+     * @return \lib\page\HtmQuerie
+     */
+    public function filterByLang($lang){
+        $this->query->filterByColumn(HtmPage::FIELD_LANGS_TLD, $lang);
+        return $this;
+    }
+    
+    /**
+     * 
      * @param string $value
      * @return \lib\page\HtmQuery
      */
