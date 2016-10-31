@@ -29,11 +29,14 @@ class ArrayCheckInput extends \lib\form\Input
      * @param array $values
      * @return $this
      */
-    public function setValuesList($values = [])
+    public function setValuesList($values = [], $serial = false)
     {
         $this->list = $values;
+        $this->serial = $serial;
         return $this;
     }
+    
+    private $serial = false;
 
     /**
      * @return string
@@ -49,13 +52,15 @@ class ArrayCheckInput extends \lib\form\Input
         $selecteds = explode('&&', $this->value);
         $i = 0;
         foreach($this->list as $value => $label){
+            $name = ($this->serial == false)? $this->name : $value;
+            $this->input .= '<label for ="' . $this->elemid . '_' . ++$i . '">';
             $this->input .= '<input type="checkbox"'
-                    . ' name="' . $this->name . '"  id="' . $this->elemid . '_' . ++$i . '"'
+                    . ' name="' . $name . '"  id="' . $this->elemid . '_' . ++$i . '"'
                     . ' value="' . $value . '"';
             if (in_array($value, $selecteds)) {
                 $this->input .= ' checked';
             }
-            $this->input .= ' /> ' . $label . '&nbsp;';
+            $this->input .= ' /> ' . $label . '</label>&nbsp;';
         }
 
         $this->input .= '<a class="clear-input" data-id="'.$this->elemid.'"><span class="glyphicon glyphicon-refresh"></span></a>';
