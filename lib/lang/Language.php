@@ -60,6 +60,8 @@ class Language {
         
         setlocale(LC_ALL, self::$locale); 
         
+        Vars::setLang($lang);
+        
     }
     
     private static function getHttpLanguage() {

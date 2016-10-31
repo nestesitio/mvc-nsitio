@@ -88,7 +88,7 @@ class Labels {
         if(isset(self::$labels[$key])){
             return self::$labels[$key];
         }
-        return '+';
+        return '-';
     }
 
 }
