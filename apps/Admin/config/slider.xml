@@ -47,6 +47,9 @@
       <mediainfoid field="media_info.id" class="id" sort="true">
         <label key="id"/>
       </mediainfoid>
+      <mediainfolangstld field="media_info.langs_tld" class="tld" filter="true">
+        <label key="l"/>
+      </mediainfolangstld>
       <mediainfotitle field="media_info.title" class="description" sort="true">
         <label key="title"/>
       </mediainfotitle>

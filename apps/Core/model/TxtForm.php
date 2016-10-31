@@ -67,6 +67,14 @@ class TxtForm extends \apps\Core\model\CmsForm {
         $form->setLangsTldInput($input);
         return $form;
     }
+    
+    /**
+     * 
+     * @return \model\forms\HtmPageForm
+     */
+    public function getHtmPageForm(){
+        return $this->forms[HtmPage::TABLE];
+    }
 
     /**
      * @return \model\forms\HtmTxtForm
@@ -117,6 +125,27 @@ class TxtForm extends \apps\Core\model\CmsForm {
         }
         //we cannot filter this input as others because it has html tags
         $this->repostWysihtmlValue();
+    }
+    
+    /**
+     * 
+     * @param \model\models\HtmPage $page
+     * @return \apps\Core\model\TxtForm
+     */
+    public function duplicate(\model\models\HtmPage $page, $lang){
+        $form = $this->getHtmPageForm();
+        
+        $input = $form->getSlugInput()->setValue($page->getSlug() . '_' . $lang);
+        $form->setSlugInput($input);
+        
+        $input = $form->getMenuInput()->setValue($page->getMenu());
+        $form->setMenuInput($input);
+        
+        $input = $form->getTitleInput()->setValue($page->getTitle());
+        $form->setTitleInput($input);
+        
+        $this->merge();    
+        return $this;
     }
 
 }

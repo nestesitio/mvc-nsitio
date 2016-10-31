@@ -90,10 +90,15 @@ class PagesActions extends \apps\Core\control\CmsActions {
         $this->renderLangActions($query, Vars::getId(), $this->txt_action, Vars::getRequests('lang'));
         
         $page = PagesQuery::getPageByLang(Vars::getId(), Vars::getRequests('lang'))->findOne();
-        
-        if($page != false){
+        if($page == false){
+            $page = PagesQuery::getPageByLang(Vars::getId())->findOne();
+            if($page != false){
+                $form = $form->duplicate($page, Vars::getRequests('lang'));
+            }
+        }else{
             $form->setQueryValues($page);
         }
+        
         $action = str_replace($this->app . '/', '', $this->bindtxt_action);
         
         $this->renderForm($form, $xml_file, $action, ['lang'=>Vars::getRequests('lang')]);

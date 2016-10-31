@@ -9,6 +9,7 @@ use \apps\Core\model\HtmForm;
 use \model\models\HtmPage;
 use \lib\page\MediaQuery;
 use \lib\session\SessionConfig;
+use \lib\form\input\WysihtmlInput;
 
 /**
  * Description of ServicesActions
@@ -61,7 +62,7 @@ class ServicesActions extends \apps\Core\control\PagesActions {
     }
 
     public function txtServicesAction() {
-        $form = $this->geTxtForm('withmedia');
+        $form = $this->geTxtForm(WysihtmlInput::TOOLBAR_RICHTEXT);
 
         $this->txtAction($form, 'hometxt');
     }

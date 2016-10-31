@@ -34,8 +34,11 @@ class MediaQueries {
      * 
      * @return \apps\Core\model\MediaQueries
      */
-    public static function getBanners(){
+    public static function getBanners($lang = null){
         $query = new MediaQueries();
+        if(null != $lang){
+            $query->filterBylang($lang);
+        }
         $query->filterByGenre(Media::GENRE_BANNER);
         return $query;
         
@@ -72,6 +75,11 @@ class MediaQueries {
     
     public function filterByMediaCollectionSlug($value){
         $this->query->filterByColumn(MediaCollection::FIELD_SLUG, $value);
+        return $this;
+    }
+    
+    public function filterBylang($value){
+        $this->query->filterByColumn(MediaInfo::FIELD_LANGS_TLD, $value);
         return $this;
     }
     

@@ -37,13 +37,18 @@ class PagesQuery extends \model\querys\HtmPageQuery {
     
     
     /**
-    * Create and return the common query to this class
-    *
-    * @return \model\querys\HtmPageQuery;
-    */
-    public static function getPageByLang($htm_id, $lang){
+     * 
+     * @param int $htm_id
+     * @param string $lang
+     * 
+     * @return \model\querys\HtmPageQuery
+     */
+    public static function getPageByLang($htm_id, $lang = null){
         $query = HtmPageQuery::start()
-                ->filterByHtmId($htm_id)->filterByLangsTld($lang)->groupById();
+                ->filterByHtmId($htm_id)->groupById();
+        if($lang != null){
+            $query->filterByLangsTld($lang);
+        }
 	$query->joinHtmTxt(Mysql::LEFT_JOIN)
                 ->selectId()->selectHtmPageId()->selectTxt()->endUse();
         
