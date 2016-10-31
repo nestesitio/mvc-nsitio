@@ -962,42 +962,47 @@
 </span><span id="280" class="l"><a href="#280">280: </a>    }
 </span><span id="281" class="l"><a href="#281">281: </a>
 </span><span id="282" class="l"><a href="#282">282: </a>    <span class="php-comment">/**
-</span></span><span id="283" class="l"><a href="#283">283: </a><span class="php-comment">     * @param String $key
-</span></span><span id="284" class="l"><a href="#284">284: </a><span class="php-comment">     * @return string
-</span></span><span id="285" class="l"><a href="#285">285: </a><span class="php-comment">     */</span>
-</span><span id="286" class="l"><a href="#286">286: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> correctKey(<span class="php-var">$key</span>)
-</span><span id="287" class="l"><a href="#287">287: </a>    {
-</span><span id="288" class="l"><a href="#288">288: </a>        <span class="php-comment">#because javascript form submission alter keys when serializes data</span>
-</span><span id="289" class="l"><a href="#289">289: </a>        <span class="php-keyword1">return</span> Vars::getCanonical() . <span class="php-quote">'_'</span> . <span class="php-keyword2">str_replace</span>(<span class="php-quote">'.'</span>, <span class="php-quote">'_'</span>, <span class="php-var">$key</span>);
-</span><span id="290" class="l"><a href="#290">290: </a>    }
-</span><span id="291" class="l"><a href="#291">291: </a>
-</span><span id="292" class="l"><a href="#292">292: </a>    <span class="php-comment">/**
-</span></span><span id="293" class="l"><a href="#293">293: </a><span class="php-comment">     * @param String $field The field name as index for the array of inputs
-</span></span><span id="294" class="l"><a href="#294">294: </a><span class="php-comment">     * @return mixed
-</span></span><span id="295" class="l"><a href="#295">295: </a><span class="php-comment">     */</span>
-</span><span id="296" class="l"><a href="#296">296: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> getColumnName(<span class="php-var">$field</span>)
-</span><span id="297" class="l"><a href="#297">297: </a>    {
-</span><span id="298" class="l"><a href="#298">298: </a>        <span class="php-keyword1">list</span>(, <span class="php-var">$column</span>) = <span class="php-keyword2">explode</span>(<span class="php-quote">'.'</span>, <span class="php-var">$field</span>);
-</span><span id="299" class="l"><a href="#299">299: </a>        <span class="php-keyword1">return</span> <span class="php-var">$column</span>;
-</span><span id="300" class="l"><a href="#300">300: </a>    }
-</span><span id="301" class="l"><a href="#301">301: </a>
-</span><span id="302" class="l"><a href="#302">302: </a>    <span class="php-comment">/**
-</span></span><span id="303" class="l"><a href="#303">303: </a><span class="php-comment">     * @param String $field The field name as index for the array of inputs
-</span></span><span id="304" class="l"><a href="#304">304: </a><span class="php-comment">     * @return array|bool|mixed
-</span></span><span id="305" class="l"><a href="#305">305: </a><span class="php-comment">     */</span>
-</span><span id="306" class="l"><a href="#306">306: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> getValue(<span class="php-var">$field</span>)
-</span><span id="307" class="l"><a href="#307">307: </a>    {
-</span><span id="308" class="l"><a href="#308">308: </a>        <span class="php-var">$key</span> = self::correctKey(<span class="php-var">$field</span>);
-</span><span id="309" class="l"><a href="#309">309: </a>        <span class="php-var">$value</span> = Vars::getPosts(<span class="php-var">$key</span>);
-</span><span id="310" class="l"><a href="#310">310: </a>
-</span><span id="311" class="l"><a href="#311">311: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span> == <span class="php-keyword1">false</span>){
-</span><span id="312" class="l"><a href="#312">312: </a>            <span class="php-var">$value</span> = \lib\form\PostTool::getMultiplePost(<span class="php-var">$key</span>);
-</span><span id="313" class="l"><a href="#313">313: </a>        }
-</span><span id="314" class="l"><a href="#314">314: </a>        <span class="php-keyword1">return</span> <span class="php-var">$value</span>;
-</span><span id="315" class="l"><a href="#315">315: </a>    }
-</span><span id="316" class="l"><a href="#316">316: </a>
-</span><span id="317" class="l"><a href="#317">317: </a>}
-</span><span id="318" class="l"><a href="#318">318: </a></span></code></pre>
+</span></span><span id="283" class="l"><a href="#283">283: </a><span class="php-comment">     * Get post key for inputs when processed
+</span></span><span id="284" class="l"><a href="#284">284: </a><span class="php-comment">     * @param String $key
+</span></span><span id="285" class="l"><a href="#285">285: </a><span class="php-comment">     * @return string
+</span></span><span id="286" class="l"><a href="#286">286: </a><span class="php-comment">     */</span>
+</span><span id="287" class="l"><a href="#287">287: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> correctKey(<span class="php-var">$key</span>)
+</span><span id="288" class="l"><a href="#288">288: </a>    {
+</span><span id="289" class="l"><a href="#289">289: </a>        <span class="php-var">$key</span> = <span class="php-keyword2">str_replace</span>(<span class="php-quote">'.'</span>, <span class="php-quote">'_'</span>, <span class="php-var">$key</span>);
+</span><span id="290" class="l"><a href="#290">290: </a>        <span class="php-keyword1">if</span>(Vars::getPosts(<span class="php-var">$key</span>) != <span class="php-keyword1">false</span>){
+</span><span id="291" class="l"><a href="#291">291: </a>            <span class="php-keyword1">return</span> <span class="php-var">$key</span>;
+</span><span id="292" class="l"><a href="#292">292: </a>        }
+</span><span id="293" class="l"><a href="#293">293: </a>        <span class="php-comment">#because javascript form submission alter keys when serializes data</span>
+</span><span id="294" class="l"><a href="#294">294: </a>        <span class="php-keyword1">return</span> Vars::getCanonical() . <span class="php-quote">'_'</span> . <span class="php-keyword2">str_replace</span>(<span class="php-quote">'.'</span>, <span class="php-quote">'_'</span>, <span class="php-var">$key</span>);
+</span><span id="295" class="l"><a href="#295">295: </a>    }
+</span><span id="296" class="l"><a href="#296">296: </a>
+</span><span id="297" class="l"><a href="#297">297: </a>    <span class="php-comment">/**
+</span></span><span id="298" class="l"><a href="#298">298: </a><span class="php-comment">     * @param String $field The field name as index for the array of inputs
+</span></span><span id="299" class="l"><a href="#299">299: </a><span class="php-comment">     * @return mixed
+</span></span><span id="300" class="l"><a href="#300">300: </a><span class="php-comment">     */</span>
+</span><span id="301" class="l"><a href="#301">301: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> getColumnName(<span class="php-var">$field</span>)
+</span><span id="302" class="l"><a href="#302">302: </a>    {
+</span><span id="303" class="l"><a href="#303">303: </a>        <span class="php-keyword1">list</span>(, <span class="php-var">$column</span>) = <span class="php-keyword2">explode</span>(<span class="php-quote">'.'</span>, <span class="php-var">$field</span>);
+</span><span id="304" class="l"><a href="#304">304: </a>        <span class="php-keyword1">return</span> <span class="php-var">$column</span>;
+</span><span id="305" class="l"><a href="#305">305: </a>    }
+</span><span id="306" class="l"><a href="#306">306: </a>
+</span><span id="307" class="l"><a href="#307">307: </a>    <span class="php-comment">/**
+</span></span><span id="308" class="l"><a href="#308">308: </a><span class="php-comment">     * @param String $field The field name as index for the array of inputs
+</span></span><span id="309" class="l"><a href="#309">309: </a><span class="php-comment">     * @return array|bool|mixed
+</span></span><span id="310" class="l"><a href="#310">310: </a><span class="php-comment">     */</span>
+</span><span id="311" class="l"><a href="#311">311: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> getValue(<span class="php-var">$field</span>)
+</span><span id="312" class="l"><a href="#312">312: </a>    {
+</span><span id="313" class="l"><a href="#313">313: </a>        <span class="php-var">$key</span> = self::correctKey(<span class="php-var">$field</span>);
+</span><span id="314" class="l"><a href="#314">314: </a>        <span class="php-var">$value</span> = Vars::getPosts(<span class="php-var">$key</span>);
+</span><span id="315" class="l"><a href="#315">315: </a>
+</span><span id="316" class="l"><a href="#316">316: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span> == <span class="php-keyword1">false</span>){
+</span><span id="317" class="l"><a href="#317">317: </a>            <span class="php-var">$value</span> = \lib\form\PostTool::getMultiplePost(<span class="php-var">$key</span>);
+</span><span id="318" class="l"><a href="#318">318: </a>        }
+</span><span id="319" class="l"><a href="#319">319: </a>        <span class="php-keyword1">return</span> <span class="php-var">$value</span>;
+</span><span id="320" class="l"><a href="#320">320: </a>    }
+</span><span id="321" class="l"><a href="#321">321: </a>
+</span><span id="322" class="l"><a href="#322">322: </a>}
+</span><span id="323" class="l"><a href="#323">323: </a></span></code></pre>
 
 	<div id="footer">
 		MVC Stage API documentation generated by <a href="http://apigen.org">ApiGen</a>

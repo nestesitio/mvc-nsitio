@@ -430,6 +430,19 @@
 	<div class="description">
 	<p>Description of WysihtmlInput
 https://github.com/summernote/summernote</p>
+
+<p>http://summernote.org/deep-dive/
+$('#summernote').summernote({
+toolbar: [
+// [groupName, [list of button]]
+['style', ['bold', 'italic', 'underline', 'clear']],
+['font', ['strikethrough', 'superscript', 'subscript']],
+['fontsize', ['fontsize']],
+['color', ['color']],
+['para', ['ul', 'ol', 'paragraph']],
+['height', ['height']]
+]
+});</p>
 	</div>
 
 	<dl class="tree">
@@ -470,7 +483,7 @@ https://github.com/summernote/summernote</p>
 				<b>Author:</b>
 				<p>Luís Pinto / luis.nestesitio@gmail.com
 Created @Jul 27, 2015</p><br>
-			<b>Located at</b> <a href="source-class-lib.form.input.WysihtmlInput.html#11-66" title="Go to source code">lib/form/input/WysihtmlInput.php</a>
+			<b>Located at</b> <a href="source-class-lib.form.input.WysihtmlInput.html#11-81" title="Go to source code">lib/form/input/WysihtmlInput.php</a>
 		<br>
 	</div>
 
@@ -490,7 +503,7 @@ Created @Jul 27, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-lib.form.input.WysihtmlInput.html#20-28" title="Go to source code">create</a>( <span>String <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-lib.form.input.WysihtmlInput.html#33-41" title="Go to source code">create</a>( <span>String <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -531,7 +544,7 @@ Created @Jul 27, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseInput">#</a>
-		<code><a href="source-class-lib.form.input.WysihtmlInput.html#38-52" title="Go to source code">parseInput</a>( )</code>
+		<code><a href="source-class-lib.form.input.WysihtmlInput.html#53-67" title="Go to source code">parseInput</a>( )</code>
 
 		<div class="description short">
 			
@@ -567,7 +580,7 @@ Created @Jul 27, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setToolbar">#</a>
-		<code><a href="source-class-lib.form.input.WysihtmlInput.html#56-58" title="Go to source code">setToolbar</a>( <span> <var>$toolbar</var></span> )</code>
+		<code><a href="source-class-lib.form.input.WysihtmlInput.html#71-73" title="Go to source code">setToolbar</a>( <span> <var>$toolbar</var></span> )</code>
 
 		<div class="description short">
 			
@@ -597,7 +610,7 @@ Created @Jul 27, 2015</p><br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getValue">#</a>
-		<code><a href="source-class-lib.form.input.WysihtmlInput.html#60-64" title="Go to source code">getValue</a>( )</code>
+		<code><a href="source-class-lib.form.input.WysihtmlInput.html#75-79" title="Go to source code">getValue</a>( )</code>
 
 		<div class="description short">
 			
@@ -679,7 +692,7 @@ Created @Jul 27, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.input.WysihtmlInput.html#30" title="Go to source code"><b>TOOLBAR_DEFAULT</b></a>
+				<a href="source-class-lib.form.input.WysihtmlInput.html#43" title="Go to source code"><b>TOOLBAR_DEFAULT</b></a>
 			</code>
 
 			<div class="description short">
@@ -703,7 +716,7 @@ Created @Jul 27, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.input.WysihtmlInput.html#32" title="Go to source code"><b>TOOLBAR_MEDIA</b></a>
+				<a href="source-class-lib.form.input.WysihtmlInput.html#45" title="Go to source code"><b>TOOLBAR_MEDIA</b></a>
 			</code>
 
 			<div class="description short">
@@ -727,7 +740,7 @@ Created @Jul 27, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.input.WysihtmlInput.html#34" title="Go to source code"><b>TOOLBAR_RICHTEXT</b></a>
+				<a href="source-class-lib.form.input.WysihtmlInput.html#47" title="Go to source code"><b>TOOLBAR_RICHTEXT</b></a>
 			</code>
 
 			<div class="description short">
@@ -751,7 +764,7 @@ Created @Jul 27, 2015</p><br>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-lib.form.input.WysihtmlInput.html#36" title="Go to source code"><b>TOOLBAR_SIMPLE</b></a>
+				<a href="source-class-lib.form.input.WysihtmlInput.html#49" title="Go to source code"><b>TOOLBAR_SIMPLE</b></a>
 			</code>
 
 			<div class="description short">
@@ -767,6 +780,30 @@ Created @Jul 27, 2015</p><br>
 			<div>
 				<a href="#TOOLBAR_SIMPLE" class="anchor">#</a>
 				<code><span class="php-quote">'simple'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="TOOLBAR_ALL" id="TOOLBAR_ALL">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-lib.form.input.WysihtmlInput.html#51" title="Go to source code"><b>TOOLBAR_ALL</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#TOOLBAR_ALL" class="anchor">#</a>
+				<code><span class="php-quote">'all'</span></code>
 			</div>
 		</td>
 	</tr>
