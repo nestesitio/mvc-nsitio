@@ -32,6 +32,10 @@
         <version lang="en">Save</version>
         <version lang="pt">Gravar</version>
     </word>
+    <word key="submit">
+        <label lang="en">Submit</label>
+        <label lang="pt">Enviar</label>
+    </word>
     <word key="close">
         <version lang="en">Close</version>
         <version lang="pt">Fechar</version>
@@ -80,6 +84,10 @@
         <version lang="en">Name</version>
         <version lang="pt">Nome</version>
     </word>
+    <word key="surname">
+        <version lang="en">Surname</version>
+        <version lang="pt">Apelido</version>
+    </word>
     <word key="type">
         <version lang="en">Type</version>
         <version lang="pt">Tipo</version>
@@ -111,5 +119,9 @@
     <word key="mail">
         <label lang="en">E-mail</label>
         <label lang="pt">E-mail</label>
+    </word>
+    <word key="phone">
+        <label lang="en">Phone</label>
+        <label lang="pt">Telefone</label>
     </word>
 </root>

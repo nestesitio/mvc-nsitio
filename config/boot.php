@@ -1,4 +1,5 @@
 <?php
+
 define('ALL', 'ALL');
 define('ONLY', 'STRICT');
 define('CRUD', false);
