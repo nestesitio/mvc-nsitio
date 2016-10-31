@@ -23,7 +23,7 @@ class HomeActions extends \lib\control\Controller {
         $this->setView('layout/agency/home');
         
         $page = HtmQuerie::startQuery()->getPage();
-        $this->set('about', $page->getDesc());
+        $this->set('about', $page->getTxt());
         $this->sectionServices();
  
     }
