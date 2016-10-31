@@ -70,7 +70,7 @@ class Registry
             if (null == $key) {
                 $key = count(self::$error_messages);
             }
-            self::$error_messages [$key] = $value;
+            self::$error_messages [$key] = (is_array($value))? $value : ['message'=>$value];
         }
     }
 

@@ -48,10 +48,10 @@ class PdoMysql
             } catch (\PDOException $err) 
             {
                 if($err->getCode() == 1049){
-                    die('Create database or correct name of database settings in config/config.xml file');
+                    die("Create database or correct name of database settings in config/config.xml file\n");
                 }
                 if($err->getCode() == 1045){
-                    die('Create user or correct user and password of database settings in config/config.xml file');
+                    die("Create user or correct user and password of database settings in config/config.xml file\n");
                 }
                 die('ERROR: Database connection not available');
             }
@@ -75,10 +75,10 @@ class PdoMysql
             } catch (\PDOException $err) 
             {
                 if($err->getCode() == 1049){
-                    die('Create database or correct name of database settings in config/config.xml file');
+                    die("Create database or correct name of database settings in config/config.xml file\n");
                 }
                 if($err->getCode() == 1045){
-                    die('Create user or correct user and password of database settings in config/config.xml file');
+                    die("Create user or correct user and password of database settings in config/config.xml file\n");
                 }
                 die("DB ERROR: ". $err->getMessage());
             }

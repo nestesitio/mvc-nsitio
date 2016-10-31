@@ -2,6 +2,8 @@
 
 namespace lib\view;
 
+use \lib\register\Monitor;
+
 /**
  * Description of TemplateTools
  *

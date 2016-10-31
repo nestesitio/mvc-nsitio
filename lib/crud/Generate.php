@@ -23,7 +23,6 @@ class Generate
      */
     public function __construct()
     {
-        $this->pdo = PdoMysql::getConn();
         echo "Building \n";
     }
 
@@ -32,6 +31,8 @@ class Generate
      */
     public function buildModel()
     {
+        $this->pdo = PdoMysql::getConn();
+        
         echo "Generate models ... \n";
         array_map('unlink', glob(ROOT . DS . 'model' . DS . 'models' . DS . '*'));
         array_map('unlink', glob(ROOT . DS . 'model' . DS . 'querys' . DS . '*'));
