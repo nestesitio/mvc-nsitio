@@ -106,9 +106,21 @@ class Configurator
     }
     
     /**
+     * 
+     */
+    const ADMIN_DOMAIN = 'domain';
+    /**
+     * 
+     */
+    const ADMIN_MAIL = 'email';
+    /**
+     * 
+     */
+    const ADMIN_TITLE = 'title';
+    /**
      * @var array
      */
-    private static $site_title = [];
+    private static $site_conf = [];
     
     /**
      *
@@ -116,8 +128,26 @@ class Configurator
     private function setHtmlConf()
     {
         $path = 'html';
-        self::$site_title['title'] = $this->xmlc->queryXPath($path, null, 'title');
+        self::$site_conf[self::ADMIN_TITLE] = $this->xmlc->queryXPath($path, null, 'title');
+        $path = 'admin';
+        self::$site_conf[self::ADMIN_DOMAIN] = $this->xmlc->queryXPath($path . '/domain', null, 'value'); 
+        self::$site_conf[self::ADMIN_MAIL] = $this->xmlc->queryXPath($path . '/email', null, 'value');
     }
+    
+   
+    /**
+     * 
+     * @param string $key
+     * @return mixed
+     */
+    public static function geHtmlConf($key = null)
+    {
+        if($key == null){
+            return self::$site_conf;
+        }
+        return (isset(self::$site_conf[$key]))? self::$site_conf : false;
+    }
+    
 
     /**
      * @return array
@@ -133,14 +163,6 @@ class Configurator
     public static function getGoogleConf()
     {
         return self::$googleconf;
-    }
-
-    /**
-     * @return array
-     */
-    public static function geHtmlConf()
-    {
-        return self::$site_title;
     }
 
 
@@ -223,5 +245,8 @@ class Configurator
         }
         return null;
     }
+    
+    
+    
 
 }
