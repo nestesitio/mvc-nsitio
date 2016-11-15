@@ -6,15 +6,13 @@
         <label key="id" />
       </htmpageid>
       <htmpagehtmid field="htm_page.htm_id" range="multiple" show="false" filter="false">
-        <label lang="en">Htm Id</label>
-        <label lang="pt">Htm Id</label>
+        <label key="id" />
       </htmpagehtmid>
       <htmpagelangstld field="htm_page.langs_tld" range="multiple" show="false" filter="true">
         <label key="langs" />
       </htmpagelangstld>
       <htmpagehtmlayoutid field="htm_page.htm_layout_id" range="multiple" show="false" filter="false">
-        <label lang="en">Htm Layout Id</label>
-        <label lang="pt">Htm Layout Id</label>
+        <label key="layout" />
       </htmpagehtmlayoutid>
       <htmpagetitle field="htm_page.title" show="true" filter="false">
         <label key="title" />
@@ -26,28 +24,22 @@
         <label key="menu" />
       </htmpagemenu>
       <htmpageheading field="htm_page.heading" show="true" filter="false">
-        <label lang="en">Heading</label>
-        <label lang="pt">Heading</label>
+        <label key="heading" />
       </htmpageheading>
       <htmpageupdatedat field="htm_page.updated_at" range="range" show="true" filter="true" type="DateInput">
-        <label lang="en">Updated At</label>
-        <label lang="pt">Updated At</label>
+        <label key="updated" />
       </htmpageupdatedat>
       <htmappname field="htm_app.name" filter="false">
-          <label lang="pt">Módulo</label>
-          <label lang="en">App</label>
+          <label key="app" />
       </htmappname>
       <htmstat field="htm.stat" filter="false">
-          <label lang="pt">Estado</label>
-          <label lang="en">Status</label>
+          <label key="status" />
       </htmstat>
       <ord field="htm.ord" filter="false">
-          <label lang="en">Order</label>
-          <label lang="pt">Ordenação no menu</label>
+          <label key="ord" />
       </ord>
       <htmhtmappid field="htm.htm_app_id" show="false" filter="false">
-          <label lang="pt">Módulo</label>
-          <label lang="en">App</label>
+          <label key="app" />
       </htmhtmappid>
     </fields>
     <buttons comment="Commands for form and show">
@@ -71,28 +63,23 @@
         <label key="title" />
       </htmpagetitle>
       <htmstat field="htm.stat" class="stat" sort="true">
-          <label lang="en">Status</label>
-          <label lang="pt">Estado</label>
+          <label key="status" />
       </htmstat>
       <htmord field="htm.ord" class="ord" sort="true">
-          <label lang="en">Ord</label>
-          <label lang="pt">Ord</label>
+          <label key="ord" />
       </htmord>
       <htmpageupdatedat field="htm_page.updated_at" class="date" sort="true">
-        <label lang="en">Update</label>
-        <label lang="pt">Update</label>
+        <label key="date" />
       </htmpageupdatedat>
     </columns>
     <tools comment="buttons in row">
       <langs id="htm.id" action="admin/txt_services" auth="4">
-          <label lang="en">Langs</label>
-          <label lang="pt">Idiomas</label>
+          <label key="langs" />
       </langs>
       <photo id="htm.id" action="admin/images_services" file="img" class="fa-file-image-o" auth="4">
           <vars var="position" str="photo" />
           <vars var="folder" str="images" />
-          <label lang="en">Images</label>
-          <label lang="pt">Imagens</label>
+          <label key="images" />
       </photo>
       <edit id="htm.id" action="admin/status_services" class="fa-pencil" auth="4">
         <label key="edit" />

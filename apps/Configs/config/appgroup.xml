@@ -13,11 +13,9 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="configs/edit_appgroup" auth="1">
-
-        <label lang="pt">Guardar</label>
+        <label key="save" />
       </saveform>
       <closeform class="glyphicon glyphicon-remove" auth="4">
-
         <label key="close" />
       </closeform>
     </buttons>
@@ -37,13 +35,11 @@
         <del action="configs/del_appgroup" class="fa-trash-o" id="user_group_has_htm_app.htm_app_id" auth="1">
             <vars var="app" value="user_group_has_htm_app.htm_app_id" />
             <vars var="group" value="user_group_has_htm_app.user_group_id" />
-    
             <label key="delete" />
         </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="configs/new_appgroup" class="glyphicon glyphicon-plus" auth="1">
-
         <label key="insert" />
       </new>
     </buttons>

@@ -3,15 +3,12 @@
   <show>
     <fields comment="Fields for render">
       <userid field="user.id" show="false" filter="false">
-
         <label key="id" />
       </userid>
       <userusergroupid field="user.user_group_id" range="multiple" show="false" filter="true">
-        <label lang="en">User Group Id</label>
-        <label lang="pt">User Group Id</label>
+        <label key="group" />
       </userusergroupid>
       <username field="user.name" show="true" filter="true">
-
         <label key="name" />
       </username>
       <usermail field="user.mail" show="true" filter="true">
@@ -29,23 +26,15 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="edit_users" auth="1">
-
         <label key="save" />
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="edit_users" auth="1">
-
         <label key="edit" />
       </editform>
-      <resetform class="glyphicon glyphicon-refresh" auth="1">
-        <label lang="en">Reset</label>
-        <label lang="pt">Reset</label>
-      </resetform>
       <delform class="glyphicon glyphicon-trash" action="del_users" auth="1">
-
         <label key="delete" />
       </delform>
       <closeform class="glyphicon glyphicon-remove" auth="1">
-
         <label key="close" />
       </closeform>
     </buttons>
@@ -53,11 +42,9 @@
   <grid identification="users" paging="25" fieldid="user.id">
     <columns comment="Columns for grid">
       <userid field="user.id" class="id" sort="true">
-
         <label key="id" />
       </userid>
       <username field="user.name" class="name" sort="true">
-
         <label key="name" />
       </username>
       <usermail field="user.mail" class="mail" sort="true">
@@ -75,25 +62,20 @@
     </columns>
     <tools comment="buttons in row">
       <edit action="admin/edit_users" class="fa-pencil" id="user.id" auth="1">
-
         <label key="edit" />
       </edit>
       <show action="admin/show_users" class="fa-eye" id="user.id" auth="1">
-
         <label key="show" />
       </show>
       <del action="admin/del_users" class="fa-trash-o" id="user.id" auth="1">
-
         <label lang="pt">Del</label>
       </del>
     </tools>
     <buttons comment="buttons ion top">
       <new action="admin/new_users" class="glyphicon glyphicon-plus" auth="1">
-
         <label key="insert" />
       </new>
       <csv action="admin/csv_users" class="glyphicon glyphicon-export" auth="1">
-        <label lang="en">Csv</label>
         <label key="export" />
       </csv>
     </buttons>
