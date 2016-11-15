@@ -203,6 +203,7 @@ class Page {
         $text = \model\querys\HtmTxtQuery::start()->filterByHtmPageId($this->page)->findOne();
         if($text != false){
             $this->model[HtmTxt::FIELD_TXT] = $this->txt = $text->getTxt();
+            $this->model['text'] = $this->txt;
         }
         
     }

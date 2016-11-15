@@ -34,10 +34,12 @@ class HtmQuerie {
     }
     
     public function getMedia($genre){
-        $this->query->joinHtmHasMedia(Mysql::LEFT_JOIN)->joinHtmMedia(Mysql::LEFT_JOIN)
-                ->filterByGenre($genre)
-                ->selectUrl()->selectTitle()
-                ->endUse()->endUse();
+        $this->query->joinHtmHasMedia(Mysql::LEFT_JOIN)
+                    ->joinMedia(Mysql::LEFT_JOIN)->filterByGenre($genre)
+                    ->selectSource()->selectLink()
+                    ->endUse()
+                ->endUse();
+
         return $this;
     }
     
