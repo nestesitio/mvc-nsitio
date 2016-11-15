@@ -72,7 +72,7 @@ class Task {
             if (self::$options['t'] == 'admin') {
                 $exec->buildAdmin(self::$options['a'], self::$options['n'], self::$options['m'], self::$options['t'], $file);
             } elseif (self::$options['t'] == 'cms') {
-                $exec->buildCms(self::$options['a'], self::$options['n'], self::$options['m'], self::$options['t'], $file);
+                $exec->buildCms(self::$options['a'], self::$options['n']);
             } else {
                 $exec->buildApp(self::$options['a'], self::$options['n']);
             }
