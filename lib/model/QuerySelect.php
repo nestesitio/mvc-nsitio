@@ -239,6 +239,9 @@ class QuerySelect extends \lib\model\QueryStatement
         $item = new $className();
         foreach($row as $i => $value){
 
+            if(!isset($this->fetch_assoc[$i])){
+                die('no fetch for ' . $i . ' and ' . $value);
+            }
             $column = $this->fetch_assoc[$i];
             //utf8_encode($value)
             if(!mb_check_encoding ($value, 'UTF-8')){

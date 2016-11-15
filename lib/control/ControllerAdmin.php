@@ -70,10 +70,11 @@ class ControllerAdmin extends \lib\control\Controller
     /**
      * @param String $xmlfile
      * @param QuerySelect $query
+     * @param boolean $filter Put false if you don't need filterage
      *
      * @return array $results
      */
-    protected function buildDataList($xmlfile,QuerySelect $query)
+    protected function buildDataList($xmlfile,QuerySelect $query, $filter = true)
     {
         /* Generation or processing of template datalist */
         $this->setView('/layout/core/datalist.htm');
@@ -81,7 +82,10 @@ class ControllerAdmin extends \lib\control\Controller
 
         $grid = GridIt::create($xmlfile, $this);
         $this->view->setOutput($grid->setGrid($this->view->getOutput()));
-        $query = QueryFilter::filter($query, $grid->getFilters());
+        if($filter == true){
+            $query = QueryFilter::filter($query, $grid->getFilters());
+        }
+        
         return $this->getQueryToList($query, $grid->getFields());
 
     }
