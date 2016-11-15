@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 31, 2016 at 01:04 PM
+-- Generation Time: Nov 15, 2016 at 05:26 PM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.12-1+deb.sury.org~xenial+1
 
@@ -118,7 +118,13 @@ INSERT INTO `htm` (`id`, `htm_app_id`, `stat`, `ord`, `controller`) VALUES
 (8, 3, 'public', 1, NULL),
 (9, 5, 'private', 1, NULL),
 (10, 3, 'private', 1, ''),
-(13, 5, 'backend', 1, NULL);
+(13, 5, 'backend', 1, NULL),
+(14, 6, 'backend', 1, ''),
+(15, 6, 'backend', 2, ''),
+(16, 6, 'backend', 3, ''),
+(17, 6, 'backend', 4, ''),
+(18, 1, 'public', 1, ''),
+(19, 1, 'public', 2, '');
 
 -- --------------------------------------------------------
 
@@ -173,6 +179,14 @@ CREATE TABLE `htm_has_vars` (
   `htm_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `htm_has_vars`
+--
+
+INSERT INTO `htm_has_vars` (`htm_vars_id`, `htm_id`) VALUES
+(1, 18),
+(2, 19);
+
 -- --------------------------------------------------------
 
 --
@@ -184,10 +198,10 @@ CREATE TABLE `htm_log` (
   `id` int(6) NOT NULL,
   `htm_id` int(9) NOT NULL,
   `user_id` int(6) NOT NULL,
-  `event` varchar(100) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
+  `event` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `description` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -224,7 +238,13 @@ INSERT INTO `htm_page` (`id`, `htm_id`, `langs_tld`, `title`, `slug`, `menu`, `h
 (8, 8, 'pt', 'Login', 'login', 'Login', 'Login', NULL, '2016-08-29 11:51:33', '2015-02-18 13:59:36'),
 (9, 9, 'pt', 'Modulos - Grupos', 'appgroup', 'Appgroup', 'Modulos - Grupos', NULL, '2016-08-29 11:51:33', '2015-02-23 19:16:19'),
 (10, 10, 'pt', 'User', 'user', 'User', 'User', '', '0000-00-00 00:00:00', '2016-09-08 14:17:38'),
-(11, 13, 'pt', 'Tags', 'tags', 'Tags', 'Tags', NULL, '2016-08-29 11:51:33', '2016-09-08 14:19:04');
+(11, 13, 'pt', 'Tags', 'tags', 'Tags', 'Tags', NULL, '2016-08-29 11:51:33', '2016-09-08 14:19:04'),
+(12, 14, 'pt', 'Slider', 'slider', 'Slider', 'Frases Slider', '', '0000-00-00 00:00:00', '2016-11-15 16:07:41'),
+(13, 15, 'pt', 'Paginas Principais', 'mainpages', 'Paginas', 'Paginas Principais', '', '0000-00-00 00:00:00', '2016-11-15 16:09:31'),
+(14, 16, 'pt', 'Paginas Serviços', 'services', 'Serviços', 'Páginas Serviços', '', '0000-00-00 00:00:00', '2016-11-15 16:09:47'),
+(15, 17, 'pt', 'Notícias', 'news', 'Notícias', 'Gestão Notícias', '', '0000-00-00 00:00:00', '2016-11-15 16:10:41'),
+(16, 18, 'pt', 'Quem Somos', 'quem-somos', 'Quem Somos', 'Quem Somos', '', '0000-00-00 00:00:00', '2016-11-15 16:24:58'),
+(17, 19, 'pt', 'Serviços', 'servicos', 'Serviços', 'Serviços', '', '0000-00-00 00:00:00', '2016-11-15 16:25:16');
 
 -- --------------------------------------------------------
 
@@ -248,10 +268,18 @@ CREATE TABLE `htm_txt` (
 DROP TABLE IF EXISTS `htm_vars`;
 CREATE TABLE `htm_vars` (
   `id` int(6) NOT NULL,
-  `var` varchar(100) DEFAULT 'tag',
-  `value` varchar(100) DEFAULT NULL,
-  `status` enum('public','private') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `var` varchar(100) CHARACTER SET latin1 DEFAULT 'tag',
+  `value` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `status` enum('public','private') CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `htm_vars`
+--
+
+INSERT INTO `htm_vars` (`id`, `var`, `value`, `status`) VALUES
+(1, 'anchor', 'about', ''),
+(2, 'anchor', 'services', '');
 
 -- --------------------------------------------------------
 
@@ -291,6 +319,13 @@ CREATE TABLE `media` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `media`
+--
+
+INSERT INTO `media` (`id`, `genre`, `source`, `link`, `date`, `created`) VALUES
+(1, 'banner', '/userfiles/home-slider/evening_landscape_13530956185Aw.jpg', '', '0000-00-00 00:00:00', '2016-11-15 16:15:52');
+
 -- --------------------------------------------------------
 
 --
@@ -300,16 +335,18 @@ CREATE TABLE `media` (
 DROP TABLE IF EXISTS `media_collection`;
 CREATE TABLE `media_collection` (
   `id` int(6) NOT NULL,
-  `slug` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `slug` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `name` varchar(100) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `media_collection`
 --
 
 INSERT INTO `media_collection` (`id`, `slug`, `name`) VALUES
-(1, 'all', 'General');
+(1, 'all', 'General'),
+(2, 'home-slider', 'Home-Slider'),
+(3, 'news', 'News');
 
 -- --------------------------------------------------------
 
@@ -323,10 +360,17 @@ CREATE TABLE `media_info` (
   `media_id` int(9) NOT NULL,
   `media_collection_id` int(6) NOT NULL DEFAULT '1',
   `langs_tld` varchar(2) CHARACTER SET utf8 NOT NULL DEFAULT 'pt',
-  `title` varchar(2) CHARACTER SET utf8 NOT NULL DEFAULT 'pt',
-  `author` varchar(2) CHARACTER SET utf8 NOT NULL DEFAULT 'pt',
-  `summary` varchar(2) CHARACTER SET utf8 NOT NULL DEFAULT 'pt'
+  `title` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `author` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `summary` varchar(250) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `media_info`
+--
+
+INSERT INTO `media_info` (`id`, `media_id`, `media_collection_id`, `langs_tld`, `title`, `author`, `summary`) VALUES
+(1, 1, 2, 'pt', 'It&#39;s awesome', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -384,9 +428,9 @@ CREATE TABLE `user_base` (
 --
 
 INSERT INTO `user_base` (`id`, `user_group_id`, `name`, `mail`, `username`, `password`, `status`, `confirmed`, `salt`, `userkey`) VALUES
-(1, 1, 'Luís Pinto', 'lpinto@buslisboa.agency', 'lpinto@buslisboa.agency', '1500lisboa', 'active', 0, '495a4368dadb1d94bc7c82075b0f7c5d', '248a9e71621bfd945e366b76038fe144dbf224e2'),
+(1, 1, 'Luís Pinto', 'luis.nestesitio@gmail.com', 'luis.nestesitio@gmail.com', '1500lisboa', 'active', 0, '495a4368dadb1d94bc7c82075b0f7c5d', '248a9e71621bfd945e366b76038fe144dbf224e2'),
 (2, 22, 'Anonymous', '', 'anonymous', 'zwq4hfqxpffh948ca', 'active', 0, '', ''),
-(3, 16, 'Virtual User', '', 'virtual-user@mail.com', '1234', 'active', 0, '', '');
+(3, 16, 'Virtual User', '', 'virtual-user@mail.com', 'zwq4hfqxpffh948ca', 'active', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -540,7 +584,9 @@ INSERT INTO `user_log` (`id`, `user_id`, `event`, `updated_at`) VALUES
 (17, 1, 'login', '2016-07-14 10:15:14'),
 (18, 1, 'login', '2016-09-06 11:29:05'),
 (19, 1, 'login', '2016-09-08 14:12:34'),
-(20, 1, 'login', '2016-09-08 15:49:58');
+(20, 1, 'login', '2016-09-08 15:49:58'),
+(21, 1, 'login', '2016-11-14 22:29:01'),
+(22, 1, 'login', '2016-11-15 16:05:46');
 
 --
 -- Indexes for dumped tables
@@ -742,7 +788,7 @@ ALTER TABLE `company_user`
 -- AUTO_INCREMENT for table `htm`
 --
 ALTER TABLE `htm`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `htm_app`
 --
@@ -757,7 +803,7 @@ ALTER TABLE `htm_log`
 -- AUTO_INCREMENT for table `htm_page`
 --
 ALTER TABLE `htm_page`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `htm_txt`
 --
@@ -767,22 +813,22 @@ ALTER TABLE `htm_txt`
 -- AUTO_INCREMENT for table `htm_vars`
 --
 ALTER TABLE `htm_vars`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `media_collection`
 --
 ALTER TABLE `media_collection`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `media_info`
 --
 ALTER TABLE `media_info`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `support`
 --
@@ -812,7 +858,7 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- Constraints for dumped tables
 --
