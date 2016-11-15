@@ -7,8 +7,8 @@ use \model\models\MediaCollection;
  * Description of MediaCollectionForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-10-18 13:37
- * Updated @2016-10-18 13:37
+ * Created @2016-11-15 17:02
+ * Updated @2016-11-15 17:02
  */
 class MediaCollectionForm extends \lib\form\Form {
 

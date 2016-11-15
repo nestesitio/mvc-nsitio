@@ -7,8 +7,8 @@ use \model\models\MediaInfo;
  * Description of MediaInfoForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-10-18 13:37
- * Updated @2016-10-18 13:37
+ * Created @2016-11-15 17:02
+ * Updated @2016-11-15 17:02
  */
 class MediaInfoForm extends \lib\form\Form {
 
@@ -244,9 +244,7 @@ class MediaInfoForm extends \lib\form\Form {
     */
     public function setTitleInput($input = null) {
         if($input == null){
-            $input = \lib\form\input\InputText::create(MediaInfo::FIELD_TITLE);
-            $input->setRequired(true);
-            $input->setDefault('pt');$input->setMaxlength('2');
+            $input = \lib\form\input\InputText::create(MediaInfo::FIELD_TITLE);$input->setMaxlength('100');
         }else{
             $input->setElementId(MediaInfo::FIELD_TITLE); 
         }
@@ -277,7 +275,7 @@ class MediaInfoForm extends \lib\form\Form {
     }
     
     public function validateTitleInput() {
-        $value = $this->validateString(MediaInfo::TABLE, MediaInfo::FIELD_TITLE, true, 2);
+        $value = $this->validateString(MediaInfo::TABLE, MediaInfo::FIELD_TITLE, false, 100);
         return $value;
     }
     
@@ -289,9 +287,7 @@ class MediaInfoForm extends \lib\form\Form {
     */
     public function setAuthorInput($input = null) {
         if($input == null){
-            $input = \lib\form\input\InputText::create(MediaInfo::FIELD_AUTHOR);
-            $input->setRequired(true);
-            $input->setDefault('pt');$input->setMaxlength('2');
+            $input = \lib\form\input\InputText::create(MediaInfo::FIELD_AUTHOR);$input->setMaxlength('100');
         }else{
             $input->setElementId(MediaInfo::FIELD_AUTHOR); 
         }
@@ -322,7 +318,7 @@ class MediaInfoForm extends \lib\form\Form {
     }
     
     public function validateAuthorInput() {
-        $value = $this->validateString(MediaInfo::TABLE, MediaInfo::FIELD_AUTHOR, true, 2);
+        $value = $this->validateString(MediaInfo::TABLE, MediaInfo::FIELD_AUTHOR, false, 100);
         return $value;
     }
     
@@ -334,9 +330,7 @@ class MediaInfoForm extends \lib\form\Form {
     */
     public function setSummaryInput($input = null) {
         if($input == null){
-            $input = \lib\form\input\InputText::create(MediaInfo::FIELD_SUMMARY);
-            $input->setRequired(true);
-            $input->setDefault('pt');$input->setMaxlength('2');
+            $input = \lib\form\input\InputText::create(MediaInfo::FIELD_SUMMARY);$input->setMaxlength('250');
         }else{
             $input->setElementId(MediaInfo::FIELD_SUMMARY); 
         }
@@ -367,7 +361,7 @@ class MediaInfoForm extends \lib\form\Form {
     }
     
     public function validateSummaryInput() {
-        $value = $this->validateString(MediaInfo::TABLE, MediaInfo::FIELD_SUMMARY, true, 2);
+        $value = $this->validateString(MediaInfo::TABLE, MediaInfo::FIELD_SUMMARY, false, 250);
         return $value;
     }
     

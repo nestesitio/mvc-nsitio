@@ -7,8 +7,8 @@ use \model\models\UserLog;
  * Description of UserLogForm
  *
  * @author Luís Pinto / luis.nestesitio@gmail.com
- * Created @2016-10-18 13:37
- * Updated @2016-10-18 13:37
+ * Created @2016-11-15 17:03
+ * Updated @2016-11-15 17:03
  */
 class UserLogForm extends \lib\form\Form {
 
