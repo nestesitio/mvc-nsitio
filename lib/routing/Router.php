@@ -96,12 +96,11 @@ class Router
             if ($hasActionFunction == 0) {
                 return false;
             }
-            
+            $method = self::$actionclass . 'Action';
         }else{
+           $method = $action . 'Action';
            Vars::setAction($action); 
         }
-
-        $method = $action . 'Action';
 
         Monitor::setMonitor(Monitor::ACTION, $method);
         return $method;
