@@ -43,18 +43,7 @@ class DBRouting
                 return false;
             }
         }else{            
-            Vars::setTitle($page->getTitle());
-            Vars::setHeadin($page->getHeading());
-            Vars::setPage($page->getHtmId());
-            
-            $c = $page->getHtm()->getController();
-            if($c != null){
-                Monitor::setMonitor(Monitor::ACTION, 'Controller detected in htm table: ' . $c);
-                Vars::setCanonical($c);
-                if(Vars::getAction() == null){
-                    Vars::setAction($c);
-                }
-            }
+            self::setVars($page);
 
             self::$controller = Vars::getApp() . '/' . Vars::getAction();
 
@@ -62,6 +51,24 @@ class DBRouting
         }
         return false;
 
+    }
+    
+    /**
+     * 
+     * @param \model\models\HtmPage $page
+     */
+    private static function setVars(\model\models\HtmPage $page) {
+        Vars::setTitle($page->getTitle());
+        Vars::setHeadin($page->getHeading());
+        Vars::setPage($page->getHtmId());
+        $c = $page->getHtm()->getController();
+        if ($c != null) {
+            Monitor::setMonitor(Monitor::ACTION, 'Controller detected in htm table: ' . $c);
+            Vars::setCanonical($c);
+            if (Vars::getAction() == null) {
+                Vars::setAction($c);
+            }
+        }
     }
 
     private static $controller = null;

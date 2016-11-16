@@ -159,7 +159,7 @@ class Boot
         }
         $controller = new $class();
 
-        $action = Router::getAction($class, $params);
+        $action = Router::getMethod($class, $params);
 
         if($action == false){
             Monitor::setMonitor(Monitor::ACTION, 'There is no action name for ' . $action);

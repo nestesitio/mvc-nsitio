@@ -78,10 +78,11 @@ class ParseRoute
                     } elseif ($x == 1 && preg_match('/^[a-z]{3}[a-z_]+$/', $piece)) {
                         $components[self::PART_APP] = $piece;
                         $components[self::PART_APPSLUG] = $piece;
-                    } elseif ($x == 1 && preg_match('/^[a-z]{3}[a-z-]+[a-z](\.htm){1}$/', $piece)) {
+                    } elseif ($x == 1 && preg_match('/^[a-z]{3}[a-z0-9-]+[a-z0-9](\.htm){1}$/', $piece)) {
                         $components[self::PART_CANONICAL] = $this->setCanonical($piece);
                         $components[self::PART_ACTION] = Router::STR_PAGE;
-                    } elseif ($x == 2 && preg_match('/^[a-z]{3}[a-z-]+[a-z](\.htm){1}$/', $piece)) {
+                    } elseif ($x == 2 && 
+                            preg_match('/^[a-z]{3}[a-z0-9-]+[a-z0-9](\.htm){1}$/', $piece)) {
                         $components[self::PART_CANONICAL] = $this->setCanonical($piece);
                         $components[self::PART_ACTION] = Router::STR_PAGE;
                     } elseif ($x == 2 && $components[self::PART_ID] == null && preg_match('/^[a-z]{3}[a-z_]+$/', $piece)) {

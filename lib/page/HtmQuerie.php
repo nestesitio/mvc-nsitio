@@ -151,5 +151,9 @@ class HtmQuerie {
         }
         
     }
+    
+    public function toString(){
+        return $this->query->toString();
+    }
 
 }

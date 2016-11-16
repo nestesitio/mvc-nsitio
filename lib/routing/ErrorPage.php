@@ -55,7 +55,7 @@ class ErrorPage
         if (SessionUser::getUserGroup() == UserGroupModel::GROUP_DEVELOPER ||
                 Configurator::getDeveloperMode() == true) {
             Monitor::setErrorMessages(null, ['message'=>'App: ' . Vars::getApp()]);
-            Monitor::setErrorMessages(null, ['message'=>'Action: ' . Vars::getAction()]);
+            Monitor::setErrorMessages(null, ['message'=>'Action class: ' . Vars::getAction()]);
             Monitor::setErrorMessages(null, ['message'=>'Canonical: ' . Vars::getCanonical()]);
             Monitor::setErrorMessages(null, ['message'=>'View: ' . Vars::getView()]);
             Monitor::setErrorMessages(null, ['message'=>'Group: ' . SessionUser::getUserGroup()]);

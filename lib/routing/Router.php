@@ -19,6 +19,8 @@ class Router
     private function __construct() {}
 
     private static $folder;
+    
+    private static $actionclass;
 
     /**
      *
@@ -37,9 +39,17 @@ class Router
 
         // assign controller full name
         $class = self::getControlClass($app, $control, $namespace);
+        self::$actionclass = $control;
         // if we have extended controller
         if (!class_exists($class)) {
-            return false;
+            //try with name of app
+            $class = self::getControlClass($app, $app, $namespace);
+            Vars::setAction($app);
+            self::$actionclass = $app;
+            if (!class_exists($class)) {
+                return false;
+            }
+            
         }
         return $class;
     }
@@ -67,21 +77,28 @@ class Router
 
 
     /**
-     * @param $class
+     * @param string $class
      * @return bool|string
      */
-    public static function getAction($class, $params = [])
+    public static function getMethod($class, $params = [])
     {
         // prepare Action
         $str = 'x' . str_replace('_', ' ', $params[ParseRoute::PART_ACTION]);
         $action = str_replace(' ', '', substr(ucwords($str), 1));
-        Vars::setAction($action);
+        
         Monitor::setMonitor(Monitor::ACTION, 'Action is ' . $action . ' for ' . $params[ParseRoute::PART_ACTION]);
 
 
         $hasActionFunction = (int) method_exists($class, $action . 'Action');
         if ($hasActionFunction == 0) {
-            return false;
+            $hasActionFunction = (int) method_exists($class, self::$actionclass . 'Action');
+            Monitor::setMonitor(Monitor::ACTION, 'Action is ' . self::$actionclass . ' for ' . $params[ParseRoute::PART_ACTION]);
+            if ($hasActionFunction == 0) {
+                return false;
+            }
+            
+        }else{
+           Vars::setAction($action); 
         }
 
         $method = $action . 'Action';
