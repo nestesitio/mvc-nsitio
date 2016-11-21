@@ -1,6 +1,6 @@
 <?php
 
-namespace apps\Core\model;
+namespace apps\Vendor\model;
 
 use \model\querys\MediaQuery;
 use \model\models\Media;
@@ -32,7 +32,7 @@ class MediaQueries {
     
     /**
      * 
-     * @return \apps\Core\model\MediaQueries
+     * @return \apps\Vendor\model\MediaQueries
      */
     public static function getBanners($lang = null){
         $query = new MediaQueries();
@@ -56,7 +56,7 @@ class MediaQueries {
     /**
      * 
      * @param string $value
-     * @return \apps\Core\model\MediaQueries
+     * @return \apps\Vendor\model\MediaQueries
      */
     public function filterByGenre($value){
         $this->query->filterByGenre($value);
@@ -66,7 +66,7 @@ class MediaQueries {
     /**
      * 
      * @param int $id
-     * @return \apps\Core\model\MediaQueries
+     * @return \apps\Vendor\model\MediaQueries
      */
     public function filterByMediaInfo($id){
         $this->query->filterByColumn(MediaInfo::FIELD_ID, $id);

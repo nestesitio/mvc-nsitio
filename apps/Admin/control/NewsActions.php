@@ -4,11 +4,11 @@ namespace apps\Admin\control;
 
 use \lib\register\Vars;
 
-use \apps\Core\model\PagesQuery;
-use \apps\Core\model\PageTextForm;
-use \apps\Core\model\HtmForm;
+use \apps\Vendor\model\PagesQuery;
+use \apps\Vendor\model\PageTextForm;
+use \apps\Vendor\model\HtmForm;
 use \model\models\HtmPage;
-use \lib\page\MediaQuery;
+use \apps\Vendor\model\MediaQuery;
 use \lib\session\SessionConfig;
 
 /**
@@ -18,7 +18,7 @@ use \lib\session\SessionConfig;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class NewsActions extends \apps\Core\control\PagesActions {
+class NewsActions extends \apps\Vendor\control\PagesActions {
     
     private $app_slug = 'news';
     
@@ -124,7 +124,7 @@ class NewsActions extends \apps\Core\control\PagesActions {
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
         $form = HtmForm::initialize($this->app_slug)->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
-        $this->renderForm($form, 'apps/Core/config/htmvars', 'bindstatus_news');
+        $this->renderForm($form, 'apps/Vendor/config/htmvars', 'bindstatus_news');
     }
     
     /**
@@ -134,7 +134,7 @@ class NewsActions extends \apps\Core\control\PagesActions {
         
         $form = HtmForm::initialize($this->app_slug);
         $form->validate();
-        $model = $this->buildProcess($form, 'apps/Core/config/htmvars');
+        $model = $this->buildProcess($form, 'apps/Vendor/config/htmvars');
         if($model !== false){
             $this->showNewsAction();
         }

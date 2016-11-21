@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\page;
+namespace apps\Vendor\model;
 
 /**
  * Description of Media
@@ -9,16 +9,12 @@ namespace lib\page;
  * Created @Aug 25, 2016
  */
 class Media {
-
-    private $model = [];
-
-    private $id;
     
 
     /**
      * 
      * @param \model\models\Htm $model
-     * @return \lib\page\Page
+     * @return \apps\Vendor\model\Page
      */
     public static function initialize($model){
         $page = new Media($model);

@@ -2,7 +2,7 @@
 
 namespace apps\Home\control;
 
-use \lib\page\HtmQuerie;
+use \apps\Vendor\model\HtmQuerie;
 
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\page;
+namespace apps\Vendor\model;
 
 use \lib\mysql\Mysql;
 use \lib\session\SessionUser;
@@ -92,7 +92,7 @@ class HtmPageQueries extends \model\querys\HtmPageQuery {
 
 
     /**
-     * used by apps\Core\model\PageForm
+     * used by apps\Vendor\model\PageForm
      * @param int $id
      * @param string $tld
      * @return \model\models\HtmPage

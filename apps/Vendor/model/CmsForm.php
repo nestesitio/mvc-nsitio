@@ -1,6 +1,6 @@
 <?php
 
-namespace apps\Core\model;
+namespace apps\Vendor\model;
 
 use \model\models\HtmHasVars;
 use \model\forms\HtmHasVarsForm;
@@ -50,7 +50,7 @@ class CmsForm extends \lib\form\FormMerged {
      /**
       * 
       * @param string $var
-      * @return \apps\Core\model\HtmForm
+      * @return \apps\Vendor\model\HtmForm
       */
     public function addHtmVars($var){
         $this->queue[] = HtmVars::TABLE;

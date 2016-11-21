@@ -3,11 +3,11 @@
 namespace apps\Admin\control;
 
 use \lib\register\Vars;
-use \apps\Core\model\PagesQuery;
-use \apps\Core\model\PageTextForm;
-use \apps\Core\model\HtmForm;
+use \apps\Vendor\model\PagesQuery;
+use \apps\Vendor\model\PageTextForm;
+use \apps\Vendor\model\HtmForm;
 use \model\models\HtmPage;
-use \lib\page\MediaQuery;
+use \apps\Vendor\model\MediaQuery;
 use \lib\session\SessionConfig;
 use \lib\form\input\WysihtmlInput;
 
@@ -18,13 +18,14 @@ use \lib\form\input\WysihtmlInput;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class ServicesActions extends \apps\Core\control\PagesActions {
+class ServicesActions extends \apps\Vendor\control\PagesActions {
 
     private $app_slug = 'services';
     protected $txt_action = 'admin/txt_services';
     protected $bindtxt_action = 'admin/bindtxt_services';
-
-    public function servicesAction() {
+    
+    
+    public function servicesAction(){
         $this->set('heading', Vars::getHeading());
 
         SessionConfig::setXml('apps/Admin/config/services');
@@ -64,14 +65,14 @@ class ServicesActions extends \apps\Core\control\PagesActions {
     public function txtServicesAction() {
         $form = $this->geTxtForm(WysihtmlInput::TOOLBAR_RICHTEXT);
 
-        $this->txtAction($form, 'hometxt');
+        $this->txtAction($form, 'txt');
     }
 
     public function bindtxtServicesAction() {
         $form = $this->geTxtForm();
         $form = $form->validate();
 
-        $this->bindTxtAction($form, 'hometxt');
+        $this->bindTxtAction($form, 'txt');
     }
 
     public function editServicesAction() {
@@ -115,7 +116,7 @@ class ServicesActions extends \apps\Core\control\PagesActions {
      */
     public function statusServicesAction() {
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
-        $form = HtmForm::initialize($this->app_slug)->addHtmVars('form')->setQueryValues($query);
+        $form = HtmForm::initialize($this->app_slug)->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
         $this->renderForm($form, 'htmservices', 'bindstatus_services');
     }
@@ -125,7 +126,7 @@ class ServicesActions extends \apps\Core\control\PagesActions {
      */
     public function bindstatusServicesAction() {
 
-        $form = HtmForm::initialize($this->app_slug)->addHtmVars('form');
+        $form = HtmForm::initialize($this->app_slug);
         $form->validate();
         $model = $this->buildProcess($form, 'htmservices');
         if ($model !== false) {
@@ -136,6 +137,7 @@ class ServicesActions extends \apps\Core\control\PagesActions {
     public function delServicesAction() {
         $model = \model\querys\HtmQuery::start()->filterById(Vars::getId())->findOne();
         $this->deleteObject($model);
+        
     }
 
     public function exportServicesAction() {

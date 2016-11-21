@@ -4,11 +4,11 @@ namespace apps\Admin\control;
 
 use \lib\register\Vars;
 
-use \apps\Core\model\PageTextForm;
+use \apps\Vendor\model\PageTextForm;
 use \model\models\HtmPage;
-use \apps\Core\model\PagesQuery;
+use \apps\Vendor\model\PagesQuery;
 use \lib\session\SessionConfig;
-use \apps\Core\model\HtmForm;
+use \apps\Vendor\model\HtmForm;
 
 /**
  * Description of HomecontentActions
@@ -17,7 +17,7 @@ use \apps\Core\model\HtmForm;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class HomecontentActions extends \apps\Core\control\PagesActions {
+class HomecontentActions extends \apps\Vendor\control\PagesActions {
     
     private $app_slug = 'home';
     
@@ -113,7 +113,7 @@ class HomecontentActions extends \apps\Core\control\PagesActions {
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
         $form = HtmForm::initialize($this->app_slug)->addHtmVars('local')->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
-        $this->renderForm($form, 'apps/Core/config/htmvars', 'bindstatus_homecontent');
+        $this->renderForm($form, 'apps/Vendor/config/htmvars', 'bindstatus_homecontent');
     }
     
     /**
@@ -123,7 +123,7 @@ class HomecontentActions extends \apps\Core\control\PagesActions {
         
         $form = HtmForm::initialize($this->app_slug)->addHtmVars('local');
         $form->validate();
-        $model = $this->buildProcess($form, 'apps/Core/config/htmvars');
+        $model = $this->buildProcess($form, 'apps/Vendor/config/htmvars');
         if($model !== false){
             $this->showHomecontentAction();
         }

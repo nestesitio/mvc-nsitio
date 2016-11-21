@@ -1,6 +1,6 @@
 <?php
 
-namespace apps\Core\tools;
+namespace apps\Vendor\tools;
 
 /**
  * Description of DataMime

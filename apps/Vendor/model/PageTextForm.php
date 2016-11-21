@@ -1,5 +1,5 @@
 <?php
-namespace apps\Core\model;
+namespace apps\Vendor\model;
 
 use \lib\register\Vars;
 use \model\models\Htm;
@@ -16,7 +16,7 @@ use \lib\form\form\FormRender;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jul 24, 2015
  */
-class PageTextForm extends \apps\Core\model\CmsForm {
+class PageTextForm extends \apps\Vendor\model\CmsForm {
 
 
     /**
@@ -82,7 +82,7 @@ class PageTextForm extends \apps\Core\model\CmsForm {
     /**
      * 
      * @param string $controller
-     * @return \apps\Core\model\PageTextForm
+     * @return \apps\Vendor\model\PageTextForm
      */
     public function setHtmController($controller){
         $form = $this->getHtmForm();

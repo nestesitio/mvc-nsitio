@@ -73,7 +73,7 @@ class BackendMenu extends \lib\url\Menu {
     }
     
     public function getBackendLinks(){
-        $pages = \lib\page\HtmPageQueries::getBackendPages()->find();
+        $pages = \apps\Vendor\model\HtmPageQueries::getBackendPages()->find();
         foreach($pages as $page){
             $btn = MenuRender::renderMenuUrl(['app'=>$page->getHtm()->getHtmApp()->getSlug(),'canonical'=>$page->getSlug()], $page->getMenu());
             $this->links[$page->getHtm()->getHtmApp()->getSlug()][] = $btn;

@@ -1,14 +1,14 @@
 <?php
 
-namespace apps\Core\control;
+namespace apps\Vendor\control;
 
 use \lib\register\Vars;
 
-use \apps\Core\model\PagesQuery;
+use \apps\Vendor\model\PagesQuery;
 use \model\forms\HtmPageForm;
-use \apps\Core\model\PageTextForm;
-use \apps\Core\tools\LangsRowTools;
-use \apps\Core\model\TxtForm;
+use \apps\Vendor\model\PageTextForm;
+use \apps\Vendor\tools\LangsRowTools;
+use \apps\Vendor\model\TxtForm;
 use \model\models\HtmPage;
 use \lib\form\input\WysihtmlInput;
 
@@ -19,7 +19,7 @@ use \lib\form\input\WysihtmlInput;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class PagesActions extends \apps\Core\control\CmsActions {
+class PagesActions extends \apps\Vendor\control\CmsActions {
     
     
 
@@ -65,7 +65,7 @@ class PagesActions extends \apps\Core\control\CmsActions {
     
     /**
      * 
-     * @return \apps\Core\model\TxtForm
+     * @return \apps\Vendor\model\TxtForm
      */
     protected function geTxtForm($toolbar = WysihtmlInput::TOOLBAR_DEFAULT){
         return TxtForm::init(Vars::getId(), Vars::getRequests('lang'))
@@ -74,16 +74,16 @@ class PagesActions extends \apps\Core\control\CmsActions {
     
     /**
      * 
-     * @param \apps\Core\model\TxtForm $form
+     * @param \apps\Vendor\model\TxtForm $form
      * @param string $xml_file
      */
     protected function txtAction($form, $xml_file = null){
         
         if($xml_file == null){
-            $xml_file = 'apps/Core/config/txt';
+            $xml_file = 'apps/Vendor/config/txt';
         }
         
-        $this->setView('apps/Core/view/edit_text');
+        $this->setView('apps/Vendor/view/edit_text');
         $query = PagesQuery::getLangs(Vars::getId())->find();
         
         
@@ -107,12 +107,12 @@ class PagesActions extends \apps\Core\control\CmsActions {
     
     /**
      * 
-     * @param \apps\Core\model\TxtForm $form
+     * @param \apps\Vendor\model\TxtForm $form
      * @param string $xml_file
      */
     public function bindTxtAction($form, $xml_file = null) {
         if($xml_file == null){
-            $xml_file = 'apps/Core/config/txt';
+            $xml_file = 'apps/Vendor/config/txt';
         }
         
         $model = $this->buildProcess($form, $xml_file);
@@ -125,7 +125,7 @@ class PagesActions extends \apps\Core\control\CmsActions {
     }
     
     public function showTxtAction($xml_file){
-        $this->setView('apps/Core/view/show_text');
+        $this->setView('apps/Vendor/view/show_text');
         
         $query = PagesQuery::getLangs(Vars::getId())->find();
         

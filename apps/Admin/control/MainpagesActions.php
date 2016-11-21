@@ -4,11 +4,11 @@ namespace apps\Admin\control;
 
 use \lib\register\Vars;
 
-use \apps\Core\model\PagesQuery;
-use \apps\Core\model\PageTextForm;
-use \apps\Core\model\HtmForm;
+use \apps\Vendor\model\PagesQuery;
+use \apps\Vendor\model\PageTextForm;
+use \apps\Vendor\model\HtmForm;
 use \model\models\HtmPage;
-use \lib\page\MediaQuery;
+use \apps\Vendor\model\MediaQuery;
 use \lib\session\SessionConfig;
 use \lib\register\Monitor;
 use \lib\form\input\WysihtmlInput;
@@ -20,7 +20,7 @@ use \lib\form\input\WysihtmlInput;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class MainpagesActions extends \apps\Core\control\PagesActions {
+class MainpagesActions extends \apps\Vendor\control\PagesActions {
     
     private $app_slug = 'home';
     
@@ -79,14 +79,14 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
     public function txtMainpagesAction(){
         $form = $this->geTxtForm(WysihtmlInput::TOOLBAR_RICHTEXT);
         
-        $this->txtAction($form, 'menutxt');
+        $this->txtAction($form, 'txtwithmenu');
     }
     
     public function bindtxtMainpagesAction() {
         $form = $this->geTxtForm();
         $form = $form->validate();
         
-        $this->bindTxtAction($form, 'menutxt');
+        $this->bindTxtAction($form, 'txtwithmenu');
     }
 
 
@@ -117,7 +117,7 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
         $form = HtmForm::initialize($this->app_slug)->addHtmVars('anchor')->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
-        $this->renderForm($form, 'apps/Core/config/htmvars', 'bindstatus_mainpages');
+        $this->renderForm($form, 'apps/Vendor/config/htmvars', 'bindstatus_mainpages');
     }
 
     /**
@@ -129,7 +129,7 @@ class MainpagesActions extends \apps\Core\control\PagesActions {
         
         Monitor::setMonitor(Monitor::BOOKMARK, 'Form has been validated');
         
-        $model = $this->buildProcess($form, 'apps/Core/config/htmvars');
+        $model = $this->buildProcess($form, 'apps/Vendor/config/htmvars');
         if($model !== false){
             $this->showMainpagesAction();
         }

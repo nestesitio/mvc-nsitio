@@ -6,7 +6,7 @@ use \lib\register\Vars;
 
 use \model\models\MediaInfo;
 use \apps\Admin\model\SliderForm;
-use \apps\Core\model\MediaQueries;
+use \apps\Vendor\model\MediaQueries;
 use \model\models\Media;
 
 /**
@@ -16,7 +16,7 @@ use \model\models\Media;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class SliderActions extends \apps\Core\control\CmsActions {
+class SliderActions extends \apps\Vendor\control\CmsActions {
     
     private $gallery_slug = 'home-slider';
 

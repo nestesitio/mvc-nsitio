@@ -29,11 +29,10 @@
     </fields>
     <buttons comment="Commands for form and show">
       <saveform class="glyphicon glyphicon-save" action="configs/edit_users" auth="1">
-
+        <label key="save" />
         <label lang="pt">Guardar</label>
       </saveform>
       <editform class="glyphicon glyphicon-pencil" action="configs/edit_users" auth="1">
-
         <label key="edit" />
       </editform>
       <resetform class="glyphicon glyphicon-refresh" auth="1">

@@ -1,13 +1,13 @@
 <?php
 
-namespace apps\Core\model;
+namespace apps\Vendor\model;
 
 use \model\models\Htm;
 use \model\forms\HtmForm;
 use \model\models\HtmPage;
 use \model\forms\HtmPageForm;
 
-use \lib\page\HtmPageQueries;
+use \apps\Vendor\model\HtmPageQueries;
 use \lib\register\Vars;
 
 

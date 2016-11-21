@@ -1,11 +1,11 @@
 <?php
 
-namespace lib\page;
+namespace apps\Vendor\model;
 
 use \model\querys\HtmQuery;
 use \model\models\HtmPage;
 use \model\models\HtmApp;
-use \lib\page\Page;
+use \apps\Vendor\model\Page;
 use \lib\mysql\Mysql;
 
 /**
@@ -20,7 +20,7 @@ class HtmQuerie {
     
    /**
     * 
-    * @return \lib\page\HtmQuery
+    * @return \apps\Vendor\model\HtmQuery
     */
     public static function startQuery(){
         $obj = new HtmQuerie();
@@ -48,7 +48,7 @@ class HtmQuerie {
      * @param string $app
      * @param string $slug
      * 
-     * @return \lib\page\HtmQuery
+     * @return \apps\Vendor\model\HtmQuery
      */
     public function filterBySlug($app, $slug){
         $this->query->filterByColumn(HtmApp::FIELD_SLUG, $app);
@@ -59,7 +59,7 @@ class HtmQuerie {
     /**
      * 
      * @param string $lang
-     * @return \lib\page\HtmQuerie
+     * @return \apps\Vendor\model\HtmQuerie
      */
     public function filterByLang($lang){
         $this->query->filterByColumn(HtmPage::FIELD_LANGS_TLD, $lang);
@@ -69,7 +69,7 @@ class HtmQuerie {
     /**
      * 
      * @param string $value
-     * @return \lib\page\HtmQuery
+     * @return \apps\Vendor\model\HtmQuery
      */
     public function filterByApp($value){
         $this->query->filterByColumn(HtmApp::FIELD_SLUG, $value);
@@ -80,7 +80,7 @@ class HtmQuerie {
     /**
      * 
      * @param integer $id
-     * @return \lib\page\HtmQuery
+     * @return \apps\Vendor\model\HtmQuery
      */
     public function filterById($id){
         $this->query->filterById($id);
@@ -91,7 +91,7 @@ class HtmQuerie {
      * 
      * @param string $var
      * @param string $value
-     * @return \lib\page\HtmQuerie
+     * @return \apps\Vendor\model\HtmQuerie
      */
     public function filterByVar($var, $value){
         $this->query->joinHtmHasVars()
@@ -103,7 +103,7 @@ class HtmQuerie {
     /**
      * 
      * @param string $var
-     * @return \lib\page\HtmQuerie
+     * @return \apps\Vendor\model\HtmQuerie
      */
     public function joinVars($var){
         $this->query->joinHtmHasVars(Mysql::LEFT_JOIN)
@@ -115,7 +115,7 @@ class HtmQuerie {
 
     /**
      * 
-     * @return \lib\page\HtmQuerie
+     * @return \apps\Vendor\model\HtmQuerie
      */
     public function orderByOrd(){
         $this->query->orderByOrd();
@@ -125,7 +125,7 @@ class HtmQuerie {
 
     /**
      * 
-     * @return \lib\page\Page[]
+     * @return \apps\Vendor\model\Page[]
      */
     public function getPages(){
         $pages = [];
@@ -140,7 +140,7 @@ class HtmQuerie {
     
     /**
      * 
-     * @return \lib\page\Page
+     * @return \apps\Vendor\model\Page
      */
     public function getPage(){
         $result = $this->query->findOne();

@@ -1,5 +1,5 @@
 <?php
-namespace apps\Core\model;
+namespace apps\Vendor\model;
 
 use \model\models\HtmApp;
 use \model\models\Htm;

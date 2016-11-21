@@ -2,7 +2,7 @@
 
 namespace lib\routing;
 
-use \lib\page\HtmPageQueries;
+use \apps\Vendor\model\HtmPageQueries;
 use \lib\register\Vars;
 use \lib\session\Session;
 use \lib\register\Monitor;

@@ -1,18 +1,18 @@
 <?php
 
-namespace apps\Core\control;
+namespace apps\Vendor\control;
 
 use \lib\register\Vars;
 
 
-use \apps\Core\model\FilesQuery;
+use \apps\Vendor\model\FilesQuery;
 use \model\models\Media;
 use \model\querys\MediaQuery;
 use \model\forms\MediaForm;
 use \lib\session\SessionConfig;
 use \lib\bkegenerator\DataConfig;
 use \lib\form\widgets\FileInput;
-use \apps\Core\tools\DataMime;
+use \apps\Vendor\tools\DataMime;
 
 /**
  * Description of FilesActions

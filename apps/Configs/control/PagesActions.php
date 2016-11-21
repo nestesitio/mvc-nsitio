@@ -4,7 +4,7 @@ namespace apps\Configs\control;
 
 use \lib\register\Vars as Vars;
 
-use \lib\page\HtmPageQueries;
+use \apps\Vendor\model\HtmPageQueries;
 use \model\querys\HtmPageQuery;
 use \model\querys\HtmQuery;
 
@@ -27,7 +27,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
     }
     
     private function getForm(){
-        $form = \apps\Core\model\PageForm::initialize();
+        $form = \apps\Vendor\model\PageForm::initialize();
         return $form;
     }
     
@@ -76,7 +76,7 @@ class PagesActions extends \lib\control\ControllerAdmin {
      *
      */
     public function bindPagesAction() {
-        $form = \apps\Core\model\PageForm::initialize()->validate();
+        $form = \apps\Vendor\model\PageForm::initialize()->validate();
         #$form->setFieldValue($table, $field, $value);
         $model = $form->getModels('htm_page');
         //$model->setColumnValue('htm_page.heading','Teste');

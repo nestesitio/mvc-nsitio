@@ -1,8 +1,8 @@
 <?php
 
-namespace apps\Core\control;
+namespace apps\Vendor\control;
 
-use \apps\Core\model\PagesQuery;
+use \apps\Vendor\model\PagesQuery;
 use \model\querys\LangsQuery;
 
 /**

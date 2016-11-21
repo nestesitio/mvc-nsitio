@@ -1,6 +1,6 @@
 <?php
 
-namespace apps\Core\model;
+namespace apps\Vendor\model;
 
 use \model\models\Htm;
 use \model\forms\HtmHasVarsForm;
@@ -14,13 +14,13 @@ use \lib\form\input\HiddenInput;
  * Created @2015-01-27 17:17
  * Updated @%$dateUpdated% *
  */
-class HtmForm extends \apps\Core\model\CmsForm {
+class HtmForm extends \apps\Vendor\model\CmsForm {
     
 
     /**
     * Create and return the common query to this class
     *
-    * @return \apps\Core\model\HtmForm;
+    * @return \apps\Vendor\model\HtmForm;
     */
     public static function initialize($app){
         $form = new HtmForm();
@@ -48,7 +48,7 @@ class HtmForm extends \apps\Core\model\CmsForm {
     /**
      * 
      * @param string $controller
-     * @return \apps\Core\model\PageTextForm
+     * @return \apps\Vendor\model\PageTextForm
      */
     public function setHtmController($controller){
         $form = $this->getHtmForm();
@@ -71,7 +71,7 @@ class HtmForm extends \apps\Core\model\CmsForm {
     /**
     * Set some defaults on the new form
     *
-    * @return \apps\Core\model\HtmForm;
+    * @return \apps\Vendor\model\HtmForm;
     */
     public function setSomeDefaults(){
         $form = $this->getHtmForm();
@@ -86,7 +86,7 @@ class HtmForm extends \apps\Core\model\CmsForm {
     /**
     * Create and return the common query to this class
     *
-    * @return \apps\Core\model\HtmForm;
+    * @return \apps\Vendor\model\HtmForm;
     */
     public function validate(){
         parent::validate();

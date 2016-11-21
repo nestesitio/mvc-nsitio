@@ -1,6 +1,6 @@
 <?php
 
-namespace apps\Core\model;
+namespace apps\Vendor\model;
 
 use \model\querys\HtmPageQuery;
 use \lib\mysql\Mysql;

@@ -2,7 +2,7 @@
 
 namespace lib\url;
 
-use \lib\page\HtmPageQueries;
+use \apps\Vendor\model\HtmPageQueries;
 use \lib\url\UrlHref;
 
 /**

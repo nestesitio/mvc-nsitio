@@ -10,7 +10,7 @@ use PDO;
 use \model\querys\HtmAppQuery;
 use \model\models\Htm;
 use \model\models\HtmPage;
-use \lib\page\HtmPageQueries;
+use \apps\Vendor\model\HtmPageQueries;
 
 /**
  * Description of CrudApp

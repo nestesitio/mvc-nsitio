@@ -1,6 +1,6 @@
 <?php
 
-namespace apps\Core\model;
+namespace apps\Vendor\model;
 
 use \model\models\HtmPage;
 use \model\models\HtmTxt;
@@ -14,7 +14,7 @@ use \lib\form\input\WysihtmlInput;
  * @author Luís Pinto / luis.nestesitio@gmail.com
  * Created @Jul 28, 2015
  */
-class TxtForm extends \apps\Core\model\CmsForm {
+class TxtForm extends \apps\Vendor\model\CmsForm {
 
     /**
      * @param $htm_id
@@ -100,7 +100,7 @@ class TxtForm extends \apps\Core\model\CmsForm {
     /**
      * 
      * @param string $toolbar
-     * @return \apps\Core\model\TxtForm
+     * @return \apps\Vendor\model\TxtForm
      */
     public function setToolbar($toolbar){
         $form = $this->getTxtForm();
@@ -130,7 +130,7 @@ class TxtForm extends \apps\Core\model\CmsForm {
     /**
      * 
      * @param \model\models\HtmPage $page
-     * @return \apps\Core\model\TxtForm
+     * @return \apps\Vendor\model\TxtForm
      */
     public function duplicate(\model\models\HtmPage $page, $lang){
         $form = $this->getHtmPageForm();

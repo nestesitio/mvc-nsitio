@@ -26,7 +26,7 @@ class FrontendMenu extends \lib\url\Menu {
     
     public function getFrontendScrolMenu(){
         $this->menu = '';
-        $pages = \lib\page\HtmPageQueries::getFrontendMenus('anchor')->find();
+        $pages = \apps\Vendor\model\HtmPageQueries::getFrontendMenus('anchor')->find();
         //$this->menu .= '<li class="hidden"><a href="#page-top"></a></li>';
         foreach($pages as $page){
             if($page->getSlug() == 'index'){

@@ -1,6 +1,6 @@
 <?php
 
-namespace apps\Core\control;
+namespace apps\Vendor\control;
 
 /**
  * Description of ErrorActions

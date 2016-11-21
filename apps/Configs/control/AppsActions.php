@@ -21,7 +21,7 @@ class AppsActions extends \lib\control\ControllerAdmin {
         $results = $this->buildDataGrid('apps', $query);
         $this->renderList($results);
         
-        $form = \apps\Core\model\PageForm::initialize()->prepareFilters();
+        $form = \apps\Vendor\model\PageForm::initialize()->prepareFilters();
         $this->renderFilters($form, 'apps');
     }
 

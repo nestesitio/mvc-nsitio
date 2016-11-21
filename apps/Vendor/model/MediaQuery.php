@@ -1,10 +1,10 @@
 <?php
 
-namespace lib\page;
+namespace apps\Vendor\model;
 
 use \model\querys\MediaQuery as HtmMediaQuery;
 use \model\models\HtmHasMedia;
-use \lib\page\Media;
+use \apps\Vendor\model\Media;
 use \lib\mysql\Mysql;
 
 /**
@@ -53,7 +53,7 @@ class MediaQuery {
     
    /**
     * 
-    * @return \lib\page\MediaQuery
+    * @return \apps\Vendor\model\MediaQuery
     */
     public static function startQuery(){
         $obj = new MediaQuery();
@@ -70,7 +70,7 @@ class MediaQuery {
     /**
      * 
      * @param integer $id
-     * @return \lib\page\MediaQuery
+     * @return \apps\Vendor\model\MediaQuery
      */
     public function filterById($id){
         $this->query->filterById($id);
@@ -81,7 +81,7 @@ class MediaQuery {
     /**
      * 
      * @param string $genre
-     * @return \lib\page\MediaQuery
+     * @return \apps\Vendor\model\MediaQuery
      */
     public function filterByGenre($genre){
         $this->query->filterByGenre($genre);
@@ -90,7 +90,7 @@ class MediaQuery {
     
     /**
      * 
-     * @return \lib\page\Media[]
+     * @return \apps\Vendor\model\Media[]
      */
     public function getMedias(){
         $objects = [];
@@ -103,7 +103,7 @@ class MediaQuery {
     
     /**
      * 
-     * @return \lib\page\Media
+     * @return \apps\Vendor\model\Media
      */
     public function getMedia(){
         $result = $this->query->findOne();

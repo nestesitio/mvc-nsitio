@@ -4,11 +4,11 @@ namespace apps\%$nameApp%\control;
 
 use \lib\register\Vars;
 
-use \apps\Core\model\PagesQuery;
-use \apps\Core\model\PagesForm;
-use \apps\Core\model\HtmForm;
+use \apps\Vendor\model\PagesQuery;
+use \apps\Vendor\model\PagesForm;
+use \apps\Vendor\model\HtmForm;
 use \model\models\HtmPage;
-use \lib\page\MediaQuery;
+use \apps\Vendor\model\MediaQuery;
 use \lib\session\SessionConfig;
 
 /**
@@ -18,7 +18,7 @@ use \lib\session\SessionConfig;
  * Created @2016-08-26 11:10
  * Updated @%$dateUpdated% *
  */
-class %$className%Actions extends \apps\Core\control\PagesActions {
+class %$className%Actions extends \apps\Vendor\control\PagesActions {
 
     private $app_slug = '%$slugApp%';
     
@@ -130,7 +130,7 @@ class %$className%Actions extends \apps\Core\control\PagesActions {
         $query = PagesQuery::getList($this->app_slug)->filterByHtmId(Vars::getId())->findOne();
         $form = HtmForm::initialize($this->app_slug)->setQueryValues($query);
         #more code about $form, $query, defaults and inputs    
-        $this->renderForm($form, 'apps/Core/config/htmvars', 'bindstatus_%$fileName%');
+        $this->renderForm($form, 'apps/Vendor/config/htmvars', 'bindstatus_%$fileName%');
     }
     
     /**
@@ -140,7 +140,7 @@ class %$className%Actions extends \apps\Core\control\PagesActions {
         
         $form = HtmForm::initialize($this->app_slug);
         $form->validate();
-        $model = $this->buildProcess($form, 'apps/Core/config/htmvars');
+        $model = $this->buildProcess($form, 'apps/Vendor/config/htmvars');
         if($model !== false){
             $this->show%$className%Action();
         }
