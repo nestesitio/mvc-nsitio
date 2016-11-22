@@ -20,7 +20,7 @@ class ErrorPage
     /**
      *
      */
-    const ERROR_CONTROLLER = '\\apps\\Core\\control\\ErrorActions';
+    const ERROR_CONTROLLER = '\\apps\\Vendor\\control\\ErrorActions';
 
     public static function execute($extended)
     {
